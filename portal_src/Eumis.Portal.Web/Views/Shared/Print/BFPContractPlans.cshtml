@@ -1,0 +1,18 @@
+﻿@model R_10040.BFPContractPlans
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.BFPContractPlanCollection != null && Model.BFPContractPlanCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.BFPContractPlanCollection.Count; i++)
+            {
+                <table class="project-errands">
+                    <tbody>
+                        @Html.Partial(MVC.Shared.Views.Print.BFPContractPlan, Model.BFPContractPlanCollection[i] ?? new R_10070.BFPContractPlan())
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

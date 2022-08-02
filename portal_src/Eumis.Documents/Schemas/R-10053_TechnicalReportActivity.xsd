@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10053" 
+	xmlns="http://ereg.egov.bg/segment/R-10053"
+            
+	xmlns:bcca="http://ereg.egov.bg/segment/R-10037"
+            
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+            
+	xmlns:pbd="http://ereg.egov.bg/segment/R-09997"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10037" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09997" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+  
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="TechnicalReportActivity">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Дейност на технически отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="BFPContractActivity" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Code" type="xsd:string" minOccurs="0" />
+            <xsd:element name="Result" type="xsd:string" minOccurs="0" />
+            <xsd:element name="Duration" type="xsd:string" minOccurs="0" />
+
+            <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+            <xsd:element name="EndDate" type="xsd:date" minOccurs="0" />
+          </xsd:sequence>
+          <xsd:attribute name="gid" type="xsd:string"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="ExecutionDescription" type="xsd:string" minOccurs="0" />
+      
+      <xsd:element name="Status" type="en:EnumNomenclature" minOccurs="0" />
+      
+      <xsd:element name="MonthsDuration" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ActualStartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="ActualEndDate" type="xsd:date" minOccurs="0" />
+      
+      <xsd:element name="DelayReason" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="PeriodResult" type="xsd:string" minOccurs="0" />
+      <xsd:element name="CumulativeResult" type="xsd:string" minOccurs="0" />
+      
+      <xsd:element name="ContractContractor" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10040"
+	xmlns="http://ereg.egov.bg/segment/R-10040"
+	
+	xmlns:bpbd="http://ereg.egov.bg/segment/R-10031"
+            
+	xmlns:com="http://ereg.egov.bg/segment/R-10004"
+            
+	xmlns:icd="http://ereg.egov.bg/segment/R-10005"
+	xmlns:bb="http://ereg.egov.bg/segment/R-10036"
+	xmlns:con="http://ereg.egov.bg/segment/R-10006"
+            
+	xmlns:bca="http://ereg.egov.bg/segment/R-10037"
+            
+	xmlns:bi="http://ereg.egov.bg/segment/R-10038"
+            
+	xmlns:bct="http://ereg.egov.bg/segment/R-10039"
+            
+	xmlns:bcp="http://ereg.egov.bg/segment/R-10070"
+            
+	xmlns:psf="http://ereg.egov.bg/segment/R-10017"
+            
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+            
+	xmlns:btn="http://ereg.egov.bg/nomenclature/R-09988"
+            
+	xmlns:sd="http://ereg.egov.bg/segment/R-10051"
+
+    xmlns:bdsi="http://ereg.egov.bg/segment/R-10093"
+            
+  xmlns:ed="http://ereg.egov.bg/segment/R-10098"
+            
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10031" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10004" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10005" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10036" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10006" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10037" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10038" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10039" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10017" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10070" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/nomenclature/R-09988" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10051" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10093" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10098" />
+
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="BFPContract">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Договор по БФП</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+
+      <xsd:element name="BFPContractBasicData" type="bpbd:BFPContractBasicData" minOccurs="0" />
+
+      <xsd:element name="Beneficiary" type="com:Company" minOccurs="0" />
+
+      <xsd:element name="Partners" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Partner" type="com:Company" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="BFPContractDirectionsBudgetContract" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Directions" type="bdsi:DirectionSection" minOccurs="0" />
+            <xsd:element name="BFPContractBudget" type="bb:BFPContractBudget" minOccurs="0" />
+            <xsd:element name="Contract" type="con:Contract" minOccurs="0" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="BFPContractContractActivities" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="BFPContractContractActivity" type="bca:BFPContractContractActivity" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="BFPContractIndicators" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="BFPContractIndicator" type="bi:BFPContractIndicator" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="BFPContractContractTeams" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="BFPContractContractTeam" type="bct:BFPContractContractTeam" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="BFPContractPlans" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="BFPContractPlan" type="bcp:BFPContractPlan" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ProjectSpecFields" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ProjectSpecField" type="psf:ProjectSpecField" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ElectronicDeclarations" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ElectronicDeclaration" type="ed:ElectronicDeclaration" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="AttachedDocuments" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    <xsd:attribute name="type" type="btn:BFPContractTypeNomenclature"/>
+
+    <xsd:attribute name="projectRegNumber" type="xsd:string"/>
+    <xsd:attribute name="contractRegNumber" type="xsd:string"/>
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,26 @@
+<ng-form name="editRegistrationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractRegistrations_editForm_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="contractRegistrations_editForm_edit" class="btn btn-primary btn-xs" ng-show="contractContractReg.isActive && !editMode"
+                   ng-disabled="!$canDo('ContractRegistrationActions.Edit', contractId)"></sc-button>
+        <sc-button name="activateBtn" btn-click="activate()" text="contractRegistrations_editForm_activate" class="btn btn-success btn-xs" ng-show="!contractContractReg.isActive && !editMode"
+          ng-disabled="!$canDo('ContractRegistrationActions.Activate', contractId)"></sc-button>
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="contractRegistrations_editForm_deactivate" class="btn btn-danger btn-xs" ng-show="contractContractReg.isActive && !editMode"
+          ng-disabled="!$canDo('ContractRegistrationActions.Deactivate', contractId)"></sc-button>
+        <sc-button name="backBtn" btn-click="back()" text="contractRegistrations_editForm_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left" ng-show="!editMode">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contractRegistrations_editForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractRegistrations_editForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-contract-registration name="contractRegistrationForm" ng-model="contractContractReg"  sc-form-params="{ isReadonly: true }"></eumis-contract-contract-registration>
+    </div>
+  </div>
+</ng-form>

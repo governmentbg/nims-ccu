@@ -1,0 +1,50 @@
+﻿@model R_10045.PaymentRequest
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>Договор № @Model.contractNumber, @Global.PaymentRequest № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.PaymentRequest, MVC.Private.PaymentRequest.ActionNames.Prepare, MVC.Private.PaymentRequest.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.PaymentRequest.ActionNames.Display, MVC.Private.PaymentRequest.Name, new { area = MVC.Private.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.PaymentRequest.ActionNames.Print, MVC.Private.PaymentRequest.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Private.PaymentRequest.ActionNames.Prepare, MVC.Private.PaymentRequest.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Private.PaymentRequest.ActionNames.Prepare, MVC.Private.PaymentRequest.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.PaymentRequest.ActionNames.Prepare, MVC.Private.PaymentRequest.Name, null, new { @class = "blue-button small back left" })
+                @if (Model.CanEnterErrors == null || Model.CanEnterErrors.Count == 0)
+                {
+                    @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.PaymentRequest.ActionNames.Submit, MVC.Private.PaymentRequest.Name, null, new { @class = "blue-button wait" })
+                }
+            </div>
+
+            @if (Model.CanEnterErrors != null && Model.CanEnterErrors.Count > 0)
+            {
+                <div class="validation-summary-errors" style="margin-top:20px;">
+                    <ul>
+                        @foreach (var error in Model.CanEnterErrors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

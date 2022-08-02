@@ -1,0 +1,17 @@
+﻿<div>
+
+  <label class="title">{{text}}</label>
+
+  <sc-tabs tab-list="{
+    'users_tabs_edit': 'root.users.view.edit',
+    'users_tabs_permissions': 'root.users.view.permissions',
+    'users_tabs_requests': 'root.users.view.requests',
+    'users_tabs_declarations': 'root.users.view.declarations',
+    'users_tabs_notifications': 'root.users.view.notificationSettings'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

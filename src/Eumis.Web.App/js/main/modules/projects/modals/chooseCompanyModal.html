@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projects_modals_chooseCompanyModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="projects_modals_chooseCompanyModal_cancel"
+        class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="filters.uinTypeId" l10n-text="projects_modals_chooseCompanyModal_uinTypeId" class="col-sm-3 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="filters.uin" l10n-text="projects_modals_chooseCompanyModal_uin" class="col-sm-3 col-md-2"></sc-field>
+        <sc-field type="text" ng-model="filters.name" l10n-text="projects_modals_chooseCompanyModal_name" class="col-sm-4 col-md-3"></sc-field>
+        <div class="labeless col-md-4 col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="projects_modals_chooseCompanyModal_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="companies" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseBtn" btn-click="choose(item)" text="projects_modals_chooseCompanyModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="projects_modals_chooseCompanyModal_name">
+      </sc-column>
+      <sc-column data="uin" title="projects_modals_chooseCompanyModal_uin">
+      </sc-column>
+      <sc-column data="uinType" title="projects_modals_chooseCompanyModal_uinType">
+      </sc-column>
+      <sc-column data="seat" title="projects_modals_chooseCompanyModal_seat">
+      </sc-column>
+      <sc-column data="corr" title="projects_modals_chooseCompanyModal_corr">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

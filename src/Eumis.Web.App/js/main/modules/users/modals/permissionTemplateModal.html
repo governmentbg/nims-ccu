@@ -1,0 +1,16 @@
+<ng-form name="form.typeForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_permissionTemplateModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_permissionTemplateModal_ok"
+          class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" style="overflow-x: scroll">
+      <eumis-permissions name="permissionsForm" ng-model="permissionTemplate.userPermissions"></eumis-permissions>
+    </div>
+  </div>
+</ng-form>

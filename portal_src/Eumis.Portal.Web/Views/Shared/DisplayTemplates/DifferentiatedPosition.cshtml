@@ -1,0 +1,31 @@
+﻿@model R_10071.DifferentiatedPosition
+
+@if (Model != null)
+{
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Name, ProcurementPlan.DifferentiatedPositionName)
+            @Html.DisplayFor(m => m.Name)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.SubmittedOffersCount, ProcurementPlan.SubmittedOffersCount)
+            @Html.DisplayFor(m => m.SubmittedOffersCount)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.RankedOffersCount, ProcurementPlan.RankedOffersCount)
+            @Html.DisplayFor(m => m.RankedOffersCount)
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.Comment, ProcurementPlan.DifferentiatedPositionComment)
+            @Html.DisplayFor(m => m.Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.ContractContractor, ProcurementPlan.ContractContractor)
+            @Html.DisplayFor(m => m.ContractContractor)
+        </div>
+    </div>
+}

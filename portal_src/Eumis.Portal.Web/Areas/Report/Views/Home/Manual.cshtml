@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Eumis.Documents.Contracts.GuidanceVO>
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton)
+}
+    , Global.Manual)
+
+<div class="container page-title">
+    <h1>@Global.Manual</h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix">
+        <div class="col-xs-12">
+            <p class="text-justify">В тази страница може да намерите всички налични ръководства за работа с публичните модули на системата. При проектирането и разработката сме се стремили тя да е максимално интерактивна и лесна за работа, така че потребител с общи компютърни познания, който може да работи с Интернет и уеб базирани приложения, да може да се справи без допълнителна помощ. И все пак, ако отделите няколко минути, за да се запознаете с принципа на работа и логиката на подаване на проектно предложение, е възможно работата Ви да се окаже по-лесна и по-приятна и да си спестите евентуални допълнителни усилия и грешки.</p>
+            @if (Model != null && Model.Count() > 0)
+            {
+                <h2>@Global.DownloadFiles</h2>
+                <ul class="file-list row-file-list">
+                    @foreach (var file in Model)
+                    {
+                        var extenstion = file.FileName.Split('.').Last();
+                        if (extenstion == "docx")
+                        {
+                            extenstion = "doc";
+                        }
+                        if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                        {
+                            extenstion = string.Empty;
+                        }
+                        else
+                        {
+                            extenstion = "file-" + extenstion;
+                        }
+
+                        <li class="@(extenstion)">
+                            <a target="_blank" href="@(Url.Action(MVC.Report.Home.ManualDownload(file.FileKey)))">
+                                @file.Description
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <h2>@Global.DownloadFiles</h2>
+                <ul class="file-list row-file-list">
+                    <li class="file-pdf">
+                        <a href="/docs/manual.pdf" target="_blank">Ръководство за работа v.2.0</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

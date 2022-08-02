@@ -1,0 +1,15 @@
+﻿@model R_10078.FinanceReportBasicData
+
+@if (Model != null)
+{
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@FinanceReportBasicData.StartDate</label>
+            @Html.DisplayFor(m => m.StartDate)
+        </div>
+        <div class="form-group col-md-4">
+            <label>@FinanceReportBasicData.EndDate</label>
+            @Html.DisplayFor(m => m.EndDate)
+        </div>
+    </div>
+}

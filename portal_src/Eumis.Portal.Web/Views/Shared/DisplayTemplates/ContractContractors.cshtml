@@ -1,0 +1,232 @@
+﻿@model R_10041.ContractContractors
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ContractContractor.SignDate</th>
+                    <th>@ContractContractor.TotalFundedValue</th>
+                    <th>@ContractContractor.Contractor</th>
+                    <th>@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ContractContractorCollection != null && Model.ContractContractorCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ContractContractorCollection.Count; i++)
+                    {
+                        var item = Model.ContractContractorCollection[i];
+
+                        <tr class="@(!item.isActive ? "deactivated-gray" : "")">
+                            <td>
+                                @if (item.SignDate.HasValue)
+                                {
+                                    <text>@item.SignDate.Value.ToString("dd.MM.yyyy")</text>
+                                }
+                                @if (!item.isActive)
+                                {
+                                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.ElementCanceled" data-trigger="hover" alt="" data-original-title="" title="">
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.TotalFundedValue)
+                            </td>
+                            <td>
+                                @if (item.Contractor != null)
+                                {
+                                    <text>@item.Contractor.Name</text>
+                                }
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="history-table @(!item.isActive ? "deactivated-gray" : "")">
+                            <td colspan="4">
+                                <div class="history-table-wrapper clearfix">
+
+                                    <h3 class="margin-bottom-h3">@ContractContractor.Contract</h3>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.SignDate</label>
+                                            @Html.DisplayFor(m => item.SignDate)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.Number</label>
+                                            @Html.DisplayFor(m => item.Number)
+                                        </div>
+                                    </div>
+
+                                    <h3>@ContractContractor.AmountData</h3>
+
+                                    <div class="clearfix" style="margin-top:10px;">
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.TotalAmountExcludingVAT</label>
+                                            @Html.DisplayFor(m => item.TotalAmountExcludingVAT, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.VATAmountIfEligible</label>
+                                            @Html.DisplayFor(m => item.VATAmountIfEligible, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.TotalFundedValue</label>
+                                            @Html.DisplayFor(m => item.TotalFundedValue, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.NumberAnnexes</label>
+                                            @Html.DisplayFor(m => item.NumberAnnexes)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.CurrentAnnexTotalAmount</label>
+                                            @Html.DisplayFor(m => item.CurrentAnnexTotalAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label>@ContractContractor.Comment</label>
+                                            @Html.DisplayFor(m => item.Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.StartDate</label>
+                                            @Html.DisplayFor(m => item.StartDate)
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>@ContractContractor.EndDate</label>
+                                            @Html.DisplayFor(m => item.EndDate)
+                                        </div>
+                                    </div>
+
+                                    <h3 class="margin-bottom-h3">@ContractContractor.Contractor</h3>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-6">
+                                            @Html.DisplayFor(m => item.Contractor)
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-6">
+                                            <label>@ContractContractor.HasSubcontractorMember</label>
+                                            @Html.DisplayFor(m => item.HasSubcontractorMember)
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>@ContractContractor.WithoutProcurementPlan</label>
+                                            @Html.DisplayFor(m => item.WithoutProcurementPlan)
+                                        </div>
+                                    </div>
+
+                                    @if (item.HasSubcontractorMember)
+                                    {
+                                        <h3 class="margin-bottom-h3">@ContractContractor.SubcontractorMembersHeader</h3>
+
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-12">
+                                                <table width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:40%;">@ContractContractor.SubcontractorMemberType</th>
+                                                            <th style="width:60%;">@ContractContractor.SubcontractorMemberName</th>
+                                                            <th colspan="2">@Global.Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var member in item.SubcontractorMemberCollection)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(m => member.Type)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(m => member.Contractor)
+                                                                </td>
+                                                                <td style="width: 130px;">
+                                                                    <a title="" class="history-btn">
+                                                                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="history-table">
+                                                                <td colspan="4">
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>@ContractContractor.SubcontractorMemberType</label>
+                                                                            @Html.DisplayFor(m => member.Type)
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>@ContractContractor.SubcontractorMemberName</label>
+                                                                            @Html.DisplayFor(m => member.Contractor)
+                                                                        </div>
+                                                                    </div>
+                                                                    <h3>@ContractContractor.SubcontractorMemberContract</h3>
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>@ContractContractor.SubcontractorMemberContractDate</label>
+                                                                            @Html.DisplayFor(m => member.ContractDate)
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>@ContractContractor.SubcontractorMemberContractNumber</label>
+                                                                            @Html.DisplayFor(m => member.ContractNumber)
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>@ContractContractor.SubcontractorMemberContractAmount</label>
+                                                                            @Html.DisplayFor(m => member.ContractAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <h3 class="margin-bottom-h3">@ContractContractor.ActivitiesBudgetDetailsRefData</h3>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-12">
+                                            <table width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:50%">@ContractContractor.ContractActivity</th>
+                                                        <th style="width:50%">@ContractContractor.BudgetDetail</th>
+                                                    </tr>
+                                                </thead>
+                                                @if (item.ActivitiesBudgetDetailsRefCollection != null)
+                                                {
+                                                    foreach (var reference in item.ActivitiesBudgetDetailsRefCollection)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(m => reference.ContractActivity)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(m => reference.BudgetDetail)
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="margin-bottom-h3">@ContractContractor.AttachedDocuments</h3>
+
+                                    <div class="form-group col-md-12">
+                                        @Html.DisplayFor(m => item.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.ContractContractorsAttachedDocuments)
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

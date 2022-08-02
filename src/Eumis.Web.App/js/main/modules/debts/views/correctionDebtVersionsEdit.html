@@ -1,0 +1,33 @@
+<ng-form name="editCorrectionDebtVersionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="correctionDebts_editCorrectionDebtVersion_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="actualBtn" btn-click="changeStatus('actual')" text="correctionDebts_editCorrectionDebtVersion_actual" class="btn btn-default btn-xs"
+          ng-show="correctionDebtStatus !== 'removed' && correctionDebtVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebtVersion.correctionDebtId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="correctionDebts_editCorrectionDebtVersion_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="correctionDebtStatus !== 'removed' && correctionDebtVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebtVersion.correctionDebtId)">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="correctionDebts_editCorrectionDebtVersion_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" 
+          ng-show="correctionDebtStatus === 'entered' && correctionDebtVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebtVersion.correctionDebtId)">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="correctionDebts_editCorrectionDebtVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="correctionDebts_editCorrectionDebtVersion_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-correction-debt-version name="correctionDebtVersionForm" ng-model="correctionDebtVersion"></eumis-correction-debt-version>
+    </div>
+
+  </div>
+</ng-form>

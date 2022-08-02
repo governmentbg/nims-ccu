@@ -1,0 +1,43 @@
+﻿@model R_09998.DirectionsBudgetContract
+
+@using Eumis.Portal.Web.Helpers
+
+@if (Model != null)
+{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+    
+    int sectionNumber = Model.SectionNumber;
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @Project.InterventionCategoryDimensions @Model.ProgrammeNameFormatted
+        @if (isMessageType)
+        {
+            <text> - @(Model.isLocked ? Global.Locked : Global.Unlocked)</text>
+        }
+    </h3>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @Project.Budget @Model.ProgrammeNameFormatted
+        @if (isMessageType)
+        {
+            <text> - @(Model.isLocked ? Global.Locked : Global.Unlocked)</text>
+        }
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Budget, Model.Budget ?? new R_10010.Budget())
+    </section>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @Project.Contract @Model.ProgrammeNameFormatted
+        @if (isMessageType)
+        {
+            <text> - @(Model.isLocked ? Global.Locked : Global.Unlocked)</text>
+        }
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Contract, Model.Contract ?? new R_10006.Contract())
+    </section>
+}

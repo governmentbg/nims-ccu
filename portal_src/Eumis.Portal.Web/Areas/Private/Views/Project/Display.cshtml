@@ -1,0 +1,26 @@
+﻿@model R_10019.Project
+
+<div class="container">
+    <ul class="nav nav-tabs">        
+        @Html.ActionLink(Global.Proposal, MVC.Private.Project.ActionNames.Prepare, MVC.Private.Project.Name, null, new { @class = "tab wait" })
+        @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.Project.ActionNames.Display, MVC.Private.Project.Name, null, new { @class = "tab active wait" })
+
+        @Html.ActionLink(Global.Print, MVC.Private.Project.ActionNames.Print, MVC.Private.Project.Name, null, new { @class = "top-print-btn", target = "_blank" })
+    </ul>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                             Url.Action(MVC.Private.Project.ActionNames.Prepare, MVC.Private.Project.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                             Url.Action(MVC.Private.Project.ActionNames.Prepare, MVC.Private.Project.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.Project.ActionNames.Prepare, MVC.Private.Project.Name, null, new { @class = "blue-button small back left" })
+                @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.Project.ActionNames.Submit, MVC.Private.Project.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </form>
+    </div>
+</div>

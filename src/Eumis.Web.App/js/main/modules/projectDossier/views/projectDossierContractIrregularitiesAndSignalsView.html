@@ -1,0 +1,62 @@
+﻿<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewIrregularitiesAndSignals_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showIrregularities=!showIrregularities">
+        <span l10n-text="projectDossier_viewIrregularitiesAndSignals_irregularities"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showIrregularities, 'glyphicon-chevron-right': !showIrregularities}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showIrregularities" ng-href="{{irregularitiesExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewIrregularitiesAndSignals_irregularitieExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showIrregularities" items="irregularities" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.irregularities.view.data', params: { id: item.irregularityId }}"
+              ng-disabled="!$canDo('IrregularityActions.View', item.irregularityId)"></sc-button>
+          </sc-column>
+          <sc-column data="signalNum" title="projectDossier_viewIrregularitiesAndSignals_irregularitieSignalNum">
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewIrregularitiesAndSignals_irregularitieProgramme">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewIrregularitiesAndSignals_irregularitieContractRegNumber">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewIrregularitiesAndSignals_irregularitieRegNumber">
+          </sc-column>
+          <sc-column data="company" title="projectDossier_viewIrregularitiesAndSignals_irregularitieCompany">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showIrregularitySignals=!showIrregularitySignals">
+        <span l10n-text="projectDossier_viewIrregularitiesAndSignals_irregularitySignals"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showIrregularitySignals, 'glyphicon-chevron-right': !showIrregularitySignals}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showIrregularitySignals" ng-href="{{irregularitySignalsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewIrregularitiesAndSignals_irregularitySignalExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showIrregularitySignals" items="irregularitySignals" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.irregularitySignals.view.basicData', params: { id: item.irregularitySignalId }}"
+              ng-disabled="!$canDo('IrregularitySignalActions.View', item.irregularitySignalId)"></sc-button>
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewIrregularitiesAndSignals_irregularitySignalProgramme">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewIrregularitiesAndSignals_irregularitySignalContractRegNumber" has-content="true">
+            {{ item.contractRegNumber ? item.contractRegNumber : item.projectRegNumber}}
+          </sc-column>
+          <sc-column data="statusDescr" title="projectDossier_viewIrregularitiesAndSignals_irregularitySignalStatus">
+          </sc-column>
+          <sc-column data="isIrregularityFound" title="projectDossier_viewIrregularitiesAndSignals_irregularitySignalIsIrregularityFound" type="boolean">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

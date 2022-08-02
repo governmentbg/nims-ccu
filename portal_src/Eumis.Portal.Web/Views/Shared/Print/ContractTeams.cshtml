@@ -1,0 +1,44 @@
+﻿@model R_10019.ContractTeams
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ContractTeamCollection != null && Model.ContractTeamCollection.Count > 0)
+        {
+            <table class="contract-teams">
+                <tbody>
+                    @for (int i = 0; i < Model.ContractTeamCollection.Count; i++)
+                    {
+                        <tr>
+                            <td style="width: 35%;"><strong>@ContractTeam.Name</strong></td>
+                            <td style="width: 65%;word-break: break-all">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractTeamCollection[i].Name ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ContractTeam.Position</strong></td>
+                            <td style="word-break: break-all">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractTeamCollection[i].Position ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <strong>@ContractTeam.Responsibilities</strong>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractTeamCollection[i].Responsibilities ?? string.Empty)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ContractTeam.Phone</strong></td>
+                            <td>@Model.ContractTeamCollection[i].Phone</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ContractTeam.Email</strong></td>
+                            <td>@Model.ContractTeamCollection[i].Email</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ContractTeam.Fax</strong></td>
+                            <td>@Model.ContractTeamCollection[i].Fax</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+    </div>
+}

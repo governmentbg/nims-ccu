@@ -1,0 +1,43 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        
+        <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="filters.procedureId" l10n-text="evalSessions_evalSessionsSearch_procedure" class="col-sm-8"></sc-field>
+        <div class="labeless col-md-4 col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="evalSessions_evalSessionsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" btn-sref="{ state: 'root.evalSessions.new' }" text="evalSessions_evalSessionsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionListActions.Create')"></sc-button>
+
+    <sc-datatable items="evalSessions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.evalSessionStatus === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+
+        <sc-button name="viewAsAdminButton" ng-if="item.isSessionsAdmin || item.isSessionAdminOrObserver || item.isReader" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          btn-sref="{state: 'root.evalSessions.view.edit', params: { id: item.evalSessionId }}"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSession', item.evalSessionId)"></sc-button>
+
+        <sc-button name="viewAsAssessorButton" ng-if="item.isAssessor" btn-sref="{state: 'root.evalSessions.my.view.edit', params: { id: item.evalSessionId}}" class="btn btn-xs btn-primary" icon="glyphicon-list-alt"
+          ng-disabled="!$canDo('MyEvalSession.ViewSession', item.evalSessionId)"></sc-button>
+
+      </sc-column>
+      <sc-column data="evalSessionStatusName" title="evalSessions_evalSessionsSearch_evalSessionStatus">
+      </sc-column>
+      <sc-column data="procedureName" title="evalSessions_evalSessionsSearch_procedureName">
+      </sc-column>
+      <sc-column data="sessionNum" title="evalSessions_evalSessionsSearch_sessionNum">
+      </sc-column>
+      <sc-column data="sessionDate" title="evalSessions_evalSessionsSearch_sessionDate" type="date">
+      </sc-column>
+      <sc-column data="evalSessionType" title="evalSessions_evalSessionsSearch_evalSessionType">
+      </sc-column>
+      <sc-column data="orderNum" title="evalSessions_evalSessionsSearch_orderNum">
+      </sc-column>
+      <sc-column data="orderDate" title="evalSessions_evalSessionsSearch_orderDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

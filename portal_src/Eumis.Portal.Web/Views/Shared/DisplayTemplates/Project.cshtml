@@ -1,0 +1,275 @@
+﻿@using Eumis.Documents.Enums
+@using Eumis.Portal.Web.Helpers
+@model R_10019.Project
+
+@if (Model != null)
+{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+
+    object messageGid = null;
+
+    if (isMessageType)
+    {
+        messageGid = ViewData["MessageGid"];
+    }
+
+    Model.PassFormTypeInfo();
+
+    if (Model.ProjectHeader != null)
+    {
+        <section class="clearfix" style="display: block;">
+            @Html.DisplayFor(m => m.ProjectHeader)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    int sectionNumber = 0;
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.BasicData))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.ProjectBasicData.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.ProjectBasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ProjectBasicData)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Beneficary))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.Candidate.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.Candidate
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Candidate, MVC.Shared.Views.DisplayTemplates.CompanyCandidate)
+
+            @if (Model.ProjectBasicData != null)
+            {
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(m => m.ProjectBasicData.AdditionalDescription, ProjectBasicData.AdditionalDescription)
+                    @Html.DisplayFor(m => m.ProjectBasicData.AdditionalDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </div>
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Partners))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.Partners.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.Partner
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Partners)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Budget))
+    {
+        if (Model.DirectionsBudgetContractCollection != null && Model.DirectionsBudgetContractCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.DirectionsBudgetContractCollection.Count; i++)
+            {
+                Model.DirectionsBudgetContractCollection[i].SectionNumber = sectionNumber;
+                Model.DirectionsBudgetContractCollection[i].IsDirectionSelected = Model.IsApplicationSectionSelected(ApplicationSectionType.Directions);
+                @Html.DisplayFor(m => m.DirectionsBudgetContractCollection[i])
+
+                if (Model.IsApplicationSectionSelected(ApplicationSectionType.Directions))
+                {
+                    sectionNumber += 3;
+                }
+                else
+                {
+                    sectionNumber += 2;
+                }
+            }
+        }
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Activities))
+    {
+        if (Model.ProgrammeContractActivitiesCollection != null)
+        {
+            for (int i = 0; i < Model.ProgrammeContractActivitiesCollection.Count; i++)
+            {
+                sectionNumber++;
+                <div class="section-separator"> </div>
+                <h2 data-section="@sectionNumber" class="section-heading">
+                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                    @if (isMessageType)
+                    {
+                        @Html.CheckBoxFor(m => m.ProgrammeContractActivitiesCollection[i].isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                    }
+                    @sectionNumber. @Project.ContractActivity
+                    @if (Model.IsFinalRecipients)
+                    {
+                        <text>(@Global.NotRequiredSection)</text>
+                    }
+                    @Model.ProgrammeContractActivitiesCollection[i].ProgrammeNameFormatted
+                </h2>
+                <section data-section="@sectionNumber" class="clearfix">
+                    @Html.DisplayFor(m => m.ProgrammeContractActivitiesCollection[i])
+                </section>
+            }
+        }
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Indicators))
+    {
+        for (int i = 0; i < Model.ProgrammeIndicatorsCollection.Count; i++)
+        {
+            sectionNumber++;
+            <div class="section-separator"> </div>
+            <h2 data-section="@sectionNumber" class="section-heading">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                @if (isMessageType)
+                {
+                    @Html.CheckBoxFor(m => m.ProgrammeIndicatorsCollection[i].isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                }
+                @sectionNumber. @Project.ProgrammeIndicators @Model.ProgrammeIndicatorsCollection[i].ProgrammeNameFormatted
+            </h2>
+            <section data-section="@sectionNumber" class="clearfix">
+                @Html.DisplayFor(m => m.ProgrammeIndicatorsCollection[i])
+            </section>
+        }
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Team))
+    {
+        sectionNumber++;
+        <div class="section-separator"> </div>
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.ContractTeams.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.ContractTeamCollection
+            @if (Model.IsFinalRecipients)
+            {
+                <text>(@Global.NotRequiredSection)</text>
+            }
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ContractTeams)
+        </section>
+    }
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.ProcurementPlan))
+    {
+        sectionNumber++;
+        <div class="section-separator"> </div>
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.ProjectErrands.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.ProjectErrandCollection
+            @if (Model.IsFinalRecipients)
+            {
+                <text>(@Global.NotRequiredSection)</text>
+            }
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ProjectErrands)
+        </section>
+    }
+
+
+    if (Model.HasProjectSpecFields)
+    {
+        <div class="section-separator"></div>
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.ProjectSpecFields.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @(areFinLabels ? Project.FinancialIntermediariesProjectSpecFieldCollection : Project.ProjectSpecFieldCollection)
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ProjectSpecFields)
+        </section>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.ElectronicDeclarations) && Model.HasElectronicDeclarations)
+    {
+        <div class="section-separator"> </div>
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.ElectronicDeclarations.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.Declarations
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ElectronicDeclarations)
+        </section>
+    }
+
+    if (Model.HasAttachedDocuments || isMessageType)
+    {
+        <div class="section-separator"> </div>
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @if (isMessageType)
+            {
+                @Html.CheckBoxFor(m => m.AttachedDocuments.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+            }
+            @sectionNumber. @Project.AttachedDocumentCollection
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.IsSubmitted && Model.AttachedDocuments != null && Model.AttachedDocuments.AttachedDocumentCollection != null && Model.AttachedDocuments.AttachedDocumentCollection.Count > 0)
+            {
+                if (isMessageType)
+                {
+                    <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                        <a href="@(Url.Action(MVC.Private.MessageSend.ActionNames.DownloadFiles, MVC.Private.MessageSend.Name, new { messageGid = messageGid, hash = @Model.ProjectBasicData.GetHashCode().ToString() }))" title="">
+                            <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                            <span>@Project.DownloadFiles</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                        <a href="@(Url.Action(MVC.Private.Project.ActionNames.DownloadFiles, MVC.Project.Name, new { projectGid = Model.ProjectGid, hash = @Model.ProjectBasicData.GetHashCode().ToString() }))" title="">
+                            <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                            <span>@Project.DownloadFiles</span>
+                        </a>
+                    </div>
+                }
+            }
+
+            @Html.DisplayFor(m => m.AttachedDocuments, MVC.Shared.Views.DisplayTemplates.ProjectAttachedDocuments)
+        </section>
+    }
+
+    @Html.DisplayFor(m => m.Signature)
+
+}

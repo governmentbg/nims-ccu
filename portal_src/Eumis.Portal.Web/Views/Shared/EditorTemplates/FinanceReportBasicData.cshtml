@@ -1,0 +1,17 @@
+﻿@model R_10078.FinanceReportBasicData
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBasicData">
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@FinanceReportBasicData.StartDate</label>
+            <input ng-class="{'input-validation-error': !model.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.StartDate" name="@(Html.GetNameFor(m => m.StartDate))" class="form-control" onpaste="return false" />
+        </div>
+        <div class="form-group col-md-4">
+            <label>@FinanceReportBasicData.EndDate</label>
+            <input ng-class="{'input-validation-error': !model.IsEndDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.EndDate" name="@(Html.GetNameFor(m => m.EndDate))" class="form-control" onpaste="return false" />
+        </div>
+
+    </div>
+
+</div>

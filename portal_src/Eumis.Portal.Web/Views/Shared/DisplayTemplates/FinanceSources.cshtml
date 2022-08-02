@@ -1,0 +1,165 @@
+﻿@model R_10064.FinanceSources
+
+@if (Model != null)
+{
+    <div class="auto-fill-table">
+        <a href="/api/@(ViewContext.RouteData.Values["session"])/excel/downloadFinanceSources" target="_blank" class="draft-link">
+            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Draft.SaveAsFile
+        </a>
+    </div>
+    
+    if (Model.HasCoFinancingBudgetAmount)
+    {
+        <div class="info-block">
+            <p>@FinanceSources.HasCoFinancingBudgetAmountInfo</p>
+        </div>
+    }
+
+    <table class="glossary-table" style="margin-top:20px; width:100%;">
+        <tbody>
+            <tr>
+                <td rowspan="2" style="width:25%;"><strong>@FinanceSources.FinanceSourceName</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.BFPContractAmount</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.CurrentReportAmount</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.ReportCumulativeAmount</strong></td>
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+            </tr>
+
+            <tr>
+                <td><strong>@Eumis.Documents.Enums.FinanceSourceNomenclature.EuropeanSocialFund.Name</strong></td>
+                @Html.DisplayFor(m => m.EuropeanSocialFund)
+            </tr>
+            <tr>
+                <td><strong>@Eumis.Documents.Enums.FinanceSourceNomenclature.YouthEmploymentInitiative.Name</strong></td>
+                @Html.DisplayFor(m => m.YouthEmploymentInitiative)
+            </tr>
+            <tr>
+                <td><strong>@Eumis.Documents.Enums.FinanceSourceNomenclature.EuropeanRegionalDevelopmentFund.Name</strong></td>
+                @Html.DisplayFor(m => m.EuropeanRegionalDevelopmentFund)
+            </tr>
+            <tr>
+                <td><strong>@Eumis.Documents.Enums.FinanceSourceNomenclature.CohesionFund.Name</strong></td>
+                @Html.DisplayFor(m => m.CohesionFund)
+            </tr>
+            <tr>
+                <td><strong>@Eumis.Documents.Enums.FinanceSourceNomenclature.FundForEuropeanAidToTheMostDeprived.Name</strong></td>
+                @Html.DisplayFor(m => m.FundForEuropeanAidToTheMostDeprived)
+            </tr>
+
+            <tr>
+                <td>@FinanceSources.National</td>
+                @Html.DisplayFor(m => m.National)
+            </tr>
+
+            <tr>
+                <td><strong>в режим @Eumis.Documents.Enums.AidModeNomenclature.Deminimis.Name</strong></td>
+                @Html.DisplayFor(m => m.Deminimis)
+            </tr>
+            <tr>
+                <td><strong>в режим @Eumis.Documents.Enums.AidModeNomenclature.StateAid.Name</strong></td>
+                @Html.DisplayFor(m => m.StateAid)
+            </tr>
+
+            <tr>
+                <td>@FinanceSources.CrossFinancing</td>
+                @Html.DisplayFor(m => m.CrossFinancing)
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.GrandTotal</strong></td>
+                @Html.DisplayFor(m => m.GrandTotal)
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.Self</strong></td>
+                @Html.DisplayFor(m => m.Self)
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.ProjectTotal</strong></td>
+                @Html.DisplayFor(m => m.Total)
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="glossary-table" style="margin-top:20px; width:100%;">
+        <tbody>
+            <tr>
+                <td style="width:40%;"></td>
+                <td style="width:20%;"><strong>@FinanceSources.Grand</strong></td>
+                <td style="width:20%;"><strong>@FinanceSources.Self</strong></td>
+                <td style="width:20%;"><strong>@FinanceSources.Total</strong></td>
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.InsideEU</strong></td>
+                @Html.DisplayFor(m => m.InsideEU)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.OutsideEU</strong></td>
+                @Html.DisplayFor(m => m.OutsideEU)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.OutsideEUInProgrammingAreaEFRR</strong></td>
+                @Html.DisplayFor(m => m.OutsideEUInProgrammingAreaEFRR)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.ThirdCountriesEFRR</strong></td>
+                @Html.DisplayFor(m => m.ThirdCountriesEFRR)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.AdvancePayment</strong></td>
+                @Html.DisplayFor(m => m.AdvancePayment)
+            </tr>
+            @if (Model.IsPaymentRequestTypeAdvanceVerification)
+            {
+                <tr>
+                    <td><strong>@FinanceSources.NotAdvancePayment</strong></td>
+                    @Html.DisplayFor(m => m.NotAdvancePayment)
+                </tr>
+            }
+            <tr>
+                <td><strong>@FinanceSources.OneTimeSums</strong></td>
+                @Html.DisplayFor(m => m.OneTimeSums)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.EuApprovedOneTimeSums</strong></td>
+                @Html.DisplayFor(m => m.EuApprovedOneTimeSums)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.FlatRates</strong></td>
+                @Html.DisplayFor(m => m.FlatRates)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.StandardTables</strong></td>
+                @Html.DisplayFor(m => m.StandardTables)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.EuApprovedStandardTables</strong></td>
+                @Html.DisplayFor(m => m.EuApprovedStandardTables)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.Land</strong></td>
+                @Html.DisplayFor(m => m.Land)
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.ContributionNature</strong></td>
+                @Html.DisplayFor(m => m.ContributionNature)
+            </tr>
+
+        </tbody>
+    </table>
+}

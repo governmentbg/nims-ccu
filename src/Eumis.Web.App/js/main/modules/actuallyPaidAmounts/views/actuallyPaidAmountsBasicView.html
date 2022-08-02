@@ -1,0 +1,35 @@
+<ng-form name="editPaidAmountForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="actuallyPaidAmounts_basicData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="setToDraft()" text="actuallyPaidAmounts_basicData_draft" class="btn btn-success btn-xs"
+          ng-if="paidAmountData.status === 'entered'" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="assignContractReportPaymentBtn" btn-click="assignContractReportPayment()" text="actuallyPaidAmounts_basicData_assignContractReportPayment" class="btn btn-primary btn-xs"
+          ng-if="paidAmountData.status === 'draft' && !paidAmountData.contractReportPaymentId" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="changeContractReportPaymentBtn" btn-click="changeContractReportPayment()" text="actuallyPaidAmounts_basicData_changeContractReportPayment" class="btn btn-primary btn-xs"
+          ng-if="paidAmountData.status === 'draft' && paidAmountData.contractReportPaymentId" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="dissociateContractReportPaymentBtn" btn-click="dissociateContractReportPayment()" text="actuallyPaidAmounts_basicData_dissociateContractReportPayment" class="btn btn-primary btn-xs"
+          ng-if="paidAmountData.status === 'draft' && paidAmountData.contractReportPaymentId" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="enter()" text="actuallyPaidAmounts_basicData_enter" class="btn btn-primary btn-xs"
+          ng-if="paidAmountData.status === 'draft'" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="actuallyPaidAmounts_basicData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="paidAmountData.status === 'draft' && !paidAmountData.isActivated" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+        <sc-button name="removeBtn" btn-click="remove()" text="actuallyPaidAmounts_basicData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="paidAmountData.status === 'draft' && paidAmountData.isActivated" ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', paidAmountData.paidAmountId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-actually-paid-amount-basic-data name="paidAmountDataForm" ng-model="paidAmountData" sc-form-readonly="true"></eumis-actually-paid-amount-basic-data>
+    </div>
+  </div>
+</ng-form>

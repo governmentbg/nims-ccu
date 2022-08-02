@@ -1,0 +1,16 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header" l10n-text="procedures_procedureTimeLimitForm_endDateTime"></h5>
+  <div class="row">
+    <sc-field type="date" ng-model="model.endDate" ng-required="true" l10n-text="procedures_procedureTimeLimitForm_endDate" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="time" ng-if="!model.procedureId" ng-model="model.endTime" ng-required="true" l10n-text="procedures_procedureTimeLimitForm_endTime" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="time" ng-if="model.procedureId" ng-model="model.endTime" ng-required="true" l10n-text="procedures_procedureTimeLimitForm_endTime" class="col-sm-2 col-md-2"
+      sc-validate-async="{ validEndTime: isValidEndTime }"
+      sc-revalidate-on="['model.procedureId', 'model.endDate', 'model.procedureTimeLimitId']"
+      validations="{ validEndTime: 'procedures_procedureTimeLimitForm_notValidEndTime' }"
+    >
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" mode="id" l10n-text="procedures_procedureTimeLimitForm_notes" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+</ng-form>

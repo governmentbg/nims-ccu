@@ -1,0 +1,93 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field
+      type="nomenclature"
+      alias="'programmePriorities'"
+      ng-readonly="form.$readonly || !model.editableFields['programmePriorityId']"
+      ng-model="model.programmePriorityId"
+      mode="id"
+      ng-required="true"
+      params="{contractId: model.contractId}"
+      l10n-text="actuallyPaidAmounts_paidAmountForm_programmePriority"
+      class="col-sm-6">
+    </sc-field>
+
+    <sc-field
+      type="nomenclature"
+      alias="'actuallyPaidAmountPaymentReasons'"
+      ng-readonly="form.$readonly || !model.editableFields['paymentReason']"
+      ng-model="model.paymentReason"
+      mode="id"
+      ng-required="true"
+      l10n-text="actuallyPaidAmounts_paidAmountForm_paymentReason"
+      class="col-sm-6">
+    </sc-field>
+    
+    <sc-field
+      type="date"
+      ng-readonly="form.$readonly || !model.editableFields['paymentDate']"
+      ng-model="model.paymentDate"
+      ng-required="true"
+      l10n-text="actuallyPaidAmounts_paidAmountForm_paymentDate"
+      class="col-sm-3">
+    </sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="actuallyPaidAmounts_paidAmountForm_paidBfp"></h5>
+  <div class="row">
+    <sc-field
+      type="money"
+      ng-model="model.paidTotalAmount"
+      l10n-text="actuallyPaidAmounts_paidAmountForm_paidTotalAmount"
+      class="col-sm-3">
+    </sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field
+      type="textarea"
+      ng-readonly="form.$readonly || !model.editableFields['comment']"
+      ng-model="model.comment"
+      rows="2"
+      l10n-text="actuallyPaidAmounts_paidAmountForm_comment"
+      class="col-sm-12">
+    </sc-field>
+  </div>
+
+  <div ng-show="model.contractReportPaymentId">
+    <h5 class="table-header" l10n-text="actuallyPaidAmounts_paidAmountForm_contractReportPayment"></h5>
+    <div class="row">
+      <sc-field
+        type="text"
+        ng-readonly="form.$readonly || !model.editableFields['paymentVersionNum']"
+        ng-model="model.paymentVersionNum"
+        l10n-text="actuallyPaidAmounts_paidAmountForm_paymentVersionNum"
+        class="col-sm-3 col-md-2">
+      </sc-field>
+      
+      <sc-field
+        type="date"
+        ng-readonly="form.$readonly || !model.editableFields['paymentCheckedDate']"
+        ng-model="model.paymentCheckedDate"
+        l10n-text="actuallyPaidAmounts_paidAmountForm_checkedDate"
+        class="col-sm-3 col-md-2">
+      </sc-field>
+      
+      <sc-field
+        type="money"
+        ng-readonly="form.$readonly || !model.editableFields['paymentRequestedAmount']"
+        ng-model="model.paymentRequestedAmount"
+        l10n-text="actuallyPaidAmounts_paidAmountForm_requestedAmount"
+        class="col-sm-3 col-md-2">
+      </sc-field>
+      
+      <sc-field
+        type="money"
+        ng-readonly="form.$readonly || !model.editableFields['paymentPaidBfpTotalAmount']"
+        ng-model="model.paymentPaidBfpTotalAmount"
+        l10n-text="actuallyPaidAmounts_paidAmountForm_paymentPaidBfpTotalAmount"
+        class="col-sm-3 col-md-3">
+      </sc-field>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,39 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+
+@model Eumis.Public.Data.Contracts.ViewObjects.ContractCommonVO
+
+@section scripts
+{
+    @RenderSection("scripts", required: false)
+}
+
+@{
+    Layout = MVC.Shared.Views._Layout;
+
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+
+    if (HasTabs)
+    {
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_OPERATIONAL_PROGRAMS_ID, Texts.Global_OperationalPrograms));
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() { { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId } }), GetOP.TransName));
+    }
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Shared_Tabs_Projects)
+
+<div class="container">
+    @Html.Partial(MVC.Shared.Views._Title)
+    @Html.Partial(MVC.Shared.Views._Tabs, TabType.Project)
+    <div class="@(HasTabs ? "tab-content" : "page-content")">
+        @Html.Partial(MVC.Project.Views._Tabs, Model)
+        <div class="tab-content">
+            @RenderBody()
+            <h2>@Texts.Global_Note:</h2>
+            <div class="note">
+                @RenderSection("footerNotes", required: false)
+                @Texts.Global_NoteUnderlined<br />
+                @Texts.Global_NoteBGN
+            </div>
+        </div>
+    </div>
+</div>

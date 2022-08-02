@@ -1,0 +1,37 @@
+<ng-form name="chooseDirectionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_chooseDirectionsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="procedures_chooseDirectionsModal_continue" class="btn btn-primary btn-xs"
+          icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_chooseDirectionsModal_cancel" class="btn btn-default btn-xs"
+          icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div>
+        <sc-button name="chooseAllBtn" ng-show="hasChoosenAll" btn-click="chooseAll()" text="procedures_chooseDirectionsModal_all"
+          class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="removeAllBtn" ng-show="!hasChoosenAll" btn-click="removeAll()" text="procedures_chooseDirectionsModal_all"
+          class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+        </sc-button>
+
+        <sc-datatable items="directions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="chooseDirection(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="removeDirection(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="directionName" title="procedures_chooseDirectionsModal_direction">
+          </sc-column>
+          <sc-column data="subDirectionName" title="procedures_chooseDirectionsModal_subDirection">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

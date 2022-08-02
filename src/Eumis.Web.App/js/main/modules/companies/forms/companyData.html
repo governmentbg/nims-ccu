@@ -1,0 +1,100 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <div ng-if="isNew">
+      <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.uinType" ng-required="true" l10n-text="companies_companyDataForm_uinType" class="col-sm-5 col-md-4"></sc-field>
+      <sc-field type="text" ng-model="model.uin" ng-required="true" l10n-text="companies_companyDataForm_uin" class="col-sm-3 col-md-2">
+      </sc-field>
+      <div style="padding-top: 24px; display: inline-block;">
+        <sc-button name="uinSearchBtn" btn-click="uinSearch()" ng-show="!resultFound && !noResultFound && !inputNotValid && !inputMissing" text="companies_companyDataForm_uinSearch" class="btn btn-default btn-xs btn-no-border uin-search-btn" icon="glyphicon-search"></sc-button>
+        <div ng-show="inputNotValid">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color: red;"></span>
+          <span l10n-text="companies_companyDataForm_inputNotValid"></span>
+        </div>
+        <div ng-show="inputMissing">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color: red;"></span>
+          <span l10n-text="companies_companyDataForm_inputMissing"></span>
+        </div>
+        <div ng-show="noResultFound">
+          <span class="glyphicon glyphicon-exclamation-sign" style="color: red;"></span>
+          <span l10n-text="companies_companyDataForm_noResultFound"></span>
+        </div>
+        <div ng-show="resultFound">
+          <span class="glyphicon glyphicon-ok-sign" style="color: green;"></span>
+          <span l10n-text="companies_companyDataForm_resultFound"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!isNew">
+      <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.uinType" ng-required="true" ng-disabled="true" l10n-text="companies_companyDataForm_uinType" class="col-sm-5 col-md-4"></sc-field>
+      <sc-field type="text" ng-model="model.uin" ng-required="true" ng-disabled="true" l10n-text="companies_companyDataForm_uin" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-required="true" l10n-text="companies_companyDataForm_name" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.nameAlt" ng-if="companyLegalType.alias !== 'person'" ng-required="true" l10n-text="companies_companyDataForm_nameAlt" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'companyTypes'" mode="id" ng-model="model.companyTypeId" ng-required="true" ng-change="companyTypeChange()" nom-obj="companyType" l10n-text="companies_companyDataForm_companyTypeId" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'companyLegalTypes'" mode="id" ng-model="model.companyLegalTypeId" ng-required="true" ng-disabled="!model.companyTypeId" ng-change="companyLegalTypeChange()" nom-obj="companyLegalType" params="{companyTypeId: model.companyTypeId}" l10n-text="companies_companyDataForm_companyLegalTypeId" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorityTypes'" mode="id" ng-model="model.programmePriorityType" ng-required="true" l10n-text="companies_companyDataForm_programmePriorityType" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="companies_companyDataForm_seat"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'countries'" mode="id" ng-model="model.seatCountryId" nom-obj="seatCountryData" ng-change="seatCountryChange()" l10n-text="companies_companyDataForm_seatCountryId" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'settlements'" mode="id" ng-model="model.seatSettlementId" l10n-text="companies_companyDataForm_seatSettlementId" class="col-sm-4 col-md-3" ng-if="seatCountryData.code === 'BG'"></sc-field>
+  </div>
+
+  <div ng-if="model.seatCountryId">
+    <h5 class="table-header" l10n-text="companies_companyDataForm_managementAddr"></h5>
+    <div class="row" ng-if="seatCountryData.code === 'BG'">
+      <sc-field type="text" ng-model="model.seatPostCode" l10n-text="companies_companyDataForm_seatPostCode" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="text" ng-model="model.seatStreet" l10n-text="companies_companyDataForm_seatStreet" class="col-sm-9 col-md-8"></sc-field>
+    </div>
+    <div class="row" ng-if="seatCountryData.code !== 'BG'">
+      <sc-field type="text" ng-model="model.seatAddress" l10n-text="companies_companyDataForm_seatAddress" class="col-sm-12 col-md-10"></sc-field>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px; cursor: pointer;" sc-click="copySeat()" ng-if="isNew">
+    <div class="form-group col-sm-4 col-md-3">
+      <span class="glyphicon glyphicon-arrow-down"></span>
+      <span l10n-text="companies_companyDataForm_copySeat"></span>
+    </div>
+  </div>
+
+  <h5 class="table-header" l10n-text="companies_companyDataForm_corr"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'countries'" mode="id" ng-model="model.corrCountryId" nom-obj="corrCountryData" ng-change="corrCountryChange()" l10n-text="companies_companyDataForm_corrCountryId" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div ng-if="model.corrCountryId">
+    <div class="row" ng-if="corrCountryData.code === 'BG'">
+      <sc-field type="nomenclature" alias="'settlements'" mode="id" ng-model="model.corrSettlementId" l10n-text="companies_companyDataForm_corrSettlementId" class="col-sm-4 col-md-3"></sc-field>
+      <sc-field type="text" ng-model="model.corrPostCode" l10n-text="companies_companyDataForm_corrPostCode" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="text" ng-model="model.corrStreet" l10n-text="companies_companyDataForm_corrStreet" class="col-sm-5 col-md-5"></sc-field>
+    </div>
+    <div class="row" ng-if="corrCountryData.code !== 'BG'">
+      <sc-field type="text" ng-model="model.corrAddress" l10n-text="companies_companyDataForm_corrAddress" class="col-sm-12 col-md-10"></sc-field>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.email" ng-required="true" ng-pattern="emailRegex" l10n-text="companies_companyDataForm_email" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.phone1" ng-required="true" l10n-text="companies_companyDataForm_phone1" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.phone2" l10n-text="companies_companyDataForm_phone2" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.fax" l10n-text="companies_companyDataForm_fax" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.representative" l10n-text="companies_companyDataForm_representative" class="col-sm-5 col-md-4"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="companies_companyDataForm_contact"></h5>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contactName" l10n-text="companies_companyDataForm_contactName" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.contactPhone" l10n-text="companies_companyDataForm_contactPhone" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.contactEmail" ng-pattern="emailRegex" l10n-text="companies_companyDataForm_contactEmail" class="col-sm-4 col-md-4"></sc-field>
+  </div>
+</ng-form>

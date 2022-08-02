@@ -1,0 +1,20 @@
+<ng-form name="editSapFileData" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="sapFiles_editSapFile_title"></strong>
+      <div class="pull-right">
+        <sc-button ng-if="sapFile.status === 'new'" name="importBtn" btn-click="import()" text="sapFiles_editSapFile_import" class="btn btn-primary btn-xs" icon="glyphicon-upload"
+          ng-disabled="!$canDo('SapFileActions.Import', sapFile.sapFileId)">
+        </sc-button>
+        <sc-button ng-if="sapFile.status === 'new'" name="deleteBtn" btn-click="del()" text="sapFiles_editSapFile_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('SapFileActions.Edit', sapFile.sapFileId)">
+        </sc-button>
+
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-sap-file-data name="sapFileForm" ng-model="sapFile"></eumis-sap-file-data>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,79 @@
+﻿@model R_10044.TechnicalReport
+
+@if (Model != null)
+{
+    <h3>Договор № @Model.contractNumber, @Global.TechnicalReport № @Model.docNumber</h3>
+
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @TechnicalReport.BasicData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.TechnicalReportBasicData, Model.BasicData ?? new R_10052.TechnicalReportBasicData())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.Activities
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.TechnicalReportActivities, Model.Activities ?? new R_10044.Activities())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.Indicators
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.TechnicalReportIndicators, Model.Indicators ?? new R_10044.Indicators())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.ProcurementPlanCollection
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.ProcurementPlanCollection, Model.ProcurementPlanCollection.ToList() ?? new List<R_10048.ProcurementPlan>())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.BeneficiarySiteInspections
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.BeneficiarySiteInspections, Model.BeneficiarySiteInspections ?? new R_10044.BeneficiarySiteInspections())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.Audits
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Audits, Model.Audits ?? new R_10044.Audits())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.Team
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.TechnicalReportTeams, Model.Team ?? new R_10044.Team())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @TechnicalReport.AttachedDocuments
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.TechnicalReportAttachedDocuments, Model.AttachedDocuments ?? new R_10044.TechnicalReportAttachedDocuments())
+    </section>
+
+    sectionNumber++;
+}

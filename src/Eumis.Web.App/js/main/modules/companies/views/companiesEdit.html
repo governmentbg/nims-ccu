@@ -1,0 +1,29 @@
+<div class="tab-content">
+  <ng-form name="editCompanyForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="companies_editForm_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="editBtn" btn-click="edit()" text="companies_editForm_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+            ng-disabled="!$canDo('CompanyActions.Edit', company.companyId)">
+          </sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="companies_editForm_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode"
+            ng-disabled="!$canDo('CompanyActions.Delete', company.companyId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="companies_editForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="companies_editForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-company-data name="companyForm" ng-model="company" sc-form-params="{ isNew: false }"></eumis-company-data>
+      </div>
+
+    </div>
+  </ng-form>
+</div>

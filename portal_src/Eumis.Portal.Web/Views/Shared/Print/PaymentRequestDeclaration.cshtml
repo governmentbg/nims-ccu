@@ -1,0 +1,57 @@
+﻿@model R_10050.PaymentRequestDeclaration
+
+@if (Model != null)
+{
+    <table class="payment-request-declaration">
+        <tbody>
+            <tr>
+                <td style="width: 35%">@PaymentRequestDeclaration.RepresentingBeneficiaryEGN</td>
+                <td style="width: 65%">@Model.RepresentingBeneficiaryEGN</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.RepresentingFirstName</td>
+                <td>@Model.RepresentingFirstName</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.RepresentingMiddleName</td>
+                <td>@Model.RepresentingMiddleName</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.RepresentingLastName</td>
+                <td>@Model.RepresentingLastName</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.AgreementPt1</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AgreementPt1 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.AgreementPt2</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AgreementPt2 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.MarkerPt3</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.MarkerPt3 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.TextPt3</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TextPt3 ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.AgreementPt4ToPt25</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AgreementPt4ToPt25 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.MarkerPt25</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.MarkerPt25 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.TextPt25</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TextPt25 ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestDeclaration.AgreementPt26ToPt29</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AgreementPt26ToPt29 ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+        </tbody>
+    </table>
+}

@@ -1,0 +1,115 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_csd"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'costSupportingDocumentTypes'" ng-model="model.contractReportFinancialCSD.type" mode="id" ng-readonly="true"
+      l10n-text="contractReportChecks_financialCSDBudgetItemForm_type" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.contractReportFinancialCSD.description" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractReportFinancialCSD.number" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_number" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.contractReportFinancialCSD.date" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_date" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="date" ng-model="model.contractReportFinancialCSD.paymentDate" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_paymentDate" class="col-sm-5 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'costSupportingDocumentCompanyTypes'" ng-model="model.contractReportFinancialCSD.companyType" mode="id" ng-readonly="true"
+      l10n-text="contractReportChecks_financialCSDBudgetItemForm_companyType" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="company" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_company" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractReportFinancialCSD.contractContractorName" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_contractContractor" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-sm-8">
+
+      <table class="table table-bordered">
+        <thead>
+          <th l10n-text="contractReportChecks_financialCSDBudgetItemForm_description"></th>
+          <th l10n-text="contractReportChecks_financialCSDBudgetItemForm_file" style="width: 25%"></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="file in model.contractReportFinancialCSD.files track by $index">
+            <td>
+              {{file.description}}
+            </td>
+            <td>
+              <a target="_blank" ng-href="{{file.url}}" sc-access-token ng-show="file" title="{{file.name}}">
+                <span class="glyphicon glyphicon-file"></span>
+              </a>
+            </td>
+          </tr>
+          <tr ng-if="!model.contractReportFinancialCSD.files.length">
+            <td colspan="8" class="text-center" l10n-text="contractReportChecks_financialCSDBudgetItemForm_noDocuments"></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <sc-field type="text" ng-model="model.budgetDetailName" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_budgetDetailName" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractActivityName" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_contractActivityName" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isVatAmount" mode="id" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_isVatAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <h5 class="form-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_amount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.originalBfpTotalAmount" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_totalAmount" class="col-sm-3 col-md-2">
+    </sc-field>
+  </div>
+  <h5 class="form-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_costSupportingDocumentApproved"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.costSupportingDocumentApproved" mode="id" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_financialCSDBudgetItemForm_approve" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'contractReportFinancialCSDBudgetItemStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_status" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_financialCSDBudgetItemForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row">
+    <div ng-show="model.techCheckedDate">
+      <sc-field type="text" ng-model="model.techCheckedByUser" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_techCheckedByUser" class="col-sm-6 col-md-4"></sc-field>
+      <sc-field type="date" ng-model="model.techCheckedDate" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_techCheckedDate" class="col-sm-6 col-md-4"></sc-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div ng-show="model.checkedDate">
+      <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_checkedByUser" class="col-sm-6 col-md-4"></sc-field>
+      <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_unapprovedAmount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.unapprovedTotalAmount"    l10n-text="contractReportChecks_financialCSDBudgetItemForm_totalAmount"  class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_unapprovedByCorrectionAmount"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'correctionTypes'" ng-model="model.correctionType" ng-change="correctionTypeChanged()" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_financialCSDBudgetItemForm_correctionType" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row" ng-if="model.correctionType && model.correctionType !== 'financialCorrection'">
+    <sc-field type="nomenclature" mode="id" alias="'irregularities'" ng-model="model.irregularityId" ng-required="true" params="{ contractId: model.contractId }" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_financialCSDBudgetItemForm_irregularityId" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row" ng-if="model.correctionType && model.correctionType !== 'irregularity'">
+    <sc-field type="nomenclature" mode="id" alias="'financialCorrections'" ng-model="model.financialCorrectionId" ng-required="true" params="{ contractId: model.contractId }" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_financialCSDBudgetItemForm_financialCorrectionId" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.unapprovedByCorrectionTotalAmount"    l10n-text="contractReportChecks_financialCSDBudgetItemForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportChecks_financialCSDBudgetItemForm_approvedAmount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.approvedTotalAmount"    ng-readonly="true" l10n-text="contractReportChecks_financialCSDBudgetItemForm_totalAmount"    class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>

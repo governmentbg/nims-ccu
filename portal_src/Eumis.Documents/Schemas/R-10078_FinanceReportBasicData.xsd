@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10078" 
+	xmlns="http://ereg.egov.bg/segment/R-10078"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+  
+	<xsd:complexType name="FinanceReportBasicData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Основни данни на финансов отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="EndDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="ProcedureTypeAlias" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

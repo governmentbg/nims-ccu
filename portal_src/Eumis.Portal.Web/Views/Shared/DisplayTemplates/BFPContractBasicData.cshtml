@@ -1,0 +1,116 @@
+﻿@model R_10031.BFPContractBasicData
+
+@if (Model != null)
+{
+    @Html.Partial("DisplayTemplates/" + MVC.Shared.Views.DisplayTemplates.BFPContractBasicDataReadonlyPart, Model)
+
+    <div class="form-group col-md-9">
+        @Html.LabelFor(m => m.Name, BFPContractBasicData.Name)
+        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Duration, Model.MaxDuration == 0 ? BFPContractBasicData.Duration : string.Format("{0} (1-{1})", BFPContractBasicData.Duration, Model.MaxDuration))
+        @Html.DisplayFor(m => m.Duration)
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.NameEN, BFPContractBasicData.NameEN)
+        @Html.DisplayFor(m => m.NameEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.Description, BFPContractBasicData.Description)
+        @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.DescriptionEN, BFPContractBasicData.DescriptionEN)
+        @Html.DisplayFor(m => m.DescriptionEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.Purpose, BFPContractBasicData.Purpose)
+        @Html.DisplayFor(m => m.Purpose, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            <label>@BFPContractBasicData.CompletionStatus</label>
+            @Html.DisplayFor(m => m.CompletionStatus)
+        </div>
+    </div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.StartCondition</label>
+        @Html.DisplayFor(m => m.StartCondition, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.StartDate</label>
+        @Html.DisplayFor(m => m.StartDate)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.TemporarySuspensionReason</label>
+        @Html.DisplayFor(m => m.TemporarySuspensionReason, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.TemporarySuspensionDate</label>
+        @Html.DisplayFor(m => m.TemporarySuspensionDate)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.CompletionDate</label>
+        @Html.DisplayFor(m => m.CompletionDate)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.TerminationReason</label>
+        @Html.DisplayFor(m => m.TerminationReason, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.TerminationDate</label>
+        @Html.DisplayFor(m => m.TerminationDate)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.RegistrationNumber</label>
+        @Html.DisplayFor(m => m.RegistrationNumber)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.Version</label>
+        @Html.DisplayFor(m => m.Version)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.SubVersion</label>
+        @Html.DisplayFor(m => m.SubVersion)
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.ContractDate</label>
+        @Html.DisplayFor(m => m.ContractDate)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-6">
+        <label>@BFPContractBasicData.OtherRegistration</label>
+        @Html.DisplayFor(m => m.OtherRegistration, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>@BFPContractBasicData.StoragePlace</label>
+        @Html.DisplayFor(m => m.StoragePlace, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    @Html.DisplayFor(m => m.NutsAddress)
+}

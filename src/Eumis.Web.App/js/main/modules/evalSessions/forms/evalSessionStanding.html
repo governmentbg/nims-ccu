@@ -1,0 +1,72 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.code" ng-readonly="true" l10n-text="evalSessions_evalSessionStandingForm_code" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field ng-if="model.isPreliminary" type="int" ng-model="model.preliminaryBudgetPercentage" ng-required="true" l10n-text="evalSessions_evalSessionStandingForm_preliminaryBudgetPercentage" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionStandingStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionStandingForm_standingStatus" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.statusDate" ng-readonly="true" l10n-text="evalSessions_evalSessionStandingForm_statusDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-if="model.statusNote" ng-model="model.statusNote" ng-readonly="true" l10n-text="evalSessions_evalSessionStandingForm_statusNote" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  
+  <h5 class="form-header" l10n-text="evalSessions_evalSessionStandingForm_projects"></h5>
+  <div class="row">
+    <div class="col-sm-12">
+      <sc-datatable items="model.projects" filterable="true" pageable="true" sortable="false" dynamic-columns="true" scrollable="false" 
+        row-class="{'success'               : (item.statusName === 'approved' && !item.isStandingDeleted),
+                    'warning'               : (item.statusName === 'reserve' && !item.isStandingDeleted),
+                    'danger'                : (item.statusName && item.statusName !== 'approved' && item.statusName !== 'reserve' && !item.isStandingDeleted),
+                    'deactivated-table-row' : (item.isStandingDeleted)}">
+        <sc-column data="orderNum" title="evalSessions_evalSessionStandingForm_orderNum">
+        </sc-column>
+        <sc-column data="status" title="evalSessions_evalSessionStandingForm_status">
+        </sc-column>
+        <sc-column data="grandAmount" title="evalSessions_evalSessionStandingForm_grandAmount" type="money">
+        </sc-column>
+        <sc-column data="procedureName" title="evalSessions_evalSessionStandingForm_procedureName">
+        </sc-column>
+        <sc-column data="projectRegNumber" title="evalSessions_evalSessionStandingForm_projectRegNumber">
+        </sc-column>
+        <sc-column title="evalSessions_evalSessionStandingForm_projectName" has-content="true" data="projectName">
+          <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="companyName" title="evalSessions_evalSessionStandingForm_companyName">
+        </sc-column>
+        <sc-column data="projectRegDate" title="evalSessions_evalSessionStandingForm_projectRegDate" type="datetime">
+        </sc-column>
+        <sc-column data="projectRegistrationStatus" title="evalSessions_evalSessionStandingForm_projectRegistrationStatus">
+        </sc-column>
+        <sc-column data="isStandingDeleted" title="evalSessions_evalSessionStandingForm_isStandingDeleted" type="boolean">
+        </sc-column>
+        <sc-column title="evalSessions_evalSessionStandingForm_eval" sortable="false" has-content="true">
+          <table class="table table-bordered" style="margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_type"></th>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_pass"></th>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_points"></th>
+            </thead>
+            <tbody>
+              <tr ng-show="item.isPassedASD != null && item.isPassedASD != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_ASD"></td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedASD ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsASD}}</td>
+              </tr>
+              <tr ng-show="item.isPassedTFO != null && item.isPassedTFO != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_TFO">{{tfoText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedTFO ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsTFO}}</td>
+              </tr>
+              <tr ng-show="item.isPassedComplex != null && item.isPassedComplex != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_Complex">{{tfoText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedComplex ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsComplex}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

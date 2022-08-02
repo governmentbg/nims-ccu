@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="correctionDebts_modals_chooseContractModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="correctionDebts_modals_chooseContractModal_cancel"
+        class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'monFinCtrlFinancialProgrammes'" mode="id" ng-model="filters.programmeId" l10n-text="correctionDebts_modals_chooseContractModal_programme" class="col-sm-5 col-md-5"></sc-field>
+        <sc-field type="text" ng-model="filters.contractNumber" l10n-text="correctionDebts_modals_chooseContractModal_contractNumber" class="col-sm-5 col-md-4"></sc-field>
+        <div class="labeless col-md-3 col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="correctionDebts_modals_chooseContractModal_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="contracts" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseBtn" btn-click="choose(item)" text="correctionDebts_modals_chooseContractModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+      </sc-column>
+      <sc-column data="procedureName" title="correctionDebts_modals_chooseContractModal_procedure">
+      </sc-column>
+      <sc-column data="regNumber" title="correctionDebts_modals_chooseContractModal_regNumber">
+      </sc-column>
+      <sc-column data="contractDate" title="correctionDebts_modals_chooseContractModal_contractDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="correctionDebts_modals_chooseContractModal_name">
+      </sc-column>
+      <sc-column data="executionStatus" title="correctionDebts_modals_chooseContractModal_executionStatus">
+      </sc-column>
+      <sc-column data="company" title="correctionDebts_modals_chooseContractModal_company">
+      </sc-column>
+      <sc-column data="companyKidCode" title="correctionDebts_modals_chooseContractModal_companyKidCode">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

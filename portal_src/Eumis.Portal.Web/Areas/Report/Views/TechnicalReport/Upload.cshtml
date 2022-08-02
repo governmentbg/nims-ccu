@@ -1,0 +1,66 @@
+﻿
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }), "Пакет отчетни документи")
+}, "Редакция")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+  <h1>@TechnicalReport.UploadFile</h1>
+</div>
+
+<div class="container">
+  <div class="form-group col-xs-12">
+    @if (TempData["file_error"] != null)
+    {
+      <div class="validation-summary-errors">
+        <ul>
+          <li>@TempData["file_error"].ToString()</li>
+        </ul>
+      </div>
+    }
+  </div>
+
+  <div class="clearfix"></div>
+  <div>
+    <span>
+      В тази страница имате възможност да заредите и след това да прегледате технически отчет, предварително създаден с помощта на информационната система СУНИ. Файлът, който може да заредите, трябва да е с разширение „.tisun“.
+    </span>
+  </div>
+  <br />
+  <div class="grey-action-box load-preview clearfix">
+    <a class="blue-button load-btn small" title="" style="margin-left: 10px;cursor: pointer;">
+      <span class="glyphicon glyphicon-floppy-open"></span>
+      @TechnicalReport.UploadFile
+    </a>
+  </div>
+
+  @{string currentController = ViewContext.RouteData.Values["controller"] as String;}
+
+  @using (Html.BeginForm(MVC.Report.TechnicalReport.ActionNames.Upload,
+                  currentController,
+                  null,
+                  FormMethod.Post,
+                  new { id = "load_form", enctype = "multipart/form-data" }))
+  {
+    <input type="file" name="applied_tisun_file" id="load_tisun_file" style="display: none;" accept=".tsuni" />
+
+  }
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".load-btn").click(function () {
+        $('#load_tisun_file').click();
+      });
+      $("#load_tisun_file").change(function () {
+        showWait();
+        submitForm("#load_form");
+      });
+    });
+  </script>
+</div>

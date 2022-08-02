@@ -1,0 +1,71 @@
+﻿<div class="form-group col-xs-12">
+    @if (TempData["file_error"] != null)
+    {
+        <div class="validation-summary-errors">
+            <ul>
+                <li>@TempData["file_error"].ToString()</li>
+            </ul>
+        </div>
+    }
+</div>
+
+<div class="clearfix"></div>
+
+<div class="grey-action-box load-preview clearfix">
+    <a class="blue-button small" href="@(Url.Action(MVC.Procedure.ActionNames.Active, MVC.Procedure.Name))" title="">
+        <span class="glyphicon glyphicon-plus"></span>
+        @Draft.NewForm
+    </a>
+
+    <a class="blue-button preview-btn pull-right small" title="" style="margin-left: 10px;cursor: pointer;">
+        <span class="glyphicon glyphicon-floppy-open"></span>
+        @Draft.PreviewFile
+    </a>
+
+    <a class="blue-button load-btn pull-right small" title="" style="cursor: pointer;">
+        <span class="glyphicon glyphicon-edit"></span>
+        @Draft.LoadFile
+    </a>
+</div>
+
+@{string currentController = ViewContext.RouteData.Values["controller"] as String;}
+
+@using (Html.BeginForm("LoadForEdit",
+                currentController,
+                null,
+                FormMethod.Post,
+                new { id = "load_form", enctype = "multipart/form-data" }))
+{
+    <input type="file" name="applied_isun_file" id="load_isun_file" style="display: none;" accept=".suni" />
+
+}
+
+@using (Html.BeginForm("LoadForPreview",
+                currentController,
+                null,
+                FormMethod.Post,
+                new { id = "preview_form", enctype = "multipart/form-data" }))
+{
+    <input type="file" name="applied_isun_file" id="preview_isun_file" style="display: none;" accept=".suni" />
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".load-btn").click(function () {
+            $('#load_isun_file').click();
+        });
+        $("#load_isun_file").change(function () {
+            showWait();
+            submitForm("#load_form");
+        });
+
+        $(".preview-btn").click(function () {
+            $('#preview_isun_file').click();
+        });
+        $("#preview_isun_file").change(function () {
+            showWait();
+            submitForm("#preview_form");
+        });
+    });
+</script>
+

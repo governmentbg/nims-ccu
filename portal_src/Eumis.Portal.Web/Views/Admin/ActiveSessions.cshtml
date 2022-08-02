@@ -1,0 +1,23 @@
+﻿@model int
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+, "Активни сесии")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>Активни сесии</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <div class="page-content">
+        <div class="info-block font-20 warning">
+            <p><strong>Брой активни сесии: <span style="color: red">@Model</span></strong></p>
+            <p>В това число са и сесиите на потребителите, които са си затворили браузъра без да са излезли от профила си.</p>
+        </div>
+    </div>
+</div>

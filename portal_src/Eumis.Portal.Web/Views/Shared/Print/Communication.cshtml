@@ -1,0 +1,23 @@
+﻿@model R_10042.Communication
+
+@if (Model != null)
+{
+    <section style="display:block;">
+        <div class="comment-section">
+            @*<strong>@Communication.Subject</strong>*@
+            @Model.Subject
+        </div>
+        <div class="comment-section">
+            @*<strong>@Communication.Content</strong>*@
+            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Content ?? string.Empty)
+        </div>
+    </section>
+
+    <h3>@Communication.AttachedDocumentCollection</h3>
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <section style="display:block;">
+            @Html.Partial(MVC.Private.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.AttachedDocumentCollection ?? new R_10042.AttachedDocumentCollection())
+        </section>
+    }
+}

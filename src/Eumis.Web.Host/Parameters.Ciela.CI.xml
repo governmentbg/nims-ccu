@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<parameters>
+    <parameter name="Eumis.Web.Host:BlobServerLocation">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/appSettings/add[@key='Eumis.Web.Host:BlobServerLocation']/@value" />
+    </parameter>
+    <parameter name="Eumis.Web.Host:InternalBlobServerLocation">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/appSettings/add[@key='Eumis.Web.Host:InternalBlobServerLocation']/@value" />
+    </parameter>
+    <parameter name="Eumis.Web.Host:BlobServerTokenLocation">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/appSettings/add[@key='Eumis.Web.Host:BlobServerTokenLocation']/@value" />
+    </parameter>
+    <parameter name="Eumis.Web.Api:PortalLocationForIFrame">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/appSettings/add[@key='Eumis.Web.Api:PortalLocationForIFrame']/@value" />
+    </parameter>
+    <parameter name="Eumis.ApplicationServices:PortalLocationForAPIs">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/appSettings/add[@key='Eumis.ApplicationServices:PortalLocationForAPIs']/@value" />
+    </parameter>
+    <parameter name="ErrorfileFilename">
+        <parameterValidation kind="AllowEmpty" />
+        <parameterEntry
+            kind="XmlFile"
+            scope="\\web.config$"
+            match="/configuration/nlog/targets/target[@name='errorfile']/target/@fileName" />
+    </parameter>
+</parameters>

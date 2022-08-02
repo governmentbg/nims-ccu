@@ -1,0 +1,136 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.IndicativeAnnualWorkingProgrammes
+@using Eumis.Public.Domain.Entities.Umis.IndicativeAnnualWorkingProgrammes
+@using Eumis.Public.Common.Json;
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model IndicativeAnnualWorkingProgrammeTableSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.IndicativeAnnualWorkingProgrammes_Index_Title)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.IndicativeAnnualWorkingProgrammes_Index_Title</h1>
+    </div>
+
+    <div class="page-content">
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix">
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+                <p><strong>@Texts.IndicativeAnnualWorkingProgrammes_Index_Programme</strong>: @Model.IndicativeAnnualWorkingProgramme.TransProgrammeName</p>
+                <p><strong>@Texts.IndicativeAnnualWorkingProgrammes_Index_Type</strong>:  @Model.IndicativeAnnualWorkingProgramme.Type.GetEnumDescription()</p>
+
+                <div class="table-wrapper">
+                    <table class="chart-info" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" width="70px">@Texts.IndicativeAnnualWorkingProgrammes_Table_OrderNum</th>
+                                <th rowspan="2" width="200px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProgrammePriorityName</th>
+                                <th rowspan="2" width="160px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProcedureCode</th>
+                                <th rowspan="2" width="230px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProcedureName</th>
+                                <th rowspan="2" width="300px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProcedureDescription</th>
+                                <th rowspan="2" width="200px">@Texts.IndicativeAnnualWorkingProgrammes_Table_TypeConducting</th>
+                                <th rowspan="2" width="150px">@Texts.IndicativeAnnualWorkingProgrammes_Table_WithPreSelection</th>
+                                <th rowspan="2" width="300px">@Texts.IndicativeAnnualWorkingProgrammes_Table_Programmes</th>
+                                <th rowspan="2" width="200px">@Texts.IndicativeAnnualWorkingProgrammes_Table_LeadingProgram</th>
+                                <th rowspan="2" width="170px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProcedureTotalAmount</th>
+                                <th rowspan="2" width="250px">@Texts.IndicativeAnnualWorkingProgrammes_Table_Candidates</th>
+                                <th rowspan="2" width="300px">@Texts.IndicativeAnnualWorkingProgrammes_Table_EligibleActivities</th>
+                                <th rowspan="2" width="200px">@Texts.IndicativeAnnualWorkingProgrammes_Table_EligibleCosts</th>
+                                <th rowspan="2" width="170px">@Texts.IndicativeAnnualWorkingProgrammes_Table_MaxPercentCoFinancing</th>
+                                <th rowspan="2" width="170px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ListingDate</th>
+                                <th rowspan="2" width="170px">@Texts.IndicativeAnnualWorkingProgrammes_Table_TimeLimits</th>
+                                <th colspan="2" width="300px">@Texts.IndicativeAnnualWorkingProgrammes_Table_Assistance</th>
+                                <th colspan="2" width="300px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProjectAmount</th>
+                            </tr>
+                            <tr>
+                                <th width="75px">@Texts.IndicativeAnnualWorkingProgrammes_Table_IsStateAssistance</th>
+                                <th width="75px">@Texts.IndicativeAnnualWorkingProgrammes_Table_IsMinimalAssistance</th>
+                                <th width="75px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProjectMinAmount</th>
+                                <th width="75px">@Texts.IndicativeAnnualWorkingProgrammes_Table_ProjectMaxAmount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var row in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@row.OrderNum</td>
+                                    <td>@row.TransProgrammePriorityName</td>
+                                    <td>@row.ProcedureCode</td>
+                                    <td>@row.TransProcedureName</td>
+                                    <td>@row.TransProcedureDescription</td>
+                                    <td>@row.IndicativeAnnualWorkingProgrammeTypeConducting.GetEnumDescription()</td>
+                                    <td>@row.WithPreSelectionText</td>
+                                    <td>@string.Join(",", row.TransIndicativeAnnualWorkingProgrammeTableProgrammes)</td>
+                                    <td>@row.TransLeadingProgram</td>
+                                    <td>@Html.DisplayFor(e => row.ProcedureTotalAmount)</td>
+                                    <td>@string.Join(",", row.TransIndicativeAnnualWorkingProgrammeTableCandidates)</td>
+                                    <td>@row.TransEligibleActivities</td>
+                                    <td>@row.TransEligibleCosts</td>
+                                    <td>@string.Format("{0} {1}", $"{DataUtils.DecimalToStringDecimalPointSpace(row.MaxPercentCoFinancing)}%", string.IsNullOrEmpty(row.TransMaxPercentCoFinancingInfo) ? "" : $"({row.TransMaxPercentCoFinancingInfo})")</td>
+                                    <td>@row.ListingDate.ToString("MM.yyyy")</td>
+                                    <td>@string.Join(",", row.IndicativeAnnualWorkingProgrammeTableTimeLimits.Select(e => e.ToString("MM.yyyy")))</td>
+                                    <td>@row.IsStateAssistance.GetEnumDescription()</td>
+                                    <td>@row.IsMinimalAssistance.GetEnumDescription()</td>
+                                    <td>@string.Format("{0} {1}", DataUtils.DecimalToStringDecimalPointSpace(row.ProjectMinAmount), row.TransProjectMinAmountInfo)</td>
+                                    <td>@string.Format("{0} {1}", DataUtils.DecimalToStringDecimalPointSpace(row.ProjectMaxAmount), row.TransProjectMaxAmountInfo)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.IndicativeAnnualWorkingProgrammes.ActionNames.Show, MVC.IndicativeAnnualWorkingProgrammes.Name
+                            , new
+                            {
+                                iawpId = Request.QueryString["iawpId"],
+                                iawpType = Request.QueryString["iawpType"],
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+
+        <h2>@Texts.Global_Note:</h2>
+        <div class="note">
+            * - @Texts.Global_NotePercent<br />
+            @Texts.Global_NoteBGN
+        </div>
+
+    </div>
+</div>

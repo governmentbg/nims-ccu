@@ -1,0 +1,19 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionReportTypes'" mode="id" ng-model="model.type" ng-required="true" l10n-text="evalSessions_evalSessionReportForm_type" class="col-sm-7 col-md-6"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" ng-readonly="true" l10n-text="evalSessions_evalSessionReportForm_regNumber" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.description" rows="3" ng-required="true" l10n-text="evalSessions_evalSessionReportForm_description" class="col-md-9"></sc-field>
+  </div>
+  <div class="row" ng-if="!isNew">
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isDeleted" ng-if="!isNew" ng-readonly="true" l10n-text="evalSessions_evalSessionReportForm_isDeleted" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="!isNew && model.isDeleted">
+    <sc-field type="textarea" ng-model="model.isDeletedNote" rows="3" ng-readonly="true" l10n-text="evalSessions_evalSessionReportForm_isDeletedNote" class="col-md-9"></sc-field>
+  </div>
+  <div class="row" ng-if="!isNew">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionReportForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" ng-readonly="true" l10n-text="evalSessions_evalSessionReportForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

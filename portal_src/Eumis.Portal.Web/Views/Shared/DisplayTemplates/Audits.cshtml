@@ -1,0 +1,135 @@
+﻿@model R_10044.Audits
+@using Eumis.Common.Helpers
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@TechnicalReportAudit.Type</th>
+                <th>@TechnicalReportAudit.Kind</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.AuditCollection != null)
+            {
+                foreach (var item in Model.AuditCollection)
+                {
+                    <tr>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.Type)
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.Kind)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="3">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="clearfix">
+                                    <div class="form-group col-md-6">
+                                        <label>@TechnicalReportAudit.Institution</label>
+                                        @Html.DisplayFor(m => item.Institution)
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.Type</label>
+                                        @Html.DisplayFor(m => item.Type)
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.Kind</label>
+                                        @Html.DisplayFor(m => item.Kind)
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.PreviousReportDate</label>
+                                        @Html.DisplayFor(m => item.PreviousReportDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.PreviousReportNumber</label>
+                                        @Html.DisplayFor(m => item.PreviousReportNumber)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.FinalReportDate</label>
+                                        @Html.DisplayFor(m => item.FinalReportDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.FinalReportNumber</label>
+                                        @Html.DisplayFor(m => item.FinalReportNumber)
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.InspectionStartDate</label>
+                                        @Html.DisplayFor(m => item.InspectionStartDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.InspectionEndDate</label>
+                                        @Html.DisplayFor(m => item.InspectionEndDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@TechnicalReportAudit.Range</label>
+                                    @Html.DisplayFor(m => item.Range, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportAudit.AuditeeType</label>
+                                        @Html.DisplayFor(m => item.AuditeeType)
+                                    </div>
+                                </div>
+
+                                <div class="clearfix" style="margin-top:20px;">
+                                    <table class="chart-info dynamic-rows small-table" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:200px; width:25%;">@TechnicalReportAudit.KeyFindings</th>
+                                                <th style="min-width:200px; width:25%;">@TechnicalReportAudit.Recommendations</th>
+                                                <th style="min-width:200px; width:25%;">@TechnicalReportAudit.RecommendationsFulfilled</th>
+                                                <th style="min-width:200px; width:25%;">@TechnicalReportAudit.Comment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (item.FindingCollection != null)
+                                            {
+                                                foreach (var findingItem in item.FindingCollection)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(m => findingItem.KeyFindings, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(m => findingItem.Recommendations, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(m => findingItem.RecommendationsFulfilled, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                                        </td>
+                                                        <td style="border-left:1px solid #8f8f8f;">
+                                                            @Html.DisplayFor(m => findingItem.Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,18 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'contractVersionTypes'" mode="id" ng-model="model.versionType" ng-readonly="true" l10n-text="contracts_versionForm_versionType" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.versionNumber" ng-if="!isNew" ng-readonly="true" l10n-text="contracts_versionForm_versionNumber" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row" ng-if="!isNew">
+    <sc-field type="text" ng-model="model.regNumber" ng-readonly="true" l10n-text="contracts_versionForm_regNumber" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.contractDate" ng-required="editMode === 'technicalEdit'" ng-readonly="form.$readonly || editMode !== 'technicalEdit'" l10n-text="contracts_versionForm_contractDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'contractVersionStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="contracts_versionForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="contracts_versionForm_createDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-disabled="true" l10n-text="contracts_versionForm_createdByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.createNote" ng-required="true" ng-readonly="form.$readonly || editMode === 'technicalEdit'" l10n-text="contracts_versionForm_createNote" class="col-sm-11 col-md-8"></sc-field>
+  </div>
+</ng-form>

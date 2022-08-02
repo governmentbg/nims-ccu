@@ -1,0 +1,57 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10020.Message
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Message.ActionNames.Index, MVC.Message.Name), Message.MessagesTab)
+}
+    , Message.AnswerQuestionHeader)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Message.AnswerQuestionHeader</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(MessagePrepare.Answer, MVC.Message.ActionNames.Prepare, MVC.Message.Name, null, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Message.ActionNames.Display, MVC.Message.Name, null, new { @class = "tab active" })
+
+            @Html.ActionLink(Global.Print, MVC.Message.ActionNames.Print, MVC.Message.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, MessagePrepare.HasErrors, MessagePrepare.NoErrors, Global.ShowErrorTitle, Global.HideErrorTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Message.ActionNames.Prepare, MVC.Message.Name, null, new { @class = "blue-button small back left" })
+
+                @using (Html.BeginForm(MVC.Message.ActionNames.Finalize, MVC.Message.Name, FormMethod.Post, new { id = Constants.DISPLAY_MESSAGE }))
+                {
+                    @*<div class="save-as-draft-wrapper fixed">
+                            @if (Model.EndingDate.HasValue)
+                            {
+                                <span class="deadline">@Global.Deadline: <span class="required-span">@endDate</span></span>
+                            }
+                        </div>*@
+
+                    <input type="submit" class="submit" name="submit" value="@Global.ButtonCompleteTextUpper">
+                    <script type="text/javascript">
+                        $('#@(Constants.DISPLAY_MESSAGE)').submit(function () {
+                            $(this).find('input[type=submit]').attr('disabled', 'disabled');
+                        });
+                    </script>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <eumis-contract-report-financial-cost-supporting-document-budget-item name="contractReportFinancialCSDBudgetItemForm" ng-model="model.contractReportFinancialCSDBudgetItem" sc-form-readonly="true"></eumis-contract-report-financial-cost-supporting-document-budget-item>
+
+  <h5 class="form-header" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_correction"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'signs'" ng-model="model.sign" mode="id" ng-readonly="form.$readonly || !approvedEdit" ng-change="changeSignNote(model.sign)" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_sign" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'contractReportFinancialCorrectionCSDStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_status" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div ng-show="noteLabel" class="row">
+    <span class="col-sm-6 col-md-4" style="color: red;" l10n-text="{{noteLabel}}"></span>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row">
+    <div ng-show="model.checkedDate">
+      <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_checkedByUser" class="col-sm-6 col-md-4"></sc-field>
+      <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_correctedUnapprovedAmount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.correctedUnapprovedTotalAmount"    l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_correctedUnapprovedByCorrectionAmount"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'correctionTypes'" ng-model="model.correctionType" ng-change="correctionTypeChanged()" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_correctionType" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row" ng-if="model.correctionType && model.correctionType !== 'financialCorrection'">
+    <sc-field type="nomenclature" mode="id" alias="'irregularities'" ng-model="model.irregularityId" ng-required="true" ng-readonly="form.$readonly || !approvedEdit" params="{ contractId: model.contractId }" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_irregularityId" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row" ng-if="model.correctionType && model.correctionType !== 'irregularity'">
+    <sc-field type="nomenclature" mode="id" alias="'financialCorrections'" ng-model="model.financialCorrectionId" ng-required="true" ng-readonly="form.$readonly || !approvedEdit" params="{ contractId: model.contractId }" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_financialCorrectionId" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.correctedUnapprovedByCorrectionTotalAmount"    l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_correctedApprovedAmount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.correctedApprovedTotalAmount"    ng-readonly="true" l10n-text="contractReportFinancialCorrections_correctionCSDBudgetItemForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>

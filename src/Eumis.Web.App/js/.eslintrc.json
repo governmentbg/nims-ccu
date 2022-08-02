@@ -1,0 +1,12 @@
+{
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.app.config.js"
+      }
+    }
+  }
+}

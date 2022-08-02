@@ -1,0 +1,89 @@
+﻿@using Eumis.Portal.Web.Areas.Report
+@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Eumis.Documents.Contracts.ContractRegistrationAccessCodePVO>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader)
+}, "Управление на потребители")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<div class="container">
+    <form class="form-with-sections">
+        @Html.Partial(MVC.Report.Shared.Views._ContractTabsPartial, (object)ContractTabs.AccessCode)
+        <div class="tab-content">
+            <div style="padding: 10px 0px 0px 10px;">
+                <a class="blue-button" href="@(Url.Action(MVC.Report.AccessCode.ActionNames.New, MVC.Report.AccessCode.Name, new { area = MVC.Report.Name }))" title=""><span class="glyphicon glyphicon-plus"></span> Нов потребител</a>
+            </div>
+            <!-- form with sections -->
+            <div class="table-wrapper">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <table class="chart-info medium-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="120">Код за достъп</th>
+                                <th>Име</th>
+                                <th>Потребителско име</th>
+                                <th>Длъжност</th>
+                                <th width="120">Статус и права</th>
+                                <th width="140">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td style="vertical-align: top; text-align: left; padding-left: 15px" class="access-code">@user.code</td>
+                                    <td style="vertical-align: top">@user.firstName @user.lastName</td>
+                                    <td style="vertical-align: top"><a href="mailto:@(user.email)">@user.email</a></td>
+                                    <td style="vertical-align: top">@user.position</td>
+                                    <td style="vertical-align: top">
+                                        @if (user.isActive)
+                                        {
+                                            <strong class="status-active">Активен</strong>
+                                            <a class="info-icon-static rules-btn" style="cursor:help" data-placement="top" data-toggle="popover" data-content="@user.GetPermissions()" data-html="true" data-trigger="hover">Права</a>
+                                        }
+                                        else
+                                        {
+                                            <strong class="status-not-active">Неактивен</strong>
+                                            <a class="info-icon-static rules-btn rules-inactive" style="cursor:help" data-placement="top" data-toggle="popover" data-content="@user.GetPermissions()" data-html="true" data-trigger="hover">Права</a>
+                                        }
+                                    </td>
+                                    <td style="vertical-align: top">
+                                        <a class="view-btn" data-placement="top" data-toggle="popover" data-content="Преглед" data-trigger="hover" href="@Url.Action(MVC.Report.AccessCode.ActionNames.Display, MVC.Report.AccessCode.Name, new { id = user.gid })">Преглед</a>
+                                        <a class="edit-btn" data-placement="top" data-toggle="popover" data-content="Редакция" data-trigger="hover" href="@Url.Action(MVC.Report.AccessCode.ActionNames.Edit, MVC.Report.AccessCode.Name, new { id = user.gid })">Редакция</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>В системата няма създадени потребители, оторизирани за достъп с код.</p>
+                    </div>
+                }
+            </div>
+
+            @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                    (String)ViewContext.RouteData.Values["controller"],
+                    new
+                    {
+                        page = page
+                    }),
+                Constants.PagedListRenderOptions)
+
+        </div>
+    </form>
+</div>

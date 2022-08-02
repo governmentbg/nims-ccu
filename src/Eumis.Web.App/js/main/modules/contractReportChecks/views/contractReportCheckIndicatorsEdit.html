@@ -1,0 +1,28 @@
+<ng-form name="editContractReportIndicatorForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReportChecks_editContractReportIndicators_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="endedBtn" btn-click="changeIndicatorStatus('ended')" text="contractReportChecks_editContractReportIndicators_ended" class="btn btn-default btn-xs"
+                   ng-show="contractReportTechnicalStatus === 'actual' && contractReportIndicator.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)"></sc-button>
+
+        <sc-button name="draftBtn" btn-click="changeIndicatorStatus('draft')" text="contractReportChecks_editContractReportIndicators_draft" class="btn btn-success btn-xs"
+                   ng-show="contractReportTechnicalStatus === 'actual' && contractReportStatus === 'unchecked' && contractReportIndicator.status === 'ended' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportChecks_editContractReportIndicators_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+                   ng-show="contractReportIndicator.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportChecks_editContractReportIndicators_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"
+                   ng-show="editMode"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportChecks_editContractReportIndicators_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"
+                   ng-show="editMode"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-indicator name="contractReportIndicatorForm" ng-model="contractReportIndicator"></eumis-contract-report-indicator>
+    </div>
+  </div>
+</ng-form>

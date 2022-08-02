@@ -1,0 +1,151 @@
+﻿@model Eumis.Portal.Web.Models.DownloadDraftXmlVM
+
+@{
+    bool hasLastSaveDate = Eumis.Portal.Web.Helpers.AppContext.Current.LastSaveDate.HasValue;
+}
+
+<div style="display: inline-block;">
+
+    @if (!Model.ErrorMessageOnly)
+    {
+    <a class="save-as-draft" style="cursor: pointer">
+        @(string.IsNullOrEmpty(Model.LinkName) ? Global.SaveDraft : Model.LinkName)
+    </a>
+    }
+
+    <div class="loader-h26">
+        <img src="@Links.Content.img.loader_h26_gif" alt="" />
+        @Global.PleaseWait
+    </div>
+    <div class="response-message success">
+        <img src="@Links.Content.img.icons.success_png" style="display: inline-block" />
+        <span>@(string.IsNullOrEmpty(Model.SuccessMessage) ? Global.SuccessSave : Model.SuccessMessage)</span>
+    </div>
+    <div class="response-message err">
+        <img src="@Links.Content.img.icons.warning_png" style="display: inline-block" />
+
+        <span id="100">@(string.IsNullOrEmpty(Model.ErrorMessage) ? Global.ErrorTryAgain : Model.ErrorMessage)</span>
+
+        <span id="401">@Draft.ProfileLogin</span>
+        <span id="501">@Draft.FormNotFound</span>
+        <span id="502">@Draft.CancelledQuestion</span>
+        <span id="503">@Draft.InterruptedConnection</span>
+        <span id="505">@Draft.FormAlreadyOpened</span>
+    </div>
+
+    <script>
+        function partialSaveHandleError(statusCode) {
+            var codes = [100, 401, 501, 502, 503, 505];
+            var showError = function (code) {
+                $(codes).each(function (i, e) {
+                    if (e == code) { $('#' + e).show(); }
+                    else { $('#' + e).hide(); }
+                });
+            };
+
+            if (codes.indexOf(statusCode) != -1) {
+                showError(statusCode);
+            } else { showError(100); }
+
+            $(".loader-h26").hide();
+            $(".response-message.err").show();
+        };
+
+        $(document).ready(function () {
+            $("a.save-as-draft").click(function (e) {
+                e.preventDefault();
+                var current = $(this);
+                current.hide();
+                $(".loader-h26").show();
+
+                var showButton = function () {
+                    setTimeout(function () {
+                        $(".response-message").hide();
+                        current.show();
+                    }, 5050);
+                };
+
+                var saveDraft = function () {
+                    @if (Model.HasXmlUpdate)
+                    {
+                        <text>
+                    var formData = $('#@(string.IsNullOrEmpty(Model.FORM_ID) ? Constants.MAIN_FORM : Model.FORM_ID)').serializeArray();
+                    $.post('@Url.Action(Model.PostActionName, Model.ControllerName)', formData)
+                        .done(function () {
+
+                            </text>
+                    }
+                            setTimeout(function () {
+                                $.post('@Url.Action(Model.SecondActionName, Model.ControllerName)', {})
+                                        .done(function () {
+                                            $("#last-save-wrapper").show();
+
+                                            updateLastSaveData();
+
+                                            $(".loader-h26").hide();
+                                            $(".response-message.success").show();
+                                        })
+                                        .fail(function (data, e) {
+                                            partialSaveHandleError(data.status);
+                                        })
+                                        .always(function () {
+                                          showButton();
+                                        });
+                            }, 800);
+                            @if (Model.HasXmlUpdate)
+                     {
+                         <text>
+                        }).fail(function (data, e) {
+                            partialSaveHandleError(data.status);
+                        });
+                    </text>
+                     }
+                };
+
+                setTimeout(function () {
+                    @if(string.IsNullOrEmpty(Model.FORM_ID))
+                    {
+                        <text>saveDraft();</text>
+                    }
+                    else
+                    {
+                        <text>PARTIAL_SAVE_SECTIONS(saveDraft, function () { partialSaveHandleError(); showButton(); });</text>
+                    }
+                }, 800);
+            });
+
+
+            var updateLastSaveData = function () {
+                function pad(s) { return (s < 10) ? '0' + s : s; }
+
+                var route = window['_eumis_options']['session'];
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/' + route + '/time/lastSave',
+                    data: '{ }',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (time) {
+                        if (time != null) {
+                            var d = new Date(time.year, time.month, time.day, time.hour, time.minute, time.second);
+                            var formatted = [pad(d.getHours()), pad(d.getMinutes())].join(':');
+                            $("#last-save-content").html(formatted);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</div>
+
+@if (!Model.ErrorMessageOnly)
+{
+<span id="last-save-wrapper" style="color:red; font-weight:bold; @(hasLastSaveDate ? "" : "display: none;")">
+    (@Global.LastSave:
+    <span id="last-save-content">
+        @if (hasLastSaveDate)
+        { <text>@string.Format("{0:HH:mm}", Eumis.Portal.Web.Helpers.AppContext.Current.LastSaveDate.Value)</text>}
+    </span>
+    @Global.HoursShort)
+</span>
+}

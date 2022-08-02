@@ -1,0 +1,86 @@
+﻿@model R_10092.AttachedDocumentCollection
+@using Eumis.Portal.Web
+@using Eumis.Common.Config;
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+
+    var jsonSettings = WebApiConfig.JsonSerializerDateTimeFormatSettings;
+
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, jsonSettings);
+
+    var resourcesObject = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObject = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObject);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        url: '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))',
+        resourcesObject: @(Html.Raw(jsonResourcesObject)),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerAttachedDocuments@(guid)'), ['moduleAttachedDocuments']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerAttachedDocuments@(guid)" ng-controller="controllerAttachedDocuments" ng-init="init('_eumis_options', 'i@(guid)')">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr>
+                <th>@AttachedDocument.ActivationDate</th>
+                <th>@AttachedDocument.Description</th>
+                <th colspan="2">@AttachedDocument.FileName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr>
+                <td style="min-width: 150px;">
+                    {{item.ActivationDate}}
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].ActivationDate" value="{{ item.ActivationDate }}" />
+                </td>
+                <td style="width:60%;">
+                    <textarea rows="1" style="height:29px;" auto-grow ng-class="{'input-validation-error': !item.IsDescriptionValid}" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control"></textarea>
+                </td>
+                <td style="min-width:190px;">
+                    <sc-file ng-if="!item.ActivationDate"
+                             path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent"
+                             resources="resourcesObject"
+                             url="{{ url }}"
+                             ng-model="item.AttachedDocumentContent">
+                    </sc-file>
+                    <div ng-if="item.ActivationDate
+                         && item.AttachedDocumentContent
+                         && item.AttachedDocumentContent.FileName
+                         && item.AttachedDocumentContent.BlobContentId"
+                         class="files">
+                        <p>{{item.AttachedDocumentContent.FileName}}</p>
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.FileName" value="{{ item.AttachedDocumentContent.FileName }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.BlobContentId" value="{{ item.AttachedDocumentContent.BlobContentId }}" />
+
+                        <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{item.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                    </div>
+                </td>
+                <td style="min-width:102px;">
+                    <a ng-if="!item.ActivationDate || !item.AttachedDocumentContent.BlobContentId" class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+</div>

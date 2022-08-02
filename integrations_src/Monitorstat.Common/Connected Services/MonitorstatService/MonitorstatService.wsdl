@@ -1,0 +1,1613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MonitorstatService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IMonitorstatService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:element name="GetStatuses">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStatusesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q1="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="GetStatusesResult" nillable="true" type="q1:ArrayOfNomenclature" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetOperationalProgrammeGroups">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q2="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="language" type="q2:Language" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetOperationalProgrammeGroupsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q3="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="GetOperationalProgrammeGroupsResult" nillable="true" type="q3:ArrayOfNomenclature" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddOperationalProgramme">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q4="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q4:AddOperationalProgrammeRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddOperationalProgrammeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddOperationalProgrammeResult" type="q5:guid" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddPriorityAxis">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q6="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q6:AddPriorityAxisRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddPriorityAxisResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddPriorityAxisResult" type="q7:guid" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddProcedure">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q8="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q8:AddProcedureRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddProcedureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddProcedureResult" type="q9:guid" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddSurveyInquiry">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q10="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q10:AddSurveyInquiryRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddSurveyInquiryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="AddSurveyInquiryResult" type="q11:guid" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSurveys">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q12="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q12:GetSurveysRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetSurveysResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q13="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="GetSurveysResult" nillable="true" type="q13:GetSurveysResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReports">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q14="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q14:GetReportsRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetReportsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q15="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="GetReportsResult" nillable="true" type="q15:GetReportsResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GenerateDeclaration">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q16="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q16:GenerateDeclarationRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GenerateDeclarationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="GenerateDeclarationResult" nillable="true" type="xsd:base64Binary" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RegisterSubjectRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q17="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q17:RegisterSubjectRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RegisterSubjectRequestResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RegisterSubjectRequestResult" nillable="true" type="q18:ArrayOfKeyValueOfguidstring" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SearchIndicators">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q19="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q19:SearchIndicatorsRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SearchIndicatorsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q20="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="SearchIndicatorsResult" nillable="true" type="q20:SearchIndicatorsResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIndicator">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q21="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="request" nillable="true" type="q21:SearchIndicatorsRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetIndicatorResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q22="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" minOccurs="0" name="GetIndicatorResult" nillable="true" type="q22:GetIndicatorResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SaveZipFile">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filesContent" nillable="true" type="q23:ArrayOfbase64Binary" />
+            <xsd:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fileNames" nillable="true" type="q24:ArrayOfstring" />
+            <xsd:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="objectId" type="q25:guid" />
+            <xsd:element xmlns:q26="http://schemas.datacontract.org/2004/07/NSI.Utilities.Enums" minOccurs="0" name="type" type="q26:ObjectType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SaveZipFileResponse">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/NSI.WebService.Models" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/NSI.WebService.Models">
+      <xsd:complexType name="ArrayOfNomenclature">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Nomenclature" nillable="true" type="tns:Nomenclature" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfNomenclature" nillable="true" type="tns:ArrayOfNomenclature" />
+      <xsd:complexType name="Nomenclature">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Nomeclature</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Id" nillable="true" type="ser:guid">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Id</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Nomenclature" nillable="true" type="tns:Nomenclature" />
+      <xsd:simpleType name="Language">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Allowed language</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Bg">
+            <xsd:annotation>
+              <xsd:documentation>Bg language</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="En">
+            <xsd:annotation>
+              <xsd:documentation>En language</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="Language" nillable="true" type="tns:Language" />
+      <xsd:complexType name="AddOperationalProgrammeRequest">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Add operational programme request by language</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Programme">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Language" type="tns:Language" />
+                <xsd:element name="Data" nillable="true" type="tns:AddOperationalProgramme" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddOperationalProgrammeRequest" nillable="true" type="tns:AddOperationalProgrammeRequest" />
+      <xsd:complexType name="AddOperationalProgramme">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Add operational programme</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="Identifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique operational programme identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Operational programme name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Abbreviation" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Operational programme abbreviation</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Operational program Code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Status" nillable="true" type="tns:Nomenclature">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Operational program Status - Get statuses from method GetStatuses</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Group" nillable="true" type="tns:Nomenclature">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Operational program Group, Get groups from method GetOperationalProgrammeGroups</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddOperationalProgramme" nillable="true" type="tns:AddOperationalProgramme" />
+      <xsd:complexType name="AddPriorityAxisRequest">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Add priority axis request by language</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Axis">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Language" type="tns:Language" />
+                <xsd:element name="Data" nillable="true" type="tns:AddPriorityAxis" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddPriorityAxisRequest" nillable="true" type="tns:AddPriorityAxisRequest" />
+      <xsd:complexType name="AddPriorityAxis">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Add priority axis</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="OperationalProgrammeIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique operational programme identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="PriorityAxisIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique priority axis identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="PriorityAxisName" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SpecificTarget" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis specific target</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Definition" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Status" nillable="true" type="tns:Nomenclature">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis status - Get statuses from method GetStatuses</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis Code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="YearFrom" nillable="true" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis yearFrom</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="YearTo" nillable="true" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Priority axis yearTo</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddPriorityAxis" nillable="true" type="tns:AddPriorityAxis" />
+      <xsd:complexType name="AddProcedureRequest">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Add procedure request by language</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Procedure">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Language" type="tns:Language" />
+                <xsd:element name="Data" nillable="true" type="tns:AddProcedure" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddProcedureRequest" nillable="true" type="tns:AddProcedureRequest" />
+      <xsd:complexType name="AddProcedure">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Add priority axis procedure</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="OperationalProgrammeIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique operational programme identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="PriorityAxisIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique priority axis identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ProcedureIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Unique priority axis procedure identifier from UMIS</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ProcedureName" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="StartDate" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure start date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddProcedure" nillable="true" type="tns:AddProcedure" />
+      <xsd:complexType name="AddSurveyInquiryRequest">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Add survey inquiry by language</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="SurveyInquiry">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Language" type="tns:Language" />
+                <xsd:element name="Data" nillable="true" type="tns:AddSurveyInquiry" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddSurveyInquiryRequest" nillable="true" type="tns:AddSurveyInquiryRequest" />
+      <xsd:complexType name="AddSurveyInquiry">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Survey document</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="ProcedureIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure identifier</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Type" type="tns:SurveyInquiryType">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Survey inquiry type</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="ReportInquiries" nillable="true" type="tns:ArrayOfReportInquiry">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report Inquiries</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="ActivityInquiries" nillable="true" type="tns:ArrayOfActivityInquiry">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Activity Inquiries</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="FinishDate" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure end date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ExecutionDateFrom" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure execution start date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ExecutionDateTo" type="xsd:dateTime">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Procedure end date</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AddSurveyInquiry" nillable="true" type="tns:AddSurveyInquiry" />
+      <xsd:simpleType name="SurveyInquiryType">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Allowed identification types</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Apply">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xsd:appinfo>
+              <xsd:documentation>Кандидатстване</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="CurrentMonitoring">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xsd:appinfo>
+              <xsd:documentation>Текущ мониторинг</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="FollowUpControl">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xsd:appinfo>
+              <xsd:documentation>Последващ контрол</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="SurveyInquiryType" nillable="true" type="tns:SurveyInquiryType" />
+      <xsd:complexType name="ArrayOfReportInquiry">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ReportInquiry" nillable="true" type="tns:ReportInquiry" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfReportInquiry" nillable="true" type="tns:ArrayOfReportInquiry" />
+      <xsd:complexType name="ReportInquiry">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Survey document</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="Year" type="xsd:int">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Year</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SurveyCode" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Survey Code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ReportCodes" nillable="true" type="tns:ReportCodes">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Collection with report codes for survey document</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ReportInquiry" nillable="true" type="tns:ReportInquiry" />
+      <xsd:complexType name="ReportCodes">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Collection with indicator codes</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Code" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ReportCodes" nillable="true" type="tns:ReportCodes" />
+      <xsd:complexType name="ArrayOfActivityInquiry">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ActivityInquiry" nillable="true" type="tns:ActivityInquiry" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfActivityInquiry" nillable="true" type="tns:ArrayOfActivityInquiry" />
+      <xsd:complexType name="ActivityInquiry">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>KID document</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="Year" type="xsd:int">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Year</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Type" type="tns:ActivityType">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Type</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ActivityInquiry" nillable="true" type="tns:ActivityInquiry" />
+      <xsd:simpleType name="ActivityType">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Activity type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Main">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xsd:appinfo>
+              <xsd:documentation>Main activity</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="MainAndAdditional">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xsd:appinfo>
+              <xsd:documentation>Main and additional</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="ActivityType" nillable="true" type="tns:ActivityType" />
+      <xsd:complexType name="GetSurveysRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Get surveys request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="tns:LanguageRequest">
+            <xsd:sequence>
+              <xsd:element name="Year" type="xsd:int">
+                <xsd:annotation>
+                  <xsd:appinfo />
+                  <xsd:documentation>Surveys year</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="GetSurveysRequest" nillable="true" type="tns:GetSurveysRequest" />
+      <xsd:complexType name="LanguageRequest">
+        <xsd:sequence>
+          <xsd:element name="Language" type="tns:Language">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Selected language value</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="LanguageRequest" nillable="true" type="tns:LanguageRequest" />
+      <xsd:complexType name="GetSurveysResponse">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Get surveys response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Survey">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Identifier" nillable="true" type="xsd:string" />
+                <xsd:element name="Name" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetSurveysResponse" nillable="true" type="tns:GetSurveysResponse" />
+      <xsd:complexType name="GetReportsRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Get documents request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="tns:GetSurveysRequest">
+            <xsd:sequence>
+              <xsd:element name="SurveyIdentifier" nillable="true" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:appinfo />
+                  <xsd:documentation>Survey identifier</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="GetReportsRequest" nillable="true" type="tns:GetReportsRequest" />
+      <xsd:complexType name="GetReportsResponse">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+          <xsd:documentation>Get documents response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Report">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Identifier" nillable="true" type="xsd:string" />
+                <xsd:element name="Name" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetReportsResponse" nillable="true" type="tns:GetReportsResponse" />
+      <xsd:complexType name="GenerateDeclarationRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Generate declaration request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="InquiryIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Inquiry Identifier</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GenerateDeclarationRequest" nillable="true" type="tns:GenerateDeclarationRequest" />
+      <xsd:complexType name="RegisterSubjectRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Register beneficiary request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="SurveyInquiryIdentifier" type="ser:guid">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Survey inquiry identifier</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SubjectRequests" nillable="true" type="tns:ArrayOfSubjectRequest">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Sing declarations by beneficiary</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="RegisterSubjectRequest" nillable="true" type="tns:RegisterSubjectRequest" />
+      <xsd:complexType name="ArrayOfSubjectRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="SubjectRequest" nillable="true" type="tns:SubjectRequest" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfSubjectRequest" nillable="true" type="tns:ArrayOfSubjectRequest" />
+      <xsd:complexType name="SubjectRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Survey request by beneficiary</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="SubjectIdentifier" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Beneficiary identifier</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Type" nillable="true" type="tns:Nomenclature">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Type</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SubjectIdentifierType" type="tns:IdentifierType">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Subject identifier type</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ArchiveFile" nillable="true" type="tns:File">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Declaration file in xml format</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SubjectRequest" nillable="true" type="tns:SubjectRequest" />
+      <xsd:simpleType name="IdentifierType">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Allowed identification types</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="EIK">
+            <xsd:annotation>
+              <xsd:documentation>EIK - Unified Identification Code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Bulstat">
+            <xsd:annotation>
+              <xsd:documentation>Bulstat - Unified State Register for Commercial Entities in Bulgaria</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EGN">
+            <xsd:annotation>
+              <xsd:documentation>EGN - Personal identification number</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="LNCh">
+            <xsd:annotation>
+              <xsd:documentation>Personal identification number for a foreigner</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="IdentifierType" nillable="true" type="tns:IdentifierType" />
+      <xsd:complexType name="File">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>File data</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>File name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Size" type="xsd:int">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>File size</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="Content" nillable="true" type="xsd:base64Binary">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>File content</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="File" nillable="true" type="tns:File" />
+      <xsd:complexType name="SearchIndicatorsRequest">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Search indicators query</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="tns:LanguageRequest">
+            <xsd:sequence>
+              <xsd:element name="OperationalProgramCode" nillable="true" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:appinfo />
+                  <xsd:documentation>Code of indicators operational program</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="Code" nillable="true" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:appinfo />
+                  <xsd:documentation>Indicator code</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element name="Name" nillable="true" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:appinfo />
+                  <xsd:documentation>Indicator name</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="SearchIndicatorsRequest" nillable="true" type="tns:SearchIndicatorsRequest" />
+      <xsd:complexType name="SearchIndicatorsResponse">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Search indicators response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="Indicators" nillable="true" type="tns:ArrayOfIndicator">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SearchIndicatorsResponse" nillable="true" type="tns:SearchIndicatorsResponse" />
+      <xsd:complexType name="ArrayOfIndicator">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Indicator" nillable="true" type="tns:Indicator" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfIndicator" nillable="true" type="tns:ArrayOfIndicator" />
+      <xsd:complexType name="Indicator">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Indicator</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Definition" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Definition</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Description" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Description</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="MetadataLink" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators MetadataLink</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="MethodologyLink" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators MethodologyLink</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="OperationalProgramCode" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Code of indicators operational program</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="QualityLink" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators QualityLink</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Reports" nillable="true" type="tns:ArrayOfReport">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>List of reports</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Source" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Source</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Unit" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicators Unit</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Indicator" nillable="true" type="tns:Indicator" />
+      <xsd:complexType name="ArrayOfReport">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Report" nillable="true" type="tns:Report" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfReport" nillable="true" type="tns:ArrayOfReport" />
+      <xsd:complexType name="Report">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Report data</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Filters" nillable="true" type="tns:ArrayOfFilter">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report filters data</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Id" type="ser:guid">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report id</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Note" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Report note</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="TimePartitions" nillable="true" type="tns:ArrayOfTimePartition">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Time partition values</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Report" nillable="true" type="tns:Report" />
+      <xsd:complexType name="ArrayOfFilter">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Filter" nillable="true" type="tns:Filter" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfFilter" nillable="true" type="tns:ArrayOfFilter" />
+      <xsd:complexType name="Filter">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Filter data</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Filter code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Entries" nillable="true" type="tns:ArrayOfEntry">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Filter entries</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Id" type="ser:guid">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Filter id</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Filter name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Required" type="xsd:boolean">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Required flag</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Type" nillable="true" type="tns:Nomenclature">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Filter type</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Filter" nillable="true" type="tns:Filter" />
+      <xsd:complexType name="ArrayOfEntry">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Entry" nillable="true" type="tns:Entry" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfEntry" nillable="true" type="tns:ArrayOfEntry" />
+      <xsd:complexType name="Entry">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Entry data</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Code" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Entry code</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Id" type="ser:guid">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Entry id</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Entry name</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Entry" nillable="true" type="tns:Entry" />
+      <xsd:complexType name="ArrayOfTimePartition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="TimePartition" nillable="true" type="tns:TimePartition" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfTimePartition" nillable="true" type="tns:ArrayOfTimePartition" />
+      <xsd:complexType name="TimePartition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Partitions" nillable="true" type="tns:ArrayOfPartition" />
+          <xsd:element minOccurs="0" name="TimeFilter" nillable="true" type="tns:Filter" />
+          <xsd:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TimeValue" nillable="true" type="q27:ArrayOfKeyValueOfstringstring" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="TimePartition" nillable="true" type="tns:TimePartition" />
+      <xsd:complexType name="ArrayOfPartition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Partition" nillable="true" type="tns:Partition" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfPartition" nillable="true" type="tns:ArrayOfPartition" />
+      <xsd:complexType name="Partition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Entry" nillable="true" type="tns:Entry" />
+          <xsd:element minOccurs="0" name="Filter" nillable="true" type="tns:Filter" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Partition" nillable="true" type="tns:Partition" />
+      <xsd:complexType name="GetIndicatorResponse">
+        <xsd:annotation>
+          <xsd:appinfo />
+          <xsd:documentation>Get Indicator response model</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Indicator" nillable="true" type="tns:Indicator">
+            <xsd:annotation>
+              <xsd:appinfo />
+              <xsd:documentation>Indicator</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetIndicatorResponse" nillable="true" type="tns:GetIndicatorResponse" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <xsd:complexType name="ArrayOfKeyValueOfguidstring">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfguidstring">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Key" type="ser:guid" />
+                <xsd:element name="Value" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfKeyValueOfguidstring" nillable="true" type="tns:ArrayOfKeyValueOfguidstring" />
+      <xsd:complexType name="ArrayOfKeyValueOfstringstring">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringstring">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Key" nillable="true" type="xsd:string" />
+                <xsd:element name="Value" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfKeyValueOfstringstring" nillable="true" type="tns:ArrayOfKeyValueOfstringstring" />
+      <xsd:complexType name="ArrayOfbase64Binary">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="xsd:base64Binary" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfbase64Binary" nillable="true" type="tns:ArrayOfbase64Binary" />
+      <xsd:complexType name="ArrayOfstring">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/NSI.Utilities.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/NSI.Utilities.Enums">
+      <xsd:simpleType name="ObjectType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="User" />
+          <xsd:enumeration value="Publication" />
+          <xsd:enumeration value="CustomGroup" />
+          <xsd:enumeration value="Role" />
+          <xsd:enumeration value="Chart" />
+          <xsd:enumeration value="Footer" />
+          <xsd:enumeration value="Contacts" />
+          <xsd:enumeration value="Strategy" />
+          <xsd:enumeration value="Indicator" />
+          <xsd:enumeration value="Report" />
+          <xsd:enumeration value="OperationalProgram" />
+          <xsd:enumeration value="PriorityAxis" />
+          <xsd:enumeration value="MainMenu" />
+          <xsd:enumeration value="Procedure" />
+          <xsd:enumeration value="SurveyInquiry" />
+          <xsd:enumeration value="SurveyRequest" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="ObjectType" nillable="true" type="tns:ObjectType" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMonitorstatService_GetStatuses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatuses" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetStatuses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetOperationalProgrammeGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOperationalProgrammeGroups" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetOperationalProgrammeGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOperationalProgrammeGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddOperationalProgramme_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOperationalProgramme" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddOperationalProgramme_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOperationalProgrammeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddPriorityAxis_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPriorityAxis" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddPriorityAxis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPriorityAxisResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddProcedure_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProcedure" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddProcedure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProcedureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddSurveyInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurveyInquiry" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_AddSurveyInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurveyInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetSurveys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveys" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetSurveys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveysResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetReports_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReports" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetReports_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GenerateDeclaration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateDeclaration" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GenerateDeclaration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateDeclarationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_RegisterSubjectRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSubjectRequest" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_RegisterSubjectRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSubjectRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_SearchIndicators_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchIndicators" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_SearchIndicators_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchIndicatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetIndicator_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIndicator" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_GetIndicator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIndicatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_SaveZipFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveZipFile" />
+  </wsdl:message>
+  <wsdl:message name="IMonitorstatService_SaveZipFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveZipFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMonitorstatService">
+    <wsdl:documentation>Integration web service with UMIS</wsdl:documentation>
+    <wsdl:operation name="GetStatuses">
+      <wsdl:documentation>Get statuses
+@return Nomeclature collection</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GetStatuses" message="tns:IMonitorstatService_GetStatuses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GetStatusesResponse" message="tns:IMonitorstatService_GetStatuses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOperationalProgrammeGroups">
+      <wsdl:documentation>Get operational programme groups
+@return Nomeclature collection</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GetOperationalProgrammeGroups" message="tns:IMonitorstatService_GetOperationalProgrammeGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GetOperationalProgrammeGroupsResponse" message="tns:IMonitorstatService_GetOperationalProgrammeGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOperationalProgramme">
+      <wsdl:documentation>Add new operational programme
+@param request Operational programme data by language
+@return Operational programme guid</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/AddOperationalProgramme" message="tns:IMonitorstatService_AddOperationalProgramme_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/AddOperationalProgrammeResponse" message="tns:IMonitorstatService_AddOperationalProgramme_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPriorityAxis">
+      <wsdl:documentation>Add new priority axis to operational programme
+@param request Priority axis data by language
+@return Priority axis guid</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/AddPriorityAxis" message="tns:IMonitorstatService_AddPriorityAxis_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/AddPriorityAxisResponse" message="tns:IMonitorstatService_AddPriorityAxis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProcedure">
+      <wsdl:documentation>Add priority axis procedure
+@param request Procedure data by language
+@return Procedure guid</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/AddProcedure" message="tns:IMonitorstatService_AddProcedure_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/AddProcedureResponse" message="tns:IMonitorstatService_AddProcedure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSurveyInquiry">
+      <wsdl:documentation>Add survey inquiry to procedure
+@return Survey inquiry guid</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/AddSurveyInquiry" message="tns:IMonitorstatService_AddSurveyInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/AddSurveyInquiryResponse" message="tns:IMonitorstatService_AddSurveyInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveys">
+      <wsdl:documentation>Get surveys data by year
+@return Document collection</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GetSurveys" message="tns:IMonitorstatService_GetSurveys_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GetSurveysResponse" message="tns:IMonitorstatService_GetSurveys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReports">
+      <wsdl:documentation>Get survey documents by year
+@return Report collection</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GetReports" message="tns:IMonitorstatService_GetReports_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GetReportsResponse" message="tns:IMonitorstatService_GetReports_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDeclaration">
+      <wsdl:documentation>Generate declaration in xml format by procedure and indicators
+@return Declaration file in xml format</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GenerateDeclaration" message="tns:IMonitorstatService_GenerateDeclaration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GenerateDeclarationResponse" message="tns:IMonitorstatService_GenerateDeclaration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSubjectRequest">
+      <wsdl:documentation>Register beneficiary request for procedure and indicators
+@return Return collection with key value pair, where key is registred identifier in monitorstat, value is beneficiary identifier</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/RegisterSubjectRequest" message="tns:IMonitorstatService_RegisterSubjectRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/RegisterSubjectRequestResponse" message="tns:IMonitorstatService_RegisterSubjectRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchIndicators">
+      <wsdl:documentation>Search indicators by query
+@param request Indicator query
+@return Indicators collection</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/SearchIndicators" message="tns:IMonitorstatService_SearchIndicators_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/SearchIndicatorsResponse" message="tns:IMonitorstatService_SearchIndicators_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndicator">
+      <wsdl:documentation>Get indicator by query
+@param request Indicator query
+@return Indicator with reports data</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/GetIndicator" message="tns:IMonitorstatService_GetIndicator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/GetIndicatorResponse" message="tns:IMonitorstatService_GetIndicator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveZipFile">
+      <wsdl:documentation>Saves zip file</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IMonitorstatService/SaveZipFile" message="tns:IMonitorstatService_SaveZipFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMonitorstatService/SaveZipFileResponse" message="tns:IMonitorstatService_SaveZipFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IMonitorstatService" type="tns:IMonitorstatService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IMonitorstatService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStatuses">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GetStatuses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOperationalProgrammeGroups">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GetOperationalProgrammeGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOperationalProgramme">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/AddOperationalProgramme" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPriorityAxis">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/AddPriorityAxis" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProcedure">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/AddProcedure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSurveyInquiry">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/AddSurveyInquiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveys">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GetSurveys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReports">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GetReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDeclaration">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GenerateDeclaration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSubjectRequest">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/RegisterSubjectRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchIndicators">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/SearchIndicators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndicator">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/GetIndicator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveZipFile">
+      <soap12:operation soapAction="http://tempuri.org/IMonitorstatService/SaveZipFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MonitorstatService">
+    <wsdl:port name="WSHttpBinding_IMonitorstatService" binding="tns:WSHttpBinding_IMonitorstatService">
+      <soap12:address location="https://nsiservice.customers.mapex.bg/MonitorstatService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://nsiservice.customers.mapex.bg/MonitorstatService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

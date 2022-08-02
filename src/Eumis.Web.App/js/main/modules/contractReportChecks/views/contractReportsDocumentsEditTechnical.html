@@ -1,0 +1,35 @@
+<ng-form name="editContractReportTechnicalForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReportChecks_editContractReportDocumentsTechnical_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="changeTechnicalStatus('draft')" text="contractReportChecks_editContractReportDocumentsTechnical_draft" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportTechnical.status === 'entered'" >
+        </sc-button>
+
+        <sc-button name="returnBtn" btn-click="changeTechnicalStatus('returned')" text="contractReportChecks_editContractReportDocumentsTechnical_returned" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportTechnical.status === 'actual'" >
+        </sc-button>
+
+        <sc-button name="actualBtn" btn-click="changeTechnicalStatus('actual')" text="contractReportChecks_editContractReportDocumentsTechnical_actual" class="btn btn-info btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportTechnical.status === 'entered'" >
+        </sc-button>
+
+        <sc-button name="backBtn" btn-click="back()" text="contractReportChecks_editContractReportDocumentsTechnical_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-technical name="contractReportTechnicalForm" ng-model="contractReportTechnical"></eumis-contract-report-technical>
+
+      <div class="row">
+        <eumis-structured-document document="contractReportTechnical" gid="contractReportTechnical.xmlGid" text="contractReportChecks_editContractReportDocumentsTechnical_document"
+          readonly="contractReportStatus !== 'unchecked' || contractReportTechnical.status !== 'draft' ||!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)"
+          class="col-sm-4 col-md-3" doc-updated="reportUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

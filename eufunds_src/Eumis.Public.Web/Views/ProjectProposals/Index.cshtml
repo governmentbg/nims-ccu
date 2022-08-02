@@ -1,0 +1,168 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.Indicators
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model ProjectProposalsSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.ProjectProposals_Index_ProjectProposals)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.ProjectProposals_Index_ProjectProposals</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.Project_Search_Program</label>
+                        @Html.TextBoxFor(m => m.ProgrammeId, new { id = "programme-ddl" })
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.Project_Search_PriorityAxis</label>
+                        @Html.TextBoxFor(m => m.PriorityAxisId, new { id = "priority-ddl" })
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.Project_Search_Procedure</label>
+                        @Html.TextBoxFor(m => m.ProcedureId, new { id = "procedure-ddl" })
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            createSelect2('#programme-ddl', '/@Language/@OpId/@PrId/ProjectProposals/GetProgramme', '/@Language//@OpId/@PrId/ProjectProposals/GetProgrammes');
+                            createSelect2('#priority-ddl', '/@Language/@OpId/@PrId/ProjectProposals/GetPriority', '/@Language//@OpId/@PrId/ProjectProposals/GetPriorities', '#programme-ddl');
+                            createSelect2('#procedure-ddl', '/@Language//@OpId/@PrId/ProjectProposals/GetProcedure', '/@Language//@OpId/@PrId/ProjectProposals/GetProcedures', '#priority-ddl');
+                        });
+                    </script>
+
+                    <div class="form-submit col-lg-3 col-sm-12">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0 && Model.SearchResultsTotals != null)
+            {
+                <div class="heading-with-export clearfix">
+                    <h2>@Texts.Global_Total</h2>
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.ProjectProposals_Index_TotalSubmittedCount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalTotalAmount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalBFPAmount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalApprovedCount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalReservedCount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalRejectedCount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.ProjectCount)</td>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.TotalAmout)</td>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.BfpAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.ApprovedCount)</td>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.ReserveCount)</td>
+                                <td class="sum-field">@Html.DisplayFor(e => Model.SearchResultsTotals.RejectedCount)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="heading-with-export clearfix" style="margin-top:20px;">
+                    <h2>@Texts.ProjectProposals_Index_ProjectProposals</h2>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.ProjectProposals_Index_ProcedureNumber</th>
+                                <th>@Texts.ProjectProposals_Index_ProcedureNamе</th>
+                                <th>@Texts.ProjectProposals_Index_SubmittedCount</th>
+                                <th>@Texts.ProjectProposals_Index_TotalAmount</th>
+                                <th>@Texts.ProjectProposals_Index_BFPAmount</th>
+                                <th>@Texts.ProjectProposals_Index_ApprovedCount</th>
+                                <th>@Texts.ProjectProposals_Index_ReservedCount</th>
+                                <th>@Texts.ProjectProposals_Index_RejectedCount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var project in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@project.Code</td>
+                                    <td>@project.TransName</td>
+
+                                    <td class="sum-field">@Html.DisplayFor(e => project.ProjectCount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => project.TotalAmout)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => project.BfpAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => project.ApprovedCount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => project.ReserveCount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => project.RejectedCount)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.ProjectProposals.ActionNames.Index, MVC.ProjectProposals.Name
+                            , new
+                            {
+                                programmeId = Request.QueryString["programmeId"],
+                                priorityAxisId = Request.QueryString["priorityAxisId"],
+                                procedureId = Request.QueryString["procedureId"],
+                                showRes = true,
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+
+                <h2>@Texts.Global_Note:</h2>
+                <div class="note">
+                    @Texts.Global_NoteBGN
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

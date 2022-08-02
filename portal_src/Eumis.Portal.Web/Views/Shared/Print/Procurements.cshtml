@@ -1,0 +1,30 @@
+﻿@model R_10041.Procurements
+
+@if (Model != null)
+{
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @Procurements.Contractors
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Contractors, Model.Contractors ?? new R_10041.Contractors())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @Procurements.ContractContractors
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.ContractContractors, Model.ContractContractors ?? new R_10041.ContractContractors())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @Procurements.ProcurementPlans
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.ProcurementPlans, Model.ProcurementPlans ?? new R_10041.ProcurementPlans())
+    </section>
+}

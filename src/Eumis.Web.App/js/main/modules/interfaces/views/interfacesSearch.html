@@ -1,0 +1,18 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contracts'" mode="id" ng-model="filters.contractId" l10n-text="interfaces_other_contract" class="col-sm-6"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="nomenclature" alias="'informationSystems'" mode="id" ng-model="filters.informationSystem" l10n-text="interfaces_other_system" class="col-sm-6"></sc-field>
+        <div class="labeless col-sm-6">
+          <sc-link-button ng-href="api/interfaces/export?contractId={{filters.contractId}}&informationSystem={{filters.informationSystem}}"
+                          target="_blank" sc-access-token ng-disabled="!filters.contractId || !filters.informationSystem"
+                          icon="fa-file-excel-o fa-lg fa-fw" text="interfaces_other_contract_xmlExport" class="btn btn-primary btn-sm pull-right">
+          </sc-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

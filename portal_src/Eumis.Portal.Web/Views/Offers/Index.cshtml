@@ -1,0 +1,124 @@
+﻿@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+@model Eumis.Portal.Web.Models.Offers.IndexVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers)
+}, @Offers.AnnouncementsOffers)
+
+<div class="container page-title">
+  <h1>@Offers.AnnouncementsOffers</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    @Html.Partial(MVC.Offers.Views._NavTabs, MVC.Offers.Views.Index)
+    <div class="tab-content">
+        <div class="tab-pane active">
+            @using (Html.BeginForm(MVC.Offers.ActionNames.Index,
+                MVC.Offers.Name,
+                FormMethod.Post,
+                new { role = "form", @class = "form-with-sections" }))
+            {
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.DifferentiatedPosition</label>
+                        @Html.TextBoxFor(m => m.DpName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.ProcurementSubject</label>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.Beneficiary</label>
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-xs-3">
+                        <input type="submit" class="submit wait" value="@Global.ButtonSearchText">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.OffersDeadlineDate</label>
+                        @Html.EditorFor(m => m.OffersDeadlineDate)
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.NoticeDate</label>
+                        @Html.EditorFor(m => m.NoticeDate)
+                    </div>
+                </div>
+            }
+            <div class="table-wrapper">
+                @if (Model.SearchItems != null && Model.SearchItems.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%"><a href="@Url.MakeSortUrl("OffersDeadlineDate", MVC.Offers.IndexParams.sortBy, MVC.Offers.IndexParams.sortOrder)">@Offers.OffersDeadlineDate</a></th>
+                                <th style="width: 10%"><a href="@Url.MakeSortUrl("NoticeDate", MVC.Offers.IndexParams.sortBy, MVC.Offers.IndexParams.sortOrder)">@Offers.NoticeDate</a></th>
+                                <th style="width: 25%"><a href="@Url.MakeSortUrl("DpName", MVC.Offers.IndexParams.sortBy, MVC.Offers.IndexParams.sortOrder)">@Offers.DifferentiatedPosition</a></th>
+                                <th style="width: 25%"><a href="@Url.MakeSortUrl("Name", MVC.Offers.IndexParams.sortBy, MVC.Offers.IndexParams.sortOrder)">@Offers.ProcurementSubject</a></th>
+                                <th style="width: 20%"><a href="@Url.MakeSortUrl("CompanyName", MVC.Offers.IndexParams.sortBy, MVC.Offers.IndexParams.sortOrder)">@Offers.Beneficiary</a></th>
+                                <th style="width: 10%">@Global.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var position in Model.SearchItems)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => position.OffersDeadlineDate, MVC.Shared.Views.DisplayTemplates.DateTimeWithoutSpan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => position.NoticeDate, MVC.Shared.Views.DisplayTemplates.DateTimeWithoutSpan)
+                                    </td>
+                                    <td>
+                                        @position.DpName
+                                    </td>
+                                    <td>
+                                        @position.Name
+                                    </td>
+                                    <td>
+                                        @position.CompanyName
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action(MVC.Offers.ActionNames.Details, MVC.Offers.Name, new { id = position.DpGid })" title="" class="view-btn wait">@Global.ButtonPreviewText</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pull-right m-3">
+                        @Html.ActionLink(Offers.Export, MVC.Offers.IndexExport(Model.DpName, Model.Name, Model.CompanyName, Model.OffersDeadlineDate, Model.NoticeDate), new { @class = "download-as-file" })
+                    </div>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Offers.NoOffersFound</p>
+                    </div>
+                }
+            </div>
+
+            @Html.PagedListPager(Model.SearchItems,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page,
+                    dpName = Model.DpName,
+                    name = Model.Name,
+                    companyName = Model.CompanyName,
+                    offersDeadlineDate = Model.OffersDeadlineDate,
+                    noticeDate = Model.NoticeDate,
+                }),
+                Constants.PagedListRenderOptions)
+
+        </div>
+    </div>
+</div>

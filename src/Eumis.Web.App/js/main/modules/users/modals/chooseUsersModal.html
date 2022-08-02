@@ -1,0 +1,35 @@
+<ng-form name="form.chooseUsersForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="chooseUsersModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="chooseUsersModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="chooseUsersModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-datatable items="users" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="chooseUser(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="removeUser(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="username" title="chooseUsersModal_username">
+          </sc-column>
+          <sc-column data="userOrganization" title="chooseUsersModal_userOrganization">
+          </sc-column>
+          <sc-column data="userType" title="chooseUsersModal_userType">
+          </sc-column>
+          <sc-column data="fullname" title="chooseUsersModal_name">
+          </sc-column>
+          <sc-column title="chooseUsersModal_status" sortable="false" has-content="true">
+            {{(item.isActive ? activeText : inactiveText) + (item.isLocked ? ', ' + lockedText : '') + (item.isDeleted ? ', ' + deletedText : '')}}
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

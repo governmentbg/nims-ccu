@@ -1,0 +1,69 @@
+﻿@model Eumis.Portal.Web.Models.ProjectCommunicationAnswer.EditVM
+@using Eumis.Portal.Web.Helpers
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    @Html.Breadcrumb(new List<BreadcrumbItem>()
+    {
+        new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+        new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+        new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Communication, MVC.Registered.Name), ProjectCommunication.CommunicationBreadcrumb),
+        new BreadcrumbItem(Url.Action(MVC.ProjectCommunication.ActionNames.Index, MVC.ProjectCommunication.Name, new { registeredGid = Model.RegisteredGid }), ProjectCommunicationAnswer.ProjectRegNumber + Model.ProjectRegNumber)
+}
+    , ProjectCommunicationAnswer.AnswerEditBreadcrumb)
+</div>
+
+<div class="container page-title">
+    <h1>@ProjectCommunicationAnswer.AnswerEditBreadcrumb</h1>
+</div>
+
+<div class="container">
+    @using (Html.BeginForm(MVC.ProjectCommunicationAnswer.ActionNames.Prepare,
+    MVC.ProjectCommunicationAnswer.Name,
+    FormMethod.Post,
+    new { id = "main_form", role = "form", @class = "form-with-sections" }))
+    {
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkButton(
+                null,
+                null,
+                MVC.ProjectCommunicationAnswer.ActionNames.Prepare,
+                MVC.ProjectCommunicationAnswer.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: "main_form",
+                formMethod: FormMethod.Post)
+            @ProjectCommunicationAnswer.Answer
+            @Html.EndActionLinkButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.ProjectCommunicationAnswer)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.ProjectCommunicationAnswer.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.ProjectCommunicationAnswer.ActionNames.Save,
+                            HasXmlUpdate = true
+                        })
+                </div>
+
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+
+        </div>
+    }
+</div>

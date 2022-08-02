@@ -1,0 +1,110 @@
+﻿@model R_10050.PaymentRequestDeclaration
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerDeclaration">
+    <h3 class="margin-bottom-h3">@PaymentRequestDeclaration.Representating</h3>
+
+    <div class="clearfix">
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.RepresentingBeneficiaryEGN</label>
+            <input ng-class="{'input-validation-error': !model.IsRepresentingBeneficiaryEGNValid}" type="text" ng-model="model.RepresentingBeneficiaryEGN" name="@(Html.GetNameFor(m => m.RepresentingBeneficiaryEGN))" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.RepresentingFirstName</label>
+            <input ng-class="{'input-validation-error': !model.IsRepresentingFirstNameValid}" type="text" ng-model="model.RepresentingFirstName" name="@(Html.GetNameFor(m => m.RepresentingFirstName))" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.RepresentingMiddleName</label>
+            <input ng-class="{'input-validation-error': !model.IsRepresentingMiddleNameValid}" type="text" ng-model="model.RepresentingMiddleName" name="@(Html.GetNameFor(m => m.RepresentingMiddleName))" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.RepresentingLastName</label>
+            <input ng-class="{'input-validation-error': !model.IsRepresentingLastNameValid}" type="text" ng-model="model.RepresentingLastName" name="@(Html.GetNameFor(m => m.RepresentingLastName))" class="form-control" />
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.AgreementPt1</label>
+            <div>
+                <nom-radio ng-model="model.AgreementPt1"
+                           path="@(Html.GetNameFor(m => m.AgreementPt1))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="acceptances">
+                </nom-radio>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label>@PaymentRequestDeclaration.AgreementPt2</label>
+            <div>
+                <nom-radio ng-model="model.AgreementPt2"
+                           path="@(Html.GetNameFor(m => m.AgreementPt2))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="acceptances">
+                </nom-radio>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label>@PaymentRequestDeclaration.MarkerPt3</label>
+            <div>
+                <nom-radio ng-model="model.MarkerPt3"
+                           path="@(Html.GetNameFor(m => m.MarkerPt3))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="changesNomenclature">
+                </nom-radio>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>@PaymentRequestDeclaration.TextPt3</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsTextPt3Valid}" auto-grow ng-model="model.TextPt3" name="@(Html.GetNameFor(m => m.TextPt3))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@PaymentRequestDeclaration.AgreementPt4ToPt25</label>
+            <div>
+                <nom-radio ng-model="model.AgreementPt4ToPt25"
+                           path="@(Html.GetNameFor(m => m.AgreementPt4ToPt25))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="acceptances">
+                </nom-radio>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label>@PaymentRequestDeclaration.MarkerPt25</label>
+            <div>
+                <nom-radio ng-model="model.MarkerPt25"
+                           path="@(Html.GetNameFor(m => m.MarkerPt25))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="acceptances">
+                </nom-radio>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>@PaymentRequestDeclaration.TextPt25</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsTextPt25Valid}" auto-grow ng-model="model.TextPt25" name="@(Html.GetNameFor(m => m.TextPt25))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@PaymentRequestDeclaration.AgreementPt26ToPt29</label>
+            <div>
+                <nom-radio ng-model="model.AgreementPt26ToPt29"
+                           path="@(Html.GetNameFor(m => m.AgreementPt26ToPt29))"
+                           model-name="Description"
+                           model-id="Value"
+                           nom-items="acceptances">
+                </nom-radio>
+            </div>
+        </div>
+    </div>
+</div>

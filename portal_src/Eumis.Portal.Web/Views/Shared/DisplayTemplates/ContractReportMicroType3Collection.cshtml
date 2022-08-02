@@ -1,0 +1,358 @@
+﻿@using Eumis.Documents.Contracts
+
+@model IEnumerable<ContractReportMicroType3ItemPVO>
+
+<div class="container">
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="table-wrapper micro">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th colspan="14">ПОКАЗАТЕЛ 4 от Регламент 1255</th>
+                        <th colspan="4">ПОКАЗАТЕЛ 5 от Регламент 1255</th>
+                        <th colspan="16">ПОКАЗАТЕЛ 6 от Регламент 1255</th>
+                        <th colspan="4">ПОКАЗАТЕЛ 7 от Регламент 1255</th>
+                        <th colspan="2">ПОКАЗАТЕЛ 9 от Регламент 1255</th>
+                        <th colspan="2">ПОКАЗАТЕЛ 10 от Регламент 1255</th>
+                    </tr>
+                    <tr>
+                        <th>ОБЛАСТ</th>
+                        <th>ОБЩИНА</th>
+                        <th colspan="2">Лютеница</th>
+                        <th colspan="2">Доматено пюре</th>
+                        <th colspan="2">Зелен грах</th>
+                        <th colspan="2">Гювеч</th>
+                        <th colspan="2">Нектар</th>
+                        <th colspan="2">Компот</th>
+                        <th colspan="2">Конфитюр</th>
+                        <th colspan="2">Месни консерви</th>
+                        <th colspan="2">Рибни консерви</th>
+                        <th colspan="2">Пшенично брашно</th>
+                        <th colspan="2">Ориз</th>
+                        <th colspan="2">Макаронени изделия</th>
+                        <th colspan="2">Булгур</th>
+                        <th colspan="2">Зрял фасул</th>
+                        <th colspan="2">Леща</th>
+                        <th colspan="2">Обикновени бисквити</th>
+                        <th colspan="2">Вафли</th>
+                        <th colspan="2">Бяла/кафява захар</th>
+                        <th colspan="2">Пчелен мед</th>
+                        <th colspan="2">Олио</th>
+                        <th colspan="2">Локум</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                        <th>целева стойност</th>
+                        <th>достигната стойност</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.District</td>
+                            <td>@item.Municipality</td>
+                            <td>
+                                @if (item.KetchupTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.KetchupTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.KetchupActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.KetchupActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.TomatoPasteTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.TomatoPasteTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.TomatoPasteActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.TomatoPasteActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.GreenPeasTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.GreenPeasTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.GreenPeasActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.GreenPeasActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.HotchPotchTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.HotchPotchTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.HotchPotchActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.HotchPotchActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.NectarTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.NectarTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.NectarActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.NectarActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.CompoteTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.CompoteTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.CompoteActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.CompoteActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.JamTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.JamTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.JamActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.JamActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MeatCanTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MeatCanTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MeatCanActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MeatCanActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FishCanTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FishCanTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FishCanActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FishCanActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.WheatFlourTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.WheatFlourTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.WheatFlourActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.WheatFlourActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.RiceTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.RiceTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.RiceActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.RiceActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MacaroniTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MacaroniTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MacaroniActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MacaroniActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BulgurTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BulgurTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BulgurActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BulgurActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BeansTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BeansTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BeansActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BeansActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.LentilsTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.LentilsTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.LentilsActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.LentilsActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BiscuitTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BiscuitTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BiscuitActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BiscuitActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.WaffleTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.WaffleTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.WaffleActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.WaffleActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.SugarTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.SugarTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.SugarActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.SugarActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.HoneyTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.HoneyTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.HoneyActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.HoneyActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.OilTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.OilTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.OilActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.OilActualValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.LokumTargetValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.LokumTargetValue.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.LokumActualValue.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.LokumActualValue.Value)
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

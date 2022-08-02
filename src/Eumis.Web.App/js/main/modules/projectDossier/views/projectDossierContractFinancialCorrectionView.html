@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewFinancialCorrections_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showFinancialCorrections=!showFinancialCorrections">
+        <span l10n-text="projectDossier_viewFinancialCorrections_financialCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showFinancialCorrections, 'glyphicon-chevron-right': !showFinancialCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showFinancialCorrections" ng-href="{{financialCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewFinancialCorrections_financialCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showFinancialCorrections" items="financialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.financialCorrections.view.edit', params: {id: item.financialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('FinancialCorrectionActions.View', item.financialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="financialCorrectionVersionOrderNum" title="projectDossier_viewFinancialCorrections_financialCorrectionOrderNum">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewFinancialCorrections_financialCorrectionContractRegNumber">
+          </sc-column>
+          <sc-column data="impositionDate" title="projectDossier_viewFinancialCorrections_financialCorrectionImpositionDate" type="date">
+          </sc-column>
+          <sc-column data="contractContractNumber" title="projectDossier_viewFinancialCorrections_financialCorrectionContractContractNumber"
+            col-group="projectDossier_viewFinancialCorrections_financialCorrectionContractContract"></sc-column>
+          <sc-column data="contractContractorCompany" title="projectDossier_viewFinancialCorrections_financialCorrectionContractContractorCompany"
+            col-group="projectDossier_viewFinancialCorrections_financialCorrectionContractContract"></sc-column>
+          <sc-column data="imposingReason" title="projectDossier_viewFinancialCorrections_financialCorrectionImposingReason">
+          </sc-column>
+          <sc-column data="financialCorrectionVersionPercent" title="projectDossier_viewFinancialCorrections_financialCorrectionPercent" type="percent">
+          </sc-column>
+          <sc-column data="financialCorrectionVersionTotalAmount" title="projectDossier_viewFinancialCorrections_financialCorrectionTotalAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showFlatFinancialCorrections=!showFlatFinancialCorrections" style="cursor:pointer;">
+        <span l10n-text="projectDossier_viewFinancialCorrections_flatFinancialCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showFlatFinancialCorrections, 'glyphicon-chevron-right': !showFlatFinancialCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showFlatFinancialCorrections" ng-href="{{flatFinancialCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewFinancialCorrections_flatFinancialCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showFlatFinancialCorrections" items="flatFinancialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="shortName">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.flatFinancialCorrections.view.edit', params: {id: item.flatFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('FlatFinancialCorrectionActions.View', item.flatFinancialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionOrderNum" type="number">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionContractRegNumber">
+          </sc-column>
+          <sc-column data="name" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionName">
+          </sc-column>
+          <sc-column data="level" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionLevel">
+          </sc-column>
+          <sc-column data="type" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionType">
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionStatus">
+          </sc-column>
+          <sc-column data="impositionDate" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionImpositionDate" type="date">
+          </sc-column>
+          <sc-column data="impositionNumber" title="projectDossier_viewFinancialCorrections_flatFinancialCorrectionImpositionNumber">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+﻿<ng-form name="editProcurementForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projectDossier_viewContract_procurementTitle"></strong>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-procurement name="procurementForm" ng-model="procurement"></eumis-contract-procurement>
+
+      <div class="row" ng-show="!editMode">
+        <eumis-structured-document text="projectDossier_viewContract_procurementTemplate" document="contractProcurement" gid="procurement.gid" class="col-sm-4 col-md-3" view-mode>
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

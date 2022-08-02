@@ -1,0 +1,112 @@
+﻿<div class="well-sm panel-body">
+  <div ng-repeat="lev0 in expenseBudgetTree.programmes">
+    <div>
+      <h5 class="table-header table-header-first pull-left">{{ lev0.displayName }}</h5>
+      <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="addLevel1(lev0.programmeId)" l10n-text="procedures_expenseBudgets_view_add" style="cursor: pointer; font-weight: normal; position:relative; right: -5px;"></a>
+    </div>
+    <table class="table table-bordered " style="clear: both; margin-bottom: 0px; margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+      <colgroup>
+        <col>
+        <col style="width: 200px" />
+        <col style="width: 30px" />
+        <col style="width: 30px" />
+        <col style="width: 30px" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th l10n-text="procedures_expenseBudgets_view_expense"></th>
+          <th l10n-text="procedures_expenseBudgets_view_programmePriority"></th>
+          <th l10n-text="procedures_expenseBudgets_view_aidMode"></th>
+          <th l10n-text="procedures_expenseBudgets_view_isEligibleCost"></th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr ng-repeat-start="lev1 in lev0.level1Items" ng-class="{'deactivated-table-row' : !lev1.isActive}">
+          <td style="padding-left: 20px;">
+            <span>{{romanize($index + 1)}}. {{lev1.displayName}}</span>
+            <div style="display: inline-block; text-wrap:none">
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly"                                       sc-click="addLevel2(lev1.procedureBudgetLevel1Id)"        l10n-text="procedures_expenseBudgets_view_add"        style="cursor: pointer;"></a>
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !lev1.isActivated && !isProcedureReadonly"                  sc-click="deleteLevel1(lev1.procedureBudgetLevel1Id)"     l10n-text="procedures_expenseBudgets_view_delete"     style="cursor: pointer; color: red;"></a>
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && lev1.isActivated && lev1.isActive && !isProcedureReadonly"  sc-click="deactivateLevel1(lev1.procedureBudgetLevel1Id)" l10n-text="procedures_expenseBudgets_view_deactivate" style="cursor: pointer; color: red;"></a>
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && lev1.isActivated && !lev1.isActive && !isProcedureReadonly" sc-click="activateLevel1(lev1.procedureBudgetLevel1Id)"   l10n-text="procedures_expenseBudgets_view_activate"   style="cursor: pointer; color: green;"></a>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+          <tr ng-repeat-start="lev2 in lev1.level2Items" ng-class="{'deactivated-table-row' : !lev1.isActive || !lev2.isActive}">
+            <td style="padding-left: 40px;">
+              {{lev2.code}}. {{lev2.displayName}}
+              <div style="display: inline-block; text-wrap:none">
+                <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly"                                                        sc-click="addLevel3(lev2.procedureBudgetLevel2Id)"        l10n-text="procedures_expenseBudgets_view_add"        style="cursor: pointer;"></a>
+                <a ng-show="$canDo('ProcedureActions.View', procedureId)"                                                                                sc-click="previewLevel2(lev2.procedureBudgetLevel2Id)"    l10n-text="procedures_expenseBudgets_view_preview"    style="cursor: pointer;"></a>
+                <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !lev2.isActivated && !isProcedureReadonly"                                   sc-click="editLevel2(lev2.procedureBudgetLevel2Id)"       l10n-text="procedures_expenseBudgets_view_edit"       style="cursor: pointer; color: purple;"></a>
+                <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !lev2.isActivated && !isProcedureReadonly"                                   sc-click="deleteLevel2(lev2.procedureBudgetLevel2Id)"     l10n-text="procedures_expenseBudgets_view_delete"     style="cursor: pointer; color: red;"></a>
+                <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && lev2.isActivated && lev2.isActive && lev1.isActive && !isProcedureReadonly"  sc-click="deactivateLevel2(lev2.procedureBudgetLevel2Id)" l10n-text="procedures_expenseBudgets_view_deactivate" style="cursor: pointer; color: red;"></a>
+                <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && lev2.isActivated && !lev2.isActive && lev1.isActive && !isProcedureReadonly" sc-click="activateLevel2(lev2.procedureBudgetLevel2Id)"   l10n-text="procedures_expenseBudgets_view_activate"   style="cursor: pointer; color: green;"></a>
+              </div>
+            </td>
+            <td title="{{lev2.programmePriorityName}}">{{lev2.programmePriorityCode}}</td>
+            <td>{{getAidModeShortName(lev2.aidMode)}}</td>
+            <td>{{lev2.isEligibleCost ? 'Да' : 'Не'}}</td>
+          </tr>
+            <tr ng-repeat-start="lev3 in lev2.level3Items" ng-class="{'deactivated-table-row' : !lev1.isActive || !lev2.isActive}">
+              <td style="padding-left: 60px;">
+                {{$parent.lev2.code}}.{{$index + 1}}. {{lev3.displayName}}
+                <div style="display: inline-block; text-wrap:none">
+                  <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="editLevel3(lev3.procedureBudgetLevel3Id)"   l10n-text="procedures_expenseBudgets_view_edit"   style="cursor: pointer; color: purple;"></a>
+                  <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="deleteLevel3(lev3.procedureBudgetLevel3Id)" l10n-text="procedures_expenseBudgets_view_delete" style="cursor: pointer; color: red;"></a>
+                </div>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr ng-repeat-end style="display:none"></tr>
+          <tr ng-repeat-end style="display:none"></tr>
+        <tr ng-repeat-end style="display:none"></tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered " style="clear: both; margin-bottom: 0px; margin-bottom: 20px;" border="0" cellspacing="0" cellpadding="0">
+      <colgroup>
+        <col>
+        <col style="width: 250px" />
+        <col style="width: 250px" />
+        <col style="width: 121px;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            <span>{{validationMessageHeader}}</span>
+            <div style="display: inline-block; text-wrap:none">
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="addValidationRule(lev0.programmeId)" l10n-text="procedures_expenseBudgets_view_add" style="cursor: pointer; font-weight: normal;"></a>
+            </div>
+          </th>
+          <th l10n-text="procedures_expenseBudgets_view_condition"></th>
+          <th l10n-text="procedures_expenseBudgets_view_rule"></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr ng-repeat-start="rule in lev0.validationRules">
+          <td>{{rule.message}}</td>
+          <td>{{rule.condition}}</td>
+          <td>{{rule.rule}}</td>
+          <td>
+            <div style="display: inline-block; text-wrap:none">
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="editValidationRule(rule.procedureBudgetValidationRuleId)" l10n-text="procedures_expenseBudgets_view_edit" style="cursor: pointer; color: purple;"></a>
+              <a ng-show="$canDo('ProcedureActions.Edit', procedureId) && !isProcedureReadonly" sc-click="deleteValidationRule(rule.procedureBudgetValidationRuleId)" l10n-text="procedures_expenseBudgets_view_delete" style="cursor: pointer; color: red;"></a>
+            </div>
+          </td>
+        </tr>
+        <tr ng-repeat-end style="display:none"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+

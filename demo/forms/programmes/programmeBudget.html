@@ -1,0 +1,35 @@
+<div class="panel panel-default" style="margin-top: 10px">
+  <div class="panel-heading">
+    <strong l10n-text="Финансиране по години"></strong>
+    <div class="pull-right">
+      <sc-button text="Запис"     class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      <sc-button text="Отказ"     class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body form-inline">
+    <ng-form sc-validate="{}" sc-form-readonly>
+
+      <div class="form-header form-header-first" ></div>
+
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Година" ng-model="budgetPeriod"  type="nomenclature" alias="'budgetPeriod'" ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Източник" ng-model="financeSource"  type="nomenclature" alias="'financeSource'" ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Размер на финансиране от ЕС" ng-model="euAmount" type="float" ng-required="true"></sc-field>
+        <sc-field class="col-sm-3" l10n-text="Размер на финансиране от Нац.фонд" ng-model="bgAmount" type="float" ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Резерв.план от ЕС" ng-model="euReserveAmount" type="float" ng-required="true"></sc-field>
+        <sc-field class="col-sm-3" l10n-text="Резерв.план от Нац.фонд" ng-model="bgReserveAmount" type="float" ng-required="true"></sc-field>
+      </div>
+
+    </ng-form>
+  </div>
+</div>

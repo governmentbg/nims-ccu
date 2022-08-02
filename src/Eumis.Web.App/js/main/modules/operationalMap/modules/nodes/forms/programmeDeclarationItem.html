@@ -1,0 +1,11 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-required="true" l10n-text="programmes_programmeDeclarationItemForm_orderNum" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.content" ng-maxlength="100" validations="{maxlength: 'programmes_programmeDeclarationItemForm_contentMaxLength'}" ng-required="true" l10n-text="programmes_programmeDeclarationItemForm_content" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isActive" ng-readonly="true" ng-required="true" mode="id" l10n-text="programmes_programmeDeclarationItemForm_isActive" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

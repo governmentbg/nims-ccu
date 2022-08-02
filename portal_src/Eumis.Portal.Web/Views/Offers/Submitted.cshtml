@@ -1,0 +1,118 @@
+﻿@using Eumis.Common.Helpers;
+@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+@model Eumis.Portal.Web.Models.Offers.SubmittedVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers)
+}, Offers.SubmittedOffers)
+
+<div class="container page-title">
+    <h1>@Offers.SubmittedOffers</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    @Html.Partial(MVC.Offers.Views._NavTabs, MVC.Offers.Views.Submitted)
+    <div class="tab-content">
+        <div class="tab-pane active">
+            @using (Html.BeginForm(MVC.Offers.ActionNames.Submitted,
+                MVC.Offers.Name,
+                FormMethod.Post,
+                new { role = "form", @class = "form-with-sections" }))
+            {
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.DifferentiatedPosition</label>
+                        @Html.TextBoxFor(m => m.DpName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.ProcurementSubject</label>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <input type="submit" class="submit wait" value="@Global.ButtonSearchText">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.Beneficiary</label>
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.SubmissionDate</label>
+                        @Html.EditorFor(m => m.OfferSubmitDate)
+                    </div>
+                </div>
+            }
+            <div class="table-wrapper">
+                @if (Model.SearchItems != null && Model.SearchItems.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%"><a href="@Url.MakeSortUrl("OfferSubmitDate", MVC.Offers.SubmittedParams.sortBy, MVC.Offers.SubmittedParams.sortOrder)">@Offers.SubmissionDate</a></th>
+                                <th style="width: 25%"><a href="@Url.MakeSortUrl("DpName", MVC.Offers.SubmittedParams.sortBy, MVC.Offers.SubmittedParams.sortOrder)">@Offers.DifferentiatedPosition</a></th>
+                                <th style="width: 25%"><a href="@Url.MakeSortUrl("Name", MVC.Offers.SubmittedParams.sortBy, MVC.Offers.SubmittedParams.sortOrder)">@Offers.ProcurementSubject</a></th>
+                                <th style="width: 20%"><a href="@Url.MakeSortUrl("CompanyName", MVC.Offers.SubmittedParams.sortBy, MVC.Offers.SubmittedParams.sortOrder)">@Offers.Beneficiary</a></th>
+                                <th style="width: 15%">@Global.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var offer in Model.SearchItems)
+                            {
+                                <tr class="@(offer.OfferIsWithdrawn ? "disabled" : string.Empty)">
+                                    <td>
+                                        @Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(offer.OfferSubmitDate)
+                                    </td>
+                                    <td>
+                                        @offer.DpName
+                                    </td>
+                                    <td>
+                                        @offer.Name
+                                    </td>
+                                    <td>
+                                        @offer.CompanyName
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action(MVC.Offers.ActionNames.SubmittedDetails, MVC.Offers.Name, new { id = offer.OfferGid })" title="" class="view-btn wait">@Global.ButtonPreviewText</a>
+                                        @if (!offer.OfferIsWithdrawn && offer.OffersDeadlineDate > DateTime.Now)
+                                        {
+                                            <a href="@Url.Action(MVC.Offers.WithdrawOffer(offer.OfferGid.Value, Convert.ToBase64String(offer.OfferVersion)))" class="delete-btn" data-toggle="confirmation-no-title" data-title="@Offers.ConfirmationWithdrawOffer">@Offers.Withdraw</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pull-right m-3">
+                        @Html.ActionLink(Offers.Export, MVC.Offers.SubmittedExport(Model.DpName, Model.Name, Model.CompanyName, Model.OfferSubmitDate), new { @class = "download-as-file" })
+                    </div>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Offers.NoOffersFound</p>
+                    </div>
+                }
+            </div>
+
+            @Html.PagedListPager(Model.SearchItems,
+                page => Url.Action(MVC.Offers.Submitted(
+                    Model.DpName,
+                    Model.Name,
+                    Model.CompanyName,
+                    Model.OfferSubmitDate,
+                    page,
+                    Request.QueryString[MVC.Offers.SubmittedParams.sortBy],
+                    Request.QueryString[MVC.Offers.SubmittedParams.sortOrder] != null ? (SortOrder?)Enum.Parse(typeof(SortOrder), Request.QueryString[MVC.Offers.SubmittedParams.sortOrder]) : null)),
+                Constants.PagedListRenderOptions)
+
+        </div>
+    </div>
+</div>

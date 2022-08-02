@@ -1,0 +1,30 @@
+<ng-form name="editContractDebtInterestForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="contractDebts_editContractDebtInterests_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="delBtn" btn-click="del()" text="contractDebts_editContractDebtInterests_del" class="btn btn-danger btn-xs"
+          ng-show="contractDebtInterest.isLast && !editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtInterest.contractDebtId) || contractDebtIsDeleted">
+        </sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractDebts_editContractDebtInterests_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractDebtInterest.isLast && !editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtInterest.contractDebtId) || contractDebtIsDeleted">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractDebts_editContractDebtInterests_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractDebts_editContractDebtInterests_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+        <eumis-contract-debt-interest name="contractDebtInterestForm" ng-model="contractDebtInterest"></eumis-contract-debt-interest>
+    </div>
+
+  </div>
+</ng-form>

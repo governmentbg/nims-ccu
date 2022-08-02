@@ -1,0 +1,107 @@
+[
+  {
+    "regNumber": "BG06RDNP001-11.001-1111-C01",
+    "procedureCode": "BG06RDNP001-11.001",
+    "modifyDate": "2018-09-10T10:00:00",
+    "name": "Тестов договор",
+    "nameEN": "Test contract",
+    "description": "Описание",
+    "descriptionEN": "Description",
+    "companyName": "Компания",
+    "companyNameEn": "Company",
+    "companyUin": "999999999",
+    "companyUinType": 0,
+    "companyTypeCode": "KPP",
+    "seatCountryCode": "BG",
+    "seatSettlementCode": "68134",
+    "seatPostCode": "1000",
+    "seatStreet": "улица",
+    "seatAddress": "",
+    "contractDate": "2018-09-10T10:00:00",
+    "startDate": "2018-09-11T10:00:00",
+    "completionDate": "2018-10-11T10:00:00",
+    "executionStatus": 5,
+    "activities": [
+      {
+        "activity": "дейност 1"
+      },
+      {
+        "activity": "дейност 2"
+      },
+      {
+        "activity": "дейност 3"
+      },
+      {
+        "activity": "дейност 4"
+      },
+      {
+        "activity": "дейност 5"
+      }
+    ],
+    "nutsLevel": 2,
+    "locations": [
+      {
+        "countryCode": "BG",
+        "protectedZoneCode": "",
+        "nuts1Code": "BG3",
+        "nuts2Code": "",
+        "districtCode": "",
+        "municipalityCode": "",
+        "settlementCode": ""
+      }
+    ],
+    "partners": [
+      {
+        "partnerType": 1,
+        "partnerName": "Партньор",
+        "partnerNameEn": "Partner",
+        "partnerUin": "999999998",
+        "partnerUinType": 2,
+        "partnerTypeCode": "KPP",
+        "seatCountryCode": "BG",
+        "seatSettlementCode": "68134",
+        "seatPostCode": "1000",
+        "seatStreet": "улица",
+        "seatAddress": ""
+      }
+    ],
+    "procurementPlans": [
+      {
+        "procurementPlanName": "Предмет на предвидената процедура",
+        "amount": 100000.00,
+        "positionNames": [
+          {
+            "positionName": "Обособена позиция 1"
+          },
+          {
+            "positionName": "Обособена позиция 2"
+          },
+          {
+            "positionName": "Обособена позиция 3"
+          }
+        ]
+      }
+    ],
+    "contractedAmounts": [
+      {
+        "contractedDate": "2018-09-01T10:00:00",
+        "contractedEuAmount": 100000.00,
+        "contractedBgAmount": 20000.00,
+        "contractedSeftAmount": 20000.00
+      },
+      {
+        "contractedDate": "2018-09-10T11:00:00",
+        "contractedEuAmount": 100000.00,
+        "contractedBgAmount": 15000.00,
+        "contractedSeftAmount": 20000.00
+      }
+    ],
+    "actuallyPaidAmounts": [
+      {
+        "paymentDate": "2018-09-20T10:00:00",
+        "paidEuAmount": 100000.00,
+        "paidBgAmount": 15000.00
+      }
+    ]
+  }
+]

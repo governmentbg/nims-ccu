@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Public.ActionNames.CurrentNews, MVC.Public.Name), Global.HomeButton)
+}
+    , Global.AboutSystem)
+
+<div class="container page-title">
+    <h1>@Global.AboutSystem</h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix text-justify about-system-page">
+        <div class="col-xs-12">
+            @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+            {
+                <h2>СУНИ</h2>
+                <p>Информационната система за управление и наблюдение на средствата от ЕС в България - СУНИ, е предназначена да събира и обработва данни за следните оперативни програми, изпълнявани в България в периода 2014 – 2020 година:</p>
+                <div class="about-system-ticks clearfix">
+                    <div class="col-lg-6 col-lg-offset-1 col-md-8">
+                        <ul>
+                            <li>Добро управление</li>
+                            <li>Транспорт и транспортна инфраструктура</li>
+                            <li>Региони в растеж</li>
+                            <li>Развитие на човешките ресурси </li>
+                            <li>Иновации и конкурентоспособност </li>
+                            <li>Околна среда </li>
+                            <li>Наука и образование за интелигентен растеж</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+                        <img src="@Links.Content.img.isun_lg_gif" alt="" />
+                    </div>
+                </div>
+                <p>Системата се състои от два основни модула, публичен и вътрешен. В момента работите с публичния модул, от където имате възможност да подготвите и подадете проектно предложение, а в последствие при одобрен проект да го управлявате и отчитате резултатите по него. Вътрешният модул е предназначен за работа на звената за управление и наблюдение на програмите, одитиращи и сертифициращи органи като с негова помощ се откриват нови процедури, оценяват проектни предложения, сключват договори, отчитат и наблюдават резултати.</p>
+                <p>Основната цел на системата е всички данни по изпълнение на Оперативните програми, още от тяхното възникване, да се събират и отчитат електронно. По този начин ще се осигури възможност за тяхното ефективно управление, наблюдение, отчитане и проверки, както и обмен на информация с органите на ЕК, ще има проследимост по всяка една програма, процедура, договор за предоставяне на финансова помощ, ще може да се наблюдава изпълнението по различни критерии и индикатори.</p>
+                <p>Системата е изцяло уеб базирана и за да работите с нея, е необходимо единствено уеб браузър. Допълнителни технически подробности в тази връзка може да намерите в раздел „@Html.ActionLink("Помощ", MVC.Help.ActionNames.Index, MVC.Help.Name)”.</p>
+                <p>Ще се радваме, ако системата е удобна за работа и успява да ви спести време и усилия. Ако имате желание да ни помогнете да я подобрим, може да използвате страницата за @Html.ActionLink("Обратна връзка", MVC.Feedback.ActionNames.Index, MVC.Feedback.Name), а ние ще се опитаме най-бързо и точно да отговорим на всички Ваши запитвания.</p>
+                <p>Системата е разработена по проект: „0115-ЦКЗ-2.1 „Информационна система за управление и наблюдение на средствата от ЕС в периода 2014-2020 г. - СУНИ” (BG161PO002-2.1.01-0007)“, финансиран по Оперативна програма „Техническа помощ” и съфинансирана от Европейския съюз чрез Европейския фонд за регионално развитие.</p>
+            }
+            else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+            {
+                <h2>ISUN 2020</h2>
+                <p>Information system for management and monitoring of EU funds in Bulgaria - ISUN 2020 is designed to collect and process data for the following operational programs implemented in Bulgaria in 2014 - 2020:</p>
+                <div class="about-system-ticks clearfix">
+                    <div class="col-lg-6 col-lg-offset-1 col-md-8">
+                        <ul>
+                            <li>Good governance</li>
+                            <li>Transport and transport infrastructure</li>
+                            <li>Regions in growth</li>
+                            <li>Human Resources Development</li>
+                            <li>Innovation and Competitiveness</li>
+                            <li>Environment</li>
+                            <li>Science and education for smart growth</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+                        <img src="@Links.Content.img.isun_lg_gif" alt="" />
+                    </div>
+                </div>
+                <p>The system consists of two main modules public and internal, are currently working with the public module where you have the opportunity to submit proposals and subsequently to report their performance. Indoor unit is designed to operate the units for management and monitoring of programs with its help discover new procedures, evaluate proposals, contracts, record and monitor results.</p>
+                <p>The main objective of the system is that all data from their origin to be collected and reported electronically so that later they can be easily and reliably as possible to monitor the implementation of each program by various criteria and indicators can have traceability each procedure and contract can automate the reporting of the results of the implementation of the programs at management level and the EU.</p>
+                <p>The system is completely web based and can work with it only need a web browser, additional technical details can be found in the section @Html.ActionLink("Help", MVC.Help.ActionNames.Index, MVC.Help.Name).</p>
+                <p>We will be happy if the system is simple to use and was able to save you time and effort. If you want to help us to improve it, you can use the page @Html.ActionLink("Feedback", MVC.Feedback.ActionNames.Index, MVC.Feedback.Name), we will try as quickly and accurately answer all your queries.</p>
+                <p>The system was developed under the project: "0115-CCU-2.1" Information system for management and monitoring of EU funds in 2014-2020 - MIS 2020 "(BG161PO002-2.1.01-0007)" funded by the Operational Programme "Technical Assistance" and financed by the European Union through the European regional Development Fund.</p>
+            }
+        </div>
+
+    </div>
+    @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+    {
+        <p>© 2015 Министерски Съвет на Република България</p>
+    }
+    else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+    {
+        <p>© 2015 Council of Ministers of the Republic of Bulgaria</p>
+    }
+</div>

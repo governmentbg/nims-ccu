@@ -1,0 +1,31 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.versionNum" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_versionNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="int" ng-model="model.versionSubNum" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_versionSubNum" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.paymentType" alias="'contractReportPaymentTypes'" mode="id" ng-disabled="true" l10n-text="contractReports_contractReportPaymentForm_paymentType" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.regDate" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_regDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.otherRegistration" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_otherRegistration" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.dateFrom" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_dateFrom" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.dateTo" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_dateTo" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.submitDate" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_submitDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.submitDeadline" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_submitDeadline" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.requestedAmount" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_requestedAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportPaymentStatuses'" mode="id" ng-disabled="true" l10n-text="contractReports_contractReportPaymentForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.statusNote">
+    <sc-field type="textarea" rows="3" ng-model="model.statusNote" ng-readonly="true" l10n-text="contractReports_contractReportPaymentForm_statusNote" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

@@ -1,0 +1,53 @@
+﻿@model R_10020.Message
+
+@if (Model != null)
+{
+    <h2>@ProjectCommunication.Subject</h2>
+
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.DisplayFor(m => m.Subject)
+            </div>
+        </div>
+    </section>
+
+    <h2>@ProjectCommunication.Question</h2>
+
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.DisplayFor(m => m.Content, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+            </div>
+        </div>
+    </section>
+
+    if (Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@ProjectCommunication.ContentAttachedDocumentCollection</h2>
+
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.ContentAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    <h2>@ProjectCommunication.Reply</h2>
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.DisplayFor(m => m.Reply, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+            </div>
+        </div>
+    </section>
+
+    if (Model.ReplyAttachedDocumentCollection != null && Model.ReplyAttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@ProjectCommunication.ReplyAttachedDocumentCollection</h2>
+
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.ReplyAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+}

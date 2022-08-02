@@ -1,0 +1,63 @@
+﻿@model R_10059.FinanceBudgetLevel3
+
+<tr class="level3 auto-calc-percent">
+    <td rowspan="3" class="text-right" style="width:40px; max-width: 40px;">
+        @(Model.Level2OrderNum).@(Model.OrderNum).
+    </td>
+    <td rowspan="3">
+        @Model.Name
+    </td>
+    <td style="width:60px; min-width: 60px; padding-left:0;">
+        @FinanceBudget.BFPContractAmountShort
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.GrandAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.SelfAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.TotalAmount)
+    </td>
+
+    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.DifferenceGrand)
+    </td>
+    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+        @(Model.Amounts.DifferenceGrandPercentage + "%")
+    </td>
+    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.DifferenceTotal)
+    </td>
+    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+        @(Model.Amounts.DifferenceTotalPercentage + "%")
+    </td>
+</tr>
+<tr class="level3">
+    <td style="width:60px; min-width: 60px; padding-left:0;">
+        @FinanceBudget.CurrentReportAmountShort
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.GrandAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.SelfAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.TotalAmount)
+    </td>
+</tr>
+<tr class="level3">
+    <td style="width:60px; min-width: 60px; padding-left:0;">
+        @FinanceBudget.CumulativeShort
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.GrandAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.SelfAmount)
+    </td>
+    <td style="vertical-align: middle;" class="text-right">
+        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.TotalAmount)
+    </td>
+</tr>

@@ -1,0 +1,32 @@
+﻿@model R_10000.PrivateNomenclature
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonItem = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        item: @(Html.Raw(jsonItem))
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerEumisNomenclature@(guid)'), ['moduleEumisNomenclature']);
+    });
+
+</script>
+
+<div id="containerEumisNomenclature@(guid)" ng-controller="controllerEumisNomenclature" ng-init="init('_eumis_options', 'i@(guid)')">
+    <sc-nomenclature ng-class="{'input-validation-error': !item.IsValid}" sc-alias="@Model.FunctionName" ng-model="item">
+    </sc-nomenclature>
+
+    <input ng-class="{'input-validation-error': !item.IsValid}" type="hidden" name="@(Html.GetNameFor(m => m)).id"
+           value="{{ item.id }}" class="validation-error-key" />
+    <input type="hidden" name="@(Html.GetNameFor(m => m)).Name"
+           value="{{ item.Name }}" />
+</div>

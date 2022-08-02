@@ -1,0 +1,243 @@
+﻿@model Eumis.Portal.Web.Areas.Report.Models.AccessCode.AccessCodeRegisterVM
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.AccessCode.ActionNames.Index, MVC.Report.AccessCode.Name, new { area = MVC.Report.Name }), "Управление на потребители")
+}, Model.isEdit ? "Редакция на потребител" : "Нов потребител")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.HiddenFor(m => m.id)
+            @Html.HiddenFor(m => m.isEdit)
+            @Html.HiddenFor(m => m.Version)
+            <h2 class="m-top-0">
+                @if (Model.isEdit)
+                {
+                    <text>Редакция на потребител</text>
+                }
+                else
+                {
+                    <text>Нов потребител</text>
+                }
+            </h2>
+            <section class="clearfix" style="display: block;">
+                <div class="clearfix">
+                    <div class="form-group col-md-4">
+                        <label>Договор №</label>
+                        <input type="text" disabled="disabled" class="form-control" name="" value="@ContractMetadata.registrationNumber">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            <span class="required-span">*</span>
+                            @Html.DisplayNameFor(m => m.Email)
+                        </label>
+                        @if (Model.isEdit)
+                        {
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(m => m.Email)
+                        }
+                    </div>
+                    @if (Model.isEdit)
+                    {
+                        <div class="form-group col-md-4" style="padding-top:35px;">
+                            @Html.CheckBoxFor(m => m.IsActive
+                             , new { @class = "bootstrap-switch", data_on_text = "Активен", data_off_text = "Неактивен", data_on_color = "success", data_off_color = "danger", data_size = "normal" })
+                        </div>
+                    }
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-4">
+                        <label>
+                            <span class="required-span">*</span>
+                            @Html.DisplayNameFor(m => m.FirstName)
+                        </label>
+                        @Html.EditorFor(m => m.FirstName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            <span class="required-span">*</span>
+                            @Html.DisplayNameFor(m => m.LastName)
+                        </label>
+                        @Html.EditorFor(m => m.LastName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>
+                            @Html.DisplayNameFor(m => m.Identifier)
+                        </label>
+                        @Html.EditorFor(m => m.Identifier)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>
+                            <span class="required-span">*</span>
+                            @Html.DisplayNameFor(m => m.Position)
+                        </label>
+                        @Html.EditorFor(m => m.Position)
+                    </div>
+                </div>
+
+                <h2 class="m-bottom-0">
+                    Права за достъп
+                </h2>
+                <div class="table-wrapper">
+                    <table class="chart-info medium-table checkbox-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Документ</th>
+                                <th>Разрешени права</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Договор
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m=>m.Permissions.canReadContracts)" name="@Html.GetNameFor(m => m.Permissions.canReadContracts)" @(Model.Permissions.canReadContracts ? "checked" : "") type="checkbox" value="True" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadContracts)">@Model.Reading</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Процедури за избор на изпълнител и сключени договори
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadProcurements)" name="@Html.GetNameFor(m => m.Permissions.canReadProcurements)" @(Model.Permissions.canReadProcurements ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadProcurements)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWriteProcurements)" name="@Html.GetNameFor(m => m.Permissions.canWriteProcurements)" @(Model.Permissions.canWriteProcurements ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWriteProcurements)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    План за разходване на средствата
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadSpendingPlan)" name="@Html.GetNameFor(m => m.Permissions.canReadSpendingPlan)" @(Model.Permissions.canReadSpendingPlan ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadSpendingPlan)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWriteSpendingPlan)" name="@Html.GetNameFor(m => m.Permissions.canWriteSpendingPlan)" @(Model.Permissions.canWriteSpendingPlan ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWriteSpendingPlan)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Кореспонденция
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadCommunication)" name="@Html.GetNameFor(m => m.Permissions.canReadCommunication)" @(Model.Permissions.canReadCommunication ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadCommunication)">@Model.Reading</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Технически отчет
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadTechnicalPlan)" name="@Html.GetNameFor(m => m.Permissions.canReadTechnicalPlan)" @(Model.Permissions.canReadTechnicalPlan ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadTechnicalPlan)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWriteTechnicalPlan)" name="@Html.GetNameFor(m => m.Permissions.canWriteTechnicalPlan)" @(Model.Permissions.canWriteTechnicalPlan ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWriteTechnicalPlan)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Финансов отчет
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadFinancialPlan)" name="@Html.GetNameFor(m => m.Permissions.canReadFinancialPlan)" @(Model.Permissions.canReadFinancialPlan ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadFinancialPlan)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWriteFinancialPlan)" name="@Html.GetNameFor(m => m.Permissions.canWriteFinancialPlan)" @(Model.Permissions.canWriteFinancialPlan ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWriteFinancialPlan)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Искане за плащане
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadPaymentRequest)" name="@Html.GetNameFor(m => m.Permissions.canReadPaymentRequest)" @(Model.Permissions.canReadPaymentRequest ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadPaymentRequest)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWritePaymentRequest)" name="@Html.GetNameFor(m => m.Permissions.canWritePaymentRequest)" @(Model.Permissions.canWritePaymentRequest ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWritePaymentRequest)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Микроданни
+                                </td>
+                                <td>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canReadMicrodata)" name="@Html.GetNameFor(m => m.Permissions.canReadMicrodata)" @(Model.Permissions.canReadMicrodata ? "checked" : "") type="checkbox" value="True" class="read-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canReadMicrodata)">@Model.Reading</label>
+                                    </div>
+                                    <div class="nowrap">
+                                        <input id="@Html.GetNameFor(m => m.Permissions.canWriteMicrodata)" name="@Html.GetNameFor(m => m.Permissions.canWriteMicrodata)" @(Model.Permissions.canWriteMicrodata ? "checked" : "") type="checkbox" value="True" class="write-cbx" />
+                                        <label for="@Html.GetNameFor(m => m.Permissions.canWriteMicrodata)">@Model.Writing</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="form-submit">
+                <input type="submit" class="submit" name="submit" value="@(Model.isEdit ? "Запиши" : "Добави")">
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.write-cbx[type="checkbox"]').change(function () {
+            if ($(this).is(":checked")) {
+                $(this).parent().prev().find('[type="checkbox"]').prop('checked', true);
+            }
+        });
+
+        $('.read-cbx[type="checkbox"]').change(function () {
+            if (!$(this).is(":checked")) {
+                $(this).parent().next().find('[type="checkbox"]').prop('checked', false);
+            }
+        });
+    });
+</script>

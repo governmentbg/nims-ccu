@@ -1,0 +1,8 @@
+﻿GO
+
+ALTER TABLE [dbo].[Companies] ALTER COLUMN [SeatStreet] NVARCHAR (300) NULL
+ALTER TABLE [dbo].[Companies] ALTER COLUMN [CorrStreet] NVARCHAR (300) NULL
+
+ALTER TABLE [dbo].[Projects] ALTER COLUMN [CompanySeatStreet] NVARCHAR (300) NULL
+
+GO

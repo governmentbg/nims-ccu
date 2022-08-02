@@ -1,0 +1,365 @@
+﻿@using Eumis.Public.Data.Contracts.ViewObjects
+@model PrintVO
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="~/Content/css/print-style.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+
+    @if (Model != null)
+    {
+        <h3>@Texts.Project_Details_Identification</h3>
+
+        <table>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_EUMISNumber</strong></td>
+                <td style="width: 65%;">@Model.ContractBasicData.RegNumber</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_ProjectName</strong></td>
+                <td>@Model.ContractBasicData.TransName</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_Beneficiary</strong></td>
+                <td>@Model.ContractBasicData.TransCompanyFullName </td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_FinancingSource</strong></td>
+                <td>
+                    @if (Model.ContractBasicData.Funds != null && Model.ContractBasicData.Funds.Count() > 0)
+                    {
+                        <text>@string.Join(", ", Model.ContractBasicData.Funds) ==> </text>
+                    }
+
+                    @Model.ContractBasicData.TransProgrammeName
+                </td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_ContractDate</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractBasicData.ContractDate)</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_StartDate</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractBasicData.StartDate)</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_EndDate</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractBasicData.CompletionDate)</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_BFPContractStatus</strong></td>
+                <td>@Model.ContractBasicData.StatusDescription</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_ExecutionPlace</strong></td>
+                <td>
+                    @if (Model.ContractBasicData.NutsFullPathNames != null && Model.ContractBasicData.NutsFullPathNames.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var location in Model.ContractBasicData.NutsFullPathNames)
+                            {
+                                <li>@location</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        @Texts.Project_Details_None
+                    }
+
+                </td>
+            </tr>
+        </table>
+
+        <h3>@Texts.Project_Details_Description</h3>
+        <table>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_ShortProjectDescription</strong></td>
+                <td style="width: 65%;">
+                    @Html.DisplayFor(m => m.ContractActivities.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_Activities</strong></td>
+                <td>
+                    @if (Model.ContractActivities.Activities != null && Model.ContractActivities.Activities.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var activity in Model.ContractActivities.Activities)
+                            {
+                                <li>
+                                    @Texts.Project_Details_Activity: @activity.Title,
+                                    @Texts.Project_Details_Activity_ContractedAmount: @Html.DisplayFor(m => activity.TotalAmount),
+                                    @Texts.Project_Details_Activity_ReportedAmount: @Html.DisplayFor(m => activity.TotalReportedAmount)
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+        </table>
+
+        <h3>@Texts.Project_Details_ParticipatingOrganizations</h3>
+        <table>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_Partners</strong></td>
+                <td style="width: 65%;">
+                    @if (Model.ContractParticipants.Partners != null && Model.ContractParticipants.Partners.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var partner in Model.ContractParticipants.Partners)
+                            {
+                                <li>
+                                    @Texts.Project_Details_Partner: @partner.TransName,
+                                    @Texts.Project_Details_Partner_ContractedAmount*: @Html.DisplayFor(m => partner.TotalFinancialContribution),
+                                    @Texts.Project_Details_Partner_ReportedAmount: @Html.DisplayFor(m => partner.TotalReportedAmount)
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_Contractors</strong></td>
+                <td style="width: 65%;">
+                    @if (Model.ContractParticipants.Contractors != null && Model.ContractParticipants.Contractors.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var contractor in Model.ContractParticipants.Contractors)
+                            {
+                                <li>
+                                    @Texts.Project_Details_Contractor: @contractor.TransName,
+                                    @Texts.Project_Details_Contractor_ContractedAmount*: @Html.DisplayFor(m => contractor.TotalContractedAmount),
+                                    @Texts.Project_Details_Contractor_ReportedAmount**: @Html.DisplayFor(m => contractor.TotalReportedAmount)
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_Subcontractors</strong></td>
+                <td style="width: 65%;">
+                    @if (Model.ContractParticipants.Subcontractors != null && Model.ContractParticipants.Subcontractors.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var subcontractor in Model.ContractParticipants.Subcontractors)
+                            {
+                                <li>
+                                    @Texts.Project_Details_Subcontractor: @subcontractor.TransName,
+                                    @Texts.Project_Details_Subcontractor_ContractedAmount*: @Html.DisplayFor(m => subcontractor.TotalContractedAmount)
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_Members</strong></td>
+                <td style="width: 65%;">
+                    @if (Model.ContractParticipants.Members != null && Model.ContractParticipants.Members.Count() > 0)
+                    {
+                        <ul>
+                            @foreach (var member in Model.ContractParticipants.Members)
+                            {
+                                <li>
+                                    @Texts.Project_Details_Member: @member.TransName,
+                                    @Texts.Project_Details_Member_ContractedAmount*: @Html.DisplayFor(m => @member.TotalContractedAmount)
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="note">
+                    <p class="font-weight-bold">@Texts.Global_Note:</p>
+                    <p>
+                        * @Texts.Project_Details_ContractedAmount_Note:
+                        <ul>
+                            <li>@Texts.Project_Details_ContractedAmount_SubNote1</li>
+                            <li>@Texts.Project_Details_ContractedAmount_SubNote2</li>
+                            <li>@Texts.Project_Details_ContractedAmount_SubNote3</li>
+                        </ul>
+                    </p>
+                    <p>** @Texts.Project_Details_Contractor_ReportedAmount_Note</p>
+                </td>
+            </tr>
+        </table>
+
+        <h3>@Texts.Project_Details_Indicators</h3>
+        <table>
+            @if (Model.ContractIndicators.Indicators != null && Model.ContractIndicators.Indicators.Count() > 0)
+            {
+                for (int i = 0; i < Model.ContractIndicators.Indicators.Count(); i++)
+                {
+                    var indicator = Model.ContractIndicators.Indicators.ElementAt(i);
+                    <tr>
+                        <td style="width: 35%;"><strong>@Texts.Project_Details_Indicator @(i + 1)</strong></td>
+                        <td style="width: 65%;">
+                            @indicator.TransName,
+                            @Texts.Project_Details_Indicator_Unit: @indicator.TransMeasureName,
+                            @Texts.Project_Details_Indicator_BaseTotalValue: @Html.DisplayFor(m => indicator.BaseTotalValue),
+                            @Texts.Project_Details_Indicator_TargetAmount: @Html.DisplayFor(m => indicator.TargetAmount),
+                            @Texts.Project_Details_Indicator_CumulativeAmount: @Html.DisplayFor(m => indicator.CumulativeAmountTotal)
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td>@Texts.Project_Details_None</td></tr>
+            }
+        </table>
+
+        <h3>@Texts.Project_Details_FinancialInformation</h3>
+        <table>
+            <tr>
+                <td style="width: 35%;"><strong>@Texts.Project_Details_ProjectTotalAmount</strong></td>
+                <td style="width: 65%;">@Html.DisplayFor(m => m.ContractFinancialInformation.ContractedTotalAmount) BGN</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_BFP</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractFinancialInformation.ContractedBFPAmount) BGN</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_ProjectSelfAmount</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractFinancialInformation.ContractedSelfAmount) BGN</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_TotalPayed</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractFinancialInformation.PaidTotalAmount) BGN</td>
+            </tr>
+            <tr>
+                <td><strong>@Texts.Project_Details_EuPercent</strong></td>
+                <td>@Html.DisplayFor(m => m.ContractFinancialInformation.EuPercent) %</td>
+            </tr>
+        </table>
+
+        <h3>@Texts.Project_Details_FinancialCorrections</h3>
+        <table>
+            <tr>
+                <td>
+                    @if (Model.ContractFinancialInformation.FinancialCorrections != null && Model.ContractFinancialInformation.FinancialCorrections.Count() > 0)
+                    {
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">@Texts.Project_Details_FinancialCorrections_ImposingReason</th>
+                                    <th rowspan="2">@Texts.Project_Details_FinancialCorrections_Percent_A<br />@Texts.Project_Details_FinancialCorrections_Percent_B</th>
+                                    <th colspan="3">@Texts.Project_Details_FinancialCorrections_Amounts<sup>1,2</sup></th>
+                                    <th rowspan="2">@Texts.Project_Details_FinancialCorrections_ContractorName</th>
+                                </tr>
+                                <tr>
+                                    <th>@Texts.Project_Details_FinancialCorrections_BfpAmount</th>
+                                    <th>@Texts.Project_Details_FinancialCorrections_SelfAmount</th>
+                                    <th>@Texts.Project_Details_FinancialCorrections_TotalAmount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ContractFinancialInformation.FinancialCorrections)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => item.ImposingReason)</td>
+                                        <td class="sum-field">@Html.DisplayFor(m => item.Percent)</td>
+                                        <td class="sum-field">@Html.DisplayFor(m => item.BfpAmount)</td>
+                                        <td class="sum-field">@Html.DisplayFor(m => item.SelfAmount)</td>
+                                        <td class="sum-field">@Html.DisplayFor(m => item.TotalAmount)</td>
+                                        <td>@Html.DisplayFor(m => item.ContractorName)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <text>@Texts.Project_Details_None</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="note">
+                    <p class="font-weight-bold">@Texts.Global_Note:</p>
+                    <p><sup>1</sup> @Texts.Project_Details_FinancialCorrections_Amounts_Note1</p>
+                    <p><sup>2</sup> @Texts.Project_Details_FinancialCorrections_Amounts_Note2</p>
+                </td>
+            </tr>
+        </table>
+
+        <h3>@Texts.Project_Details_Procurements</h3>
+        <table>
+            @if (Model.ContractProcurements.Offers != null && Model.ContractProcurements.Offers.Count() > 0)
+            {
+                for (int i = 0; i < Model.ContractProcurements.Offers.Count(); i++)
+                {
+                    var offer = Model.ContractProcurements.Offers.ElementAt(i);
+                    <tr>
+                        <td style="width: 35%;"><strong>@Texts.Project_Details_Offer @(i + 1)</strong></td>
+                        <td style="width: 65%;">
+                            @Texts.Project_Details_Offer_ProcurementPlanName: @offer.ProcurementPlanName,
+                            @Texts.Project_Details_Offer_Amount: @Html.DisplayFor(m => offer.Amount)
+                            <ul>
+                                @for (int j = 0; j < offer.ContractDifferentiatedPositions.Count; j++)
+                                {
+                                    var position = offer.ContractDifferentiatedPositions[j];
+                                    <li>
+                                        <div>@Texts.Project_Details_Offer_PositionName @(j + 1): @position.Name</div>
+                                        <div>@Texts.Project_Details_Offer_ContractorName: @position.TransContractorName</div>
+                                        <div>
+                                            @Texts.Project_Details_Offer_ContractTotalFundedValue: @Html.DisplayFor(m => position.TotalFundedValue)
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td>@Texts.Project_Details_NoProcurements</td></tr>
+            }
+        </table>
+
+        <div class="note">
+            <p class="font-weight-bold">@Texts.Global_Note:</p>
+            <p>@Texts.Global_NoteBGN</p>
+        </div>
+    }
+
+</body>
+</html>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        print();
+    }, 100);
+</script>

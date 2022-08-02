@@ -1,0 +1,385 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<Eumis.Documents.Contracts.RegProjectXmlPVO>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered)
+}
+            , Registered.RegisteredTab)
+
+<div class="container page-title">
+    <h1>@Registered.RegisteredProjects</h1>
+</div>
+
+@if (CurrentUser.HasNewMessages)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@Registered.QuestionFromEvalCommittee</p>
+            <p>@Registered.Warning</p>
+        </div>
+    </div>
+}
+
+@if (CurrentUser.HasNewCommunications)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@ProjectCommunication.QuestionFromManagingAuthority</p>
+            <p>@ProjectCommunication.QuestionEndDateWarning</p>
+        </div>
+    </div>
+}
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>@Registered.RegisteredTab</a></li>
+        @if (CurrentUser.HasMessages)
+        {
+            <li>@Html.ActionLink(Message.MessagesTab, MVC.Message.ActionNames.Index, MVC.Message.Name, null, new { style = "color:red;" })</li>
+        }
+        <li>
+            @Html.ActionLink(Registered.ManagingAuthorityCommunication, MVC.Registered.ActionNames.Communication, MVC.Registered.Name, null, new { style = CurrentUser.HasNewCommunications ? "color:red;" : "" })
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="table-wrapper">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px">@Registered.RegistrationDate</th>
+                                <th style="width: 100px">@Registered.RegistrationMethod</th>
+                                <th style="width: 100px">@Registered.Status</th>
+                                <th>@Registered.RegistrationNumber, @Registered.ProgrammeProcedure</th>
+                                <th style="width: 180px">@Registered.CompanyName</th>
+                                <th style="width: 190px">@Registered.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var registered in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (registered.registrationDate.HasValue)
+                                        {
+                                            <text>@Eumis.Common.Helpers.Helper.DateTimeFormat(registered.registrationDate.Value)</text>
+                                        }
+                                    </td>
+                                    <td>
+                                        @registered.displayRegistrationTypeText
+                                    </td>
+                                    @if (registered.projectRegStatus.HasValue && registered.projectRegStatus.Value == Eumis.Documents.Contracts.ProjectRegistrationStatus.Withdrawn)
+                                    {
+                                        <td>@registered.projectRegStatusText</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@registered.displayProjectStatusText</td>
+                                    }
+                                    <td>
+                                        @if (!String.IsNullOrWhiteSpace(registered.registrationNumber))
+                                        {
+                                            <p>@Registered.RegistrationNumber: <span style="font-weight: bold">@registered.registrationNumber</span></p>
+                                        }
+
+                                        @if (!String.IsNullOrWhiteSpace(registered.displayProjectName))
+                                        {
+                                            <p style="font-weight: bold;">@registered.displayProjectName</p>
+                                        }
+
+                                        @if (!String.IsNullOrWhiteSpace(registered.displayProgrammeName))
+                                        {
+                                            <text>@registered.displayProgrammeName, <br /></text>
+                                        }
+
+                                        @registered.procedureCode -
+                                        @registered.displayProcedureName
+                                    </td>
+                                    <td>
+                                        @registered.displayCompanyName
+                                    </td>
+                                    <td>
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.Preview, MVC.Registered.Name, new { gid = registered.gid }))" title="" class="view-btn">@Registered.Display</a>
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.SaveAsFile, MVC.Registered.Name, new { gid = registered.gid, hash = registered.hash }))" class="draft-link">
+                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveAsFile
+                                        </a>
+                                        @if (registered.registrationType == Eumis.Documents.Contracts.RegProjectXmlRegType.Paper)
+                                        {
+                                            <a href="@(Url.Action(MVC.Registered.ActionNames.SaveDeclaration, MVC.Registered.Name, new { hash = registered.hash, gid = registered.gid }))" class="draft-link">
+                                                <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveDeclaration
+                                            </a>
+                                        }
+                                        @if ((registered.messages != null && registered.messages.Count > 0) ||
+                                            (registered.projectCommunications != null && registered.projectCommunications.Count > 0) ||
+                                            (registered.projectVersions != null && registered.projectVersions.Count > 0))
+                                        {
+                                            <a href="#" data-rel="@(registered.gid)" class="history-btn">
+                                                <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif">@Registered.History
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr class="history-table" data-rel="@(registered.gid)" style="display: none;" width="100%">
+                                    <td colspan="6">
+                                        @if (registered.projectVersions != null && registered.projectVersions.Count > 0)
+                                        {
+                                            <div class="history-table-wrapper" style="display: none;">
+                                                <h4 style="margin: 0px 0 5px 0">@Registered.ProjectVersions</h4>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>@Registered.VersionCreateNote</th>
+                                                            <th>@Registered.Status</th>
+                                                            <th>@Registered.VersionCreateDate</th>
+                                                            <th>@Registered.VersionModifyDate</th>
+                                                            <th>@Registered.Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var projectVersion in registered.projectVersions)
+                                                        {
+                                                            <tr>
+                                                                <td>@projectVersion.displayNote</td>
+                                                                <td>@projectVersion.displayStatusText</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateFormat(projectVersion.createDate)</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateFormat(projectVersion.modifyDate)</td>
+                                                                <td>
+                                                                    <a href="@(Url.Action(MVC.Registered.ActionNames.PreviewVersion, MVC.Registered.Name, new { gid = projectVersion.gid }))" title="" class="view-btn">@Registered.Display</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+
+                                        @if (registered.messages != null && registered.messages.Count > 0)
+                                        {
+                                            <div class="history-table-wrapper" style="display: none;">
+                                                <h4 style="margin: 0px 0 5px 0">@Registered.QuestionsFromEvalCommittee</h4>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>@Registered.RegNumber</th>
+                                                            <th>@Registered.Status</th>
+                                                            <th>@Message.SendDate</th>
+                                                            <th>@Registered.ReplyDate</th>
+                                                            <th style="width: 190px">@Registered.Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var message in registered.messages)
+                                                        {
+                                                            <tr>
+                                                                <td>@message.registrationNumber</td>
+                                                                <td>@message.displayStatusText</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(message.messageDate)</td>
+                                                                <td>
+                                                                    @if (message.replyDate.HasValue)
+                                                                    {
+                                                                        if (message.replyDate.Value.TimeOfDay == new TimeSpan(0, 0, 0, 0))
+                                                                        {
+                                                                            <text>@Eumis.Common.Helpers.Helper.DateFormat(message.replyDate.Value)</text>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <text>@Eumis.Common.Helpers.Helper.DateTimeFormat(message.replyDate.Value)</text>
+                                                                        }
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <a href="@(Url.Action(MVC.Message.ActionNames.Preview, MVC.Message.Name, new { gid = message.messageGid }))" class="view-btn">@Global.ButtonPreviewText</a>
+                                                                    @if (message.answers != null && message.answers.Count > 0)
+                                                                    {
+                                                                        <a href="#" data-rel="@(message.messageGid)" class="history-btn">
+                                                                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif">@ProjectCommunication.Answers
+                                                                        </a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="history-table" data-rel="@(message.messageGid)" style="display: none;" width="100%">
+                                                                <td colspan="6">
+                                                                    <div class="history-table-wrapper" style="display: none;">
+                                                                        <h4 style="margin: 0px 0 5px 0">@Message.AnswersFromEvalCommittee</h4>
+                                                                        <table>
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="width: 80px">@ProjectCommunication.AnswerOrderNum</th>
+                                                                                    <th>@ProjectCommunication.Status</th>
+                                                                                    <th>@ProjectCommunication.AnswerDate</th>
+                                                                                    <th>@ProjectCommunication.Actions</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @if (message.answers != null)
+                                                                                {
+                                                                                    foreach (var answer in message.answers)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td>@answer.orderNum</td>
+                                                                                            <td>@answer.displayStatusText</td>
+                                                                                            <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(answer.answerDate)</td>
+                                                                                            <td><a href="@(Url.Action(MVC.Message.ActionNames.PreviewAnswer, MVC.Message.Name, new { communicationGid = message.messageGid, answerGid = answer.answerGid }))" class="view-btn">@Global.ButtonPreviewText</a></td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+
+                                        @if (registered.projectCommunications != null && registered.projectCommunications.Count > 0)
+                                        {
+                                            <div class="history-table-wrapper" style="display: none;">
+                                                <h4 style="margin: 0px 0 5px 0">@Registered.ManagingAuthorityCommunication</h4>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>@ProjectCommunication.Source</th>
+                                                            <th>@ProjectCommunication.RegNumber</th>
+                                                            <th>@ProjectCommunication.Status</th>
+                                                            <th>@ProjectCommunication.SendDate</th>
+                                                            <th>@ProjectCommunication.ReplyDate</th>
+                                                            <th style="width: 190px">@ProjectCommunication.Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var communication in registered.projectCommunications)
+                                                        {
+                                                            var isBeneficiaryInitiatedCommunication = communication.isBeneficiary != null && communication.isBeneficiary.Value == true;
+                                                            <tr>
+                                                                <td>
+                                                                    @if (isBeneficiaryInitiatedCommunication)
+                                                                    {
+                                                                        <img src="@Url.Content(Links.Content.img.icons.outgoing_png)" alt="" />
+                                                                        <text>@ProjectCommunication.Outgoing</text>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img src="@Url.Content(Links.Content.img.icons.incoming_png)" alt="" />
+                                                                        <text>@ProjectCommunication.Incoming</text>
+                                                                    }
+                                                                </td>
+                                                                <td>@communication.registrationNumber</td>
+                                                                <td>@communication.displayCommunicationStatusText</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(communication.messageDate)</td>
+                                                                <td>
+                                                                    @if (communication.replyDate.HasValue)
+                                                                    {
+                                                                        if (communication.replyDate.Value.TimeOfDay == new TimeSpan(0, 0, 0, 0))
+                                                                        {
+                                                                            <text>@Eumis.Common.Helpers.Helper.DateFormat(communication.replyDate.Value)</text>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <text>@Eumis.Common.Helpers.Helper.DateTimeFormat(communication.replyDate.Value)</text>
+                                                                        }
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <a class="view-btn" href="@(Url.Action(
+                                                                             MVC.ProjectCommunication.ActionNames.Preview, MVC.ProjectCommunication.Name,
+                                                                             new { registeredGid = registered.gid, gid = communication.messageGid }))">
+                                                                        @Global.ButtonPreviewText
+                                                                    </a>
+                                                                    @if (communication.answers != null && communication.answers.Count > 0)
+                                                                    {
+                                                                        <a href="#" data-rel="@(communication.messageGid)" class="history-btn">
+                                                                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif">@ProjectCommunication.Answers
+                                                                        </a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="history-table" data-rel="@(communication.messageGid)" style="display: none;" width="100%">
+                                                                <td colspan="6">
+                                                                    <div class="history-table-wrapper" style="display: none;">
+                                                                        <h4 style="margin: 0px 0 5px 0">@ProjectCommunication.ManagingAuthorityCommunicationAnswers</h4>
+                                                                        <table>
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="width: 80px">@ProjectCommunication.Source</th>
+                                                                                    <th>@ProjectCommunication.AnswerOrderNum</th>
+                                                                                    <th>@ProjectCommunication.Status</th>
+                                                                                    <th>@ProjectCommunication.AnswerDate</th>
+                                                                                    <th>@ProjectCommunication.Actions</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @if (communication.answers != null)
+                                                                                {
+                                                                                    foreach (var answer in communication.answers)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                @if (isBeneficiaryInitiatedCommunication)
+                                                                                                {
+                                                                                                    <img src="@Url.Content(Links.Content.img.icons.incoming_png)" alt="" />
+                                                                                                    <text>@ProjectCommunication.IncomingAnswer</text>
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <img src="@Url.Content(Links.Content.img.icons.outgoing_png)" alt="" />
+                                                                                                    <text>@ProjectCommunication.OutgoingAnswer</text>
+                                                                                                }
+                                                                                            </td>
+                                                                                            <td>@answer.orderNum</td>
+                                                                                            <td>@answer.displayStatusText</td>
+                                                                                            <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(answer.answerDate)</td>
+                                                                                            <td>
+                                                                                                <a class="view-btn" href="@(
+                                                                                            Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.Preview, MVC.ProjectCommunicationAnswer.Name,
+                                                                                            new { registeredGid = registered.gid, communicationGid = communication.messageGid, answerGid = answer.answerGid }))">
+                                                                                                    @Global.ButtonPreviewText
+                                                                                                </a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Registered.RegisteredNotFound</p>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page
+                }),
+                Constants.PagedListRenderOptions)
+        </div>
+    </div>
+</div>

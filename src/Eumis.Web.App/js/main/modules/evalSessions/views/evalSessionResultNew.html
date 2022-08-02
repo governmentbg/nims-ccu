@@ -1,0 +1,25 @@
+<ng-form name="newEvalSessionResultForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_newEvalSessionResult_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_newEvalSessionResult_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_newEvalSessionResult_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="newEvalSessionResult.orderNum" ng-readonly="true" l10n-text="evalSessions_newEvalSessionResult_orderNum" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="date" ng-model="newEvalSessionResult.createDate" ng-readonly="true" l10n-text="evalSessions_newEvalSessionResult_createDate" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionResultStatuses'" mode="id" ng-model="newEvalSessionResult.status" ng-readonly="true" l10n-text="evalSessions_newEvalSessionResult_status" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="nomenclature" alias="'evalSessionResultTypes'" mode="id" ng-model="newEvalSessionResult.type" ng-readonly="true" ng-required="true" l10n-text="evalSessions_newEvalSessionResult_type" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,25 @@
+﻿@model R_10071.DifferentiatedPosition
+
+@if (Model != null)
+{
+    <tr>
+        <td>@ProcurementPlan.DifferentiatedPositionName</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>@ProcurementPlan.SubmittedOffersCount</td>
+        <td>@Model.SubmittedOffersCount</td>
+    </tr>
+    <tr>
+        <td>@ProcurementPlan.RankedOffersCount</td>
+        <td>@Model.RankedOffersCount</td>
+    </tr>
+    <tr>
+        <td>@ProcurementPlan.DifferentiatedPositionComment</td>
+        <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Comment ?? string.Empty)</td>
+    </tr>
+    <tr>
+        <td>@ProcurementPlan.ContractContractor</td>
+        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ContractContractor ?? new R_10000.PrivateNomenclature())</td>
+    </tr>
+}

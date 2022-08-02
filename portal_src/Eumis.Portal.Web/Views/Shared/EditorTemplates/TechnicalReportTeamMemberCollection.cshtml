@@ -1,0 +1,137 @@
+﻿@model R_10044.TechnicalReportTeamMemberCollection
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerTeam">
+    <div class="fixed">
+        <div style="display: inline-block;" ng-show="isDefault">
+            <a href="/docs/templates/Team.xlsx" title="" target="_blank" class="download-as-file">
+                @TechnicalReportTeamMember.DownloadTemplate
+            </a>
+        </div>
+        <span class="fileinput-link-button" ng-show="isDefault">
+            <a class="save-as-draft" style="cursor: pointer">
+                @TechnicalReportTeamMember.LoadFromExcel
+            </a>
+            <input type="file" ui-jq="fileupload" ui-options="options" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+        </span>
+        <div style="display: inline-block;" ng-show="isDefault">
+            <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/Excel/ExportTeamMembers" title="" target="_blank" class="download-as-file">
+                @TechnicalReportTeamMember.Export
+            </a>
+        </div>
+        <div style="display: inline-block; margin-left: 10px; margin-top: 10px">
+            <div ng-show="isPleaseWait">
+                <img src="/Content/img/loader_h26.gif" alt="">
+                @Global.PleaseWait
+            </div>
+            <div ng-show="isOK" class="success">
+                <img src="/Content/img/icons/success.png" style="display: inline-block">
+                <span>@TechnicalReportTeamMember.DataFilled</span>
+            </div>
+            <div ng-show="isGeneralError || isValidationError" class="err">
+                <img src="/Content/img/icons/warning.png" style="display: inline-block">
+                <span ng-show="isGeneralError">@TechnicalReportTeamMember.ExcelError</span>
+                <span ng-show="isValidationError">{{validationError}}</span>
+            </div>
+        </div>
+        <div style="display: inline-block" ng-show="isDefault">
+            <a class="delete-btn" confirm-click="deleteAllItems()">@TechnicalReportTeamMember.DeleteAll</a>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+
+
+
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@TechnicalReportTeamMember.Name</th>
+                    <th>@TechnicalReportTeamMember.Position</th>
+                    <th colspan="2">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                <tr>
+                    <td style="word-break: break-all">
+                        {{item.Name}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.Position}}
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" ng-click="accordion($index, $event)" ng-class="{'opened': item.isOpen}" sc-fire-validation-popover="item.isOpen">
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+                <tr class="history-table" ng-if="item.isOpen" style="display: table-row">
+                    <td colspan="4">
+                        <div class="history-table-wrapper clearfix" style="display: inline">
+                            <div class="clearfix">
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label>@TechnicalReportTeamMember.Name</label>
+                                    <textarea ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label>@TechnicalReportTeamMember.Position</label>
+                                    <textarea ng-class="{'input-validation-error': !item.IsPositionValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Position" name="@(Html.GetNameFor(m => m))[{{ $index }}].Position" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@TechnicalReportTeamMember.UinType</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsUinTypeValid}" sc-alias="GetTechnicalReportTeamUinTypes" ng-model="item.UinType">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsUinTypeValid}" value="{{ item.UinType.id }}" na name="@(Html.GetNameFor(m => m))[{{ $index }}].UinType.id" type="hidden" class="validation-error-key" />
+                                    <input value="{{ item.UinType.Name }}" na name="@(Html.GetNameFor(m => m))[{{ $index }}].UinType.Name" type="hidden" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@TechnicalReportTeamMember.Uin</label>
+                                    <input ng-class="{'input-validation-error': !item.IsUinValid}" ng-model="item.Uin" name="@(Html.GetNameFor(m => m))[{{ $index }}].Uin" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@TechnicalReportTeamMember.CommitmentType</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsCommitmentTypeValid}" sc-alias="GetCommitmentTypes" ng-model="item.CommitmentType">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsCommitmentTypeValid}" type="hidden" value="{{ item.CommitmentType.Value }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].CommitmentType.Value" class="validation-error-key" />
+                                    <input type="hidden" value="{{ item.CommitmentType.Description }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].CommitmentType.Description" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@TechnicalReportTeamMember.Date</label>
+                                    <input ng-class="{'input-validation-error': !item.IsDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.Date" name="@(Html.GetNameFor(m => m))[{{ $index }}].Date" class="form-control" onpaste="return false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@TechnicalReportTeamMember.Hours</label>
+                                    <input sc-validation-popover type="text" ng-class="{'input-validation-error': !item.IsHoursValid}" money max-value="999999999" ng-model="item.Hours" name="@(Html.GetNameFor(m => m))[{{ $index }}].Hours" class="form-control sum-field" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@TechnicalReportTeamMember.Activity</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsActivityValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Activity" name="@(Html.GetNameFor(m => m))[{{ $index }}].Activity" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@TechnicalReportTeamMember.Result</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsResultValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Result" name="@(Html.GetNameFor(m => m))[{{ $index }}].Result" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

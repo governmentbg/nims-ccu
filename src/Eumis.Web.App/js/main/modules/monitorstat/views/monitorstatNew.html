@@ -1,0 +1,22 @@
+<div class="tab-content">
+  <ng-form name="newMonitorstatForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="monitorstat_newMonitorstatForm_title"></strong>
+        <div class="pull-right">
+          <sc-button name="cancelBtn" btn-click="cancel()" text="monitorstat_newMonitorstatForm_cancel"
+            class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+      <div class="well-sm panel-body">
+        <sc-field type="nomenclature" mode="id" alias="'monitorstatAvailableYears'" ng-model="model.year"
+          ng-required="true" l10n-text="monitorstat_newMonitorstatForm_year" class="col-sm-4 col-md-3">
+        </sc-field>
+        <sc-button name="loadBtn" btn-click="load()" text="monitorstat_newMonitorstatForm_load"
+          class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk">
+        </sc-button>
+      </div>
+    </div>
+  </ng-form>
+</div>

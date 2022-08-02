@@ -1,0 +1,29 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+    <div class="page-content submission-type  clearfix">
+        <h2>@MessageHowToSubmit.Answer</h2>
+        <div class="col-xs-12">
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Message.ActionNames.SaveForPaper, MVC.Message.Name))" title="" class="submission">
+                    <img class="act visible-lg" src="/Content/img/icons/subm-print.gif" alt="">
+                    <img class="arr hidden-xs" src="/Content/img/icons/arrow-right.png" alt="">
+                    <span>@MessageHowToSubmit.Return</span>
+                    <span>&nbsp;</span>
+                    <strong>@MessageHowToSubmit.OnPaper</strong>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Message.ActionNames.Signature, MVC.Message.Name))" title="" class="submission">
+                    <img class="act visible-lg" src="/Content/img/icons/subm-sign.gif" alt="">
+                    <img class="arr hidden-xs" src="/Content/img/icons/arrow-right.png" alt="">
+                    <span>@MessageHowToSubmit.AnswerWith</span>
+                    <span>&nbsp;</span>
+                    <strong>@MessageHowToSubmit.DigitalSignature</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

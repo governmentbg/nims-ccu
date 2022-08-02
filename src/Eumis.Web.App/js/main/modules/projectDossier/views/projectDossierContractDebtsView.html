@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewDebts_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showContractDebts=!showContractDebts">
+        <span l10n-text="projectDossier_viewDebts_contractDebts"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractDebts, 'glyphicon-chevron-right': !showContractDebts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractDebts" ng-href="{{contractDebtsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewDebts_contractDebtExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractDebts" items="contractDebts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.isRemoved}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractDebts.view.edit', params: {id: item.contractDebtId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractDebtActions.View', item.contractDebtId)"></sc-button>
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewDebts_contractDebtОrderNum" type="number">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewDebts_contractDebtContractRegNumber">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewDebts_contractDebtRegNumber">
+          </sc-column>
+          <sc-column data="executionStatus" title="projectDossier_viewDebts_contractDebtExecutionStatus">
+          </sc-column>
+          <sc-column data="regDate" title="projectDossier_viewDebts_contractDebtRegDate" type="date">
+          </sc-column>
+          <sc-column data="modifyDate" title="projectDossier_viewDebts_contractDebtModifyDate" type="date">
+          </sc-column>
+          <sc-column data="totalAmount" title="projectDossier_viewDebts_contractDebtTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="totalInterestAmount" title="projectDossier_viewDebts_contractDebtTotalInterestAmount" type="money">
+          </sc-column>
+          <sc-column data="certReportNumber" title="projectDossier_viewDebts_contractDebtCertReportNumber" type="number">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showCorrectionDebts=!showCorrectionDebts" style="cursor:pointer;">
+        <span l10n-text="projectDossier_viewDebts_correctionDebts"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showCorrectionDebts, 'glyphicon-chevron-right': !showCorrectionDebts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showCorrectionDebts" ng-href="{{correctionDebtsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewDebts_correctionDebtExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showCorrectionDebts" items="correctionDebts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.correctionDebts.view.edit', params: { id: item.correctionDebtId }}"
+              ng-disabled="!$canDo('CorrectionDebtActions.View', item.correctionDebtId)"></sc-button>
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewDebts_correctionDebtОrderNum" type="number">
+          </sc-column>
+          <sc-column data="correctionRegNumber" title="projectDossier_viewDebts_correctionDebtContractRegNumber">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewDebts_correctionDebtRegNumber">
+          </sc-column>
+          <sc-column data="regDate" title="projectDossier_viewDebts_correctionDebtRegDate" type="date">
+          </sc-column>
+          <sc-column data="modifyDate" title="projectDossier_viewDebts_correctionDebtModifyDate" type="date">
+          </sc-column>
+          <sc-column data="debtTotalAmount" title="projectDossier_viewDebts_correctionDebtTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="certTotalAmount" title="projectDossier_viewDebts_correctionDebtCertTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="reimbursedTotalAmount" title="projectDossier_viewDebts_correctionDebtReimbursedTotapAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

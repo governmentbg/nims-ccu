@@ -1,0 +1,21 @@
+<ng-form name="regixInterfacesStateOfPlayForm" sc-validate="{}" >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="regixInterfaces_regixInterfacesStateOfPlay_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" ng-disabled="!$canDo('RegixActions.View')" btn-click="check()" text="regixInterfaces_regixInterfacesActualState_check" class="btn btn-primary btn-xs" icon="glyphicon-edit">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="request.uic" ng-required="true" l10n-text="regixInterfaces_regixInterfacesActualState_uic" class="col-sm-6 col-md-6"></sc-field>
+      </div>
+      <div ng-if="hasResponse" class="row">
+        <sc-field type="text" ng-readonly="true" ng-model="model.subject.legalEntitySubject.cyrillicFullName" l10n-text="regixInterfaces_regixInterfacesActualState_company" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="text" ng-readonly="true" ng-model="model.subject.legalEntitySubject.latinFullName" l10n-text="regixInterfaces_regixInterfacesActualState_transliteration" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="text" ng-readonly="true" ng-model="model.legalEntitySubject.wayOfManagement" l10n-text="regixInterfaces_regixInterfacesActualState_wayOfManagement" class="col-sm-6 col-md-6"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

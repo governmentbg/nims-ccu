@@ -1,0 +1,44 @@
+<ng-form name="chooseContractReportsForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_modals_chooseMonitorstatReport_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="procedures_modals_chooseMonitorstatReport_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_modals_chooseMonitorstatReport_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.year" alias="'monitorstatAvailableYears'" ng-change="onYearChange()" mode="id" ng-disabled="false" l10n-text="procedures_modals_chooseMonitorstatReport_year"
+            class="col-sm-2 col-md-3"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.survey" alias="'monitorstatSurveys'"  params="{procedureId: procedureId, year: filters.year}" mode="id" l10n-text="procedures_modals_chooseMonitorstatReport_survey"
+            class="col-sm-7 col-md-7"></sc-field>
+          <sc-button name="seachBtn" btn-click="search()" text="procedures_modals_chooseMonitorstatReport_search" class="btn btn-default btn-sm" 
+            icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+      <div>
+        <sc-button name="chooseAllBtn" ng-show="hasChoosenAll"  btn-click="chooseAll()" text="procedures_modals_chooseMonitorstatReport_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="removeAllBtn" ng-show="!hasChoosenAll" btn-click="removeAll()" text="procedures_modals_chooseMonitorstatReport_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+        </sc-button>
+        <sc-datatable items="monitorstatReports" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="chooseReport(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="removeReport(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="year" title="procedures_modals_chooseMonitorstatReport_reportYear" type="number">
+          </sc-column>
+          <sc-column data="surveyName" title="procedures_modals_chooseMonitorstatReport_reportSurvey">
+          </sc-column>
+          <sc-column data="reportName" title="procedures_modals_chooseMonitorstatReport_reportName">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

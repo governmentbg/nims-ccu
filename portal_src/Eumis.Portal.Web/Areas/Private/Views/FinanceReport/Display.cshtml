@@ -1,0 +1,50 @@
+﻿@model R_10043.FinanceReport
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>Договор № @Model.contractNumber, @Global.FinanceReport № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.FinanceReport, MVC.Private.FinanceReport.ActionNames.Prepare, MVC.Private.FinanceReport.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.FinanceReport.ActionNames.Display, MVC.Private.FinanceReport.Name, new { area = MVC.Private.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.FinanceReport.ActionNames.Print, MVC.Private.FinanceReport.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Private.FinanceReport.ActionNames.Prepare, MVC.Private.FinanceReport.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Private.FinanceReport.ActionNames.Prepare, MVC.Private.FinanceReport.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.FinanceReport.ActionNames.Prepare, MVC.Private.FinanceReport.Name, null, new { @class = "blue-button small back left" })
+                @if (Model.CanEnterErrors == null || Model.CanEnterErrors.Count == 0)
+                {
+                    @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.FinanceReport.ActionNames.Submit, MVC.Private.FinanceReport.Name, null, new { @class = "blue-button wait" })
+                }
+            </div>
+
+            @if (Model.CanEnterErrors != null && Model.CanEnterErrors.Count > 0)
+            {
+                <div class="validation-summary-errors" style="margin-top:20px;">
+                    <ul>
+                        @foreach (var error in Model.CanEnterErrors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

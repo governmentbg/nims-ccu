@@ -1,0 +1,187 @@
+﻿@model Eumis.Portal.Web.Models.EvalSheet.EvalSheetGroupsWrapper
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.AcceptanceTypeNomenclature()).GetItems());
+    var rejectionType = Newtonsoft.Json.JsonConvert.SerializeObject(R_09993.EvalTypeNomenclature.Rejection);
+    var weightType = Newtonsoft.Json.JsonConvert.SerializeObject(R_09993.EvalTypeNomenclature.Weight);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        model: @(Html.Raw(jsonModel)),
+
+        rejectionType: @(Html.Raw(rejectionType)),
+        weightType: @(Html.Raw(weightType)),
+        acceptances: @(Html.Raw(jsonAcceptances)),
+
+        noId: "@Eumis.Documents.Enums.AcceptanceTypeNomenclature.No.Id"
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerEvalSheetGroups@(guid)'), ['moduleEvalSheetGroups']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerEvalSheetGroups@(guid)" ng-controller="controllerEvalSheetGroups" ng-init="init('_eumis_options', 'i@(guid)')">
+    <table class="chart-info dynamic-rows fixed-table" width="100%" style="min-width: 1000px" id="sheet-table">
+        <thead ng-repeat-start="group in groups">
+            <tr>
+                <th style="width:40px; text-align: center;">{{romanize($index + 1)}}.</th>
+                <th ng-if="type == rejectionType" style="width:440px;">@EvalTable.Group</th>
+                <th ng-if="type == rejectionType" style="width:180px; border-left: 1px solid transparent;"></th>
+                <th ng-if="type == weightType" style="width:480px;">@EvalTable.Group</th>
+                <th ng-if="type == weightType" style="width:140px;">@EvalTable.Limit</th>
+                <th style="width:140px;">@EvalSheet.Total</th>
+
+                <th style=""></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="font-size: 15px;"></td>
+                <td style="font-size: 15px;" colspan="2" ng-if="type == rejectionType">
+                    <pre><span class="filled-value">{{group.Name}}</span></pre>
+                </td>
+                <td style="font-size: 15px;" ng-if="type == weightType">
+                    <pre><span class="filled-value">{{group.Name}}</span></pre>
+                </td>
+                <td style="font-size: 15px;" ng-if="type == weightType">
+                    <input type="text" money ng-model="group.Limit" class="sum-field form-control" readonly />
+                </td>
+                <td ng-if="type == weightType">
+                    <input ng-class="{'input-validation-error': !group.IsTotalValid}" type="text" money ng-model="group.Total" name="@(Html.GetNameFor(m => m.EvalSheetGroupCollection))[{{ $index }}].Total" class="sum-field form-control" readonly />
+                </td>
+                <td style="font-size: 15px; border-left: 1px solid #8f8f8f;" ng-if="type == weightType"></td>
+                <td ng-if="type == rejectionType" colspan="2" style="border-left: 1px solid #8f8f8f;">
+                    <span class=" filled-value">
+                        {{group.isSuccess ? '@Global.Pass' : '@Global.NotPass'}}
+                    </span>
+                </td>
+            </tr>
+            <tr ng-show="group.EvalSheetCriteriaCollection && group.EvalSheetCriteriaCollection.length > 0">
+                <td></td>
+                <td colspan="4" style="padding: 0px; border-left: 1px solid #8f8f8f;">
+                    <div class="history-table-wrapper clearfix">
+                        <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;"></th>
+                                    <th style="width:440px;">@EvalTable.Criteria</th>
+
+                                    <th ng-if="type == rejectionType" style="width:140px;">@EvalTable.Rejection</th>
+                                    <th ng-if="type == rejectionType" style="width:140px;">@EvalSheet.Accept</th>
+
+                                    <th ng-if="type == weightType" style="width:140px; padding: 2px">
+                                        @EvalTable.Weight <br />
+                                        <input type="text" money ng-model="group.WeightTotal" class="sum-field form-control" readonly />
+                                    </th>
+                                    <th ng-if="type == weightType" style="width:140px;">@EvalSheet.Evaluation</th>
+
+                                    <th style="">@EvalSheet.Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="auto-calc-percent" ng-repeat-start="criteria in group.EvalSheetCriteriaCollection">
+                                    <td class="text-right">{{$index + 1}}.</td>
+                                    <td>
+                                        <pre>{{criteria.EvalTableCriteria.Name}}</pre>
+                                    </td>
+                                    <td ng-if="type == rejectionType">
+                                        <span class="filled-value">{{criteria.EvalTableCriteria.IsRejection ? '@Global.Yes' : '@Global.No'}}</span>
+                                    </td>
+                                    <td ng-if="type == rejectionType" ng-class="{'input-validation-error': !criteria.IsCriteriaValid}" ng-style="!criteria.IsCriteriaValid && { 'border': '2px solid #af1717' }">
+                                        <span ng-repeat="acceptance in acceptances">
+                                            <input type="radio" id="{{$parent.$parent.$parent.$index}}_{{$parent.$index}}_{{acceptance.Id}}"
+                                                   name="{{$parent.$parent.$parent.$index}}_{{$parent.$index}}"
+                                                   ng-model="criteria.Accept.id" ng-value="{{acceptance.Id}}" ng-click="assignAcceptance(criteria, acceptance)" />
+                                            <label for="{{$parent.$parent.$parent.$index}}_{{$parent.$index}}_{{acceptance.Id}}" style="font-size:14px;">{{acceptance.Name}}</label>
+                                        </span>
+                                        <input type="hidden" value="{{criteria.Accept.id}}" class="validation-error-key" name="@(Html.GetNameFor(m => m.EvalSheetGroupCollection))[{{ $parent.$parent.$index }}].EvalSheetCriteriaCollection[{{ $index }}].Accept.id">
+                                        <input type="hidden" value="{{criteria.Accept.Name}}" name="@(Html.GetNameFor(m => m.EvalSheetGroupCollection))[{{ $parent.$parent.$index }}].EvalSheetCriteriaCollection[{{ $index }}].Accept.Name">
+                                    </td>
+
+                                    <td ng-if="type == weightType">
+                                        <input type="text" money ng-model="criteria.EvalTableCriteria.Weight" class="sum-field form-control" readonly />
+                                    </td>
+                                    <td ng-if="type == weightType">
+                                        <input ng-class="{'input-validation-error': !criteria.IsCriteriaValid}" sc-disabled=" type !=weightType" type="text" money ng-model="criteria.Evaluation" name="@(Html.GetNameFor(m => m.EvalSheetGroupCollection))[{{ $parent.$parent.$index }}].EvalSheetCriteriaCollection[{{ $index }}].Evaluation" class="form-control sum-field" />
+                                    </td>
+                                    <td style="border-left: 1px solid #8f8f8f;"><textarea rows="2" style="min-height: 50px" auto-grow ng-model="criteria.Note" name="@(Html.GetNameFor(m => m.EvalSheetGroupCollection))[{{ $parent.$index }}].EvalSheetCriteriaCollection[{{ $index }}].Note" class="form-control"></textarea></td>
+                                </tr>
+                                <tr ng-repeat-end style="display:none"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <thead ng-repeat-end style="display:none"></thead>
+    </table>
+
+    <div class="clearfix" style="margin-top:20px;">
+        <div class="clearfix">
+            <div ng-show="type == weightType">
+                <div class="form-group col-md-2" style="padding-top:6px;">
+                    <span class="filled-value">@EvalTable.Limit</span>
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="text" class="sum-field form-control" readonly money ng-model="limit" />
+                </div>
+
+                <div class="form-group col-md-3">
+
+                </div>
+            </div>
+
+            <div class="form-group col-md-3 pull-right" style="margin-top:10px; min-height: 40px;">
+                <div ng-show="!isManual"
+                     style="position:absolute; width:280px; height:50px; top:-10px; z-index:3; background-color: white; opacity:0.1; right:5px;">
+                </div>
+
+                <input type="checkbox" ng-model="isSuccess"
+                       bootstrap-switch data-on-text="@Global.Pass" data-off-text="@Global.NotPass" data-handle-width="102" data-on-color="success" data-off-color="danger" data-size="normal" />
+
+                <input type="hidden" name="@(Html.GetNameFor(m => m)).IsSuccess" value="{{isSuccess ? 'True' : 'False'}}" />
+            </div>
+
+            <div class="form-group col-md-3 pull-right" style="margin-top:5px;">
+                <input id="chbManual" type="checkbox" ng-model="isManual" />
+                <label for="chbManual">@EvalSheet.IsManual</label>
+                <input type="hidden" name="@(Html.GetNameFor(m => m)).IsManual" value="{{isManual ? 'True' : 'False'}}" />
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div ng-show="type == weightType">
+                <div class="form-group col-md-2 text-right" style="padding-top:6px;">
+                    <span class="filled-value">@EvalSheet.Total</span>
+
+                    <div class="clearfix" style="margin-bottom:6px;"></div>
+                    <span class="filled-value">@EvalTable.WeightTotal</span>
+                </div>
+                <div class="form-group col-md-1">
+                    <input ng-class="{'input-validation-error': !isTotalValid}" type="text" money ng-model="total" name="@(Html.GetNameFor(m => m)).Total" class="sum-field form-control" readonly />
+                    
+                    <div class="clearfix"></div>
+
+                    <input type="text" money ng-model="WeightTotal" class="sum-field form-control" readonly />
+                </div>
+
+                <div class="form-group col-md-3">
+                </div>
+            </div>
+
+            <div ng-show="type == rejectionType" class="form-group col-md-6"></div>
+
+            <div class="form-group col-md-6" ng-show="isManual">
+                <label>@EvalSheet.ReasonManual</label>
+                <textarea rows="2" style="min-height: 50px" auto-grow ng-model="reasonManual" name="@(Html.GetNameFor(m => m)).ReasonManual" class="form-control" sc-disabled="!isManual"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

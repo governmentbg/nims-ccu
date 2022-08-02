@@ -1,0 +1,68 @@
+﻿@model R_09999.NutsAddress
+
+@if (Model != null)
+{
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.NutsLevel, NutsAddress.NutsLevel)
+            @Html.DisplayFor(m => m.NutsLevel)
+        </div>
+
+        @if (Model.NutsLevel != null && !String.IsNullOrWhiteSpace(Model.NutsLevel.Id)
+            && Model.NutsAddressContentCollection != null && Model.NutsAddressContentCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.NutsAddressContentCollection.Count; i++)
+            {
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.CountryEU.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].Country, NutsAddress.Country)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].Country)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.ProtectedZone.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].ProtectedZone, NutsAddress.ProtectedZone)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].ProtectedZone)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts1.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].Nuts1, NutsAddress.Nuts1)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].Nuts1)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts2.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].Nuts2, NutsAddress.Nuts2)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].Nuts2)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.District.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].District, NutsAddress.District)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].District)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Municipality.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].Municipality, NutsAddress.Municipality)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].Municipality)
+                    </div>
+                }
+                if (Model.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Settlement.Id))
+                {
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.NutsAddressContentCollection[i].Settlement, NutsAddress.Settlement)
+                        @(i + 1) @Html.DisplayFor(m => m.NutsAddressContentCollection[i].Settlement)
+                    </div>
+                }
+            }
+        }
+    </div>
+}

@@ -1,0 +1,135 @@
+﻿@using Newtonsoft.Json.Linq
+@model Newtonsoft.Json.Linq.JObject
+
+@{
+  var programmePermissions = Model["programmePermissions"];
+  var commonPermissions = Model["commonPermissions"];
+
+  bool showProgrammePermissionTable = ((JObject)programmePermissions["programmes"]).Count != 0;
+  bool showCommonPermissionTable = ((JArray)commonPermissions["permissionTypes"]).Count != 0;
+
+  Func<string, string, string> getProgrammePermissionName = (permissionType, permission) =>
+  {
+    var permissionTypes = ((JArray)programmePermissions["permissionTypes"]).Children();
+    foreach(var pt in permissionTypes)
+    {
+      if(pt["permissionType"].ToString() == permissionType)
+      {
+        var ps = ((JArray)pt["permissions"]).Children();
+        foreach(var p in ps)
+        {
+          if(p["permission"].ToString() == permission)
+          {
+            return p["displayName"].ToString();
+          }
+        }
+      }
+    }
+    return null;
+  };
+
+  Func<string, string, string> getCommonPermissionName = (permissionType, permission) =>
+  {
+    var permissionTypes = ((JArray)commonPermissions["permissionTypes"]).Children();
+    foreach (var pt in permissionTypes)
+    {
+      if (pt["permissionType"].ToString() == permissionType)
+      {
+        var ps = ((JArray)pt["permissions"]).Children();
+        foreach (var p in ps)
+        {
+          if (p["permission"].ToString() == permission)
+          {
+            return p["displayName"].ToString();
+          }
+        }
+      }
+    }
+    return null;
+  };
+}
+
+@if (!showProgrammePermissionTable && !showCommonPermissionTable)
+{
+  <h4>Нямате предоставени права за достъп</h4>
+}
+else
+{
+  if (showProgrammePermissionTable)
+  {
+    <h4>Права на достъп по модули, спрямо оперативните програми</h4>
+    <table border="1" cellspacing="0" height="100%" width="100%" cellpadding="0">
+      <thead>
+        <th></th>
+        @foreach (var programme in ((JObject)programmePermissions["programmes"]))
+        {
+          <th>
+            @(programme.Value)
+          </th>
+        }
+      </thead>
+      <tbody>
+        @foreach (var type in ((JArray)programmePermissions["permissionTypes"]).Children())
+        {
+          <tr>
+            <td align="center" valign="top">
+              @type["displayName"]
+            </td>
+              
+            @foreach (var permission in ((JObject)programmePermissions["permissions"]))
+            {
+              <td align="center" valign="top">
+                <table>
+                  @if (((JObject)permission.Value[type["permissionType"].ToString()]) != null)
+                  {
+                    foreach (var p in ((JObject)permission.Value[type["permissionType"].ToString()]))
+                    {
+                      <tr>
+                        <td align="center" valign="top">
+                          @getProgrammePermissionName(type["permissionType"].ToString(), p.Key.ToString())
+                        </td>
+                      </tr>
+                    }
+                  }
+                </table>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  if (showCommonPermissionTable)
+  {
+    <h4>Права на достъп по модули</h4>
+    <table border="1" cellspacing="0" height="100%" width="50%" cellpadding="0">
+      <tbody>
+        @foreach (var type in ((JArray)commonPermissions["permissionTypes"]).Children())
+        {
+          <tr>
+            <td align="center" valign="top">
+              @type["displayName"]
+            </td>
+            <td align="center" valign="top">
+              <table>
+                @if (((JObject)commonPermissions["permissions"])[type["permissionType"].ToString()] != null)
+                {
+                  foreach (var p in ((JObject)((JObject)commonPermissions["permissions"])[type["permissionType"].ToString()]))
+                  {
+                    <tr>
+                      <td align="center" valign="top">
+                        @getCommonPermissionName(type["permissionType"].ToString(), p.Key.ToString())
+                      </td>
+                    </tr>
+                  }
+                }
+              </table>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+}
+<br/> <br/>

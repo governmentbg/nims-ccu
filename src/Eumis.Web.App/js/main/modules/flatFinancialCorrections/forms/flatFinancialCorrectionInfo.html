@@ -1,0 +1,19 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionLevels'" ng-model="model.level" ng-required="true" ng-disabled="model.flatFinancialCorrectionId" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_level" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name"  ng-required="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_name" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionTypes'" ng-model="model.type" ng-required="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_type" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionContracts'" ng-if="model.level === 'contractContract'" ng-model="model.contractId" ng-required="true" ng-disabled="model.flatFinancialCorrectionId" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_contract" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.impositionDate" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_impositionDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.impositionNumber" l10n-text="flatFinancialCorrections_flatFinancialCorrectionInfoForm_impositionNumber" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

@@ -1,0 +1,24 @@
+﻿<ng-form name="editPaidAmountDocumentForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="actuallyPaidAmounts_editPaidAmountDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="actuallyPaidAmounts_editPaidAmountDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && status === 'draft'"
+          ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', document.actuallyPaidAmountId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteDocument()" text="actuallyPaidAmounts_editPaidAmountDocument_deleteDocument" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && status === 'draft'"
+          ng-disabled="!$canDo('ActuallyPaidAmountActions.Edit', document.actuallyPaidAmountId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="actuallyPaidAmounts_editPaidAmountDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="actuallyPaidAmounts_editPaidAmountDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-document name="documentForm" ng-model="document" sc-form-params="{ urlTemplate: 'PaidAmountFile', urlParamsId: document.actuallyPaidAmountId}"></eumis-document>
+    </div>
+  </div>
+</ng-form>

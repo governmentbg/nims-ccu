@@ -1,0 +1,67 @@
+<ng-form name="editProjectCommunicationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionProjectCommunication_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_editEvalSessionProjectCommunication_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left" ng-show="!editMode">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="evalSessions_editEvalSessionProjectCommunication_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-disabled="!$canDo('ProjectCommunicationActions.Edit', communicationId) || !isSessionActive"
+          ng-show="!editMode && (!projectCommunication.answerDate && projectCommunication.status === 'question' || projectCommunication.status === 'paperAnswer') && currentSessionId === projectCommunication.evalSessionId"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_editEvalSessionProjectCommunication_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_editEvalSessionProjectCommunication_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" ng-show="canDeleteCommunication && !editMode" text="evalSessions_editEvalSessionProjectCommunication_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ProjectCommunicationActions.Delete', communicationId) || !isSessionActive"></sc-button>
+
+        <sc-button name="cancelCommunicationBtn" btn-click="cancelCommunication()" ng-show="canCancelCommunication && !editMode" text="evalSessions_editEvalSessionProjectCommunication_cancelCommunication" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('ProjectCommunicationActions.Cancel', communicationId) || !isSessionActive"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" class="deactivated-panel-body">
+      <eumis-project-communication name="projectCommunicationForm" ng-model="projectCommunication"></eumis-project-communication>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionProjectCommunication_questionTemplate" document="projectCommunicationQuestion" gid="projectCommunication.xmlGid"
+                                   readonly="!$canDo('ProjectCommunicationActions.Edit', communicationId) || !isSessionActive || projectCommunication.status !== 'draftQuestion' || editMode || currentSessionId !== projectCommunication.evalSessionId"
+                                   class="col-sm-4 col-md-3" doc-updated="questionUpdated">
+        </eumis-structured-document>
+      </div>
+
+      <div class="row">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <div>
+            <h5 class="table-header table-header-first pull-left" l10n-text="evalSessions_editEvalSessionProjectCommunication_answers_title"></h5>
+          </div>
+          <sc-datatable items="projectCommunicationAnswers" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="true" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.projects.view.communications.edit.answers.edit', params: { aid: item.projectCommunicationAnswerId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ProjectCommunicationActions.View', communicationId)"></sc-button>
+            </sc-column>
+            <sc-column data="orderNum" title="evalSessions_editEvalSessionProjectCommunication_answers_orderNum" type="number">
+            </sc-column>
+            <sc-column data="statusDescr" title="evalSessions_editEvalSessionProjectCommunication_answers_status">
+            </sc-column>
+            <sc-column data="answerDate" title="evalSessions_editEvalSessionProjectCommunication_answers_answerDate" type="date">
+            </sc-column>
+            <sc-column sortable="false" title="evalSessions_editEvalSessionProjectCommunication_answers_preview" has-content="true">
+              <a target="_blank" ng-href="{{item.viewXmlUrl}}" sc-access-token>
+                <span class="glyphicon glyphicon-file"></span>
+              </a>
+            </sc-column>
+
+
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

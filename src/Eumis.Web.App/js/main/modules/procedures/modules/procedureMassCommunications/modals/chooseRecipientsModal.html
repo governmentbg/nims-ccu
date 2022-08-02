@@ -1,0 +1,36 @@
+<ng-form name="chooseContractReportsForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedureMassCommunications_chooseRecipientsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="procedureMassCommunications_chooseRecipientsModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedureMassCommunications_chooseRecipientsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-button name="chooseAllBtn" ng-show="hasChosenAll"  btn-click="chooseAll()" text="procedureMassCommunications_chooseRecipientsModal_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="removeAllBtn" ng-show="!hasChosenAll" btn-click="removeAll()" text="procedureMassCommunications_chooseRecipientsModal_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+        </sc-button>
+        <sc-datatable items="recipients" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNumber" title="procedureMassCommunications_chooseRecipientsModal_contractRegNumber">
+            </sc-column>
+            <sc-column data="contractName" title="procedureMassCommunications_chooseRecipientsModal_contractName">
+            </sc-column>
+            <sc-column data="contractDate" title="procedureMassCommunications_chooseRecipientsModal_contractDate" type="date">
+            </sc-column>
+            <sc-column data="beneficiaryName" title="procedureMassCommunications_chooseRecipientsModal_beneficiaryName">
+            </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

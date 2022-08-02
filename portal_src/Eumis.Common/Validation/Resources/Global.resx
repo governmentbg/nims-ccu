@@ -1,0 +1,1967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Точен адрес (ул., №, бл., вх., ет., ап.)</value>
+  </data>
+  <data name="AmountType" xml:space="preserve">
+    <value>Вид на проекта</value>
+  </data>
+  <data name="AntiSpam" xml:space="preserve">
+    <value>Анти-спам</value>
+  </data>
+  <data name="AttachedDocuments" xml:space="preserve">
+    <value>Прикачени документи</value>
+  </data>
+  <data name="SectionBeneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Bulstat" xml:space="preserve">
+    <value>Булстат/ЕИК</value>
+  </data>
+  <data name="CompanyContactPerson" xml:space="preserve">
+    <value>Лице за контакти</value>
+  </data>
+  <data name="CompanyContactPersonEmail" xml:space="preserve">
+    <value>E-mail на лицето за контакти</value>
+  </data>
+  <data name="CompanyContactPersonPhone" xml:space="preserve">
+    <value>Тел. на лицето за контакти</value>
+  </data>
+  <data name="CompanyLegalType" xml:space="preserve">
+    <value>Вид организация</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Пълно наименование</value>
+  </data>
+  <data name="CompanyRepresentativePerson" xml:space="preserve">
+    <value>Имена на лицето, представляващо организацията</value>
+  </data>
+  <data name="CompanySize" xml:space="preserve">
+    <value>Категория/статус на предприятието</value>
+  </data>
+  <data name="CompanyType" xml:space="preserve">
+    <value>Тип на организацията</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Държава/EC</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Област</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Срок на изпълнение, месеци</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Е-mail</value>
+  </data>
+  <data name="PIN" xml:space="preserve">
+    <value>ЕГН</value>
+  </data>
+  <data name="IsAssignedDeMinimisAid" xml:space="preserve">
+    <value>Проектът подлежи на режим на минимални помощи</value>
+  </data>
+  <data name="IsIncludesPublicPrivatePartnership" xml:space="preserve">
+    <value>Проектът включва публично-частно партньорство</value>
+  </data>
+  <data name="IsIncludesSupportFromIYE" xml:space="preserve">
+    <value>Проектът включва подкрепа от Инициатива за младежка заетост</value>
+  </data>
+  <data name="IsJointActionPlan" xml:space="preserve">
+    <value>Проектът е съвместен план за действие</value>
+  </data>
+  <data name="IsSubjectToStateAidRegime" xml:space="preserve">
+    <value>Проектът подлежи на режим на държавна помощ</value>
+  </data>
+  <data name="IsUsesFinancialInstruments" xml:space="preserve">
+    <value>Проектът използва финансови инструменти</value>
+  </data>
+  <data name="IsVatEligible" xml:space="preserve">
+    <value>ДДС е допустим разход по проекта</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Местонахождение (Място на изпълнение на проекта)</value>
+  </data>
+  <data name="SectionManagingAuthority" xml:space="preserve">
+    <value>Управляващ орган</value>
+  </data>
+  <data name="Municipality" xml:space="preserve">
+    <value>Община</value>
+  </data>
+  <data name="Nuts1" xml:space="preserve">
+    <value>Регион Nuts 1</value>
+  </data>
+  <data name="Nuts2" xml:space="preserve">
+    <value>Регион Nuts 2</value>
+  </data>
+  <data name="Partners" xml:space="preserve">
+    <value>Данни за партньори</value>
+  </data>
+  <data name="Phone1" xml:space="preserve">
+    <value>Телефонен номер 1</value>
+  </data>
+  <data name="PostCode" xml:space="preserve">
+    <value>Пощенски код</value>
+  </data>
+  <data name="ProjectBasicDataName" xml:space="preserve">
+    <value>Наименование на проекта</value>
+  </data>
+  <data name="ProjectDescription" xml:space="preserve">
+    <value>Кратко описание на проекта</value>
+  </data>
+  <data name="ProjectPurpose" xml:space="preserve">
+    <value>Цел/и на проекта</value>
+  </data>
+  <data name="PublicAttachedDocuments" xml:space="preserve">
+    <value>Публични прикачени документи</value>
+  </data>
+  <data name="SectionBasicData" xml:space="preserve">
+    <value>Основни данни</value>
+  </data>
+  <data name="SectionDifferentiatedPositions" xml:space="preserve">
+    <value>Обособени позиции</value>
+  </data>
+  <data name="Settlement" xml:space="preserve">
+    <value>Населено място</value>
+  </data>
+  <data name="ShortTemplateAircraftRequirements" xml:space="preserve">
+    <value>Моля, посочете на какви изисквания за изпълнение на полети отговаря въздухоплавателното средство.</value>
+  </data>
+  <data name="ShortTemplateAlphanumericCyrillic" xml:space="preserve">
+    <value>Полето може да съдържа само цифри и букви на кирилица.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateAtLeastOneOfSet" xml:space="preserve">
+    <value>Поне едно от полетата „{0}”, „{1}” трябва да бъде попълнено.</value>
+  </data>
+  <data name="ShortTemplateCancellationBothEmpty" xml:space="preserve">
+    <value>Отбележете вид на заличаването.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateCancellationBothFilled" xml:space="preserve">
+    <value>Може да посочите само един вид заличаване.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateDateEarlier" xml:space="preserve">
+    <value>Полето трябва да съдържа дата, която предхожда тази в полето „{0}”.</value>
+  </data>
+  <data name="ShortTemplateDigits" xml:space="preserve">
+    <value>В полето може да се съдържат само цифри.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateDigitsExact" xml:space="preserve">
+    <value>Полето трябва да съдържа точно {0} цифри.</value>
+  </data>
+  <data name="ShortTemplateDigitsMax" xml:space="preserve">
+    <value>Полето не може да съдържа повече от {0} цифри.</value>
+  </data>
+  <data name="ShortTemplateDiscrepancies" xml:space="preserve">
+    <value>Посочете несъответствието за точките отбелязани с „НЕ”.</value>
+  </data>
+  <data name="ShortTemplateDuplicatedValue" xml:space="preserve">
+    <value>Съдържанието на полето не е уникално.</value>
+  </data>
+  <data name="ShortTemplateEnginesCount" xml:space="preserve">
+    <value>Има несъответсвие между броя на посочените двигатели и въведените данни за двигатели.</value>
+  </data>
+  <data name="ShortTemplateEngineUsed" xml:space="preserve">
+    <value>Отбележете дали двигателят е нов или използван.</value>
+  </data>
+  <data name="ShortTemplateExactDigits" xml:space="preserve">
+    <value>Полето трябва да e цяло число и да съдържа точно {0} цифри.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateExactOneCheckbox" xml:space="preserve">
+    <value>Посочете с X, кога ще бъде представен документа.</value>
+  </data>
+  <data name="ShortTemplateImportCountryRequirements" xml:space="preserve">
+    <value>Посочете допълнителните изисквания и условията на импортиращата държава, които не могат да бъдат удовлетворени.</value>
+  </data>
+  <data name="ShortTemplateInteger" xml:space="preserve">
+    <value>Полето трябва да съдържа цяло число.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateIntegerGreater" xml:space="preserve">
+    <value>Полето трябва да съдържа число, по-голямо от {0}.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateInvalid" xml:space="preserve">
+    <value>Невалидна стойност.</value>
+  </data>
+  <data name="ShortTemplateISOStandard" xml:space="preserve">
+    <value>Полето не съдържа валидна стойност от стандарта ISO 3166-1.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateLeaseType" xml:space="preserve">
+    <value>Отбележете типа лизинг.</value>
+  </data>
+  <data name="ShortTemplateManagementAddress" xml:space="preserve">
+    <value>Данните за адрес на управление трябва да бъдат попълнени.</value>
+  </data>
+  <data name="ShortTemplateManagingMembers" xml:space="preserve">
+    <value>Трябва да бъдат попълнени поне {0} члена на управителен орган.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateManagingMembersInfo" xml:space="preserve">
+    <value>Трябва да бъдат попълнени организационна форма в т. 2.2 и поне {0} члена на управителен орган за организационна форма Сдружение или поне {1} члена за организационна форма Фондация.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateModuleEmpty" xml:space="preserve">
+    <value>Отбележете преминат модул на обучение.</value>
+  </data>
+  <data name="ShortTemplateModuleTooMany" xml:space="preserve">
+    <value>Можете да отбележите модул само за първоначално или само за последващо обучение.</value>
+  </data>
+  <data name="ShortTemplateNotSpecified" xml:space="preserve">
+    <value>Моля, посочете.</value>
+  </data>
+  <data name="ShortTemplateNumberRange" xml:space="preserve">
+    <value>Полето трябва да съдържа число с минимална стойност {0} и максимална стойност {1}.</value>
+  </data>
+  <data name="ShortTemplatePacketData" xml:space="preserve">
+    <value>Полето може да заема само валидни стойности от полето „{0}” от пакета от данни „{1}”.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplatePositiveNumber" xml:space="preserve">
+    <value>Стойността в полето трябва да е положително число.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplatePropellersCount" xml:space="preserve">
+    <value>Има несъответсвие между броя на посочените витла и въведените данни за витла.</value>
+  </data>
+  <data name="ShortTemplatePropellerUsed" xml:space="preserve">
+    <value>Отбележете дали витлото е ново или използвано.</value>
+  </data>
+  <data name="ShortTemplateRequired" xml:space="preserve">
+    <value>Полето трябва да e попълнено.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateRequiredSection" xml:space="preserve">
+    <value>Попълването на секцията е задължително.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateRequiredSection2" xml:space="preserve">
+    <value>Данните в секцията трябва да бъдат попълнени.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbols" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на кирилица, цифри и символите интервал, ‘ (апостроф), – (тире) , запетая, . (точка), ? (въпросителен знак), ! (удивителен знак), : (двоеточие), % (процент), ( (лява кръгла скоба), ) (дясна кръгла скоба), ” (кавички).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsCyrillicSpaceApostropheDash" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на кирилица и символите интервал, ‘ (апостроф) и – (тире).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsExact" xml:space="preserve">
+    <value>Полето трябва да съдържа точно {0} символа.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsMax" xml:space="preserve">
+    <value>Полето не може да съдържа повече от {0} символа.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsMiddle" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на кирилица, латиница, цифри и символите интервал, , – (тире) , запетая, . (точка), ” (кавички).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsNames" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на латиница и символите интервал, ‘ (апостроф) и – (тире).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsPhoneNumber" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на кирилица, латиница, цифри и символите интервал, , – (тире), запетая, . (точка), + (плюс),; (точка и запетая), ( (лява кръгла скоба), ) (дясна кръгла скоба) , * (звезда).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsShort" xml:space="preserve">
+    <value>В полето може да се съдържат само само букви на латиница, цифри и символите \"/\", \"-\", \"+\", \".\".</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTransferredDocument" xml:space="preserve">
+    <value>Tрябва да се включи поне един пренасян документ.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTwoDigitsOrLetter" xml:space="preserve">
+    <value>Полето може да съдържа или максимум две цифри или една буква на кирилица.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTypeCheck" xml:space="preserve">
+    <value>Отбележете вид на проверката.</value>
+  </data>
+  <data name="ShortTemplateTypeCheckTooMany" xml:space="preserve">
+    <value>Можете да отбележите само един вид на проверка.</value>
+  </data>
+  <data name="ShortTemplateValidMail" xml:space="preserve">
+    <value>Полето трябва да съдържа валиден адрес на електронна поща.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateValidValues" xml:space="preserve">
+    <value>Полето може да заема само валидни стойности от „{0}”.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTransferDescription" xml:space="preserve">
+    <value>Кратко описание на преноса</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Улица (ж.к., кв., №, бл., вх., ет., ап.)</value>
+  </data>
+  <data name="ViewTemplateAirCarrierLicenseDateMessage" xml:space="preserve">
+    <value>Моля, посочете датата, от която планирате да влезе в сила оперативния лиценз на въздушен превозвач в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateAircraftRequirements" xml:space="preserve">
+    <value>Моля, посочете на какви изисквания за изпълнение на полети отговаря въздухоплавателното средство в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateAlphanumericCyrillic" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само цифри и букви на кирилица.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfSet" xml:space="preserve">
+    <value>Поне едно от полетата „{0}”, „{1}” от секция „{2}” трябва да бъде попълнено.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfSet2" xml:space="preserve">
+    <value>Поне едно от полетата „{0}”, „{1}”, „{2}”  от секция „{3}” трябва да бъде попълнено.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfType" xml:space="preserve">
+    <value>Трябва да се съдържа поне един елемент от тип „{0}” в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfTypeLines" xml:space="preserve">
+    <value>Трябва да се съдържа поне един елемент от тип „{0}” на ред „{1}” в секция „{2}”.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOnLines" xml:space="preserve">
+    <value>Поне едно от полетата „{0}”, „{1}” на ред „{2}” от секция „{3}” трябва да бъде попълнено.</value>
+  </data>
+  <data name="ViewTemplateCancellationBothEmpty" xml:space="preserve">
+    <value>Отбележете вид на заличаването в секция „{0}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateCancellationBothFilled" xml:space="preserve">
+    <value>Можете да отбележите само един вид на заличаване в секция „{0}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateCourseDateEarlier" xml:space="preserve">
+    <value>Полето „{0}” за избрания курс „{1}” в секция „{2}” трябва да съдържа дата, която предхожда тази в полето „{3}”.</value>
+  </data>
+  <data name="ViewTemplateCourses" xml:space="preserve">
+    <value>Полето „{0}” за избрания курс „{1}” в секция „{2}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateDateEarlier" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа дата, която предхожда тази в полето „{2}”.</value>
+  </data>
+  <data name="ViewTemplateDateEarlierLines" xml:space="preserve">
+    <value>Полето „{0}” на ред „{1}” в секция „{2}” трябва да съдържа дата, която предхожда тази в полето „{3}”.</value>
+  </data>
+  <data name="ViewTemplateDateLaterThanCurrent" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа дата, която e по-голяма от текущата.</value>
+  </data>
+  <data name="ViewTemplateDetails" xml:space="preserve">
+    <value>Моля, опишете детайлите в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDigits" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само цифри.</value>
+  </data>
+  <data name="ViewTemplateDifferentiatedPosition" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само цифри.</value>
+  </data>
+  <data name="ViewTemplateDigitsExact" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа точно {2} цифри.</value>
+  </data>
+  <data name="ViewTemplateDigitsMax" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” не може да съдържа повече от {2} цифри.</value>
+  </data>
+  <data name="ViewTemplateDiscrepancies" xml:space="preserve">
+    <value>Посочете несъответствието за точките отбелязани с „НЕ” в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDuplicatedValue" xml:space="preserve">
+    <value>{0} {1} e въведен {2} пъти в секция „{3}”</value>
+  </data>
+  <data name="ViewTemplateExactDigits" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да e цяло число и да съдържа точно {2} цифри.</value>
+  </data>
+  <data name="ViewTemplateExactOneCheckbox" xml:space="preserve">
+    <value>Посочете с X, кога ще бъде представен документа „{0}” от секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateImportCountryRequirements" xml:space="preserve">
+    <value>Посочете допълнителните изисквания и условията на импортиращата държава, които не могат да бъдат удовлетворени в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateInteger" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа цяло число.</value>
+  </data>
+  <data name="ViewTemplateIntegerGreater" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа число, по-голямо от {2}.</value>
+  </data>
+  <data name="ViewTemplateIntegerLines" xml:space="preserve">
+    <value>Полето „{0}” на ред „{1}” от секция „{2}” трябва да съдържа цяло число.</value>
+  </data>
+  <data name="ViewTemplateInvalid" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” съдържа невалидна стойност.</value>
+  </data>
+  <data name="ViewTemplateISOStandard" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” не съдържа валидна стойност от стандарта ISO 3166-1.</value>
+  </data>
+  <data name="ViewTemplateLines" xml:space="preserve">
+    <value>Полето „{0}” на ред „{1}” в секция „{2}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateManagementAddress" xml:space="preserve">
+    <value>Данните за адрес на управление трябва да бъдат попълнени в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateMatchFields" xml:space="preserve">
+    <value>Съдържанието на полето в „{0}” трябва да съвпада с това от полето „{1}” от секция „{2}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateMatchFieldsShort" xml:space="preserve">
+    <value>Съдържанието на полето трябва да съвпада с това от полето „{0}” от секция „{1}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateModuleEmpty" xml:space="preserve">
+    <value>Отбележете преминат модул на обучение в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateModuleTooMany" xml:space="preserve">
+    <value>Можете да отбележите модул само за първоначално или само за последващо обучение в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateNotSpecified" xml:space="preserve">
+    <value>Не е указано, дали {0} в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNotUsedContract" xml:space="preserve">
+    <value>Договор № {0} не е обвързан с нито една обособена позиция от процедура за избор на изпълнител.</value>
+  </data>
+  <data name="ViewTemplateNumberRange" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа число с минимална стойност {2} и максимална стойност {3}.</value>
+  </data>
+  <data name="ViewTemplatePacketData" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” може да заема само валидни стойности от полето „{2}” от пакета от данни „{3}”.</value>
+  </data>
+  <data name="ViewTemplatePositiveNumber" xml:space="preserve">
+    <value>Стойността в полето „{0}” от секция „{1}” трябва да е положително число.</value>
+  </data>
+  <data name="ViewTemplatePositiveNumberLines" xml:space="preserve">
+    <value>Стойността в полето „{0}” на ред „{1}” от секция „{2}” трябва да е положително число.</value>
+  </data>
+  <data name="ViewTemplatePropellersCount" xml:space="preserve">
+    <value>Има несъответсвие между броя на посочените витла и въведените данни за витла в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplatePropellerUsed" xml:space="preserve">
+    <value>Отбележете дали витлото е ново или използвано в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQualificationSubclass" xml:space="preserve">
+    <value>Моля, посочете подквалификационен клас в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQualificationSubclassDegree" xml:space="preserve">
+    <value>Моля, посочете степента на подквалификационния клас в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQuestion" xml:space="preserve">
+    <value>Не сте отговорили на въпроса „{0}” в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateRequired" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateRequiredWithSubsection" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}”\„{2}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateRequiredSection" xml:space="preserve">
+    <value>Данните в секция „{0}” трябва да бъдат попълнени.</value>
+  </data>
+  <data name="ViewTemplateRequiredTwoFields" xml:space="preserve">
+    <value>Полетата „{0}”, „{1}” от секция „{2}” трябва да са попълнени.</value>
+  </data>
+  <data name="ViewTemplateSectionPositiveNumber" xml:space="preserve">
+    <value>Стойността в секция „{0}” трябва да е положително число.</value>
+  </data>
+  <data name="ViewTemplateSelectedCourse" xml:space="preserve">
+    <value>Полето „{0}” за избрания курс „{1}” в секция „{2}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateSelectedCoursePositiveNumber" xml:space="preserve">
+    <value>Стойността в полето „{0}” за избрания курс „{1}” в секция „{2}” трябва да е положително число.</value>
+  </data>
+  <data name="ViewTemplateSymbols" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на кирилица, цифри и символите интервал, ‘ (апостроф), – (тире) , запетая, . (точка), ? (въпросителен знак), ! (удивителен знак), : (двоеточие), % (процент), ( (лява кръгла скоба), ) (дясна кръгла скоба), ” (кавички).</value>
+  </data>
+  <data name="ViewTemplateSymbolsCyrillicSpaceApostropheDash" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на кирилица и символите интервал, ‘ (апостроф) и – (тире).</value>
+  </data>
+  <data name="ViewTemplateSymbolsExact" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа точно {2} символа.</value>
+  </data>
+  <data name="ViewTemplateSymbolsMax" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” не може да съдържа повече от {2} символа.</value>
+  </data>
+  <data name="ViewTemplateSymbolsMiddle" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на кирилица, латиница, цифри и символите интервал, , – (тире) , запетая, . (точка), ” (кавички).</value>
+  </data>
+  <data name="ViewTemplateSymbolsNames" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на латиница и символите интервал, ‘ (апостроф) и – (тире).</value>
+  </data>
+  <data name="ViewTemplateSymbolsPhoneNumber" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на кирилица, латиница, цифри и символите интервал, , – (тире), запетая, . (точка), + (плюс),; (точка и запетая), ( (лява кръгла скоба), ) (дясна кръгла скоба) , * (звезда).</value>
+  </data>
+  <data name="ViewTemplateSymbolsShort" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само само букви на латиница, цифри и символите \"/\", \"-\", \"+\", \".\".</value>
+  </data>
+  <data name="ViewTemplateTwoDigitsOrLetter" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” може да съдържа или максимум две цифри или една буква на кирилица.</value>
+  </data>
+  <data name="ViewTemplateTypeCheck" xml:space="preserve">
+    <value>Отбележете вид на проверката в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateTypeCheckTooMany" xml:space="preserve">
+    <value>Можете да отбележите само един вид на проверка в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateValidMail" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” трябва да съдържа валиден адрес на електронна поща.</value>
+  </data>
+  <data name="ViewTemplateValidValues" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” може да заема само валидни стойности от „{2}”.</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>Дейност</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Стойност</value>
+  </data>
+  <data name="Base" xml:space="preserve">
+    <value>Базова стойност общо</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Организация отговорна за изпълнението на дейността</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Duration2" xml:space="preserve">
+    <value>Продължителност</value>
+  </data>
+  <data name="ExecutionMethod" xml:space="preserve">
+    <value>Начин на изпълнение</value>
+  </data>
+  <data name="IndicatorName" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="InformationSource" xml:space="preserve">
+    <value>Източник на информация</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Резултат</value>
+  </data>
+  <data name="SectionImplementationPlan" xml:space="preserve">
+    <value>Дейности</value>
+  </data>
+  <data name="SectionIndicators" xml:space="preserve">
+    <value>Индикатори</value>
+  </data>
+  <data name="StartMonth" xml:space="preserve">
+    <value>Месец за стартиране на дейността</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Целева стойност общо</value>
+  </data>
+  <data name="SectionFinancialInformation" xml:space="preserve">
+    <value>Финансова информация – източници на финансиране</value>
+  </data>
+  <data name="ShortTemplateNonNegativeNumber" xml:space="preserve">
+    <value>Стойността в полето трябва да е неотрицателно число.</value>
+  </data>
+  <data name="ViewTemplateNonNegativeNumber" xml:space="preserve">
+    <value>Стойността в полето „{0}” от секция „{1}” трябва да е неотрицателно число.</value>
+  </data>
+  <data name="EconomicDimension" xml:space="preserve">
+    <value>7. Икономическа дейност</value>
+  </data>
+  <data name="ESFSecondaryTheme" xml:space="preserve">
+    <value>6. Вторична тема на ЕСФ</value>
+  </data>
+  <data name="FormOfFinance" xml:space="preserve">
+    <value>2. Форма на финансиране</value>
+  </data>
+  <data name="InterventionField" xml:space="preserve">
+    <value>1. Област на интервенция</value>
+  </data>
+  <data name="TerritorialDeliveryMechanism" xml:space="preserve">
+    <value>4. Механизми за териториално изпълнение</value>
+  </data>
+  <data name="TerritorialDimension" xml:space="preserve">
+    <value>3. Вид на територията</value>
+  </data>
+  <data name="ThematicObjective" xml:space="preserve">
+    <value>5. Тематична цел (ЕФРР и Кохезионен фонд)</value>
+  </data>
+  <data name="ApplicableLegalAct" xml:space="preserve">
+    <value>Приложим нормативен акт</value>
+  </data>
+  <data name="ContractObject" xml:space="preserve">
+    <value>Обект на поръчката</value>
+  </data>
+  <data name="FaxNumber" xml:space="preserve">
+    <value>Номер на факс</value>
+  </data>
+  <data name="NameByDocument" xml:space="preserve">
+    <value>Име по документ за самоличност</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефонен номер</value>
+  </data>
+  <data name="ProcedureSubject" xml:space="preserve">
+    <value>Предмет на предвидената процедура</value>
+  </data>
+  <data name="ProcedureType" xml:space="preserve">
+    <value>Тип на процедурата</value>
+  </data>
+  <data name="ProjectPosition" xml:space="preserve">
+    <value>Позиция по проекта</value>
+  </data>
+  <data name="Responsibilities" xml:space="preserve">
+    <value>Квалификация и отговорности</value>
+  </data>
+  <data name="ScheduledDate" xml:space="preserve">
+    <value>Планирана дата на обявяване</value>
+  </data>
+  <data name="SectionOutsourcingPlan" xml:space="preserve">
+    <value>План за външно възлагане</value>
+  </data>
+  <data name="SectionTeam" xml:space="preserve">
+    <value>Екип</value>
+  </data>
+  <data name="SectionAdditionalInformation" xml:space="preserve">
+    <value>Допълнителна информация необходима за оценка на проекта</value>
+  </data>
+  <data name="SectionAttachedDocuments" xml:space="preserve">
+    <value>Прикачени електронно подписани документи</value>
+  </data>
+  <data name="Sustainability" xml:space="preserve">
+    <value>Устойчивост на резултатите (максимум 1 страници)</value>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="BFP" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="ExpenseDescription" xml:space="preserve">
+    <value>Описание на конкретния разход</value>
+  </data>
+  <data name="SectionBudget" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="SectionPaperAttachedDocuments" xml:space="preserve">
+    <value>Опис на приложени документи на хартиен носител</value>
+  </data>
+  <data name="SF" xml:space="preserve">
+    <value>СФ</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Стойност/ Сума</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneRow" xml:space="preserve">
+    <value>Трябва да бъде добавен поне един елемент в секция „{0}”.</value>
+  </data>
+  <data name="SectionFinancialInformationCodes" xml:space="preserve">
+    <value>Финансова информация – кодове по измерения</value>
+  </data>
+  <data name="IneligibleCosts" xml:space="preserve">
+    <value>Недопустими разходи, необходими за изпълнението на проекта (когато е приложимо)</value>
+  </data>
+  <data name="RatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Съотношение Безвъзмездна финансова помощ към Общо допустими разходи</value>
+  </data>
+  <data name="RequestedFundingAmount" xml:space="preserve">
+    <value>Искано финансиране (Безвъзмездна финансова помощ)</value>
+  </data>
+  <data name="ShortTemplateMatchEligibleCosts" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от допустимите разходи в секция „{0}”.</value>
+  </data>
+  <data name="ShortTemplateMatchIneligibleCosts" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от недопустимите разходи в секция „{0}”.</value>
+  </data>
+  <data name="ShortTemplateSectionSumsMatch" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от стойностите в полетата „{0}” в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateSumBFP_SF" xml:space="preserve">
+    <value>Стойността в полето не е равна на сумата от стойностите в полетата „{0}” и „{1}”.</value>
+  </data>
+  <data name="TotalCoFinancingAmount" xml:space="preserve">
+    <value>Общо съфинансиране</value>
+  </data>
+  <data name="TotalEligibleCosts" xml:space="preserve">
+    <value>Общо допустими разходи</value>
+  </data>
+  <data name="TotalProjectCost" xml:space="preserve">
+    <value>Обща стойност на проекта</value>
+  </data>
+  <data name="ViewTemplateMatchEligibleCosts" xml:space="preserve">
+    <value>Стойността в полето „{0}” в секция „{1}” не съответства на сумата от допустимите разходи в секция „{2}”.</value>
+  </data>
+  <data name="ViewTemplateMatchIneligibleCosts" xml:space="preserve">
+    <value>Стойността в полето „{0}” в секция „{1}” не съответства на сумата от недопустимите разходи в секция „{2}”.</value>
+  </data>
+  <data name="ViewTemplateSectionSumsMatch" xml:space="preserve">
+    <value>Стойността в полето „{0}” в секция „{1}” не съответства на сумата от стойностите в полетата „{2}” в секция „{3}”.</value>
+  </data>
+  <data name="ViewTemplateSumBFP_SF" xml:space="preserve">
+    <value>Стойността в полето „{0}” не е равна на сумата от стойностите в полетата „{1}” и „{2}” в секция „{3}”.</value>
+  </data>
+  <data name="ShortTemplateRatio" xml:space="preserve">
+    <value>Стойността в полето не съответства на съотношението между сумите в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateRatio" xml:space="preserve">
+    <value>Стойността в полето „{0}” в секция „{1}” не съответства на съотношението между сумите в секция „{2}”.</value>
+  </data>
+  <data name="ShortTemplateTotalProjectCost" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от допустимите и недопустимите разходи.</value>
+  </data>
+  <data name="ViewTemplateTotalProjectCost" xml:space="preserve">
+    <value>Стойността в полето „{0}” в секция „{1}” не съответства на сумата от допустимите и недопустимите разходи.</value>
+  </data>
+  <data name="ViewTemplateLessThanLastApprovedAmount" xml:space="preserve">
+    <value>Стойността в полето „{0}” от секция „{1}” трябва да е по-голяма или равна от последно одобрената стойност.</value>
+  </data>
+  <data name="Criteria" xml:space="preserve">
+    <value>Критерий</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Група</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>Праг за преминаване</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="MinimumLimit" xml:space="preserve">
+    <value>Минимален праг</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="SectionCriterias" xml:space="preserve">
+    <value>Критерии за оценка</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="SectionInstructions" xml:space="preserve">
+    <value>Инструкции за оценка</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Максимален праг</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Води до отхвърляне</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneCriteria" xml:space="preserve">
+    <value>Трябва да бъде добавен поне един критерий в секция „{0}”.</value>
+  </data>
+  <data name="ShortTemplateFieldMatchSum" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от стойностите в полетата „{0}”.</value>
+  </data>
+  <data name="ViewTemplateFieldMatchSum" xml:space="preserve">
+    <value>Стойността в полето „{0}” не съответства на сумата от стойностите в полетата „{1}” в секция „{2}”.</value>
+  </data>
+  <data name="ShortTemplateAtLeastOneRow" xml:space="preserve">
+    <value>Трябва да бъде добавен поне един елемент.</value>
+  </data>
+  <data name="ShortTemplateMatchGroupTotalOnly" xml:space="preserve">
+    <value>Стойността в полето не съответства на сумата от произведенията на максимален праг и оценка за всеки критерий.</value>
+  </data>
+  <data name="ShortTemplateMatchTotalGroups" xml:space="preserve">
+    <value>Стойността в полето не съответства на сбора от общите суми за всяка група.</value>
+  </data>
+  <data name="ViewTemplateMatchGroupTotalOnly" xml:space="preserve">
+    <value>Стойността в полето „{0}” не съответства на сумата от произведенията на максимален праг и оценка за всеки критерий в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateMatchTotalGroups" xml:space="preserve">
+    <value>Стойността в полето „{0}” не съответства на сбора от общите суми за всяка група в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateEvaluation" xml:space="preserve">
+    <value>Общата оценката е невалидна.</value>
+  </data>
+  <data name="ViewTemplateEvaluation" xml:space="preserve">
+    <value>Общата оценка е невалидна в секция „{0}”.</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Подпис</value>
+  </data>
+  <data name="ShortTemplateIntegerMax" xml:space="preserve">
+    <value>Полето не може да съдържа да съдържа число, по-голямо от {0}.</value>
+  </data>
+  <data name="ViewTemplateIntegerMax" xml:space="preserve">
+    <value>Полето „{0}” от секция „{1}” не може да съдържа да съдържа число, по-голямо от {2}.</value>
+  </data>
+  <data name="ShortTemplateFieldsSumMax" xml:space="preserve">
+    <value>Сборът от стойностите на полетата „{0}” и „{1}” не може да е по-голям от {2}.</value>
+  </data>
+  <data name="ViewTemplateFieldsSumMax" xml:space="preserve">
+    <value>Сборът от стойностите на полетата „{0}” и „{1}” не може да е по-голям от {2} в секция „{3}”.</value>
+  </data>
+  <data name="ShortTemplateDocumentExtension" xml:space="preserve">
+    <value>Документът е с невалидно разширение. Валидни разширения - {0}.</value>
+  </data>
+  <data name="ViewTemplateDocumentExtension" xml:space="preserve">
+    <value>Документът в секция „{0}” е с невалидно разширение. Валидни разширения - {1}.</value>
+  </data>
+  <data name="ViewTemplateDocumentExtensionWithSubsection" xml:space="preserve">
+    <value>Документът в секция „{0}”\„{1}” е с невалидно разширение. Валидни разширения - {2}.</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Становище</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Предмет на становището</value>
+  </data>
+  <data name="Subcontractor" xml:space="preserve">
+    <value>Подизпълнител</value>
+  </data>
+  <data name="ViewTemplateRequiredNoSection" xml:space="preserve">
+    <value>Полето „{0}” трябва да е попълнено.</value>
+  </data>
+  <data name="ViewTemplateRequiredSubcontractorInContractors" xml:space="preserve">
+    <value>Избраното поле „{0}” на ред {1} от таблица "{2}" трябва да присъства и в секция "{3}".</value>
+  </data>
+  <data name="ShortTemplateLocation" xml:space="preserve">
+    <value>Избраната стойност за местонахождение не отговаря на изисканото от процедурата местонахождение.</value>
+  </data>
+  <data name="ViewTemplateLocation" xml:space="preserve">
+    <value>Избраната стойност за местонахождение не отговаря на изисканото от процедурата местонахождение  в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateMissingLocation" xml:space="preserve">
+    <value>Липсва пълно местонахождение.</value>
+  </data>
+  <data name="ShortTemplateMissingLocation2" xml:space="preserve">
+    <value>Местонахождението е невалидно.</value>
+  </data>
+  <data name="ViewTemplateMissingLocation2" xml:space="preserve">
+    <value>Местонахождението е невалидно в секция „{0}”.</value>
+  </data>
+  <data name="SectionCandidate" xml:space="preserve">
+    <value>Данни за кандидата</value>
+  </data>
+  <data name="FinancialContribution" xml:space="preserve">
+    <value>Финансово участие</value>
+  </data>
+  <data name="ShortTemplateDuration" xml:space="preserve">
+    <value>Срокът надхвърля посочената стойност в полето „{0}” от секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateDuration" xml:space="preserve">
+    <value>Срокът посочен в секцията „{0}” надхвърля посочената стойност в полето „{1}” от секция „{2}”.</value>
+  </data>
+  <data name="ShortTemplateIndicatorsUnique" xml:space="preserve">
+    <value>Всички посочени индикатори трябва да бъдат с уникални наименования.</value>
+  </data>
+  <data name="ViewTemplateIndicatorsUnique" xml:space="preserve">
+    <value>Всички индикатори, посочени в секция „{0}” трябва да бъдат с уникални наименования.</value>
+  </data>
+  <data name="SectionPartners" xml:space="preserve">
+    <value>Данни за партньори</value>
+  </data>
+  <data name="ShortTemplateDocumentsUnique" xml:space="preserve">
+    <value>Всички добавени документи трябва да бъдат уникални по вид.</value>
+  </data>
+  <data name="ViewTemplateContractActivities" xml:space="preserve">
+    <value>Липсва информация за дейности по проекта.</value>
+  </data>
+  <data name="ViewTemplateDimensionsBudgetContract" xml:space="preserve">
+    <value>Липсват финансова информация и бюджет.</value>
+  </data>
+  <data name="ViewTemplateDocumentInvalid" xml:space="preserve">
+    <value>Невалиден документ в секция „{0}”. </value>
+  </data>
+  <data name="ViewTemplateDocumentsUnique" xml:space="preserve">
+    <value>Всички добавени документи трябва да бъдат уникални по вид в „{0}”.  </value>
+  </data>
+  <data name="ViewTemplateIndicators" xml:space="preserve">
+    <value>Липсва информация за индикатори.</value>
+  </data>
+  <data name="ViewTemplateMissingSection" xml:space="preserve">
+    <value>Липсва секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredCount" xml:space="preserve">
+    <value>Съществува несъответствие между предварителния брой на задължителните документи и текущия им брой в „{0}” и „{1}”.</value>
+  </data>
+  <data name="ShortTemplateLocationUnique" xml:space="preserve">
+    <value>Всички посочени местонахождения трябва да бъдат уникални.</value>
+  </data>
+  <data name="ViewTemplateLocationUnique" xml:space="preserve">
+    <value>Всички посочени местонахождения трябва да бъдат уникални в „{0}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredDocument" xml:space="preserve">
+    <value>Документът „{0}” трябва да бъде прикачен в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredDocuments" xml:space="preserve">
+    <value>Документът „{0}” трябва да бъде прикачен в секция „{1}” или „{2}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredDocumentsWithSubsection" xml:space="preserve">
+    <value>Документът „{0}” трябва да бъде прикачен в секция „{1}”\„{2}”.</value>
+  </data>
+  <data name="ProjectBasicDataNameEn" xml:space="preserve">
+    <value>Наименование на проекта на английски език</value>
+  </data>
+  <data name="ProjectDescriptionEn" xml:space="preserve">
+    <value>Кратко описание на проекта на английски език</value>
+  </data>
+  <data name="CompanyNameEn" xml:space="preserve">
+    <value>Пълно наименование на английски език</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Номер на факс</value>
+  </data>
+  <data name="Phone2" xml:space="preserve">
+    <value>Телефонен номер 2</value>
+  </data>
+  <data name="ShortTemplateSymbolsNames2" xml:space="preserve">
+    <value>В полето може да се съдържат само букви на латиница и символи.</value>
+  </data>
+  <data name="ViewTemplateSymbolsNames2" xml:space="preserve">
+    <value>В полето „{0}” от секция „{1}” може да се съдържат само букви на латиница и символи.</value>
+  </data>
+  <data name="AdditionalDescription" xml:space="preserve">
+    <value>Допълнително описание</value>
+  </data>
+  <data name="ProtectedZone" xml:space="preserve">
+    <value>Защитена зона</value>
+  </data>
+  <data name="ActivityDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ProjectErrandDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ShortTemplateMaxContractActivities" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} дейности по проекта.</value>
+  </data>
+  <data name="ViewTemplateMaxContractActivities" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} дейности по проекта в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxContractTeams" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} позиции за членове на екипа.</value>
+  </data>
+  <data name="ShortTemplateMaxProjectErrands" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} процедури.</value>
+  </data>
+  <data name="ViewTemplateMaxContractTeams" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} позиции за членове на екипа в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateMaxProjectErrands" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} процедури в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxPaperDocuments" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} елемента.</value>
+  </data>
+  <data name="ViewTemplateMaxPaperDocuments" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} елемента в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxAttachedDocuments" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} прикачени електронно подписани документа.</value>
+  </data>
+  <data name="ViewTemplateMaxAttachedDocuments" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} прикачени електронно подписани документа в секция „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxPartners" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} партньора.</value>
+  </data>
+  <data name="ViewTemplateMaxPartners" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} партньора в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentExtension" xml:space="preserve">
+    <value>Документът „{0}” в секция „{1}” е с невалидно разширение. Валидни разширения - {2}.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentExtensionWithSubsection" xml:space="preserve">
+    <value>Документът „{0}” в секция „{1}”\„{2}” е с невалидно разширение. Валидни разширения - {3}.</value>
+  </data>
+  <data name="ShortTemplateDocumentSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на документа.</value>
+  </data>
+  <data name="ShortTemplateDocumentTotalSize" xml:space="preserve">
+    <value>Документът и електронния подпис към него надвишават максимално допустимия размер от {0} MB.</value>
+  </data>
+  <data name="ViewTemplateBudgetLevel3Current" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} елемента за разходно перо в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateBudgetLevel3Total" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от общо {0} реда за целия бюджет в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на документа „{0}” в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentTotalSize" xml:space="preserve">
+    <value>Документът „{0}” и електронния подпис към него надвишават максимално допустимия размер от {1} MB в секция „{2}”.</value>
+  </data>
+  <data name="ShortTemplateSignatureSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на подписа документа.</value>
+  </data>
+  <data name="ViewTemplateDocumentSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на документа в секция „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDocumentTotalSize" xml:space="preserve">
+    <value>Документът и електронния подпис към него надвишават максимално допустимия размер от {0} MB в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedSignatureSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на подписа на документа „{0}” в секция „{1}”.</value>
+  </data>
+  <data name="ViewTemplateSignatureSizeNoInfo" xml:space="preserve">
+    <value>Няма информация относно размера на подписа на документа в секция „{0}”.</value>
+  </data>
+  <data name="ShortTemplateWeightEvaluation" xml:space="preserve">
+    <value>Стойността на оценката трябва да бъде по-малка или равна на стойността на максималния праг.</value>
+  </data>
+  <data name="ViewTemplateWeightEvaluation" xml:space="preserve">
+    <value>Стойността на оценката трябва да бъде по-малка или равна на стойността на максималния праг в секция „{0}”.</value>
+  </data>
+  <data name="AggregatedReport" xml:space="preserve">
+    <value>Отчитане с натрупване</value>
+  </data>
+  <data name="AggregatedTarget" xml:space="preserve">
+    <value>Целева стойност с натрупване</value>
+  </data>
+  <data name="BaseMen" xml:space="preserve">
+    <value>Базова стойност мъже</value>
+  </data>
+  <data name="BaseWomen" xml:space="preserve">
+    <value>Базова стойност жени</value>
+  </data>
+  <data name="MeasureName" xml:space="preserve">
+    <value>Мярка</value>
+  </data>
+  <data name="TypeName" xml:space="preserve">
+    <value>Вид индикатор</value>
+  </data>
+  <data name="ShortTemplateInvalidIndicator" xml:space="preserve">
+    <value>Невалиден индикатор.</value>
+  </data>
+  <data name="TargetMen" xml:space="preserve">
+    <value>Целева стойност мъже</value>
+  </data>
+  <data name="TargetWomen" xml:space="preserve">
+    <value>Целева стойност жени</value>
+  </data>
+  <data name="TrendName" xml:space="preserve">
+    <value>Тенденция</value>
+  </data>
+  <data name="KindName" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="ViewTemplateInvalidIndicator" xml:space="preserve">
+    <value>Невалиден индикатор в секция „{0}”.</value>
+  </data>
+  <data name="CoFinancingBudgetAmount" xml:space="preserve">
+    <value>Предвидено съфинансиране от бенефициента/партньорите</value>
+  </data>
+  <data name="ContentAttachedDocumentCollection" xml:space="preserve">
+    <value>Приложени документи към съобщението</value>
+  </data>
+  <data name="MessageContent" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Проектно предложение</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Отговор</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Въпрос</value>
+  </data>
+  <data name="ReplyAttachedDocumentCollection" xml:space="preserve">
+    <value>Приложени документи към отговора на съобщението</value>
+  </data>
+  <data name="ViewTemplateSymbolsMaxWithoutSection" xml:space="preserve">
+    <value>Полето „{0}” не може да съдържа повече от {1} символа.</value>
+  </data>
+  <data name="ViewTemplateInvalidValue" xml:space="preserve">
+    <value>Избраната стойност {0} от полето „{1}” в секция „{2}” е невалидна.</value>
+  </data>
+  <data name="ViewTemplateInvalidValues" xml:space="preserve">
+    <value>Избраните стойности {0} от полето „{1}” в секция „{2}” са невалидни.</value>
+  </data>
+  <data name="ViewTemplateSmallerEqualNumber" xml:space="preserve">
+    <value>Полето „{0}” трябва да има по-малка или равна стойност от полето „{1}”.</value>
+  </data>
+  <data name="ContentCommunication" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="SectionAttachedDocumentsUnsigned" xml:space="preserve">
+    <value>Прикачени документи</value>
+  </data>
+  <data name="SubjectCommunication" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="ViewTemplateTotalCoFinancingAmount" xml:space="preserve">
+    <value>Сумата от стойностите в полетата „{0}” и „{1}” в секция „{2}” трябва да бъде равна на стойността в полето „{3}” в същата секция.</value>
+  </data>
+  <data name="CoFinancingBudgetAmountField" xml:space="preserve">
+    <value>Съфинансиране от бенефициента/партньорите (средства от бюджетни предприятия)</value>
+  </data>
+  <data name="CoFinancingNonBudgetAmountField" xml:space="preserve">
+    <value>Съфинансиране от бенефициента/партньорите (средства, които не са от бюджетни предприятия)</value>
+  </data>
+  <data name="EU_DS" xml:space="preserve">
+    <value>ЕС/ДС</value>
+  </data>
+  <data name="EU_IP" xml:space="preserve">
+    <value>ЕС/ИП</value>
+  </data>
+  <data name="EU_AS" xml:space="preserve">
+    <value>ЕС/AC</value>
+  </data>
+  <data name="NF_DS" xml:space="preserve">
+    <value>НФ/ДС</value>
+  </data>
+  <data name="NF_IP" xml:space="preserve">
+    <value>НФ/ИП</value>
+  </data>
+  <data name="NF_AS" xml:space="preserve">
+    <value>НФ/AC</value>
+  </data>
+  <data name="Total_DS" xml:space="preserve">
+    <value>Общо/ДС</value>
+  </data>
+  <data name="Total_IP" xml:space="preserve">
+    <value>Общо/ИП</value>
+  </data>
+  <data name="Total_AS" xml:space="preserve">
+    <value>Общо/AC</value>
+  </data>
+  <data name="SF_DS" xml:space="preserve">
+    <value>СФ/ДС</value>
+  </data>
+  <data name="SF_IP" xml:space="preserve">
+    <value>СФ/ИП</value>
+  </data>
+  <data name="SF_AS" xml:space="preserve">
+    <value>СФ/AC</value>
+  </data>
+  <data name="TotalAmountDS" xml:space="preserve">
+    <value>Стойност/Сума/ДС</value>
+  </data>
+  <data name="TotalAmountIP" xml:space="preserve">
+    <value>Стойност/Сума/ИП</value>
+  </data>
+  <data name="TotalAmountAS" xml:space="preserve">
+    <value>Стойност/Сума/AC</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Дата на сключване на договор</value>
+  </data>
+  <data name="CompletionStatus" xml:space="preserve">
+    <value>Статус на изпълнение</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Приложна област</value>
+  </data>
+  <data name="MAPreliminaryControl" xml:space="preserve">
+    <value>Процедурата е преминала през предварителен контрол от УО</value>
+  </data>
+  <data name="PPAPreliminaryControl" xml:space="preserve">
+    <value>Процедурата е преминала през предварителен контрол от АОП</value>
+  </data>
+  <data name="PPANumber" xml:space="preserve">
+    <value>Уникален номер от регистъра на АОП за процедури проведени по ЗОП</value>
+  </data>
+  <data name="ExpectedAmount" xml:space="preserve">
+    <value>Прогнозна стойност съгласно обявление</value>
+  </data>
+  <data name="NoticeDate" xml:space="preserve">
+    <value>Дата на обявление на процедура за външно възлагане</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Сключен договор</value>
+  </data>
+  <data name="ShortTemplateMaxProcurementPlans" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} процедури за избор на изпълнител и сключени договори.</value>
+  </data>
+  <data name="ViewTemplateMaxProcurementPlans" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} процедури за избор на изпълнител и сключени договори в секция „{1}”.</value>
+  </data>
+  <data name="SectionProcurementPlans" xml:space="preserve">
+    <value>Процедури за избор на изпълнител и сключени договори</value>
+  </data>
+  <data name="ShortTemplateMaxContractors" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} изпълнители.</value>
+  </data>
+  <data name="ViewTemplateMaxContractors" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} изпълнители в секция „{1}”.</value>
+  </data>
+  <data name="SectionContractors" xml:space="preserve">
+    <value>Юридически/Физически лица</value>
+  </data>
+  <data name="ShortTemplateMaxContractContractors" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} договори с изпълнители.</value>
+  </data>
+  <data name="ViewTemplateMaxContractContractors" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} договори с изпълнители в секция „{1}”.</value>
+  </data>
+  <data name="SectionAgreementsWithContractors" xml:space="preserve">
+    <value>Договори с изпълнители</value>
+  </data>
+  <data name="ContractorName" xml:space="preserve">
+    <value>Пълно наименование</value>
+  </data>
+  <data name="ContractorNameEn" xml:space="preserve">
+    <value>Пълно наименование на английски език</value>
+  </data>
+  <data name="ContractorAddress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="ParticipantName" xml:space="preserve">
+    <value>Пълно наименование на участника</value>
+  </data>
+  <data name="ParticipantNameEn" xml:space="preserve">
+    <value>Пълно наименование на английски език на участника</value>
+  </data>
+  <data name="SignDate" xml:space="preserve">
+    <value>Дата на сключване на договор</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер на договора</value>
+  </data>
+  <data name="EUAmount" xml:space="preserve">
+    <value>Финансиране от ЕС</value>
+  </data>
+  <data name="NationalAmount" xml:space="preserve">
+    <value>Национално финансиране</value>
+  </data>
+  <data name="SelfAmount" xml:space="preserve">
+    <value>Собствено съфинансиране</value>
+  </data>
+  <data name="ContractTotalAmount" xml:space="preserve">
+    <value>Обща стойност</value>
+  </data>
+  <data name="BudgetDifference" xml:space="preserve">
+    <value>Разлика от одобрения бюджет</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Начална дата за изпълнение</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Крайна дата за изпълнение</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="ContractActivity" xml:space="preserve">
+    <value>Дейност</value>
+  </data>
+  <data name="BudgetDetail" xml:space="preserve">
+    <value>Ред от бюджета</value>
+  </data>
+  <data name="ViewTemplateStartEndDates" xml:space="preserve">
+    <value>Датата в полето „{0}” трябва да бъде преди датата в полето „{1}” в секция „{2}”.</value>
+  </data>
+  <data name="ContractContractorDependancy" xml:space="preserve">
+    <value>Изпълнителят с номер „{0}” е анулиран и не може да бъде посочeн в секция „{1}”.</value>
+  </data>
+  <data name="ContractPlanDependency" xml:space="preserve">
+    <value>Договорът с изпълнител „{0}” е анулиран и не може да бъде посочен в секци „{1}”.</value>
+  </data>
+  <data name="ShortTemplateUniquePairsRequired" xml:space="preserve">
+    <value>Таблицата трябва да съдържа уникални записи за всеки ред.</value>
+  </data>
+  <data name="ViewTemplateUniquePairsRequired" xml:space="preserve">
+    <value>Таблицата „Списък от дейности по бюджетни редове” в секция „{0}” трябва да съдържа уникални записи за всеки ред.</value>
+  </data>
+  <data name="ShortTemplateContractActivityCanceled" xml:space="preserve">
+    <value>Дейността е анулирана и не може да бъде избирана.</value>
+  </data>
+  <data name="ViewTemplateContractActivityCanceled" xml:space="preserve">
+    <value>Дейността „{0}” в списъка от дейности по бюджетни редове в секция „{1}” е анулирана и не може да бъде избирана.</value>
+  </data>
+  <data name="ShortTemplateBudgetDetailCanceled" xml:space="preserve">
+    <value>Редът от бюджета е анулиран и не може да бъде избиран.</value>
+  </data>
+  <data name="ViewTemplateBudgetDetailCanceled" xml:space="preserve">
+    <value>Редът от бюджета „{0}” в списъка от дейности по бюджетни редове в секция „{1}” е анулиран и не може да бъде избиран.</value>
+  </data>
+  <data name="BFPContractBasicDataName" xml:space="preserve">
+    <value>Наименование на проекта/информацията</value>
+  </data>
+  <data name="BFPContractBasicDataNameEn" xml:space="preserve">
+    <value>Наименование на проекта/информацията на английски език</value>
+  </data>
+  <data name="BFPContractBasicDataDescription" xml:space="preserve">
+    <value>Кратко описание на проекта/информацията</value>
+  </data>
+  <data name="BFPContractBasicDataDescriptionEn" xml:space="preserve">
+    <value>Кратко описание на проекта/информацията на английски език</value>
+  </data>
+  <data name="BFPContractBasicDataPurpose" xml:space="preserve">
+    <value>Цел/и на проекта/информацията</value>
+  </data>
+  <data name="BFPContractBasicDataBankAccount" xml:space="preserve">
+    <value>Банкова сметка</value>
+  </data>
+  <data name="BFPContractContractRequestedFundingAmount" xml:space="preserve">
+    <value>Безвъзмездна финансова помощ/Финансов инструмент</value>
+  </data>
+  <data name="BFPContractContractTotalProjectCost" xml:space="preserve">
+    <value>Обща стойност на проекта/продукта</value>
+  </data>
+  <data name="SignedContracts" xml:space="preserve">
+    <value>Електронно подписан договор/споразумение</value>
+  </data>
+  <data name="SectionDeclaration" xml:space="preserve">
+    <value>Декларация</value>
+  </data>
+  <data name="PaymentStartDate" xml:space="preserve">
+    <value>Начална дата</value>
+  </data>
+  <data name="PaymentEndDate" xml:space="preserve">
+    <value>Крайна дата</value>
+  </data>
+  <data name="PaymentTotalAmount" xml:space="preserve">
+    <value>Сума на искането за плащането</value>
+  </data>
+  <data name="AdditionalIncome" xml:space="preserve">
+    <value>Допълнителни нетни приходи, които не са заложени в договора</value>
+  </data>
+  <data name="TotalAmountWithoutIncome" xml:space="preserve">
+    <value>Стойност на исканите средства за плащане без допълнителните нетни приходи</value>
+  </data>
+  <data name="OtherRegistration" xml:space="preserve">
+    <value>Друга регистрация</value>
+  </data>
+  <data name="BeneficiaryRegistrationVAT" xml:space="preserve">
+    <value>Регистрация на бенефициента по ЗДДС</value>
+  </data>
+  <data name="BankAccount" xml:space="preserve">
+    <value>Банкова сметка</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Първо име</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Бащино име</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="TextPt25" xml:space="preserve">
+    <value>Текст, съгласно т. 25</value>
+  </data>
+  <data name="TextPt3" xml:space="preserve">
+    <value>Текст, съгласно т. 3</value>
+  </data>
+  <data name="SectionGeneralInformation" xml:space="preserve">
+    <value>Общи данни</value>
+  </data>
+  <data name="TechReportStartDate" xml:space="preserve">
+    <value>Начална дата</value>
+  </data>
+  <data name="TechReportEndDate" xml:space="preserve">
+    <value>Крайна дата</value>
+  </data>
+  <data name="PreparerEmail" xml:space="preserve">
+    <value>Електронен адрес</value>
+  </data>
+  <data name="PreparerName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="PreparerPhone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="PreparerPosition" xml:space="preserve">
+    <value>Длъжност</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Тип на отчета</value>
+  </data>
+  <data name="SectionActivities" xml:space="preserve">
+    <value>Изпълнение по дейности</value>
+  </data>
+  <data name="ActivityActualEndDate" xml:space="preserve">
+    <value>Актуална крайна дата</value>
+  </data>
+  <data name="ActivityActualStartDate" xml:space="preserve">
+    <value>Актуална начална дата</value>
+  </data>
+  <data name="ActivityCumulativeResult" xml:space="preserve">
+    <value>Постигнати резултати с натрупване</value>
+  </data>
+  <data name="ActivityDelayReason" xml:space="preserve">
+    <value>Причини за отлагане, забавяне или неизпълнение</value>
+  </data>
+  <data name="ActivityExecutionDescription" xml:space="preserve">
+    <value>Описание на изпълнението за периода на отчитане</value>
+  </data>
+  <data name="ActivityMonthsDuration" xml:space="preserve">
+    <value>Актуална продължителност в месеци</value>
+  </data>
+  <data name="ActivityPeriodResult" xml:space="preserve">
+    <value>Постигнати резултати за периода на отчитане</value>
+  </data>
+  <data name="ActivityStatus" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="IndicatorComment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="IndicatorCumulativeAmount" xml:space="preserve">
+    <value>Отчетена стойност с натрупване</value>
+  </data>
+  <data name="IndicatorPeriodAmount" xml:space="preserve">
+    <value>Отчетена стойност за периода на отчета</value>
+  </data>
+  <data name="IndicatorResidueAmount" xml:space="preserve">
+    <value>Остатък / Отклонение спрямо зададеното в Договора</value>
+  </data>
+  <data name="SectionBeneficiarySiteInspections" xml:space="preserve">
+    <value>Проверки на място от бенефициента</value>
+  </data>
+  <data name="BSICheckSubject" xml:space="preserve">
+    <value>Проверяван изпълнител/обект</value>
+  </data>
+  <data name="BSIComment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="BSIEndDate" xml:space="preserve">
+    <value>Крайна дата за изпълнение</value>
+  </data>
+  <data name="BSIKeyRecommendations" xml:space="preserve">
+    <value>Ключови констатации/препоръки</value>
+  </data>
+  <data name="BSINumber" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="BSIRange" xml:space="preserve">
+    <value>Обхват</value>
+  </data>
+  <data name="BSIRecommendationsFulfilled" xml:space="preserve">
+    <value>Изпълнени ли са препоръките</value>
+  </data>
+  <data name="BSIStartDate" xml:space="preserve">
+    <value>Начална дата за изпълнение</value>
+  </data>
+  <data name="SectionAudits" xml:space="preserve">
+    <value>Одити</value>
+  </data>
+  <data name="AuditeeType" xml:space="preserve">
+    <value>Вид на одитирания обект</value>
+  </data>
+  <data name="AuditComment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="AuditFinalReportDate" xml:space="preserve">
+    <value>Дата на окончателния доклад</value>
+  </data>
+  <data name="AuditFinalReportNumber" xml:space="preserve">
+    <value>Номер на окончателния доклад</value>
+  </data>
+  <data name="AuditInspectionEndDate" xml:space="preserve">
+    <value>Крайна дата на проверката</value>
+  </data>
+  <data name="AuditInspectionStartDate" xml:space="preserve">
+    <value>Начална дата на проверката</value>
+  </data>
+  <data name="AuditInstitution" xml:space="preserve">
+    <value>Институция, извършваща проверката на място/одита/инспекцията</value>
+  </data>
+  <data name="AuditKeyFindings" xml:space="preserve">
+    <value>Ключови констатации</value>
+  </data>
+  <data name="AuditKind" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="AuditPreviousReportDate" xml:space="preserve">
+    <value>Дата на предходен доклад</value>
+  </data>
+  <data name="AuditPreviousReportNumber" xml:space="preserve">
+    <value>Номер на предходен доклад</value>
+  </data>
+  <data name="AuditRange" xml:space="preserve">
+    <value>Обхват</value>
+  </data>
+  <data name="AuditRecommendations" xml:space="preserve">
+    <value>Препоръки</value>
+  </data>
+  <data name="AuditRecommendationsFulfilled" xml:space="preserve">
+    <value>Изпълнени ли са препоръките</value>
+  </data>
+  <data name="AuditType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="TeamMemberActivity" xml:space="preserve">
+    <value>Извършена дейност</value>
+  </data>
+  <data name="TeamMemberCommitmentType" xml:space="preserve">
+    <value>Тип на ангажимента</value>
+  </data>
+  <data name="TeamMemberDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="TeamMemberHours" xml:space="preserve">
+    <value>Отработени часове</value>
+  </data>
+  <data name="TeamMemberName" xml:space="preserve">
+    <value>Име по документ за самоличност</value>
+  </data>
+  <data name="TeamMemberPosition" xml:space="preserve">
+    <value>Позиция по проекта/споразумението</value>
+  </data>
+  <data name="TeamMemberResult" xml:space="preserve">
+    <value>Конкретни резултати</value>
+  </data>
+  <data name="SectionInventoryDocuments" xml:space="preserve">
+    <value>Опис на документи</value>
+  </data>
+  <data name="SectionCostSupportingDocuments" xml:space="preserve">
+    <value>Опис - документи</value>
+  </data>
+  <data name="CostSupportType" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="CostSupportDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="CostSupportNumber" xml:space="preserve">
+    <value>Уникален номер</value>
+  </data>
+  <data name="CostSupportDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="CostSupportPaymentDate" xml:space="preserve">
+    <value>Дата на извършване на плащането</value>
+  </data>
+  <data name="CostSupportContractContractor" xml:space="preserve">
+    <value>Договор за изпълнение/доставчик</value>
+  </data>
+  <data name="CostSupportGrandAmount" xml:space="preserve">
+    <value>БФП/ФИ</value>
+  </data>
+  <data name="CostSupportSelfAmount" xml:space="preserve">
+    <value>Собствено съфинансиране</value>
+  </data>
+  <data name="CostSupportCrossFinancing" xml:space="preserve">
+    <value>Кръстосано съфинансиране</value>
+  </data>
+  <data name="CostSupportTotalAmount" xml:space="preserve">
+    <value>Обща сума</value>
+  </data>
+  <data name="CostSupportUnitDefinition" xml:space="preserve">
+    <value>Определение за единица, съгласно стандартните таблици</value>
+  </data>
+  <data name="CostSupportProducedUnitsCount" xml:space="preserve">
+    <value>Брой произведени единици</value>
+  </data>
+  <data name="CostSupportUnitCost" xml:space="preserve">
+    <value>Разход за единица</value>
+  </data>
+  <data name="BFPStartDate" xml:space="preserve">
+    <value>Дата на стартиране</value>
+  </data>
+  <data name="BFPCompletionDate" xml:space="preserve">
+    <value>Дата на приключване</value>
+  </data>
+  <data name="FinanceReportAmount" xml:space="preserve">
+    <value>Обща стойност на отчетените разходи съгласно финансовия отчет</value>
+  </data>
+  <data name="FinanceReportAmountWithoutIncome" xml:space="preserve">
+    <value>Стойност на исканите средства за плащане без допълнителните нетни приходи</value>
+  </data>
+  <data name="InternetAddress" xml:space="preserve">
+    <value>Интернет адрес</value>
+  </data>
+  <data name="PredictiveAmount" xml:space="preserve">
+    <value>Прогнозна стойност</value>
+  </data>
+  <data name="ProcedureObject" xml:space="preserve">
+    <value>Обект на процедурата</value>
+  </data>
+  <data name="AmountFinancedProject" xml:space="preserve">
+    <value>Сума на договора, финансирана по проекта (ако ДДС-то се възстановява, сумата е без ДДС, ако не, сумата е с ДДС)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="CurrentAnnexTotalAmount" xml:space="preserve">
+    <value>Обща стойност на актуалния анекс</value>
+  </data>
+  <data name="NumberAnnexes" xml:space="preserve">
+    <value>Брой анекси към договор</value>
+  </data>
+  <data name="RepresentativeIDNumber" xml:space="preserve">
+    <value>ЕГН/ЛНЧ</value>
+  </data>
+  <data name="RepresentativeNames" xml:space="preserve">
+    <value>Имена</value>
+  </data>
+  <data name="SubcontractorMemberContractAmount" xml:space="preserve">
+    <value>Стойност</value>
+  </data>
+  <data name="SubcontractorMemberContractDate" xml:space="preserve">
+    <value>Дата на сключване</value>
+  </data>
+  <data name="SubcontractorMemberContractNumber" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="SubcontractorMemberName" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="DifferentiatedPositionName" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="SubmittedOffersCount" xml:space="preserve">
+    <value>Брой подадени оферти</value>
+  </data>
+  <data name="RankedOffersCount" xml:space="preserve">
+    <value>Брой класирани оферти</value>
+  </data>
+  <data name="DifferentiatedPositionComment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="ContractContractor" xml:space="preserve">
+    <value>Сключен договор</value>
+  </data>
+  <data name="SectionSpendingPlan" xml:space="preserve">
+    <value>План за разходване на средствата</value>
+  </data>
+  <data name="ShortTemplateEqualValues" xml:space="preserve">
+    <value>Стойността в полето „{0}” трябва да бъде равна на стойността в полето „{1}”</value>
+  </data>
+  <data name="ViewTemplateEqualValue" xml:space="preserve">
+    <value>Стойността за „{0}” в полето „{1}” от секция „{2}” трябва да бъде равна на стойността в полето „{3}” от същата секция</value>
+  </data>
+  <data name="ShortTemplateQuaterSum" xml:space="preserve">
+    <value>Стойността в полето трябва да бъде равна на сумата от стойностите във всички полета от разпределението по тримесечия</value>
+  </data>
+  <data name="ViewTemplateQuaterSum" xml:space="preserve">
+    <value>Стойността за „{0}” в полето „{1}” от секция „{2}” трябва да бъде равна на сумата от стойностите във всички полета от разпределението по тримесечия</value>
+  </data>
+  <data name="SpendingPlanTotalAmount" xml:space="preserve">
+    <value>Обща стойност на разходите</value>
+  </data>
+  <data name="SpendingPlanTotalCurrentDocument" xml:space="preserve">
+    <value>Общо за текущия документ</value>
+  </data>
+  <data name="ShortTemplateDifference" xml:space="preserve">
+    <value>Стойността в полето трябва да е равна на разликата от стойностите в полетата „{0}” и „{1}”</value>
+  </data>
+  <data name="ViewTemplateDifference" xml:space="preserve">
+    <value>Стойността в полето „{0}” от секция „{1}” трябва да е равна на разликата от стойностите в полетата „{2}” и „{3}” в същата секция</value>
+  </data>
+  <data name="SubcontractorMembersTable" xml:space="preserve">
+    <value>Подизпълнители или членове на обединението</value>
+  </data>
+  <data name="ViewTemplateRequiredRowTableSection" xml:space="preserve">
+    <value>Полето „{0}” от ред „{1}” в таблица "{2}" в секция „{3}” трябва да е попълнено.</value>
+  </data>
+  <data name="SectionPackageDocuments" xml:space="preserve">
+    <value>Пакети на офертата</value>
+  </data>
+  <data name="TechnicalReportTeamMemberUin" xml:space="preserve">
+    <value>ЕГН/ Чуждестранно лице</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Идентификатор</value>
+  </data>
+  <data name="OffersDeadlineDate" xml:space="preserve">
+    <value>Крайна дата за подаване на оферти</value>
+  </data>
+  <data name="ContractAmountWithoutVAT" xml:space="preserve">
+    <value>Сума на договора, финансирана по проекта без ДДС</value>
+  </data>
+  <data name="TotalAmountExcludingVAT" xml:space="preserve">
+    <value>Обща сума на договора без ДДС</value>
+  </data>
+  <data name="TotalFundedValue" xml:space="preserve">
+    <value>Обща стойност на договора, финансирана по проекта</value>
+  </data>
+  <data name="VATAmountIfEligible" xml:space="preserve">
+    <value>Сума на ДДС, по договора, финансирана по проекта, ако е допустим разход</value>
+  </data>
+  <data name="ViewTemplateSmallerEqualNumberLong" xml:space="preserve">
+    <value>Стойността в полето „{0}” от секция „{1}” трябва да бъде по-малка или равна на стойността в полето „{2}” от същата секция.</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="SectionIncomes" xml:space="preserve">
+    <value>Приходи</value>
+  </data>
+  <data name="IncomeType" xml:space="preserve">
+    <value>Тип на прихода</value>
+  </data>
+  <data name="IncomeAmount" xml:space="preserve">
+    <value>Сума</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesDescription" xml:space="preserve">
+    <value>Кратко описание на проекта</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesDescriptionEN" xml:space="preserve">
+    <value>Кратко описание на проекта на английски език</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsAssignedDeMinimisAid" xml:space="preserve">
+    <value>Проектът/ информацията подлежи на режим на минимални помощи</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsIncludesPublicPrivatePartnership" xml:space="preserve">
+    <value>Проектът/ информацията включва публично-частно партньорство</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsIncludesSupportFromIYE" xml:space="preserve">
+    <value>Проектът/ информацията включва подкрепа от Инициатива за младежка заетост</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsJointActionPlan" xml:space="preserve">
+    <value>Проектът/ информацията е съвместен план за действие</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsSubjectToStateAidRegime" xml:space="preserve">
+    <value>Проектът/ информацията подлежи на режим на държавна помощ</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsUsesFinancialInstruments" xml:space="preserve">
+    <value>Проектът/ информацията използва  финансови инструменти/</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesName" xml:space="preserve">
+    <value>Наименование на проекта</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesNameEN" xml:space="preserve">
+    <value>Наименование на проекта на английски език</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesPurpose" xml:space="preserve">
+    <value>Цел/и на проекта</value>
+  </data>
+  <data name="FinancialIntermediariesBFP" xml:space="preserve">
+    <value>ФИ</value>
+  </data>
+  <data name="FinancialIntermediariesExpectedRevenue" xml:space="preserve">
+    <value>Очаквани приходи от проекта/продукта</value>
+  </data>
+  <data name="FinancialIntermediariesIneligibleCosts" xml:space="preserve">
+    <value>Недопустими разходи, необходими за изпълнението на проекта/продукта (когато е приложимо)</value>
+  </data>
+  <data name="FinancialIntermediariesRatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Съотношение Финансов инструмент към Общо допустими разходи</value>
+  </data>
+  <data name="FinancialIntermediariesRequestedFundingAmount" xml:space="preserve">
+    <value>Искано финансиране (Финансов инструмент)</value>
+  </data>
+  <data name="FinancialIntermediariesTotalProjectCost" xml:space="preserve">
+    <value>Обща стойност на проекта</value>
+  </data>
+  <data name="ExpectedLeverageLoanAmount" xml:space="preserve">
+    <value>Очакван лостов ефект за заем/гаранция/дялови или квазидялови инвестиции/друг финансов продукт</value>
+  </data>
+  <data name="ProductKind" xml:space="preserve">
+    <value>Вид продукт</value>
+  </data>
+  <data name="FinancialIntermediariesSectionAdditionalInformation" xml:space="preserve">
+    <value>Допълнителна информация необходима за оценка на проекта</value>
+  </data>
+  <data name="BFPIsVatEligible" xml:space="preserve">
+    <value>ДДС е допустим разход по проекта/споразумението</value>
+  </data>
+  <data name="BFPAmountType" xml:space="preserve">
+    <value>Вид на проекта/споразумението</value>
+  </data>
+  <data name="SectionImplementationPlanBFP" xml:space="preserve">
+    <value>Дейности</value>
+  </data>
+  <data name="BFPProjectPosition" xml:space="preserve">
+    <value>Позиция по проекта/споразумението</value>
+  </data>
+  <data name="BFPIneligibleCosts" xml:space="preserve">
+    <value>Недопустими разходи, необходими за изпълнението на проекта/продукта (когато е приложимо)</value>
+  </data>
+  <data name="SectionFinanceInstrumentsReport" xml:space="preserve">
+    <value>Отчет по финансовия инструмент</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Тип документ</value>
+  </data>
+  <data name="BudgetItemsDuplicated" xml:space="preserve">
+    <value>В секция „Опис - документи” е установено недопустимо дублиране на Уникален номер: „{0}”, Дата: „{1}”, Издател на РОД: „{2}”, Ред от бюджета: „{3}”, Дейност: „{4}” и Обща сума: {5}.</value>
+  </data>
+  <data name="ShortBudgetItemsDuplicated" xml:space="preserve">
+    <value>В секция „Опис - документи” е установено недопустимо дублиране.</value>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Тип на искането за плащане</value>
+  </data>
+  <data name="ContractReportHasAdvanceVerificationPayment" xml:space="preserve">
+    <value>Вече съществува искане за плащане от тип 'Авансово, подлежащо на верификация съгласно чл. 131 от Регламент ЕС 1303/2013' към този договор в друг пакет отчетни документи със статус 'Приет'.</value>
+  </data>
+  <data name="ShortTemplateDocumentUploadNotAllowed" xml:space="preserve">
+    <value>Не може да качвате нов файл към секцията</value>
+  </data>
+  <data name="ViewTemplateDocumentUploadNotAllowed" xml:space="preserve">
+    <value>Не може да качвате нови документи в секция „{0}” в случай, че е избран за процедура нормативен aкт тип „{1}”.</value>
+  </data>
+  <data name="SectionQuestions" xml:space="preserve">
+    <value>Въпроси</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneQuestion" xml:space="preserve">
+    <value>Трябва да бъде добавен поне един въпрос към група.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneGroup" xml:space="preserve">
+    <value>Трябва да бъде добавенa поне една група в секция „{0}”.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Потребител</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneUser" xml:space="preserve">
+    <value>Трябва да бъде добавен поне един потребител в секция „{0}”.</value>
+  </data>
+  <data name="AdvancePaymentWithSelfAmountNotAllowed" xml:space="preserve">
+    <value>Не се позволява покриването на сертифицирано авансово плащане по чл.131(4) от Регламент 1303/2013 да се извършва с верифицирани разходи с източник „собствено съфинансиране“ в секция „{0}”.</value>
+  </data>
+  <data name="CostSupportingDocumentCommonError" xml:space="preserve">
+    <value>За РОД с Уникален номер: {0} от Дата: {1} и Издател на РОД: {2} има допуснати грешки при попълване на данните във формуляра: </value>
+  </data>
+  <data name="ShortViewTemplateNoApplicableQuestionsAdded" xml:space="preserve">
+    <value>Потребителят няма добавени приложими въпроси.</value>
+  </data>
+  <data name="ViewTemplateNoApplicableQuestionsAdded" xml:space="preserve">
+    <value>Потребител с роля „{0}” няма добавени приложими въпроси.</value>
+  </data>
+  <data name="ViewCheckSheetQuestionNotAnswered" xml:space="preserve">
+    <value>Не е попълнен отговор на въпрос {0}.{1}.</value>
+  </data>
+  <data name="ShortTemplateMaxContractDirections" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} позиции за направления.</value>
+  </data>
+  <data name="ViewTemplateMaxContractDirections" xml:space="preserve">
+    <value>Достигнахте максимално позволения брой от {0} направления в секция „{1}”.</value>
+  </data>
+  <data name="SectionDirection" xml:space="preserve">
+    <value>Направления</value>
+  </data>
+  <data name="DirectionName" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="ShortTemplateQuestionEndingDateInvalid" xml:space="preserve">
+    <value>Невалиден краен срок за отговор.</value>
+  </data>
+  <data name="ViewTemplateQuestionEndingDateInvalid" xml:space="preserve">
+    <value>Крайният срок за отговор на въпроса трябва да е по голям от текущата дата.</value>
+  </data>
+  <data name="ViewTemplateDirections" xml:space="preserve">
+    <value>Липсва информация за направления</value>
+  </data>
+  <data name="ViewTemplateDirectionsMissmatch" xml:space="preserve">
+    <value>Полето "Направление" в секция "Бюджет" съдържа недопустима стойност</value>
+  </data>
+  <data name="DeclarationApproval" xml:space="preserve">
+    <value>Потвърждавам декларираната информация</value>
+  </data>
+  <data name="SectionProjectDeclarations" xml:space="preserve">
+    <value>Е-Декларации</value>
+  </data>
+  <data name="DeclarationApprovalDateFrom" xml:space="preserve">
+    <value>Потвърждавам декларираната информация / От дата</value>
+  </data>
+  <data name="DeclarationApprovalDateTo" xml:space="preserve">
+    <value>Потвърждавам декларираната информация / До дата</value>
+  </data>
+</root>

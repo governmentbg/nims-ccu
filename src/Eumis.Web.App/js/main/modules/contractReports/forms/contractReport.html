@@ -1,0 +1,15 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.orderNum" l10n-text="contractReports_contractReportForm_orderNum" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportStatuses'" mode="id" ng-disabled="true" ng-required="true" l10n-text="contractReports_contractReportForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.source" alias="'sources'" mode="id" ng-disabled="true" ng-required="true" l10n-text="contractReports_contractReportForm_source" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.reportType" alias="'contractReportTypes'" mode="id" params="{ contractId: contractId }" ng-required="true" l10n-text="contractReports_contractReportForm_reportType" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.submitDate"     ng-readonly="isCheck || form.$readonly" l10n-text="contractReports_contractReportForm_submitDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.checkedDate" ng-show="!isNew" ng-readonly="!isCheck || form.$readonly" l10n-text="contractReports_contractReportForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.statusNote" ng-if="model.statusNote" l10n-text="contractReports_contractReportForm_statusNote" ng-readonly="true" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

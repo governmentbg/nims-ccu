@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'projectDossierDocumentTypes'" mode="id" multiple="multiple" ng-model="filters.docTypes" l10n-text="projectDossier_documentsSearch_docTypes" class="col-sm-4 col-md-4"></sc-field>
+        <sc-field type="text" ng-model="filters.objDescription" l10n-text="projectDossier_documentsSearch_objDescription" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="filters.fileDescription" l10n-text="projectDossier_documentsSearch_fileDescription" class="col-sm-4 col-md-3"></sc-field>
+        <div class="labeless col-sm-2 pull-right">
+          <sc-button name="seachBtn" btn-click="search()" text="evalSessions_evalSessionsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="projectDossierDocuments" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column data="objectTypeDesc" title="projectDossier_documentsSearch_docTypes">
+      </sc-column>
+      <sc-column data="objectDescription" title="projectDossier_documentsSearch_objDescription">
+      </sc-column>
+      <sc-column sortable="false" title="projectDossier_documentsSearch_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token title="{{item.file.name}}" style="cursor: pointer;">
+          {{item.file.name}}
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+      <sc-column data="file.description" title="projectDossier_documentsSearch_fileDescription">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

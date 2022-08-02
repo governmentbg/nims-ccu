@@ -1,0 +1,15 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'notificationEvents'" ng-model="model.notificationEventId" nom-obj="notificationEventData" ng-required="true" l10n-text="notificationSetting_notificationSettingForm_event" class="col-sm-4 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'notificationScopes'" ng-model="model.scope" ng-if="notificationEventData && notificationEventData.code == 'True'" ng-required="true" l10n-text="notificationSetting_notificationSettingForm_scope" class="col-sm-4 col-md-6"></sc-field>
+  </div>  
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'notificationSettingProgrammes'" ng-model="model.programmeId" ng-if="model.scope != 'programme' && notificationEventData && notificationEventData.code == 'True'" ng-required="true" l10n-text="notificationSetting_notificationSettingForm_programme" class="col-sm-4 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="notificationSetting_notificationSettingForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" ng-readonly="true" l10n-text="notificationSetting_notificationSettingForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

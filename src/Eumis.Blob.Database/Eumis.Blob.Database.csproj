@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BE3B8F9-D8F3-4AC4-989A-EF219590BA13}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Blob.Database</RootNamespace>
+    <AssemblyName>Eumis.Blob.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateAllProd.sql" />
+    <Content Include="CreateAll.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\Create.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\CreateLinkedServer.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\CreateUsedBlobsDb.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\spCleanupBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\spUpdateUsedBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\vwUniqueUsedBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\2_SsisPackage\CreateSwitchTable.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\2_SsisPackage\SwitchPartition.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\3_BlobMaintenanceJobs\Create.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\3_BlobMaintenanceJobs\CreateLinkedServer.sql" />
+    <Content Include="Create\CreatePartitionSchemeProd.sql" />
+    <Content Include="Create\CreatePartitionScheme.sql" />
+    <Content Include="Create\CreatePartitionFunction.sql" />
+    <Content Include="Create\CreateDBProd.sql" />
+    <Content Include="Create\InsertTestData.sql" />
+    <Content Include="Create\Create.sql" />
+    <Content Include="Create\CreateDB.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\3_BlobMaintenanceJobs\jobDeleteBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\3_BlobMaintenanceJobs\jobMarkDeletedBlobContents.sql" />
+    <Content Include="Create\Procedures\spDeleteBlobContents.sql" />
+    <Content Include="Create\Procedures\spMarkDeletedBlobContents.sql" />
+    <Content Include="Create\Tables\BlobContents.sql" />
+    <Content Include="Create\Tools\DocumentationScript.sql" />
+    <Content Include="Create\Tools\spAddDailyJob.sql" />
+    <Content Include="Create\Tools\spDesc.sql" />
+    <Content Include="Create\Tools\sp_generate_inserts.sql" />
+    <Content Include="Create\Tools\Tool_ScriptDiagram2008.sql" />
+    <Content Include="Create\Views\vwBlobContentPartitions.sql" />
+    <Content Include="Insert\TestBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_NewSrv\1_SsisLogDb\Create.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_OldSrv\1_UsedBlobsDb\Create.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_OldSrv\1_UsedBlobsDb\CreateUsedBlobsDb.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_OldSrv\1_UsedBlobsDb\spUpdateUsedBlobContents.sql" />
+    <Content Include="ManualScripts\20171208_BlobsMove_OldSrv\1_UsedBlobsDb\vwUsedBlobContents.sql" />
+    <Content Include="ManualScripts\20190911_add_missing_blobs.sql" />
+    <Content Include="ManualScripts\20180108_blobs_update_script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CreateAllProd.bat" />
+    <None Include="CreateAll.bat" />
+    <None Include="CreateAll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateAll1.log</LastGenOutput>
+    </None>
+    <None Include="CreateAll1.log">
+      <DependentUpon>CreateAll.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\1_UsedBlobsDb\Create.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\2_SsisPackage\RunSyncPackage.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\2_SsisPackage\RunUploadPackage.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\2_SsisPackage\SwitchPartition.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\3_BlobMaintenanceJobs\Create.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_NewSrv\1_SsisLogDb\Create.ps1" />
+    <None Include="ManualScripts\20171208_BlobsMove_OldSrv\1_UsedBlobsDb\Create.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,19 @@
+<ng-form name="newSubTypeForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="expenseTypes_newSubTypeModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="expenseTypes_newSubTypeModal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="expenseTypes_newSubTypeModal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-expense-sub-type-data name="subTypeForm" ng-model="newExpenseSubType"></eumis-expense-sub-type-data>
+    </div>
+  </div>
+</ng-form>

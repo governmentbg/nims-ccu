@@ -1,0 +1,261 @@
+﻿@model Eumis.Public.Web.Models.Project.ProjectSearchVM
+@using Eumis.Public.Web.InfrastructureClasses
+
+@using PagedList
+@using PagedList.Mvc;
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+
+    if (HasTabs)
+    {
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_OPERATIONAL_PROGRAMS_ID, Texts.Global_OperationalPrograms));
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() { { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId } }), GetOP.TransName));
+    }
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Shared_Tabs_Projects)
+
+<div class="container">
+
+    @Html.Partial(MVC.Shared.Views._Title)
+    @Html.Partial(MVC.Shared.Views._Tabs, TabType.Project)
+
+    <div class="@(HasTabs ? "tab-content" : "page-content")">
+        <form method="post" class="form-with-sections">
+            @Html.ValidationSummary()
+
+            <h2 class="m-top-0">@Texts.Project_Search_Projects</h2>
+
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="form-group col-lg-3 col-sm-6">
+                    <label>@Texts.Project_Search_StartDateFrom</label>
+                    @Html.DropDownListFor(m => m.StFrom, Model.Years, Texts.Global_Placeholder, new { @class = "select2" })
+                </div>
+                <div class="form-group col-lg-3 col-sm-6">
+                    <label>@Texts.Project_Search_To</label>
+                    @Html.DropDownListFor(m => m.StTo, Model.Years, Texts.Global_Placeholder, new { @class = "select2" })
+                </div>
+
+                <div class="form-group col-lg-3 col-sm-6">
+                    <label>@Texts.Project_Search_EndDateFrom</label>
+                    @Html.DropDownListFor(m => m.EndFrom, Model.Years, Texts.Global_Placeholder, new { @class = "select2" })
+                </div>
+                <div class="form-group col-lg-3 col-sm-6">
+                    <label>@Texts.Project_Search_To</label>
+                    @Html.DropDownListFor(m => m.EndTo, Model.Years, Texts.Global_Placeholder, new { @class = "select2" })
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Program</label>
+                    @if (Model.IsProgrammeSelected)
+                    {
+                        @Html.TextBoxFor(m => m.Prog, new { id = "programme-ddl", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.Prog, new { id = "programme-ddl" })
+                    }
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_PriorityAxis</label>
+                    @Html.TextBoxFor(m => m.Prior, new { id = "priority-ddl" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Procedure</label>
+                    @Html.TextBoxFor(m => m.Proc, new { id = "procedure-ddl" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Beneficiary</label>
+                    @Html.TextBoxFor(m => m.Ben, new { id = "beneficiary-ddl" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Partner</label>
+                    @Html.TextBoxFor(m => m.Part, new { id = "partner-ddl" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Contractor</label>
+                    @Html.TextBoxFor(m => m.Con, new { id = "contractor-ddl" })
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_Uin</label>
+                    @Html.TextBoxFor(m => m.Uin)
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>@Texts.Project_Search_ProjectName</label>
+                    @Html.TextBoxFor(m => m.Name)
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        createSelect2('#programme-ddl', '/@Language/@OpId/@PrId/Project/GetProgramme', '/@Language//@OpId/@PrId/Project/GetProgrammes');
+                        createSelect2('#priority-ddl', '/@Language/@OpId/@PrId/Project/GetPriority', '/@Language//@OpId/@PrId/Project/GetPriorities', '#programme-ddl');
+                        createSelect2('#procedure-ddl', '/@Language//@OpId/@PrId/Project/GetProcedure', '/@Language//@OpId/@PrId/Project/GetProcedures', '#priority-ddl');
+                        createSelect2('#beneficiary-ddl', '/@Language//@OpId/@PrId/Project/GetBeneficiary', '/@Language//@OpId/@PrId/Project/GetBeneficiaries');
+                        createSelect2('#partner-ddl', '/@Language//@OpId/@PrId/Project/GetPartner', '/@Language//@OpId/@PrId/Project/GetPartners');
+                        createSelect2('#contractor-ddl', '/@Language//@OpId/@PrId/Project/GetContractor', '/@Language//@OpId/@PrId/Project/GetContractors');
+                    });
+                </script>
+
+                <div class="form-submit col-sm-12">
+                    <input type="submit" class="submit wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (870) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="table-wrapper">
+                            <table class="chart-info" style="table-layout: fixed">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Texts.Project_Search_TotalContractsCount</td>
+                                        <td>@Model.SummarizedSearchResult.TotalContractsCount</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Texts.Project_Search_TotalBFPAmount</td>
+                                        <td>@Html.DisplayFor(m => m.SummarizedSearchResult.TotalBFPAmount) @Texts.Global_Currency_BGN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Texts.Project_Search_TotalAmount</td>
+                                        <td>@Html.DisplayFor(m => m.SummarizedSearchResult.TotalAmount) @Texts.Global_Currency_BGN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Texts.Project_Search_TotalCompaniesCount</td>
+                                        <td>@Model.SummarizedSearchResult.TotalCompaniesCount</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="heading-with-export clearfix">
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.Project_Search_Beneficiary</th>
+                                <th>@Texts.Company_Index_Seat</th>
+                                <th>@Texts.Project_Search_Location</th>
+                                <th>@Texts.Company_Index_ProjectName</th>
+                                <th>@Texts.Company_Index_TotalAmount</th>
+                                <th>@Texts.Company_Index_BFP</th>
+                                <th>@Texts.Project_Search_FinancinBeneficiary</th>
+                                <th>@Texts.Global_Payed</th>
+                                <th>@Texts.Company_Index_Duration</th>
+                                <th>@Texts.Company_Index_BFPContractStatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var project in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@project.TransCompanyFullName</td>
+                                    <td>
+                                        @if (project.CompanyUinType == Eumis.Public.Domain.Entities.Umis.NonAggregates.UinType.PersonalBulstat)
+                                        {
+                                            @project.TransBeneficiarySeatCountry
+                                        }
+                                        else
+                                        {
+                                            @project.Seat
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (project.NutsFullPathNames != null && project.NutsFullPathNames.Count() > 0)
+                                        {
+                                            <ul style="padding-left:10px; margin:0px;">
+                                                @foreach (var location in project.TransNutsFullPathNames)
+                                                {
+                                                    <li>@location</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </td>
+                                    <td>@Html.ActionLink(project.TransName, MVC.Project.BasicData(Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(project.ContractId), project.IsHistoric), new { @class = "wait" })</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => project.ContractedTotalAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => project.ContractedBFPAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => project.ContractedSelfAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => project.PaidTotalAmount)</td>
+                                    <td class="sum-field">@project.MonthsDuration</td>
+                                    <td>@project.StatusDescription</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                                page => Url.Action(MVC.Project.ActionNames.Search, MVC.Project.Name
+                                    , new
+                                    {
+                                        stFrom = Request.QueryString["stFrom"],
+                                        stTo = Request.QueryString["stTo"],
+                                        endFrom = Request.QueryString["endFrom"],
+                                        endTo = Request.QueryString["endTo"],
+                                        prog = Request.QueryString["prog"],
+                                        prior = Request.QueryString["prior"],
+                                        proc = Request.QueryString["proc"],
+                                        ben = Request.QueryString["ben"],
+                                        part = Request.QueryString["part"],
+                                        con = Request.QueryString["con"],
+                                        showRes = true,
+                                        page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                                    })
+                                , new PagedListRenderOptions
+                                {
+                                    Display = PagedListDisplayMode.IfNeeded,
+                                    DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                                    LinkToNextPageFormat = ">",
+                                    LinkToPreviousPageFormat = "<"
+                                })
+                        </div>
+                    }
+                </div>
+
+                <h2>@Texts.Global_Note:</h2>
+                <div class="note">
+                    @Texts.Global_NoteUnderlined<br />
+                    @Texts.Global_NoteBGN<br />
+                    @Texts.Project_Search_ProjectCostNote<br />
+                    @Texts.Project_Search_ActuallyPaidAmountsNote
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

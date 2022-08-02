@@ -1,0 +1,35 @@
+﻿@model R_10041.Procurements
+
+@if (Model != null)
+{
+    int sectionNumber = 1;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Procurements.Contractors
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Contractors)
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Procurements.ContractContractors
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.ContractContractors)
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Procurements.ProcurementPlans
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.ProcurementPlans, MVC.Shared.Views.DisplayTemplates.ProcurementsPlans)
+    </section>
+
+    @Html.DisplayFor(m => m.Signature)
+}

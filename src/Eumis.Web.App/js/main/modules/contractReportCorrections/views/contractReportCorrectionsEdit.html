@@ -1,0 +1,20 @@
+<ng-form name="editContractReportCorrectionData" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportCorrections_editContractReportCorrection_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportCorrections_editContractReportCorrection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="status === 'draft'" ng-disabled="!$canDo('ContractReportCorrectionActions.Edit', contractReportCorrection.contractReportCorrectionId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportCorrections_editContractReportCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportCorrections_editContractReportCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-report-correction-data name="contractReportCorrectionForm" ng-model="contractReportCorrection" sc-form-params="{ approvedEdit: true }"></eumis-contract-report-correction-data>
+    </div>
+  </div>
+</ng-form>

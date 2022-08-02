@@ -1,0 +1,24 @@
+<div class="row">
+  <ul class="list-group col-sm-3">
+    <a class="list-group-item" ng-class="{ 'active': isActive('inbox') }" ui-sref="root.messages.inbox({ rf: Date.parse(Date()) })">
+      <strong l10n-text="messages_view_inbox"></strong>
+      <span class="badge">{{count.inbox}}</span>
+    </a>
+    <a class="list-group-item" ng-class="{ 'active': isActive('sent') }" ui-sref="root.messages.sent({ rf: Date.parse(Date()) })">
+      <strong l10n-text="messages_view_sent"></strong>
+      <span class="badge">{{count.sent}}</span>
+    </a>
+    <a class="list-group-item" ng-class="{ 'active': isActive('draft') }" ui-sref="root.messages.draft({ rf: Date.parse(Date()) })">
+      <strong l10n-text="messages_view_draft"></strong>
+      <span class="badge">{{count.draft}}</span>
+    </a>
+    <a class="list-group-item" ng-class="{ 'active': isActive('archive') }" ui-sref="root.messages.archive({ rf: Date.parse(Date()) })">
+      <strong l10n-text="messages_view_archive"></strong>
+      <span class="badge">{{count.archive}}</span>
+    </a>
+  </ul>
+  <div class="col-sm-9">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

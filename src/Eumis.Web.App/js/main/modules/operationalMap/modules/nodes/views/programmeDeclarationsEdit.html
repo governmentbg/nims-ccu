@@ -1,0 +1,81 @@
+﻿<ng-form name="editProgrammeDeclarationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmes_editProgrammeDeclaration_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="programmes_editProgrammeDeclaration_activate" class="btn btn-success btn-xs" ng-show="!editMode && !declaration.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)">
+        </sc-button>
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="programmes_editProgrammeDeclaration_deactivate" class="btn btn-danger btn-xs" ng-show="!editMode && declaration.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="programmes_editProgrammeDeclaration_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && declaration.isActive && !declaration.isReadonly"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="delete()" text="programmes_editProgrammeDeclaration_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && declaration.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_editProgrammeDeclaration_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_editProgrammeDeclaration_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !declaration.isActive}">
+      <eumis-programme-declaration name="programmeDeclarationForm" ng-model="declaration"></eumis-programme-declaration>
+
+      <div class="row" ng-if="declaration.fieldType === 'nomenclature'">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <sc-button name="newBtn" btn-sref="{ state: 'root.map.programmes.view.declarations.edit.items.new' }" text="programmes_editProgrammeDeclaration_items_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+            ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)">
+          </sc-button>
+          <sc-button name="uploadFileBtn" btn-click="loadItems()" text="programmes_editProgrammeDeclaration_items_loadItems"
+            ng-disabled="!$canDo('ProgrammeActions.Edit', declaration.programmeId)" class="btn btn-default btn-sm pull-left" icon="glyphicon-upload" style="margin-left: 3px;">
+          </sc-button>
+          <a type="button" href="templates/programme_declaration_nomenclature.xlsx" download="programme_declaration_nomenclature.xlsx" class="btn btn-default btn-sm pull-left" style="margin-left: 3px;">
+            <span class="glyphicon glyphicon-download"></span>
+            <span l10n-text="programmes_editProgrammeDeclaration_items_template"></span>
+          </a>
+          <sc-datatable items="declarationItems" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.isActive === false}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="viewBtn" btn-sref="{ state: 'root.map.programmes.view.declarations.edit.items.edit', params: { did: item.programmeDeclarationItemId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+            </sc-column>
+            <sc-column data="orderNum" title="programmes_editProgrammeDeclaration_items_orderNum" type="number">
+            </sc-column>
+            <sc-column data="content" title="programmes_editProgrammeDeclaration_items_content">
+            </sc-column>
+            <sc-column data="isActive" title="programmes_editProgrammeDeclaration_items_isActive" type="boolean">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+
+      <div class="row" ng-if="relatedProcedures.length > 0">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <div>
+            <h5 class="table-header table-header-first pull-left" l10n-text="programmes_editProgrammeDeclaration_relatedProcedures"></h5>
+          </div>
+          <sc-datatable items="relatedProcedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="viewBtn" btn-sref="{ state: 'root.procedures.view.allDocs.search', params: { id: item.procedureId } }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+            </sc-column>
+            <sc-column data="procedureCode" title="programmes_editProgrammeDeclaration_procedureCode">
+            </sc-column>
+            <sc-column data="procedureName" title="programmes_editProgrammeDeclaration_procedureName">
+            </sc-column>
+            <sc-column data="status" title="programmes_editProgrammeDeclaration_procedureStatus">
+            </sc-column>
+            <sc-column data="activationDate" title="programmes_editProgrammeDeclaration_procedureActivationDate" type="date">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

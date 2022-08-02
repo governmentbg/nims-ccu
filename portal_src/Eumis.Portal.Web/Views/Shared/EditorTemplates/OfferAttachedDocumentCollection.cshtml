@@ -1,0 +1,54 @@
+﻿@model R_10080.AttachedDocumentCollection
+
+<div class="table-wrapper" ng-controller="controllerAttachedDocuments">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr>
+                <th>@OfferAttachedDocument.Number</th>
+                <th>@OfferAttachedDocument.Name</th>
+                <th>@OfferAttachedDocument.FileName</th>
+                <th colspan="2">@OfferAttachedDocument.Signature</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr>
+                <td>
+                    <span class="filled-value">{{$index + 1}}</span>
+                </td>
+                <td style="width:40%;">
+                    <textarea rows="1" style="height:29px;" auto-grow ng-class="{'input-validation-error': !item.IsDescriptionValid}" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control"></textarea>
+                </td>
+                <td style="min-width:190px;">
+                    <sc-file path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent"
+                             resources="resourcesObject"
+                             url="{{ url }}"
+                             ng-model="item.AttachedDocumentContent">
+                    </sc-file>
+                </td>
+                <td style="min-width:240px;">
+                    <div ng-repeat="signature in item.SignatureContentCollection" class="signature-wrapper">
+                        <div style="max-width:200px; float:left;position:relative;">
+                            <sc-file path="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$index }}].SignatureContentCollection[{{ $index }}]"
+                                     resources="resourcesObject"
+                                     url="{{ url }}"
+                                     ng-model="signature">
+                            </sc-file>
+                        </div>
+                        <div style="max-width:30px; float:right;">
+                            <a class="delete-btn" confirm-click="delSignature(item, signature)" ng-show="item.SignatureContentCollection.length > 1"></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <a class="add-new-btn" style="margin-left:0;" ng-click="addSignature(item)" ng-show="$index == item.SignatureContentCollection.length-1"></a>
+                    </div>
+                </td>
+                <td style="min-width:102px;">
+                    <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a ng-class="{'input-validation-error': !hasValidCount}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+</div>

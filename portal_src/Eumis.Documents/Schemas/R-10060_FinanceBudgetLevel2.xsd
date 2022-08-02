@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10060" 
+	xmlns="http://ereg.egov.bg/segment/R-10060" 
+	
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:frbra="http://ereg.egov.bg/segment/R-10068"
+  xmlns:fbl="http://ereg.egov.bg/segment/R-10059"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10068" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10059" />
+
+  <xsd:complexType name="FinanceBudgetLevel2">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Ред от бюджета на финансов отчет на второ ниво</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="OrderNum" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="ProgrammePriorityCode" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AidMode" type="en:EnumNomenclature" minOccurs="0" />
+
+      <xsd:element name="FinanceBudgetLevel3" type="fbl:FinanceBudgetLevel3" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="Amounts" type="frbra:FinanceReportBudgetRowAmounts" minOccurs="0" />
+
+      <xsd:element name="EuPercent" type="xsd:decimal" minOccurs="0" />
+    </xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

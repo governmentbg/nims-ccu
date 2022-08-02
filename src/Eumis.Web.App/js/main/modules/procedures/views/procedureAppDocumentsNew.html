@@ -1,0 +1,18 @@
+﻿<ng-form name="newProcedureAppDocumentsForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_newProcedureAppDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_newProcedureAppDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-edit">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_newProcedureAppDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-procedure-app-document name="procedureAppDocumentFOrm" ng-model="appDocument" sc-form-params="{ isProgrammeIntroduced: true }"></eumis-procedure-app-document>
+    </div>
+  </div>
+</ng-form>

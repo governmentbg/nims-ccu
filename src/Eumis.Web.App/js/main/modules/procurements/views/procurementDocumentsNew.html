@@ -1,0 +1,18 @@
+<ng-form name="newProcurementDocumentForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procurements_newProcurementDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procurements_newProcurementDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procurements_newProcurementDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-document name="documentForm" ng-model="procurementDocument" sc-form-params="{ urlTemplate: 'ProcurementFile' }"></eumis-document>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,23 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" params="{ procedureId: procedureId }" ng-disabled="editMode || mapNodeIndicatorType" ng-model="model.programmeId" mode="id" ng-required="true" l10n-text="procedures_procedureShareForm_programme" ng-change="model.sourceMapNodeId = model.programmeId" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-disabled="editMode" alias="'indicatorItemTypes'" ng-model="model.indicatorItemTypeId" mode="id" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_itemType" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_name" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-show="editMode" ng-model="model.nameAlt" ng-required="false" l10n-text="operationalMap_common_indicatorDataForm_nameAlt" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'measures'" ng-model="model.measureId" mode="id" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_measure" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.hasGenderDivision" mode="id" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_hasGenderDivision" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <div class="row" ng-if="!!procedureId">
+    <sc-field type="nomenclature" alias="'mapNodes'" ng-model="model.sourceMapNodeId" mode="id" ng-disabled="true" l10n-text="operationalMap_common_indicatorDataForm_sourceMapNode" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+</ng-form>

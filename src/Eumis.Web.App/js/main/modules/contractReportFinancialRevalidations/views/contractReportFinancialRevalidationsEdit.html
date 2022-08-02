@@ -1,0 +1,33 @@
+<ng-form name="editContractReportFinancialRevalidationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_title"></strong>
+
+      <div class="pull-right">
+        
+        <sc-button name="endedBtn" btn-click="changeStatus('ended')" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_ended" class="btn btn-default btn-xs"
+          ng-show="contractReportFinancialRevalidation.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.Edit', contractReportFinancialRevalidationId)"></sc-button>
+
+        <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_draft" class="btn btn-success btn-xs"
+          ng-show="contractReportFinancialRevalidation.status === 'ended' && !editMode" ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.Edit', contractReportFinancialRevalidationId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractReportFinancialRevalidation.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.Edit', contractReportFinancialRevalidationId)"></sc-button>
+        
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-show="contractReportFinancialRevalidation.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.Delete', contractReportFinancialRevalidationId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" 
+          ng-show="editMode"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportFinancialRevalidations_editContractReportFinancialRevalidation_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"
+          ng-show="editMode"></sc-button>
+
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-financial-revalidation name="contractReportFinancialRevalidationForm" ng-model="contractReportFinancialRevalidation"></eumis-contract-report-financial-revalidation>
+    </div>
+  </div>
+</ng-form>

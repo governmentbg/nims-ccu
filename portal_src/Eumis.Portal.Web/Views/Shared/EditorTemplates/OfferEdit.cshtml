@@ -1,0 +1,168 @@
+﻿@model Eumis.Portal.Web.Models.Offer.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    var resourcesObjectCompany = new
+    {
+        Search = Company.Search,
+        PleaseWait = Global.PleaseWait,
+        DataFilled = Company.DataFilled,
+        NoResult = Company.NoResult,
+        ValidationError = Company.ValidationError,
+
+        Uin = Company.Uin,
+        UinType = Company.UinType,
+        Name = string.Format("{0} {1}", Company.Name, SymbolsCount.Symbols200),
+        NameEN = string.Format("{0} {1}", Company.NameEN, SymbolsCount.Symbols200),
+        NameENTooltip = Company.NameENTooltip,
+        CompanyType = Company.CompanyType,
+        CompanyLegalType = Company.CompanyLegalType,
+        IsPrivateLegal = Company.IsPrivateLegal,
+        IsCountryLegal = Company.IsCountryLegal,
+        CompanySizeType = Company.CompanySizeType,
+        KidCodeOrganization = Company.KidCodeOrganization,
+        KidCodeProject = Company.KidCodeProject,
+        FinancialContribution = Company.FinancialContribution,
+        Seat = Company.Seat,
+        Management = Company.Management,
+        Correspondence = Company.Correspondence,
+        Email = Company.Email,
+        EmailTooltip = Company.EmailTooltip,
+        Phone1 = Company.Phone1,
+        Phone2 = Company.Phone2,
+        Fax = Company.Fax,
+        CompanyRepresentativePerson = string.Format("{0} {1}", Company.CompanyRepresentativePerson, SymbolsCount.Symbols100),
+        CompanyContactPerson = string.Format("{0} {1}", Company.CompanyContactPerson, SymbolsCount.Symbols100),
+        CompanyContactPersonPhone = Company.CompanyContactPersonPhone,
+        CompanyContactPersonEmail = Company.CompanyContactPersonEmail,
+        Country = Address.Country,
+        Settlement = Address.Settlement,
+        PostCode = Address.PostCode,
+        Street = string.Format("{0} {1}", Address.Street, SymbolsCount.Symbols300),
+        FullAddress = Address.FullAddress,
+        Copy = Address.Copy,
+        Captcha = Global.Captcha,
+        SymbolsCount = Global.SymbolsCount
+    };
+
+    var jsonResourcesObjectCompany = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectCompany);
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.YesNoNotApplicableNomenclature()).GetItems());
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.Offer = @(Html.Raw(jsonModel));
+
+        // Basic data:
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+        window._eumis_options.acceptances = @(Html.Raw(jsonAcceptances));
+
+        // Company
+        window._eumis_options.resourcesObjectCompany = @(Html.Raw(jsonResourcesObjectCompany));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerOffer'), ['moduleOffer']);
+            }, 100);
+        });
+    </script>
+
+    <div class="offer" id="containerOffer" ng-controller="controllerMainOffer">
+
+        @{ int sectionNumber = 1; }
+        <h2 data-section="@sectionNumber" class="section-heading" activation-name="offer" broadcast-name="offerActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Offer.BasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.BasicData != null && Model.BasicData.isLocked)
+            {
+                @Html.DisplayFor(m => m.BasicData)
+            }
+            else
+            {
+                @Html.DisplayFor(m => m.BasicData, MVC.Shared.Views.DisplayTemplates.OfferBasicDataReadonlyPart)
+                @Html.EditorFor(m => m.BasicData)
+            }
+        </section>
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++; }
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Offer.Candidate
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Candidate != null && Model.Candidate.isLocked)
+            {
+                @Html.DisplayFor(m => m.Candidate, MVC.Shared.Views.DisplayTemplates.OfferCandidate)
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Candidate, MVC.Shared.Views.EditorTemplates.OfferCandidate)
+            }
+
+            <div class="form-group col-md-4">
+                <label>@OfferBasicData.BeneficiaryRegistrationVAT</label>
+
+                @if (Model.BasicData != null && Model.BasicData.isLocked)
+                {
+                    @Html.DisplayFor(m => m.BasicData.BeneficiaryRegistrationVAT)
+                }
+                else
+                {
+                    <div>
+                        <nom-radio ng-model="Offer.BasicData.BeneficiaryRegistrationVAT"
+                                   path="@(Html.GetNameFor(m => m.BasicData.BeneficiaryRegistrationVAT))"
+                                   model-name="Description"
+                                   model-id="Value"
+                                   nom-items="acceptances">
+                        </nom-radio>
+                    </div>
+                }
+            </div>
+
+        </section>
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++; }
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Offer.PackageDocuments
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.AttachedDocuments != null && Model.AttachedDocuments.isLocked)
+            {
+                @Html.DisplayFor(m => m.AttachedDocuments)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.AttachedDocuments.id)
+                @Html.EditorFor(m => m.AttachedDocuments.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.OfferAttachedDocumentCollection)
+            }
+        </section>
+    </div>
+}

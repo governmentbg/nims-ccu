@@ -1,0 +1,13 @@
+<div>
+  <label class="title">{{infoText}}</label>
+  <sc-tabs tab-list="{
+      'actuallyPaidAmounts_tabs_view': 'root.actuallyPaidAmounts.view.basicData',
+      'actuallyPaidAmounts_tabs_paidAmount': 'root.actuallyPaidAmounts.view.paidAmount',
+      'actuallyPaidAmounts_tabs_documents':  'root.actuallyPaidAmounts.view.documents'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

@@ -1,0 +1,1194 @@
+﻿<ng-form name="physicalExecutionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'physicalExecutionTables'" mode="id" ng-model="filters.table" ng-required="true" l10n-text="monitoring_physicalExecutionReport_table" class="col-sm-3 col-md-2"></sc-field>
+          <sc-field type="nomenclature" alias="'programmes'" mode="id" ng-model="filters.programmeId" ng-required="true" l10n-text="monitoring_physicalExecutionReport_programme" class="col-sm-7 col-md-6"></sc-field>
+          <div class="labeless col-sm-2 col-md-4">
+            <sc-button name="searchBtn" btn-click="search()" text="monitoring_physicalExecutionReport_search" class="btn btn-primary btn-sm pull-right" icon="glyphicon-search">
+          </div>
+        </div>
+
+        <div class="row" ng-if="['table2A', 'table2B', 'table4A', 'table4B'].indexOf(filters.table) !== -1">
+          <sc-field type="nomenclature" ng-show="filters.programmeId" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{programmeId: filters.programmeId}" l10n-text="procedures_proceduresSearch_programmePriority" class="col-sm-10 col-md-8"></sc-field>
+          <sc-field type="nomenclature" ng-show="filters.programmePriorityId" ng-model="filters.investmentPriorityId" alias="'investmentPriorities'" mode="id" params="{programmePriorityId: filters.programmePriorityId}" l10n-text="procedures_proceduresSearch_programmePriority" class="col-sm-10 col-md-8"></sc-field>
+        </div>
+
+        <div class="row" ng-if="filters.table === 'table5'">
+          <sc-field type="nomenclature" ng-show="filters.programmeId" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{programmeId: filters.programmeId}" l10n-text="procedures_proceduresSearch_programmePriority" class="col-sm-10 col-md-8"></sc-field>
+        </div>
+
+        <div class="row" ng-if="filters.table === 'table12'">
+          <sc-field type="text" ng-model="filters.projectNumber" l10n-text="monitoring_physicalExecutionReport_project" class="col-sm-5 col-md-4"></sc-field>
+        </div>
+
+        <div class="row" ng-if="filters.table === 'table13'">
+          <sc-field type="text" ng-model="filters.spd" l10n-text="monitoring_physicalExecutionReport_spd" class="col-sm-5 col-md-4"></sc-field>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <div class="row" ng-show="selectedTable === 'table1'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table1"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_specificTarget"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorMeasure"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_base"></th>
+                    <th rowspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_baseYear"></th>
+                    <th rowspan="2" colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="30" class="text-center" l10n-text="monitoring_physicalExecutionReport_yearly"></th>
+                  </tr>
+                  <tr>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.specificTarget}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.indicatorMeasure}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.baseTotalValue | money}}</td>
+                    <td>{{item.baseYear}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="40" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table2A'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table2a"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_commonIndicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_baseAndTargetMeasure"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_achievementsProportion"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.commonBaseIndicator}}</td>
+                    <td>{{item.measure}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                    <td>{{item.achievementsMenProportion === null ? null : item.achievementsMenProportion + '%'}}</td>
+                    <td>{{item.achievementsWomenProportion === null ? null : item.achievementsWomenProportion + '%'}}</td>
+                    <td>{{item.achievementsTotalProportion === null ? null : item.achievementsTotalProportion + '%'}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="47" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table2B'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table2b"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_targetMeasure"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_achievementsProportion"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.measure}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                    <td>{{item.achievementsMenProportion === null ? null : item.achievementsMenProportion + '%'}}</td>
+                    <td>{{item.achievementsWomenProportion === null ? null : item.achievementsWomenProportion + '%'}}</td>
+                    <td>{{item.achievementsTotalProportion === null ? null : item.achievementsTotalProportion + '%'}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="44" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table2C'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table2c"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorMeasure"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_baseAndTargetMeasure"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_achievementsProportion"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.indicatorMeasure}}</td>
+                    <td>{{item.measure}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                    <td>{{item.achievementsMenProportion === null ? null : item.achievementsMenProportion + '%'}}</td>
+                    <td>{{item.achievementsWomenProportion === null ? null : item.achievementsWomenProportion + '%'}}</td>
+                    <td>{{item.achievementsTotalProportion === null ? null : item.achievementsTotalProportion + '%'}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="47" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table3A'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table3a"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorMeasure"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.indicatorMeasure}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="44" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table3B'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;width:90%" l10n-text="monitoring_physicalExecutionReport_table3b"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-25px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <th class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                  <th class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                  <th class="text-center" l10n-text="monitoring_physicalExecutionReport_companyCount"></th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.cumulativeTotalValue}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table4A'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table4a"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_achievementsProportion"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                    <td>{{item.achievementsMenProportion === null ? null : item.achievementsMenProportion + '%'}}</td>
+                    <td>{{item.achievementsWomenProportion === null ? null : item.achievementsWomenProportion + '%'}}</td>
+                    <td>{{item.achievementsTotalProportion === null ? null : item.achievementsTotalProportion + '%'}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="45" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table4B'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table4b"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_investmentPriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorMeasure"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_target"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_cumulative"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_achievementsProportion"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.investmentPriority}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.indicatorMeasure}}</td>
+                    <td>{{item.targetMenValue | money}}</td>
+                    <td>{{item.targetWomenValue | money}}</td>
+                    <td>{{item.targetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                    <td>{{item.cumulativeMenValue | money}}</td>
+                    <td>{{item.cumulativeWomenValue | money}}</td>
+                    <td>{{item.cumulativeTotalValue | money}}</td>
+                    <td>{{item.achievementsMenProportion === null ? null : item.achievementsMenProportion + '%'}}</td>
+                    <td>{{item.achievementsWomenProportion === null ? null : item.achievementsWomenProportion + '%'}}</td>
+                    <td>{{item.achievementsTotalProportion === null ? null : item.achievementsTotalProportion + '%'}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="46" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table5'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_physicalExecutionReport_table5"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_physicalExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorKind"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_code"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicator"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_indicatorMeasure"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_physicalExecutionReport_regionCategory"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionRepor_milestoneTarget"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionRepor_finalTarget"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2014"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2015"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2016"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2017"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2018"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2019"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2020"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2021"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2022"></th>
+                    <th colspan="3" class="text-center" l10n-text="monitoring_physicalExecutionReport_2023"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_men"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_women"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_total"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.indicatorKind}}</td>
+                    <td>{{item.indicatorCode}}</td>
+                    <td>{{item.indicatorName}}</td>
+                    <td>{{item.indicatorMeasure}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.milestoneTargetMenValue | money}}</td>
+                    <td>{{item.milestoneTargetWomenValue | money}}</td>
+                    <td>{{item.milestoneTargetTotalValue | money}}</td>
+                    <td>{{item.finalTargetMenValue | money}}</td>
+                    <td>{{item.finalTargetWomenValue | money}}</td>
+                    <td>{{item.finalTargetTotalValue | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2014].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2015].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2016].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2017].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2018].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2019].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2020].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2021].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2022].amountTotal | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountMen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountWomen | money}}</td>
+                    <td>{{item.periodAmounts[2023].amountTotal | money}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="44" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table12'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;width:90%" l10n-text="monitoring_physicalExecutionReport_table12"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_project"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_cciNumber"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_totalInvestments"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_totalAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedNotification"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_approvementDate"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedStart"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedEndDate"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_piPriority"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_financialStage"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_physicalStage"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_mainEndProducts"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_firstContractDate"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_remarks"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="14" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table13'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;width:90%" l10n-text="monitoring_physicalExecutionReport_table13"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_spdName"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_cciNumber"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_spdStage"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_publicSupportAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_spdProgrammeContribution"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_programmePriority"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_spdType"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedPresentation"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_presentation"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedExecutionStart"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_executionStart"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_plannedEnd"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_ending"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_mainEndProductsResults"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_totalCertifiedAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_physicalExecutionReport_remarks"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="16" class="text-center" l10n-text="monitoring_physicalExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</ng-form>

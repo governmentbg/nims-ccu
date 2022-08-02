@@ -1,0 +1,40 @@
+﻿@model R_09998.DirectionsBudgetContract
+
+@if (Model != null)
+{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+
+    int sectionNumber = Model.SectionNumber;
+
+    if (Model.IsDirectionSelected)
+    {
+        sectionNumber++;
+
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Project.Directions
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Directions)
+        </section>
+        <div class="section-separator"> </div>
+    }
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Project.Budget @Model.ProgrammeNameFormatted
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Budget)
+    </section>
+
+    sectionNumber++;
+    <div class="section-separator"> </div>
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Project.Contract @Model.ProgrammeNameFormatted
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Contract)
+    </section>
+}

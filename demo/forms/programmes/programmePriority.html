@@ -1,0 +1,77 @@
+<div class="panel panel-default" style="margin-top: 10px">
+  <div class="panel-heading">
+    <strong l10n-text="Приоритетна ос"></strong>
+    <div class="pull-right">
+      <sc-button text="Запис"     class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      <sc-button text="Отказ"     class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+      <sc-button text="Изтриване" class="btn btn-danger btn-xs"  icon="glyphicon-remove"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body form-inline">
+    <ng-form sc-validate="{}" sc-form-readonly>
+
+      <div class="form-header form-header-first">Приоритетна ос</div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Код"                       ng-model="code"                type="text"                                ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Наименование"              ng-model="name"                type="textarea" rows="2"                   ng-required="true"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Наименование на английски" ng-model="nameAlt"             type="textarea" rows="2"                   ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Описание"                  ng-model="description"         type="textarea" rows="4"                    ng-required="true"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Описание на английски"     ng-model="descriptionAlt"      type="textarea" rows="4"                    ng-required="true"></sc-field>
+      </div>
+
+      <div class="row"></div>
+
+      <div class="form-header">Органи за управление и контрол</div>
+      <sc-datatable items="'institutions' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button btn-sref="{ state: 'sampleForm' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        </sc-column>
+        <sc-column data="type" title="Тип"></sc-column>
+        <sc-column data="name" title="Ведомство"></sc-column>
+        <sc-column data="person" title="Лице за контакт" class="wrap"></sc-column>
+        <sc-column data="phone" title="Телефон"></sc-column>
+      </sc-datatable>
+
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Организация"          ng-model="settlement"  type="nomenclature" alias="'test'"         ng-required="true"></sc-field>
+        <sc-field class="col-sm-2" l10n-text="Име лице за контакт"  ng-model="code"          type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Длъжност"             ng-model="decisionNum"   type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Телефон"              ng-model="decisionNum"   type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Факс"                 ng-model="decisionNum"   type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Електронен адрес"     ng-model="decisionNum"   type="text"                                ng-required="true"></sc-field>
+
+      </div>
+
+
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Адрес"             ng-model="address"     type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Адрес на латиница" ng-model="addressAlt"  type="text"                                ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        
+        <sc-field class="col-sm-3" l10n-text="П.К."              ng-model="postalCode"  type="text"                                                  ></sc-field>
+        <sc-field class="col-sm-3" l10n-text="Телефон"           ng-model="phone"       type="text"                                                  ></sc-field>
+      </div>
+
+      <div class="row"></div>
+      <div class="form-header">Финансиране по години</div>
+      <sc-datatable items="'programmeBudgets' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button btn-sref="{ state: 'sampleForm' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        </sc-column>
+        <sc-column data="budgetPeriod" title="Година"></sc-column>
+        <sc-column data="budgetSource" title="Източник"></sc-column>
+        <sc-column data="amount" title="Осн.разпр."></sc-column>
+        <sc-column data="reserveAmount" title="Резерв.план"></sc-column>
+      </sc-datatable>
+
+    </ng-form>
+  </div>
+</div>

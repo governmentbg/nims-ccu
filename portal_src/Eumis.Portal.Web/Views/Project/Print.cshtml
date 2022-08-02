@@ -1,0 +1,65 @@
+﻿@model R_10019.Project
+
+<div class="container">
+    <ul class="nav nav-tabs"></ul>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            @Html.Partial(MVC.Shared.Views.Print.Project, Model)
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var openSections = function (section) {
+            if (!section.hasClass("opened")) {
+                $("section[data-section=" + section.data('section') + "]").show();
+                section.toggleClass("opened");
+                section.css('padding-left', '0').find(':first-child').remove();
+            }
+        };
+
+        var openHistorySections = function () {
+            $(".history-btn")
+                .each(function () {
+                    if (!$(this).hasClass("opened")) {
+                        var current = $(this).parents('tr').nextAll("tr.history-table").first();
+                        current.first().show();
+                        current.find("div.history-table-wrapper").slideDown()
+                        $(this).toggleClass("opened");
+                    }
+
+                    $(this).remove();
+                });
+        };
+
+        var detatchClickEvents = function (section) {
+            section.off("click");
+        };
+
+        var eachSection = function (callback) {
+            $(".form-with-sections h2.section-heading, .form-with-sections h3.section-heading")
+                .each(function () {
+                    callback($(this));
+                });
+        };
+
+        $.when(0)
+            .then(function () {
+                eachSection(detatchClickEvents);
+            })
+            .then(function () {
+                eachSection(openSections);
+            })
+            .then(function () {
+                openHistorySections();
+            })
+            .then(function () {
+                setTimeout(function () {
+                    print();
+                }, 100);
+            });
+    });
+</script>

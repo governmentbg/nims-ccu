@@ -1,0 +1,161 @@
+<ng-form name="evalSessionSheetProjectForm" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_evalSessionSheetsProject_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_evalSessionSheetsProject_back"
+          class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <h5 class="table-header table-header-first" l10n-text="evalSessions_evalSessionSheetsProject_regData"></h5>
+      <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration">
+      </eumis-project-registration-data>
+
+      <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionSheetsProject_history"></h5>
+      <sc-datatable items="projectVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false"
+        has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="viewProjectVersionBtn" btn-click="viewProjectVersion(item)" class="btn btn-xs btn-primary"
+            icon="glyphicon-eye-open"></sc-button>
+        </sc-column>
+        <sc-column data="status" title="evalSessions_evalSessionSheetsProject_projectStatus">
+        </sc-column>
+        <sc-column data="createNote" title="evalSessions_evalSessionSheetsProject_createNote">
+        </sc-column>
+        <sc-column data="createDate" title="evalSessions_evalSessionSheetsProject_createDate" type="date">
+        </sc-column>
+        <sc-column data="modifyDate" title="evalSessions_evalSessionSheetsProject_modifyDate" type="date">
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_file" has-content="true">
+          <a target="_blank" ng-href="{{item.projectFile.url}}" sc-access-token ng-show="item.projectFile"
+            title="{{item.projectFile.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_signatures" has-content="true">
+          <a ng-repeat="pfs in item.projectFileSignatures" target="_blank" ng-href="{{pfs.url}}" sc-access-token
+            ng-show="item.projectFile" title="{{pfs.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+
+      <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionSheetsProject_communication"></h5>
+      <sc-datatable items="currentSessionCommunications" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false"
+        row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.evalSessions.my.view.sheets.edit.project.communications.edit', params: {mid: item.communicationId} }"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ProjectCommunicationActions.View', item.communicationId)">
+          </sc-button>
+        </sc-column>
+        <sc-column data="questionDate" title="evalSessions_evalSessionSheetsProject_questionDate" type="date">
+        </sc-column>
+        <sc-column data="regNumber" title="evalSessions_evalSessionSheetsProject_regNumber">
+        </sc-column>
+        <sc-column data="status" title="evalSessions_evalSessionSheetsProject_communicationStatus">
+        </sc-column>
+        <sc-column data="questionEndingDate" title="evalSessions_evalSessionSheetsProject_questionEndingDate"
+          type="date">
+        </sc-column>
+        <sc-column data="answerDate" title="evalSessions_evalSessionSheetsProject_answerDate" type="date">
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_file" has-content="true">
+          <a target="_blank" ng-href="{{item.projectCommunicationFile.url}}" sc-access-token
+            ng-show="item.projectCommunicationFile" title="{{item.projectCommunicationFile.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_signatures" has-content="true">
+          <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}"
+            sc-access-token ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+
+      <div ng-if="otherCommunications.length !== 0">
+        <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionSheetsProject_otherCommunication"></h5>
+        <sc-datatable items="otherCommunications" filterable="false" pageable="false" sortable="false"
+          dynamic-columns="false" has-info-text="false" scrollable="false"
+          row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+          <sc-column data="questionDate" title="evalSessions_evalSessionSheetsProject_questionDate" type="date">
+          </sc-column>
+          <sc-column data="regNumber" title="evalSessions_evalSessionSheetsProject_regNumber">
+          </sc-column>
+          <sc-column data="status" title="evalSessions_evalSessionSheetsProject_communicationStatus">
+          </sc-column>
+          <sc-column data="questionEndingDate" title="evalSessions_evalSessionSheetsProject_questionEndingDate"
+            type="date">
+          </sc-column>
+          <sc-column data="answerDate" title="evalSessions_evalSessionSheetsProject_answerDate" type="date">
+          </sc-column>
+          <sc-column data="sessionNum" title="evalSessions_evalSessionSheetsProject_communicationSessionNum">
+          </sc-column>
+          <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_file" has-content="true">
+            <a target="_blank" ng-href="{{item.projectCommunicationFile.url}}" sc-access-token
+              ng-show="item.projectCommunicationFile" title="{{item.projectCommunicationFile.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+          <sc-column sortable="false" title="evalSessions_evalSessionSheetsProject_signatures" has-content="true">
+            <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}"
+              sc-access-token ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+      <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionSheetsProject_standpoints"></h5>
+      <sc-datatable items="standpoints" filterable="false" pageable="false" sortable="false" dynamic-columns="false"
+        has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-click="viewStandpoint(item)" class="btn btn-xs btn-primary"
+            icon="glyphicon-eye-open"></sc-button>
+        </sc-column>
+        <sc-column data="note" title="evalSessions_evalSessionSheetsProject_standpointNote" has-content="true">
+          <span title="{{item.note}}">{{item.note | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="user" title="evalSessions_evalSessionSheetsProject_standpointUser">
+        </sc-column>
+        <sc-column data="statusName" title="evalSessions_evalSessionSheetsProject_standpointStatus">
+        </sc-column>
+      </sc-datatable>
+
+      <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_monitorstatRequests"></h5>
+      <sc-datatable items="monitorstatRequests" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+        </sc-column>
+        <sc-column data="statusDescr" title="evalSessions_viewEvalSessionProject_monitorstatStatus">
+        </sc-column>
+        <sc-column data="companyUin" title="evalSessions_viewEvalSessionProject_companyUin">
+        </sc-column>
+        <sc-column data="modifyDate" title="evalSessions_viewEvalSessionProject_monitorstatModifyDate" type="datetime">
+        </sc-column>
+        <sc-column title="evalSessions_viewEvalSessionProject_monitorstatDeclaration" sortable="false"
+          has-content="true">
+          <a target="_blank" ng-href="{{item.fileUrl}}" sc-access-token>
+            <span class="glyphicon glyphicon-file">{{item.declaration}}</span>
+          </a>
+        </sc-column>
+        <sc-column data="user" title="evalSessions_viewEvalSessionProject_monitorstatUser">
+        </sc-column>
+        <sc-column title="evalSessions_viewEvalSessionProject_receivedFiles" has-content="true" data="responses">
+          <div ng-repeat='file in item.responses'>
+            <a target="_blank" ng-href="{{file.fileUrl}}" sc-access-token>
+              <span class="glyphicon glyphicon-file">{{file.fileName}}</span>
+            </a>
+          </div>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

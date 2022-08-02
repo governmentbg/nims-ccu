@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10023" 
+	xmlns="http://ereg.egov.bg/segment/R-10023" 
+	
+	xmlns:etg="http://ereg.egov.bg/segment/R-10022"
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+            
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+            
+	xmlns:ettn="http://ereg.egov.bg/nomenclature/R-09993"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10022" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+  
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/nomenclature/R-09993" />
+	
+	<xsd:complexType name="EvalTable">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Оценителна таблица</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="EvalTableGroup" type="etg:EvalTableGroup" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+
+			<xsd:element name="Limit" type="xsd:decimal" minOccurs="0" />
+    
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    <xsd:attribute name="type" type="ettn:EvalTypeNomenclature"/>
+  
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+	</xsd:complexType>
+</xsd:schema>

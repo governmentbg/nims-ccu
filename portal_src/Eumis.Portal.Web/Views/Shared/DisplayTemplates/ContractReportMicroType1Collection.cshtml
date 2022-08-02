@@ -1,0 +1,49 @@
+﻿@using Eumis.Documents.Contracts
+
+@model IEnumerable<ContractReportMicroType1ItemPVO>
+
+<div class="container">
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="table-wrapper micro">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th width="10%">ОБЛАСТ</th>
+                        <th width="10%">ОБЩИНА</th>
+                        <th>ОБЩ БРОЙ НА ЛИЦАТА, ПОЛУЧАВАЩИ ХРАНИТЕЛНИ ПРОДУКТИ ЗА ПОДПОМАГАНЕ</th>
+                        <th>ДЕЦА на възраст 15 години или по-малки</th>
+                        <th>ЛИЦА на възраст 65 години или по-възрастни</th>
+                        <th>ЖЕНИ</th>
+                        <th>МИГРАНТИ</th>
+                        <th>ЧУЖДИ ГРАЖДАНИ</th>
+                        <th>МАЛЦИНСТВА</th>
+                        <th>РОМИ</th>
+                        <th>ХОРА С УВРЕЖДАНИЯ</th>
+                        <th>БЕЗДОМНИ ЛИЦА</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.District</td>
+                            <td>@item.Municipality</td>
+                            <td class="text-right">@item.TotalCount</td>
+                            <td class="text-right">@item.ChildrensCount</td>
+                            <td class="text-right">@item.SeniorsCount</td>
+                            <td class="text-right">@item.FemalesCount</td>
+                            <td class="text-right">@item.EmigrantsCount</td>
+                            <td class="text-right">@item.ForeignCitizensCount</td>
+                            <td class="text-right">@item.MinoritiesCount</td>
+                            <td class="text-right">@item.GypsiesCount</td>
+                            <td class="text-right">@item.DisabledPersonsCount</td>
+                            <td class="text-right">@item.HomelessCount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

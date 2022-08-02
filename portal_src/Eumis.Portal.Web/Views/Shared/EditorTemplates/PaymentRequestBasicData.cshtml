@@ -1,0 +1,121 @@
+﻿@model R_10049.PaymentRequestBasicData
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBasicData">
+    <div class="clearfix">
+        <div class="form-group col-md-12">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>@PaymentRequestBasicData.Type</label>
+                    @if (Model.IsAdvanceType)
+                    {
+                        <sc-nomenclature ng-class="{'input-validation-error': !model.IsTypeValid}" sc-alias="GetAdvancePaymentTypes" ng-model="model.Type">
+                        </sc-nomenclature>
+                    }
+                    else
+                    {
+                        <sc-nomenclature ng-class="{'input-validation-error': !model.IsTypeValid}" sc-alias="GetFinalPaymentTypes" ng-model="model.Type">
+                        </sc-nomenclature>
+                    }
+                    <input ng-class="{'input-validation-error': !model.IsTypeValid}" type="hidden" value="{{ model.Type.Value }}" name="@(Html.GetNameFor(m => m.Type.Value))" class="validation-error-key" />
+                    <input type="hidden" value="{{ model.Type.Description }}" name="@(Html.GetNameFor(m => m.Type.Description))" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>@PaymentRequestBasicData.StartDate</label>
+                    <input ng-class="{'input-validation-error': !model.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.StartDate" name="@(Html.GetNameFor(m => m.StartDate))" class="form-control" onpaste="return false" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label>@PaymentRequestBasicData.EndDate</label>
+                    <input ng-class="{'input-validation-error': !model.IsEndDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.EndDate" name="@(Html.GetNameFor(m => m.EndDate))" class="form-control" onpaste="return false" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.IsAdvanceType)
+    {
+        <div class="clearfix">
+            <div class="form-group col-md-12">
+                <label style="display:block;">@PaymentRequestBasicData.FinanceReportAmount</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <input sc-validation-popover type="text" ng-class="{'input-validation-error': !model.IsFinanceReportAmountValid}" money max-value="999999999" ng-model="model.FinanceReportAmount" name="@(Html.GetNameFor(m => m.FinanceReportAmount))" class="form-control sum-field" />
+                    </div>
+                    <div class="col-md-9">
+                        <a href="" class="search-bulstat-btn" ng-click='searchFinanceAmount()' ng-show="isSearch">@PaymentRequestBasicData.LoadFromFinance</a>
+
+                        <div ng-show="isPleaseWait">
+                            <img src="/Content/img/loader_h26.gif" alt="" />
+                            <span>@Global.PleaseWait</span>
+                        </div>
+                        <div ng-show="isOK">
+                            <img src="/Content/img/icons/success.png" class="success" alt="" style="display:inline-block;" />
+                            <span>@PaymentRequestBasicData.DataFilled</span>
+                        </div>
+                        <div ng-show="isNoResult">
+                            <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+                            <span>@PaymentRequestBasicData.NoFinanceFound</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @*<div class="clearfix">
+        <div class="form-group col-md-12">
+            <label style="display:block;">@PaymentRequestBasicData.AdditionalIncome</label>
+            <div class="row">
+                <div class="col-md-3">
+                    <input sc-validation-popover type="text" ng-class="{'input-validation-error': !model.IsAdditionalIncomeValid}" money max-value="999999999" ng-model="model.AdditionalIncome" name="@(Html.GetNameFor(m => m.AdditionalIncome))" class="form-control sum-field" />
+                </div>
+                <div class="col-md-9">
+                    <a href="" class="search-bulstat-btn" ng-click='searchIncomesAmount()' ng-show="isIncomesSearch">@PaymentRequestBasicData.LoadFromFinance</a>
+
+                    <div ng-show="isIncomesPleaseWait">
+                        <img src="/Content/img/loader_h26.gif" alt="" />
+                        <span>@Global.PleaseWait</span>
+                    </div>
+                    <div ng-show="isIncomesOK">
+                        <img src="/Content/img/icons/success.png" class="success" alt="" style="display:inline-block;" />
+                        <span>@PaymentRequestBasicData.DataFilled</span>
+                    </div>
+                    <div ng-show="isIncomesNoResult">
+                        <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+                        <span>@PaymentRequestBasicData.NoFinanceFound</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            <label>@PaymentRequestBasicData.TotalAmount</label>
+            <input sc-validation-popover type="text" ng-class="{'input-validation-error': !model.IsTotalAmountValid}" money max-value="999999999" ng-model="model.TotalAmount" name="@(Html.GetNameFor(m => m.TotalAmount))" class="form-control sum-field" />
+            <input type="hidden" ng-model="model.FinanceReportAmountWithoutIncome" value="{{model.FinanceReportAmountWithoutIncome = ((1 * model.TotalAmount) || 0).toFixed(2)}}" name="@(Html.GetNameFor(m => m.FinanceReportAmountWithoutIncome))" />
+        </div>
+        @*<div class="form-group col-md-6">
+            <label>@PaymentRequestBasicData.FinanceReportAmountWithoutIncome</label>
+            <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !model.IsFinanceReportAmountWithoutIncomeValid}" money ng-model="model.FinanceReportAmountWithoutIncome" value="{{model.FinanceReportAmountWithoutIncome = (((1 * model.TotalAmount) || 0) - ((1 * model.AdditionalIncome) || 0)).toFixed(2)}}" name="@(Html.GetNameFor(m => m.FinanceReportAmountWithoutIncome))" class="form-control sum-field" />
+        </div>*@
+    </div>
+
+    <div class="form-group col-md-4">
+        <label>@PaymentRequestBasicData.BeneficiaryRegistrationVAT</label>
+        <div>
+            <nom-radio ng-model="model.BeneficiaryRegistrationVAT"
+                       path="@(Html.GetNameFor(m => m.BeneficiaryRegistrationVAT))"
+                       model-name="Description"
+                       model-id="Value"
+                       nom-items="acceptances">
+            </nom-radio>
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        <label>@PaymentRequestBasicData.BankAccount</label>
+        <input ng-class="{'input-validation-error': !model.IsBankAccountValid}" type="text" ng-model="model.BankAccount" name="@(Html.GetNameFor(m => m.BankAccount))" class="form-control" />
+    </div>
+</div>

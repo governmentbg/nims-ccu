@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10070" 
+	xmlns="http://ereg.egov.bg/segment/R-10070" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="BFPContractPlan">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Процедура за избор на изпълнител и сключени договори</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+			<xsd:element name="ErrandArea" type="pun:PublicNomenclature" minOccurs="0" />
+            <xsd:element name="ErrandLegalAct" type="prn:PrivateNomenclature" minOccurs="0" />
+			<xsd:element name="ErrandType" type="pun:PublicNomenclature" minOccurs="0" />
+			<xsd:element name="Description" type="xsd:string" minOccurs="0" />
+            <xsd:element name="IsCentralProcurement" type="xsd:boolean" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

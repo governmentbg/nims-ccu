@@ -1,0 +1,92 @@
+<ng-form name="chooseProjectsForAutomaticProjectMonitorstatRequestsForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_title"></strong>
+        <div class="pull-right">
+          <sc-button name="continueBtn" btn-click="ok()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_continue" class="btn btn-primary btn-xs"
+            icon="glyphicon-ok" ng-show="errors.length === 0" ng-disabled="chosenProjectIds.length === 0 || isReadonly">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_cancel" class="btn btn-default btn-xs"
+            icon="glyphicon-ban-circle" ng-disabled="isReadonly">
+          </sc-button>
+        </div>
+      </div>
+  
+      <div class="well-sm panel-body" ng-show="errors.length === 0">
+        <div>
+          <div class="well well-sm">
+            <div class="row">
+              <sc-field type="nomenclature" alias="'procedureMonitorstatRequests'" mode="id" ng-model="procedureMonitorstatRequestId" params="{ identifier: procedureId, discriminator: 'AutomaticMonitorstatRequest' }" ng-required="true" l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_inquiry" class="col-sm-8 col-md-4"></sc-field>
+              <sc-field type="nomenclature" alias="'procedureApplicationDocs'" mode="id" ng-model="procedureApplicationDocId" params="{ procedureId: procedureId }" ng-required="!procedureApplicationDocId && !programmeDeclarationId" l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_declaration" class="col-sm-8 col-md-4"></sc-field>
+              <sc-field type="nomenclature" alias="'nsiDeclarations'" mode="id" ng-model="programmeDeclarationId" params="{ providedId: procedureId, isAutomaticRequest: true }" ng-required="!procedureApplicationDocId && !programmeDeclarationId" l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_eDeclaration" class="col-sm-8 col-md-4"></sc-field>
+            </div>
+          </div>
+  
+          <div ng-show="uploadMode">
+            <div class="mutiple-tables-spacing"></div>
+            <div class="pull-right" style="margin: 15px 15px 0px 0px;">
+              <sc-button name="continueBtn" btn-click="loadProjects()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_continue" class="btn btn-primary btn-xs"
+                icon="glyphicon-ok" ng-disabled="!file || isReadonly">
+              </sc-button>
+              <sc-button name="cancelFileUploadBtn" btn-click="cancelFileUpload()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+              </sc-button>
+            </div>
+            <div class="well well-sm">
+              <div class="row">
+                <sc-field type="file" name="file" ng-model="file" ng-readonly="isReadonly" url-template="EvalSessionFile" l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_file" class="col-sm-5 col-md-4"></sc-field>
+              </div>
+              <div class="modal-body message-modal-body" ng-show="loadProjectsErrors.length > 0">
+                <div>
+                  <h5 l10n-text="common_modals_validationErrorsModal_hasErrors"></h5>
+                  <pre ng-repeat="err in loadProjectsErrors">{{'- ' + err}}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <sc-button ng-disabled="isReadonly" name="chooseAllBtn" ng-show="hasChoosenAll" btn-click="chooseAll()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_all"
+            class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+          </sc-button>
+          <sc-button ng-disabled="isReadonly" name="removeAllBtn" ng-show="!hasChoosenAll" btn-click="removeAll()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_all"
+            class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+          </sc-button>
+  
+          <sc-button name="uploadFileBtn" ng-show="!uploadMode" ng-disabled="isReadonly" btn-click="uploadFile()" text="evalSessions_chooseProjectsForMonitorstatRequestModal_chooseFile"
+            class="btn btn-default btn-sm pull-left" icon="glyphicon-upload" style="margin-left: 3px;">
+          </sc-button>
+          <a type="button" href="templates/projects.xlsx" download="projects.xlsx" class="btn btn-default btn-sm pull-left" style="margin-left: 3px;">
+            <span class="glyphicon glyphicon-download"></span>
+            <span l10n-text="evalSessions_chooseProjectsForMonitorstatRequestModal_template"></span>
+          </a>
+  
+          <sc-datatable items="projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button ng-disabled="isReadonly" name="chooseButton" btn-click="chooseProject(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+              <sc-button ng-disabled="isReadonly" name="removeButton" btn-click="removeProject(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+            </sc-column>
+            <sc-column data="regNumber" title="evalSessions_chooseProjectsForMonitorstatRequestModal_regNumber">
+            </sc-column>
+            <sc-column title="evalSessions_chooseProjectsForMonitorstatRequestModal_name" has-content="true" data="name">
+              <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+            </sc-column>
+            <sc-column data="kidCode" title="evalSessions_chooseProjectsForMonitorstatRequestModal_projectKidCode">
+            </sc-column>
+            <sc-column data="company" title="evalSessions_chooseProjectsForMonitorstatRequestModal_company">
+            </sc-column>
+            <sc-column data="registrationStatus" title="evalSessions_chooseProjectsForMonitorstatRequestModal_registrationStatus">
+            </sc-column>
+            <sc-column data="projectType" title="evalSessions_chooseProjectsForMonitorstatRequestModal_projectType">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+  
+      <div class="modal-body message-modal-body" ng-show="errors.length > 0">
+        <div>
+          <h5 l10n-text="common_modals_validationErrorsModal_hasErrors"></h5>
+          <pre ng-repeat="err in errors">{{'- ' + err}}</pre>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+  

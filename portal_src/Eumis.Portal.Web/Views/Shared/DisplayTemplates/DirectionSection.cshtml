@@ -1,0 +1,38 @@
+﻿@model R_10093.DirectionSection
+
+<div class="table-wrapper">
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@Direction.DirectionName</th>
+                <th>@Direction.SubDirectionName</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.DirectionCollection != null && Model.DirectionCollection.Count > 0)
+            {
+                for (int i = 0; i < Model.DirectionCollection.Count; i++)
+                {
+                    <tr>
+                        <td style="word-break: break-all">
+                            <span class="filled-value">
+                                @if (Model.DirectionCollection[i].DirectionItem != null && !String.IsNullOrWhiteSpace(Model.DirectionCollection[i].DirectionItem.displayName))
+                                {
+                                    <text>@Model.DirectionCollection[i].DirectionItem.displayName </text>
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            <span class="filled-value">
+                                @if(Model.DirectionCollection[i].SubDirection != null && !String.IsNullOrWhiteSpace(Model.DirectionCollection[i].SubDirection.displayName))
+                                {
+                                        <text>@Model.DirectionCollection[i].SubDirection.displayName </text>
+                                }
+                            </span>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

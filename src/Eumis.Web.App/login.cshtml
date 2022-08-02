@@ -1,0 +1,70 @@
+﻿@{ Layout = "layout.cshtml"; }
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Eumis.Web.Host.Nancy.Models.LoginModel>
+@using Eumis.Web.Host.Nancy
+
+@section Styles
+{
+    <style type="text/css">
+        .login {
+            max-width: 500px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+    </style>
+}
+
+@section Header
+{
+    <div class="bg_header header-with-shadow">
+        <div class="container">
+            <header>
+                <a class="logo">@RazorViewTexts.Login_Umis2020</a>
+            </header>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="content-wrapper">
+        <h2 style="text-align: center;">@RazorViewTexts.Login_SystemLogin</h2>
+
+        <form name="loginForm" method="post" class="login" enctype="application/x-www-form-urlencoded">
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="username" class="control-label">@RazorViewTexts.Login_Username</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="password" class="control-label">@RazorViewTexts.Login_Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+            </div>
+            @if (@ViewBag.Error.HasValue)
+            {
+                <div class="row">
+                    <div class="form-group col-sm-12 has-error">
+                        @switch ((int)@ViewBag.Error.Value)
+                        {
+                            case (int)Eumis.Web.Host.Nancy.Models.LoginError.Deleted:
+                                <label class="control-label">@RazorViewTexts.Login_CannotLoginWithThisAccount <br> @RazorViewTexts.Login_PleaseContactAdministrator</label>
+                                break;
+                            case (int)Eumis.Web.Host.Nancy.Models.LoginError.Unauthorized:
+                                <label class="control-label">@RazorViewTexts.Login_InvalidUsernameOrPassword</label>
+                                break;
+                            case (int)Eumis.Web.Host.Nancy.Models.LoginError.Locked:
+                                <label class="control-label">@RazorViewTexts.Login_AccountIsLocked <br> @RazorViewTexts.Login_PleaseContactAdministrator</label>
+                                break;
+                        }
+                    </div>
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-log-in"></span>
+                <span>@RazorViewTexts.Login_Enter</span>
+            </button>
+            <a class="pull-right" href="/recoverpassword">@RazorViewTexts.Login_ForgottenPassword</a>
+        </form>
+    </div>
+</div>

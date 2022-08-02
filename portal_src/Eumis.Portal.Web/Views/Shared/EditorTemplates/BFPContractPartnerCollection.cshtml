@@ -1,0 +1,67 @@
+﻿@model R_10040.CompanyCollection
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+<div ng-controller="controllerBFPContractPartners">
+    <div class="table-wrapper">
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@Company.Name</th>
+                    <th>@Company.Uin</th>
+                    <th>@Company.CompanyType</th>
+                    <th colspan="2">@Company.Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="partner in partners">
+                <tr ng-class="{'deactivated-gray' : !partner.isActive}">
+                    <td style="width:400px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{partner.Name}}
+                        </div>
+                    </td>
+                    <td style="width:200px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{partner.UinType.Name}} {{partner.Uin}}
+                        </div>
+                    </td>
+                    <td style="width:250px;">
+                        <div style="display: block; width: 100%;">
+                            {{partner.CompanyType.Name}}
+                        </div>
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{partner.editTriggerId}}" class="history-btn" ng-click="accordion($index, $event)" ng-class="{'opened': partner.isOpen}" sc-fire-validation-popover="partner.isOpen">
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        @* Not activated *@
+                        <a class="delete-btn" confirm-click="delItem(partner)" ng-if="!partner.isActivated">@Global.DeleteButton</a>
+                        <input type="hidden" ng-if="!partner.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" />
+
+                        @* Activated *@
+                        <input id="partner_chbx{{$index}}" type="checkbox" ng-model="partner.isActive" ng-if="partner.isActivated" />
+                        <label for="partner_chbx{{$index}}"><img class="info-icon" ng-if="partner.isActivated" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" sc-placement="top" data-toggle="popover" data-content="@Global.ActivatedDisabledDelete" data-trigger="hover"></label>
+                        <input type="hidden" ng-if="partner.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActivated" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" ng-value="partner.isActive" />
+                    </td>
+                </tr>
+                <tr class="history-table" ng-if="partner.isOpen" style="display: table-row;" ng-class="{'deactivated-gray' : !partner.isActive}">
+                    <td colspan="5">
+                        <div class="history-table-wrapper clearfix" style="display: table-row;">
+                            <eumis-company partner="partner"
+                                           path="@(Html.GetNameFor(m => m))[{{ $index }}]"
+                                           bg-code="@Eumis.Documents.Constants.BulgariaId"
+                                           physical-gid="@Eumis.Documents.Constants.CompanyLegalTypePhysicalGid"
+                                           resources="resourcesObject">
+                            </eumis-company>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

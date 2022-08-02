@@ -1,0 +1,36 @@
+<ng-form name="editContractDebtVersionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="contractDebts_editContractDebtVersion_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="actualBtn" btn-click="changeStatus('actual')" text="contractDebts_editContractDebtVersion_actual" class="btn btn-default btn-xs"
+          ng-show="contractDebtInfo.status !== 'removed' && contractDebtVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtVersion.contractDebtId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractDebts_editContractDebtVersion_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractDebtInfo.status !== 'removed' && !editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtVersion.contractDebtId)">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="contractDebts_editContractDebtVersion_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" 
+          ng-show="contractDebtInfo.status === 'entered' && contractDebtVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtVersion.contractDebtId)">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractDebts_editContractDebtVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode && editMode !== 'partial'">
+        </sc-button>
+
+        <sc-button name="savePartialBtn" btn-click="savePartial()" text="contractDebts_editContractDebtVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode === 'partial'">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractDebts_editContractDebtVersion_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-debt-version name="contractDebtVersionForm" ng-model="contractDebtVersion" sc-form-params="{ contractId: contractDebtInfo.contractId, programmePriorityId: contractDebtInfo.programmePriorityId }"></eumis-contract-debt-version>
+    </div>
+
+  </div>
+</ng-form>

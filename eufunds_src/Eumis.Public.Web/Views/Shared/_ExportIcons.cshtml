@@ -1,0 +1,16 @@
+﻿
+@{
+    var rvd = new RouteValueDictionary();
+    foreach (var key in Request.QueryString.AllKeys)
+    {
+        rvd.Add(key, Request.QueryString[key]);
+    }
+}
+
+<div class="data-export">
+    <span>@Texts.Shared_ExportIcons_Export</span>
+    <a class="ico-xls" target="_blank" href="@(Url.Action("ExportToExcel", rvd))">@Texts.Shared_ExportIcons_Excel</a>
+    <a class="ico-html" target="_blank" href="@(Url.Action("ExportToHtml", rvd))">@Texts.Shared_ExportIcons_HTML</a>
+    <a class="ico-xml" target="_blank" href="@(Url.Action("ExportToXml", rvd))">@Texts.Shared_ExportIcons_XML</a>
+    <a class="ico-print" target="_blank" href="@(Url.Action("Print", rvd))">@Texts.Shared_ExportIcons_Print</a>
+</div>

@@ -1,0 +1,42 @@
+﻿@model R_10080.Offer
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Drafts, MVC.Offers.Name), Offers.DraftOffers),
+}, Global.Offer)
+
+<div class="container page-title">
+    <h1>@Global.Offer</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Offer, MVC.Offer.ActionNames.Prepare, MVC.Offer.Name, new { }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Offer.ActionNames.Display, MVC.Offer.Name, new { }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Offer.ActionNames.Print, MVC.Offer.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Offer.ActionNames.Prepare, MVC.Offer.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Offer.ActionNames.Prepare, MVC.Offer.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Offer.ActionNames.Prepare, MVC.Offer.Name, null, new { @class = "blue-button small back left" })
+                @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Offer.ActionNames.Submit, MVC.Offer.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </div>
+    </div>
+</div>

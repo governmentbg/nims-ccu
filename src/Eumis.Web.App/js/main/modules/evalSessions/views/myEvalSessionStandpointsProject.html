@@ -1,0 +1,101 @@
+<ng-form name="evalSessionStandpointProjectForm" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="myEvalSessions_evalSessionStandpointsProject_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="myEvalSessions_evalSessionStandpointsProject_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <h5 class="table-header table-header-first" l10n-text="myEvalSessions_evalSessionStandpointsProject_regData"></h5>
+      <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration"></eumis-project-registration-data>
+
+      <h5 class="table-header pull-left" l10n-text="myEvalSessions_evalSessionStandpointsProject_history"></h5>
+      <sc-datatable items="projectVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="viewProjectVersionBtn" btn-click="viewProjectVersion(item)" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+        </sc-column>
+        <sc-column data="status" title="myEvalSessions_evalSessionStandpointsProject_projectStatus">
+        </sc-column>
+        <sc-column data="createNote" title="myEvalSessions_evalSessionStandpointsProject_createNote">
+        </sc-column>
+        <sc-column data="createDate" title="myEvalSessions_evalSessionStandpointsProject_createDate" type="date">
+        </sc-column>
+        <sc-column data="modifyDate" title="myEvalSessions_evalSessionStandpointsProject_modifyDate" type="date">
+        </sc-column>
+        <sc-column sortable="false" title="myEvalSessions_evalSessionStandpointsProject_signatures" has-content="true">
+          <a ng-repeat="pfs in item.projectFileSignatures" target="_blank" ng-href="{{pfs.url}}" sc-access-token
+            ng-show="item.projectFile" title="{{pfs.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+
+      <h5 class="table-header pull-left" l10n-text="myEvalSessions_evalSessionStandpointsProject_communication"></h5>
+      <sc-datatable items="currentSessionCommunications" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.my.view.standpoints.edit.project.communications.edit', params: {mid: item.communicationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ProjectCommunicationActions.View', item.communicationId)">
+          </sc-button>
+        </sc-column>
+        <sc-column data="questionDate" title="myEvalSessions_evalSessionStandpointsProject_questionDate" type="date">
+        </sc-column>
+        <sc-column data="regNumber" title="myEvalSessions_evalSessionStandpointsProject_regNumber">
+        </sc-column>
+        <sc-column data="status" title="myEvalSessions_evalSessionStandpointsProject_communicationStatus">
+        </sc-column>
+        <sc-column data="questionEndingDate" title="myEvalSessions_evalSessionStandpointsProject_questionEndingDate" type="date">
+        </sc-column>
+        <sc-column data="answerDate" title="myEvalSessions_evalSessionStandpointsProject_answerDate" type="date">
+        </sc-column>
+        <sc-column sortable="false" title="myEvalSessions_evalSessionStandpointsProject_signatures" has-content="true">
+          <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}" sc-access-token
+            ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+
+      <div ng-if="otherCommunications.length !== 0">
+        <h5 class="table-header pull-left" l10n-text="myEvalSessions_evalSessionStandpointsProject_otherCommunication"></h5>
+        <sc-datatable items="otherCommunications" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+          <sc-column data="questionDate" title="myEvalSessions_evalSessionStandpointsProject_questionDate" type="date">
+          </sc-column>
+          <sc-column data="regNumber" title="myEvalSessions_evalSessionStandpointsProject_regNumber">
+          </sc-column>
+          <sc-column data="status" title="myEvalSessions_evalSessionStandpointsProject_communicationStatus">
+          </sc-column>
+          <sc-column data="questionEndingDate" title="myEvalSessions_evalSessionStandpointsProject_questionEndingDate" type="date">
+          </sc-column>
+          <sc-column data="answerDate" title="myEvalSessions_evalSessionStandpointsProject_answerDate" type="date">
+          </sc-column>
+          <sc-column data="sessionNum" title="myEvalSessions_evalSessionStandpointsProject_communicationSessionNum">
+          </sc-column>
+          <sc-column sortable="false" title="myEvalSessions_evalSessionStandpointsProject_signatures" has-content="true">
+            <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}" sc-access-token
+              ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+      <h5 class="table-header pull-left" l10n-text="myEvalSessions_evalSessionStandpointsProject_standpoints"></h5>
+      <sc-datatable items="standpoints" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-click="viewStandpoint(item)" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+        </sc-column>
+        <sc-column data="note" title="myEvalSessions_evalSessionStandpointsProject_standpointNote" has-content="true">
+          <span title="{{item.note}}">{{item.note | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="user" title="myEvalSessions_evalSessionStandpointsProject_standpointUser">
+        </sc-column>
+        <sc-column data="statusName" title="myEvalSessions_evalSessionStandpointsProject_standpointStatus">
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

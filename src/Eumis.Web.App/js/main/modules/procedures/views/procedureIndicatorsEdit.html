@@ -1,0 +1,32 @@
+<ng-form name="editForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureIndicator_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editProcedureIndicator_activate" class="btn btn-success btn-xs" ng-show="procedureIndicator.isActivated && !procedureIndicator.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureIndicator.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editProcedureIndicator_deactivate" class="btn btn-danger btn-xs" ng-show="procedureIndicator.isActivated && procedureIndicator.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureIndicator.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcedureIndicator_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!procedureIndicator.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureIndicator.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="deleteIndicator()" text="procedures_editProcedureIndicator_deleteIndicator" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!procedureIndicator.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureIndicator.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcedureIndicator_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcedureIndicator_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !procedureIndicator.isActive}">
+      <eumis-indicator-data name="indicatorForm" ng-model="procedureIndicator.indicator" readonly="true" sc-form-params="{ procedureId: procedureIndicator.procedureId }"></eumis-indicator-data>
+
+      <eumis-procedure-indicator name="procedureIndicatorForm" ng-model="procedureIndicator"></eumis-procedure-indicator>
+    </div>
+  </div>
+</ng-form>

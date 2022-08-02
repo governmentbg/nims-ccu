@@ -1,0 +1,50 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'reimbursedAmountStatuses'" ng-model="model.status" mode="id" l10n-text="reimbursedAmounts_basicDataForm_status" class="col-sm-4 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="reimbursedAmounts_basicDataForm_regNumber" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'debtReimbursedAmountCreationType'" mode="id" ng-model="model.creationType" l10n-text="reimbursedAmounts_basicDataForm_creationType" class="col-sm-4 col-md-3"></sc-field>    
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.isDeletedNote" ng-show="model.status === 'deleted'" rows="2" l10n-text="reimbursedAmounts_basicDataForm_isDeletedNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-model="model.programmeId" mode="id" l10n-text="reimbursedAmounts_basicDataForm_programme" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.certReportNum" ng-readonly="true" l10n-text="reimbursedAmounts_basicDataForm_certReportNum" class="col-sm-5 col-md-4"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="reimbursedAmounts_basicDataForm_contract"></h5>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractRegNumber" l10n-text="reimbursedAmounts_basicDataForm_contractRegNumber" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.contractName" rows="2" l10n-text="reimbursedAmounts_basicDataForm_contractName" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="reimbursedAmounts_basicDataForm_beneficiary"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" l10n-text="reimbursedAmounts_basicDataForm_uinType" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" l10n-text="reimbursedAmounts_basicDataForm_uin" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" l10n-text="reimbursedAmounts_basicDataForm_name" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'reimbursedAmountContractDebts'" ng-model="model.contractDebtId" mode="id" l10n-text="reimbursedAmounts_basicDataForm_contractDebt" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div ng-show="model.payments.length !== 0">
+    <h5 class="table-header" l10n-text="reimbursedAmounts_basicDataForm_payments"></h5>
+    <div ng-repeat="payment in model.payments">
+      <div class="row">
+        <sc-field type="text" ng-model="payment.paymentVersionNum" l10n-text="reimbursedAmounts_basicDataForm_paymentVersionNum" class="col-sm-3 col-md-2"></sc-field>
+        <sc-field type="date" ng-model="payment.checkedDate" l10n-text="reimbursedAmounts_basicDataForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+        <sc-field type="money" ng-model="payment.requestedAmount" l10n-text="reimbursedAmounts_basicDataForm_requestedAmount" class="col-sm-3 col-md-2"></sc-field>
+        <sc-field type="money" ng-model="payment.approvedTotalAmount" l10n-text="reimbursedAmounts_basicDataForm_approvedTotalAmount" class="col-sm-3 col-md-3"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

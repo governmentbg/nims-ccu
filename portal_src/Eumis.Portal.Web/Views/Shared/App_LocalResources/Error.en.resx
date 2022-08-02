@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddressNotFound" xml:space="preserve">
+    <value>Address not found</value>
+  </data>
+  <data name="ApplicantMissingData" xml:space="preserve">
+    <value>Applicant missing data</value>
+  </data>
+  <data name="BrowserRestart" xml:space="preserve">
+    <value>Restart your browser and try again later!</value>
+  </data>
+  <data name="BrowserRestartPrompt" xml:space="preserve">
+    <value>Please load electronic signature that meets the requirements, and restart your browser!</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="IssueUnable2" xml:space="preserve">
+    <value>For additional information, contact the conviction Central office or your local district by birth court.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="CommunicationError" xml:space="preserve">
+    <value>Communication error</value>
+  </data>
+  <data name="DatabaseMissingPersonData" xml:space="preserve">
+    <value>No data found in the database for person with PIN:</value>
+  </data>
+  <data name="DatabaseMissingPersonPlaceOfBirth" xml:space="preserve">
+    <value>No data about place of birth was found for person with PIN:</value>
+  </data>
+  <data name="Denial" xml:space="preserve">
+    <value>Refusal of issue of conviction digital certificate</value>
+  </data>
+  <data name="DigitalSignatureBlocked" xml:space="preserve">
+    <value>Canceled or blocked electronic signature</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="DigitalSignatureBlockedByIssuer" xml:space="preserve">
+    <value>Your electronic signature is canceled or blocked by the certification service provider.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="DigitalSignatureExpired" xml:space="preserve">
+    <value>Expired digital signature</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="DigitalSignatureExpiredLong" xml:space="preserve">
+    <value>Your electronic signature is expired.</value>
+  </data>
+  <data name="DigitalSignatureInvalid" xml:space="preserve">
+    <value>Invalid digital signature</value>
+  </data>
+  <data name="DigitalSignatureIssuerNotRecognized" xml:space="preserve">
+    <value>Unrecognized issuer of digital signature</value>
+  </data>
+  <data name="DigitalSignatureIssuerNotRecognizedLong" xml:space="preserve">
+    <value>The certification service provider of your electronic signature is not supported by the system.</value>
+  </data>
+  <data name="DigitalSignatureMissingData" xml:space="preserve">
+    <value>Missing data in the digital signature</value>
+  </data>
+  <data name="DigitalSignatureMissingEGN" xml:space="preserve">
+    <value>Your electronic signature does not contain information about PIN.</value>
+  </data>
+  <data name="DigitalSignatureNotLoaded" xml:space="preserve">
+    <value>The system can not load the electronic signature.</value>
+  </data>
+  <data name="DigitalSignatureNotRecognized" xml:space="preserve">
+    <value>Invalid or unrecognized digital signature</value>
+  </data>
+  <data name="DigitalSignatureNotRecognizedLong" xml:space="preserve">
+    <value>Your electronic signature is invalid or unrecognized by the system.</value>
+  </data>
+  <data name="DigitalSignatureQualified" xml:space="preserve">
+    <value>The system can not load qualified electronic signature.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="DigitalSignatureQualifiedLong" xml:space="preserve">
+    <value>To access your applications and/or cases, connected with them, it is necessary for you to identify with qualified electronic signature containing your PIN.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="DigitalSignatureTypeNotSupported" xml:space="preserve">
+    <value>The type of your digital signature is not supported by the system. 
+The digital signature for identification with the system must be issued to an individual.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Error code:</value>
+  </data>
+  <data name="ErrorCodeLower" xml:space="preserve">
+    <value>error code:</value>
+  </data>
+  <data name="ErrorDigitalSignatureIdentification" xml:space="preserve">
+    <value>Identification with electronic signature is required</value>
+  </data>
+  <data name="HelpQA" xml:space="preserve">
+    <value>Help, questions and answers</value>
+  </data>
+  <data name="IssuerUnableWithEGN" xml:space="preserve">
+    <value>Conviction digital certificate can not be issued for a person with PIN:</value>
+  </data>
+  <data name="IssueUnable1" xml:space="preserve">
+    <value>The information system is unable to issue you a conviction digital certificate.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="MoreInfo" xml:space="preserve">
+    <value>For more information, see</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="NavigationError" xml:space="preserve">
+    <value>Navigation error</value>
+  </data>
+  <data name="OrganizationFunctionsOrdinance" xml:space="preserve">
+    <value>According to Ordinance № 8 of 26 February 2008 on the functions and organization on the activity of the conviction bureaus, conviction digital certificates can be issued only to individuals for who no newsletters for conviction and for imposed administrative penalties under Art. 78a Penal Code were issued.</value>
+    <comment>google translate</comment>
+  </data>
+  <data name="RegionalCourt" xml:space="preserve">
+    <value>For reference, please contact your district by birth court.</value>
+  </data>
+  <data name="ServerRequestError" xml:space="preserve">
+    <value>Server request error.</value>
+  </data>
+  <data name="DigitalSignatureQualifiedLongPhysicalPerson" xml:space="preserve">
+    <value>To apply for conviction digital certificate or to access your applications and certificates, it is 
+necessary for you to identify with qualified digital signature issued to an individual containing PIN.</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MainError" xml:space="preserve">
+    <value>An error has occurred. Please try again later.</value>
+  </data>
+</root>

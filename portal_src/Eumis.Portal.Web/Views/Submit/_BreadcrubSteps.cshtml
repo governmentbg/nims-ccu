@@ -1,0 +1,33 @@
+﻿@using Eumis.Documents.Enums
+@using Eumis.Portal.Web.Helpers
+
+@{
+    var breadcrumbs = SubmissionState.GetBreadcrumbs();
+}
+<div class="bg_breadcrumbs hidden-xs hidden-sm">
+    <div class="container">
+        <div class="breadcrumbs steps clearfix">
+            @for (int i = 0; i < breadcrumbs.Count - 1; i++)
+            {
+                int index = i + 1;
+                if (breadcrumbs[i].IsActive)
+                {
+                    <a class="step active" title="@Disclaimer.Step @index">@index</a>
+                    <span>@Disclaimer.Step @index</span>
+                }
+                else
+                {
+                    <a class="step disabled" title="@Disclaimer.Step @index">@index</a>
+                }
+                <img class="next" src="@(Url.Content(Links.Content.img.icons.breadcrumb_sep_png))" alt="">
+            }
+
+            @{var finalBreadcrumb = breadcrumbs.Last();}
+
+            <a class="step final @(finalBreadcrumb.IsActive ? "active" : "disabled")" title="">&nbsp;</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.history.forward();
+</script>

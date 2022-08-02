@@ -1,0 +1,16 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-datatable items="contractReportAdvancePaymentAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.advPaymentAmounts.edit', params: { ind: item.contractReportAdvancePaymentAmountId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmePriorityName" title="contractReportChecks_contractReportAdvancePaymentAmountsSearch_programmePriorityName"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportAdvancePaymentAmountsSearch_status"></sc-column>
+      <sc-column data="approval" title="contractReportChecks_contractReportAdvancePaymentAmountsSearch_approval"></sc-column>
+      <sc-column data="approvedBfpTotalAmount" title="contractReportChecks_contractReportAdvancePaymentAmountsSearch_bfpTotalAmount" type="money"
+        col-group="contractReportChecks_contractReportAdvancePaymentAmountsSearch_approvedAmount"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

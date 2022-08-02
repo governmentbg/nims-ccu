@@ -1,0 +1,41 @@
+﻿@model R_10042.Communication
+
+@using Eumis.Portal.Web.Helpers
+
+@{
+    string breadcrumbString = R_10042.Communication.GetDocumentHeaderText(Model.type);
+}
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Communication.ActionNames.Index, MVC.Report.Communication.Name, new { area = MVC.Report.Name, type = Model.type }), breadcrumbString)
+}, "Преглед")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<div class="container">
+    <form>
+        <div class="form-toggle">
+            <img src="@Links.Content.img.icons.eco_tree_png" data-placement="right" data-toggle="popover" data-content="@Global.EcoNotification" data-trigger="hover" class="info-icon" style="padding-top:5px;height: 33px; margin-right:5px; margin-left:-5px;" />
+        </div>
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Report.Communication.ActionNames.Print, MVC.Report.Communication.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Report.Communication.ActionNames.Index, MVC.Report.Communication.Name, new { area = MVC.Report.Name, type = Model.type }, new { @class = "blue-button small back left" })
+            </div>
+        </form>
+    </div>
+</div>

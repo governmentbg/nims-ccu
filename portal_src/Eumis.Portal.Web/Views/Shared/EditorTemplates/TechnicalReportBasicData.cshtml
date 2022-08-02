@@ -1,0 +1,37 @@
+﻿@model R_10052.TechnicalReportBasicData
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBasicData">
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@TechnicalReportBasicData.StartDate</label>
+            <input ng-class="{'input-validation-error': !model.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.StartDate" name="@(Html.GetNameFor(m => m.StartDate))" class="form-control" onpaste="return false" />
+        </div>
+        <div class="form-group col-md-4">
+            <label>@TechnicalReportBasicData.EndDate</label>
+            <input ng-class="{'input-validation-error': !model.IsEndDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.EndDate" name="@(Html.GetNameFor(m => m.EndDate))" class="form-control" onpaste="return false" />
+        </div>
+    </div>
+
+    <h3>@TechnicalReportBasicData.Preparer</h3>
+
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            <label>@TechnicalReportBasicData.PreparerName</label>
+            <input ng-class="{'input-validation-error': !model.IsPreparerNameValid}" type="text" ng-model="model.PreparerName" name="@(Html.GetNameFor(m => m.PreparerName))" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>@TechnicalReportBasicData.PreparerPosition</label>
+            <input ng-class="{'input-validation-error': !model.IsPreparerPositionValid}" type="text" ng-model="model.PreparerPosition" name="@(Html.GetNameFor(m => m.PreparerPosition))" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>@TechnicalReportBasicData.PreparerPhone</label>
+            <input ng-class="{'input-validation-error': !model.IsPreparerPhoneValid}" type="text" ng-model="model.PreparerPhone" name="@(Html.GetNameFor(m => m.PreparerPhone))" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>@TechnicalReportBasicData.PreparerEmail</label>
+            <input ng-class="{'input-validation-error': !model.IsPreparerEmailValid}" type="text" ng-model="model.PreparerEmail" name="@(Html.GetNameFor(m => m.PreparerEmail))" class="form-control" />
+        </div>
+    </div>
+
+</div>

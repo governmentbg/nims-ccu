@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D3839C5-3895-4331-8329-31BB6BE6140E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Components</RootNamespace>
+    <AssemblyName>Eumis.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE;REVERSE_PROXY_MODE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE;REVERSE_PROXY_MODE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cachces\ClaimKey.cs" />
+    <Compile Include="Cachces\IUmisCache.cs" />
+    <Compile Include="Cachces\UmisCache.cs" />
+    <Compile Include="CheckListCommunicatorModule.cs" />
+    <Compile Include="Communicators\RegixCommunicator\RegixApi.cs" />
+    <Compile Include="Communicators\RegixCommunicator\RegixCommunicator.cs" />
+    <Compile Include="Communicators\RegixCommunicator\FakeRegixCommunicator.cs" />
+    <Compile Include="Communicators\RegixCommunicator\IRegixCommunicator.cs" />
+    <Compile Include="EumisCacheModule.cs" />
+    <Compile Include="RegixCommunicatorModule.cs" />
+    <Compile Include="Communicators\ProjectCommunicationCommunicator\FakeProjectCommunicationCommunicator.cs" />
+    <Compile Include="Communicators\ProjectCommunicationCommunicator\IProjectCommunicationCommunicator.cs" />
+    <Compile Include="Communicators\ProjectCommunicationCommunicator\ProjectCommunicationApi.cs" />
+    <Compile Include="Communicators\ProjectCommunicationCommunicator\ProjectCommunicationCommunicator.cs" />
+    <Compile Include="ProjectManagingAuthorityCommunicationCommunicatorModule.cs" />
+    <Compile Include="Communicators\ApiCommon.cs" />
+    <Compile Include="Communicators\CheckListCommunicator\CheckListApi.cs" />
+    <Compile Include="Communicators\CheckListCommunicator\CheckListCommunicator.cs" />
+    <Compile Include="Communicators\CheckListCommunicator\FakeCheckListCommunicator.cs" />
+    <Compile Include="Communicators\CheckListCommunicator\ICheckListCommunicator.cs" />
+    <Compile Include="Communicators\NewsCommunicator\INewsCommunicator.cs" />
+    <Compile Include="Communicators\NewsCommunicator\NewsApi.cs" />
+    <Compile Include="Communicators\NewsCommunicator\NewsCommunicator.cs" />
+    <Compile Include="MicroDataCommunicatorModule.cs" />
+    <Compile Include="Communicators\OffersCommunicator\OffersApi.cs" />
+    <Compile Include="Communicators\OffersCommunicator\OffersCommunicator.cs" />
+    <Compile Include="Communicators\OffersCommunicator\FakeOffersCommunicator.cs" />
+    <Compile Include="Communicators\OffersCommunicator\IOffersCommunicator.cs" />
+    <Compile Include="Communicators\MicroDataCommunicator\FakeMicroDataCommunicator.cs" />
+    <Compile Include="Communicators\MicroDataCommunicator\IMicroDataCommunicator.cs" />
+    <Compile Include="Communicators\MicroDataCommunicator\MicroDataApi.cs" />
+    <Compile Include="Communicators\MicroDataCommunicator\MicroDataCommunicator.cs" />
+    <Compile Include="OffersCommunicatorModule.cs" />
+    <Compile Include="GuidancesCommunicatorModule.cs" />
+    <Compile Include="Communicators\ApiErrorHandling.cs" />
+    <Compile Include="Communicators\GuidancesCommunicator\GuidancesApi.cs" />
+    <Compile Include="Communicators\GuidancesCommunicator\GuidancesCommunicator.cs" />
+    <Compile Include="Communicators\GuidancesCommunicator\FakeGuidancesCommunicator.cs" />
+    <Compile Include="Communicators\GuidancesCommunicator\IGuidancesCommunicator.cs" />
+    <Compile Include="Communicators\BlobCommunicator\BlobApi.cs" />
+    <Compile Include="Communicators\PackageCommunicator\PackageApi.cs" />
+    <Compile Include="Communicators\PackageCommunicator\PackageCommunicator.cs" />
+    <Compile Include="Communicators\PackageCommunicator\FakePackageCommunicator.cs" />
+    <Compile Include="Communicators\PackageCommunicator\IPackageCommunicator.cs" />
+    <Compile Include="Communicators\SpendingPlanCommunicator\FakeSpendingPlanCommunicator.cs" />
+    <Compile Include="Communicators\SpendingPlanCommunicator\ISpendingPlanCommunicator.cs" />
+    <Compile Include="Communicators\SpendingPlanCommunicator\SpendingPlanApi.cs" />
+    <Compile Include="Communicators\SpendingPlanCommunicator\SpendingPlanCommunicator.cs" />
+    <Compile Include="Communicators\StandpointCommunicator\StandpointApi.cs" />
+    <Compile Include="Communicators\StandpointCommunicator\StandpointCommunicator.cs" />
+    <Compile Include="Communicators\StandpointCommunicator\FakeStandpointCommunicator.cs" />
+    <Compile Include="Communicators\StandpointCommunicator\IStandpointCommunicator.cs" />
+    <Compile Include="Communicators\CommunicationCommunicator\FakeCommunicationCommunicator.cs" />
+    <Compile Include="Communicators\CommunicationCommunicator\ICommunicationCommunicator.cs" />
+    <Compile Include="Communicators\CommunicationCommunicator\CommunicationCommunicator.cs" />
+    <Compile Include="Communicators\CommunicationCommunicator\CommunicationApi.cs" />
+    <Compile Include="Communicators\ContractRegistrationAccessCodesCommunicator\ContractRegistrationAccessCodesApi.cs" />
+    <Compile Include="Communicators\ContractRegistrationAccessCodesCommunicator\ContractRegistrationAccessCodesCommunicator.cs" />
+    <Compile Include="Communicators\ContractRegistrationAccessCodesCommunicator\FakeContractRegistrationAccessCodesCommunicator.cs" />
+    <Compile Include="Communicators\ContractRegistrationAccessCodesCommunicator\IContractRegistrationAccessCodesCommunicator.cs" />
+    <Compile Include="Communicators\PaymentRequestCommunicator\FakePaymentRequestCommunicator.cs" />
+    <Compile Include="Communicators\PaymentRequestCommunicator\IPaymentRequestCommunicator.cs" />
+    <Compile Include="Communicators\PaymentRequestCommunicator\PaymentRequestCommunicator.cs" />
+    <Compile Include="Communicators\PaymentRequestCommunicator\PaymentRequestApi.cs" />
+    <Compile Include="Communicators\ContractRegistrationCommunicator\FakeContractRegistrationCommunicator.cs" />
+    <Compile Include="Communicators\ContractRegistrationCommunicator\IContractRegistrationCommunicator.cs" />
+    <Compile Include="Communicators\ContractRegistrationCommunicator\ContractRegistrationApi.cs" />
+    <Compile Include="Communicators\ContractRegistrationCommunicator\ContractRegistrationCommunicator.cs" />
+    <Compile Include="Communicators\TechnicalReportCommunicator\FakeTechnicalReportCommunicator.cs" />
+    <Compile Include="Communicators\TechnicalReportCommunicator\TechnicalReportCommunicator.cs" />
+    <Compile Include="Communicators\TechnicalReportCommunicator\TechnicalReportApi.cs" />
+    <Compile Include="Communicators\TechnicalReportCommunicator\ITechnicalReportCommunicator.cs" />
+    <Compile Include="Communicators\FinanceReportCommunicator\FakeFinanceReportCommunicator.cs" />
+    <Compile Include="Communicators\FinanceReportCommunicator\IFinanceReportCommunicator.cs" />
+    <Compile Include="Communicators\FinanceReportCommunicator\FinanceReportCommunicator.cs" />
+    <Compile Include="Communicators\FinanceReportCommunicator\FinanceReportApi.cs" />
+    <Compile Include="Communicators\ProcurementsCommunicator\ProcurementsCommunicator.cs" />
+    <Compile Include="Communicators\ProcurementsCommunicator\ProcurementsApi.cs" />
+    <Compile Include="Communicators\ProcurementsCommunicator\FakeProcurementsCommunicator.cs" />
+    <Compile Include="Communicators\ProcurementsCommunicator\IProcurementsCommunicator.cs" />
+    <Compile Include="Communicators\MessageCommunicator\MessageApi.cs" />
+    <Compile Include="Communicators\MessageCommunicator\MessageCommunicator.cs" />
+    <Compile Include="Communicators\MessageCommunicator\FakeMessageCommunicator.cs" />
+    <Compile Include="Communicators\MessageCommunicator\IMessageCommunicator.cs" />
+    <Compile Include="Communicators\MailCommunicator\MailApi.cs" />
+    <Compile Include="Communicators\MailCommunicator\MailCommunicator.cs" />
+    <Compile Include="Communicators\MailCommunicator\FakeMailCommunicator.cs" />
+    <Compile Include="Communicators\MailCommunicator\IMailCommunicator.cs" />
+    <Compile Include="Communicators\DraftCommunicator\DraftApi.cs" />
+    <Compile Include="Communicators\DraftCommunicator\DraftCommunicator.cs" />
+    <Compile Include="Communicators\DraftCommunicator\FakeDraftCommunicator.cs" />
+    <Compile Include="Communicators\DraftCommunicator\IDraftCommunicator.cs" />
+    <Compile Include="Communicators\EvalCommunicator\FakeEvalCommunicator.cs" />
+    <Compile Include="Communicators\EvalCommunicator\IEvalCommunicator.cs" />
+    <Compile Include="Communicators\EvalCommunicator\EvalApi.cs" />
+    <Compile Include="Communicators\EvalCommunicator\EvalCommunicator.cs" />
+    <Compile Include="Communicators\BFPContractCommunicator\FakeBFPContractCommunicator.cs" />
+    <Compile Include="Communicators\BFPContractCommunicator\IBFPContractCommunicator.cs" />
+    <Compile Include="Communicators\BFPContractCommunicator\BFPContractApi.cs" />
+    <Compile Include="Communicators\BFPContractCommunicator\BFPContractCommunicator.cs" />
+    <Compile Include="Communicators\RegistrationCommunicator\RegistrationApi.cs" />
+    <Compile Include="Communicators\RegistrationCommunicator\RegistrationCommunicator.cs" />
+    <Compile Include="Communicators\RegistrationCommunicator\FakeRegistrationCommunicator.cs" />
+    <Compile Include="Communicators\RegistrationCommunicator\IRegistrationCommunicator.cs" />
+    <Compile Include="Communicators\CompaniesCommunicator\CompaniesApi.cs" />
+    <Compile Include="Communicators\CompaniesCommunicator\CompaniesCommunicator.cs" />
+    <Compile Include="Communicators\CompaniesCommunicator\FakeCompaniesCommunicator.cs" />
+    <Compile Include="Communicators\CompaniesCommunicator\ICompaniesCommunicator.cs" />
+    <Compile Include="Communicators\ProjectCommunicator\FakeProjectCommunicator.cs" />
+    <Compile Include="Communicators\ProjectCommunicator\IProjectCommunicator.cs" />
+    <Compile Include="Communicators\ProjectCommunicator\ProjectApi.cs" />
+    <Compile Include="Communicators\ProjectCommunicator\ProjectCommunicator.cs" />
+    <Compile Include="PackageCommunicatorModule.cs" />
+    <Compile Include="NewsCommunicatorModule.cs" />
+    <Compile Include="SpendingPlanCommunicatorModule.cs" />
+    <Compile Include="StandpointCommunicatorModule.cs" />
+    <Compile Include="ContractRegistrationAccessCodesCommunicatorModule.cs" />
+    <Compile Include="MessageCommunicatorModule.cs" />
+    <Compile Include="MailCommunicatorModule.cs" />
+    <Compile Include="DraftCommunicatorModule.cs" />
+    <Compile Include="EvalCommunicatorModule.cs" />
+    <Compile Include="BFPContractCommunicatorModule.cs" />
+    <Compile Include="CommunicationCommunicatorModule.cs" />
+    <Compile Include="FinanceReportCommunicatorModule.cs" />
+    <Compile Include="ContractRegistrationCommunicatorModule.cs" />
+    <Compile Include="TechnicalReportCommunicatorModule.cs" />
+    <Compile Include="PaymentRequestCommunicatorModule.cs" />
+    <Compile Include="ProcurementsCommunicatorModule.cs" />
+    <Compile Include="RegistrationCommunicatorModule.cs" />
+    <Compile Include="CompaniesCommunicatorModule.cs" />
+    <Compile Include="ProjectCommunicatorModule.cs" />
+    <Compile Include="ProcedureCommunicatorModule.cs" />
+    <Compile Include="Communicators\ApiRequest.cs" />
+    <Compile Include="Communicators\ProcedureCommunicator\FakeProcedureCommunicator.cs" />
+    <Compile Include="Communicators\ProcedureCommunicator\IProcedureCommunicator.cs" />
+    <Compile Include="Communicators\ProcedureCommunicator\ProcedureApi.cs" />
+    <Compile Include="Communicators\ProcedureCommunicator\ProcedureCommunicator.cs" />
+    <Compile Include="EumisComponentsModule.cs" />
+    <Compile Include="DocumentSerializer\DocumentSerializer.cs" />
+    <Compile Include="DocumentSerializer\DocumentSerializerSettings.cs" />
+    <Compile Include="DocumentSerializer\IDocumentSerializer.cs" />
+    <Compile Include="DocumentSigner\DocumentSigner.cs" />
+    <Compile Include="DocumentSigner\FakeDocumentSigner.cs" />
+    <Compile Include="DocumentSigner\IDocumentSigner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UesFactory\IUesFactory.cs" />
+    <Compile Include="UesFactory\UesBase.cs" />
+    <Compile Include="UesFactory\UesBTrust.cs" />
+    <Compile Include="UesFactory\UesDummy.cs" />
+    <Compile Include="UesFactory\UesFactoryImpl.cs" />
+    <Compile Include="UesFactory\UesInfoNotary.cs" />
+    <Compile Include="UesFactory\UesSep.cs" />
+    <Compile Include="UesFactory\UesSpektar.cs" />
+    <Compile Include="UesFactory\UesStampIT.cs" />
+    <Compile Include="ValidationEngine\CSValidationEngine.cs" />
+    <Compile Include="ValidationEngine\IValidationEngine.cs" />
+    <Compile Include="Web\EnumHelper.cs" />
+    <Compile Include="XmlSchemaValidator\FakeXmlSchemaValidator.cs" />
+    <Compile Include="XmlSchemaValidator\IXmlSchemaValidator.cs" />
+    <Compile Include="XmlSchemaValidator\XmlSchemaValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj">
+      <Project>{d6414fe3-f7ed-41f3-8bb2-c977bdd98747}</Project>
+      <Name>Eumis.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Documents\Eumis.Documents.csproj">
+      <Project>{3d773c60-b683-4921-9faa-abaa06f940d4}</Project>
+      <Name>Eumis.Documents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Portal.Model\Eumis.Portal.Model.csproj">
+      <Project>{57119069-6ca3-4ac9-9e01-7aad6fca99b6}</Project>
+      <Name>Eumis.Portal.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

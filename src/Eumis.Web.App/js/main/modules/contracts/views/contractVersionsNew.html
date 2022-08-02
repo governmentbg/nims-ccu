@@ -1,0 +1,21 @@
+<ng-form name="newContractVersionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-if="newContractVersion.versionType === 'annex'" l10n-text="contracts_newVersion_annexTitle"></strong>
+      <strong class="heading" ng-if="newContractVersion.versionType === 'change'" l10n-text="contracts_newVersion_changeTitle"></strong>
+      <strong class="heading" ng-if="newContractVersion.versionType === 'partialAnnex'" l10n-text="contracts_newVersion_partialAnnexTitle"></strong>
+      <strong class="heading" ng-if="newContractVersion.versionType === 'partialChange'" l10n-text="contracts_newVersion_partialChangeTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="contracts_newVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_newVersion_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-version name="versionForm" ng-model="newContractVersion" sc-form-params="{ isNew: true }"></eumis-contract-version>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,25 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+    <div class="page-content submission-type clearfix">
+
+        <form class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p" style="text-align: justify">
+                    <p>@Finish.ProcedureProposal @(string.Format("{0} - {1}", SubmissionState.Current.PrecedureCode, SubmissionState.Current.PrecedureName)), 
+                    @Finish.OperationalProgram „@(SubmissionState.Current.ProgrammeName)“, @Finish.OperationalProgramName „@SubmissionState.Current.ProjectName“ <b>@Finish.ApprovedBySystem</b></p>
+
+                    <p>@Finish.RegistrationNumber <b>@SubmissionState.Current.RegistrationNumber</b></p>
+
+                    <p>@Finish.ProjectProposalSave</p>
+
+                    <p>@Finish.ProjectProposalQuestion</p>
+
+                    <p><span class="required-span">@Finish.Warning</span> @Finish.QuestionResponseTime</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

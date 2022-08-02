@@ -1,0 +1,17 @@
+﻿﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmeAppFormDeclarations'" mode="id" ng-model="model.programmeDeclarationId" params="{programmeId: model.programmeId, procedureId:  model.procedureId}" ng-required="true" l10n-text="procedures_procedureDeclarationForm_programmeDeclaration" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div ng-if="!isNew">
+    <div class="row">
+      <sc-field type="textarea" rows="5" ng-model="model.content" ng-required="true" ng-readonly="true" l10n-text="procedures_procedureDeclarationForm_content" class="col-sm-8 col-md-6"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="int" ng-model="model.orderNum" ng-required="true" ng-readonly="true" l10n-text="procedures_procedureDeclarationForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="procedures_procedureDeclarationForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isRequired" ng-required="true" l10n-text="procedures_procedureDeclarationForm_isRequired" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

@@ -1,0 +1,19 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string systemUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:SystemUrl");
+  string title = (string)Model["title"];
+  string content = (string)Model["content"];
+  string sender = (string)Model["sender"];
+  string messageLink = string.Format("{0}/#/messages/inbox/{1}", systemUrl, (string)Model["messageId"]);
+}
+
+<a style="margin-bottom: 15px;" href="@(messageLink)"><strong style="color: #444444;">@title</strong></a>
+
+<p style="margin-bottom: 15px;">@Raw(@content)</p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+@sender</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br/>

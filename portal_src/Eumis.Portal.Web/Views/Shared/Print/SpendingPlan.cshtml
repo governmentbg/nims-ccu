@@ -1,0 +1,191 @@
+﻿@model R_10077.SpendingPlan
+
+@if (Model != null)
+{
+    <div class="spendingPlan" id="containerSpendingPlan">
+        @{ int sectionNumber = 1;}
+        <h2 data-section="@sectionNumber">
+            @SpendingPlan.SpendingPlanHeading
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix" style="display:block;">
+            <div class="table-wrapper">
+                <table class="chart-info dynamic-rows bfp-budget-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width:250px; width:250px;">@SpendingPlan.ExpenseName</th>
+                            <th style="min-width:100px; width:100px;">@SpendingPlan.TotalAmount</th>
+                            <th style="width:80px;">@SpendingPlan.TotalCurrentDocument</th>
+                            <th style="width:40px; max-width:40px; word-wrap:break-word;">@SpendingPlan.ThreeMonths</th>
+                            @for (int i = Model.StartYear; i <= Model.EndYear; i++)
+                            {
+                                <th style="width:80px;">@i</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.SpendingBudget.SpendingBudgetLevel1Collection.Count; i++)
+                        {
+                            var item = Model.SpendingBudget.SpendingBudgetLevel1Collection[i];
+                            <tr class="level3">
+                                <td rowspan="4">@Eumis.Common.Helpers.DataUtils.Romanize(item.OrderNum) @item.Name</td>
+                                <td rowspan="4">@Html.DisplayFor(m => item.TotalAmount)</td>
+                                <td rowspan="4">
+                                    @Html.DisplayFor(m => item.TotalCalculatedAmount)
+                                </td>
+                                @*QUARTER = 1 !!!*@
+                                <td>@Eumis.Common.Helpers.DataUtils.Romanize(1)</td>
+
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 1)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 1))
+                                        {
+                                            @Html.DisplayFor(m => item.QuarterlyDistributionCollection[j].Q1Amount)
+
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 2 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(2)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 2)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 2))
+                                        {
+                                            @Html.DisplayFor(m => item.QuarterlyDistributionCollection[j].Q2Amount)
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 3 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(3)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 3)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 3))
+                                        {
+                                            @Html.DisplayFor(m => item.QuarterlyDistributionCollection[j].Q3Amount)
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 4 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(4)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 4)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 4))
+                                        {
+                                            @Html.DisplayFor(m => item.QuarterlyDistributionCollection[j].Q4Amount)
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+
+                        <tr class="level1">
+                            <td rowspan="4">@SpendingPlan.Total</td>
+                            <td rowspan="4">@Html.DisplayFor(m => m.SpendingBudget.TotalAmount)</td>
+                            <td rowspan="4">
+                                @Html.DisplayFor(m => m.SpendingBudget.TotalCalculatedAmount)
+                            </td>
+                            @*QUARTER = 1 !!!*@
+                            <td>@Eumis.Common.Helpers.DataUtils.Romanize(1)</td>
+
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 1)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 1))
+                                    {
+                                        @Html.DisplayFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q1Amount)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 2 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(2)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 2)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 2))
+                                    {
+                                        @Html.DisplayFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q2Amount)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 3 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(3)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 3)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 3))
+                                    {
+                                        @Html.DisplayFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q3Amount)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 4 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(4)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 4)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 4))
+                                    {
+                                        @Html.DisplayFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q4Amount)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+}

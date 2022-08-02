@@ -1,0 +1,376 @@
+﻿@model Eumis.Portal.Web.Models.BFPContract.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+@using Eumis.Portal.Web.Helplers.Extensions;
+@using Eumis.Documents.Enums;
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    var resourcesObjectNuts = new
+    {
+        NutsLevel = NutsAddress.NutsLevelBFP,
+        Country = NutsAddress.Country,
+        ProtectedZone = NutsAddress.ProtectedZone,
+        Nuts1 = NutsAddress.Nuts1,
+        Nuts2 = NutsAddress.Nuts2,
+        District = NutsAddress.District,
+        Municipality = NutsAddress.Municipality,
+        Settlement = NutsAddress.Settlement,
+        DeleteButton = Global.DeleteButton,
+        AddButton = Global.AddButton
+    };
+    var jsonResourcesObjectNuts = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectNuts);
+
+    var jsonNuts = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.NutsLevelNomenclature()).GetItems());
+
+    var resourcesObjectCompany = new
+    {
+        Search = Company.Search,
+        PleaseWait = Global.PleaseWait,
+        DataFilled = Company.DataFilled,
+        NoResult = Company.NoResult,
+        ValidationError = Company.ValidationError,
+
+        Uin = Company.Uin,
+        UinType = Company.UinType,
+        Name = string.Format("{0} {1}", Company.Name, SymbolsCount.Symbols200),
+        NameEN = string.Format("{0} {1}", Company.NameEN, SymbolsCount.Symbols200),
+        NameENTooltip = Company.NameENTooltip,
+        CompanyType = Company.CompanyType,
+        CompanyLegalType = Company.CompanyLegalType,
+        IsPrivateLegal = Company.IsPrivateLegal,
+        IsCountryLegal = Company.IsCountryLegal,
+        CompanySizeType = Company.CompanySizeType,
+        KidCodeOrganization = Company.KidCodeOrganization,
+        KidCodeProject = Company.KidCodeProject,
+        FinancialContribution = Company.FinancialContribution,
+        Seat = Company.Seat,
+        Management = Company.Management,
+        Correspondence = Company.Correspondence,
+        Email = Company.Email,
+        EmailTooltip = Company.EmailTooltip,
+        Phone1 = Company.Phone1,
+        Phone2 = Company.Phone2,
+        Fax = Company.Fax,
+        CompanyRepresentativePerson = string.Format("{0} {1}", Company.CompanyRepresentativePerson, SymbolsCount.Symbols100),
+        CompanyContactPerson = string.Format("{0} {1}", Company.CompanyContactPerson, SymbolsCount.Symbols100),
+        CompanyContactPersonPhone = Company.CompanyContactPersonPhone,
+        CompanyContactPersonEmail = Company.CompanyContactPersonEmail,
+        Country = Address.Country,
+        Settlement = Address.Settlement,
+        PostCode = Address.PostCode,
+        Street = string.Format("{0} {1}", Address.Street, SymbolsCount.Symbols300),
+        FullAddress = Address.FullAddress,
+        Copy = Address.Copy,
+        Captcha = Global.Captcha,
+        SymbolsCount = Global.SymbolsCount
+    };
+
+    var jsonResourcesObjectCompany = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectCompany);
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.YesNoNotApplicableNomenclature()).GetItems());
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.BFPContract = @(Html.Raw(jsonModel));
+
+        // Basic data:
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+        window._eumis_options.resourcesObjectNuts = @(Html.Raw(jsonResourcesObjectNuts));
+        window._eumis_options.nuts = @(Html.Raw(jsonNuts));
+        window._eumis_options.acceptances = @(Html.Raw(jsonAcceptances));
+
+        // Company
+        window._eumis_options.resourcesObjectCompany = @(Html.Raw(jsonResourcesObjectCompany));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerBFPContract'), ['moduleBFPContract']);
+            }, 100);
+        });
+    </script>
+
+    int sectionNumber = 0;
+<div class="bfpContract" id="containerBFPContract" ng-controller="controllerMainBFPContract">
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.BasicData))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading" activation-name="bfpContract" broadcast-name="bfpContractActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.BFPContractBasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.BFPContractBasicData != null && Model.BFPContractBasicData.isLocked)
+            {
+                @Html.DisplayFor(m => m.BFPContractBasicData)
+            }
+            else
+            {
+                @Html.DisplayFor(m => m.BFPContractBasicData, MVC.Shared.Views.DisplayTemplates.BFPContractBasicDataReadonlyPart)
+
+                // if procedure kind is BudgetLine - application section ProgrammePriority should be selected
+                if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ProgrammePriority))
+                {
+                    @Html.EditorFor(m => m.BFPContractBasicData, MVC.Shared.Views.EditorTemplates.BFPContractBasicDataBudgetLine)
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.BFPContractBasicData)
+                }
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Beneficary))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Beneficiary
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Beneficiary != null && Model.Beneficiary.isLocked)
+            {
+                @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.Beneficiary)
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Beneficiary, MVC.Shared.Views.EditorTemplates.Beneficiary)
+            }
+
+            <div class="form-group col-md-4">
+                <label>@BFPContractBasicData.BankAccount</label>
+
+                @if (Model.BFPContractBasicData != null && Model.BFPContractBasicData.isLocked)
+                {
+                    @Html.DisplayFor(m => m.BFPContractBasicData.BankAccount, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                }
+                else
+                {
+                    <input ng-class="{'input-validation-error': !BFPContract.BFPContractBasicData.IsBankAccountValid}" type="text" ng-model="BFPContract.BFPContractBasicData.BankAccount" name="@(Html.GetNameFor(m => m.BFPContractBasicData.BankAccount))" class="form-control" />
+                }
+            </div>
+
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ProgrammePriority))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ProgrammePriority
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Beneficiary != null)
+            {
+                @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.Beneficiary)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Partners))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Partners
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if ((Model.Partners != null && Model.Partners.isLocked) || Model.IsPartialReadOnly)
+            {
+                @Html.DisplayFor(m => m.Partners)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.Partners.id)
+                @Html.EditorFor(m => m.Partners.PartnerCollection, MVC.Shared.Views.EditorTemplates.BFPContractPartnerCollection)
+            }
+        </section>
+
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Budget))
+    {
+        Model.BFPContractDirectionsBudgetContract.SectionNumber = sectionNumber;
+        Model.BFPContractDirectionsBudgetContract.IsDirectionSectionSelected = Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Directions);
+        if ((Model.BFPContractDirectionsBudgetContract != null && Model.BFPContractDirectionsBudgetContract.isLocked) || Model.IsPartialReadOnly)
+        {
+            @Html.DisplayFor(m => m.BFPContractDirectionsBudgetContract, MVC.Shared.Views.DisplayTemplates.BFPContractDimensionBudgetContract)
+        }
+        else
+        {
+            @Html.EditorFor(m => m.BFPContractDirectionsBudgetContract)
+        }
+
+        if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Directions))
+        {
+            sectionNumber += 3;
+        }
+        else
+        {
+            sectionNumber += 2;
+        }
+    }
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Activities))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractActivity
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if ((Model.BFPContractContractActivities != null && Model.BFPContractContractActivities.isLocked) || Model.IsPartialReadOnly)
+            {
+                @Html.DisplayFor(m => m.BFPContractContractActivities)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.BFPContractContractActivities.id)
+                @Html.EditorFor(m => m.BFPContractContractActivities.BFPContractContractActivityCollection, MVC.Shared.Views.EditorTemplates.BFPContractContractActivityCollection)
+            }
+        </section>
+
+        <div class="section-separator"> </div>
+    }
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Indicators))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Indicators
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if ((Model.BFPContractIndicators != null && Model.BFPContractIndicators.isLocked) || Model.IsPartialReadOnly)
+            {
+                @Html.DisplayFor(m => m.BFPContractIndicators)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.BFPContractIndicators.id)
+                @Html.EditorFor(m => m.BFPContractIndicators.BFPContractIndicatorCollection, MVC.Shared.Views.EditorTemplates.BFPContractIndicatorCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Team))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractTeams
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.BFPContractContractTeams != null && Model.BFPContractContractTeams.isLocked)
+            {
+                @Html.DisplayFor(m => m.BFPContractContractTeams)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.BFPContractContractTeams.id)
+                @Html.EditorFor(m => m.BFPContractContractTeams.BFPContractContractTeamCollection, MVC.Shared.Views.EditorTemplates.BFPContractContractTeamCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ProcurementPlan))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractPlans
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.BFPContractPlans != null && Model.BFPContractPlans.isLocked)
+            {
+                @Html.DisplayFor(m => m.BFPContractPlans)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.BFPContractPlans.id)
+                @Html.EditorFor(m => m.BFPContractPlans.BFPContractPlanCollection, MVC.Shared.Views.EditorTemplates.BFPContractPlanCollection)
+            }
+        </section>
+        <div class="section-separator"></div>
+    }
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.AdditionalInformation))
+    {
+
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ProjectSpecFieldCollection
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ProjectSpecFields)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ElectronicDeclarations))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ElectronicDeclarations
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.ElectronicDeclarations != null)
+            {
+                @Html.DisplayFor(m => m.ElectronicDeclarations, MVC.Shared.Views.DisplayTemplates.BFPContractElectronicDeclarations)
+            }
+        </section>
+
+        <div class="section-separator"> </div>
+    }
+
+    @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.AttachedDocuments))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.AttachedDocuments
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.AttachedDocuments != null && Model.AttachedDocuments.isLocked)
+            {
+                @Html.DisplayFor(m => m.AttachedDocuments)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.AttachedDocuments.id)
+                @Html.EditorFor(m => m.AttachedDocuments.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.BFPContractAttachedDocumentCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+</div>
+}

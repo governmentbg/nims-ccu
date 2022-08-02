@@ -1,0 +1,26 @@
+<div class="tab-content">
+  <ng-form name="programmePrognosisNewForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="prognoses_new_programmePrognosisTitle"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="prognoses_new_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="prognoses_new_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'prognosisProgrammes'" mode="id" ng-model="prognosis.scopeId" ng-required="true" l10n-text="prognoses_new_programme" class="col-sm-12 col-md-9"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'years'" mode="id" ng-model="prognosis.year" ng-required="true" l10n-text="prognoses_new_year" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="nomenclature" alias="'months'" mode="id" ng-model="prognosis.month" ng-required="true" l10n-text="prognoses_new_month" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model R_10080.Offer
+
+@if (Model != null)
+{
+    int sectionNumber = 1;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Offer.BasicData
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.BasicData)
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Offer.Candidate
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Candidate, MVC.Shared.Views.DisplayTemplates.OfferCandidate)
+
+        @if (Model.BasicData != null)
+        {
+            <div class="form-group col-md-4">
+                <label>@OfferBasicData.BeneficiaryRegistrationVAT</label>
+                @Html.DisplayFor(m => m.BasicData.BeneficiaryRegistrationVAT)
+            </div>
+        }
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @Offer.PackageDocuments
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.AttachedDocuments)
+    </section>
+
+    @Html.DisplayFor(m => m.Signature)
+}

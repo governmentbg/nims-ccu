@@ -1,0 +1,22 @@
+<ng-form name="testForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="Regular form"></strong>
+
+      <div class="pull-right">
+        <!--
+                    <sc-button name="deleteBtn" btn-click="del()" text="irregularities_viewData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-if="irregularityData.status === 'new'"
+                    ng-disabled="!$canDo('IrregularityActions.Edit', irregularityData.irregularityId)">
+                    </sc-button>
+                    <sc-button name="removeBtn" btn-click="remove()" text="irregularities_viewData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-if="irregularityData.status === 'entered'"
+                    ng-disabled="!$canDo('IrregularityActions.Edit', irregularityData.irregularityId)">
+                    </sc-button>
+                    -->
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <test-page-form1 name="testPageForm" ng-model="someData"></test-page-form1>
+    </div>
+  </div>
+</ng-form>

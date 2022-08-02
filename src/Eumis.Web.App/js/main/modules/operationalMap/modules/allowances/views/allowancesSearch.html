@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newAllowanceBtn" btn-sref="{ state: 'root.map.allowances.new' }" text="allowances_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('AllowanceListActions.Create')"></sc-button>
+
+    <sc-datatable items="allowances" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.allowances.edit', params: {id: item.allowanceId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('AllowanceActions.View', item.allowanceId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="allowances_searchForm_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

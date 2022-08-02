@@ -1,0 +1,18 @@
+﻿<ng-form name="editVersionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-if="version.versionType === 'newContract'" l10n-text="projectDossier_viewContract_newContractTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'annex'" l10n-text="projectDossier_viewContract_annexTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'change'" l10n-text="projectDossier_viewContract_changeTitle"></strong>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-version name="versionForm" ng-model="version" sc-form-params="{ isNew: false }"></eumis-contract-version>
+
+      <div class="row">
+        <eumis-structured-document text="projectDossier_viewContract_versionTemplate" document="contractVersion" gid="version.gid" class="col-sm-4 col-md-3" view-mode>
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

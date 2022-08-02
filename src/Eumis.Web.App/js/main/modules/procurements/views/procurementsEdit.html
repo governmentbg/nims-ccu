@@ -1,0 +1,35 @@
+<ng-form name="editProcurementForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procurements_editProcurement_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="procurements_editProcurement_draft" class="btn btn-success btn-xs"
+          ng-show="procurement.status === 'active'" ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="changeStatus('canceled')" text="procurements_editProcurement_canceled" class="btn btn-danger btn-xs"
+          ng-show="procurement.status === 'active'" ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+        
+        <sc-button name="editBtn" btn-click="edit()" text="procurements_editProcurement_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="procurement.status === 'draft' && !editMode" ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+
+        <sc-button name="openBtn" btn-click="changeStatus('active')" text="procurements_editProcurement_active" class="btn btn-default btn-xs"
+          ng-show="procurement.status === 'draft'" ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="procurements_editProcurement_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" 
+          ng-show="procurement.status === 'draft' && !editMode" ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procurements_editProcurement_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procurements_editProcurement_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-procurement-data name="procurementForm" ng-model="procurement"></eumis-procurement-data>
+    </div>
+
+  </div>
+</ng-form>

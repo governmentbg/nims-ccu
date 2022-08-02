@@ -1,0 +1,85 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.BFPContract.EditVM
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.BFPContract.ActionNames.Prepare,
+    MVC.Private.BFPContract.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_BFP_CONTRACT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Private.BFPContract.ActionNames.Prepare,
+                MVC.Private.BFPContract.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_BFP_CONTRACT,
+                formMethod: FormMethod.Post)
+            @Global.BFPContract
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.BFPContractEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.BFPContract.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.BFPContract.ActionNames.Save,
+                            HasXmlUpdate = true,
+                            FORM_ID = Constants.PARTIAL_SAVE_BFP_CONTRACT
+                        })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Private.BFPContract.ActionNames.Prepare,
+                        MVC.Private.BFPContract.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" },
+                        formId: Constants.PARTIAL_SAVE_BFP_CONTRACT,
+                        formMethod: FormMethod.Post) @Global.ValidateButton
+                        @Html.EndActionLinkPrePostButton()
+                    </div>
+
+                    <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+                </div>
+            </div>
+            <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_BFP_CONTRACT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Private.BFPContract.ActionNames.Prepare, MVC.Private.BFPContract.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_BFP_CONTRACT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+            </script>
+    }
+</div>

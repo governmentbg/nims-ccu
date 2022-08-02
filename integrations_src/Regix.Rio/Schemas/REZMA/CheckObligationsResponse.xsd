@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/AM/REZMA/CheckObligationsResponse" targetNamespace="http://egov.bg/RegiX/AM/REZMA/CheckObligationsResponse" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="StatusType">
+		<xs:annotation>
+			<xs:documentation>Вид статус за задължения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="има задължение"/>
+			<xs:enumeration value="няма задължение"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CheckObligationsResponseType">
+		<xs:annotation>
+			<xs:documentation>Справка за наличие/липса на задължения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор: Булстат, ЕГН, ЕИК или ЛНЧ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Име - на физическо или юридическо лице</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="StatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Статус за задължения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReportDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата на изготвяне на справката</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CheckObligationsResponse" type="CheckObligationsResponseType">
+		<xs:annotation>
+			<xs:documentation>Справка за наличие/липса на задължения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newUserOrganizationBtn" btn-sref="{ state: 'root.userOrganizations.new' }" ng-disabled="!$canDo('UserOrganizationListActions.Create')" text="userOrganizations_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"></sc-button>
+
+    <sc-datatable items="userOrganizations" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editButton" ng-disabled="!$canDo('UserOrganizationActions.View', item.userOrganizationId)" btn-sref="{ state: 'root.userOrganizations.edit', params: { id: item.userOrganizationId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="userOrganizations_search_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

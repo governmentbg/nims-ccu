@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newASDEvalSessionDistributionBtn" btn-click="create('adminAdmiss')" text="evalSessions_evalSessionDistributionsSearch_newASD" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isAdminAdmiss"></sc-button>
+
+    <sc-button name="newTFOEvalSessionDistributionBtn" btn-click="create('techFinance')" text="evalSessions_evalSessionDistributionsSearch_newTFO" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isTechFinance"></sc-button>
+
+    <sc-button name="newComplexEvalSessionDistributionBtn" btn-click="create('complex')" text="evalSessions_evalSessionDistributionsSearch_newComplex" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isComplex"></sc-button>
+
+    <sc-button name="newPreliminaryEvalSessionDistributionBtn" btn-click="create('preliminary')" text="evalSessions_evalSessionDistributionsSearch_newPreliminary" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isPreliminary"></sc-button>
+
+    <sc-datatable items="evalSessionDistributions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.status === 'refused'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.distributions.edit', params: { ind: item.evalSessionDistributionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+      </sc-column>
+      <sc-column data="code" title="evalSessions_evalSessionDistributionsSearch_code"></sc-column>
+      <sc-column data="createDate" title="evalSessions_evalSessionDistributionsSearch_createDate" type="datetime"></sc-column>
+      <sc-column data="evalTableType" title="evalSessions_evalSessionDistributionsSearch_type"></sc-column>
+      <sc-column data="statusName" title="evalSessions_evalSessionDistributionsSearch_status"></sc-column>
+      <sc-column data="assessorsPerProject" title="evalSessions_evalSessionDistributionsSearch_assessorsPerProject"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

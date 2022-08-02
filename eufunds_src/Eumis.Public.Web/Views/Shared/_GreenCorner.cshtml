@@ -1,0 +1,11 @@
+﻿@model Eumis.Public.Web.Models.Home.GreenCornerModel
+<div class="isun">
+    <img class="fluid" src="@Url.Content(Links.Content.img.green_logo_png)" alt="@Texts.Shared_GreenCorner_SavedTrees" />
+</div>
+<div class="slogan">
+    <div class="text-bold">
+        @Texts.Shared_GreenCorner_TitlePrefix
+        <span class="green-tree-counter">@Html.DisplayFor(m => m.SavedTreesCount)</span>
+        @Texts.Shared_GreenCorner_TitleSufix
+    </div>
+</div>

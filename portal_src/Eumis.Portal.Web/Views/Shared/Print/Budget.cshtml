@@ -1,0 +1,110 @@
+﻿@model R_10010.Budget
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+@if (Model != null)
+{
+    bool hasNutsAddress = false;
+    bool hasInterventionField = false;
+    bool hasFormOfFinance = false;
+    bool hasTerritorialDimension = false;
+    bool hasTerritorialDeliveryMechanism = false;
+    bool hasThematicObjective = false;
+    bool hasESFSecondaryTheme = false;
+    bool hasEconomicDimension = false;
+
+    int columnCount = 5;
+
+    List<R_10007.ProgrammeDetailsExpenseBudget> details = new List<R_10007.ProgrammeDetailsExpenseBudget>();
+    if (Model.ProgrammeBudgetCollection != null && Model.ProgrammeBudgetCollection.Count > 0)
+    {
+        foreach(var budget in Model.ProgrammeBudgetCollection)
+        {
+            foreach(var expense in budget.ProgrammeExpenseBudgetCollection)
+            {
+                foreach(var detail in expense.ProgrammeDetailsExpenseBudgetCollection)
+                {
+                    details.Add(detail);
+                }
+            }
+        }
+
+        hasNutsAddress = details.Any(detail => detail.Nuts != null && !String.IsNullOrWhiteSpace(detail.Nuts.Code)) && Model.HasMoreThanOneNutsAddress;
+    }
+
+    <div>
+        <table class="budget-print">
+            <thead>
+                <tr>
+                    <th style="min-width: 20px"></th>
+                    <th>@ProgrammeBudget.ExpenseName</th>
+                    <th style="width: 190px;">@ProgrammeBudget.DimensionCodes</th>
+                    <th>
+                        @if (Model.IsFinalRecipients || Model.IsFinancialIntermediaries)
+                        {
+                            <text>@ProgrammeBudget.FinancialIntermediariesGrandAmount</text>
+                        }
+                        else
+                        {
+                            <text>@ProgrammeBudget.GrandAmount</text>
+                        }
+                    </th>
+                    <th>@ProgrammeBudget.SelfAmount</th>
+                    <th>@ProgrammeBudget.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ProgrammeBudgetCollection != null)
+                {
+                    for (int i = 0; i < Model.ProgrammeBudgetCollection.Count; i++)
+                    {
+                        var level1 = Model.ProgrammeBudgetCollection[i];
+                        <tr>
+                            <td colspan="6"><strong>@(Eumis.Common.Helpers.DataUtils.Romanize(level1.OrderNum)). @level1.DisplayName</strong></td>
+                            @*<td></td>*@
+                        </tr>
+                        if (Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection != null)
+                        {
+                            for (int j = 0; j < Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection.Count; j++)
+                            {
+                                var level2 = Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j];
+                                <tr>
+                                    <td colspan="6">
+                                        @(level2.OrderNum). @level2.DisplayName
+                                    </td>
+                                    @*<td></td>*@
+                                </tr>
+                                if (Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection != null)
+                                {
+                                    for (int k = 0; k < Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection.Count; k++)
+                                    {
+                                        var level3 = Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection[k];
+                                        <tr>
+                                            <td>
+                                                @(level2.OrderNum).@(level3.OrderNum).
+                                            </td>
+                                            <td>
+                                                @level3.Name
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmount)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.SelfAmount)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.TotalAmount)
+                                            </td>
+                                            @*<td></td>*@
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

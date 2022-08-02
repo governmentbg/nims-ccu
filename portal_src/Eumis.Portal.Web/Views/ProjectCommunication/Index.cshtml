@@ -1,0 +1,277 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using Eumis.Documents.Contracts
+@using PagedList.Mvc
+
+@model Eumis.Portal.Web.Models.ProjectCommunication.IndexVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Communication, MVC.Registered.Name), ProjectCommunication.ManagingAuthorityCommunication)
+}
+            , @ProjectCommunication.ProjectRegNumberShort + " " + Model.ProjectRegNumber)
+
+<div class="container page-title">
+    <h1>@ProjectCommunication.ProjectRegNumberShort @Model.ProjectRegNumber</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+
+    @if (TempData["SuccessAction"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>@TempData["SuccessAction"].ToString()</li>
+            </ul>
+        </div>
+    }
+
+    <ul class="nav nav-tabs">
+        <li>@Html.ActionLink(ProjectCommunication.RegisteredTab, MVC.Registered.ActionNames.Index, MVC.Registered.Name)</li>
+        <li>@Html.ActionLink(ProjectCommunication.PaperTab, MVC.Registered.ActionNames.Submitted, MVC.Registered.Name)</li>
+        @if (CurrentUser.HasMessages)
+        {
+            <li>@Html.ActionLink(ProjectCommunication.MessagesTab, MVC.Message.ActionNames.Index, MVC.Message.Name, null, new { style = "color:red;" })</li>
+        }
+        <li class="active"><a>@ProjectCommunication.ManagingAuthorityCommunication</a></li>
+    </ul>
+    <div class="tab-content">
+
+        <div style="padding: 10px 0px 0px 10px;">
+            <a class="blue-button" href="@Url.Action(MVC.ProjectCommunication.ActionNames.New, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid })" title=""><span class="glyphicon glyphicon-plus"></span>@ProjectCommunication.NewCommunication</a>
+        </div>
+
+        <div class="tab-pane active">
+            <div class="table-wrapper">
+                @if (Model != null && Model.Communications.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th>@ProjectCommunication.Source</th>
+                                <th>@ProjectCommunication.RegNumber</th>
+                                <th>@ProjectCommunication.Status</th>
+                                <th>@ProjectCommunication.SendDate</th>
+                                <th>@ProjectCommunication.ReplyDate</th>
+                                <th>@ProjectCommunication.QuestionEndingDate</th>
+                                <th style="width: 240px">@ProjectCommunication.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var communication in Model.Communications)
+                            {
+                                var isBeneficiaryInitiatedCommunication = communication.isBeneficiary != null && communication.isBeneficiary.Value == true;
+                                var hasUnreadAnswers = isBeneficiaryInitiatedCommunication && communication.answers.Any(a => !a.readDate.HasValue);
+
+                                <tr class="@(communication.communicationStatus == ProjectCommunicationStatus.Canceled ? "deactivated-gray" : "" ) @((!communication.readDate.HasValue  && !isBeneficiaryInitiatedCommunication)  || hasUnreadAnswers ? "unread-row" : "")">
+                                    <td>
+                                        @if (isBeneficiaryInitiatedCommunication)
+                                        {
+                                            <img src="@Url.Content(Links.Content.img.icons.outgoing_png)" alt="" />
+                                            <text>@ProjectCommunication.Outgoing</text>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content(Links.Content.img.icons.incoming_png)" alt="" />
+                                            <text>@ProjectCommunication.Incoming</text>
+                                        }
+                                    </td>
+                                    <td>@communication.registrationNumber</td>
+                                    <td>@communication.displayCommunicationStatusText</td>
+                                    <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(communication.messageDate)</td>
+                                    <td>
+                                        @if (communication.replyDate.HasValue)
+                                        {
+                                            if (communication.replyDate.Value.TimeOfDay == new TimeSpan(0, 0, 0, 0))
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateFormat(communication.replyDate.Value)</text>
+                                            }
+                                            else
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateTimeFormat(communication.replyDate.Value)</text>
+                                            }
+
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (communication.questionEndingDate.HasValue)
+                                        {
+                                            if (communication.questionEndingDate.Value.TimeOfDay == new TimeSpan(0, 0, 0, 0))
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateFormat(communication.questionEndingDate.Value)</text>
+                                            }
+                                            else
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateTimeFormat(communication.questionEndingDate.Value)</text>
+                                            }
+
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="@(Url.Action(MVC.ProjectCommunication.ActionNames.Preview, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid, gid = communication.messageGid }))" class="view-btn">@Global.ButtonPreviewText</a>
+                                        @if (isBeneficiaryInitiatedCommunication && communication.communicationStatus == ProjectCommunicationStatus.Draft)
+                                        {
+                                            <a href="@(Url.Action(MVC.ProjectCommunication.ActionNames.Edit, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid, gid = communication.messageGid }))" class="edit-btn">@Global.Edit</a>
+                                        }
+
+                                        @if (isBeneficiaryInitiatedCommunication && communication.communicationStatus == ProjectCommunicationStatus.Draft)
+                                        {
+                                            <a href="@(Url.Action(MVC.ProjectCommunication.ActionNames.Delete, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid, gid = communication.messageGid }))" data-toggle="confirmation-no-title" data-title="@ProjectCommunication.DeleteConfirm">
+                                                <img src="@Links.Content.img.icons.delete_btn_png" alt="">
+                                                @ProjectCommunication.Delete
+                                            </a>
+                                        }
+
+                                        @if (isBeneficiaryInitiatedCommunication && communication.communicationStatus == ProjectCommunicationStatus.Sent)
+                                        {
+                                            <a href="@(Url.Action(MVC.ProjectCommunication.ActionNames.Cancel, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid, gid = communication.messageGid, version = Convert.ToBase64String(communication.version) }))" data-toggle="confirmation-no-title" data-title="@ProjectCommunication.CancelCommunicationConfirm">
+                                                <img src="@Links.Content.img.icons.delete_btn_png" alt="">
+                                                @ProjectCommunication.CancelCommunication
+                                            </a>
+                                        }
+
+                                        @if (!isBeneficiaryInitiatedCommunication &&
+                                            (communication.communicationStatus == ProjectCommunicationStatus.NotRead ||
+                                            communication.communicationStatus == ProjectCommunicationStatus.PendingAnswer ||
+                                            communication.communicationStatus == ProjectCommunicationStatus.Answered) &&
+                                            (!communication.questionEndingDate.HasValue || communication.questionEndingDate > DateTime.Now) &&
+                                            communication.answers != null &&
+                                            communication.answers.All(a => a.status != RegMessageAnswerType.Draft))
+                                        {
+                                            if (communication.answers.Count == 0 || communication.answers.All(c => c.status == RegMessageAnswerType.Canceled))
+                                            {
+                                                <a class="new-button" href="@(Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.New, MVC.ProjectCommunicationAnswer.Name, new { registeredGid = Model.registeredGid, communicationGid = communication.messageGid }))">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    @ProjectCommunication.AnswerQuestion
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="new-button" data-target="#AnswerModal" data-toggle="modal" data-message-gid="@communication.messageGid">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    @ProjectCommunication.AnswerQuestion
+                                                </a>
+
+                                                <div class="modal" id="AnswerModal" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div style="text-align: center">
+                                                                <h2 style="color:red; font-weight: 400; font-size:30px;">@ProjectCommunication.Warning</h2>
+                                                                <div class="isun-line"> </div>
+                                                            </div>
+                                                            <p style="font-size:20px;">
+                                                                @ProjectCommunication.QuestionAnswered
+                                                            </p>
+                                                            <p style="font-size:20px;">
+                                                                @ProjectCommunication.Continue
+                                                            </p>
+                                                            <div class="modal-buttons">
+                                                                <a class="blue-button welcome-button" href="@(Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.New, MVC.ProjectCommunicationAnswer.Name, new { registeredGid = Model.registeredGid, communicationGid = communication.messageGid }))">
+                                                                    @Global.Yes
+                                                                </a>
+                                                                <a data-dismiss="modal" href="" class="blue-button welcome-button">@Global.No</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                        @if (communication.answers != null && communication.answers.Count > 0)
+                                        {
+                                            <a href="#" data-rel="@(communication.messageGid)" class="history-btn">
+                                                <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif">@ProjectCommunication.Answers
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+
+                                <tr class="history-table" data-rel="@(communication.messageGid)" style="display: none;" width="100%">
+                                    <td colspan="7">
+                                        <div class="history-table-wrapper" style="display: none;">
+                                            <h4 style="margin: 0px 0 5px 0">@ProjectCommunication.Answers</h4>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 80px">@ProjectCommunication.AnswerOrderNum</th>
+                                                        <th>@ProjectCommunication.Source</th>
+                                                        <th>@ProjectCommunication.Status</th>
+                                                        <th>@ProjectCommunication.AnswerDate</th>
+                                                        <th style="width: 240px">@ProjectCommunication.Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (communication.answers != null)
+                                                    {
+                                                        foreach (var answer in communication.answers)
+                                                        {
+                                                            <tr class="@(answer.status == RegMessageAnswerType.Canceled ? "deactivated-gray" : "" )@(!answer.readDate.HasValue && isBeneficiaryInitiatedCommunication ? "unread-row" : "")">
+                                                                <td>@answer.orderNum</td>
+                                                                <td>
+                                                                    @if (isBeneficiaryInitiatedCommunication)
+                                                                    {
+                                                                        <img src="@Url.Content(Links.Content.img.icons.incoming_png)" alt="" />
+                                                                        <text>@ProjectCommunication.IncomingAnswer</text>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img src="@Url.Content(Links.Content.img.icons.outgoing_png)" alt="" />
+                                                                        <text>@ProjectCommunication.OutgoingAnswer</text>
+                                                                    }
+                                                                </td>
+                                                                <td>@answer.displayStatusText</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(answer.answerDate)</td>
+                                                                <td>
+                                                                    <a href="@(Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.Preview, MVC.ProjectCommunicationAnswer.Name, new { registeredGid = Model.registeredGid, communicationGid = communication.messageGid, answerGid = answer.answerGid }))" class="view-btn">
+                                                                        @Global.ButtonPreviewText
+                                                                    </a>
+                                                                    @if (answer.status == RegMessageAnswerType.Draft &&
+                                                                        !isBeneficiaryInitiatedCommunication &&
+                                                                        (!communication.questionEndingDate.HasValue || communication.questionEndingDate > DateTime.Now)
+                                                                        && (communication.communicationStatus == ProjectCommunicationStatus.Answered ||
+                                                                        communication.communicationStatus == ProjectCommunicationStatus.NotRead ||
+                                                                        communication.communicationStatus == ProjectCommunicationStatus.PendingAnswer))
+                                                                    {
+                                                                        <a href="@(Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.Edit, MVC.ProjectCommunicationAnswer.Name, new { registeredGid = Model.registeredGid, communicationGid = communication.messageGid, answerGid = answer.answerGid }))" class="edit-btn">
+                                                                            @ProjectCommunication.Edit
+                                                                        </a>
+                                                                        <a href="@Url.Action(MVC.ProjectCommunicationAnswer.ActionNames.Delete, MVC.ProjectCommunicationAnswer.Name,  new { registeredGid = Model.registeredGid, communicationGid = communication.messageGid, answerGid = answer.answerGid, version = Convert.ToBase64String(communication.version) })" data-toggle="confirmation-no-title" data-title="@ProjectCommunicationAnswer.DeleteConfirm">
+                                                                            <img src="@Links.Content.img.icons.delete_btn_png" alt="">
+                                                                            @ProjectCommunication.Delete
+                                                                        </a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@ProjectCommunication.RegisteredNotFound</p>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model.Communications,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    registeredGid = Model.registeredGid,
+                    page = page,
+
+                }),
+                Constants.PagedListRenderOptions)
+        </div>
+    </div>
+</div>

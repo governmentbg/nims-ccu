@@ -1,0 +1,301 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewCertifiedAmounts_title"></strong>
+  </div>
+  
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showCertifiedAmounts=!showCertifiedAmounts">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReports"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showCertifiedAmounts, 'glyphicon-chevron-right': !showCertifiedAmounts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showCertifiedAmounts" ng-href="{{contractReportCertifiedAmountsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showCertifiedAmounts" items="certifiedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.search', params: { id: item.contractReportId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+          </sc-column>
+          <sc-column data="certifiedApprovedAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertifiedAmount">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportContractRegNum">
+          </sc-column>
+          <sc-column data="contractName" title="projectDossier_viewCertifiedAmounts_contractReportContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewCertifiedAmounts_contractReportProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewCertifiedAmounts_contractReportStatus">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewCertifiedAmounts_contractReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="reportType" title="projectDossier_viewCertifiedAmounts_contractReportReportType">
+          </sc-column>
+          <sc-column data="source" title="projectDossier_viewCertifiedAmounts_contractReportSource">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportRevalidations=!showContractReportRevalidations">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportRevalidations"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportRevalidations, 'glyphicon-chevron-right': !showContractReportRevalidations}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportRevalidations" ng-href="{{contractReportRevalidationsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportRevalidationExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportRevalidations" items="contractReportRevalidations" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReportRevalidations.view.basicData', params: { id: item.contractReportRevalidationId }}"
+              ng-disabled="!$canDo('ContractReportRevalidationActions.View', item.contractReportRevalidationId)"></sc-button>
+          </sc-column>
+          <sc-column data="bfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="selfAmount" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationProgramme">
+          </sc-column>
+          <sc-column data="statusDescr" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationStatus">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationRegNumber">
+          </sc-column>
+          <sc-column data="type" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationType">
+          </sc-column>
+          <sc-column data="date" title="projectDossier_viewCertifiedAmounts_contractReportRevalidationDate" type="date">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportFinancialRevalidations=!showContractReportFinancialRevalidations">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidations"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportFinancialRevalidations, 'glyphicon-chevron-right': !showContractReportFinancialRevalidations}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportFinancialRevalidations" ng-href="{{contractReportFinancialRevalidationsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportFinancialRevalidations" items="contractReportFinancialRevalidations" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialRevalidations.view.contract', params: { id: item.contractReportFinancialRevalidationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.View', item.contractReportFinancialRevalidationId)"></sc-button>
+          </sc-column>
+          <sc-column data="totalRevalidatedBfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationTotalRevalidatedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="totalRevalidatedSelfAmount" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationTotalRevalidatedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationContractRegNum">
+          </sc-column>
+          <sc-column data="contractName" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationStatus">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationOrderNum" type="number">
+          </sc-column>
+          <sc-column data="createDate" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationCreateDate" type="date">
+          </sc-column>
+          <sc-column data="notes" title="projectDossier_viewCertifiedAmounts_contractReportFinancialRevalidationNotes">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportFinancialCorrections=!showContractReportFinancialCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportFinancialCorrections, 'glyphicon-chevron-right': !showContractReportFinancialCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportFinancialCorrections" ng-href="{{contractReportFinancialCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportFinancialCorrections" items="contractReportFinancialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialCorrections.view.contract', params: { id: item.contractReportFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportFinancialCorrectionActions.View', item.contractReportFinancialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionContractRegNum">
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionReportOrderNum">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionOrderNum" type="number">
+          </sc-column>
+          <sc-column data="certifiedCorrectedApprovedBfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionCertifiedCorrectedApprovedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="certifiedCorrectedApprovedSelfAmount" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionCertifiedCorrectedApprovedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="certReportNumber" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionCertReportNumber">
+          </sc-column>
+          <sc-column data="notes" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCorrectionNotes"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportCorrections=!showContractReportCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportCorrections, 'glyphicon-chevron-right': !showContractReportCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportCorrections" ng-href="{{contractReportCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportCorrections" items="contractReportCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportCorrections.view.basicData', params: { id: item.contractReportCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCorrectionActions.View', item.contractReportCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionContractRegNum">
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionReportOrderNum">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionRegNumber" type="number">
+          </sc-column>
+          <sc-column data="certifiedCorrectedApprovedBfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionCertifiedCorrectedApprovedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="certifiedCorrectedApprovedSelfAmount" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionCertifiedCorrectedApprovedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="certReportNumber" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionCertReportNumber">
+          </sc-column>
+          <sc-column data="description" title="projectDossier_viewCertifiedAmounts_contractReportCorrectionDescription"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportCertAuthorityFinancialCorrections=!showContractReportCertAuthorityFinancialCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportCertAuthorityFinancialCorrections, 'glyphicon-chevron-right': !showContractReportCertAuthorityFinancialCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportCertAuthorityFinancialCorrections" ng-href="{{contractReportCertAuthorityFinancialCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportCertAuthorityFinancialCorrections" items="contractReportCertAuthorityFinancialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportCertAuthorityFinancialCorrections.view.contract', params: { id: item.contractReportCertAuthorityFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCertAuthorityFinancialCorrectionActions.View', item.contractReportCertAuthorityFinancialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionContractRegNum">
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionReportOrderNum">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionCorrectionOrderNum" type="number">
+          </sc-column>
+          <sc-column data="certifiedApprovedBfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionCertifiedApprovedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="certifiedApprovedSelfAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionCertifiedApprovedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="annualAccountReportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionAnnualAccountReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="notes" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityFinancialCorrectionNotes"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportCertAuthorityCorrections=!showContractReportCertAuthorityCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportCertAuthorityCorrections, 'glyphicon-chevron-right': !showContractReportCertAuthorityCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportCertAuthorityCorrections" ng-href="{{contractReportCertAuthorityCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportCertAuthorityCorrections" items="contractReportCertAuthorityCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportCertAuthorityCorrections.view.basicData', params: { id: item.contractReportCertAuthorityCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCertAuthorityCorrectionActions.View', item.contractReportCertAuthorityCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionContractRegNum">
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionReportOrderNum">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionRegNumber" type="number">
+          </sc-column>
+          <sc-column data="certifiedBfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionCertifiedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="certifiedSelfAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionCertifiedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="annualAccountReportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionAnnualAccountReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="description" title="projectDossier_viewCertifiedAmounts_contractReportCertAuthorityCorrectionDescription"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportCertCorrections=!showContractReportCertCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportCertCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportCertCorrections, 'glyphicon-chevron-right': !showContractReportCertCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportCertCorrections" ng-href="{{contractReportCertCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportCertCorrections" items="contractReportCertCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReportCertCorrections.view.basicData', params: { id: item.contractReportCertCorrectionId }}"
+              ng-disabled="!$canDo('ContractReportCertCorrectionActions.View', item.contractReportCertCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="bfpTotalAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="selfAmount" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionProgramme">
+          </sc-column>
+          <sc-column data="statusDescr" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionRegNumber">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionStatus">
+          </sc-column>
+          <sc-column data="type" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionType">
+          </sc-column>
+          <sc-column data="date" title="projectDossier_viewCertifiedAmounts_contractReportCertCorrectionDate" type="date">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showContractReportFinancialCertCorrections=!showContractReportFinancialCertCorrections">
+        <span l10n-text="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportFinancialCertCorrections, 'glyphicon-chevron-right': !showContractReportFinancialCertCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportFinancialCertCorrections" ng-href="{{contractReportFinancialCertCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportFinancialCertCorrections" items="contractReportFinancialCertCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialCertCorrections.view.contract', params: { id: item.contractReportFinancialCertCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportFinancialCertCorrectionActions.View', item.contractReportFinancialCertCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionContractRegNum"></sc-column>
+          <sc-column data="contractName" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionReportOrderNum" type="number"></sc-column>
+          <sc-column data="status" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionStatus"></sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionOrderNum" type="number"></sc-column>
+          <sc-column data="createDate" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionCreateDate" type="date"></sc-column>
+          <sc-column data="notes" title="projectDossier_viewCertifiedAmounts_contractReportFinancialCertCorrectionNotes"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

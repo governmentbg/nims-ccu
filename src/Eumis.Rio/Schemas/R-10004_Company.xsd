@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10004" 
+	xmlns="http://ereg.egov.bg/segment/R-10004" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:a="http://ereg.egov.bg/segment/R-10003"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10003" />
+	
+	<xsd:complexType name="Company">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Организация</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="NameEN" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Uin" type="xsd:string" minOccurs="0" />
+			<xsd:element name="UinType" type="prn:PrivateNomenclature" minOccurs="0" />
+			<xsd:element name="CompanyType" type="prn:PrivateNomenclature" minOccurs="0" />
+			<xsd:element name="CompanyLegalType" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="IsPrivateLegal" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="CompanySizeType" type="prn:PrivateNomenclature" minOccurs="0" />
+			<xsd:element name="KidCodeOrganization" type="pun:PublicNomenclature" minOccurs="0" />
+      <xsd:element name="KidCodeProject" type="pun:PublicNomenclature" minOccurs="0" />
+      <xsd:element name="FinancialContribution" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="Seat" type="a:Address" minOccurs="0" />
+			<xsd:element name="Correspondence" type="a:Address" minOccurs="0" />
+			<xsd:element name="Email" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Phone1" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Phone2" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Fax" type="xsd:string" minOccurs="0" />
+			<xsd:element name="CompanyRepresentativePerson" type="xsd:string" minOccurs="0" />
+			<xsd:element name="CompanyContactPerson" type="xsd:string" minOccurs="0" />
+			<xsd:element name="CompanyContactPersonPhone" type="xsd:string" minOccurs="0" />
+			<xsd:element name="CompanyContactPersonEmail" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="isActivated" type="xsd:boolean"/>
+    <xsd:attribute name="isActive" type="xsd:boolean"/>
+    <xsd:attribute name="gid" type="xsd:string"/>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

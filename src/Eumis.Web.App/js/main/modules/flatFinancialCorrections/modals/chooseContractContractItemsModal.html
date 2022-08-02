@@ -1,0 +1,42 @@
+<ng-form name="form.chooseContractContractsForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="flatFinancialCorrections_chooseContractContractItemsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="flatFinancialCorrections_chooseContractContractItemsModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="flatFinancialCorrections_chooseContractContractItemsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-datatable items="contractContracts" filterable="true" pageable="true" sortable="true" dynamic-columns="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="contractContractorCompany" title="flatFinancialCorrections_chooseContractContractItemsModal_data"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contractContractor"></sc-column>
+          <sc-column data="seat" title="flatFinancialCorrections_chooseContractContractItemsModal_seat"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contractContractor"></sc-column>
+          <sc-column data="contractName" title="flatFinancialCorrections_chooseContractContractItemsModal_name"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="contractRegNumber" title="flatFinancialCorrections_chooseContractContractItemsModal_regNumber"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract"></sc-column>
+          <sc-column data="procedureName" title="flatFinancialCorrections_chooseContractContractItemsModal_procedure"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract"></sc-column>
+          <sc-column data="contractDate" title="flatFinancialCorrections_chooseContractContractItemsModal_contractDate" type="date"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract"></sc-column>
+          <sc-column data="contractCompany" title="flatFinancialCorrections_chooseContractContractItemsModal_company"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract"></sc-column>
+          <sc-column data="companyKidCode" title="flatFinancialCorrections_chooseContractContractItemsModal_companyKidCode"
+            col-group="flatFinancialCorrections_chooseContractContractItemsModal_contract"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

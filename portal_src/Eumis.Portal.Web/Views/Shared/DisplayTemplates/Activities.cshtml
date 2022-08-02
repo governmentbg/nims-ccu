@@ -1,0 +1,127 @@
+﻿@model R_10044.Activities
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BFPContractContractActivity.Code</th>
+                <th>@TechnicalReportActivity.Status</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.ActivityCollection != null && Model.ActivityCollection.Count > 0)
+            {
+                for (int i = 0; i < Model.ActivityCollection.Count; i++)
+                {
+                    var bfpContractActivity = Model.ActivityCollection[i].BFPContractActivity;
+
+                    <tr>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => bfpContractActivity.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.ActivityCollection[i].Status)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr class="history-table">
+                        <td colspan="3">
+                            <div class="history-table-wrapper clearfix">
+                                @* ================= START BFP CONTRACT ACTIVITY ================= *@
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => bfpContractActivity.Code, BFPContractContractActivity.Code)
+                                    @Html.DisplayFor(m => bfpContractActivity.Code, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.Duration, BFPContractContractActivity.Duration)
+                                        @Html.DisplayFor(m => bfpContractActivity.Duration)
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.StartDate, TechnicalReportActivity.StartDate)
+                                        @Html.DisplayFor(m => bfpContractActivity.StartDate)
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.EndDate, TechnicalReportActivity.EndDate)
+                                        @Html.DisplayFor(m => bfpContractActivity.EndDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => bfpContractActivity.Result, BFPContractContractActivity.Result)
+                                    @Html.DisplayFor(m => bfpContractActivity.Result, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                @* ================= END OF BFP CONTRACT ACTIVITY ================= *@
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m.ActivityCollection[i].ExecutionDescription, TechnicalReportActivity.ExecutionDescription)
+                                    @Html.DisplayFor(m => m.ActivityCollection[i].ExecutionDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m.ActivityCollection[i].Status, TechnicalReportActivity.Status)
+                                        @Html.DisplayFor(m => m.ActivityCollection[i].Status)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m.ActivityCollection[i].ActualStartDate, TechnicalReportActivity.ActualStartDate)
+                                        @Html.DisplayFor(m => m.ActivityCollection[i].ActualStartDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m.ActivityCollection[i].ActualEndDate, TechnicalReportActivity.ActualEndDate)
+                                        @Html.DisplayFor(m => m.ActivityCollection[i].ActualEndDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m.ActivityCollection[i].MonthsDuration, TechnicalReportActivity.MonthsDuration)
+                                        @Html.DisplayFor(m => m.ActivityCollection[i].MonthsDuration)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m.ActivityCollection[i].DelayReason, TechnicalReportActivity.DelayReason)
+                                    @Html.DisplayFor(m => m.ActivityCollection[i].DelayReason, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m.ActivityCollection[i].PeriodResult, TechnicalReportActivity.PeriodResult)
+                                    @Html.DisplayFor(m => m.ActivityCollection[i].PeriodResult, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m.ActivityCollection[i].CumulativeResult, TechnicalReportActivity.CumulativeResult)
+                                    @Html.DisplayFor(m => m.ActivityCollection[i].CumulativeResult, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m.ActivityCollection[i].ContractContractorCollection, TechnicalReportActivity.ContractContractors)
+                                    @if (Model.ActivityCollection[i].ContractContractorCollection != null)
+                                    {
+                                        <ul>
+                                            @foreach (var contractor in Model.ActivityCollection[i].ContractContractorCollection)
+                                            {
+                                                <li>@Html.DisplayFor(m => contractor)</li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10041"
+	xmlns="http://ereg.egov.bg/segment/R-10041"
+            
+	xmlns:c="http://ereg.egov.bg/segment/R-10046"
+	xmlns:cc="http://ereg.egov.bg/segment/R-10047"
+	xmlns:pp="http://ereg.egov.bg/segment/R-10048"
+            
+	xmlns:btn="http://ereg.egov.bg/nomenclature/R-09988"
+            
+	xmlns:bcpdeb="http://ereg.egov.bg/segment/R-10033"
+	xmlns:bcca="http://ereg.egov.bg/segment/R-10037"
+	
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+            
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10046" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10047" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10048" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/nomenclature/R-09988" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10033" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10037" />
+  
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="Procurements">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Процедури за избор на изпълнител и сключени договори</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+
+      <xsd:element name="Contractors" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Contractor" type="c:Contractor" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ContractContractors" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ContractContractor" type="cc:ContractContractor" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ProcurementPlans" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ProcurementPlan" type="pp:ProcurementPlan" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="BudgetLevel3Item" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="ContractActivityItem" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="BudgetLevel3" type="bcpdeb:BFPContractProgrammeDetailsExpenseBudget" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="ContractActivity" type="bcca:BFPContractContractActivity" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+    <xsd:attribute name="contractVersionGid" type="xsd:string"/>
+
+    <xsd:attribute name="orderNum" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

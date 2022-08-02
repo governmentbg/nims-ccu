@@ -1,0 +1,20 @@
+﻿<ng-form name="reportForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <sc-link-button ng-href="api/prognosisReports/summary/excel" target="_blank" icon="fa-file-excel-o fa-lg fa-fw" style="margin-bottom:5px;"
+            sc-access-token text="prognoses_summaryReport_excelExport" class="btn btn-primary btn-xs">
+      </sc-link-button>
+      <div class="tab-content">
+        <div style="margin:15px;">
+          <div class="row">
+            <sc-field type="select" class="col-sm-12" sc-select="select2Options" ng-model="procedure" ng-change="procedureChanged()" l10n-text="prognoses_summaryReport_procedure"></sc-field>
+          </div>
+
+          <canvas id="line" class="chart chart-bar" chart-data="chartData.data"
+            chart-labels="chartData.labels" chart-legend="true">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

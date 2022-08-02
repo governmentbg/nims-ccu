@@ -1,0 +1,44 @@
+<ng-form name="editEvalSessionDistributionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionDistribution_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="refusedBtn" btn-click="refuseDistribution()" text="evalSessions_editEvalSessionDistribution_refused" class="btn btn-danger btn-xs"
+          ng-show="evalSessionDistribution.status === 'applied'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionDistribution.evalSessionId) || !isSessionActive">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-distribution name="evalSessionDistributionForm" ng-model="evalSessionDistribution" sc-form-readonly="true"></eumis-eval-session-distribution>
+
+      <div style="padding-bottom: 20px;">
+        <h5 class="table-header pull-left" l10n-text="evalSessions_editEvalSessionDistribution_projects"></h5>
+      </div>
+      <sc-datatable items="evalSessionDistribution.projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button ng-if="!item.isDeleted" name="selectedBtn" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw" ng-disabled="true"></sc-button>
+          <sc-button ng-if="item.isDeleted" name="notSelectedBtn" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw" ng-disabled="true"></sc-button>
+        </sc-column>
+        <sc-column data="procedureName" title="evalSessions_editEvalSessionDistribution_procedureName">
+        </sc-column>
+        <sc-column data="projectRegNumber" title="evalSessions_editEvalSessionDistribution_projectRegNumber">
+        </sc-column>
+        <sc-column title="evalSessions_editEvalSessionDistribution_projectName" has-content="true" data="projectName">
+          <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="companyName" title="evalSessions_editEvalSessionDistribution_companyName">
+        </sc-column>
+        <sc-column data="projectRegDate" title="evalSessions_editEvalSessionDistribution_projectRegDate" type="datetime">
+        </sc-column>
+        <sc-column data="projectRegistrationStatus" title="evalSessions_editEvalSessionDistribution_projectRegistrationStatus">
+        </sc-column>
+        <sc-column data="isDeleted" title="evalSessions_editEvalSessionDistribution_isDeleted" type="rboolean">
+        </sc-column>
+        <sc-column data="isDeletedNote" title="evalSessions_editEvalSessionDistribution_isDeletedNote">
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

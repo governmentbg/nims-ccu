@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10080"
+	xmlns="http://ereg.egov.bg/segment/R-10080"
+	
+	xmlns:opbd="http://ereg.egov.bg/segment/R-10079"
+            
+	xmlns:com="http://ereg.egov.bg/segment/R-10004"
+          
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+            
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10079" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10004" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+  
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="Offer">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Оферта по процедура за възлагане на обществена поръчка</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+
+      <xsd:element name="BasicData" type="opbd:OfferBasicData" minOccurs="0" />
+
+      <xsd:element name="Candidate" type="com:Company" minOccurs="0" />
+
+      <xsd:element name="AttachedDocuments" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+    <xsd:attribute name="procurementsGid" type="xsd:string"/>
+    <xsd:attribute name="planGid" type="xsd:string"/>
+    <xsd:attribute name="positionGid" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

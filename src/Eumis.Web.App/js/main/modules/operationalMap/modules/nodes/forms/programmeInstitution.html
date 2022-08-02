@@ -1,0 +1,13 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contactName" ng-required="true" l10n-text="programmes_programmeInstitutionForm_contactName" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.contactPosition" ng-required="true" l10n-text="programmes_programmeInstitutionForm_contactPosition" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contactPhone" ng-required="true" l10n-text="programmes_programmeInstitutionForm_contactPhone" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" rows="3" ng-model="model.contactFax" ng-required="true" l10n-text="programmes_programmeInstitutionForm_contactFax" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" rows="3" ng-model="model.contactEmail" ng-required="true" ng-pattern="emailRegex" l10n-text="programmes_programmeInstitutionForm_contactEmail" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

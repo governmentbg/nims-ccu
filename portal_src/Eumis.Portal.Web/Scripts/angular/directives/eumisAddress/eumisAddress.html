@@ -1,0 +1,49 @@
+﻿<div class="form-group col-md-12 col-lg-6">
+    <label>{{resources.Country}}</label>
+    <sc-nomenclature ng-class="{'input-validation-error': !model.IsCountryValid}" sc-alias="GetCountries" ng-model="model.Country">
+    </sc-nomenclature>
+    <input ng-class="{'input-validation-error': !model.IsCountryValid}" value="{{ model.Country.Code }}" name="{{path}}.Country.Code" type="hidden" class="validation-error-key" />
+    <input value="{{ model.Country.Name }}" name="{{path}}.Country.Name" type="hidden" />
+    <input value="{{ model.Country.NameEN }}" name="{{path}}.Country.NameEN" type="hidden" />
+</div>
+
+<div>
+    <div ng-show="model.Country.Code == bgCode">
+        <div class="form-group col-md-4">
+            <label>{{resources.Settlement}}</label>
+            <sc-nomenclature ng-class="{'input-validation-error': !model.IsSettlementValid}" sc-alias="GetSettlements" ng-model="model.Settlement">
+            </sc-nomenclature>
+            <input ng-class="{'input-validation-error': !model.IsSettlementValid}" sc-disabled="model.Country.Code != bgCode" value="{{ model.Settlement.id }}" name="{{path}}.Settlement.Code" type="hidden" class="validation-error-key" />
+            <input sc-disabled="model.Country.Code != bgCode" value="{{ model.Settlement.Name }}" name="{{path}}.Settlement.Name" type="hidden" />
+            <input value="{{ model.Settlement.NameEN }}" name="{{path}}.Settlement.NameEN" type="hidden" />
+        </div>
+
+        <div class="clearfix"></div>
+        <div ng-if="showManagement">
+            <h3>{{resources.Management}}</h3>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label>{{resources.PostCode}}</label>
+            <input ng-class="{'input-validation-error': !model.IsPostCodeValid}" sc-disabled="model.Country.Code != bgCode" ng-model="model.PostCode" name="{{path}}.PostCode" type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-10">
+            <label>{{resources.Street}}</label>
+            <textarea ng-class="{'input-validation-error': !model.IsStreetValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Street" name="{{path}}.Street" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div ng-hide="model.Country.Code == bgCode || !model.Country.Code || model.Country.Code == ''">
+        <div ng-if="showManagement">
+            <div class="clearfix"></div>
+            <h3>{{resources.Management}}</h3>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label>{{resources.FullAddress}}</label>
+            <input ng-class="{'input-validation-error': !model.IsFullAddressValid}" sc-disabled="model.Country.Code == bgCode || !model.Country.Code || model.Country.Code == ''" ng-model="model.FullAddress" name="{{path}}.FullAddress" type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

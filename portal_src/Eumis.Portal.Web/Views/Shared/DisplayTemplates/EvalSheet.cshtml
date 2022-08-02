@@ -1,0 +1,85 @@
+﻿@model R_10026.EvalSheet
+
+@if (Model != null)
+{
+    if (!String.IsNullOrWhiteSpace(Model.ProjectName))
+    {
+        <div class="form-group col-md-12">
+            <label>@EvalSheet.ProjectName</label>
+            @Html.DisplayFor(m => m.ProjectName)
+        </div>
+    }
+
+    if (!String.IsNullOrWhiteSpace(Model.ProjectRegNumber))
+    {
+        <div class="form-group col-md-6">
+            <label>@EvalSheet.ProjectRegNumber</label>
+            @Html.DisplayFor(m => m.ProjectRegNumber)
+        </div>
+    }
+
+    if (!String.IsNullOrWhiteSpace(Model.AssessorName))
+    {
+        <div class="form-group col-md-6">
+            <label>@EvalSheet.AssessorName</label>
+            @Html.DisplayFor(m => m.AssessorName)
+        </div>
+    }
+
+    if (!String.IsNullOrWhiteSpace(Model.ProcedureName))
+    {
+        <div class="form-group col-md-12">
+            <label>@EvalSheet.ProcedureName</label>
+            @Html.DisplayFor(m => m.ProcedureName)
+        </div>
+    }
+
+    if (!String.IsNullOrWhiteSpace(Model.CompanyName))
+    {
+        <div class="form-group col-md-12">
+            <label>@EvalSheet.CompanyName</label>
+            @Html.DisplayFor(m => m.CompanyName)
+        </div>
+    }
+
+    if (!String.IsNullOrWhiteSpace(Model.EvalTableTypeText))
+    {
+        <div class="form-group col-md-12">
+            <label>@EvalSheet.EvalTableTypeText</label>
+            @Html.DisplayFor(m => m.EvalTableTypeText)
+        </div>
+    }
+
+    <h2>@EvalTable.EvaluationCriterias</h2>
+    <section class="clearfix" style="display:block;">
+        @Html.DisplayFor(m => m.EvalSheetGroupCollection, MVC.Shared.Views.DisplayTemplates.EvalSheetGroupCollection)
+    </section>
+
+    if (Model.EvalTableAttachedDocumentCollection != null && Model.EvalTableAttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@EvalSheet.EvalTableAttachedDocumentCollection</h2>
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.EvalTableAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@EvalSheet.AttachedDocumentCollection</h2>
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    <div class="section-separator"> </div>
+    <h2>@EvalSheet.Note</h2>
+    <section class="clearfix row" style="display:block;">
+        <div class="form-group col-md-12">
+            @Html.DisplayFor(m => m.Note, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+    </section>
+
+    @Html.DisplayFor(m => m.Signature)
+}

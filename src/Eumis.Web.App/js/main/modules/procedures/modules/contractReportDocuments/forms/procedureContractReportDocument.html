@@ -1,0 +1,12 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field ng-readonly="form.$readonly || isActivated" type="text" ng-model="model.name" ng-required="true" l10n-text="procedures_procedureContractReportDocumentForm_name" class="col-sm-5 col-md-5" ng-maxlength="200"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.extension" ng-pattern="/^[,;\s]*(\.[a-zA-Z0-9]{1,8})(\s*[,;\s]\s*\.[a-zA-Z0-9]{1,8}[,;\s]*)*$/" ng-maxlength="50" l10n-text="procedures_procedureContractReportDocumentForm_extension" class="col-sm-5 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="procedures_procedureContractReportDocumentForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isRequired" ng-required="true" l10n-text="procedures_procedureContractReportDocumentForm_isRequired" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+</ng-form>

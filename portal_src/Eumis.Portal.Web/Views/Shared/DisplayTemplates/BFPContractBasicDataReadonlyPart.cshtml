@@ -1,0 +1,34 @@
+﻿@model R_10031.BFPContractBasicData
+
+@if (Model != null)
+{
+    if (Model.ProgrammeBasicData != null)
+    {
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.ProgrammeBasicData.Programme, BFPContractBasicData.Programme)
+            @Html.DisplayFor(m => m.ProgrammeBasicData.Programme)
+        </div>
+        <div class="form-group col-md-8">
+            <label>@BFPContractBasicData.ProgrammePriority</label>
+            @if (Model.ProgrammeBasicData.ProgrammePriorityCollection != null && Model.ProgrammeBasicData.ProgrammePriorityCollection.Count > 0)
+            {
+                for (int j = 0; j < Model.ProgrammeBasicData.ProgrammePriorityCollection.Count; j++)
+                {
+                    @Html.DisplayFor(m => m.ProgrammeBasicData.ProgrammePriorityCollection[j])
+                }
+            }
+        </div>
+    }
+
+    if (Model.Procedure != null)
+    {
+        <div class="form-group col-md-9">
+            @Html.LabelFor(m => m.Procedure.Name, BFPContractBasicData.ProcedureName)
+            @Html.DisplayFor(m => m.Procedure.Name)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.Procedure.Code, BFPContractBasicData.ProcedureCode)
+            @Html.DisplayFor(m => m.Procedure.Code)
+        </div>
+    }
+}

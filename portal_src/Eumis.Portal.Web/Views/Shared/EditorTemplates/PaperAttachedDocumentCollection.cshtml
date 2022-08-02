@@ -1,0 +1,80 @@
+﻿@model R_10019.PaperAttachedDocumentCollection
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        hasUniqueIds: @(Model.HasUniqueIds.ToString().ToLower()),
+        hasValidCount: @(Model.HasValidCount.ToString().ToLower()),
+        };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerPaperAttachedDocuments@(guid)'), ['modulePaperAttachedDocuments']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerPaperAttachedDocuments@(guid)" ng-controller="controllerPaperAttachedDocuments" ng-init="init('_eumis_options', 'i@(guid)')">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr ng-class="{'input-validation-error': !hasUniqueIds}" name="@(Html.GetNameFor(m => m)).HasUniqueIds">
+                <th>@PaperAttachedDocument.Type</th>
+                <th colspan="2">@PaperAttachedDocument.Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr ng-if="!item.IsDeactivated">
+                <td style="width:500px;">
+                    <div style="display:block; width:100%;">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsTypeValid}" sc-alias="GetAttachedDocumentTypes" ng-model="item.Type">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsTypeValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.id"
+                               value="{{ item.Type.id }}" class="validation-error-key" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name"
+                               value="{{ item.Type.Name }}" />
+                    </div>
+                </td>
+                <td>
+                    <input ng-class="{'input-validation-error': !item.IsDescriptionValid}" type="text" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control" />
+                </td>
+                <td style="width:102px;">
+                    <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-if="item.IsDeactivated" class="deactivated">
+                <td style="width:500px;">
+                    <span class="filled-value">
+                        {{item.Type.Name}}
+                        <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                    </span>
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Id"
+                           value="{{ item.Type.id }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name"
+                           value="{{ item.Type.Name }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].IsDeactivated"
+                           value="True" />
+                </td>
+                <td>
+                    <span class="filled-value">{{item.Description}}</span>
+
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description"
+                           value="{{ item.Description }}" />
+                </td>
+                <td style="width:102px;">
+                    <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a ng-class="{'input-validation-error': !hasValidCount}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()" ng-show="items.length < maxDocuments">@Global.AddButton</a>
+    <p class="required-span" ng-show="items.length >= maxDocuments">@String.Format(PaperAttachedDocument.MaxDocumentsReached, Eumis.Documents.Constants.PaperDocumentsMaxCount)</p>
+</div>

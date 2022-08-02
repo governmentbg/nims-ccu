@@ -1,0 +1,83 @@
+﻿@model R_10051.BFPContractSAPData
+
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <td style="width:35%;">@BFPContractSAPData.ProgrammeCode</td>
+            <td style="width:65%;">@Model.ProgrammeCode</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.PriorityCode</td>
+            <td>
+                @if (Model.PriorityCodeCollection != null)
+                {
+                    foreach (var code in Model.PriorityCodeCollection)
+                    {
+                        <p>@code</p>
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.ProcedureCode</td>
+            <td>@Model.ProcedureCode</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.ProjectRegNumber</td>
+            <td>@Model.ProjectRegNumber</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.ContractRegNumber</td>
+            <td>@Model.ContractRegNumber</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.BeneficiaryUin</td>
+            <td>
+                <span class="filled-value">
+                    @if (Model.BeneficiaryUinType != null && !String.IsNullOrWhiteSpace(Model.BeneficiaryUinType.Name))
+                    {
+                        <text>@Model.BeneficiaryUinType.Name: </text>
+                    }
+                    @Model.BeneficiaryUin
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.BeneficiaryName</td>
+            <td>@Model.BeneficiaryName</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.StartDate</td>
+            <td>@Model.StartDate</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.CompletionDate</td>
+            <td>@Model.CompletionDate</td>
+        </tr>
+        <tr>
+            <td colspan="2">@BFPContractSAPData.BudgetValueLv</td>
+        </tr>
+        <tr>
+            <td>@BFPContractSAPData.BudgetTotal</td>
+            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetTotal)</td>
+        </tr>
+        <tr>
+            <td colspan="2">@BFPContractSAPData.BudgetEU</td>
+        </tr>
+        @if (Model.BudgetEUCollection != null)
+        {
+            foreach (var item in Model.BudgetEUCollection)
+            {
+                <tr>
+                    <td>@item.FinanceSource.text</td>
+                    <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, item.Amount)</td>
+                </tr>
+            }
+        }
+        <tr>
+            <td>@BFPContractSAPData.BudgetNational</td>
+            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetNational)</td>
+        </tr>
+    </table>
+}

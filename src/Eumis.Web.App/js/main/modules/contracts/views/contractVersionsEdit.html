@@ -1,0 +1,50 @@
+﻿<ng-form name="editVersionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-if="version.versionType === 'newContract'" l10n-text="contracts_versionsEdit_newContractTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'annex'" l10n-text="contracts_versionsEdit_annexTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'change'" l10n-text="contracts_versionsEdit_changeTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'partialAnnex'" l10n-text="contracts_versionsEdit_partialAnnexTitle"></strong>
+      <strong class="heading" ng-if="version.versionType === 'partialChange'" l10n-text="contracts_versionsEdit_partialChangeTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" ng-show="version.status === 'entered' && !editMode" btn-click="setToDraft()" text="contracts_versionsEdit_draft" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('ContractVersionActions.ChangeStatusToDraft', versionId)">
+        </sc-button>
+        <sc-button name="checkBtn" ng-show="version.status === 'entered'" btn-click="check()" text="contracts_versionsEdit_check" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ContractVersionActions.MarkAsChecked', versionId)">
+        </sc-button>
+        <sc-button name="editBtn" ng-show="version.status === 'draft' && !editMode" btn-click="edit()" text="contracts_versionsEdit_edit" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ContractVersionActions.Edit', versionId)">
+        </sc-button>
+        <sc-button name="technicalEditBtn" ng-show="(version.status === 'active' || version.status === 'archived') && !editMode" btn-click="technicalEdit()" text="contracts_versionsEdit_technicalEdit" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ContractVersionActions.Edit', versionId)">
+        </sc-button>
+        <sc-button name="deleteBtn" ng-show="version.status === 'draft' && !editMode" btn-click="del()" text="contracts_versionsEdit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ContractVersionActions.Delete', versionId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contracts_versionsEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_versionsEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-version name="versionForm" ng-model="version" sc-form-params="{ isNew: false }"></eumis-contract-version>
+
+      <div class="row" ng-show="!editMode">
+        <eumis-structured-document ng-if="version.versionType !== 'partialAnnex' && version.versionType !== 'partialChange'"
+            text="contracts_versionsEdit_template" document="contractVersion" gid="version.gid"
+            readonly="version.status !== 'draft' || !$canDo('ContractVersionActions.Edit', versionId)"
+            class="col-sm-4 col-md-3" doc-updated="versionUpdated">
+        </eumis-structured-document>
+        <eumis-structured-document ng-if="version.versionType === 'partialAnnex' || version.versionType === 'partialChange'"
+            text="contracts_versionsEdit_template" document="contractVersion" gid="version.gid" edit-action="editPartial"
+            readonly="version.status !== 'draft' || !$canDo('ContractVersionActions.Edit', versionId)"
+            class="col-sm-4 col-md-3" doc-updated="versionUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

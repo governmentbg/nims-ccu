@@ -1,0 +1,178 @@
+﻿@using Eumis.Documents.Contracts
+
+@model IEnumerable<ContractReportMicroType4ItemPVO>
+
+<div class="container">
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="table-wrapper micro">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th colspan="3">Количество плодове и зеленчуци</th>
+                        <th colspan="4">Количество месо, яйца, риба и рибни продукти</th>
+                        <th colspan="6">Количество брашно, хляб, картофи, ориз и други съдържащи скорбяла продукти</th>
+                        <th>Количество захар</th>
+                        <th>Количество млечни продукти</th>
+                        <th>Количество мазнини, масла</th>
+                        <th colspan="3">Количество готови храни, други храни (които не попадат в предходните категории)</th>
+                        <th>Общ брой разпределени ястия изцяло финансирани по оп</th>
+                        <th>Общ брой разпределени пакети с храна, изцяло финансирани по оп</th>
+                    </tr>
+                    <tr>
+                        <th>Област</th>
+                        <th>Община</th>
+                        <th>Плодове (кг.)</th>
+                        <th>Зеленчуци (кг.)</th>
+                        <th>Общо</th>
+                        <th>Месо (кг.)</th>
+                        <th>Яйца (кг.)</th>
+                        <th>Риба и рибни продукти (кг.)</th>
+                        <th>Общо</th>
+                        <th>Брашно (кг.)</th>
+                        <th>Хляб (кг.)</th>
+                        <th>Картофи (кг.)</th>
+                        <th>Ориз (кг.)</th>
+                        <th>Други съдържащи скорбяла продукти (кг.)</th>
+                        <th>Общо</th>
+                        <th>Захар (кг.)</th>
+                        <th>Млечни продукти (кг.)</th>
+                        <th>Мазнина, масла (кг.)</th>
+                        <th>Готови храни (кг.)</th>
+                        <th>Други храни (които не попадат в предходните категории) (кг.)</th>
+                        <th>Общо</th>
+                        <th>Брой ястия</th>
+                        <th>Брой пакети</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.District</td>
+                            <td>@item.Municipality</td>
+                            <td>
+                                @if (item.FruitAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FruitAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.VegetableAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.VegetableAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Group1TotalAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.Group1TotalAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MeatAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MeatAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.EggAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.EggAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FishAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FishAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Group2TotalAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.Group2TotalAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FlourAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FlourAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.BreadAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.BreadAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.PotatoAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.PotatoAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.RiceAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.RiceAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.StarchProductAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.StarchProductAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Group3TotalAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.Group3TotalAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.SugarAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.SugarAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.MilkProductAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.MilkProductAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FatsOrOilsAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FatsOrOilsAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.FastFoodAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.FastFoodAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.OtherFoodAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.OtherFoodAmounts.Value)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Group4TotalAmounts.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.Group4TotalAmounts.Value)
+                                }
+                            </td>
+                            <td class="text-right">@item.TotalDishesCount</td>
+                            <td class="text-right">@item.TotalPackagesCount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

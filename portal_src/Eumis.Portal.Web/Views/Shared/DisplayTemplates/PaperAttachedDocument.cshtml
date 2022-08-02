@@ -1,0 +1,22 @@
+﻿@model R_09994.PaperAttachedDocument
+
+@if (Model != null)
+{
+    <tr class="@(Model.IsDeactivated ? "deactivated" : "")">
+        <td>
+            <span class="filled-value">
+                @if (Model.Type != null)
+                {
+                    <text>@Model.Type.Name</text>
+                }
+                @if (Model.IsDeactivated)
+                {
+                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                }
+            </span>
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Description)
+        </td>
+    </tr>
+}

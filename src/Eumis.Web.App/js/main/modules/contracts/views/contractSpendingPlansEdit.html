@@ -1,0 +1,37 @@
+﻿<ng-form name="editSpendingPlanForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contracts_spendingPlansEdit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" ng-show="spendingPlan.status === 'draft' && !editMode" btn-click="edit()" text="contracts_spendingPlansEdit_edit" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ContractSpendingPlanActions.Edit', spendingPlanId)">
+        </sc-button>
+        <sc-button name="deleteBtn" ng-show="spendingPlan.status === 'draft' && !editMode" btn-click="del()" text="contracts_spendingPlansEdit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ContractSpendingPlanActions.Delete', spendingPlanId)">
+        </sc-button>
+        <sc-button name="draftBtn" ng-show="spendingPlan.status === 'entered'" btn-click="setToDraft()" text="contracts_spendingPlansEdit_draft" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('ContractSpendingPlanActions.ChangeStatusToDraft', spendingPlanId)">
+        </sc-button>
+        <sc-button name="checkBtn" ng-show="spendingPlan.status === 'entered'" btn-click="check()" text="contracts_spendingPlansEdit_check" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ContractSpendingPlanActions.MarkAsChecked', spendingPlanId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contracts_spendingPlansEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_spendingPlansEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-spending-plan name="spendingPlanForm" ng-model="spendingPlan"></eumis-contract-spending-plan>
+
+      <div class="row" ng-show="!editMode">
+        <eumis-structured-document text="contracts_spendingPlansEdit_template" document="contractSpendingPlan" gid="spendingPlan.gid"
+          readonly="spendingPlan.status !== 'draft' || !$canDo('ContractSpendingPlanActions.Edit', spendingPlanId)"
+          class="col-sm-4 col-md-3" doc-updated="spendingPlanUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

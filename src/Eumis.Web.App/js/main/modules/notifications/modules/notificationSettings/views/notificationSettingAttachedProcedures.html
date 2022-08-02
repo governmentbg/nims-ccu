@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="chooseItemsBtn" btn-click="chooseItems()" text="notificationSetting_notificationSettingAttachedProcedures_choose" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+
+    <sc-datatable items="attachedProcedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="delBtn" btn-click="delItem(item.procedureId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+      </sc-column>
+      <sc-column data="code" title="notificationSetting_notificationSettingAttachedProcedures_code">
+      </sc-column>
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedProcedures_name" width="30%">
+      </sc-column>
+      <sc-column data="programmeNames" title="notificationSetting_notificationSettingAttachedProcedures_programme" width="20%" has-content="true">
+        {{item.programmeNames | join:', '}}
+      </sc-column>
+      <sc-column data="activationDate" title="notificationSetting_notificationSettingAttachedProcedures_activationDate" type="date" width="9%">
+      </sc-column>
+      <sc-column data="status" title="notificationSetting_notificationSettingAttachedProcedures_status">
+      </sc-column>
+      <sc-column data="euAmount" title="notificationSetting_notificationSettingAttachedProcedures_euAmount" type="money">
+      </sc-column>
+      <sc-column data="bgAmount" title="notificationSetting_notificationSettingAttachedProcedures_bgAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

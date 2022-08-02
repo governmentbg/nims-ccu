@@ -1,0 +1,51 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+    <div class="page-content submission-type clearfix">
+
+        <div class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p text-justify">
+                    <p><strong>@MessagePaper.ApplyOnPaper</strong></p>
+
+                    <p>@MessagePaper.SendQuestion <b>@(string.Format("{0} - {1}", SubmissionState.Current.PrecedureCode, SubmissionState.Current.PrecedureName))</b>.</p>
+                    
+                    <p>@MessagePaper.ToSubmit</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>@MessagePaper.DownloadDeclaration</h2>
+        <div class="col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1">
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Message.ActionNames.SaveDeclaration, MVC.Message.Name, new { hash = SubmissionState.Current.Hash, registrationNumber = "" }))" title="" class="download-paper">
+                    <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.subm_download_png))" alt="">
+                    <span>@MessagePaper.Download</span>
+                    <strong>@MessagePaper.Declaration</strong>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Message.ActionNames.SaveLabel, MVC.Message.Name, new { hash = SubmissionState.Current.Hash, registrationNumber = "" }))" title="" class="download-paper">
+                    <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.subm_download_png))" alt="">
+                    <span>@MessagePaper.Download</span>
+                    <strong>@MessagePaper.Label</strong>
+                </a>
+            </div>
+        </div>
+
+        <div class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p text-justify">
+                    <p>Отговорът се окомплектова, като в плик се поставят всички приложения към него (на хартиен носител или други, ако има такива), включително и разпечатаната декларация, попълнена и подписана собственоръчно. Пликът се запечатва, поставя се изготвеният от системата етикет и се подава на адреса, посочен в насоките за кандидатстване.</p>
+                    
+                    <p>Подготвеният за подаване отговор, вече може да намерите в менюто <b>„Проектни предложения“</b>, раздел <b>„Въпроси от комисията“</b>. В случай на нужда, на по-късен етап от посоченото място може допълнително да разпечатате декларации и етикети.</p>
+
+                    <p>След като отговорът бъде предаден и приет от Управляващия орган на адреса, посочен в насоките за кандидатстване и му бъде издаден входящ регистрационен номер, той автоматично ще се премести в менюто <b>„Проектни предложения“</b>, раздел <b>„Подадени“</b>, <b>„История“</b>.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,178 @@
+﻿@model R_10043.CostSupportingDocuments
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.CostSupportingDocumentCollection != null && Model.CostSupportingDocumentCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.CostSupportingDocumentCollection.Count; i++)
+            {
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width: 35%;">@CostSupportingDocument.Type</td>
+                            <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.CostSupportingDocumentCollection[i].CostSupportingDocumentType ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@CostSupportingDocument.Description</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.CostSupportingDocumentCollection[i].CostSupportingDocumentDescription ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@CostSupportingDocument.Number</td>
+                            <td>@Model.CostSupportingDocumentCollection[i].Number</td>
+                        </tr>
+                        <tr>
+                            <td>@CostSupportingDocument.Date</td>
+                            <td>
+                                @if (Model.CostSupportingDocumentCollection[i].Date.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.CostSupportingDocumentCollection[i].Date)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@CostSupportingDocument.PaymentDate</td>
+                            <td>
+                                @if (Model.CostSupportingDocumentCollection[i].PaymentDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.CostSupportingDocumentCollection[i].PaymentDate)
+                                }
+                            </td>
+                        </tr>
+
+                        @if (Model.CostSupportingDocumentCollection[i].CompanyType == R_09986.CompanyTypeNomenclature.Beneficiary)
+                        {
+                            <tr>
+                                <td>@CostSupportingDocument.Beneficiary</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CostSupportingDocumentCollection[i].Beneficiary ?? new R_10000.PrivateNomenclature())</td>
+                            </tr>
+                        }
+                        else if (Model.CostSupportingDocumentCollection[i].CompanyType == R_09986.CompanyTypeNomenclature.Partner)
+                        {
+                            <tr>
+                                <td>@CostSupportingDocument.Partner</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CostSupportingDocumentCollection[i].Partner ?? new R_10000.PrivateNomenclature())</td>
+                            </tr>
+                        }
+                        else if (Model.CostSupportingDocumentCollection[i].CompanyType == R_09986.CompanyTypeNomenclature.Contractor)
+                        {
+                            <tr>
+                                <td>@CostSupportingDocument.Contractor</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CostSupportingDocumentCollection[i].Contractor ?? new R_10000.PrivateNomenclature())</td>
+                            </tr>
+                            <tr>
+                                <td>@CostSupportingDocument.ContractContractor</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CostSupportingDocumentCollection[i].ContractContractor ?? new R_10000.PrivateNomenclature())</td>
+                            </tr>
+                        }
+                        
+                        <tr>
+                            <td colspan="2">
+                                <div>
+
+                                    @if (Model.CostSupportingDocumentCollection[i].FinanceReportBudgetItemDataCollection != null && Model.CostSupportingDocumentCollection[i].FinanceReportBudgetItemDataCollection.Count > 0)
+                                    {
+                                        for (int j = 0; j < Model.CostSupportingDocumentCollection[i].FinanceReportBudgetItemDataCollection.Count; j++)
+                                        {
+                                            var financeReportBudgetItemData = Model.CostSupportingDocumentCollection[i].FinanceReportBudgetItemDataCollection[j];
+
+                                            <table class="budget-item-data">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.BudgetDetail</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, financeReportBudgetItemData.BudgetDetail ?? new R_10000.PrivateNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.ContractActivity</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, financeReportBudgetItemData.ContractActivity ?? new R_10000.PrivateNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.GrandAmount</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, financeReportBudgetItemData.GrandAmount)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.SelfAmount</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, financeReportBudgetItemData.SelfAmount)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.TotalAmount</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, financeReportBudgetItemData.TotalAmount)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.CrossFinancing</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.CrossFinancing ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.IsVatAmount</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, financeReportBudgetItemData.IsVatAmount)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.UnitDefinition</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, financeReportBudgetItemData.UnitDefinition ?? string.Empty)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.ProducedUnitsCount</td>
+                                                        <td>@financeReportBudgetItemData.ProducedUnitsCount</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.UnitCost</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, financeReportBudgetItemData.UnitCost)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.InsideEU</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.InsideEU ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.OutsideEU</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.OutsideEU ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.OutsideEUInProgrammingAreaEFRR</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.OutsideEUInProgrammingAreaEFRR ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.ThirdCountriesEFRR</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.ThirdCountriesEFRR ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.AdvancePayment</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.AdvancePayment ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@CostSupportingDocument.ContributionNature</td>
+                                                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, financeReportBudgetItemData.ContributionNature ?? new R_09991.EnumNomenclature())</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        @if (Model.CostSupportingDocumentCollection[i].AttachedDocumentCollection != null && Model.CostSupportingDocumentCollection[i].AttachedDocumentCollection.Count > 0)
+                        {
+                            foreach (var document in Model.CostSupportingDocumentCollection[i].AttachedDocumentCollection)
+                            {
+                                <tr>
+                                    <td>@AttachedDocument.Description</td>
+                                    <td>
+                                        @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, document.Description ?? string.Empty)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@AttachedDocument.FileName</td>
+                                    <td>
+                                        @if (document.AttachedDocumentContent != null)
+                                        {
+                                            @document.AttachedDocumentContent.FileName
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

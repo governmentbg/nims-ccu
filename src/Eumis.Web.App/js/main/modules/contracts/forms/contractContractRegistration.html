@@ -1,0 +1,31 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-show="!hideEmail" ng-disabled="isReadonly" ng-required="true" ng-model="model.contractRegistration.email" ng-pattern="emailRegex" l10n-text="contracts_registrations_contractRegistrationDataForm_email" class="col-sm-4 col-md-3"
+              sc-validate-async="{ unique: isUnique }"
+              validations="{ unique: 'contracts_registrations_contractRegistrationDataForm_emailNotUnique'}">
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'personalUinTypes'" mode="id" ng-disabled="isReadonly" ng-required="true" ng-model="model.contractRegistration.uinType" l10n-text="contracts_registrations_contractRegistrationDataForm_uinType" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-maxlength="50" ng-disabled="isReadonly" ng-required="true" ng-model="model.contractRegistration.uin" l10n-text="contracts_registrations_contractRegistrationDataForm_uin" class="col-sm-4 col-md-3"
+              sc-validate="{ validValue: uinValid }"
+              sc-revalidate-on="['model.contractRegistration.uinType']"
+              validations="{ validValue: 'contracts_registrations_contractRegistrationDataForm_uinNotValid' }">
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-disabled="isReadonly" ng-required="true" ng-model="model.contractRegistration.firstName" l10n-text="contracts_registrations_contractRegistrationDataForm_firstName" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-disabled="isReadonly" ng-required="true" ng-model="model.contractRegistration.lastName" l10n-text="contracts_registrations_contractRegistrationDataForm_lastName" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-disabled="isReadonly" ng-model="model.contractRegistration.phone" l10n-text="contracts_registrations_contractRegistrationDataForm_phone" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" ng-required="true" ng-model="model.file" l10n-text="contracts_registrations_contractRegistrationDataForm_file" class="col-sm-4 col-md-3"
+              url-template="ContractContractRegistrationFile" url-params="{ id: contractId }"></sc-field>
+  </div>
+</ng-form>

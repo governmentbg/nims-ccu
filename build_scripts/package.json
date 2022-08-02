@@ -1,0 +1,28 @@
+{
+  "name": "build_scripts",
+  "version": "1.0.0",
+  "description": "Eumis build system",
+  "scripts": {
+    "clean": "rimraf build",
+    "gulp": "gulp",
+    "utf8-check-files": "node ./utf8CheckFiles"
+  },
+  "devDependencies": {
+    "cross-spawn": "^7.0.1",
+    "del": "5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-expect-file": "^1.0.2",
+    "gulp-msbuild": "^0.9.0",
+    "gulp-util": "^3.0.8",
+    "lodash": "4.17.15",
+    "q": "~1.5.1",
+    "rimraf": "^3.0.2",
+    "simple-git": "^1.131.0",
+    "utf-8-validate": "^5.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hristo-ciela/Eumis.git"
+  },
+  "license": "SEE LICENSE IN readme"
+}

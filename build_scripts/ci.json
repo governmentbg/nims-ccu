@@ -1,0 +1,49 @@
+{
+  "defaultConfiguration": "Ciela.CI",
+  "machines": {
+    "Ciela-ISUNWeb1": [
+      {
+        "msbuild": {
+          "task": "build",
+          "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+        }
+      }, {
+        "npm": {
+          "location": "../src/Eumis.Web.App",
+          "confTask": {
+            "Ciela.CI": "build-prod"
+          }
+        },
+        "msbuild": {
+          "task": "package",
+          "slnFile": "../src/Eumis.sln",
+          "projects": [
+            "Eumis.Web.Host",
+            "Eumis.PortalIntegration.Host",
+            "Eumis.Job.Host",
+            "Eumis.Blob.Host"
+          ],
+          "parametersXMLFile": {
+            "Ciela.CI": "Parameters.Ciela.CI.xml"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../portal_src/Eumis.Portal.Web/Eumis.Portal.Web.csproj",
+          "parametersXMLFile": {
+            "Ciela.CI": "Parameters.Ciela.CI.xml"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../eufunds_src/Eumis.Public.Web/Eumis.Public.Web.csproj",
+          "parametersXMLFile": {
+            "Ciela.CI": "Parameters.Ciela.CI.xml"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newEvalSessionUserBtn" btn-sref="{ state: 'root.evalSessions.view.users.new' }" text="evalSessions_evalSessionUsersSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionId) || !isSessionDraft"></sc-button>
+
+    <sc-datatable items="evalSessionUsers" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.status === 'deactivated'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.users.edit', params: { ind: item.evalSessionUserId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSession', evalSessionId)"></sc-button>
+      </sc-column>
+      <sc-column data="fullname" title="evalSessions_evalSessionUsersSearch_fullname"></sc-column>
+      <sc-column data="type" title="evalSessions_evalSessionUsersSearch_type"></sc-column>
+      <sc-column data="username" title="evalSessions_evalSessionUsersSearch_username"></sc-column>
+      <sc-column data="position" title="evalSessions_evalSessionUsersSearch_position"></sc-column>
+      <sc-column data="statusName" title="evalSessions_evalSessionUsersSearch_status"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

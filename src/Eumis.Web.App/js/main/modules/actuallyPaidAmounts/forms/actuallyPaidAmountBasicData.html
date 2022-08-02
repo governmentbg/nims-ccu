@@ -1,0 +1,41 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'actuallyPaidAmountStatuses'" ng-model="model.status" mode="id" l10n-text="actuallyPaidAmounts_basicDataForm_status" class="col-sm-4 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="actuallyPaidAmounts_basicDataForm_regNumber" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'actuallyPaidAmountCreationType'" mode="id" ng-model="model.creationType" l10n-text="actuallyPaidAmounts_basicDataForm_creationType" class="col-sm-4 col-md-3"></sc-field>    
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.isDeletedNote" ng-show="model.status === 'deleted'" rows="2" l10n-text="actuallyPaidAmounts_basicDataForm_isDeletedNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-model="model.programmeId" mode="id" l10n-text="actuallyPaidAmounts_basicDataForm_programme" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="actuallyPaidAmounts_basicDataForm_contract"></h5>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractRegNumber" l10n-text="actuallyPaidAmounts_basicDataForm_contractRegNumber" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.contractName" rows="2" l10n-text="actuallyPaidAmounts_basicDataForm_contractName" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="actuallyPaidAmounts_basicDataForm_beneficiary"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" l10n-text="actuallyPaidAmounts_basicDataForm_uinType" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" l10n-text="actuallyPaidAmounts_basicDataForm_uin" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" l10n-text="actuallyPaidAmounts_basicDataForm_name" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div ng-show="model.contractReportPaymentId">
+    <h5 class="table-header" l10n-text="actuallyPaidAmounts_basicDataForm_contractReportPayment"></h5>
+    <div class="row">
+      <sc-field type="text" ng-model="model.paymentVersionNum" l10n-text="actuallyPaidAmounts_basicDataForm_paymentVersionNum" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="date" ng-model="model.checkedDate" l10n-text="actuallyPaidAmounts_basicDataForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="money" ng-model="model.requestedAmount" l10n-text="actuallyPaidAmounts_basicDataForm_requestedAmount" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="money" ng-model="model.paidBfpTotalAmount" l10n-text="actuallyPaidAmounts_basicDataForm_paidBfpTotalAmount" class="col-sm-3 col-md-3"></sc-field>
+    </div>
+  </div>
+</ng-form>

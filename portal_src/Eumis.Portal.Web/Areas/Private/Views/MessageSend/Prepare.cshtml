@@ -1,0 +1,128 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.MessageSend.EditVM
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsMessage</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.MessageSend.ActionNames.Prepare,
+    MVC.Private.MessageSend.Name,
+    new { area = MVC.Private.Name },
+    FormMethod.Post,
+    new { id = "main_form", role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+        
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkButton(
+                null,
+                null,
+                MVC.Private.MessageSend.ActionNames.Prepare,
+                MVC.Private.MessageSend.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                        area = MVC.Private.Name
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: "main_form",
+                formMethod: FormMethod.Post)
+            @Message.Question
+            @Html.EndActionLinkButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            <h2>@Message.ProjectRegNumber</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="form-group col-md-4">
+                    @*<label>@Message.ProjectRegNumber</label>*@
+                    @Html.DisplayFor(m => m.ProjectRegNumber, MVC.Shared.Views.DisplayTemplates.String)
+                </div>
+            </section>
+
+            <h2>@Message.CompanyName</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="form-group col-md-4">
+                    @*<label>@Message.Project.Candidate.displayName</label>*@
+                    @Html.DisplayFor(m => m.Project.Candidate.displayName, MVC.Shared.Views.DisplayTemplates.String)
+                </div>
+            </section>
+
+            <h2>@Message.EndingDate</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        @*<label>@Message.Content</label>*@
+                        @Html.EditorFor(m => m.EndingDate)
+                    </div>
+                </div>
+            </section>
+
+            <h2>@Message.Question @SymbolsCount.Symbols35000</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @*<label>@Message.Content</label>*@
+                        @Html.EditorFor(m => m.Content, MVC.Shared.Views.EditorTemplates.SymbolsCountTextArea3)
+                    </div>
+                </div>
+            </section>
+            <div class="section-separator"> </div>
+
+            <h2>@Message.ContentAttachedDocumentCollection</h2>
+
+            @if (Model.Project.IsSubmitted && Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+            {
+                <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                    <a href="@(Url.Action(MVC.Private.MessageSend.ActionNames.DownloadCommunicationFiles, MVC.Private.MessageSend.Name, new { messageGid = Model.ProjectCommunicationGid, hash = @Model.GetHashCode().ToString(), isQuestion = true }))" title="">
+                        <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                        <span>@Project.DownloadFiles</span>
+                    </a>
+                </div>
+            }
+
+            <section class="clearfix" style="display:block;">
+                @Html.EditorFor(m => m.ContentAttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.UndefinedAttachedDocumentCollection)
+            </section>
+
+            <h2>@Project.ProjectProposalEdit</h2>
+            <div class="section-separator"> </div>
+
+            @Html.EditorFor(m => m.Project, MVC.Shared.Views.EditorTemplates.ProjectCheckboxes, new { MessageGid = Model.ProjectCommunicationGid })
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.MessageSend.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.MessageSend.ActionNames.Save,
+                            HasXmlUpdate = true
+                        })
+                </div>
+
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+
+        </div>
+    }
+</div>

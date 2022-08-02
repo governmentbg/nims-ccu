@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/AM/REZMA/CheckObligationsRequest" targetNamespace="http://egov.bg/RegiX/AM/REZMA/CheckObligationsRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="CheckObligationsRequestType">
+		<xs:sequence>
+			<xs:element name="Identifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор(ЕГН/ЛНЧ/ЕИК/БУЛСТАТ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CheckObligationsRequest" type="CheckObligationsRequestType">
+		<xs:annotation>
+			<xs:documentation>Справка за наличие/липса на задължения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

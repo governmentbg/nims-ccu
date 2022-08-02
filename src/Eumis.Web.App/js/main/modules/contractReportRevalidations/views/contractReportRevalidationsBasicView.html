@@ -1,0 +1,26 @@
+<ng-form name="editContractReportRevalidationDataForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportRevalidations_basicData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="setToDraft()" text="contractReportRevalidations_basicData_draft" class="btn btn-success btn-xs"
+          ng-if="contractReportRevalidationData.status === 'entered'" ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidationData.contractReportRevalidationId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="enter()" text="contractReportRevalidations_basicData_enter" class="btn btn-primary btn-xs"
+          ng-if="contractReportRevalidationData.status === 'draft'" ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidationData.contractReportRevalidationId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportRevalidations_basicData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="contractReportRevalidationData.status === 'draft' && !contractReportRevalidationData.isActivated" ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidationData.contractReportRevalidationId)">
+        </sc-button>
+        <sc-button name="removeBtn" btn-click="remove()" text="contractReportRevalidations_basicData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="contractReportRevalidationData.status === 'draft' && contractReportRevalidationData.isActivated" ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidationData.contractReportRevalidationId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-report-revalidation-basic-data name="contractReportRevalidationDataForm" ng-model="contractReportRevalidationData" sc-form-readonly="true"></eumis-contract-report-revalidation-basic-data>
+    </div>
+  </div>
+</ng-form>

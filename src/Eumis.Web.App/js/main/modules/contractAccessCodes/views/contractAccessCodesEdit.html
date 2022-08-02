@@ -1,0 +1,18 @@
+<div class="tab-content">
+  <ng-form name="editContractAccessCodeForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contractAccessCodes_editContractAccessCodes_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="backBtn" btn-click="back()" text="contractAccessCodes_editContractAccessCodes_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-contract-access-code name="contractAccessCodeForm" ng-model="contractAccessCode" readonly="true"></eumis-contract-access-code>
+      </div>
+    </div>
+  </ng-form>
+</div>

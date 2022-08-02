@@ -1,0 +1,37 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+
+  <div class="row">
+    <sc-field type="money" ng-required="false" ng-model="model.baseTotalValue" l10n-text="operationalMap_common_mapNodeIndicatorForm_baseTotalValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.baseMenValue" l10n-text="operationalMap_common_mapNodeIndicatorForm_baseMenValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.baseWomenValue" l10n-text="operationalMap_common_mapNodeIndicatorForm_baseWomenValue" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="int" ng-required="false" ng-model="model.baseYear" l10n-text="operationalMap_common_mapNodeIndicatorForm_baseYear" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="money" ng-required="false" ng-model="model.targetTotalValue" l10n-text="operationalMap_common_mapNodeIndicatorForm_targetTotalValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.targetMenValue" ng-disabled="!model.indicator.hasGenderDivision" l10n-text="operationalMap_common_mapNodeIndicatorForm_targetMenValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.targetWomenValue" ng-disabled="!model.indicator.hasGenderDivision" l10n-text="operationalMap_common_mapNodeIndicatorForm_targetWomenValue" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+
+
+  <div class="row">
+    <sc-field type="money" ng-required="false" ng-model="model.milestoneTargetTotalValue" l10n-text="operationalMap_common_mapNodeIndicatorForm_milestoneTargetTotalValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.milestoneTargetMenValue" ng-disabled="!model.indicator.hasGenderDivision" l10n-text="operationalMap_common_mapNodeIndicatorForm_milestoneTargetMenValue" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="money" ng-required="false" ng-model="model.milestoneTargetWomenValue" ng-disabled="!model.indicator.hasGenderDivision" l10n-text="operationalMap_common_mapNodeIndicatorForm_milestoneTargetWomenValue" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="text" ng-required="false" ng-model="model.dataSource" l10n-text="operationalMap_common_mapNodeIndicatorForm_dataSource" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="text" ng-required="false" ng-model="model.description" l10n-text="operationalMap_common_mapNodeIndicatorForm_description" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="operationalMap_common_mapNodeIndicatorForm_status" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+</ng-form>

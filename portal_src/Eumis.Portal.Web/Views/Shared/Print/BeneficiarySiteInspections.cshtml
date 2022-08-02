@@ -1,0 +1,59 @@
+﻿@model R_10044.BeneficiarySiteInspections
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.BeneficiarySiteInspectionCollection != null && Model.BeneficiarySiteInspectionCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.BeneficiarySiteInspectionCollection.Count; i++)
+            {
+                <table class="beneficiary-site-inspections">
+                    <tbody>
+                        <tr>
+                            <td style="width:35%">@BeneficiarySiteInspection.Number</td>
+                            <td style="width:65%">@Model.BeneficiarySiteInspectionCollection[i].Number</td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.CheckSubject</td>
+                            <td>@Model.BeneficiarySiteInspectionCollection[i].CheckSubject</td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.Range</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.BeneficiarySiteInspectionCollection[i].Range ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.StartDate</td>
+                            <td>
+                                @if (Model.BeneficiarySiteInspectionCollection[i].StartDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.BeneficiarySiteInspectionCollection[i].StartDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.EndDate></td>
+                            <td>
+                                @if (Model.BeneficiarySiteInspectionCollection[i].EndDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.BeneficiarySiteInspectionCollection[i].EndDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.KeyRecommendations</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.BeneficiarySiteInspectionCollection[i].KeyRecommendations ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.RecommendationsFulfilled</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.BeneficiarySiteInspectionCollection[i].RecommendationsFulfilled ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@BeneficiarySiteInspection.Comment</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.BeneficiarySiteInspectionCollection[i].Comment ?? string.Empty)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

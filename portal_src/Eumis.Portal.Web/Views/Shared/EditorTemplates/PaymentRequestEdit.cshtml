@@ -1,0 +1,97 @@
+﻿@model Eumis.Portal.Web.Models.PaymentRequest.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.YesNoNotApplicableNomenclature()).GetItems());
+
+    var jsonChangesNomenclature = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.MarkerChangesNomenclature()).GetItems());
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+
+    string area = ViewContext.RouteData.DataTokens["area"] as string;
+    var url = Url.Action(MVC.Report.PaymentRequest.ActionNames.GetFinanceAmount, MVC.Report.PaymentRequest.Name, new { area = area });
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+
+        window._eumis_options.getFinanceAmountUrl = '@url';
+        
+        window._eumis_options.PaymentRequest = @(Html.Raw(jsonModel));
+
+        window._eumis_options.acceptances = @(Html.Raw(jsonAcceptances));
+
+        window._eumis_options.changesNomenclature = @(Html.Raw(jsonChangesNomenclature));
+
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerPaymentRequest'), ['modulePaymentRequest']);
+            }, 100);
+        });
+    </script>
+
+    <div class="paymentRequest" id="containerPaymentRequest" ng-controller="controllerMainPaymentRequest">
+
+        @{ int sectionNumber = 1; }
+        <h2 data-section="@sectionNumber" class="section-heading" activation-name="paymentRequest" broadcast-name="paymentRequestActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @PaymentRequest.BasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            <div class="table-wrapper">
+                <div class="history-table">
+                    @if (Model.BasicData != null && Model.BasicData.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.BasicData)
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.BasicData)
+                    }
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++; }
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @PaymentRequest.AttachedDocuments
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.AttachedDocuments != null && Model.AttachedDocuments.isLocked)
+            {
+                @Html.DisplayFor(m => m.AttachedDocuments)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.AttachedDocuments.id)
+                @Html.EditorFor(m => m.AttachedDocuments.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.PaymentRequestAttachedDocumentCollection)
+            }
+        </section>
+
+    </div>
+}

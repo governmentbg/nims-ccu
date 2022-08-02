@@ -1,0 +1,73 @@
+﻿@model R_10005.InterventionCategoryDimensions
+
+@{bool isModelNull = Model == null;}
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.InterventionFieldCollection, InterventionCategoryDimensions.InterventionField)
+    @if (!isModelNull && Model.InterventionFieldCollection != null && Model.InterventionFieldCollection.Count > 0)
+    {
+        foreach (var field in Model.InterventionFieldCollection)
+        {
+            @Html.DisplayFor(m => field)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.FormOfFinanceCollection, InterventionCategoryDimensions.FormOfFinance)
+    @if (!isModelNull && Model.FormOfFinanceCollection != null && Model.FormOfFinanceCollection.Count > 0)
+    {
+        foreach (var item in Model.FormOfFinanceCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.TerritorialDimensionCollection, InterventionCategoryDimensions.TerritorialDimension)
+    @if (!isModelNull && Model.TerritorialDimensionCollection != null && Model.TerritorialDimensionCollection.Count > 0)
+    {
+        foreach (var item in Model.TerritorialDimensionCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.TerritorialDeliveryMechanismCollection, InterventionCategoryDimensions.TerritorialDeliveryMechanism)
+    @if (!isModelNull && Model.TerritorialDeliveryMechanismCollection != null && Model.TerritorialDeliveryMechanismCollection.Count > 0)
+    {
+        foreach (var item in Model.TerritorialDeliveryMechanismCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.ThematicObjectiveCollection, InterventionCategoryDimensions.ThematicObjective)
+    @if (!isModelNull && Model.ThematicObjectiveCollection != null && Model.ThematicObjectiveCollection.Count > 0)
+    {
+        foreach (var item in Model.ThematicObjectiveCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.ESFSecondaryThemeCollection, InterventionCategoryDimensions.ESFSecondaryTheme)
+    @if (!isModelNull && Model.ESFSecondaryThemeCollection != null && Model.ESFSecondaryThemeCollection.Count > 0)
+    {
+        foreach (var item in Model.ESFSecondaryThemeCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>
+<div class="form-group col-md-6">
+    @Html.LabelFor(m => m.EconomicDimensionCollection, InterventionCategoryDimensions.EconomicDimension)
+    @if (!isModelNull && Model.EconomicDimensionCollection != null && Model.EconomicDimensionCollection.Count > 0)
+    {
+        foreach (var item in Model.EconomicDimensionCollection)
+        {
+            @Html.DisplayFor(m => item)
+        }
+    }
+</div>

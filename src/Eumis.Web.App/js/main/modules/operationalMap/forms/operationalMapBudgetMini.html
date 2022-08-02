@@ -1,0 +1,14 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="money" ng-model="model.euAmount" ng-required="!form.$readonly" l10n-text="operationalMap_common_operationalMapBudgetForm_eu" class="col-sm-7 budget-amount-mini"></sc-field>
+    <sc-field custom-type="eumis-percent" ng-model="euPercent" ng-readonly="true" l10n-text="operationalMap_common_operationalMapBudgetForm_percent" class="col-sm-2 col-md-2 budget-percent-mini" input-width="80px"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.bgAmount" ng-required="!form.$readonly" l10n-text="operationalMap_common_operationalMapBudgetForm_bg" class="col-sm-7 budget-amount-mini"></sc-field>
+    <sc-field custom-type="eumis-percent" ng-model="bgPercent" ng-readonly="true" l10n-text="operationalMap_common_operationalMapBudgetForm_percent" class="col-sm-2 col-md-2 budget-percent-mini" input-width="80px"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="total" ng-readonly="true" l10n-text="operationalMap_common_operationalMapBudgetForm_total" class="col-sm-7 budget-amount-mini"></sc-field>
+  </div>
+  <br />
+</ng-form>

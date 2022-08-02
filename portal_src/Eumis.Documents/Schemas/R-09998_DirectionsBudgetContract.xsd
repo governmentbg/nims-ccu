@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-09998"
+	xmlns="http://ereg.egov.bg/segment/R-09998"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:b="http://ereg.egov.bg/segment/R-10010"
+	xmlns:con="http://ereg.egov.bg/segment/R-10006"
+    xmlns:bdsi="http://ereg.egov.bg/segment/R-10093"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10010" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10006" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10093" />
+
+  <xsd:complexType name="DirectionsBudgetContract">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Кодове по измерения, бюджет и източници на финансиране по програма</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Directions" type="bdsi:DirectionSection" minOccurs="0" />
+      <xsd:element name="Budget" type="b:Budget" minOccurs="0" />
+      <xsd:element name="Contract" type="con:Contract" minOccurs="0" />
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+    
+    <xsd:attribute name="programmeCode" type="xsd:string"/>
+    <xsd:attribute name="programmeName" type="xsd:string"/>
+  </xsd:complexType>
+</xsd:schema>

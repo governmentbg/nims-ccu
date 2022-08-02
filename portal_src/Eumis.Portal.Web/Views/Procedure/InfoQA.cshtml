@@ -1,0 +1,149 @@
+﻿@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+@model Eumis.Portal.Web.Models.ProcedureDiscussion.ProcedureDiscussionsInfoVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.Active, MVC.Procedure.Name), Global.BreadcrumbsActiveProcedures)
+}
+, Model.DisplayName)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.OpenProcedure</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li>@Html.ActionLink(ProcedureInfo.Title, MVC.Procedure.ActionNames.Info, MVC.Procedure.Name, new { id = Model.Id }, new { @class = "wait" })</li>
+        <li class="active"><a>@ProcedureInfo.QA</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active clearfix">
+            @if (!Request.IsAuthenticated)
+            {
+                <div class="info-block">
+                    <p>
+                        @ProcedureInfo.ProcedureDiscussionNotAuthenticatedPrefix @Html.ActionLink(Global.BreadcrumbsLogin, MVC.Account.ActionNames.Login, MVC.Account.Name) @ProcedureInfo.ProcedureDiscussionNotAuthenticatedSuffix
+                    </p>
+                </div>
+            }
+
+            @if (Request.IsAuthenticated)
+            {
+                if (Model.ProcedureDiscussionDeadline > DateTime.Now)
+                {
+                    <div class="mg-top-20">
+                        @Html.ActionLink(ProcedureInfo.NewQuestion, MVC.Procedure.ActionNames.Question, MVC.Procedure.Name, new { id = Model.Id, procedureName = Model.DisplayName }, new { @class = "blue-button" })
+                    </div>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>
+                            @ProcedureInfo.DiscussionDeadlineExpired
+                        </p>
+                    </div>
+                }
+            }
+
+            @if (Model.QaBlobKey.HasValue)
+            {
+                var extenstion = Model.QaFileName.Split('.').Last();
+                if (extenstion == "docx") { extenstion = "doc"; }
+                if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                {
+                    extenstion = string.Empty;
+                }
+                else
+                {
+                    extenstion = "file-" + extenstion;
+                }
+                <div class="m-top-30">
+                    <ul class="file-list">
+                        <li class="@(extenstion)">
+
+                            <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoDownload(Model.Id, Model.QaBlobKey.Value)))">
+                                @ProcedureInfo.QA
+                            </a>
+
+                            @if (Model.QaModifyDate.HasValue)
+                            {
+                                <span>(@ProcedureInfo.ModifyDate: @Eumis.Common.Helpers.Helper.DateTimeFormat(Model.QaModifyDate.Value))</span>
+                            }
+
+                        </li>
+                    </ul>
+                </div>
+            }
+
+            <div class="page-content m-top-30">
+                @using (Html.BeginForm(MVC.Procedure.ActionNames.InfoQA,
+               MVC.Procedure.Name,
+               FormMethod.Get,
+               new { role = "form", @class = "form-with-sections" }))
+                {
+                    <div class="row">
+                        <div class="form-group col-xs-7">
+                            <label>@ProcedureInfo.TextFilter</label>
+                            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group col-xs-3">
+                            <input type="submit" class="submit wait" value="@Global.ButtonSearchText">
+                        </div>
+                    </div>
+                }
+
+                <div class="table-wrapper">
+                    @if (Model.SearchItems != null && Model.SearchItems.Count > 0)
+                    {
+                        <table class="chart-info dynamic-rows" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width: 200px">@ProcedureInfo.DiscussionSender</th>
+                                    <th>@ProcedureInfo.DiscussionQuestion</th>
+                                    <th>@ProcedureInfo.DiscussionAnswer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var discussion in Model.SearchItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            @discussion.senderEmail (@Eumis.Common.Helpers.Helper.DateFormat(discussion.createDate))
+                                        </td>
+                                        <td>
+                                            @discussion.question
+                                        </td>
+                                        <td>
+                                            @discussion.answer
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="info-block">
+                            <p>@ProcedureInfo.NoDiscussionsFound</p>
+                        </div>
+                    }
+                </div>
+
+                @Html.PagedListPager(Model.SearchItems,
+                    page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                    (String)ViewContext.RouteData.Values["controller"],
+                    new
+                    {
+                        page = page,
+                        searchTerm = Model.SearchTerm
+                    }),
+                    Constants.PagedListRenderOptions)
+            </div>
+        </div>
+    </div>
+</div>

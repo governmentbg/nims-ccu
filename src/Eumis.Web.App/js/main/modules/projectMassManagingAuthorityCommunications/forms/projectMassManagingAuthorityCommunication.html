@@ -1,0 +1,21 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'massCommunicationProgrammes'" mode="id" ng-model="model.programmeId" ng-required="true" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_programme" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'massCommunicationProcedures'" mode="id" ng-model="model.procedureId" params="{programmeId: model.programmeId}" ng-required="true" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_procedure" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field ng-readonly="true" type="int" ng-model="model.orderNum" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_orderNum" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field ng-readonly="form.$readonly" type="date" ng-model="model.endingDate" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_endingDate" class="col-sm-4 col-md-4"
+      sc-validate="{ validEndingDate: isValidEndingDate }"
+      validations="{ validEndingDate: 'projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_invalidEndingDate' }">
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.subject" alias="'projectManagingAuthorityCommunicationSubjects'" mode="id" ng-required="true" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_subject" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field ng-readonly="form.$readonly" type="textarea" ng-model="model.message" rows="5" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationForm_message" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+</ng-form>

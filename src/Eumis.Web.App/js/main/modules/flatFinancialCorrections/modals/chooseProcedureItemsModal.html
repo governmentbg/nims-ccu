@@ -1,0 +1,38 @@
+<ng-form name="form.chooseProceduresForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="flatFinancialCorrections_chooseProcedureItemsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="flatFinancialCorrections_chooseProcedureItemsModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="flatFinancialCorrections_chooseProcedureItemsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-datatable items="procedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="flatFinancialCorrections_chooseProcedureItemsModal_code">
+          </sc-column>
+          <sc-column data="name" title="flatFinancialCorrections_chooseProcedureItemsModal_name" width="30%" has-content="true">
+            <span title="{{item.name}}">{{item.name | trim : 100}}</span>
+          </sc-column>
+          <sc-column title="flatFinancialCorrections_chooseProcedureItemsModal_programme" width="20%" has-content="true" data="programmeNames">
+            {{item.programmeNames | join:', '}}
+          </sc-column>
+          <sc-column data="listingDate" title="flatFinancialCorrections_chooseProcedureItemsModal_listingDate" type="date" width="9%">
+          </sc-column>
+          <sc-column data="endingDate" title="flatFinancialCorrections_chooseProcedureItemsModal_endingDate" type="date" width="12%">
+          </sc-column>
+          <sc-column data="status" title="flatFinancialCorrections_chooseProcedureItemsModal_status">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

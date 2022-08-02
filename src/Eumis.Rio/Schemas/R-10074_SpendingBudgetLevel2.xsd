@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10074" 
+	xmlns="http://ereg.egov.bg/segment/R-10074"
+	
+	xmlns:qd="http://ereg.egov.bg/segment/R-10072"
+	xmlns:sbl="http://ereg.egov.bg/segment/R-10073"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10072" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10073" />
+	
+	<xsd:complexType name="SpendingBudgetLevel2">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Ред от бюджета на план за разходване на средства на второ ниво</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="OrderNum" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="TotalAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="QuarterlyDistribution" type="qd:QuarterlyDistribution" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="SpendingBudgetLevel3" type="sbl:SpendingBudgetLevel3" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

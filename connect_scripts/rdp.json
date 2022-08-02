@@ -1,0 +1,147 @@
+{
+    "ENVIRONMENTS": [
+        {
+            "NAME": "ISUN PRODUCTION ENVIRONMENT",
+            "VPN_PROFILE": {
+                "NAME": "AC-EGP06-ZN",
+                "USER": "EUMIS_VPN_ISUN_USER",
+                "PWD": "EUMIS_VPN_ISUN_PWD"
+            },
+            "SERVERS": [
+                {
+                    "Isun.Prod.Backend": "172.23.108.203"
+                },
+                {
+                    "Isun.Prod.Integrations": "172.23.108.204"
+                },
+                {
+                    "Isun.Prod.Public": "172.23.108.205"
+                },
+                {
+                    "Isun.Prod.Portal1": "172.23.108.206"
+                },
+                {
+                    "Isun.Prod.Portal2": "172.23.108.207"
+                },
+                {
+                    "Isun.Prod.Portal3": "172.23.108.208"
+                },
+                {
+                    "Isun.Prod.SQL1": "172.23.108.143"
+                },
+                {
+                    "Isun.Prod.SQL2": "172.23.108.144"
+                },
+                {
+                    "Isun.Prod.Redis": "172.23.108.146"
+                }
+            ]
+        },
+        {
+            "NAME": "ISUN TEST ENVIRONMENT",
+            "VPN_PROFILE": {
+                "NAME": "AC-EGP06-ZN",
+                "USER": "EUMIS_VPN_ISUN_USER",
+                "PWD": "EUMIS_VPN_ISUN_PWD"
+            },
+            "SERVERS": [
+                {
+                    "Isun.Test.Portal1": "172.23.108.75"
+                },
+                {
+                    "Isun.Test.Portal2": "172.23.108.76"
+                },
+                {
+                    "Isun.Test.Backend": "172.23.108.211"
+                },
+                {
+                    "Isun.Test.Integrations": "172.23.108.212"
+                },
+                {
+                    "Isun.Test.SQL": "172.23.108.73"
+                },
+                {
+                    "Isun.Test.Redis": "172.23.108.77"
+                }
+            ]
+        },
+        {
+            "NAME": "ISUN DRC ENVIRONMENT",
+            "VPN_PROFILE": {
+                "NAME": "AC-EGP06-BN",
+                "USER": "EUMIS_VPN_ISUN_USER",
+                "PWD": "EUMIS_VPN_ISUN_PWD"
+            },
+            "SERVERS": [
+                {
+                    "Isun.Drc.Backend": "172.20.108.203"
+                },
+                {
+                    "Isun.Drc.Integrations": "172.20.108.204"
+                },
+                {
+                    "Isun.Drc.Public": "172.20.108.205"
+                },
+                {
+                    "Isun.Drc.Portal1": "172.20.108.206"
+                },
+                {
+                    "Isun.Drc.Portal2": "172.20.108.207"
+                },
+                {
+                    "Isun.Drc.Portal3": "172.20.108.208"
+                },
+                {
+                    "Isun.Drc.SQL1": "172.20.108.143"
+                },
+                {
+                    "Isun.Drc.SQL2": "172.20.108.144"
+                },
+                {
+                    "Isun.Drc.Redis": "172.23.108.147"
+                }
+            ]
+        },
+        {
+            "NAME": "SUNI PRODUCTION ENVIRONMENT",
+            "VPN_PROFILE": {
+                "NAME": "AC-EGP31",
+                "USER": "EUMIS_VPN_SUNI_USER",
+                "PWD": "EUMIS_VPN_SUNI_PWD"
+            },
+            "SERVERS": [
+                {
+                    "Suni.Prod.Backend": "172.20.131.148"
+                },
+                {
+                    "Suni.Prod.Portal": "172.20.131.144"
+                },
+                {
+                    "Suni.Prod.Integrations": "172.20.131.149"
+                },
+                {
+                    "Suni.Prod.SQL": "172.20.131.73"
+                }
+            ]
+        },
+        {
+            "NAME": "SUNI TEST ENVIRONMENT",
+            "VPN_PROFILE": {
+                "NAME": "AC-EGP31",
+                "USER": "EUMIS_VPN_SUNI_USER",
+                "PWD": "EUMIS_VPN_SUNI_PWD"
+            },
+            "SERVERS": [
+                {
+                    "Suni.Test.All": "172.20.131.11"
+                },
+                {
+                    "Suni.Test.SQL": "172.20.131.12"
+                },
+                {
+                    "Suni.Test.Integrations": "172.20.131.13"
+                }
+            ]
+        }
+    ]
+}

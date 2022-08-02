@@ -1,0 +1,16 @@
+<ng-form name="evalSessionProjectStandingEditForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_evalSessionProjectStandingEdit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_evalSessionProjectStandingEdit_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-project-standing name="evalSessionProjectStandingForm" ng-model="evalSessionProjectStanding" sc-form-readonly="true" sc-form-params="{ isNew: false }"></eumis-eval-session-project-standing>
+    </div>
+  </div>
+</ng-form>

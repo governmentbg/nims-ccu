@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0EB8E0B5-1F75-4E88-85B6-AF0B812D85E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.PortalIntegration.Api</RootNamespace>
+    <AssemblyName>Eumis.PortalIntegration.Api</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.2\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\EnumDO.cs" />
+    <Compile Include="Core\ErrorsDO.cs" />
+    <Compile Include="Core\PortalIntegrationErrors.cs" />
+    <Compile Include="Core\PublicDiscussionCommentDO.cs" />
+    <Compile Include="Core\VersionDO.cs" />
+    <Compile Include="Documents\ContractProcurements\DataObjects\ContractProcurementXmlDO.cs" />
+    <Compile Include="Documents\ContractProcurements\DataObjects\ContractProcurementValidationDocumentDO.cs" />
+    <Compile Include="Documents\ContractReports\DataObjects\ContractReportValidationDocumentDO.cs" />
+    <Compile Include="Documents\ContractReports\DataObjects\ContractReportPaymentDocumentXmlDO.cs" />
+    <Compile Include="Documents\ContractReports\DataObjects\ContractReportFinancialDocumentXmlDO.cs" />
+    <Compile Include="Documents\ContractReports\DataObjects\ContractReportTechnicalDocumentXmlDO.cs" />
+    <Compile Include="Documents\ProjectCommunications\DataObjects\ProjectCommunicationXmlDO.cs" />
+    <Compile Include="Documents\ProjectCommunications\DataObjects\ProjectRegDataDO.cs" />
+    <Compile Include="Potal\Communicators\Controllers\RegixController.cs" />
+    <Compile Include="Documents\ProjectManagingAuthorityCommunications\Controllers\ProjectManagingAuthorityCommunicationAnswersController.cs" />
+    <Compile Include="Documents\ProjectManagingAuthorityCommunications\Controllers\ProjectManagingAuthorityCommunicationsController.cs" />
+    <Compile Include="Potal\ContractProcurements\DataObjects\ContractProcurementDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportDocumentDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportGidDO.cs" />
+    <Compile Include="Core\XmlDO.cs" />
+    <Compile Include="Documents\ContractOffers\Controllers\ContractRegOffersController.cs" />
+    <Compile Include="Documents\ContractReports\Controllers\ContractReportMicrosController.cs" />
+    <Compile Include="Documents\ContractReports\DataObjects\ContractReportDocumentXmlDO.cs" />
+    <Compile Include="Documents\ContractSpendingPlans\Controllers\ContractSpendingPlansController.cs" />
+    <Compile Include="Documents\EvalSessionStandpoints\Controllers\EvalSessionStandpointsController.cs" />
+    <Compile Include="Documents\ContractReports\Controllers\ContractReportTechnicalsController.cs" />
+    <Compile Include="Documents\ContractReports\Controllers\ContractReportFinancialsController.cs" />
+    <Compile Include="Documents\ContractReports\Controllers\ContractReportPaymentsController.cs" />
+    <Compile Include="Documents\ProcedureEvalTables\Controllers\ProcedureEvalTablesController.cs" />
+    <Compile Include="Documents\ProjectVersions\Controllers\ProjectVersionsController.cs" />
+    <Compile Include="Documents\ProjectVersions\DataObjects\ProjectRegDataDO.cs" />
+    <Compile Include="Documents\ProjectVersions\DataObjects\ProjectXmlDO.cs" />
+    <Compile Include="Potal\Companies\Controllers\CompaniesController.cs" />
+    <Compile Include="Potal\ContractCommunications\Controllers\ContractCommunications1Controller.cs" />
+    <Compile Include="Potal\ContractCommunications\DataObjects\ContractCommunicationDO.cs" />
+    <Compile Include="Potal\ContractProcurements\Controllers\ContractProcurementXmlsController.cs" />
+    <Compile Include="Potal\ContractProcurements\DataObjects\ProcurementPagePVO.cs" />
+    <Compile Include="Potal\ContractRegistrations\Controllers\ContractRegistrationsController.cs" />
+    <Compile Include="Potal\ContractRegistrations\Controllers\ContractAccessCodesController.cs" />
+    <Compile Include="Potal\ContractRegistrations\Controllers\ContractsController.cs" />
+    <Compile Include="Potal\ContractRegistrations\Controllers\ContractAccessCodes1Controller.cs" />
+    <Compile Include="Potal\ContractRegistrations\DataObjects\AccessCodePermissionDO.cs" />
+    <Compile Include="Potal\ContractRegistrations\DataObjects\ActualContractDO.cs" />
+    <Compile Include="Potal\ContractReports\Controllers\ContractReportFinancials1Controller.cs" />
+    <Compile Include="Potal\ContractReports\Controllers\ContractReportsController.cs" />
+    <Compile Include="Potal\ContractReports\Controllers\ContractReportTechnicals1Controller.cs" />
+    <Compile Include="Potal\ContractReports\Controllers\ContractReportPayments1Controller.cs" />
+    <Compile Include="Potal\ContractReports\Controllers\ContractReportMicros1Controller.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportFinancialDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportMicroSimevDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportPaymentTypeDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportTechnicalDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportPaymentDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ContractReportMicroDO.cs" />
+    <Compile Include="Potal\ContractReports\DataObjects\ReportPagePVO.cs" />
+    <Compile Include="Potal\ContractVersions\Controllers\ContractVersionXmlsController.cs" />
+    <Compile Include="Potal\ContractRegistrations\DataObjects\ContractRegistrationActivationDO.cs" />
+    <Compile Include="Potal\ContractRegistrations\DataObjects\ContractRegistrationDO.cs" />
+    <Compile Include="Potal\ContractRegistrations\DataObjects\ContractAccessCodeDO.cs" />
+    <Compile Include="Potal\ContractSpendingPlans\Controllers\ContractSpendingPlanXmlsController.cs" />
+    <Compile Include="Potal\ContractSpendingPlans\DataObjects\SpendingPlanPagePVO.cs" />
+    <Compile Include="Potal\ContractDifferentiatedPositions\Controllers\ContractDifferentiatedPositionsController.cs" />
+    <Compile Include="Potal\ContractOffers\Controllers\ContractRegOffers1Controller.cs" />
+    <Compile Include="Potal\Emails\DataObjects\EmailDO.cs" />
+    <Compile Include="Potal\Emails\Controllers\EmailsController.cs" />
+    <Compile Include="Documents\ContractVersions\Controllers\ContractVersionsController.cs" />
+    <Compile Include="Documents\ContractProcurements\Controllers\ContractProcurementsController.cs" />
+    <Compile Include="Documents\EvalSessionSheets\Controllers\EvalSessionSheetsController.cs" />
+    <Compile Include="Documents\EvalSessionSheets\DataObjects\EvalSessionSheetXmlDO.cs" />
+    <Compile Include="Potal\Guidances\Controllers\GuidancesController.cs" />
+    <Compile Include="Potal\News\Controllers\NewsController.cs" />
+    <Compile Include="Potal\Procedures\Controllers\ProceduresController.cs" />
+    <Compile Include="Documents\ProjectCommunications\Controllers\ProjectCommunicationsController.cs" />
+    <Compile Include="Documents\ProjectCommunications\DataObjects\ProjectCommunicationType.cs" />
+    <Compile Include="Potal\Procedures\DataObjects\ProcedureDiscussionQuestionDO.cs" />
+    <Compile Include="Potal\Projects\Controllers\ProjectsController.cs" />
+    <Compile Include="Documents\ContractCommunications\Controllers\ContractCommunicationsController.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegOfferXmlsController.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegProjectCommunicationAnswersController.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegProjectCommunicationsController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PortalIntegrationApiModule.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegProjectMessagesController.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegProjectXmlsController.cs" />
+    <Compile Include="Potal\Registrations\Controllers\RegistrationsController.cs" />
+    <Compile Include="Potal\Projects\DataObjects\ProjectValidationErrorDO.cs" />
+    <Compile Include="Potal\Registrations\DataObjects\RegProjectMessageDO.cs" />
+    <Compile Include="Potal\Registrations\DataObjects\SubmitDO.cs" />
+    <Compile Include="Core\RecoverPasswordDO.cs" />
+    <Compile Include="Core\StartPasswordRecoveryDO.cs" />
+    <Compile Include="Core\PasswordsDO.cs" />
+    <Compile Include="Potal\Registrations\DataObjects\RegistrationActivationDO.cs" />
+    <Compile Include="Potal\Registrations\DataObjects\RegistrationDO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.ApplicationServices\Eumis.ApplicationServices.csproj">
+      <Project>{fb96dc11-94f4-4f39-93e4-7d4d7f4b47dc}</Project>
+      <Name>Eumis.ApplicationServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Authentication\Eumis.Authentication.csproj">
+      <Project>{8d22f04a-de55-4078-a3ec-8bc86bcb861f}</Project>
+      <Name>Eumis.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj">
+      <Project>{dfc4f396-946c-440c-9d39-4d541dfce6f0}</Project>
+      <Name>Eumis.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Data\Eumis.Data.csproj">
+      <Project>{31e2413e-7640-490c-9120-c91c7e6b0040}</Project>
+      <Name>Eumis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Domain\Eumis.Domain.csproj">
+      <Project>{2a54b65e-7cac-4397-8266-60b9f10d7463}</Project>
+      <Name>Eumis.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Log\Eumis.Log.csproj">
+      <Project>{716b39b1-8609-4834-829c-b4c8a71202c8}</Project>
+      <Name>Eumis.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Rio\Eumis.Rio.csproj">
+      <Project>{ae6e8f22-5574-40e6-9c19-212794757c57}</Project>
+      <Name>Eumis.Rio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

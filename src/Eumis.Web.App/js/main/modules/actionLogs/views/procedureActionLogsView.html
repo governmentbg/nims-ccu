@@ -1,0 +1,27 @@
+<div class="tab-content">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="actionLogs_view_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancel()" text="actionLogs_view_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="actionLog.action" ng-readonly="true" l10n-text="actionLogs_view_action" class="col-sm-4 col-md-4"></sc-field>
+        <sc-field type="int" ng-model="actionLog.aggregateRootId" ng-readonly="true" l10n-text="actionLogs_view_procedureId" class="col-sm-2 col-md-2"></sc-field>
+        <sc-field type="text" ng-model="actionLog.username" ng-readonly="true" l10n-text="actionLogs_view_username" class="col-sm-2 col-md-2"></sc-field>
+        <sc-field type="text" ng-model="actionLog.remoteIpAddress" ng-readonly="true" l10n-text="actionLogs_view_remoteIpAddress" class="col-sm-2 col-md-2"></sc-field>
+        <sc-field type="date" ng-model="actionLog.logDate" ng-readonly="true" l10n-text="actionLogs_view_logDate" class="col-sm-2 col-md-2"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="textarea" rows="20" ng-model="actionLog.postData" ng-readonly="true" l10n-text="actionLogs_view_postData" class="col-sm-12 col-md-12"></sc-field>
+      </div>
+    </div>
+
+  </div>
+</div>

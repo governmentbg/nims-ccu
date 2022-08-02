@@ -1,0 +1,24 @@
+﻿<div class="nav-wrapper">
+  <div class="container no-side-padding">
+    <div class="border-wrap">
+      <div>
+        <ul class="nav nav-tabs tab-drop" ng-class="{'nav-tabs-large': secondTabList.length}">
+          <li ng-class="{active: tab.isActive, disabled: isDisabled}" ng-repeat="tab in tabList" class="{{'sct-' + tab.className}}">
+            <a sc-click="openTab(tab)" ng-style="tab.isCurrentState ? { cursor: 'default' } : { cursor: 'pointer' }">
+              <img ng-show="tab.loading" class="loader" src="img/loader2.gif" alt="" />
+              <span ng-class="{ 'tab-loading': tab.loading }">{{tab.title}}</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-tabs tab-drop" ng-show="secondTabList.length">
+          <li ng-class="{active: tab.isActive, disabled: isDisabled}" ng-repeat="tab in secondTabList" class="{{'sct-' + tab.className}}"">
+            <a sc-click="openTab(tab)" ng-style="tab.isCurrentState ? { cursor: 'default' } : { cursor: 'pointer' }">
+              <img ng-show="tab.loading" class="loader" src="img/loader2.gif" alt="" />
+              <span ng-class="{ 'tab-loading': tab.loading }">{{tab.title}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

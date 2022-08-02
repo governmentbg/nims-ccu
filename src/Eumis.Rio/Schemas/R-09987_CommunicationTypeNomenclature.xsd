@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/nomenclature/R-09987" xmlns="http://ereg.egov.bg/nomenclature/R-09987" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:simpleType name="CommunicationTypeNomenclature">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Номенклатура на видовете комуникации</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Administrative" />
+      <xsd:enumeration value="Cert" />
+      <xsd:enumeration value="Audit" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

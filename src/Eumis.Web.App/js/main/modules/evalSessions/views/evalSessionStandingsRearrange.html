@@ -1,0 +1,97 @@
+<ng-form name="rearrangeEvalSessionStandingForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_rearrangeEvalSessionStanding_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="reorderBtn" btn-click="apply()" text="evalSessions_rearrangeEvalSessionStanding_save" class="btn btn-success btn-xs"
+          ng-show="evalSessionStanding.status === 'applied'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionStanding.evalSessionId) || !isSessionActive">
+        </sc-button>
+        <sc-button name="refusedBtn" btn-click="cancel()" text="evalSessions_rearrangeEvalSessionStanding_cancel" class="btn btn-default btn-xs"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionStanding.evalSessionId) || !isSessionActive">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <sc-datatable items="evalSessionStanding.projects" filterable="true" pageable="true" sortable="false" dynamic-columns="true" scrollable="false" 
+        row-class="{'success'               : (item.manualStatusName === 'approved' && !item.isStandingDeleted),
+                    'warning'               : (item.manualStatusName === 'reserve' && !item.isStandingDeleted),
+                    'danger'                : (item.manualStatusName && item.manualStatusName !== 'approved' && item.manualStatusName !== 'reserve' && !item.isStandingDeleted),
+                    'deactivated-table-row' : (item.isStandingDeleted)}">
+        <sc-column data="manualOrderNum" title="evalSessions_evalSessionStandingForm_orderNum">
+        </sc-column>
+        <sc-column data="rearrange" has-content="true">
+          <table>
+            <tr>
+              <td>
+                <sc-button class="btn btn-primary btn-xs" btn-click="moveUp(item)" ng-if="item.canMoveUp" icon="glyphicon-arrow-up">
+                  <i class="glyphicon glyphicon-arrow-up"></i>
+                </sc-button>
+              </td>
+              <td rowspan="2" ng-if="item.orderNum !== null" style="padding-left: 5px;">
+                <span><span ng-if="item.orderNum - item.manualOrderNum > 0">+</span>{{item.orderNum - item.manualOrderNum}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <sc-button class="btn btn-primary btn-xs" btn-click="moveDown(item)" ng-if="item.canMoveDown" icon="glyphicon-arrow-down">
+                <i class="glyphicon glyphicon-arrow-up"></i>
+                </sc-button>
+            </td>
+            </tr>
+          </table>
+        </sc-column>
+        <sc-column data="manualStatus" title="evalSessions_evalSessionStandingForm_status">
+        </sc-column>
+        <sc-column data="grandAmount" title="evalSessions_evalSessionStandingForm_grandAmount" type="money">
+        </sc-column>
+        <sc-column data="procedureName" title="evalSessions_evalSessionStandingForm_procedureName">
+        </sc-column>
+        <sc-column data="projectRegNumber" title="evalSessions_evalSessionStandingForm_projectRegNumber">
+        </sc-column>
+        <sc-column title="evalSessions_evalSessionStandingForm_projectName" has-content="true" data="projectName">
+          <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="companyName" title="evalSessions_evalSessionStandingForm_companyName">
+        </sc-column>
+        <sc-column data="projectRegDate" title="evalSessions_evalSessionStandingForm_projectRegDate" type="datetime">
+        </sc-column>
+        <sc-column data="projectRegistrationStatus" title="evalSessions_evalSessionStandingForm_projectRegistrationStatus">
+        </sc-column>
+        <sc-column data="isStandingDeleted" title="evalSessions_evalSessionStandingForm_isStandingDeleted" type="boolean">
+        </sc-column>
+        <sc-column title="evalSessions_evalSessionStandingForm_eval" sortable="false" has-content="true">
+          <table class="table table-bordered" style="margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_type"></th>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_pass"></th>
+              <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_points"></th>
+            </thead>
+            <tbody>
+              <tr ng-show="item.isPassedPreliminary != null && item.isPassedPreliminary != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_Preliminary"></td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedPreliminary ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsPreliminary}}</td>
+              </tr>
+              <tr ng-show="item.isPassedASD != null && item.isPassedASD != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_ASD"></td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedASD ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsASD}}</td>
+              </tr>
+              <tr ng-show="item.isPassedTFO != null && item.isPassedTFO != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_TFO">{{tfoText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedTFO ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsTFO}}</td>
+              </tr>
+              <tr ng-show="item.isPassedComplex != null && item.isPassedComplex != undefined">
+                <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionStandingForm_Complex">{{tfoText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedComplex ? yesText : noText}}</td>
+                <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsComplex}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </sc-column>
+      </sc-datatable>
+  </div>
+</ng-form>

@@ -1,0 +1,30 @@
+<div class="tab-content">
+  <ng-form name="projectDossierForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="projectDossier_view_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="nextBtn" btn-click="next()" text="projectDossier_view_next" class="btn btn-primary btn-xs"  icon="glyphicon-arrow-right">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="text" ng-model="model.projectNumber" ng-required="true" l10n-text="projectDossier_view_projectNumber" class="col-sm-5 col-md-4"
+            sc-validate-async="{ numValid: isValidProjectNum }"
+            sc-revalidate-on="['model.procedureId']"
+            validations="{numValid: 'projectDossier_view_projectNumberInvaid'}"
+          >
+          </sc-field>
+          <sc-button name="chooseProjectBtn" btn-click="chooseProject()" text="projectDossier_view_chooseProject" class="btn btn-primary btn-sm pull-left" icon="glyphicon-search" style="margin-top: 19px;">
+          </sc-button>
+
+          <sc-field type="nomenclature" alias="'projectDossierContracts'" mode="id" ng-model="model.contractId" ng-change="contractChanged()"
+            nom-obj="projectInfo" params="{ projectNumber: model.projectNumber }"  l10n-text="projectDossier_view_contract" class="col-sm-5 col-md-4"></sc-field>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

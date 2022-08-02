@@ -1,0 +1,30 @@
+﻿<ng-form name="editProcedureFinancialReportDocumentsForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editFinancialReportDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editFinancialReportDocument_activate" class="btn btn-success btn-xs" ng-show="financialReportDocument.isActivated && !financialReportDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', financialReportDocument.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editFinancialReportDocument_deactivate" class="btn btn-danger btn-xs" ng-show="financialReportDocument.isActivated && financialReportDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', financialReportDocument.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editFinancialReportDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="financialReportDocument.isActive && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', financialReportDocument.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="delete()" text="procedures_editFinancialReportDocument_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!financialReportDocument.isActivated && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', financialReportDocument.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editFinancialReportDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editFinancialReportDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !financialReportDocument.isActive}">
+      <eumis-procedure-contract-report-document name="procedureContractReportDocumentForm" ng-model="financialReportDocument" sc-form-params="{ isActivated: financialReportDocument.isActivated }"></eumis-procedure-contract-report-document>
+    </div>
+  </div>
+</ng-form>

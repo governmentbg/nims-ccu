@@ -1,0 +1,21 @@
+﻿@model R_10040.BFPContract
+
+@{ 
+    Model.ShowPrintSap = true;
+}
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Private.BFPContract.ActionNames.Print, MVC.Private.BFPContract.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.DisplayFor(m => m)
+
+        </form>
+    </div>
+</div>

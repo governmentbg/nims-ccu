@@ -1,0 +1,158 @@
+﻿@model R_10040.BFPContract
+
+@if (Model != null)
+{
+    Model.PassIsInitial();
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @BFPContract.BFPContractBasicData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.BFPContractBasicData, Model.BFPContractBasicData ?? new R_10031.BFPContractBasicData())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @BFPContract.Beneficiary
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Beneficiary, Model.Beneficiary ?? new R_10004.Company())
+        @if (Model.BFPContractBasicData != null)
+        {
+            <table>
+                <tr>
+                    <td style="width: 35%;">@BFPContractBasicData.BankAccount</td>
+                    <td style="width: 65%;">@Model.BFPContractBasicData.BankAccount</td>
+                </tr>
+            </table>
+        }
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @BFPContract.ManagingAuthority
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.ManagingAuthority, Model.ManagingAuthority ?? new R_10004.Company())
+    </section>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.Partners
+    </h3>
+    if (Model.Partners != null && ((Model.Partners.PartnerCollection != null && Model.Partners.PartnerCollection.Count > 0)))
+    {
+        <section>
+            @if (Model.Partners.PartnerCollection != null)
+            {
+                foreach (var partner in Model.Partners.PartnerCollection)
+                {
+                    @Html.Partial(MVC.Shared.Views.Print.Company, partner ?? new R_10004.Company())
+                }
+            }
+        </section>
+    }
+
+    Model.BFPContractDimensionBudgetContract.SectionNumber = sectionNumber;
+    @Html.Partial(MVC.Shared.Views.Print.BFPContractDimensionBudgetContract, Model.BFPContractDimensionBudgetContract ?? new R_10040.BFPContractDimensionBudgetContract())
+    sectionNumber += 3;
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.ContractActivity
+    </h3>
+    if (Model.BFPContractContractActivities != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractContractActivities, Model.BFPContractContractActivities ?? new R_10040.BFPContractContractActivities())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.Indicators
+    </h3>
+    if (Model.BFPContractIndicators != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractIndicators, Model.BFPContractIndicators ?? new R_10040.BFPContractIndicators())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.ContractTeams
+    </h3>
+    if (Model.BFPContractContractTeams != null && Model.BFPContractContractTeams.BFPContractContractTeamCollection != null && Model.BFPContractContractTeams.BFPContractContractTeamCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractContractTeams, Model.BFPContractContractTeams ?? new R_10040.BFPContractContractTeams())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.ContractPlans
+    </h3>
+    if (Model.BFPContractPlans != null && Model.BFPContractPlans.BFPContractPlanCollection != null && Model.BFPContractPlans.BFPContractPlanCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractPlans, Model.BFPContractPlans ?? new R_10040.BFPContractPlans())
+        </section>
+    }
+
+    if (Model.HasProjectSpecFields)
+    {
+        sectionNumber++;
+        <h3>
+            @sectionNumber. @BFPContract.ProjectSpecFieldCollection
+        </h3>
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractProjectSpecFields, Model.ProjectSpecFields ?? new R_10040.BFPContractProjectSpecFields())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.ElectronicDeclarations
+    </h3>
+    if (Model.ElectronicDeclarations != null && Model.ElectronicDeclarations.ElectronicDeclarationCollection != null && Model.ElectronicDeclarations.ElectronicDeclarationCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractElectronicDeclarations, Model.ElectronicDeclarations)
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.AttachedDocuments
+    </h3>
+    if (Model.AttachedDocuments != null && Model.AttachedDocuments.AttachedDocumentCollection != null && Model.AttachedDocuments.AttachedDocumentCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractAttachedDocuments, Model.AttachedDocuments)
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.SignedContracts
+    </h3>
+    if (Model.SignedContracts != null && Model.SignedContracts.SignedContractCollection != null && Model.SignedContracts.SignedContractCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.SignedContracts, Model.SignedContracts)
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.SAPData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.BFPContractSAPData, Model.BFPContractSAPData ?? new R_10051.BFPContractSAPData())
+    </section>
+
+}

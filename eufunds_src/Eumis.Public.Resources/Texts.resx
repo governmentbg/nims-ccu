@@ -1,0 +1,2235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Beneficiary_Index_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyLegalType" xml:space="preserve">
+    <value>Вид на организацията</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyType" xml:space="preserve">
+    <value>Тип на организацията</value>
+  </data>
+  <data name="Beneficiary_Index_Name" xml:space="preserve">
+    <value>Наименование на организацията</value>
+  </data>
+  <data name="Beneficiary_Index_ProjectsCount" xml:space="preserve">
+    <value>Брой сключени договори</value>
+  </data>
+  <data name="Company_Index_BeneficiaryProjectsList" xml:space="preserve">
+    <value>Списък проекти, в които организацията участва като бенефициент</value>
+  </data>
+  <data name="Company_Index_BFP" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="Company_Index_BFPContractStatus" xml:space="preserve">
+    <value>Статус на изпълнение на договора/заповедта за БФП</value>
+  </data>
+  <data name="Company_Index_CompanyInformation" xml:space="preserve">
+    <value>Информация за организация</value>
+  </data>
+  <data name="Company_Index_ContractorProjectsList" xml:space="preserve">
+    <value>Списък проекти, в които организацията участва като изпълнител</value>
+  </data>
+  <data name="Company_Index_Duration" xml:space="preserve">
+    <value>Продължителност (месеци)</value>
+  </data>
+  <data name="Company_Index_EumisNumber" xml:space="preserve">
+    <value>Номер от ИСУН</value>
+  </data>
+  <data name="Company_Index_Identification" xml:space="preserve">
+    <value>Идентификация</value>
+  </data>
+  <data name="Company_Index_MemberProjectsList" xml:space="preserve">
+    <value>Списък проекти, в които организацията участва като член на обединението</value>
+  </data>
+  <data name="Company_Index_Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="Company_Index_NoBeneficiaryParticipation" xml:space="preserve">
+    <value>Организацията не участва в проекти като бенефициент</value>
+  </data>
+  <data name="Company_Index_NoContractorParticipation" xml:space="preserve">
+    <value>Организацията не участва в проекти като изпълнител</value>
+  </data>
+  <data name="Company_Index_NoMemberParticipation" xml:space="preserve">
+    <value>Организацията не участва в проекти като член на обединението</value>
+  </data>
+  <data name="Company_Index_NoPartnerParticipation" xml:space="preserve">
+    <value>Организацията не участва в проекти като партньор</value>
+  </data>
+  <data name="Company_Index_NoSubcontractorParticipation" xml:space="preserve">
+    <value>Организацията не участва в проекти като подизпълнител</value>
+  </data>
+  <data name="Company_Index_PartnerProjectsList" xml:space="preserve">
+    <value>Списък проекти, в които организацията участва като партньор</value>
+  </data>
+  <data name="Company_Index_ProjectName" xml:space="preserve">
+    <value>Наименование на проекта</value>
+  </data>
+  <data name="Company_Index_Seat" xml:space="preserve">
+    <value>Седалище</value>
+  </data>
+  <data name="Company_Index_Start" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="Company_Index_SubcontractorProjectsList" xml:space="preserve">
+    <value>Списък проекти, в които организацията участва като подизпълнител</value>
+  </data>
+  <data name="Company_Index_TotalAmount" xml:space="preserve">
+    <value>Обща стойност</value>
+  </data>
+  <data name="Contractor_Index_Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="Contractor_Index_ContractsCount" xml:space="preserve">
+    <value>Брой договори</value>
+  </data>
+  <data name="Contractor_Index_Name" xml:space="preserve">
+    <value>Наименование на организацията</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Active" xml:space="preserve">
+    <value>В изпълнение (от дата на стартиране)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Canceled" xml:space="preserve">
+    <value>Прекратен (към дата на прекратяване)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Concluded" xml:space="preserve">
+    <value>Сключен</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Ended" xml:space="preserve">
+    <value>Приключен (към датата на приключване)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Monitored" xml:space="preserve">
+    <value>В изпълнение (под наблюдение)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Paused" xml:space="preserve">
+    <value>В изпълнение (временно спрян)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Suspended" xml:space="preserve">
+    <value>Прекратен</value>
+  </data>
+  <data name="Enum_FinanceSource_CohesionFund" xml:space="preserve">
+    <value>КФ</value>
+  </data>
+  <data name="Enum_FinanceSource_EuropeanRegionalDevelopmentFund" xml:space="preserve">
+    <value>ЕФРР</value>
+  </data>
+  <data name="Enum_FinanceSource_EuropeanSocialFund" xml:space="preserve">
+    <value>ЕСФ</value>
+  </data>
+  <data name="Enum_FinanceSource_FundForEuropeanAidToTheMostDeprived" xml:space="preserve">
+    <value>ФЕПНЛ</value>
+  </data>
+  <data name="Enum_FinanceSource_YouthEmploymentInitiative" xml:space="preserve">
+    <value>ИМЗ</value>
+  </data>
+  <data name="Enum_FinanceSource_EMFF" xml:space="preserve">
+    <value>ЕФМДР</value>
+  </data>
+  <data name="Enum_FinanceSource_EAFRD" xml:space="preserve">
+    <value>ЕЗФРСР</value>
+  </data>
+  <data name="Enum_FinanceSource_ISF" xml:space="preserve">
+    <value>ФВС</value>
+  </data>
+  <data name="Enum_FinanceSource_AMIF" xml:space="preserve">
+    <value>ФУМИ</value>
+  </data>
+  <data name="Enum_FinanceSource_Other" xml:space="preserve">
+    <value>Други</value>
+  </data>
+  <data name="Enum_FinanceSource_EFMDR" xml:space="preserve">
+    <value>ЕФМДР</value>
+  </data>
+  <data name="Enum_FinanceSource_EZFRSR" xml:space="preserve">
+    <value>ЕЗФРСР</value>
+  </data>
+  <data name="Enum_FinanceSource_FUMI" xml:space="preserve">
+    <value>ФУМИ</value>
+  </data>
+  <data name="Enum_FinanceSource_FVS" xml:space="preserve">
+    <value>ФВС</value>
+  </data>
+  <data name="Enum_GroupingLevel_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="Enum_GroupingLevel_ProgrammePriority" xml:space="preserve">
+    <value>Ос</value>
+  </data>
+  <data name="Enum_GroupingLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="Enum_GroupingLevel_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Global_AboutSystem" xml:space="preserve">
+    <value>За системата</value>
+  </data>
+  <data name="Global_AccessibilityPolicy" xml:space="preserve">
+    <value>Политика за достъпност на сайта</value>
+  </data>
+  <data name="Global_AllOperationalPrograms" xml:space="preserve">
+    <value>Всички оперативни програми</value>
+  </data>
+  <data name="Global_Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Global_Beneficiaries" xml:space="preserve">
+    <value>Бенефициенти</value>
+  </data>
+  <data name="Global_Budget" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Global_BudgetProgram" xml:space="preserve">
+    <value>Бюджет на програмата</value>
+  </data>
+  <data name="Global_Bulgaria" xml:space="preserve">
+    <value>България</value>
+  </data>
+  <data name="Global_Contracted" xml:space="preserve">
+    <value>Договорени средства</value>
+  </data>
+  <data name="Global_ContractedFinancingfEU" xml:space="preserve">
+    <value>Договорени - финансиране от ЕС</value>
+  </data>
+  <data name="Global_ContractedFinancingfNF" xml:space="preserve">
+    <value>Договорени - финансиране от НФ</value>
+  </data>
+  <data name="Global_Contractors" xml:space="preserve">
+    <value>Изпълнители</value>
+  </data>
+  <data name="Global_Enquiries" xml:space="preserve">
+    <value>Справки</value>
+  </data>
+  <data name="Global_EnvInnerDev" xml:space="preserve">
+    <value>ИСУН 2020 в среда за разработка</value>
+  </data>
+  <data name="Global_EnvInnerTest" xml:space="preserve">
+    <value>ИСУН 2020 във вътрешна тестова среда</value>
+  </data>
+  <data name="Global_EnvProduction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global_EnvProductionLearn" xml:space="preserve">
+    <value>ИСУН 2020 в обучителна среда</value>
+  </data>
+  <data name="Global_EnvProductionTest" xml:space="preserve">
+    <value>ИСУН 2020 в тестова среда</value>
+  </data>
+  <data name="Global_EumisShort" xml:space="preserve">
+    <value>ИСУН 2020</value>
+  </data>
+  <data name="Global_FinancialExecution" xml:space="preserve">
+    <value>Финансово изпълнение</value>
+  </data>
+  <data name="Global_FinancingEU" xml:space="preserve">
+    <value>Финансиране от ЕС</value>
+  </data>
+  <data name="Global_FinancingNF" xml:space="preserve">
+    <value>Финансиране от НФ</value>
+  </data>
+  <data name="Global_FinancingSelf" xml:space="preserve">
+    <value>Собствено финансиране</value>
+  </data>
+  <data name="Global_Glossary" xml:space="preserve">
+    <value>Речник на термини и съкращения в системата</value>
+  </data>
+  <data name="Global_GlossaryTitle" xml:space="preserve">
+    <value>Речник на термини и съкращения в системата</value>
+  </data>
+  <data name="Global_Home" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="Global_International" xml:space="preserve">
+    <value>Международен</value>
+  </data>
+  <data name="Global_MaxResultsCount" xml:space="preserve">
+    <value>Броят на намерените резултати надвишава {0}. Моля, въведете допълнителни критерии.</value>
+  </data>
+  <data name="Global_Members" xml:space="preserve">
+    <value>Членове на обединение</value>
+  </data>
+  <data name="Global_More" xml:space="preserve">
+    <value>Още</value>
+  </data>
+  <data name="Global_NoFilter" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="Global_NoResults" xml:space="preserve">
+    <value>Няма намерени резултати</value>
+  </data>
+  <data name="Global_Note" xml:space="preserve">
+    <value>Забележки</value>
+  </data>
+  <data name="Global_NoteBGN" xml:space="preserve">
+    <value>Всички суми са в български лева (BGN) /1 EUR = 1,95583 BGN</value>
+  </data>
+  <data name="Global_NoteUnderlined" xml:space="preserve">
+    <value>Елемент в светло синьо позволява показване на детайли при избирането му</value>
+  </data>
+  <data name="Global_NotePercent" xml:space="preserve">
+    <value>Представлява процент на общото към общия бюджет на програмата</value>
+  </data>
+  <data name="Global_NoteBudget" xml:space="preserve">
+    <value>В посочения бюджет се включва резервът за изпълнение на оперативните програми в размер на 6 %</value>
+  </data>
+  <data name="Global_OperationalProgram" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="Global_OperationalPrograms" xml:space="preserve">
+    <value>Програми</value>
+  </data>
+  <data name="Global_Page" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="Global_Partners" xml:space="preserve">
+    <value>Партньори</value>
+  </data>
+  <data name="Global_Payed" xml:space="preserve">
+    <value>Реално изплатени суми</value>
+  </data>
+  <data name="Global_PayedFinancingfEU" xml:space="preserve">
+    <value>Реално изплатени суми - финансиране от ЕС</value>
+  </data>
+  <data name="Global_PayedFinancingfNF" xml:space="preserve">
+    <value>Реално изплатени суми - финансиране от НФ</value>
+  </data>
+  <data name="Global_PayedNote" xml:space="preserve">
+    <value>РИС - Реално изплатени суми</value>
+  </data>
+  <data name="Global_PercentExecution" xml:space="preserve">
+    <value>% на изпълнение</value>
+  </data>
+  <data name="Global_PlanningRegion" xml:space="preserve">
+    <value>Район за планиране</value>
+  </data>
+  <data name="Global_Search" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="Global_SearchButtonValue" xml:space="preserve">
+    <value>Търси</value>
+  </data>
+  <data name="Global_Subcontractors" xml:space="preserve">
+    <value>Подизпълнители</value>
+  </data>
+  <data name="Global_Total" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+  <data name="Home_Index_AdvancedSearch" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="Home_Index_AllOperationalPrograms" xml:space="preserve">
+    <value>Всички оперативни програми</value>
+  </data>
+  <data name="Home_Index_Companies" xml:space="preserve">
+    <value>Организации</value>
+  </data>
+  <data name="Home_Index_PlaningRegions" xml:space="preserve">
+    <value>Райони за планиране</value>
+  </data>
+  <data name="Implementation_Index_AFFonds" xml:space="preserve">
+    <value>ЗЕМЕДЕЛСКИ И РИБАРСКИ ФОНДОВЕ</value>
+  </data>
+  <data name="Implementation_Index_CF" xml:space="preserve">
+    <value>СКФ</value>
+  </data>
+  <data name="Implementation_Index_DateFrom" xml:space="preserve">
+    <value>Период за изпълнение (от)</value>
+  </data>
+  <data name="Implementation_Index_DateTo" xml:space="preserve">
+    <value>Период за изпълнение (до)</value>
+  </data>
+  <data name="Implementation_Index_OpExecution" xml:space="preserve">
+    <value>Изпълнение на оперативни програми</value>
+  </data>
+  <data name="Implementation_Index_ReceivedTranches" xml:space="preserve">
+    <value>Получени траншове от ЕК</value>
+  </data>
+  <data name="Implementation_Index_TotalTo" xml:space="preserve">
+    <value>Общо към</value>
+  </data>
+  <data name="Implementation_Index_ValidationDates" xml:space="preserve">
+    <value>Стойността на полето "{0}" трябва да е по-малка или равна от тази в полето "{1}".</value>
+  </data>
+  <data name="Implementation_Index_ContractedNote" xml:space="preserve">
+    <value>Сумата представлява само БФП</value>
+  </data>
+  <data name="Indicators_Index_AchievedValue" xml:space="preserve">
+    <value>Постигната стойност</value>
+  </data>
+  <data name="Indicators_Index_Category" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Indicators_Index_CumulativeAchievedValue" xml:space="preserve">
+    <value>Постигнатата стойност е с натрупване</value>
+  </data>
+  <data name="Indicators_Index_CumulativeTargetValue" xml:space="preserve">
+    <value>Целевата стойност е с натрупване</value>
+  </data>
+  <data name="Indicators_Index_Indicator" xml:space="preserve">
+    <value>Индикатор</value>
+  </data>
+  <data name="Indicators_Index_IndicatorsInfo" xml:space="preserve">
+    <value>Справка за индикаторите</value>
+  </data>
+  <data name="Indicators_Index_MeasureUnit" xml:space="preserve">
+    <value>Мерна единица</value>
+  </data>
+  <data name="Indicators_Index_TargetValue" xml:space="preserve">
+    <value>Целева стойност</value>
+  </data>
+  <data name="Indicators_Index_Trend" xml:space="preserve">
+    <value>Тенденция</value>
+  </data>
+  <data name="Indicators_Index_Type" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="Js_BackTo" xml:space="preserve">
+    <value>Обратно към</value>
+  </data>
+  <data name="Js_Choose" xml:space="preserve">
+    <value>Изберете</value>
+  </data>
+  <data name="Js_Collapse" xml:space="preserve">
+    <value>Свий</value>
+  </data>
+  <data name="Js_Expand" xml:space="preserve">
+    <value>Отвори</value>
+  </data>
+  <data name="Js_Export" xml:space="preserve">
+    <value>Експорт</value>
+  </data>
+  <data name="Js_Lang" xml:space="preserve">
+    <value>bg</value>
+  </data>
+  <data name="Member_Index_ContractsCount" xml:space="preserve">
+    <value>Брой договори</value>
+  </data>
+  <data name="Member_Index_Member" xml:space="preserve">
+    <value>Член на обединението</value>
+  </data>
+  <data name="Member_Index_Name" xml:space="preserve">
+    <value>Наименование на организацията</value>
+  </data>
+  <data name="OpeationalPrograms_Index_BFP" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Contracted" xml:space="preserve">
+    <value>Договорени средства от бюджета на ЕС по ОП</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ContractsCount" xml:space="preserve">
+    <value>Брой сключени договори</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Execution" xml:space="preserve">
+    <value>Изпълнение по програми</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Payed" xml:space="preserve">
+    <value>Платени средства от бюджета на ЕС по ОП</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProgramBudget" xml:space="preserve">
+    <value>Бюджет на oперативните програми</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProgramBudgetPercent" xml:space="preserve">
+    <value>% от общия бюджет на програмата</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Projects" xml:space="preserve">
+    <value>Проекти</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProjectsCount" xml:space="preserve">
+    <value>Брой подадени проекти</value>
+  </data>
+  <data name="OperationalPrograms_Index_ChartContractedPayed" xml:space="preserve">
+    <value>Договорени и реално изплатени суми по Оперативни програми</value>
+  </data>
+  <data name="OperationalPrograms_Index_NoteContracted" xml:space="preserve">
+    <value>Общо включва безвъзмездната финансова помощ и финансиране от бенефициента</value>
+  </data>
+  <data name="Operations_Index_BeneficiaryName" xml:space="preserve">
+    <value>Наименование на бенефициента</value>
+  </data>
+  <data name="Operations_Index_DateFrom" xml:space="preserve">
+    <value>Период за изпълнение (от)</value>
+  </data>
+  <data name="Operations_Index_DateTo" xml:space="preserve">
+    <value>Период за изпълнение (до)</value>
+  </data>
+  <data name="Operations_Index_InterventionCategoriesName" xml:space="preserve">
+    <value>Наименование на категориите интервенции за операцията</value>
+  </data>
+  <data name="Operations_Index_LastUpdate" xml:space="preserve">
+    <value>Дата на последното актуализиране на списъка на операциите</value>
+  </data>
+  <data name="Operations_Index_Location" xml:space="preserve">
+    <value>Местоположение</value>
+  </data>
+  <data name="Operations_Index_OperationEndDate" xml:space="preserve">
+    <value>Дата на приключване на операцията</value>
+  </data>
+  <data name="Operations_Index_OperationName" xml:space="preserve">
+    <value>Наименование на операцията</value>
+  </data>
+  <data name="Operations_Index_OperationsList" xml:space="preserve">
+    <value>Списък на операциите по Регламент 1303/2013</value>
+  </data>
+  <data name="Operations_Index_OperationStartDate" xml:space="preserve">
+    <value>Дата на начало на операцията</value>
+  </data>
+  <data name="Operations_Index_OperationSummary" xml:space="preserve">
+    <value>Обобщение на операцията</value>
+  </data>
+  <data name="Operations_Index_PercentFinancingEU" xml:space="preserve">
+    <value>% на съфинансиране от EC</value>
+  </data>
+  <data name="Operations_Index_ProgramName" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="Operations_Index_TotalEligibleExpenditure" xml:space="preserve">
+    <value>Общо допустими разходи, отпуснати за операцията</value>
+  </data>
+  <data name="Operations_Index_TInterventionField" xml:space="preserve">
+    <value>Област на интервенция</value>
+  </data>
+  <data name="Operations_Index_TFormOfFinance" xml:space="preserve">
+    <value>Форма на финансиране</value>
+  </data>
+  <data name="Operations_Index_TTerritorialDimension" xml:space="preserve">
+    <value>Вид на територията</value>
+  </data>
+  <data name="Operations_Index_TTerritorialDeliveryMechanism" xml:space="preserve">
+    <value>Механизми за териториално изпълнение</value>
+  </data>
+  <data name="Operations_Index_TThematicObjective" xml:space="preserve">
+    <value>Тематична цел (ЕФРР и Кохезионен фонд)</value>
+  </data>
+  <data name="Operations_Index_TESFSecondaryTheme" xml:space="preserve">
+    <value>Вторична тема на ЕСФ</value>
+  </data>
+  <data name="Operations_Index_TEconomicDimension" xml:space="preserve">
+    <value>Икономическа дейност</value>
+  </data>
+  <data name="OPProfile_Index_BudgetFonds" xml:space="preserve">
+    <value>Разпределение на бюджета по фондове</value>
+  </data>
+  <data name="OPProfile_Index_BudgetOperationalProgram" xml:space="preserve">
+    <value>Бюджет на оперативна програма</value>
+  </data>
+  <data name="OPProfile_Index_ByYears" xml:space="preserve">
+    <value>по години</value>
+  </data>
+  <data name="OPProfile_Index_ChartYTitle" xml:space="preserve">
+    <value>Средства (лв.)</value>
+  </data>
+  <data name="OPProfile_Index_ContractedPayedOperationalProgram" xml:space="preserve">
+    <value>Договорени средства и реално изплатени суми по оперативна програма</value>
+  </data>
+  <data name="OPProfile_Index_Execution" xml:space="preserve">
+    <value>Изпълнение на оперативна програма</value>
+  </data>
+  <data name="OPProfile_Index_NF" xml:space="preserve">
+    <value>НФ</value>
+  </data>
+  <data name="OPProfile_Index_NoteBudget" xml:space="preserve">
+    <value>Бюджет на оперативната програма за съответните години с натрупване</value>
+  </data>
+  <data name="OPProfile_Index_NoteContracted" xml:space="preserve">
+    <value>Сумата на договорените средства с натрупване</value>
+  </data>
+  <data name="OPProfile_Index_NotePayed" xml:space="preserve">
+    <value>Сумата на реално изплатените суми с натрупване</value>
+  </data>
+  <data name="OPProfile_Index_Period" xml:space="preserve">
+    <value>Програмен период</value>
+  </data>
+  <data name="OPProfile_Index_Sum_FinancialExecution" xml:space="preserve">
+    <value>Финансово изпълнение на оперативна програма</value>
+  </data>
+  <data name="OPProfile_Index_Year" xml:space="preserve">
+    <value>Година</value>
+  </data>
+  <data name="OPProfile_Index_TotalGrants" xml:space="preserve">
+    <value>Общо-БФП</value>
+  </data>
+  <data name="Partner_Index_CompanyLegalType" xml:space="preserve">
+    <value>Вид на организацията</value>
+  </data>
+  <data name="Partner_Index_CompanyType" xml:space="preserve">
+    <value>Тип на организацията</value>
+  </data>
+  <data name="Partner_Index_Name" xml:space="preserve">
+    <value>Наименование на организацията</value>
+  </data>
+  <data name="Partner_Index_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="Partner_Index_ProjectsCount" xml:space="preserve">
+    <value>Брой проекти</value>
+  </data>
+  <data name="PlaningRegions_Index_NotePreview" xml:space="preserve">
+    <value>За преглед на данните на район, изберете името му от дървовидния списък</value>
+  </data>
+  <data name="PriorityLines_Index_Budget" xml:space="preserve">
+    <value>Бюджет по приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_Contracted" xml:space="preserve">
+    <value>Договорени средства по приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_ContractedPayed" xml:space="preserve">
+    <value>Договорени средства и реално изплатени суми по приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_FinancingPriorityAxes" xml:space="preserve">
+    <value>Финансово изпълнение по приоритетни оси</value>
+  </data>
+  <data name="PriorityLines_Index_NoProcedures" xml:space="preserve">
+    <value>Няма процедури по тази приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_NoteArrow" xml:space="preserve">
+    <value>Елемент от таблицата със стрелка отляво позволява показване на детайли при избирането му</value>
+  </data>
+  <data name="PriorityLines_Index_Payed" xml:space="preserve">
+    <value>Реално изплатени суми по приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_PriorityAxis" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="PriorityLines_Index_ProcedureName" xml:space="preserve">
+    <value>Име на процедура</value>
+  </data>
+  <data name="PriorityLines_Index_ProcedureCode" xml:space="preserve">
+    <value>Код на процедура</value>
+  </data>
+  <data name="PriorityLines_Index_TotalContractsCount" xml:space="preserve">
+    <value>Общ брой договори</value>
+  </data>
+  <data name="PriorityLines_Index_TotalBFPAmount" xml:space="preserve">
+    <value>Обща стойност БФП</value>
+  </data>
+  <data name="PriorityLines_Index_TotalAmount" xml:space="preserve">
+    <value>Обща стойност</value>
+  </data>
+  <data name="PriorityLines_Index_TotalCompaniesCount" xml:space="preserve">
+    <value>Общ брой бенефициенти</value>
+  </data>
+  <data name="ProjectProposals_Index_ApprovedCount" xml:space="preserve">
+    <value>Брой одобрени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_BFPAmount" xml:space="preserve">
+    <value>Стойност на подадените проектни предложения БФП (в лева)</value>
+  </data>
+  <data name="ProjectProposals_Index_ProcedureNamе" xml:space="preserve">
+    <value>Име на процедура</value>
+  </data>
+  <data name="ProjectProposals_Index_ProcedureNumber" xml:space="preserve">
+    <value>Номер на процедура</value>
+  </data>
+  <data name="ProjectProposals_Index_ProjectProposals" xml:space="preserve">
+    <value>Проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_RejectedCount" xml:space="preserve">
+    <value>Брой отхвърлени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_ReservedCount" xml:space="preserve">
+    <value>Брой проектни предложения в резервен списък</value>
+  </data>
+  <data name="ProjectProposals_Index_SubmittedCount" xml:space="preserve">
+    <value>Брой подадени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalAmount" xml:space="preserve">
+    <value>Обща стойност на подадените проектни предложения</value>
+  </data>
+  <data name="Project_Details_Activities" xml:space="preserve">
+    <value>Дейности</value>
+  </data>
+  <data name="Project_Details_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Project_Details_BFP" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="Project_Details_BFPContractStatus" xml:space="preserve">
+    <value>Статус на изпълнение на договора/заповедта за БФП</value>
+  </data>
+  <data name="Project_Details_ContractDate" xml:space="preserve">
+    <value>Дата на сключване на договора/заповедта</value>
+  </data>
+  <data name="Project_Details_Contractors" xml:space="preserve">
+    <value>Изпълнители</value>
+  </data>
+  <data name="Project_Details_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Project_Details_EndDate" xml:space="preserve">
+    <value>Дата на приключване</value>
+  </data>
+  <data name="Project_Details_EUMISNumber" xml:space="preserve">
+    <value>Номер от ИСУН</value>
+  </data>
+  <data name="Project_Details_EuPercent" xml:space="preserve">
+    <value>Процент на съфинансиране от ЕС</value>
+  </data>
+  <data name="Project_Details_ExecutionPlace" xml:space="preserve">
+    <value>Местонахождение</value>
+  </data>
+  <data name="Project_Details_FinancialInformation" xml:space="preserve">
+    <value>Финансова информация</value>
+  </data>
+  <data name="Project_Details_FinancingSource" xml:space="preserve">
+    <value>Източник на финансиране</value>
+  </data>
+  <data name="Project_Details_Identification" xml:space="preserve">
+    <value>Идентификация</value>
+  </data>
+  <data name="Project_Details_Indicator" xml:space="preserve">
+    <value>Индикатор</value>
+  </data>
+  <data name="Project_Details_Indicators" xml:space="preserve">
+    <value>Индикатори</value>
+  </data>
+  <data name="Project_Details_Indicator_CumulativeAmount" xml:space="preserve">
+    <value>Достигната стойност</value>
+  </data>
+  <data name="Project_Details_Indicator_TargetAmount" xml:space="preserve">
+    <value>Целева стойност</value>
+  </data>
+  <data name="Project_Details_Members" xml:space="preserve">
+    <value>Членове на обединение</value>
+  </data>
+  <data name="Project_Details_None" xml:space="preserve">
+    <value>Няма</value>
+  </data>
+  <data name="Project_Details_NoProcurements" xml:space="preserve">
+    <value>Няма намерени тръжни процедури</value>
+  </data>
+  <data name="Project_Details_Offer" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="Project_Details_Offer_Amount" xml:space="preserve">
+    <value>Прогнозна стойност</value>
+  </data>
+  <data name="Project_Details_Offer_PositionName" xml:space="preserve">
+    <value>Обособена позиция</value>
+  </data>
+  <data name="Project_Details_Offer_ProcurementPlanName" xml:space="preserve">
+    <value>Предмет на предвидената процедура</value>
+  </data>
+  <data name="Project_Details_Partners" xml:space="preserve">
+    <value>Партньори</value>
+  </data>
+  <data name="Project_Details_Procurements" xml:space="preserve">
+    <value>Тръжни процедури</value>
+  </data>
+  <data name="Project_Details_ProjectName" xml:space="preserve">
+    <value>Наименование на проекта</value>
+  </data>
+  <data name="Project_Details_ProjectTotalAmount" xml:space="preserve">
+    <value>Обща стойност на проекта</value>
+  </data>
+  <data name="Project_Details_SF" xml:space="preserve">
+    <value>СФ</value>
+  </data>
+  <data name="Project_Details_ShortProjectDescription" xml:space="preserve">
+    <value>Кратко описание на проекта</value>
+  </data>
+  <data name="Project_Details_StartDate" xml:space="preserve">
+    <value>Дата на стартиране</value>
+  </data>
+  <data name="Project_Details_Subcontractors" xml:space="preserve">
+    <value>Подизпълнители</value>
+  </data>
+  <data name="Project_Details_TotalPayed" xml:space="preserve">
+    <value>Общо реално изплатени суми</value>
+  </data>
+  <data name="Project_Details_UMISNumber" xml:space="preserve">
+    <value>Номер от ИСУН</value>
+  </data>
+  <data name="Project_Search_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Project_Search_Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="Project_Search_EndDateFrom" xml:space="preserve">
+    <value>Година на приключване (от)</value>
+  </data>
+  <data name="Project_Search_EndDateTo" xml:space="preserve">
+    <value>Година на приключване (до)</value>
+  </data>
+  <data name="Project_Search_FinancinBeneficiary" xml:space="preserve">
+    <value>Собствено съфинансиране от бенефициента</value>
+  </data>
+  <data name="Project_Search_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="Project_Search_PriorityAxis" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="Project_Search_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="Project_Search_Program" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="Project_Search_Projects" xml:space="preserve">
+    <value>Проекти</value>
+  </data>
+  <data name="Project_Search_StartDateFrom" xml:space="preserve">
+    <value>Година на стартиране (от)</value>
+  </data>
+  <data name="Project_Search_StartDateTo" xml:space="preserve">
+    <value>Година на стартиране (до)</value>
+  </data>
+  <data name="Project_Search_To" xml:space="preserve">
+    <value>до</value>
+  </data>
+  <data name="Project_Search_TotalContractsCount" xml:space="preserve">
+    <value>Общ брой договори</value>
+  </data>
+  <data name="Project_Search_TotalBFPAmount" xml:space="preserve">
+    <value>Обща стойност БФП</value>
+  </data>
+  <data name="Project_Search_TotalAmount" xml:space="preserve">
+    <value>Обща стойност</value>
+  </data>
+  <data name="Project_Search_TotalCompaniesCount" xml:space="preserve">
+    <value>Общ брой бенефициенти</value>
+  </data>
+  <data name="Project_Search_Uin" xml:space="preserve">
+    <value>ЕИК</value>
+  </data>
+  <data name="Project_Search_ProjectName" xml:space="preserve">
+    <value>Наименование на проекта</value>
+  </data>
+  <data name="Project_Search_Location" xml:space="preserve">
+    <value>Местонахождение</value>
+  </data>
+  <data name="Project_Search_ProjectCostNote" xml:space="preserve">
+    <value>Информацията за стойността на проектите в съответните райони е на база последна актуализация на договора за БФП</value>
+  </data>
+  <data name="Project_Search_ActuallyPaidAmountsNote" xml:space="preserve">
+    <value>Информацията за размерът на реално изплатените суми по проекта не е обвързана със съответен район, а е за целия проект</value>
+  </data>
+  <data name="Shared_Error_Message" xml:space="preserve">
+    <value>Възникна грешка, моля опитайте отново</value>
+  </data>
+  <data name="Shared_ExportIcons_Excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="Shared_ExportIcons_Export" xml:space="preserve">
+    <value>Експорт на данните</value>
+  </data>
+  <data name="Shared_ExportIcons_HTML" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="Shared_ExportIcons_Print" xml:space="preserve">
+    <value>Печат</value>
+  </data>
+  <data name="Shared_ExportIcons_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="Shared_Footer_Eumis" xml:space="preserve">
+    <value>ИНФОРМАЦИОННА СИСТЕМА ЗА УПРАВЛЕНИЕ И НАБЛЮДЕНИЕ 2020</value>
+  </data>
+  <data name="Shared_Footer_Financing" xml:space="preserve">
+    <value>Проектът се финансира от Оперативна програма „Добро управление”, съфинансирана от Европейския съюз чрез Европейския социален фонд.</value>
+  </data>
+  <data name="Shared_Footer_Project" xml:space="preserve">
+    <value>В изпълнение на проект BG05SFOP001-4.002-0003 „Повишаване на ефективността и ефикасността на Централното координационно звено“.</value>
+  </data>
+  <data name="Shared_Header_Funds" xml:space="preserve">
+    <value>НА СРЕДСТВАТА ОТ ЕС В БЪЛГАРИЯ 2020</value>
+  </data>
+  <data name="Shared_Header_Monitoring" xml:space="preserve">
+    <value>ЗА УПРАВЛЕНИЕ И НАБЛЮДЕНИЕ</value>
+  </data>
+  <data name="Shared_Header_Motto" xml:space="preserve">
+    <value>Една посока - Много възможности</value>
+  </data>
+  <data name="Shared_Header_MottoDirection" xml:space="preserve">
+    <value>ЕДНА ПОСОКА</value>
+  </data>
+  <data name="Shared_Header_MottoPossibilities" xml:space="preserve">
+    <value>МНОГО ВЪЗМОЖНОСТИ 2014 - 2020</value>
+  </data>
+  <data name="Shared_Header_System" xml:space="preserve">
+    <value>ИНФОРМАЦИОННА СИСТЕМА</value>
+  </data>
+  <data name="Shared_Tabs_Location" xml:space="preserve">
+    <value>Местонахождение</value>
+  </data>
+  <data name="Shared_Tabs_PriorityAxes" xml:space="preserve">
+    <value>Приоритетни оси</value>
+  </data>
+  <data name="Shared_Tabs_Projects" xml:space="preserve">
+    <value>Проекти</value>
+  </data>
+  <data name="Shared__LoaderPartial_Wait" xml:space="preserve">
+    <value>Моля, изчакайте</value>
+  </data>
+  <data name="Shared__SubHeader_Eumis" xml:space="preserve">
+    <value>Информационна система за наблюдение на средствата от ЕС в България 2020</value>
+  </data>
+  <data name="Shared__SubHeader_Period" xml:space="preserve">
+    <value>2014 - 2020</value>
+  </data>
+  <data name="Subcontractor_Index_ContractsCount" xml:space="preserve">
+    <value>Брой договори</value>
+  </data>
+  <data name="Subcontractor_Index_Name" xml:space="preserve">
+    <value>Наименование на организацията</value>
+  </data>
+  <data name="Subcontractor_Index_Subcontractor" xml:space="preserve">
+    <value>Подизпълнител</value>
+  </data>
+  <data name="Enum_IndicatorType_Specific" xml:space="preserve">
+    <value>Специфичен за програмата индикатор</value>
+  </data>
+  <data name="Enum_IndicatorType_Common" xml:space="preserve">
+    <value>Общ индикатор</value>
+  </data>
+  <data name="Enum_IndicatorType_IndividualForProcedure" xml:space="preserve">
+    <value>Индивидуален за процедура</value>
+  </data>
+  <data name="Enum_IndicatorKind_Financial" xml:space="preserve">
+    <value>Финансов</value>
+  </data>
+  <data name="Enum_IndicatorKind_Performance" xml:space="preserve">
+    <value>Изпълнение</value>
+  </data>
+  <data name="Enum_IndicatorKind_Result" xml:space="preserve">
+    <value>Резултат</value>
+  </data>
+  <data name="Enum_IndicatorKind_PerformanceStage" xml:space="preserve">
+    <value>Етап на изпълнение</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Reduction" xml:space="preserve">
+    <value>Намаление</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Increase" xml:space="preserve">
+    <value>Увеличение</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Inapplicable" xml:space="preserve">
+    <value>Неприложимо</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_NotAggregated" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_Aggregated" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_Inapplicable" xml:space="preserve">
+    <value>Неприложимо</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_NotAggregated" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_Aggregated" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_Inapplicable" xml:space="preserve">
+    <value>Неприложимо</value>
+  </data>
+  <data name="Global_AdministrativeEnquiries" xml:space="preserve">
+    <value>Административни справки</value>
+  </data>
+  <data name="Admin_OPStatistics" xml:space="preserve">
+    <value>Статистики по оперативна програма</value>
+  </data>
+  <data name="Admin_UsersCount" xml:space="preserve">
+    <value>Брой потребители</value>
+  </data>
+  <data name="Admin_UsersCount_PortalUsersCount" xml:space="preserve">
+    <value>Брой потребители КАНДИДАТСТВАНЕ</value>
+  </data>
+  <data name="Admin_UsersCount_PrivateUsersCount" xml:space="preserve">
+    <value>Брой потребители ВЪТРЕШНА СИСТЕМА</value>
+  </data>
+  <data name="Admin_UsersCount_ReportUsersCount" xml:space="preserve">
+    <value>Брой потребители ОТЧИТАНЕ</value>
+  </data>
+  <data name="Admin_OPStatistics_ApprovedProposalsCount" xml:space="preserve">
+    <value>Брой одобрени проектни предложения</value>
+  </data>
+  <data name="Admin_OPStatistics_EvalSessionsCount" xml:space="preserve">
+    <value>Брой оценителни сесии</value>
+  </data>
+  <data name="Admin_OPStatistics_ProceduresCount" xml:space="preserve">
+    <value>Брой публикувани процедури до момента</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsBFPAmount" xml:space="preserve">
+    <value>Стойност на подадените проектни предложения БФП (в лева)</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsSelfAmount" xml:space="preserve">
+    <value>Стойност на подадените проектни предложения Собствено финансиране (в лева)</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsTotalAmount" xml:space="preserve">
+    <value>Обща стойност на подадените проектни предложения</value>
+  </data>
+  <data name="Admin_OPStatistics_RejectedProposalsCount" xml:space="preserve">
+    <value>Брой отхвърлени проектни предложения</value>
+  </data>
+  <data name="Admin_OPStatistics_ReserveProposalsCount" xml:space="preserve">
+    <value>Брой проектни предложения в резервен списък</value>
+  </data>
+  <data name="Admin_OPStatistics_SubmittedProposalsCount" xml:space="preserve">
+    <value>Брой подадени проектни предложения</value>
+  </data>
+  <data name="Global_Placeholder" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalApprovedCount" xml:space="preserve">
+    <value>Общ брой одобрени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalBFPAmount" xml:space="preserve">
+    <value>Обща стойност на подадените проектни предложения БФП (в лева)</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalProjectProposals" xml:space="preserve">
+    <value>Общо проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalRejectedCount" xml:space="preserve">
+    <value>Общ брой отхвърлени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalReservedCount" xml:space="preserve">
+    <value>Общ брой проектни предложения в резервен списък</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalSubmittedCount" xml:space="preserve">
+    <value>Общ брой подадени проектни предложения</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalTotalAmount" xml:space="preserve">
+    <value>Обща стойност на всички подадени проектни предложения</value>
+  </data>
+  <data name="Admin_UsersStatistics" xml:space="preserve">
+    <value>Статистика за потребители</value>
+  </data>
+  <data name="Admin_UsersStatistics_DraftOperationalProgrammes" xml:space="preserve">
+    <value>рп (ОП)</value>
+  </data>
+  <data name="Admin_UsersStatistics_DraftProjectsCount" xml:space="preserve">
+    <value>Бр. рп</value>
+  </data>
+  <data name="Admin_UsersStatistics_Fullname" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="Admin_UsersStatistics_Number" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="Admin_UsersStatistics_RegisteredOperationalProgrammes" xml:space="preserve">
+    <value>пп (ОП)</value>
+  </data>
+  <data name="Admin_UsersStatistics_RegisteredProjectsCount" xml:space="preserve">
+    <value>Бр. пп</value>
+  </data>
+  <data name="Admin_UsersStatistics_Username" xml:space="preserve">
+    <value>Потребител</value>
+  </data>
+  <data name="Admin_ProceduresStatisticsProgramme" xml:space="preserve">
+    <value>Статистики за процедури по оперативна програма</value>
+  </data>
+  <data name="Admin_ProceduresStatistics" xml:space="preserve">
+    <value>Статистики за процедури</value>
+  </data>
+  <data name="Admin_ProcedureProjects" xml:space="preserve">
+    <value>Проектни предложения по процедура</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Number" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Project" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="Admin_OPStatistics_ActiveContractsCount" xml:space="preserve">
+    <value>Брой договори в изпълнение (от дата на стартиране)</value>
+  </data>
+  <data name="Admin_OPStatistics_CanceledContractsCount" xml:space="preserve">
+    <value>Брой прекратени договори (към дата на прекратяване)</value>
+  </data>
+  <data name="Admin_OPStatistics_ConcludedContractsCount" xml:space="preserve">
+    <value>Брой сключени договори</value>
+  </data>
+  <data name="Admin_OPStatistics_EndedContractsCount" xml:space="preserve">
+    <value>Брой приключени договори (към датата на приключване)</value>
+  </data>
+  <data name="Admin_OPStatistics_MonitoredContractsCount" xml:space="preserve">
+    <value>Брой договори в изпълнение (под наблюдение)</value>
+  </data>
+  <data name="Admin_OPStatistics_PausedContractsCount" xml:space="preserve">
+    <value>Брой договори в изпълнение (временно спрени)</value>
+  </data>
+  <data name="Admin_OPStatistics_SuspendedContractsCount" xml:space="preserve">
+    <value>Брой прекратени договори</value>
+  </data>
+  <data name="Admin_OPStatistics_TotalContractsCount" xml:space="preserve">
+    <value>Общо брой договори</value>
+  </data>
+  <data name="Global_CF_ERDF_ESF" xml:space="preserve">
+    <value>КФ, ЕФРР и ЕСФ</value>
+  </data>
+  <data name="Global_ESIF" xml:space="preserve">
+    <value>ЕСИФ</value>
+  </data>
+  <data name="Global_MoI_Funds" xml:space="preserve">
+    <value>фондове МВР</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_Title" xml:space="preserve">
+    <value>Резултати от оценка</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredProcedure" xml:space="preserve">
+    <value>Не е указана процедура</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_NotPassedASD" xml:space="preserve">
+    <value>Недопуснат до ТФО</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_PassedASD" xml:space="preserve">
+    <value>Допуснат до ТФО</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_AdminAdmissResult" xml:space="preserve">
+    <value>Резултат от оценка</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_CompanyName" xml:space="preserve">
+    <value>Кандидат</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_NonAdmissionReason" xml:space="preserve">
+    <value>Причина за недопускане до ТФО</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectCode" xml:space="preserve">
+    <value>Рег. номер</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectEvaluation" xml:space="preserve">
+    <value>Резултати от оценка</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectNamе" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_Projects" xml:space="preserve">
+    <value>Проектни предложения</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Type" xml:space="preserve">
+    <value>Вид резултат</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredResultType" xml:space="preserve">
+    <value>Не е указан вид на резултата</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_AdminAdmiss" xml:space="preserve">
+    <value>Резултат от оценка АСД</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_Preliminary" xml:space="preserve">
+    <value>Резултат от предварителна оценка</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_Standing" xml:space="preserve">
+    <value>Резултат от класиране</value>
+  </data>
+  <data name="Enum_FinanceSource_EEAFM" xml:space="preserve">
+    <value>ФМ на ЕИП</value>
+  </data>
+  <data name="Enum_FinanceSource_NFM" xml:space="preserve">
+    <value>НФМ</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredResultId" xml:space="preserve">
+    <value>Не е указана версия</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_ResultId" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="ProjectsResults_Index_Action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="ProjectsResults_Index_EvalSessionCode" xml:space="preserve">
+    <value>Оценителна сесия</value>
+  </data>
+  <data name="ProjectsResults_Index_Results" xml:space="preserve">
+    <value>Резултати</value>
+  </data>
+  <data name="ProjectsResults_Index_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="ProjectsResults_Index_PublicationDate" xml:space="preserve">
+    <value>Дата на публикуване</value>
+  </data>
+  <data name="ProjectsResults_Index_Preview" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="EvalSessionResult_Index_Title" xml:space="preserve">
+    <value>Резултати от оценка</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_CompanyUin" xml:space="preserve">
+    <value>Идентификатор на кандидат</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectRegDate" xml:space="preserve">
+    <value>Дата на регистрация</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Canceled" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Publish" xml:space="preserve">
+    <value>Публикуван</value>
+  </data>
+  <data name="Enum_UinType_Bulstat" xml:space="preserve">
+    <value>Булстат</value>
+  </data>
+  <data name="Enum_UinType_Eik" xml:space="preserve">
+    <value>ЕИК</value>
+  </data>
+  <data name="Enum_UinType_Foreign" xml:space="preserve">
+    <value>Чуждестранни фирми</value>
+  </data>
+  <data name="Enum_UinType_Personal" xml:space="preserve">
+    <value>Булстат за свободни професии (ЕГН)</value>
+  </data>
+  <data name="Enum_EvalSessionEvaluationResult_NotPassed" xml:space="preserve">
+    <value>Не преминава</value>
+  </data>
+  <data name="Enum_EvalSessionEvaluationResult_Passed" xml:space="preserve">
+    <value>Преминава</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Approved" xml:space="preserve">
+    <value>Одобрено</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Rejected" xml:space="preserve">
+    <value>Отхвърлено</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtASD" xml:space="preserve">
+    <value>Отхвърлено на ОАСД</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtTFO" xml:space="preserve">
+    <value>Отхвърлено на ТФО</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Reserve" xml:space="preserve">
+    <value>Резерва</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Assessment" xml:space="preserve">
+    <value>Резултат от предварителна оценка</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_CompanyName" xml:space="preserve">
+    <value>Кандидат</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_CompanyUin" xml:space="preserve">
+    <value>Идентификатор на кандидат</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_GrantAmount" xml:space="preserve">
+    <value>Размер на БФП (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Info" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectCode" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectNamе" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectRegDate" xml:space="preserve">
+    <value>Дата на регистрация</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Projects" xml:space="preserve">
+    <value>Проектни предложения</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_SelfAmount" xml:space="preserve">
+    <value>Размер на съфинансиране (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_StandingOrder" xml:space="preserve">
+    <value>Пореден номер в класиране</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_StandingStatus" xml:space="preserve">
+    <value>Статус в класиране</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASD" xml:space="preserve">
+    <value>ОАСД</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Assessment" xml:space="preserve">
+    <value>Обобщена оценка</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CompanyName" xml:space="preserve">
+    <value>Кандидат</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CompanyUin" xml:space="preserve">
+    <value>Идентификатор на кандидат</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Complex" xml:space="preserve">
+    <value>КО</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CorrectedGrantAmount" xml:space="preserve">
+    <value>Размер на коригираното БФП от оценителна комисия (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CorrectedSelfAmount" xml:space="preserve">
+    <value>Размер на коригираното съфинансиране от оценителна комисия (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_EvalType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="EvalSessionResult_Standing_GrantAmount" xml:space="preserve">
+    <value>Размер на заявеното БФП (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Info" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="EvalSessionResult_Standing_NoText" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Pass" xml:space="preserve">
+    <value>Преминава</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Points" xml:space="preserve">
+    <value>Точки</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Preliminary" xml:space="preserve">
+    <value>ПО</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectCode" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectNamе" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectRegDate" xml:space="preserve">
+    <value>Дата на регистрация</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Projects" xml:space="preserve">
+    <value>Проектни предложения</value>
+  </data>
+  <data name="EvalSessionResult_Standing_SelfAmount" xml:space="preserve">
+    <value>Размер на заявеното съфинансиране (лв.)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_StandingOrder" xml:space="preserve">
+    <value>Пореден номер в класиране</value>
+  </data>
+  <data name="EvalSessionResult_Standing_StandingStatus" xml:space="preserve">
+    <value>Статус в класиране</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFO" xml:space="preserve">
+    <value>ТФО</value>
+  </data>
+  <data name="EvalSessionResult_Standing_YesText" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASDPoints" xml:space="preserve">
+    <value>АСД точки</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASDResult" xml:space="preserve">
+    <value>АСД резултат</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ComplexPoints" xml:space="preserve">
+    <value>КО точки</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ComplexResult" xml:space="preserve">
+    <value>КО резултат</value>
+  </data>
+  <data name="EvalSessionResult_Standing_PreliminaryPoints" xml:space="preserve">
+    <value>ПО точки</value>
+  </data>
+  <data name="EvalSessionResult_Standing_PreliminaryResult" xml:space="preserve">
+    <value>ПО резултат</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFOPoints" xml:space="preserve">
+    <value>ТФО точки</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFOResult" xml:space="preserve">
+    <value>ТФО резултат</value>
+  </data>
+  <data name="EvalSessionResult_Index_Template" xml:space="preserve">
+    <value>Процедура {0}. {1} в оценителна сесия {2}</value>
+  </data>
+  <data name="EvalSessionResult_Index_EvalSession" xml:space="preserve">
+    <value>Оценителна сесия</value>
+  </data>
+  <data name="EvalSessionResult_Index_EvalType" xml:space="preserve">
+    <value>Вид на резултата</value>
+  </data>
+  <data name="EvalSessionResult_Index_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="ProgrammeGroups_All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="ProgrammeGroups_Other" xml:space="preserve">
+    <value>Други</value>
+  </data>
+  <data name="ProgrammeGroups_Index_BFP" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ContractsCount" xml:space="preserve">
+    <value>Брой сключени договори</value>
+  </data>
+  <data name="ProgrammeGroups_Index_Execution" xml:space="preserve">
+    <value>Изпълнение по програми</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProgramBudgetPercent" xml:space="preserve">
+    <value>% от общия бюджет на програмата</value>
+  </data>
+  <data name="ProgrammeGroups_Index_Projects" xml:space="preserve">
+    <value>Проекти</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProjectsCount" xml:space="preserve">
+    <value>Брой подадени проекти</value>
+  </data>
+  <data name="ProgrammeGroups_Index_NoteContracted" xml:space="preserve">
+    <value>Общо включва безвъзмездната финансова помощ и финансиране от бенефициента</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProgramBudget" xml:space="preserve">
+    <value>Общ бюджет на програмите</value>
+  </data>
+  <data name="ProgrammeGroups_Index_FiananceSourcesDistribution" xml:space="preserve">
+    <value>Разпределение на средствата по фондове</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartContractedPayed" xml:space="preserve">
+    <value>Договорени и реално изплатени суми</value>
+  </data>
+  <data name="Global_ContractedFinancingTotal" xml:space="preserve">
+    <value>Общо договорени</value>
+  </data>
+  <data name="Global_PayedFinancingTotal" xml:space="preserve">
+    <value>Общо реално изплатени суми</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartProgrammesExecution" xml:space="preserve">
+    <value>Изпълнение на програмите в %</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartProgrammeFinanceSourceBudget" xml:space="preserve">
+    <value>Бюджет на програмите (по фондове)</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="Partner_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="Contractor_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="Member_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="Subcontractor_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Friday" xml:space="preserve">
+    <value>Пет</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Monday" xml:space="preserve">
+    <value>Пон</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Saturday" xml:space="preserve">
+    <value>Съб</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Sunday" xml:space="preserve">
+    <value>Нед</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Thursday" xml:space="preserve">
+    <value>Чтв</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Tuesday" xml:space="preserve">
+    <value>Втр</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Wednesday" xml:space="preserve">
+    <value>Срд</value>
+  </data>
+  <data name="Calendar_Month_April" xml:space="preserve">
+    <value>Април</value>
+  </data>
+  <data name="Calendar_Month_August" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="Calendar_Month_December" xml:space="preserve">
+    <value>Декември</value>
+  </data>
+  <data name="Calendar_Month_February" xml:space="preserve">
+    <value>Февруари</value>
+  </data>
+  <data name="Calendar_Month_January" xml:space="preserve">
+    <value>Януари</value>
+  </data>
+  <data name="Calendar_Month_July" xml:space="preserve">
+    <value>Юли</value>
+  </data>
+  <data name="Calendar_Month_June" xml:space="preserve">
+    <value>Юни</value>
+  </data>
+  <data name="Calendar_Month_March" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="Calendar_Month_May" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="Calendar_Month_November" xml:space="preserve">
+    <value>Ноември</value>
+  </data>
+  <data name="Calendar_Month_October" xml:space="preserve">
+    <value>Октомври</value>
+  </data>
+  <data name="Calendar_Month_September" xml:space="preserve">
+    <value>Септември</value>
+  </data>
+  <data name="Events_Index_Caption" xml:space="preserve">
+    <value>Списък със събития за {0}</value>
+  </data>
+  <data name="Events_Index_DeadLine" xml:space="preserve">
+    <value>Краен срок</value>
+  </data>
+  <data name="Events_Index_Procedure" xml:space="preserve">
+    <value>Краен срок на процедура за предоставяне на БФП</value>
+  </data>
+  <data name="Events_Index_Title" xml:space="preserve">
+    <value>Събития</value>
+  </data>
+  <data name="Events_Index_EventType" xml:space="preserve">
+    <value>Вид на събитието</value>
+  </data>
+  <data name="Events_Index_Name" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="Events_Index_Time" xml:space="preserve">
+    <value>Час</value>
+  </data>
+  <data name="OpenData_Index_Title" xml:space="preserve">
+    <value>Open data</value>
+  </data>
+  <data name="OpenData_Export" xml:space="preserve">
+    <value>Експорт</value>
+  </data>
+  <data name="Events_Index_Procurement" xml:space="preserve">
+    <value>Краен срок на тръжна процедура</value>
+  </data>
+  <data name="Events_Index_PublicDiscussion" xml:space="preserve">
+    <value>Краен срок за обществено обсъждане на проект на процедура за кандидатстване</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtPO" xml:space="preserve">
+    <value>Отхвърлено на ПО</value>
+  </data>
+  <data name="Company_Index_ContractAmount" xml:space="preserve">
+    <value>Договорена стойност по проекта</value>
+  </data>
+  <data name="Company_Index_ContractCount" xml:space="preserve">
+    <value>Брой договори</value>
+  </data>
+  <data name="Procedures_Index_Title" xml:space="preserve">
+    <value>Допустими кандидати по обявени и предстоящи процедури</value>
+  </data>
+  <data name="Procedures_Index_CompanyLegalType" xml:space="preserve">
+    <value>Вид на организацията</value>
+  </data>
+  <data name="Procedures_Index_CompanyType" xml:space="preserve">
+    <value>Тип на организацията</value>
+  </data>
+  <data name="Procedures_Index_NoResults" xml:space="preserve">
+    <value>Не са намерени процедури за кандидатстване по зададените критерии.</value>
+  </data>
+  <data name="Procedures_Index_Settlement" xml:space="preserve">
+    <value>Населено място</value>
+  </data>
+  <data name="Procedures_Index_EligibleActivities" xml:space="preserve">
+    <value>Примерни допустими дейности</value>
+  </data>
+  <data name="Procedures_Index_EligibleCandidates" xml:space="preserve">
+    <value>Допустими кандидати</value>
+  </data>
+  <data name="Procedures_Index_EligibleCosts" xml:space="preserve">
+    <value>Категории допустими разходи</value>
+  </data>
+  <data name="Procedures_Index_MaxPercentCoFinancing" xml:space="preserve">
+    <value>Максимален % БФП</value>
+  </data>
+  <data name="Procedures_Index_ProcedureBudgetTotal" xml:space="preserve">
+    <value>Бюджет на процедурата</value>
+  </data>
+  <data name="Procedures_Index_ProcedureEndDate" xml:space="preserve">
+    <value>Краен срок за кандидатстване</value>
+  </data>
+  <data name="Procedures_Index_ProcedureName" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="Procedures_Index_ProgrammeName" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="Procedures_Index_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Procedures_Index_Procedures" xml:space="preserve">
+    <value>Процедури</value>
+  </data>
+  <data name="Procedures_Index_Status_NotAnnounced" xml:space="preserve">
+    <value>Предстоящо обявяване</value>
+  </data>
+  <data name="Procedures_Index_Status_Opened" xml:space="preserve">
+    <value>Отворена за кандидатстване</value>
+  </data>
+  <data name="Procedures_Index_HeaderTitle" xml:space="preserve">
+    <value>Мога ли да кандидатствам?</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidBgAmount" xml:space="preserve">
+    <value>Реално изплатени суми – НФ</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidEuAmount" xml:space="preserve">
+    <value>Реално изплатени суми – ЕС</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidTotalAmount" xml:space="preserve">
+    <value>Реално изплатени суми – Общо</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedBgAmount" xml:space="preserve">
+    <value>Договорени средства – НФ</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedEuAmount" xml:space="preserve">
+    <value>Договорени средства – ЕС</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedTotalAmount" xml:space="preserve">
+    <value>Договорени средства – Общо</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_DateTo" xml:space="preserve">
+    <value>Към дата</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_GroupingLevel" xml:space="preserve">
+    <value>Групиране по</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Title" xml:space="preserve">
+    <value>Реално изплатени средства</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ProcedureNumber" xml:space="preserve">
+    <value>Номер на процедура</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_PriorityAxis" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Priority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="Project_Details_Indicator_BaseTotalValue" xml:space="preserve">
+    <value>Базова стойност</value>
+  </data>
+  <data name="Project_Details_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="Project_Details_Partner_ContractedAmount" xml:space="preserve">
+    <value>Договорена стойност по проекта</value>
+  </data>
+  <data name="Project_Details_Partner_ReportedAmount" xml:space="preserve">
+    <value>Отчетена стойност</value>
+  </data>
+  <data name="Project_Details_Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="Project_Details_Contractor_ContractedAmount" xml:space="preserve">
+    <value>Договорена стойност по проекта</value>
+  </data>
+  <data name="Project_Details_Contractor_ReportedAmount" xml:space="preserve">
+    <value>Отчетена стойност</value>
+  </data>
+  <data name="Project_Details_Member" xml:space="preserve">
+    <value>Член на обединение</value>
+  </data>
+  <data name="Project_Details_Member_ContractedAmount" xml:space="preserve">
+    <value>Договорена стойност по проекта</value>
+  </data>
+  <data name="Project_Details_Subcontractor" xml:space="preserve">
+    <value>Подизпълнител</value>
+  </data>
+  <data name="Project_Details_Subcontractor_ContractedAmount" xml:space="preserve">
+    <value>Договорена стойност по проекта</value>
+  </data>
+  <data name="Project_Details_Activity" xml:space="preserve">
+    <value>Дейност</value>
+  </data>
+  <data name="Project_Details_Activity_ContractedAmount" xml:space="preserve">
+    <value>Договорена стойност</value>
+  </data>
+  <data name="Project_Details_Activity_ReportedAmount" xml:space="preserve">
+    <value>Отчетена стойност</value>
+  </data>
+  <data name="Project_Details_ChartYTitle" xml:space="preserve">
+    <value>Средства (лв.)</value>
+  </data>
+  <data name="Project_Details_PieChartYTitle" xml:space="preserve">
+    <value>Дял %</value>
+  </data>
+  <data name="Project_Details_Pie_Deminimis" xml:space="preserve">
+    <value>БФП – de minimis</value>
+  </data>
+  <data name="Project_Details_Pie_Other" xml:space="preserve">
+    <value>БФП – Друго</value>
+  </data>
+  <data name="Project_Details_Pie_Self" xml:space="preserve">
+    <value>Собствен принос</value>
+  </data>
+  <data name="Project_Details_Pie_StateAid" xml:space="preserve">
+    <value>БФП – Държавна помощ</value>
+  </data>
+  <data name="Project_Details_Chart_PaidBgAmount" xml:space="preserve">
+    <value>Реално изплатени суми - финансиране от НФ</value>
+  </data>
+  <data name="Project_Details_Chart_PaidEuAmount" xml:space="preserve">
+    <value>Реално изплатени суми - финансиране от ЕС</value>
+  </data>
+  <data name="ExecutedContracts_Index_Title" xml:space="preserve">
+    <value>Проекти без наложени финансови корекции</value>
+  </data>
+  <data name="ExecutedContracts_Index_Company" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="ExecutedContracts_Index_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="ExecutedContracts_Index_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="ExecutedContracts_Index_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanyLegalType" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanySizeType" xml:space="preserve">
+    <value>Категория на предприятие</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanyType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractDuration" xml:space="preserve">
+    <value>Продължителност на проекта</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractExecutionStatus" xml:space="preserve">
+    <value>Статус на договора</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractRegNumber" xml:space="preserve">
+    <value>Рег. номер</value>
+  </data>
+  <data name="ExecutedContracts_Index_InitialCompletionDate" xml:space="preserve">
+    <value>Първоначална крайна дата на договора</value>
+  </data>
+  <data name="ExecutedContracts_Index_InitialContractDate" xml:space="preserve">
+    <value>Дата на сключване на основния договор</value>
+  </data>
+  <data name="ExecutedContracts_Index_ActualCompletionDate" xml:space="preserve">
+    <value>Дата на приключване/ прекратяване на договора</value>
+  </data>
+  <data name="ExecutedContracts_Index_Uin" xml:space="preserve">
+    <value>ЕИК</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections" xml:space="preserve">
+    <value>Финансови корекции</value>
+  </data>
+  <data name="Project_Details_Offer_ContractorName" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="Project_Details_Offer_ContractTotalFundedValue" xml:space="preserve">
+    <value>Обща стойност на договора, финансирана по проекта</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_BfpAmount" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_ContractorName" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_SelfAmount" xml:space="preserve">
+    <value>Собствено финансиране</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_TotalAmount" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+  <data name="Global_ContractContracts" xml:space="preserve">
+    <value>Договори с изпълнители</value>
+  </data>
+  <data name="ContractContracts_Search_Contract" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="ContractContracts_Search_Company" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContracts" xml:space="preserve">
+    <value>Договори с изпълнители</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandLegalAct" xml:space="preserve">
+    <value>Приложим нормативен акт</value>
+  </data>
+  <data name="ContractContracts_Search_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="ContractContracts_Search_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="ContractContracts_Search_CompanyType" xml:space="preserve">
+    <value>Тип на бенефициент</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractEndDate" xml:space="preserve">
+    <value>Срок на договора с изпълнител</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractNumber" xml:space="preserve">
+    <value>Номер на договора</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractor" xml:space="preserve">
+    <value>Име на изпълнител</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractorUin" xml:space="preserve">
+    <value>ЕИК на изпълнител</value>
+  </data>
+  <data name="ContractContracts_Search_ContractProcurementPlanName" xml:space="preserve">
+    <value>Предмет на процедурата за избор на изпълнител</value>
+  </data>
+  <data name="ContractContracts_Search_ContractDifferentiatedPositionName" xml:space="preserve">
+    <value>Обособена позиция</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandAreaName" xml:space="preserve">
+    <value>Обект на процедурата за избор на изпълнител</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandLegalActName" xml:space="preserve">
+    <value>Приложим нормативен акт</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandTypeName" xml:space="preserve">
+    <value>Тип на процедурата</value>
+  </data>
+  <data name="ContractContracts_Search_TotalFundedValue" xml:space="preserve">
+    <value>Стойност на договора, финансирана от проекта</value>
+  </data>
+  <data name="ContractContracts_Search_Uin" xml:space="preserve">
+    <value>ЕИК на бенефициент</value>
+  </data>
+  <data name="Shared_GreenCorner_TitlePrefix" xml:space="preserve">
+    <value>Благодарение на потребителите на ИСУН бяха спасени</value>
+  </data>
+  <data name="Shared_GreenCorner_SavedTrees" xml:space="preserve">
+    <value>Спасени дървета</value>
+  </data>
+  <data name="Shared_GreenCorner_TitleSufix" xml:space="preserve">
+    <value>дървета</value>
+  </data>
+  <data name="Global_Currency_BGN" xml:space="preserve">
+    <value>лв.</value>
+  </data>
+  <data name="OPProfile_Index_BudgetByFunds" xml:space="preserve">
+    <value>Бюджет на оперативна програма {0} по фондове</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedSelfAmount" xml:space="preserve">
+    <value>Договорени средства – СП</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_RegNumber" xml:space="preserve">
+    <value>Рег. номер на договор</value>
+  </data>
+  <data name="Project_Details_ProjectSelfAmount" xml:space="preserve">
+    <value>Собствено финансиране</value>
+  </data>
+  <data name="Project_Details_ParticipatingOrganizations" xml:space="preserve">
+    <value>Участващи организации</value>
+  </data>
+  <data name="Project_Details_Indicator_Unit" xml:space="preserve">
+    <value>Мерна единица</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts" xml:space="preserve">
+    <value>Стойност на наложената финансова корекция</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_ImposingReason" xml:space="preserve">
+    <value>Основание за налагане на корекция</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Percent_A" xml:space="preserve">
+    <value>% на наложената</value>
+  </data>
+  <data name="Project_Details_Chart_ContractedAmount" xml:space="preserve">
+    <value>Договорени (БФП)</value>
+  </data>
+  <data name="Project_Details_Chart_PaidAmountsNote" xml:space="preserve">
+    <value>Сумата на реално изплатените суми с натрупване</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Percent_B" xml:space="preserve">
+    <value>финансова корекция</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Points" xml:space="preserve">
+    <value>Точки от предварителна оценка</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Seat" xml:space="preserve">
+    <value>Седалище</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Name" xml:space="preserve">
+    <value>Бенефициенти без финансови корекции</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyLegalType" xml:space="preserve">
+    <value>Вид на организацията</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyType" xml:space="preserve">
+    <value>Тип на организацията</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyUin" xml:space="preserve">
+    <value>ЕИК(Булстат, ЕГН)</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_ProjectsCount" xml:space="preserve">
+    <value>Брой договори, успешно приключени в срок</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_ShortName" xml:space="preserve">
+    <value>Бенефициенти без ФК</value>
+  </data>
+  <data name="Project_Details_BasicData" xml:space="preserve">
+    <value>Основни данни</value>
+  </data>
+  <data name="Project_Details_ProjectActivities" xml:space="preserve">
+    <value>Дейности по проекта</value>
+  </data>
+  <data name="Project_Details_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="Project_Details_ProjectAmount" xml:space="preserve">
+    <value>Стойност на проекта</value>
+  </data>
+  <data name="Shared_Footer_EumisGovernment" xml:space="preserve">
+    <value>Оперативни програми, отворени процедури и електронно кандидатстване</value>
+  </data>
+  <data name="Shared_Footer_EumisGovernment_Report" xml:space="preserve">
+    <value>Електронно отчитане на бенефициенти чрез ИСУН 2020</value>
+  </data>
+  <data name="Shared_Footer_IAWP_Download" xml:space="preserve">
+    <value>Индикативни годишни работни програми</value>
+  </data>
+  <data name="Shared_Footer_Feedback" xml:space="preserve">
+    <value>Обратна връзка</value>
+  </data>
+  <data name="Project_Details_NonPersonal" xml:space="preserve">
+    <value>юридическо лице</value>
+  </data>
+  <data name="Project_Details_Personal" xml:space="preserve">
+    <value>физическо лице</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_NoContractor" xml:space="preserve">
+    <value>Финансова корекция на ниво проект</value>
+  </data>
+  <data name="Project_Details_Contractor_ReportedAmount_Note" xml:space="preserve">
+    <value>Колоната представя размерът на заявените от бенефициента разходи</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_OrderVersionNum" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Preview" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_PublicationDate" xml:space="preserve">
+    <value>Дата на публикуване</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Title" xml:space="preserve">
+    <value>Индикативни годишни работни програми</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Year" xml:space="preserve">
+    <value>Година</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Assistance" xml:space="preserve">
+    <value>Представлява ли процедурата/част от нея:</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Candidates" xml:space="preserve">
+    <value>Допустими кандидати</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_EligibleActivities" xml:space="preserve">
+    <value>Примерни допустими дейности</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_EligibleCosts" xml:space="preserve">
+    <value>Категории допустими разходи</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_IsMinimalAssistance" xml:space="preserve">
+    <value>Минимална помощ</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_LeadingProgram" xml:space="preserve">
+    <value>Водеща програма</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ListingDate" xml:space="preserve">
+    <value>Дата на обявяване на процедурата</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_MaxPercentCoFinancing" xml:space="preserve">
+    <value>Максимален % на БФП</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_OrderNum" xml:space="preserve">
+    <value>№ по ред</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureCode" xml:space="preserve">
+    <value>Номер на процедурата</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureDescription" xml:space="preserve">
+    <value>Цели на предоставяната БФП по процедурата</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureName" xml:space="preserve">
+    <value>Наименование на процедурата</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureTotalAmount" xml:space="preserve">
+    <value>Общ размер на БФП по процедурата /лв./</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProgrammePriorityName" xml:space="preserve">
+    <value>Приоритетна ОС</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Programmes" xml:space="preserve">
+    <value>Програми, по които се предоставя БФП по процедурата</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectAmount" xml:space="preserve">
+    <value>Размер на БФП за проект /лв./</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectMaxAmount" xml:space="preserve">
+    <value>Максимален</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectMinAmount" xml:space="preserve">
+    <value>Минимален</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_TimeLimits" xml:space="preserve">
+    <value>Краен срок за подаване на проектни предложения</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_TypeConducting" xml:space="preserve">
+    <value>Начин на провеждане на процедурата съгласно чл. 2 от ПМС № 162/2016 г.</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_WithPreSelection" xml:space="preserve">
+    <value>Извършване на предварителен подбор на концепции за проектни предложения</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_IsStateAssistance" xml:space="preserve">
+    <value>Държавна помощ</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_NoText" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_YesText" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Template" xml:space="preserve">
+    <value>ИГРП - програма: {0}, тип: {1}</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_No" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_ToBeSpecified" xml:space="preserve">
+    <value>Предстои да бъде уточнено</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Canceled" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Published" xml:space="preserve">
+    <value>Публикувана</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeTypeConducting_ProcedureForDirectGrant" xml:space="preserve">
+    <value>Процедура на директно предоставяне</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeTypeConducting_SelectionProcedure" xml:space="preserve">
+    <value>Процедура на подбор на проекти</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeType_IawpTable" xml:space="preserve">
+    <value>ИГРП</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeType_IawpTableForIntegratedProcedures" xml:space="preserve">
+    <value>ИГРП интегрирани процедури</value>
+  </data>
+  <data name="Procedures_Index_FooterNote" xml:space="preserve">
+    <value>Моля имайте предвид, че изведените данни не взимат предвид всички условия за допустимост по обявените и предстоящи за обявяване процедури за предоставяне на БФП, налични в условията за кандидатстване. Поради тази причина изведените резултати може да не обхващат всички допустими кандидати или да показват повече допустими кандидати. Изчерпателна информация се съдържа в публикуваните документи към всяка обявена процедура.</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_Note" xml:space="preserve">
+    <value>Договорената стойност по проекта може да е по-ниска от отчетената поради някоя от следните причини</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote1" xml:space="preserve">
+    <value>За физически лица договорената стойност не включва разходите за сметка на работодателя, които са допустим разход и се отчитат по проекта</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote2" xml:space="preserve">
+    <value>Бенефициентът е отчел разход само с фактура без да е сключен договор с избрания изпълнител</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote3" xml:space="preserve">
+    <value>Бенефициентът е отчел повторно разходи към УО</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts_Note1" xml:space="preserve">
+    <value>Посочената стойност представлява максималния размер на наложената финансова корекция. В зависимост от изпълнението на съответния договор реалният размер на удържаната финансова корекция може да е на по-ниска стойност.</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts_Note2" xml:space="preserve">
+    <value>Финансова корекция с нулева обща стойност означава, че същата е отменена вследствие на съдебно решение.</value>
+  </data>
+  <data name="Operations508_Index_OperationsList" xml:space="preserve">
+    <value>Списък на операциите по Регламент 508/2014</value>
+  </data>
+  <data name="Operations508_Index_DateFrom" xml:space="preserve">
+    <value>Период за изпълнение (от)</value>
+  </data>
+  <data name="Operations508_Index_DateTo" xml:space="preserve">
+    <value>Период за изпълнение (до)</value>
+  </data>
+  <data name="Operations508_Index_ProgramName" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="Operations508_Index_BeneficiaryName" xml:space="preserve">
+    <value>Наименование на бенефициента</value>
+  </data>
+  <data name="Operations508_Index_OperationName" xml:space="preserve">
+    <value>Наименование на операцията</value>
+  </data>
+  <data name="Operations508_Index_OperationSummary" xml:space="preserve">
+    <value>Обобщение на операцията</value>
+  </data>
+  <data name="Operations508_Index_Country" xml:space="preserve">
+    <value>Държава</value>
+  </data>
+  <data name="Operations508_Index_FinancingEU" xml:space="preserve">
+    <value>Съфинансиране от ЕС</value>
+  </data>
+  <data name="Operations508_Index_OperationEndDate" xml:space="preserve">
+    <value>Дата на приключване на операцията</value>
+  </data>
+  <data name="Operations508_Index_OperationStartDate" xml:space="preserve">
+    <value>Дата на начало на операцията</value>
+  </data>
+  <data name="Operations508_Index_PostCode" xml:space="preserve">
+    <value>Пощенски код на операцията</value>
+  </data>
+  <data name="Operations508_Index_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="Operations508_Index_TotalEligibleExpenditure" xml:space="preserve">
+    <value>Общо допустими разходи, отпуснати за операцията</value>
+  </data>
+  <data name="Operations508_Index_LastUpdate" xml:space="preserve">
+    <value>Дата на последното актуализиране на списъка на операциите</value>
+  </data>
+  <data name="Operations508_Index_VesselIdentifiers" xml:space="preserve">
+    <value>Единен идентификационен номер на риболовния кораб</value>
+  </data>
+</root>

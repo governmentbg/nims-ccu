@@ -1,0 +1,45 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedureKinds'" mode="id" ng-model="model.procedureKind" ng-required="true" l10n-text="procedures_procedureDataForm_procedureKind" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'procedureYears'" ng-readonly="model.procedureId" ng-required="true" mode="id" ng-model="model.year" l10n-text="procedures_procedureDataForm_procedureYear" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.code"  ng-if="model.procedureId" ng-readonly="true" l10n-text="procedures_procedureDataForm_code" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'procedureStatuses'" mode="id" ng-model="model.procedureStatus" ng-readonly="true" l10n-text="procedures_procedureDataForm_procedureStatus" class="col-sm-4"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" l10n-text="procedures_procedureDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.nameAlt" ng-required="true" l10n-text="procedures_procedureDataForm_nameAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" ng-required="true" l10n-text="procedures_procedureDataForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.descriptionAlt" ng-required="true" l10n-text="procedures_procedureDataForm_descriptionAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div ng-if="model.procedureKind == 'schema'">
+    <h5 class="form-header" l10n-text="procedures_procedureDataForm_project"></h5>
+    <div class="row">
+      <sc-field type="nomenclature" ng-readonly="true" alias="'allowedRegistrationTypes'" mode="id" ng-model="model.allowedRegistrationType" ng-required="true" l10n-text="procedures_procedureDataForm_allowedRegistrationType" class="col-sm-3"></sc-field>
+      <sc-field type="int" ng-model="model.projectDuration" min="1" ng-required="true" l10n-text="procedures_procedureDataForm_projectDuration" class="col-sm-5 col-md-4" input-width="50px"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="money" ng-model="model.projectMinAmount" ng-required="true" positive="true" l10n-text="procedures_procedureDataForm_projectMinAmount" class="col-sm-4 col-lg-2"></sc-field>
+      <sc-field type="textarea" rows="3" ng-model="model.projectMinAmountInfo" ng-required="model.projectMinAmountInfoAlt" l10n-text="procedures_procedureDataForm_projectMinAmountInfo" class="col-sm-4 col-lg-5"></sc-field>
+      <sc-field type="textarea" rows="3" ng-model="model.projectMinAmountInfoAlt" ng-required="model.projectMinAmountInfo" l10n-text="procedures_procedureDataForm_projectMinAmountInfoAlt" class="col-sm-4 col-lg-5"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="money" ng-model="model.projectMaxAmount" ng-required="true" l10n-text="procedures_procedureDataForm_projectMaxAmount" class="col-sm-4 col-lg-2"
+       sc-validate="{ validProjectMaxAmount: isValidProjectMaxAmount }"
+       sc-revalidate-on="['model.projectMinAmount']"
+       validations="{ validProjectMaxAmount: 'procedures_procedureDataForm_maxValueMustBeGraterThanMinValue' }"
+      >
+      </sc-field>
+      <sc-field type="textarea" rows="3" ng-model="model.projectMaxAmountInfo" ng-required="model.projectMaxAmountInfoAlt" l10n-text="procedures_procedureDataForm_projectMaxAmountInfo" class="col-sm-4 col-lg-5"></sc-field>
+      <sc-field type="textarea" rows="3" ng-model="model.projectMaxAmountInfoAlt" ng-required="model.projectMaxAmountInfo" l10n-text="procedures_procedureDataForm_projectMaxAmountInfoAlt" class="col-sm-4 col-lg-5"></sc-field>
+    </div>
+  </div>
+</ng-form>

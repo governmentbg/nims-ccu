@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10011" 
+	xmlns="http://ereg.egov.bg/segment/R-10011" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="ContractActivity">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">План за изпълнение на Дейности на договор за БФП</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Code" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Company" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+			<xsd:element name="ExecutionMethod" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Result" type="xsd:string" minOccurs="0" />
+			<xsd:element name="StartMonth" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Duration" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Amount" type="xsd:decimal" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

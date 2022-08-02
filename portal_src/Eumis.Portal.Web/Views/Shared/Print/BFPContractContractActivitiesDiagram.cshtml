@@ -1,0 +1,64 @@
+﻿@model R_10040.BFPContractContractActivityCollection
+
+@if (Model != null && Model.Count > 0)
+{
+    int monthColspan = 1;
+
+    foreach (var item in Model)
+    {
+        int startMonth, duration;
+
+        if (int.TryParse(item.StartMonth, out startMonth) && int.TryParse(item.Duration, out duration))
+        {
+            int sum = startMonth + duration - 1;
+
+            if (sum > monthColspan)
+            {
+                monthColspan = sum;
+            }
+        }
+    }
+
+    <table style="width: 100%;">
+        <tr class="months-bold">
+            <td rowspan="2" style="width:40px;"></td>
+            <td rowspan="2">@BFPContractContractActivity.Code</td>
+            <td colspan="@monthColspan">@BFPContractContractActivity.Months</td>
+        </tr>
+        <tr class="months-bold">
+            @for (int i = 1; i <= monthColspan; i++)
+            {
+                <td>@i</td>
+            }
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td style="width: 30%;word-break: break-all">@Model[i].Code</td>
+                @{
+                var current = Model[i];
+                int currentStartMonth = 0, currentDuration = 0, currentMaxMonthContent = 0;
+                bool hasValidMonths = int.TryParse(current.StartMonth, out currentStartMonth) && int.TryParse(current.Duration, out currentDuration);
+
+                if (hasValidMonths)
+                {
+                    currentMaxMonthContent = currentStartMonth + currentDuration - 1;
+                }
+                }
+
+                @for (int j = 1; j <= monthColspan; j++)
+                {
+                    if (!hasValidMonths || j < currentStartMonth || j > currentMaxMonthContent)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td class="marked-month text-center">X</td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+}

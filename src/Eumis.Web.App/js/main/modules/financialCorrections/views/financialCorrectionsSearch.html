@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newfinancialCorrectionBtn" btn-sref="{ state: 'root.financialCorrections.newStep1' }" text="financialCorrections_searchFinancialCorrection_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('FinancialCorrectionListActions.Create')"></sc-button>
+
+    <sc-datatable items="financialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.financialCorrections.view.edit', params: {id: item.financialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('FinancialCorrectionActions.View', item.financialCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="financialCorrections_searchFinancialCorrection_orderNum" type="number">
+      </sc-column>
+      <sc-column data="impositionDate" title="financialCorrections_searchFinancialCorrection_impositionDate" type="date">
+      </sc-column>
+      <sc-column data="contractRegNumber" title="financialCorrections_searchFinancialCorrection_contractRegNumber"
+        col-group="financialCorrections_searchFinancialCorrection_contract"></sc-column>
+      <sc-column data="contractName" title="financialCorrections_searchFinancialCorrection_contractName"
+        col-group="financialCorrections_searchFinancialCorrection_contract" has-content="true">
+        <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="contractCompany" title="financialCorrections_searchFinancialCorrection_contractCompany"
+        col-group="financialCorrections_searchFinancialCorrection_contract"></sc-column>
+      <sc-column data="contractContractNumber" title="financialCorrections_searchFinancialCorrection_contractContractNumber"
+        col-group="financialCorrections_searchFinancialCorrection_contractContract"></sc-column>
+      <sc-column data="contractContractorCompany" title="financialCorrections_searchFinancialCorrection_contractContractorCompany"
+        col-group="financialCorrections_searchFinancialCorrection_contractContract"></sc-column>
+      <sc-column data="contractBudgetLevel3Name" title="financialCorrections_searchFinancialCorrection_contractBudgetLevel3Name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

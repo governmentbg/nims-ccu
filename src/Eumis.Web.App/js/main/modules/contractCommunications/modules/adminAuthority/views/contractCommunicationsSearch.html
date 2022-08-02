@@ -1,0 +1,37 @@
+<ng-form name="contractCommunicationForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="contractCommunications_searchCommunication_programme" ng-required="true" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="contractCommunications_searchCommunication_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="contractCommunications_searchCommunication_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="contractCommunications_searchCommunication_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="contractCommunications_searchCommunication_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.source" alias="'sources'" mode="id" l10n-text="contractCommunications_searchCommunication_source" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-3">
+            <sc-button name="seachBtn" btn-click="search()" text="contractCommunications_searchCommunication_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+      <sc-link-button ng-href="{{contractCommunicationsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                      icon="fa-file-excel-o fa-lg fa-fw" text="contractCommunications_searchCommunication_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+      <sc-datatable items="contractCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-sref="{ state: 'root.contractCommunications.edit', params: { id: item.contractCommunicationXmlId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil">
+          </sc-button>
+        </sc-column>
+        <sc-column data="sendDate" title="contractCommunications_searchCommunication_sendDate" type="datetime"></sc-column>
+        <sc-column data="readDate" title="contractCommunications_searchCommunication_readDate" type="datetime"></sc-column>
+        <sc-column data="contractRegNumber" title="contractCommunications_searchCommunication_contractRegNumber"></sc-column>
+        <sc-column data="status" title="contractCommunications_searchCommunication_status"></sc-column>
+        <sc-column data="source" title="contractCommunications_searchCommunication_source"></sc-column>
+        <sc-column data="regNumber" title="contractCommunications_searchCommunication_regNumber"></sc-column>
+        <sc-column data="subject" title="contractCommunications_searchCommunication_subject"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

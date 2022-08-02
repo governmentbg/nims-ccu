@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07ABED2C-2824-4A5D-B639-20A6D048E7AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Portal.Database</RootNamespace>
+    <AssemblyName>Eumis.Portal.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateAll.sql" />
+    <Content Include="Create\Create.sql" />
+    <Content Include="Create\CreateDB.sql" />
+    <Content Include="Create\Diagrams\Nuts.sql" />
+    <Content Include="Create\Tables\Companies\CompanyLegalTypes.sql" />
+    <Content Include="Create\Tables\Companies\CompanySizeTypes.sql" />
+    <Content Include="Create\Tables\Companies\CompanyTypes.sql" />
+    <Content Include="Create\Tables\Companies\KidCodes.sql" />
+    <Content Include="Create\Tables\Nuts\ProtectedZones.sql" />
+    <Content Include="Create\Tables\Nuts\Countries.sql" />
+    <Content Include="Create\Tables\Nuts\Districts.sql" />
+    <Content Include="Create\Tables\Nuts\Municipalities.sql" />
+    <Content Include="Create\Tables\Nuts\Nuts1s.sql" />
+    <Content Include="Create\Tables\Nuts\Nuts2s.sql" />
+    <Content Include="Create\Tables\Nuts\Settlements.sql" />
+    <Content Include="Create\Tables\System\BlobContents.sql" />
+    <Content Include="Create\Tables\System\Blobs.sql" />
+    <Content Include="Create\Tables\System\GParams.sql" />
+    <Content Include="Create\Tables\System\LoginCertificates.sql" />
+    <Content Include="Create\Tables\System\Logs.sql" />
+    <Content Include="Create\Tables\Users\Roles.sql" />
+    <Content Include="Create\Tables\Users\UserRoles.sql" />
+    <Content Include="Create\Tables\Users\Users.sql" />
+    <Content Include="Create\Tools\DocumentationScript.sql" />
+    <Content Include="Create\Tools\spDesc.sql" />
+    <Content Include="Create\Tools\sp_generate_inserts.sql" />
+    <Content Include="Create\Tools\Tool_ScriptDiagram2008.sql" />
+    <Content Include="Insert\Companies\CompanyLegalTypes.sql" />
+    <Content Include="Insert\Companies\CompanySizeTypes.sql" />
+    <Content Include="Insert\Companies\CompanyTypes.sql" />
+    <Content Include="Insert\Companies\KidCodes.sql" />
+    <Content Include="Insert\Geography\ProtectedZones.sql" />
+    <Content Include="Insert\Geography\Countries.sql" />
+    <Content Include="Insert\Geography\Districts.sql" />
+    <Content Include="Insert\Geography\Municipalities.sql" />
+    <Content Include="Insert\Geography\Nuts1s.sql" />
+    <Content Include="Insert\Geography\Nuts2s.sql" />
+    <Content Include="Insert\Geography\Settlements.sql" />
+    <Content Include="Update\20180716_update_Countries_nameAlt.sql" />
+    <Content Include="Update\20180716_update_Districts_nameAlt.sql" />
+    <Content Include="Update\20180716_update_Municipalities_nameAlt.sql" />
+    <Content Include="Update\20180716_update_Nuts1s_nameAlt.sql" />
+    <Content Include="Update\20180716_update_Nuts2s_nameAlt.sql" />
+    <Content Include="Update\20180716_update_ProtectedZones_nameAlt.sql" />
+    <Content Include="Update\20180717_update_FullPathNameAlt.sql" />
+    <Content Include="Update\20220715_insert_OrganizationType.sql" />
+    <Content Include="Update\20180718_update_Companies_nameAlt.sql" />
+    <Content Include="Update\update-ProtectedZones.sql" />
+    <Content Include="Update\update-logs.sql" />
+    <Content Include="Update\update_geography_tables.sql" />
+    <Content Include="Update\20180716_update_Settlements_nameAlt.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CreateAll.bat" />
+    <None Include="CreateAll.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateAll.tt</DependentUpon>
+    </None>
+    <None Include="CreateAll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateAll.log</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

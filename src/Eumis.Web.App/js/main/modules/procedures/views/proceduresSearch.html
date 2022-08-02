@@ -1,0 +1,40 @@
+﻿<div>
+  <div class="well well-sm">
+    <div class="row">
+      <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="procedures_proceduresSearch_programme" class="col-sm-6"></sc-field>
+      <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{programmeId: filters.programmeId}" l10n-text="procedures_proceduresSearch_programmePriority" class="col-sm-5"></sc-field>
+      <div class="labeless col-sm-1">
+        <sc-button name="seachBtn" btn-click="search()" text="procedures_proceduresSearch_search"
+          class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+        </sc-button>
+      </div>
+    </div>
+  </div>
+  
+  <sc-link-button ng-href="{{proceduresExportUrl}}" target="_blank" sc-access-token icon="fa-file-excel-o fa-lg fa-fw" 
+    text="procedures_proceduresSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+  <sc-datatable items="procedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" default-sort="listingDate" default-sort-asc-desc="asc">
+    <sc-column sortable="false" class="buttons-cell" has-content="true">
+      <sc-button name="viewButton" btn-sref="{state: 'root.procedures.view.edit', params: { id: item.procedureId }}" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+        ng-disabled="!$canDo('ProcedureActions.View', item.procedureId)"></sc-button>
+    </sc-column>
+    <sc-column data="code" title="procedures_proceduresSearch_code">
+    </sc-column>
+    <sc-column data="name" title="procedures_proceduresSearch_name" width="30%">
+    </sc-column>
+    <sc-column title="procedures_proceduresSearch_programme" width="20%" has-content="true" data="programmeNames">
+      {{item.programmeNames | join:', '}}
+    </sc-column>
+    <sc-column data="activationDate" title="procedures_proceduresSearch_activationDate" type="date" width="9%">
+    </sc-column>
+    <sc-column data="endingDate" title="procedures_proceduresSearch_endingDate" type="date" width="12%">
+    </sc-column>
+    <sc-column data="status" title="procedures_proceduresSearch_status">
+    </sc-column>
+    <sc-column data="euAmount" title="procedures_proceduresSearch_euAmount" type="money">
+    </sc-column>
+    <sc-column data="bgAmount" title="procedures_proceduresSearch_bgAmount" type="money">
+    </sc-column>
+  </sc-datatable>
+</div>

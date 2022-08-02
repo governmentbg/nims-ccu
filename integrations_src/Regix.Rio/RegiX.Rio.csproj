@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B8ED76C-1541-4A1A-9331-3DEA486A1CBE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Regix.Rio</RootNamespace>
+    <AssemblyName>Regix.Rio</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\AVBULSTAT\Address.cs" />
+    <Compile Include="Classes\AVBULSTAT\Case.cs" />
+    <Compile Include="Classes\AVBULSTAT\Communication.cs" />
+    <Compile Include="Classes\AVBULSTAT\Document.cs" />
+    <Compile Include="Classes\AVBULSTAT\Entry.cs" />
+    <Compile Include="Classes\AVBULSTAT\Event.cs" />
+    <Compile Include="Classes\AVBULSTAT\GetStateOfPlayRequest.cs" />
+    <Compile Include="Classes\AVBULSTAT\IdentificationDoc.cs" />
+    <Compile Include="Classes\AVBULSTAT\LegalEntity.cs" />
+    <Compile Include="Classes\AVBULSTAT\NaturalPerson.cs" />
+    <Compile Include="Classes\AVBULSTAT\NomenclatureEntry.cs" />
+    <Compile Include="Classes\AVBULSTAT\StateOfPlay.cs" />
+    <Compile Include="Classes\AVBULSTAT\Subject.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropAccountingRecordForm.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropActivityDate.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropActivityKID2003.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropActivityKID2008.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropCollectiveBody.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropFundingSource.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropInstallments.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropLifeTime.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropOwnershipForm.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropProfession.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropRepresentationType.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropScopeOfActivity.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectPropState.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectRelAssignee.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectRelBelonging.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectRelCollectiveBodyMember.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectRelManager.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubjectRelPartner.cs" />
+    <Compile Include="Classes\AVBULSTAT\SubscriptionElement.cs" />
+    <Compile Include="Classes\AVBULSTAT\UIC.cs" />
+    <Compile Include="Classes\AVTR\TRCommon.cs" />
+    <Compile Include="Classes\AVTR\TR_ActualStateRequest.cs" />
+    <Compile Include="Classes\AVTR\TR_ActualStateResponse.cs" />
+    <Compile Include="Classes\AVTR\TR_ValidUICRequest.cs" />
+    <Compile Include="Classes\AVTR\TR_ValidUICResponse.cs" />
+    <Compile Include="Classes\BABHZhS\RegisteredAnimalsByCategoryRequest.cs" />
+    <Compile Include="Classes\BABHZhS\RegisteredAnimalsByCategoryResponse.cs" />
+    <Compile Include="Classes\BABHZhS\RegisteredAnimalsInOEZByCategoryRequest.cs" />
+    <Compile Include="Classes\BABHZhS\RegisteredAnimalsInOEZByCategoryResponse.cs" />
+    <Compile Include="Classes\DAEU\SearchByIdentifierRequest.cs" />
+    <Compile Include="Classes\DAEU\SearchByIdentifierResponse.cs" />
+    <Compile Include="Classes\GPP\PenalProvisionForPeriodRequest.cs" />
+    <Compile Include="Classes\GPP\PenalProvisionForPeriodResponse.cs" />
+    <Compile Include="Classes\GPP\RNPCommon.cs" />
+    <Compile Include="Classes\GRAO\NBDCommon.cs" />
+    <Compile Include="Classes\GRAO\PersonDataRequest.cs" />
+    <Compile Include="Classes\GRAO\PersonDataResponse.cs" />
+    <Compile Include="Classes\GRAO\ValidPersonRequest.cs" />
+    <Compile Include="Classes\GRAO\ValidPersonResponse.cs" />
+    <Compile Include="Classes\MP\NPODetailsRequest.cs" />
+    <Compile Include="Classes\MP\NPODetailsResponse.cs" />
+    <Compile Include="Classes\MVR\PersonalIdentityInfoRequest.cs" />
+    <Compile Include="Classes\MVR\PersonalIdentityInfoResponse.cs" />
+    <Compile Include="Classes\NRA\ObligatedPersonsCommon.cs" />
+    <Compile Include="Classes\NRA\ObligatedPersonsRequest.cs" />
+    <Compile Include="Classes\NRA\ObligatedPersonsResponse.cs" />
+    <Compile Include="Classes\REZMA\CheckObligationsRequest.cs" />
+    <Compile Include="Classes\REZMA\CheckObligationsResponse.cs" />
+    <Compile Include="Classes\REZMA\REZMACommon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClassGeneration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClassGeneration.log</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassGeneration.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassGeneration.tt</DependentUpon>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Address.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Case.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Communication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Document.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Entry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Event.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\GetStateOfPlayRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\IdentificationDoc.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\LegalEntity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\NaturalPerson.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\NomenclatureEntry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\StateOfPlay.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\Subject.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropAccountingRecordForm.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropActivityDate.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropActivityKID2003.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropActivityKID2008.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropCollectiveBody.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropFundingSource.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropInstallments.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropLifeTime.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropOwnershipForm.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropProfession.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropRepresentationType.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropScopeOfActivity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectPropState.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectRelAssignee.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectRelBelonging.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectRelCollectiveBodyMember.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectRelManager.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubjectRelPartner.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\SubscriptionElement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVBULSTAT\UIC.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVTR\TRCommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVTR\TR_ActualStateRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVTR\TR_ActualStateResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVTR\TR_ValidUICRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\AVTR\TR_ValidUICResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\BABHZhS\RegisteredAnimalsByCategoryRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\BABHZhS\RegisteredAnimalsByCategoryResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\BABHZhS\RegisteredAnimalsInOEZByCategoryRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\BABHZhS\RegisteredAnimalsInOEZByCategoryResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\DAEU\SearchByIdentifierRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\DAEU\SearchByIdentifierResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GPP\PenalProvisionForPeriodRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GPP\PenalProvisionForPeriodResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GPP\RNPCommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GRAO\NBDCommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GRAO\PersonDataRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GRAO\PersonDataResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GRAO\ValidPersonRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\GRAO\ValidPersonResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\MP\NPODetailsRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\MP\NPODetailsResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\MVR\PersonalIdentityInfoRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\MVR\PersonalIdentityInfoResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\NRA\ObligatedPersonsCommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\NRA\ObligatedPersonsRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\NRA\ObligatedPersonsResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\REZMA\CustomsObligationsRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\REZMA\CustomsObligationsResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\REZMA\REZMACommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

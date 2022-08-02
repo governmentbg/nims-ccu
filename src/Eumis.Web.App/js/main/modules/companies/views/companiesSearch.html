@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.name" l10n-text="companies_searchForm_name" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="filters.uinTypeId" l10n-text="companies_searchForm_uinTypeId" class="col-sm-3 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="filters.uin" l10n-text="companies_searchForm_uin" class="col-sm-3 col-md-2"></sc-field>
+        <div class="labeless col-md-4 col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="companies_searchForm_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" btn-sref="{ state: 'root.companies.new' }" text="companies_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('CompanyListActions.Create')"></sc-button>
+    <sc-link-button ng-href="{{companiesExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+      icon="fa-file-excel-o fa-lg fa-fw" text="companies_searchForm_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="companies" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.companies.edit', params: {id: item.companyId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('CompanyActions.View', item.companyId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="companies_searchForm_name" has-content="true">
+        <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="uin" title="companies_searchForm_uin">
+      </sc-column>
+      <sc-column data="uinType" title="companies_searchForm_uinType">
+      </sc-column>
+      <sc-column data="seat" title="companies_searchForm_seat">
+      </sc-column>
+      <sc-column data="corr" title="companies_searchForm_corr">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="model.programmePriorityId" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_programmePriority" class="col-sm-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.approval" alias="'contractReportAdvanceNVPaymentAmountApprovals'" mode="id" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_approval" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportAdvanceNVPaymentAmountStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <div ng-show="model.checkedDate">
+      <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_checkedByUser" class="col-sm-6 col-md-4"></sc-field>
+      <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.bgAmount" l10n-text="contractReportChecks_contractReportAdvanceNVPaymentAmountForm_bfpTotalAmount"  class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>

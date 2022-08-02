@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_cancel"
+        class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <sc-datatable items="contractReportPayments" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseBtn" btn-click="choose(item)" text="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+      </sc-column>
+      <sc-column data="versionNum" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_versionNum" type="number"></sc-column>
+      <sc-column data="versionSubNum" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_versionSubNum" type="number"></sc-column>
+      <sc-column data="statusName" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_statusName"></sc-column>
+      <sc-column data="paymentTypeName" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_paymentTypeName"></sc-column>
+      <sc-column data="createDate" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_createDate" type="date"></sc-column>
+      <sc-column data="regDate" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_regDate" type="date"></sc-column>
+      <sc-column data="dateFrom" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_dateFrom" type="date"></sc-column>
+      <sc-column data="dateTo" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_dateTo" type="date"></sc-column>
+      <sc-column data="requestedAmount" title="actuallyPaidAmounts_modals_chooseContractReportPaymentModal_requestedAmount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

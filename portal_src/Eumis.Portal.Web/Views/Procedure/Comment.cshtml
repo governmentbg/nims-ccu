@@ -1,0 +1,76 @@
+﻿@model Eumis.Portal.Web.Models.ProcedureComment.ProcedureCommentVM
+@using Eumis.Common.ReCaptcha
+@using Eumis.Portal.Web.Helpers
+@using Eumis.Portal.Web.Views.Shared.App_LocalResources
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.PublicDiscussion, MVC.Procedure.Name), Global.BreadcrumbsPublicDiscussionProcedures),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.InfoPublicDiscussion, MVC.Procedure.Name, new {id = Model.Id}), Model.ProcedureName)
+}
+                , Comment.CommentPageTitle)
+
+<div class="container page-title">
+    <h1>@Comment.CommentPageTitle</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+
+    @*@if (TempData["SuccessFeedbackSend"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>
+                    @Feedback.FeedbackSuccessNotification
+                </li>
+            </ul>
+        </div>
+    }*@
+
+    <div class="page-content">
+        @using (Html.BeginForm(MVC.Procedure.ActionNames.Comment,
+                MVC.Procedure.Name,
+                new { area = string.Empty },
+                FormMethod.Post,
+                new { @class = "form-with-sections", role = "form" }))
+        {
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label>@Comment.Name</label>
+                        <input class="form-control" disabled="disabled" id="Name" name="Name" type="text" value="@(CurrentUser.FirstName + " " + CurrentUser.LastName)">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label>@Comment.Mail</label>
+                        <input class="form-control" disabled="disabled" id="Email" name="Email" type="text" value="@(CurrentUser.Email)">
+                    </div>
+                </div>
+                <script>
+                    $(function () {
+                        changeCount($("#feedback-description")[0], "#feedback-count");
+                    })
+                </script>
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label><span class="required-span">*</span> @Comment.DescriptionLength</label>
+                        <span style="top: 10px; right: 15px; display: block; position: absolute;"><span id="feedback-count" style="color:red;"></span></span>
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = "4", id = "feedback-description", onkeyup = "changeCount(this, '#feedback-count')" })
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-4">
+                        @Html.ReCaptcha(Constants.ReCaptchaSiteKey)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="@(Comment.SubmitButton)" class="submit wait" style="margin: 20px 0 0 0; float: right" />
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</div>

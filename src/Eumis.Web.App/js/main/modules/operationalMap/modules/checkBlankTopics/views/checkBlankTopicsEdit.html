@@ -1,0 +1,29 @@
+<div class="tab-content">
+  <ng-form name="editTopicForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="checkBlankTopics_editForm_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="editBtn" btn-click="edit()" text="checkBlankTopics_editForm_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+            ng-disabled="!$canDo('CheckBlankTopicActions.Edit', topic.checkBlankTopicId)">
+          </sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="checkBlankTopics_editForm_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode"
+            ng-disabled="!$canDo('CheckBlankTopicActions.Delete', topic.checkBlankTopicId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="checkBlankTopics_editForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="checkBlankTopics_editForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-check-blank-topic-data name="topicForm" ng-model="topic"></eumis-check-blank-topic-data>
+      </div>
+
+    </div>
+  </ng-form>
+</div>

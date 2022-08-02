@@ -1,0 +1,35 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+    string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+    string procCode = (string)Model["procCode"];
+    string procName = (string)Model["procName"];
+    string programmeName = (string)Model["programmeName"];
+    string companyName = (string)Model["companyName"];
+    string projectName = (string)Model["projectName"];
+    string regNumber = (string)Model["regNumber"];
+    string email = (string)Model["email"];
+}
+
+<p style="margin-bottom: 15px;">
+    <strong style="color: #444444;">
+        Система за управление на националните инвестиции (СУНИ)
+    </strong>
+</p>
+<p style="margin-bottom: 15px;">
+    Имате получено съобщение от Отговорна организация към проектно предложение по схема за кандидатстване @procCode, @procName, администрирана от @programmeName, с кандидат @companyName и наименование: <strong>@projectName</strong>
+</p>
+<p style="margin-bottom: 15px;">
+    Регистрационен номер: <strong>@regNumber</strong>
+</p>
+<p style="margin-bottom: 15px;">
+    Съобщението може да намерите в раздел „Комуникация с Отговорна организация“ на менюто „Проектни предложения“ в системата на адрес <a href="@(portalUrl)">@portalUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>, където имате възможност и за отговор.
+</p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">
+    Поздрави, <br />
+    Екип СУНИ
+</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br />

@@ -1,0 +1,11 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="date" ng-model="model.date" ng-required="true" l10n-text="allowances_allowanceRateForm_date" class="col-sm-6" ng-readonly="model.allowanceRateId"
+      sc-validate-async="{ dateCorrect: isCorrectDate }"
+      validations="{ dateCorrect: 'allowances_allowanceRateForm_incorrectDate' }"
+    >
+    </sc-field>
+
+    <sc-field custom-type="eumis-percent" ng-model="model.rate" ng-required="true" l10n-text="allowances_allowanceRateForm_rate" class="col-sm-6"></sc-field>
+  </div>
+</ng-form>

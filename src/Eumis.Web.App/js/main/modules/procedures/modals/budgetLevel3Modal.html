@@ -1,0 +1,22 @@
+<ng-form name="level3Form" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-hide="editMode" l10n-text="procedures_modals_budgetLevel3Modal_newTitle"></strong>
+      <strong class="heading" ng-show="editMode" l10n-text="procedures_modals_budgetLevel3Modal_editTitle"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_modals_budgetLevel3Modal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_modals_budgetLevel3Modal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+          <sc-field type="text" ng-maxlength="600" validations="{maxlength: 'default'}" ng-required="true" ng-model="budgetLevel3.note" l10n-text="procedures_modals_budgetLevel3Modal_note" class="col-sm-12"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

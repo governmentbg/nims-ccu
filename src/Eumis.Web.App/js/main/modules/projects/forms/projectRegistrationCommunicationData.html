@@ -1,0 +1,26 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-disabled="true" l10n-text="projects_projectRegistrationCommunicationDataForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.source" alias="'projectManagingAuthorityCommunicationSources'" mode="id" ng-disabled="true" l10n-text="projects_projectRegistrationCommunicationDataForm_source" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.subject" alias="'projectManagingAuthorityCommunicationSubjects'" mode="id" ng-disabled="true" l10n-text="projects_projectRegistrationCommunicationDataForm_subject" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.status" alias="'projectCommunicationStatuses'" mode="id" ng-disabled="true" l10n-text="projects_projectRegistrationCommunicationDataForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="projects_projectRegistrationCommunicationDataForm_regNumber" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.projectRegNumber" l10n-text="projects_projectRegistrationCommunicationDataForm_projectRegNumber" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.companyName" l10n-text="projects_projectRegistrationCommunicationDataForm_companyName" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.questionDate" l10n-text="projects_projectRegistrationCommunicationDataForm_questionDate" ng-readonly="true" class="col-sm-3"></sc-field>
+    <sc-field type="date" ng-if="model.source === 'managingAuthority'" ng-model="model.questionEndingDate" l10n-text="projects_projectRegistrationCommunicationDataForm_questionEndingDate" class="col-sm-3"
+              sc-validate="{ validEndingDate: isValidEndingDate }"
+              sc-revalidate-on="['model.questionDate']"
+              validations="{ validEndingDate: 'projects_projectRegistrationCommunicationDataForm_invalidEndingDate' }">
+    </sc-field>
+    <sc-field type="date" ng-model="model.questionReadDate" l10n-text="projects_projectRegistrationCommunicationDataForm_questionReadDate" ng-readonly="true" class="col-sm-3"></sc-field>
+    <sc-field type="date" ng-model="model.answerDate" l10n-text="projects_projectRegistrationCommunicationDataForm_answerDate" ng-readonly="true" class="col-sm-3"></sc-field>
+  </div>
+  <div class="row" ng-show="model.status === 'canceled'">
+    <sc-field type="textarea" ng-model="model.statusNote" l10n-text="projects_projectRegistrationCommunicationDataForm_statusNote" ng-readonly="true" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

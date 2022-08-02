@@ -1,0 +1,15 @@
+﻿@using Eumis.Public.Common.Export
+
+@model ExportTemplate
+
+@{
+    Layout = null;
+}
+
+@Html.Partial(MVC.Shared.Views.ExportHtml, Model)
+
+<script type="text/javascript">
+    setTimeout(function () {
+        print();
+    }, 100);
+</script>

@@ -1,0 +1,117 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header form-header-first" l10n-text="contractReportChecks_contractReportIndicatorForm_indicator"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" params="{ procedureId: procedureId }" ng-disabled="true" ng-model="model.contractIndicator.indicator.programmeId" mode="id" ng-required="true" l10n-text="procedures_procedureShareForm_programme" ng-change="model.sourceMapNodeId = model.programmeId" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-disabled="true" alias="'indicatorTypes'" ng-model="model.type" mode="id" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_type" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-disabled="true" alias="'indicatorKinds'" ng-model="model.kind" mode="id" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_kind" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" rows="3" ng-disabled="true" ng-model="model.contractIndicator.indicator.code" ng-required="true" l10n-text="operationalMap_common_indicatorDataForm_code" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_name" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.contractIndicator.indicator.nameAlt" ng-required="false" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_nameAlt" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.measureName" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_measure" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.hasGenderDivision" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_hasGenderDivision" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.contractIndicator.indicator.hasQualitativeTarget" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_hasQualitativeTarget" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'indicatorAggregatedReports'" ng-model="model.aggregatedReport" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_aggregatedReport" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'indicatorAggregatedTargets'" ng-model="model.aggregatedTarget" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_aggregatedTarget" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'indicatorTrends'" ng-model="model.trend" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_trend" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'indicatorReportingTypes'" ng-model="model.contractIndicator.indicator.reportingType" mode="id" ng-required="true" ng-readonly="true" l10n-text="operationalMap_common_indicatorDataForm_reportingType" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="!!procedureId">
+    <sc-field type="nomenclature" alias="'mapNodes'" ng-model="model.contractIndicator.indicator.sourceMapNodeId" mode="id" ng-disabled="true" l10n-text="operationalMap_common_indicatorDataForm_sourceMapNode" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportChecks_contractReportIndicatorForm_contractIndicator"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.contractIndicator.baseTotalValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_baseTotalValue" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-show="model.hasGenderDivision" ng-model="model.contractIndicator.baseMenValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_baseMenValue" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-show="model.hasGenderDivision" ng-model="model.contractIndicator.baseWomenValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_baseWomenValue" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="money" ng-model="model.contractIndicator.targetTotalValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_targetTotalValue" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-show="model.hasGenderDivision" ng-model="model.contractIndicator.targetMenValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_targetMenValue" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-show="model.hasGenderDivision" ng-model="model.contractIndicator.targetWomenValue" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_targetWomenValue" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.contractIndicator.description" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_description" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportChecks_contractReportIndicatorForm_contractReportIndicator"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportIndicatorStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportIndicatorForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.approval" alias="'contractReportIndicatorApprovals'" mode="id" l10n-text="contractReportChecks_contractReportIndicatorForm_approval" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_checkedByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="contractReportChecks_contractReportIndicatorForm_notes" class="col-sm-12"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.periodAmountTotal" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_periodAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.periodAmountMen" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_periodAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.periodAmountWomen" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_periodAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.cumulativeAmountTotal" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_cumulativeAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.cumulativeAmountMen" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_cumulativeAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.cumulativeAmountWomen" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_cumulativeAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.residueAmountTotal" min="-9999999999999" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_residueAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.residueAmountMen"   min="-9999999999999" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_residueAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.residueAmountWomen" min="-9999999999999" ng-show="model.hasGenderDivision" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_residueAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.comment" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_comment" class="col-sm-12"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.approvedPeriodAmountTotal" ng-change="totalAmountChanged()" ng-required="!model.hasGenderDivision" ng-readonly="form.$readonly || model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedPeriodAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedPeriodAmountMen" ng-change="amountMenChanged()" ng-required="model.hasGenderDivision" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedPeriodAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedPeriodAmountWomen" ng-change="amountWomenChanged()" ng-required="model.hasGenderDivision" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedPeriodAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.approvedCumulativeAmountTotal" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedCumulativeAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedCumulativeAmountMen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedCumulativeAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedCumulativeAmountWomen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedCumulativeAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.approvedResidueAmountTotal" min="-9999999999999" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedResidueAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedResidueAmountMen"   min="-9999999999999" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedResidueAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.approvedResidueAmountWomen" min="-9999999999999" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_approvedResidueAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+
+  <h5 ng-if="model.hasCorrection" class="form-header" l10n-text="contractReportChecks_contractReportIndicatorForm_correction"></h5>
+  <div ng-if="model.hasCorrection" class="row">
+    <sc-field type="money" ng-model="model.correctedApprovedPeriodAmountTotal" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedPeriodAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedPeriodAmountMen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedPeriodAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedPeriodAmountWomen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedPeriodAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div ng-if="model.hasCorrection" class="row">
+    <sc-field type="money" ng-model="model.correctedApprovedCumulativeAmountTotal" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedCumulativeAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedCumulativeAmountMen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedCumulativeAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedCumulativeAmountWomen" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedCumulativeAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+  <div ng-if="model.hasCorrection" class="row">
+    <sc-field type="money" ng-model="model.correctedApprovedResidueAmountTotal" min="-9999999999999" ng-readonly="true" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedResidueAmount" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedResidueAmountMen" min="-9999999999999" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedResidueAmountMen" class="col-sm-4"></sc-field>
+    <sc-field type="money" ng-model="model.correctedApprovedResidueAmountWomen" min="-9999999999999" ng-readonly="true" ng-show="model.hasGenderDivision" l10n-text="contractReportChecks_contractReportIndicatorForm_correctedApprovedResidueAmountWomen" class="col-sm-4"></sc-field>
+  </div>
+</ng-form>

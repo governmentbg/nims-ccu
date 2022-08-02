@@ -1,0 +1,37 @@
+<div class="tab-content">
+  <ng-form name="editNewsForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="news_editForm_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="editBtn" btn-click="edit()" text="news_editForm_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="news.status === 'draft' && !editMode"
+            ng-disabled="!$canDo('NewsActions.Edit', news.newsId)">
+          </sc-button>
+          <sc-button name="publishBtn" btn-click="publish()" text="news_editForm_publish" class="btn btn-primary btn-xs" icon="glyphicon-upload" ng-show="news.status === 'draft' && !editMode"
+            ng-disabled="!$canDo('NewsActions.Edit', news.newsId)">
+          </sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="news_editForm_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="news.status === 'draft' && !editMode"
+            ng-disabled="!$canDo('NewsActions.Edit', news.newsId)">
+          </sc-button>
+          <sc-button name="draftBtn" btn-click="draft()" text="news_editForm_draft" class="btn btn-success btn-xs" ng-show="news.status !== 'draft'"
+            ng-disabled="!$canDo('NewsActions.Edit', news.newsId)">
+          </sc-button>
+          <sc-button name="archiveBtn" btn-click="archive()" text="news_editForm_archive" class="btn btn-danger btn-xs" ng-show="news.status === 'published'"
+            ng-disabled="!$canDo('NewsActions.Edit', news.newsId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="news_editForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="news_editForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-news-data name="newsForm" ng-model="news"></eumis-news-data>
+      </div>
+    </div>
+  </ng-form>
+</div>

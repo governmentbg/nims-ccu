@@ -1,0 +1,53 @@
+﻿@model R_10031.BFPContractBasicData
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBFPContractBasicData">
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.NameBudetLine @SymbolsCount.Symbols400</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsNameValid}" auto-grow ng-model="model.Name" name="@(Html.GetNameFor(m => m.Name))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.Duration (1-@Model.MaxDuration)</label>
+        <input valid-number min-value="1" max-value="@Model.MaxDuration" ng-class="{'input-validation-error': !model.IsDurationValid}" type="text" ng-model="model.Duration" name="@(Html.GetNameFor(m => m.Duration))" class="form-control sum-field" />
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>
+            @BFPContractBasicData.NameENBudetLine @SymbolsCount.Symbols400
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@BFPContractBasicData.NameENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsNameEnValid}" auto-grow ng-model="model.NameEN" name="@(Html.GetNameFor(m => m.NameEN))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.StartDate</label>
+        <input ng-class="{'input-validation-error': !model.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.StartDate" name="@(Html.GetNameFor(m => m.StartDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.RegistrationNumber</label>
+        <span class="filled-value">{{model.RegistrationNumber}}</span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.Version</label>
+        <span class="filled-value">{{model.Version}}</span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.SubVersion</label>
+        <span class="filled-value">{{model.SubVersion}}</span>
+    </div>
+
+    <nuts-address-async ng-model="model.NutsAddress"
+                        nuts="nuts"
+                        global-key="globalKey"
+                        path="@Html.GetNameFor(m => m.NutsAddress)"
+                        resources="resourcesObjectNuts"
+                        is-partial-read-only="@Model.IsPartialReadOnly">
+    </nuts-address-async>
+</div>

@@ -1,0 +1,9 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionUsers'" mode="id" ng-model="model.userId" ng-required="true" ng-disabled="!isNew" params="{ evalSessionId: model.evalSessionId }" l10n-text="evalSessions_evalSessionUserForm_userId" class="col-sm-7 col-md-6"></sc-field>
+    <sc-field type="nomenclature" alias="'evalSessionUserTypes'" mode="id" ng-model="model.type" ng-required="true" ng-disabled="!isNew" l10n-text="evalSessions_evalSessionUserForm_type" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.position" l10n-text="evalSessions_evalSessionUserForm_position" ng-maxlength="300" validations="{maxlength: 'default'}" class="col-sm-11 col-md-9"></sc-field>
+  </div>
+</ng-form>

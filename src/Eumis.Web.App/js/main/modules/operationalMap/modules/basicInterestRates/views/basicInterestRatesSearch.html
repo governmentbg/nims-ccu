@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newBasicInterestRateBtn" btn-sref="{ state: 'root.map.basicInterestRates.new' }" text="bInterestRates_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('BasicInterestRateListActions.Create')"></sc-button>
+
+    <sc-datatable items="basicInterestRates" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.basicInterestRates.edit', params: {id: item.basicInterestRateId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('BasicInterestRateActions.View', item.basicInterestRateId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="bInterestRates_searchForm_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

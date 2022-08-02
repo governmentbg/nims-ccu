@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10047"
+	xmlns="http://ereg.egov.bg/segment/R-10047"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+            
+	xmlns:c="http://ereg.egov.bg/segment/R-10046"
+            
+	xmlns:sm="http://ereg.egov.bg/segment/R-10069"
+            
+  xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10046" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10069" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+
+  <xsd:complexType name="ContractContractor">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Договор с изпълнител</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="SignDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="Number" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="TotalAmountExcludingVAT" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="VATAmountIfEligible" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TotalFundedValue" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="NumberAnnexes" type="xsd:integer" minOccurs="0" />
+      <xsd:element name="CurrentAnnexTotalAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="Comment" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="EndDate" type="xsd:date" minOccurs="0" />
+
+      <xsd:element name="Contractor" type="prn:PrivateNomenclature" minOccurs="0" />
+	  
+	  <xsd:element name="WithoutProcurementPlan" type="xsd:boolean" minOccurs="0" />
+
+      <xsd:element name="HasSubcontractorMember" type="xsd:boolean" minOccurs="0" />
+
+      <xsd:element name="SubcontractorMember" type="sm:SubcontractorMember" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="ActivitiesBudgetDetailsRef" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ContractActivity" type="prn:PrivateNomenclature" minOccurs="0" />
+            <xsd:element name="BudgetDetail" type="prn:PrivateNomenclature" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+
+    <xsd:attribute name="isActivated" type="xsd:boolean"/>
+    <xsd:attribute name="isActive" type="xsd:boolean"/>
+    <xsd:attribute name="gid" type="xsd:string"/>
+  </xsd:complexType>
+</xsd:schema>

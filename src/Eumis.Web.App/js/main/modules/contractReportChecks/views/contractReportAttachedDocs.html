@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contractReportChecks_attachedDocuments_financialCorrections"></h5>
+      <sc-button name="chooseCorrectionBtn" btn-click="chooseCorrection()" text="contractReportChecks_attachedDocuments_choose" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+        ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)" ng-if="contractReportStatus === 'unchecked'"></sc-button>
+    </div>
+
+    <sc-datatable items="financialCorrections" filterable="false" pageable="false" sortable="true" dynamic-columns="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="removeBtn" btn-click="delCorrection(item.contractReportFinancialCorrectionId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', item.contractReportId) || contractReportStatus !== 'unchecked'"></sc-button>
+        <sc-button name="viewBtn" btn-sref="{ state: 'root.contractReportChecks.view.attachedDocs.viewFinCor', params: { ind: item.contractReportFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"
+          ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="contractRegNum" title="contractReportChecks_attachedDocuments_contractRegNum"></sc-column>
+      <sc-column data="contractName" title="contractReportChecks_attachedDocuments_contractName" has-content="true">
+        <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="procedureName" title="contractReportChecks_attachedDocuments_procedureName" has-content="true">
+        <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="reportOrderNum" title="contractReportChecks_attachedDocuments_reportOrderNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportChecks_attachedDocuments_status"></sc-column>
+      <sc-column data="orderNum" title="contractReportChecks_attachedDocuments_orderNum" type="number"></sc-column>
+      <sc-column data="createDate" title="contractReportChecks_attachedDocuments_createDate" type="date"></sc-column>
+      <sc-column data="notes" title="contractReportChecks_attachedDocuments_notes"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

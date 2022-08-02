@@ -1,0 +1,36 @@
+<ng-form name="editContractDebtForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="contractDebts_editContractDebt_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancelDebt()" text="contractDebts_editContractDebt_deactivate" class="btn btn-danger btn-xs" ng-if="contractDebt.status === 'entered'"
+          ng-show="!editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebt.contractDebtId)">
+        </sc-button>
+        <sc-button name="delBtn" btn-click="delDebt()" text="contractDebts_editContractDebt_del" class="btn btn-danger btn-xs" ng-if="contractDebt.status === 'new'"
+          ng-show="!editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebt.contractDebtId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="contractDebts_editContractDebt_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-if="contractDebt.status !== 'removed'"
+          ng-show="!editMode" ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebt.contractDebtId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contractDebts_editContractDebt_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractDebts_editContractDebt_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <h5 class="table-header table-header-first" l10n-text="contractDebts_editContractDebt_contractDebt"></h5>
+      <eumis-contract-debt name="contractDebtForm" ng-model="contractDebt"></eumis-contract-debt>
+
+      <h5 class="table-header" l10n-text="contractDebts_editContractDebt_contractData"></h5>
+      <eumis-contract-data name="contractDataForm" ng-model="contractDebt.contract" sc-form-readonly="true"></eumis-contract-data>
+
+      <h5 class="table-header" l10n-text="contractDebts_editContractDebt_beneficiary"></h5>
+      <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="contractDebt.contract" sc-form-readonly="true"></eumis-contract-beneficiary>
+    </div>
+
+  </div>
+</ng-form>

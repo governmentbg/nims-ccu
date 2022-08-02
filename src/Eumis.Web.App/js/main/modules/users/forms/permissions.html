@@ -1,0 +1,67 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <div class="form-group col-sm-12">
+
+      <h5 class="table-header table-header-first pull-left" l10n-text="users_permissions_noPermissions" ng-if="!showProgrammePermissionTable && !showCommonPermissionTable"></h5>
+
+      <h5 class="table-header table-header-first pull-left" l10n-text="users_permissions_permissionsByModulesProgrammes" ng-if="showProgrammePermissionTable"></h5>
+      <table class="table table-bordered" style="clear: both; margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0" ng-if="showProgrammePermissionTable">
+        <thead>
+          <th style="width: 17.2%;"></th>
+          <th ng-repeat="(programmeId, permissionTypes) in model.programmePermissions.permissions">
+            <input type="checkbox" ng-model="programmesAllChecks[programmeId]" ng-change="programmesAllCheckChange(programmeId)" ng-disabled="form.$readonly">{{ model.programmePermissions.programmes[programmeId] }}
+          </th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="type in model.programmePermissions.permissionTypes">
+            <td style="font-weight: bold; background-color: rgb(245, 245, 245); text-align: left; vertical-align: middle;">
+              <table style="width:100%;">
+                <tr>
+                  <td>
+                    {{type.displayName}}
+                  </td>
+                  <td ng-show="showPermissionTypesAllChecks" align="right" style="vertical-align: top;">
+                    <table>
+                      <tr></tr>
+                      <tr ng-repeat="(permission, value) in permissionTypesAllChecks[type.permissionType]">
+                        <td><input type="checkbox" ng-model="permissionTypesAllChecks[type.permissionType][permission]" ng-change="permissionTypesAllCheckChange(type.permissionType, permission)" ng-disabled="form.$readonly"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td ng-repeat="(programmeId, permissionTypes) in model.programmePermissions.permissions">
+              <table>
+                <tr ng-repeat="(rightName, checkValue) in permissionTypesAllChecks[type.permissionType]">
+                  <td ng-show="model.programmePermissions.permissions[programmeId][type.permissionType] !== undefined && model.programmePermissions.permissions[programmeId][type.permissionType][rightName] !== undefined"><input type="checkbox" ng-model="model.programmePermissions.permissions[programmeId][type.permissionType][rightName]" ng-change="programmeCheckChange()" ng-disabled="form.$readonly"></td>
+                  <td ng-show="model.programmePermissions.permissions[programmeId][type.permissionType] !== undefined && model.programmePermissions.permissions[programmeId][type.permissionType][rightName] !== undefined">{{getProgrammePermissionName(type.permissionType, rightName)}}</td>
+                  <td ng-show="model.programmePermissions.permissions[programmeId][type.permissionType] === undefined || model.programmePermissions.permissions[programmeId][type.permissionType][rightName] === undefined">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h5 class="table-header pull-left" l10n-text="users_permissions_permissionsByModules" ng-if="showCommonPermissionTable"></h5>
+      <table class="table table-bordered " style="clear: both; margin-bottom: 0px; width: 36.8%; margin-top: 10px;" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr ng-repeat="type in model.commonPermissions.permissionTypes">
+            <td style="font-weight: bold; background-color: rgb(245, 245, 245); text-align: left; vertical-align: middle; width: 46.6%;">
+              {{type.displayName}}
+            </td>
+            <td>
+              <table>
+                <tr ng-repeat="(permission, right) in model.commonPermissions.permissions[type.permissionType]">
+                  <td><input  type="checkbox" ng-model="model.commonPermissions.permissions[type.permissionType][permission]" ng-disabled="form.$readonly"></td>
+                  <td>{{getCommonPermissionName(type.permissionType, permission)}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-form>

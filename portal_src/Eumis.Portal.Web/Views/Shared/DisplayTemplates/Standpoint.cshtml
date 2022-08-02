@@ -1,0 +1,26 @@
+﻿@model R_10027.Standpoint
+
+@if (Model != null)
+{
+    <section class="clearfix" style="display:block;">
+        <div class="form-group col-md-12">
+            <label>@Standpoint.Subject</label>
+            @Html.DisplayFor(m => m.Subject, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+        <div class="form-group col-md-12">
+            <label>@Standpoint.Content</label>
+            @Html.DisplayFor(m => m.Content, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+    </section>
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@Standpoint.AttachedDocumentCollection</h2>
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    @Html.DisplayFor(m => m.Signature)
+}

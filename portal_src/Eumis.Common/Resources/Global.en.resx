@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutSystem" xml:space="preserve">
+    <value>About the system</value>
+  </data>
+  <data name="AccessibilityPolicy" xml:space="preserve">
+    <value>Accessibility Policy on the site</value>
+  </data>
+  <data name="AddButton" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="BackButton" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BeneficiariesElectronicServices" xml:space="preserve">
+    <value>Electronic Services for Beneficiaries</value>
+  </data>
+  <data name="BreadcrumbsActivate" xml:space="preserve">
+    <value>Activate profile</value>
+  </data>
+  <data name="BreadcrumbsProcedureGrants" xml:space="preserve">
+    <value>Grant procedures</value>
+  </data>
+  <data name="BreadcrumbsApplicationForm" xml:space="preserve">
+    <value>Edit Application Form</value>
+  </data>
+  <data name="BreadcrumbsDocumentPreview" xml:space="preserve">
+    <value>ELECTRONIC FORM PREVIEW FROM A FILE</value>
+  </data>
+  <data name="BreadcrumbsDrafts" xml:space="preserve">
+    <value>Forms</value>
+  </data>
+  <data name="BreadcrumbsForgottenPassword" xml:space="preserve">
+    <value>Forgotten password</value>
+  </data>
+  <data name="BreadcrumbsLoadProcedures" xml:space="preserve">
+    <value>Load project application</value>
+  </data>
+  <data name="BreadcrumbsLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="BreadcrumbsMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="BreadcrumbsProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="BreadcrumbsRegistration" xml:space="preserve">
+    <value>Create new user</value>
+  </data>
+  <data name="ButtonChooseFile" xml:space="preserve">
+    <value>Choose file</value>
+  </data>
+  <data name="ButtonCollapseAll" xml:space="preserve">
+    <value>Collapse all</value>
+  </data>
+  <data name="ButtonCompleteTextUpper" xml:space="preserve">
+    <value>COMPLETE</value>
+  </data>
+  <data name="ButtonContinueText" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="ButtonContinueTextUpper" xml:space="preserve">
+    <value>CONTINUE</value>
+  </data>
+  <data name="ButtonDownloadText" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ButtonExpandAll" xml:space="preserve">
+    <value>Expand all</value>
+  </data>
+  <data name="ButtonPreviewText" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="ButtonRefusalText" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="ButtonSaveText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ClearSelectText" xml:space="preserve">
+    <value>----- Clear -----</value>
+  </data>
+  <data name="Contracts" xml:space="preserve">
+    <value>Contracts</value>
+  </data>
+  <data name="CurrentPage" xml:space="preserve">
+    <value>You are here:</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ErrorTryAgain" xml:space="preserve">
+    <value>An error occurred. Please, try again later.</value>
+  </data>
+  <data name="Eumis" xml:space="preserve">
+    <value>NIMS</value>
+  </data>
+  <data name="EumisYears" xml:space="preserve">
+    <value>EUMIS 2007 - 2013</value>
+  </data>
+  <data name="EuropeanFund" xml:space="preserve">
+    <value>European Commission portal</value>
+  </data>
+  <data name="ExtensionNotAllowed" xml:space="preserve">
+    <value>This file type is not allowed!</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FinancialReports" xml:space="preserve">
+    <value>Financial reports</value>
+  </data>
+  <data name="Glossary" xml:space="preserve">
+    <value>Glossary of terms and abbreviations in the system</value>
+  </data>
+  <data name="HeaderText1" xml:space="preserve">
+    <value>INFORMATION SYSTEM</value>
+  </data>
+  <data name="HeaderText2" xml:space="preserve">
+    <value>MANAGEMENT SYSTEM</value>
+  </data>
+  <data name="HeaderText3" xml:space="preserve">
+    <value>OF NATIONAL INVESTMENTS</value>
+  </data>
+  <data name="HeaderText4" xml:space="preserve">
+    <value>2014 - 2020</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HomeButton" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="LoadProposal" xml:space="preserve">
+    <value>Load electronic form</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginUnauthorized" xml:space="preserve">
+    <value>Wrong username or password.</value>
+  </data>
+  <data name="LogoMotto1" xml:space="preserve">
+    <value>ONE DIRECTION</value>
+  </data>
+  <data name="LogoMotto2" xml:space="preserve">
+    <value>MANY OPPORTUNITIES &lt;br&gt; 2014 - 2020</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Guide to working with the system</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Motto" xml:space="preserve">
+    <value>One Direction - Many opportunities</value>
+  </data>
+  <data name="NewProposal" xml:space="preserve">
+    <value>New electronic form</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NormativeDocuments" xml:space="preserve">
+    <value>Normative documents for the period 2014 - 2020</value>
+  </data>
+  <data name="PleaseSelectText" xml:space="preserve">
+    <value>--Please select--</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait</value>
+  </data>
+  <data name="ProgrammeNameTemplate" xml:space="preserve">
+    <value>to Operational Program "{0}"</value>
+  </data>
+  <data name="Proposal" xml:space="preserve">
+    <value>Project proposal</value>
+  </data>
+  <data name="SaveAsFile" xml:space="preserve">
+    <value>Download form as file</value>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>Save as a draft</value>
+  </data>
+  <data name="StructuralFunds" xml:space="preserve">
+    <value>EU structural Funds in Bulgaria</value>
+  </data>
+  <data name="SubfooterMessage" xml:space="preserve">
+    <value>The project is funded by The technical assistance fund, financed by the financial mechanism of the EEA and the Norwegian financial mechanism 2014-2021</value>
+  </data>
+  <data name="SuccessSave" xml:space="preserve">
+    <value>Data is successfully saved.</value>
+  </data>
+  <data name="TechnicalReports" xml:space="preserve">
+    <value>Technical reports</value>
+  </data>
+  <data name="ValidationCaptcha" xml:space="preserve">
+    <value>You did not pass the security check. Please try again.</value>
+  </data>
+  <data name="ValidationEmailExists" xml:space="preserve">
+    <value>There is already a registered user in the system with the specified email address.</value>
+  </data>
+  <data name="WrongOldPassword" xml:space="preserve">
+    <value>Old password is wrong.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SuccessPasswordUpdate" xml:space="preserve">
+    <value>The password was changed successfully.</value>
+  </data>
+  <data name="ValidationEmailDoesNotExist" xml:space="preserve">
+    <value>In the system there is not an account registered with that email address.</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Anti-spam</value>
+  </data>
+  <data name="NotMatchedProject" xml:space="preserve">
+    <value>Attached project proposal does not meet the chosen procedure.</value>
+  </data>
+  <data name="NotSameFormat" xml:space="preserve">
+    <value>The system can not work with other file formats.
+File you can load must be in the format ".isun", for more information see section "Help".</value>
+  </data>
+  <data name="PleaseAttachProject" xml:space="preserve">
+    <value>Please, attach a project proposal.</value>
+  </data>
+  <data name="ValidationSummaryPopoverTitle" xml:space="preserve">
+    <value>Filling the project proposal appeared errors. To read them, hold your mouse over the fields marked in red.</value>
+  </data>
+  <data name="ValidationSummaryTitle" xml:space="preserve">
+    <value>There are errors in completing the information on the form.</value>
+  </data>
+  <data name="HideErrorTitle" xml:space="preserve">
+    <value>Hide errors -</value>
+  </data>
+  <data name="ShowErrorTitle" xml:space="preserve">
+    <value>Show errors +</value>
+  </data>
+  <data name="LinkLoadDraftFile" xml:space="preserve">
+    <value>Load draft from file</value>
+  </data>
+  <data name="ProgrammePeriod" xml:space="preserve">
+    <value>NIMS</value>
+  </data>
+  <data name="ConfirmationText" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="HoursShort" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="BreadcrumbsEvalTable" xml:space="preserve">
+    <value>Evaluation table</value>
+  </data>
+  <data name="BreadcrumbsEvalSheet" xml:space="preserve">
+    <value>Evaluation sheet</value>
+  </data>
+  <data name="Missing" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="NotPass" xml:space="preserve">
+    <value>Does not pass</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Passes</value>
+  </data>
+  <data name="Unlocked" xml:space="preserve">
+    <value>Unlocked</value>
+  </data>
+  <data name="BreadcrumbsStandpoint" xml:space="preserve">
+    <value>Standpoint</value>
+  </data>
+  <data name="Deactivated" xml:space="preserve">
+    <value>The selected value is disabled in procedure</value>
+  </data>
+  <data name="ValidationSummaryLinkTitle" xml:space="preserve">
+    <value>Removal of errors</value>
+  </data>
+  <data name="ValidateButton" xml:space="preserve">
+    <value>Check form for errors</value>
+  </data>
+  <data name="SaveProjectDraft" xml:space="preserve">
+    <value>Save form in the system</value>
+  </data>
+  <data name="SaveProjectDraftSuccess" xml:space="preserve">
+    <value>The form is recorded in the system</value>
+  </data>
+  <data name="NoMatchProcedure" xml:space="preserve">
+    <value>The project proposal can not be loaded. You can charge the proposals only in open procedures.</value>
+  </data>
+  <data name="HideWarningTitle" xml:space="preserve">
+    <value>Hide warnings -</value>
+  </data>
+  <data name="ShowWarningTitle" xml:space="preserve">
+    <value>Show warnings -</value>
+  </data>
+  <data name="ValidationSummaryWarningLinkTitle" xml:space="preserve">
+    <value>Remоval of warnigs</value>
+  </data>
+  <data name="ValidationSummaryWarningsTitle" xml:space="preserve">
+    <value>There are warnings in making the data on the form.</value>
+  </data>
+  <data name="BreadcrumbsDocumentPreviewShort" xml:space="preserve">
+    <value>File preview</value>
+  </data>
+  <data name="NotValidProcedure" xml:space="preserve">
+    <value>The system can not load "{0}", the file is incorrect or damaged.
+Please try again with the correct file, for more information see section "Help".</value>
+  </data>
+  <data name="OperationalProgrammes" xml:space="preserve">
+    <value>Operational programmes</value>
+  </data>
+  <data name="BreadcrumbsHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="ApplicantsDocuments" xml:space="preserve">
+    <value>Documents for information and application</value>
+  </data>
+  <data name="BreadcrumbsElectronicForm" xml:space="preserve">
+    <value>Electronic application form preview</value>
+  </data>
+  <data name="MyProposals" xml:space="preserve">
+    <value>My electronic forms</value>
+  </data>
+  <data name="Deadline" xml:space="preserve">
+    <value>Deadline for application</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Symbols" xml:space="preserve">
+    <value>symbols</value>
+  </data>
+  <data name="SymbolsCount" xml:space="preserve">
+    <value>Entered symbols count</value>
+  </data>
+  <data name="Until" xml:space="preserve">
+    <value>until</value>
+  </data>
+  <data name="ButtonRegister" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="ButtonPauseTextUpper" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ReactivatingMessage" xml:space="preserve">
+    <value>Your request to create a new account is no longer active.</value>
+  </data>
+  <data name="ReRecoveringMessage" xml:space="preserve">
+    <value>Your request to change the Password is no longer active.</value>
+  </data>
+  <data name="ProcedureEditNotActive" xml:space="preserve">
+    <value>Currently can not edit proposals for this procedure.</value>
+  </data>
+  <data name="ProcedureNewNotActive" xml:space="preserve">
+    <value>Currently it can create proposals for this procedure.</value>
+  </data>
+  <data name="WorkInProgress" xml:space="preserve">
+    <value>This functionality is under construction</value>
+  </data>
+  <data name="BreadcrumbsRegistered" xml:space="preserve">
+    <value>Project proposals</value>
+  </data>
+  <data name="BreadcrumbsSubmit" xml:space="preserve">
+    <value>PROJECT SUBMISSION</value>
+  </data>
+  <data name="LoadFromFile" xml:space="preserve">
+    <value>Load from file</value>
+  </data>
+  <data name="EcoNotification" xml:space="preserve">
+    <value>Please do not print this document on paper, unless really necessary.</value>
+  </data>
+  <data name="InnerDevEnvironmentName" xml:space="preserve">
+    <value>Inner dev environment</value>
+  </data>
+  <data name="InnerTestEnvironmentName" xml:space="preserve">
+    <value>Inner test environment</value>
+  </data>
+  <data name="LearnEnvironmentName" xml:space="preserve">
+    <value>Training environment</value>
+  </data>
+  <data name="TestEnvironmentName" xml:space="preserve">
+    <value>Test environment</value>
+  </data>
+  <data name="OpenProcedure" xml:space="preserve">
+    <value>Open calls</value>
+  </data>
+  <data name="SuccessProfileUpdate" xml:space="preserve">
+    <value>Data is recorded successfully.</value>
+  </data>
+  <data name="ManualFileName" xml:space="preserve">
+    <value>Operation Manual v.1.0</value>
+  </data>
+  <data name="YearsShort" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ValidationSummarySuccessTitle" xml:space="preserve">
+    <value>No errors in filling the data in the form.</value>
+  </data>
+  <data name="ValidationSummarySuccessWithContinueTitle" xml:space="preserve">
+    <value>No errors in making the data and the form can be completed.</value>
+  </data>
+  <data name="SubfooterMessage2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageCountAndCurrentLocationFormat" xml:space="preserve">
+    <value>Page {0} from {1}</value>
+  </data>
+  <data name="LastSave" xml:space="preserve">
+    <value>Last save</value>
+  </data>
+  <data name="BFPContract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="ActivatedDisabledDelete" xml:space="preserve">
+    <value>Item not understated be deleted. You can cancel it here.</value>
+  </data>
+  <data name="ElementCanceled" xml:space="preserve">
+    <value>Element is canceled</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Correspondence</value>
+  </data>
+  <data name="FinanceReport" xml:space="preserve">
+    <value>Finance report</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>Payment request</value>
+  </data>
+  <data name="Procurements" xml:space="preserve">
+    <value>Procurements</value>
+  </data>
+  <data name="TechnicalReport" xml:space="preserve">
+    <value>Technical report</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="SpendingPlan" xml:space="preserve">
+    <value>Plan spending</value>
+  </data>
+  <data name="ServicesEnvironmentName" xml:space="preserve">
+    <value>Public test environment</value>
+  </data>
+  <data name="Offer" xml:space="preserve">
+    <value>Offer a procedure for procurement</value>
+  </data>
+  <data name="BreadcrumbsOffers" xml:space="preserve">
+    <value>E-Procurement</value>
+  </data>
+  <data name="CommunicationAudit" xml:space="preserve">
+    <value>Communication audit body</value>
+  </data>
+  <data name="CommunicationCert" xml:space="preserve">
+    <value>Communication Certification Authority</value>
+  </data>
+  <data name="CommunicationAuditDelete" xml:space="preserve">
+    <value>Are you sure you want to delete the communication?</value>
+  </data>
+  <data name="CommunicationAuditNew" xml:space="preserve">
+    <value>New communication audit body</value>
+  </data>
+  <data name="CommunicationCertDelete" xml:space="preserve">
+    <value>Are you sure you want to delete the communication?</value>
+  </data>
+  <data name="CommunicationCertNew" xml:space="preserve">
+    <value>New communication certifying body</value>
+  </data>
+  <data name="CommunicationDelete" xml:space="preserve">
+    <value>Are you sure you want to delete the correspondence?</value>
+  </data>
+  <data name="CommunicationNew" xml:space="preserve">
+    <value>New correspondence</value>
+  </data>
+  <data name="CommunicationAuditNoResult" xml:space="preserve">
+    <value>In the system there are no conversations in this contract.</value>
+  </data>
+  <data name="CommunicationCertNoResult" xml:space="preserve">
+    <value>In the system there are no conversations in this contract.</value>
+  </data>
+  <data name="CommunicationNoResult" xml:space="preserve">
+    <value>In the system there are no conversations in this contract.</value>
+  </data>
+  <data name="NotRequiredSection" xml:space="preserve">
+    <value>not compulsory section</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="ErrorFileIsTooLarge" xml:space="preserve">
+    <value>An error occurred. Maximum upload file size is {0} MB.</value>
+  </data>
+  <data name="FooterPublicLink" xml:space="preserve">
+    <value>Information about the implementation and progress of operational programs with UMIS 2020</value>
+  </data>
+  <data name="FooterReportLink" xml:space="preserve">
+    <value>Electronic reporting via NIMS</value>
+  </data>
+  <data name="ButtonSearchText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="EumisReports" xml:space="preserve">
+    <value>Electronic project reporting</value>
+  </data>
+  <data name="CurrentNews" xml:space="preserve">
+    <value>Current news</value>
+  </data>
+  <data name="PublicEumis" xml:space="preserve">
+    <value>INFORMATION SYSTEM FOR MANAGEMENT AND MONITORING 2020</value>
+  </data>
+  <data name="PublicModule" xml:space="preserve">
+    <value>Program implementation information</value>
+  </data>
+  <data name="EumisEApplication" xml:space="preserve">
+    <value>E-application</value>
+  </data>
+  <data name="NewsPreview" xml:space="preserve">
+    <value>View news</value>
+  </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>All news</value>
+  </data>
+  <data name="ProcedureNotActive" xml:space="preserve">
+    <value>This procedure is closed</value>
+  </data>
+  <data name="DownloadFiles" xml:space="preserve">
+    <value>Files for download</value>
+  </data>
+  <data name="TitleActiveProcedure" xml:space="preserve">
+    <value>Open calls</value>
+  </data>
+  <data name="TitleArchivedPublicDiscussionProcedure" xml:space="preserve">
+    <value>Archive public discussion</value>
+  </data>
+  <data name="TitleEndedProcedure" xml:space="preserve">
+    <value>Completed and terminated</value>
+  </data>
+  <data name="TitleProcedureGrants" xml:space="preserve">
+    <value>Grant procedures</value>
+  </data>
+  <data name="TitlePublicDiscussionProcedure" xml:space="preserve">
+    <value>For public discussion</value>
+  </data>
+  <data name="BreadcrumbsActiveProcedures" xml:space="preserve">
+    <value>Open calls</value>
+  </data>
+  <data name="BreadcrumbsArchivedPublicDiscussionProcedures" xml:space="preserve">
+    <value>Archive public discussion</value>
+  </data>
+  <data name="BreadcrumbsEndedProcedures" xml:space="preserve">
+    <value>Completed and terminated procedures</value>
+  </data>
+  <data name="BreadcrumbsPublicDiscussionProcedures" xml:space="preserve">
+    <value>Public discussion procedures</value>
+  </data>
+  <data name="EndedProcedure" xml:space="preserve">
+    <value>Completed/terminated procedure</value>
+  </data>
+  <data name="DraftDocuments" xml:space="preserve">
+    <value>Draft documents for application and implementation</value>
+  </data>
+  <data name="PublicDiscussionProcedure" xml:space="preserve">
+    <value>Draft calls</value>
+  </data>
+  <data name="ArchivedPublicDiscussionProcedure" xml:space="preserve">
+    <value>Closed public discussion of the procedure</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments and suggestions</value>
+  </data>
+  <data name="BreadcrumbsCheckList" xml:space="preserve">
+    <value>Check list</value>
+  </data>
+  <data name="PleaseAttachTechnicalReport" xml:space="preserve">
+    <value>Please, attach technical report.</value>
+  </data>
+  <data name="TechnicalReportMissmatchContract" xml:space="preserve">
+    <value>Technical report is for another contract.</value>
+  </data>
+  <data name="PleaseAttachFinanceReport" xml:space="preserve">
+    <value>Please, attach finance report.</value>
+  </data>
+  <data name="FinanceReportMissmatchContract" xml:space="preserve">
+    <value>Finance report is for another contract.</value>
+  </data>
+  <data name="PleaseAttachPaymentRequest" xml:space="preserve">
+    <value>Please, attach payment request.</value>
+  </data>
+  <data name="PaymentRequestMissmatchContract" xml:space="preserve">
+    <value>Payment requset is for anotrher contract.</value>
+  </data>
+  <data name="AttachedFileIsCorrupted" xml:space="preserve">
+    <value>The attached file is corrupted and cannot be loaded.</value>
+  </data>
+  <data name="BreadcrumbsCheckSheet" xml:space="preserve">
+    <value>Check sheet</value>
+  </data>
+  <data name="ShowProceduresWithoutLAG" xml:space="preserve">
+    <value>Show procedures without LAG/FLAG</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+</root>

@@ -1,0 +1,16 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.versionNum" ng-readonly="true" l10n-text="contractReports_contractReportFinancialForm_versionNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="int" ng-model="model.versionSubNum" ng-readonly="true" l10n-text="contractReports_contractReportFinancialForm_versionSubNum" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.startDate" ng-readonly="true" l10n-text="contractReports_contractReportFinancialForm_startDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.endDate" ng-readonly="true" l10n-text="contractReports_contractReportFinancialForm_endDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportFinancialStatuses'" mode="id" ng-disabled="true" l10n-text="contractReports_contractReportFinancialForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.statusNote">
+    <sc-field type="textarea" rows="3" ng-model="model.statusNote" ng-readonly="true" l10n-text="contractReports_contractReportFinancialForm_statusNote" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

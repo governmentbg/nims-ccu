@@ -1,0 +1,137 @@
+﻿@using Eumis.Public.Common.Export
+
+@model ExportTemplate
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      /*START NOTES*/
+      ul.start-notes {
+          list-style-type: none;
+          padding-left: 0;
+          font-style: italic;
+      }
+
+          ul.start-notes li {
+          }
+
+      /*TABLE*/
+      div.table-wrapper {
+          margin-bottom: 50px;
+      }
+
+      p.table-header {
+          font-weight: bold;
+          font-size: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td {
+          vertical-align: top;
+          padding: 5px;
+          border-width: 2px;
+          border-style:solid;
+          color: @(ExportTemplate.CELL_FONT_COLOR);
+          background-color: @(ExportTemplate.CELL_BACKGROUND_COLOR);
+          border-color: @(ExportTemplate.CELL_FONT_COLOR);
+      }
+
+      td.header-cell {
+          font-weight:bold;
+          color: @(ExportTemplate.HEADER_FONT_COLOR);
+          background-color: @(ExportTemplate.HEADER_BACKGROUND_COLOR);
+          border-color: @(ExportTemplate.HEADER_FONT_COLOR);
+      }
+
+      td.bold-cell {
+          font-weight: bold;
+      }
+
+      td.number-cell {
+          text-align: right;
+          white-space: nowrap;
+          overflow: hidden;
+      }
+
+      /*END NOTES*/
+      ul.end-notes {
+          list-style-type: none;
+          padding-left: 0;
+          font-style: italic;
+      }
+
+          ul.end-notes li {
+          }
+
+      @if (Model?.PageOrientation == PageOrientation.Landscape)
+      {          
+        <text>@@page {
+          size: landscape;
+        }
+        </text>
+      }
+    </style>
+</head>
+<body>
+    @if (Model != null && Model.Sheet != null)
+    {
+        if (Model.Sheet.StartNotes != null && Model.Sheet.StartNotes.Count > 0)
+        {
+            <ul class="start-notes">
+                @foreach (var note in Model.Sheet.StartNotes)
+                {
+                    <li>@note</li>
+                }
+            </ul>
+        }
+
+        if (Model.Sheet.Tables != null && Model.Sheet.Tables.Count > 0)
+        {
+            foreach (var table in Model.Sheet.Tables)
+            {
+                <div class="table-wrapper">
+                    @if (!String.IsNullOrWhiteSpace(table.Header))
+                    {
+                        <p class="table-header">@table.Header</p>
+                    }
+                    <table>
+                        @foreach (var row in table.Rows)
+                        {
+                            <tr>
+                                @foreach (var cell in row.Cells)
+                                {
+                                    <td class="@(cell.IsHeader ? "header-cell" : "") @(cell.IsBold ? "bold-cell" : "") @(cell.IsNumber ? "number-cell" : "")"
+                                        style="width:@(cell.Width.HasValue ? cell.Width.Value.ToString() : "")px"
+                                        rowspan="@cell.RowSpan"
+                                        colspan="@cell.ColSpan">
+                                        @cell.Value
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+        }
+
+        if (Model.Sheet.EndNotes != null && Model.Sheet.EndNotes.Count > 0)
+        {
+            <ul class="end-notes">
+                @foreach (var note in Model.Sheet.EndNotes)
+                {
+                    <li>@note</li>
+                }
+            </ul>
+        }
+    }
+</body>
+</html>

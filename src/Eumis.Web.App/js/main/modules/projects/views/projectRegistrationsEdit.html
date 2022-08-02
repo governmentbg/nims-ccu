@@ -1,0 +1,26 @@
+<ng-form name="editProjectRegistrationDataForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projects_projectRegistationEdit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="withdrawBtn" btn-click="withdraw()" text="projects_projectRegistationEdit_withdraw" class="btn btn-danger btn-xs" ng-if="projectRegistration.registrationStatus != 'withdrawn'" ng-show="!editMode"
+          ng-disabled="!$canDo('ProjectActions.Withdraw', projectRegistration.projectId)"></sc-button>
+
+        <sc-link-button name="printBtn" ng-href="api/projects/{{projectRegistration.projectId}}/print" target="_blank" sc-access-token text="projects_projectRegistationEdit_print" class="btn btn-primary btn-xs" icon="glyphicon-print"></sc-link-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="projects_projectRegistationEdit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-disabled="!$canDo('ProjectActions.Edit', projectRegistration.projectId)" ng-if="projectRegistration.recieveType !== 'electronic' && projectRegistration.registrationStatus != 'withdrawn' && !projectRegistration.hasVersions"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="projects_projectRegistationEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="projects_projectRegistationEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration"></eumis-project-registration-data>
+    </div>
+  </div>
+</ng-form>

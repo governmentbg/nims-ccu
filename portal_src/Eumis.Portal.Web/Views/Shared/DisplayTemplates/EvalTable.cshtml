@@ -1,0 +1,20 @@
+﻿@model R_10023.EvalTable
+
+@if (Model != null)
+{
+    <h2>@EvalTable.EvaluationCriterias</h2>
+    <section class="clearfix" style="display:block;">
+        @Html.DisplayFor(m => m.EvalTableGroupCollection, MVC.Shared.Views.DisplayTemplates.EvalTableGroupCollection)
+    </section>
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@EvalTable.AttachedDocumentCollection</h2>
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    @Html.DisplayFor(m => m.Signature)
+}

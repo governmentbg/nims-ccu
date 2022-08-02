@@ -1,0 +1,172 @@
+﻿@model R_10006.Contract
+
+@if (Model != null)
+{
+
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%" style="min-width: 400px;">
+            <thead>
+                <tr>
+                    <th>@Contract.Name</th>
+                    <th style="min-width: 150px;">@Contract.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*<tr>
+                    <td>
+                        <p class="high-lines"><strong>@BFPContractContract.RequestedFundingAmount</strong></p>
+                        <p class="high-lines">@Contract.RequestedFundingPartOfCrossFinancingAmount</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines">@Html.DisplayFor(m => m.RequestedFundingAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.RequestedFundingPartOfCrossFinancingAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Contract.CoFinancingBudgetAmount</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.CoFinancingBudgetAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines">@Html.DisplayFor(m => m.BudgetEIBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.BudgetEBRDAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.BudgetWBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.BudgetOtherMFIAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.BudgetOtherAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Contract.CoFinancingNonBudgetAmount</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.CoFinancingNonBudgetAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines">@Html.DisplayFor(m => m.NonBudgetEIBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.NonBudgetEBRDAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.NonBudgetWBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.NonBudgetOtherMFIAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.NonBudgetOtherAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <strong>@Contract.TotalCoFinancingAmount</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.TotalCoFinancingAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Contract.ExpectedLeverageLoanAmount</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.ExpectedLeverageLoanAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.OtherContributionsOutsideESI</strong></p>
+                        <p class="high-lines">@Contract.OtherContributionsOutsideESIPublic</p>
+                        <p class="high-lines">@Contract.OtherContributionsOutsideESIPrivate</p>
+                        <p class="high-lines">@Contract.OtherContributionsOutsideESITotal</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines"></p><br /><br />
+                        <p class="high-lines">@Html.DisplayFor(m => m.OtherContributionsOutsideESIPublic, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.OtherContributionsOutsideESIPrivate, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.OtherContributionsOutsideESITotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.TotalEligibleCosts</strong></p>
+                        <p class="high-lines">@Contract.TotalEligibleCostsPublicFunding</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines">@Html.DisplayFor(m => m.TotalEligibleCosts, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.TotalEligibleCostsPublicFunding, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@BFPContractContract.RatioRequestedFundingTotalEligibleCosts</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.RatioRequestedFundingTotalEligibleCosts)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@BFPContractContract.ExpectedRevenue</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.ExpectedRevenue, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@BFPContractContract.IneligibleCosts</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.IneligibleCosts, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td class="text-right">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines">@Html.DisplayFor(m => m.IneligibleEIBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.IneligibleEBRDAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.IneligibleWBAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.IneligibleOtherMFIAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                        <p class="high-lines">@Html.DisplayFor(m => m.IneligibleOtherAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)</p>
+                    </td>
+                </tr>*@
+                <tr>
+                    <td>
+                        <strong>@BFPContractContract.TotalProjectCost</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.TotalProjectCost, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

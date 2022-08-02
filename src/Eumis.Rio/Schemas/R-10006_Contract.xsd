@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10006" 
+	xmlns="http://ereg.egov.bg/segment/R-10006" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="Contract">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Източници на финансиране</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RequestedFundingAmount" type="xsd:decimal" minOccurs="0" />
+			<xsd:element name="RequestedFundingPartOfCrossFinancingAmount" type="xsd:decimal" minOccurs="0" />
+      
+			<xsd:element name="CoFinancingBudgetAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BudgetEIBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BudgetEBRDAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BudgetWBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BudgetOtherMFIAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BudgetOtherAmount" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="CoFinancingNonBudgetAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NonBudgetEIBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NonBudgetEBRDAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NonBudgetWBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NonBudgetOtherMFIAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NonBudgetOtherAmount" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="TotalCoFinancingAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="ExpectedLeverageLoanAmount" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="OtherContributionsOutsideESIPublic" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="OtherContributionsOutsideESIPrivate" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="OtherContributionsOutsideESITotal" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="TotalEligibleCostsPublicFunding" type="xsd:decimal" minOccurs="0" />
+			<xsd:element name="TotalEligibleCosts" type="xsd:decimal" minOccurs="0" />
+			<xsd:element name="RatioRequestedFundingTotalEligibleCosts" type="xsd:string" minOccurs="0" />
+			
+			<xsd:element name="ExpectedRevenue" type="xsd:decimal" minOccurs="0" />
+      
+			<xsd:element name="IneligibleCosts" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="IneligibleEIBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="IneligibleEBRDAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="IneligibleWBAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="IneligibleOtherMFIAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="IneligibleOtherAmount" type="xsd:decimal" minOccurs="0" />
+			
+			<xsd:element name="TotalProjectCost" type="xsd:decimal" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

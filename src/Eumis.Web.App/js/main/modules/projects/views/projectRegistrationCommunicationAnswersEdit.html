@@ -1,0 +1,26 @@
+﻿<ng-form name="editProjectRegistrationCommunicationForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projects_projectRegistrationCommunicationAnswersEdit_title"></strong>
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="projects_projectRegistrationCommunicationAnswersEdit_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left"></sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" ng-show="answer.status === 'draft'" text="projects_projectRegistrationCommunicationAnswersEdit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+                   ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', answer.projectCommunicationId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : answer.status === 'canceled' }">
+      <eumis-project-communication-answer-data name="projectRegistrationCommunicationAnswerForm" ng-model="answer"></eumis-project-communication-answer-data>
+
+      <div class="row">
+        <eumis-structured-parent-child-document text="projects_projectRegistrationCommunicationAnswersEdit_answerTemplate"
+          document="projectManagingAuthorityCommunicationAnswer" parent-gid="answer.communicationGid" child-gid="answer.answerGid"
+          readonly="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', answer.projectCommunicationId) || answer.source !== 'managingAuthority' || answer.status !== 'draft' || answer.communicationStatus !== 'question'"
+          class="col-sm-4 col-md-3" doc-updated="answerUpdated">
+        </eumis-structured-parent-child-document>
+      </div>
+    </div>
+
+  </div>
+</ng-form>

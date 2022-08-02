@@ -1,0 +1,29 @@
+﻿@model R_10001.PublicNomenclature
+
+@{string editorId = Html.GetUniqueEditorId();}
+
+@Html.HiddenFor(m => m.Name, new { @class = "nomenclature-name" + editorId })
+
+<div>
+    @foreach (var item in Model.Items)
+    {
+        @Html.RadioButtonFor(m => m.Code, item.Value, new { id = item.Value + editorId, @class = "nomenclature-id" + editorId, @dataname = item.Text })
+        <label for="@item.Value@editorId">@item.Text</label>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        setNameValue();
+
+        $('.nomenclature-id@(editorId)').change(function () {
+            setNameValue();
+        });
+
+        function setNameValue() {
+            var selected = $('.nomenclature-id@(editorId):checked');
+            var name = selected.attr("dataname");
+            $('.nomenclature-name@(editorId)').val(name);
+        }
+    });
+</script>

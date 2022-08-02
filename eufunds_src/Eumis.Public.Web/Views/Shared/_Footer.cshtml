@@ -1,0 +1,123 @@
+﻿<footer>
+    <div class="container">
+        <span class="go-to-top">
+            <img class="fliud" src="@Url.Content(Links.Content.img.icons.gototop_png)" alt="" />
+        </span>
+        <div class="footer-top">
+            <a><img src="@Url.Content(Links.Content.img.gerb_footer_png)" alt="" /></a><br />
+            <div class="hidden-xs hidden-sm">
+                <p style="margin: 0 auto;">@Texts.Shared_Footer_Eumis</p>
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Texts.Global_EumisShort</strong><br /><br />
+            </div>
+
+        </div>
+        @{
+            var eApplyLinkText = Texts.Shared_Footer_EumisGovernment;
+            var repotLinkText = Texts.Shared_Footer_EumisGovernment_Report;
+            var manualLinkText = Texts.Shared_Footer_IAWP_Download;
+            var feedbackLinkText = Texts.Shared_Footer_Feedback; }
+
+        @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+        {
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg" target="_blank" style="color: red; font-weight: bold">@eApplyLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/report" target="_blank" style="color: red; font-weight: bold">@repotLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg" target="_blank" style="color: red; font-weight: bold">@eApplyLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/report" target="_blank" style="color: red; font-weight: bold">@repotLinkText</a>
+            </div>
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/bg/s/Default/PublicManualDownload/C5048966-BBBE-4961-9189-9D11115DE3CB" target="_blank" style="color: red; font-weight: bold">@manualLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/bg/s/Default/PublicManualDownload/C5048966-BBBE-4961-9189-9D11115DE3CB" target="_blank" style="color: red; font-weight: bold">@manualLinkText</a>
+            </div>
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/bg/s/Feedback/Index" target="_blank" style="color: red; font-weight: bold">@feedbackLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/bg/s/Feedback/Index" target="_blank" style="color: red; font-weight: bold">@feedbackLinkText</a>
+            </div>
+
+            <div class="col-md-6 txt-align-right links">
+                <a href="https://www.eufunds.bg/bg/taxonomy/term/19" target="_blank">Нормативни документи за периода 2014 - 2020</a>
+                <a href="http://www.eufunds.bg" target="_blank">Структурни фондове на ЕС в България</a>
+                <a href="@Url.Action(MVC.Home.ActionNames.AccessibilityPolicy, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">Достъпност</a>
+            </div>
+            <div class="col-md-6 links mobile_m_bottom_60">
+                <a href="@Url.Action(MVC.Home.ActionNames.Glossary, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">@Texts.Global_Glossary</a>
+                <a href="http://ec.europa.eu/index_bg.htm" target="_blank">Портал на Европейската комисия</a>
+
+                <a href="@Url.Action(MVC.Home.ActionNames.About, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">@Texts.Global_AboutSystem</a>
+            </div>
+        }
+        else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+        {
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/en" target="_blank" style="color: red; font-weight: bold">@eApplyLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/report" target="_blank" style="color: red; font-weight: bold">@repotLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/en" target="_blank" style="color: red; font-weight: bold">@eApplyLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/report" target="_blank" style="color: red; font-weight: bold">@repotLinkText</a>
+            </div>
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/en/s/Default/PublicManualDownload/C5048966-BBBE-4961-9189-9D11115DE3CB" target="_blank" style="color: red; font-weight: bold">@manualLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/en/s/Default/PublicManualDownload/C5048966-BBBE-4961-9189-9D11115DE3CB" target="_blank" style="color: red; font-weight: bold">@manualLinkText</a>
+            </div>
+
+            <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+                <a href="https://eumis2020.government.bg/en/s/Feedback/Index" target="_blank" style="color: red; font-weight: bold">@feedbackLinkText</a>
+            </div>
+            <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+                <a href="https://eumis2020.government.bg/en/s/Feedback/Index" target="_blank" style="color: red; font-weight: bold">@feedbackLinkText</a>
+            </div>
+
+            <div class="col-md-6 txt-align-right links">
+                <a href="http://ec.europa.eu/index_en.htm" target="_blank">Portal of European Commission</a>
+                <a href="@Url.Action(MVC.Home.ActionNames.AccessibilityPolicy, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">@Texts.Global_AccessibilityPolicy</a>
+                <a href="@Url.Action(MVC.Home.ActionNames.Glossary, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">@Texts.Global_Glossary</a>
+            </div>
+            <div class="col-md-6 links mobile_m_bottom_60">
+                <a href="http://www.eufunds.bg/en/" target="_blank">EU Structural Funds in Bulgaria</a>
+                <a href="http://umispublic.government.bg/" target="_blank">UMIS 2007 - 2013</a>
+                <a href="@Url.Action(MVC.Home.ActionNames.About, MVC.Home.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })">@Texts.Global_AboutSystem</a>
+            </div>
+        }
+
+        <img class="eu_flag" src="@Url.Content(Links.Content.img.eu_flag_gif)" alt="" />
+    </div>
+</footer>
+
+<div class="subfooter">
+    <div class="container">
+        <span>@Texts.Shared_Footer_Financing <br /> @Texts.Shared_Footer_Project</span>
+
+        @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+        {
+            <img class="fliud hidden-xs hidden-sm" src="@Url.Content(Links.Content.img.eea_norway_grants_png)" width="30%" />
+        }
+        else
+        {
+            <img class="fliud hidden-xs hidden-sm" src="@Url.Content(Links.Content.img.logo_good_governance_bg_png)" alt="" />
+        }
+    </div>
+</div>

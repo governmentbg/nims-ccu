@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="chooseItemsBtn" btn-click="chooseItems()" text="notificationSetting_notificationSettingAttachedProgrammes_choose" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+
+    <sc-datatable items="attachedProgrammes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="delBtn" btn-click="delItem(item.nomValueId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedProgrammes_name">
+      </sc-column>
+      <sc-column data="code" title="notificationSetting_notificationSettingAttachedProgrammes_code">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

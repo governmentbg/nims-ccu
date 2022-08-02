@@ -1,0 +1,45 @@
+<ng-form name="editProjectCommunicationForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionProjectCommunication_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_editEvalSessionProjectCommunication_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left" ng-show="!editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" class="deactivated-panel-body">
+      <eumis-project-communication name="projectCommunicationForm" ng-model="projectCommunication"></eumis-project-communication>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionProjectCommunication_questionTemplate" document="projectCommunicationQuestion"
+          class="col-sm-4 col-md-3" view-mode gid="projectCommunication.xmlGid">
+        </eumis-structured-document>
+        <eumis-structured-document text="evalSessions_editEvalSessionProjectCommunication_answerTemplate" document="projectCommunicationAnswer" gid="projectCommunication.xmlGid"
+          ng-if="canViewAnswer" view-mode class="col-sm-4 col-md-3">
+        </eumis-structured-document>
+      </div>
+
+      <div ng-show="projectCommunication.projectCommunicationFile">
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectVersion_file" ></label>
+        <div class="row">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{projectCommunication.projectCommunicationFile.url}}" sc-access-token title="{{projectCommunication.projectCommunicationFile.name}}">
+              <span class="glyphicon glyphicon-file">{{projectCommunication.projectCommunicationFile.name}}</span>
+            </a>
+          </div>
+        </div>
+
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectVersion_signatures" ></label>
+        <div class="row" ng-repeat="pcfs in projectCommunication.projectCommunicationFileSignatures">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{pcfs.url}}" sc-access-token title="{{pcfs.name}}">
+              <span class="glyphicon glyphicon-file">{{pcfs.name}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

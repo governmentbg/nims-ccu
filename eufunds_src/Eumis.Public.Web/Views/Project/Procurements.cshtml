@@ -1,0 +1,45 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractProcurementsVO
+
+@{
+    Layout = MVC.Project.Views._ProjectLayout;
+}
+
+<div class="project-info-box">
+    <div class="head blue">
+        <h2>@Texts.Project_Details_Procurements</h2>
+    </div>
+    <div class="content">
+        @if (Model.Offers != null && Model.Offers.Count() > 0)
+        {
+            for (int i = 0; i < Model.Offers.Count(); i++)
+            {
+                var offer = Model.Offers.ElementAt(i);
+                <div class="list-item">
+                    <label>@Texts.Project_Details_Offer @(i + 1)</label>
+                    @Texts.Project_Details_Offer_ProcurementPlanName: @offer.ProcurementPlanName,
+                    @Texts.Project_Details_Offer_Amount: @Html.DisplayFor(m => offer.Amount)
+                </div>
+                <ul>
+                    @for (int j = 0; j < offer.ContractDifferentiatedPositions.Count; j++)
+                    {
+                        var position = offer.ContractDifferentiatedPositions[j];
+                        <li>
+                            <div>@Texts.Project_Details_Offer_PositionName @(j + 1): @position.Name</div>
+                            <div>@Texts.Project_Details_Offer_ContractorName: @position.TransContractorName</div>
+                            <div>
+                                @Texts.Project_Details_Offer_ContractTotalFundedValue: @if (position.TotalFundedValue.HasValue)
+                                {@Html.DisplayFor(m => position.TotalFundedValue)}
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        }
+        else
+        {
+            <div class="list-item">
+                <label>@Texts.Project_Details_NoProcurements</label>
+            </div>
+        }
+    </div>
+</div>

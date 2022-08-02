@@ -1,0 +1,670 @@
+﻿@model Eumis.Portal.Web.Areas.Report.Models.Package.IndexVM
+
+@using Eumis.Common.Helpers;
+@using Eumis.Common.Config;
+@using Eumis.Documents.Enums;
+@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+<style>
+    .blue-button.small {
+        width: 100%;
+    }
+
+    .dropdown.esf-micro-dropdown li a {
+        width: auto;
+    }
+
+
+    #simevModal .modal-dialog {
+        max-width: 500px;
+    }
+
+    #simevModal .modal-content {
+        padding: 0;
+    }
+
+</style>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader)
+}, "Пакет отчетни документи")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    @if (TempData["SuccessAction"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>@TempData["SuccessAction"].ToString()</li>
+            </ul>
+        </div>
+    }
+
+    @{ var errors = (List<string>)TempData["package_errors"];}
+
+    @if (errors != null && errors.Count > 0)
+    {
+        <div class="validation-summary-errors">
+            <ul>
+                @foreach (var error in errors)
+                {
+                    <li>@error</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @{ var warnings = (List<string>)TempData["package_warnings"];}
+
+    @if (warnings != null && warnings.Count > 0)
+    {
+        <div class="validation-summary-errors orange-warnings">
+            <ul>
+                @foreach (var warning in warnings)
+                {
+                    <li>@warning</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form class="form-with-sections">
+        @Html.Partial(MVC.Report.Shared.Views._ContractTabsPartial, (object)Eumis.Portal.Web.Areas.Report.ContractTabs.Packages)
+        <div class="tab-content">
+            @if (Model != null && Model.CanCreate && CurrentUser.UserType == ReportUserType.Parent)
+            {
+                <div style="padding: 10px 0px 0px 10px;">
+                    <a class="blue-button" href="@(Url.Action(MVC.Report.Package.ActionNames.Create, MVC.Report.Package.Name, new { area = MVC.Report.Name }))">
+                        <span class="glyphicon glyphicon-plus"></span>Нов пакет
+                    </a>
+                </div>
+            }
+
+            <div class="table-wrapper" style="overflow:visible;">
+                @if (Model != null && Model.Packages != null && Model.Packages.Count > 0)
+                {
+                    <table class="chart-info medium-table white-header reports grey" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="350">Пакет</th>
+                                <th width="180">Статус</th>
+                                <th width="100">Номер</th>
+                                <th style="min-width:120px;">Дата на последна промяна</th>
+                                <th width="230">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Packages.Count; i++)
+                            {
+                                var package = Model.Packages[i];
+
+                                bool isCurrentVersion = i == 0 && Model.Packages.PageNumber == 1;
+                                bool isEditable = package.isDraft && package.isBeneficiary && (isCurrentVersion || Model.CanEditSent);
+                                bool hasReturnedDocuments = package.HasReturnedDocuments && package.isBeneficiary && isCurrentVersion;
+                                bool canEditItem = !package.isRefused;
+
+                                bool hasFinancial = (package.ContractReportFinancials != null && package.ContractReportFinancials.Count > 0);
+                                bool hasTechnical = (package.ContractReportTechnicals != null && package.ContractReportTechnicals.Count > 0);
+                                bool hasPayment = (package.ContractReportPayments != null && package.ContractReportPayments.Count > 0);
+
+                                <tr class="@(isCurrentVersion ? "current-version" : "")">
+                                    <td>
+                                        @(package.ContractReportType != null ? package.ContractReportType.description : "")
+                                    </td>
+                                    <td>
+                                        @package.Status.description
+                                    </td>
+                                    <td>@package.OrderNum</td>
+                                    <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(package.ModifyDate)</td>
+                                    <td>
+                                        <div class="inline-actions">
+                                            <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.Package.ActionNames.Preview, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid }))"></a>
+                                            @if (isEditable && CurrentUser.UserType == ReportUserType.Parent)
+                                            {
+                                                <a class="info-icon edit-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.Edit" data-trigger="hover" href="@(Url.Action(MVC.Report.Package.ActionNames.Edit, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid }))"></a>
+                                                <a class="info-button delete-btn" popover-message="Изтриване" sc-placement="top" style="margin-top:0; padding: 0;" href="@(Url.Action(MVC.Report.Package.ActionNames.Delete, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid, version = Convert.ToBase64String(package.Version) }))" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изтриете пакета?"></a>
+                                                <a class="info-button send-btn" popover-message="Изпращане" sc-placement="top" href="@(Url.Action(MVC.Report.Package.ActionNames.Submit, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid, version = Convert.ToBase64String(package.Version) }))" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изпратите пакета?"></a>
+                                            }
+
+                                            @if (package.isSentChecked && package.isBeneficiary && (Model.CanEditSent == Model.AllowConcurrencyReports))
+                                            {
+                                                <a class="info-button edit-btn" popover-message="Връщане в чернова" sc-placement="top" data-content="Връщане в чернова" href="@(Url.Action(MVC.Report.Package.ActionNames.MakeDraft, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid, version = Convert.ToBase64String(package.Version) }))" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да направите пакета в статус Чернова?"></a>
+                                            }
+                                            
+                                            @if (!String.IsNullOrWhiteSpace(package.StatusNote))
+                                            {
+                                                <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@package.StatusNote" data-trigger="hover" alt="" data-original-title="" title="" style="height:26px; vertical-align: inherit;">
+                                            }
+
+                                            @if (!isCurrentVersion)
+                                            {
+                                                <a class="info-icon history-btn history-btn-background" sc-placement=" top" data-toggle="popover"></a>
+                                            }
+
+                                            @if (Model.CanCreate && CurrentUser.UserType == ReportUserType.Parent)
+                                            {
+                                                <a class="info-icon copy-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.Copy" data-trigger="hover" href="@(Url.Action(MVC.Report.Package.ActionNames.Copy, MVC.Report.Package.Name, new { area = MVC.Report.Name, gid = package.Gid }))"></a>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="history-table @(isCurrentVersion ? "current-version" : "")" data-rel="1" style="display: @(isCurrentVersion ? "table-row" : "")">
+                                    <td colspan="5">
+                                        <div class="history-table-wrapper" style="display: block;">
+                                            <table width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="340">Документ</th>
+                                                        <th width="180">Статус</th>
+                                                        <th width="100">Номер</th>
+                                                        <th style="min-width:120px;">Дата на последна промяна</th>
+                                                        <th width="220">Действия</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!-- #region Technical -->
+                                                    @if((isEditable || hasTechnical) && (package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.Technical) || package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.PaymentTechnicalFinancial)))
+                                                    {
+                                                        if (hasTechnical)
+                                                        {
+                                                            var lastTechnical = package.ContractReportTechnicals[0];
+                                                            var otherTechnicals = package.ContractReportTechnicals.Skip(1);
+
+                                                            bool hasOtherTechnicals = otherTechnicals != null && otherTechnicals.Count() > 0;
+
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.tech_report_png" alt="" />
+                                                                    Технически отчет
+                                                                </td>
+                                                                <td>
+                                                                    <strong class="@(lastTechnical.IsCompleted ? "completed" : "")">
+                                                                        @lastTechnical.Status.description
+                                                                    </strong>
+                                                                </td>
+                                                                <td>@lastTechnical.RegNumber</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(lastTechnical.ModifyDate)</td>
+                                                                <td>
+                                                                    <div class="inline-actions">
+                                                                        @if (CurrentUser.ReadPermissions.canReadTechnicalPlan)
+                                                                        {
+                                                                            <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Preview, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = lastTechnical.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && lastTechnical.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportTechnicalStatus.Draft
+                                                                                && CurrentUser.ReadPermissions.canWriteTechnicalPlan)
+                                                                        {
+                                                                            <a class="info-icon edit-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.Edit" data-trigger="hover" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Edit, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = lastTechnical.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+                                                                        else if (canEditItem && package.isBeneficiary && !package.isSentChecked && isCurrentVersion && (lastTechnical.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportTechnicalStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWriteTechnicalPlan)
+                                                                        {
+                                                                            <a class="info-button edit-btn" popover-message="Редакция" sc-placement="top" data-content="@Global.Edit" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да направите документа в статус Чернова?" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.MakeDraft, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = lastTechnical.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastTechnical.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && package.isBeneficiary && !package.isSentChecked && hasOtherTechnicals && (lastTechnical.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportTechnicalStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWriteTechnicalPlan && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                                <a class="info-button send-btn" popover-message="Изпращане" sc-placement="top" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изпратите документа?" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.MakeActual, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = lastTechnical.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastTechnical.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (isEditable && lastTechnical.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportTechnicalStatus.Draft
+                                                                                && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                            <a class="info-button delete-btn" popover-message="Изтриване" sc-placement="top" style="margin-top:0; padding: 0;" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изтриете документа?" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Delete, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = lastTechnical.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastTechnical.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (hasOtherTechnicals)
+                                                                        {
+                                                                            <a class="info-icon history-btn history-btn-background" sc-placement="top" data-toggle="popover" data-content="История" data-trigger="hover"></a>
+                                                                        }
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            if (hasOtherTechnicals)
+                                                            {
+                                                                <tr class="history-table">
+                                                                    <td colspan="5">
+                                                                        <div class="history-table-wrapper clearfix">
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    @foreach (var technical in otherTechnicals)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td class="report-document-type" width="330">
+                                                                                                <img src="@Links.Content.img.icons.tech_report_png" alt="" />
+                                                                                                Технически отчет
+                                                                                            </td>
+                                                                                            <td width="180">
+                                                                                                @technical.Status.description
+                                                                                            </td>
+                                                                                            <td width="100">@technical.RegNumber</td>
+                                                                                            <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(technical.ModifyDate)</td>
+                                                                                            <td width="210">
+                                                                                                <div class="inline-actions">
+                                                                                                    @if (CurrentUser.ReadPermissions.canReadTechnicalPlan)
+                                                                                                    {
+                                                                                                        <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Preview, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, gid = technical.Gid, packageGid = package.Gid }))"></a>
+                                                                                                    }
+                                                                                                    @if (!String.IsNullOrWhiteSpace(technical.StatusNote))
+                                                                                                    {
+                                                                                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@technical.StatusNote" data-trigger="hover" alt="" data-original-title="" title="" style="height:26px; vertical-align: inherit;">
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.tech_report_png" alt="" />
+                                                                    Технически отчет
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    @if (CurrentUser.ReadPermissions.canWriteTechnicalPlan)
+                                                                    {
+                                                                        <a href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.New, MVC.Report.TechnicalReport.Name, new { area = MVC.Report.Name, packageGid = package.Gid }))" title="" class="blue-button small wait">@Global.AddButton</a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                    <!-- #endregion -->
+                                                    <!-- #region Financial -->
+                                                    @if ((isEditable || hasFinancial) && (package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.PaymentTechnicalFinancial) || package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.PaymentFinancial)))
+                                                    {
+                                                        if (hasFinancial)
+                                                        {
+                                                            var lastFinancial = package.ContractReportFinancials[0];
+                                                            var otherFinancials = package.ContractReportFinancials.Skip(1);
+
+                                                            bool hasOtherFinancials = otherFinancials != null && otherFinancials.Count() > 0;
+
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.finance_report_png" alt="" />
+                                                                    Финансов отчет
+                                                                </td>
+                                                                <td>
+                                                                    <strong class="@(lastFinancial.IsCompleted ? "completed" : "")">
+                                                                        @lastFinancial.Status.description
+                                                                    </strong>
+                                                                </td>
+                                                                <td>@lastFinancial.RegNumber</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(lastFinancial.ModifyDate)</td>
+                                                                <td>
+                                                                    <div class="inline-actions">
+                                                                        @if (CurrentUser.ReadPermissions.canReadFinancialPlan)
+                                                                        {
+                                                                            <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.Preview, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = lastFinancial.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && lastFinancial.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportFinancialStatus.Draft
+                                                                            && CurrentUser.ReadPermissions.canWriteFinancialPlan)
+                                                                        {
+                                                                            <a class="info-icon edit-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.Edit" data-trigger="hover" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.Edit, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = lastFinancial.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+                                                                        else if (canEditItem && package.isBeneficiary && !package.isSentChecked && isCurrentVersion && (lastFinancial.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportFinancialStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWriteFinancialPlan)
+                                                                        {
+                                                                            <a class="info-button edit-btn" popover-message="Редакция" sc-placement="top" data-content="@Global.Edit" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да направите документа в статус Чернова?" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.MakeDraft, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = lastFinancial.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastFinancial.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && package.isBeneficiary && !package.isSentChecked && hasOtherFinancials && (lastFinancial.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportFinancialStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWriteFinancialPlan && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                            <a class="info-button send-btn" popover-message="Изпращане" sc-placement="top" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изпратите документа?" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.MakeActual, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = lastFinancial.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastFinancial.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (isEditable && lastFinancial.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportFinancialStatus.Draft
+                                                                            && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                            <a class="info-button delete-btn" popover-message="Изтриване" sc-placement="top" style="margin-top:0; padding: 0;" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изтриете документа?" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.Delete, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = lastFinancial.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastFinancial.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (hasOtherFinancials)
+                                                                        {
+                                                                            <a class="info-icon history-btn history-btn-background" sc-placement="top" data-toggle="popover" data-content="История" data-trigger="hover"></a>
+                                                                        }
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            if (hasOtherFinancials)
+                                                            {
+                                                                <tr class="history-table">
+                                                                    <td colspan="5">
+                                                                        <div class="history-table-wrapper clearfix">
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    @foreach (var financial in otherFinancials)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td class="report-document-type" width="330">
+                                                                                                <img src="@Links.Content.img.icons.finance_report_png" alt="" />
+                                                                                                Финансов отчет
+                                                                                            </td>
+                                                                                            <td width="180">
+                                                                                                @financial.Status.description
+                                                                                            </td>
+                                                                                            <td width="100">@financial.RegNumber</td>
+                                                                                            <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(financial.ModifyDate)</td>
+                                                                                            <td width="210">
+                                                                                                <div class="inline-actions">
+                                                                                                    @if (CurrentUser.ReadPermissions.canReadFinancialPlan)
+                                                                                                    {
+                                                                                                        <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.Preview, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, gid = financial.Gid, packageGid = package.Gid }))"></a>
+                                                                                                    }
+                                                                                                    @if (!String.IsNullOrWhiteSpace(financial.StatusNote))
+                                                                                                    {
+                                                                                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@financial.StatusNote" data-trigger="hover" alt="" data-original-title="" title="" style="height:26px; vertical-align: inherit;">
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.finance_report_png" alt="" />
+                                                                    Финансов отчет
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    @if (CurrentUser.ReadPermissions.canWriteFinancialPlan)
+                                                                    {
+                                                                        <a href="@(Url.Action(MVC.Report.FinanceReport.ActionNames.New, MVC.Report.FinanceReport.Name, new { area = MVC.Report.Name, packageGid = package.Gid }))" title="" class="blue-button small wait">@Global.AddButton</a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                    <!-- #endregion -->
+                                                    <!-- #region Payment -->
+                                                    @if ((isEditable || hasPayment) && (package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.PaymentTechnicalFinancial) || package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.PaymentFinancial) || package.isReportTypeEquals(Eumis.Documents.Contracts.ContractReportType.AdvancePayment)))
+                                                    {
+                                                        if (hasPayment)
+                                                        {
+                                                            var lastPayment = package.ContractReportPayments[0];
+                                                            var otherPayments = package.ContractReportPayments.Skip(1);
+
+                                                            bool hasOtherPayments = otherPayments != null && otherPayments.Count() > 0;
+
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.pay_request_png" alt="" />
+                                                                    Искане за плащане
+                                                                </td>
+                                                                <td>
+                                                                    <strong class="@(lastPayment.IsCompleted ? "completed" : "")">
+                                                                        @lastPayment.Status.description
+                                                                    </strong>
+                                                                </td>
+                                                                <td>@lastPayment.RegNumber</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(lastPayment.ModifyDate)</td>
+                                                                <td>
+                                                                    <div class="inline-actions">
+                                                                        @if (CurrentUser.ReadPermissions.canReadPaymentRequest)
+                                                                        {
+                                                                            <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.Preview, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = lastPayment.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && lastPayment.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportPaymentStatus.Draft
+                                                                                    && CurrentUser.ReadPermissions.canWritePaymentRequest)
+                                                                        {
+                                                                            <a class="info-icon edit-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.Edit" data-trigger="hover" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.Edit, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = lastPayment.Gid, packageGid = package.Gid }))"></a>
+                                                                        }
+                                                                        else if (canEditItem && package.isBeneficiary && !package.isSentChecked && isCurrentVersion && (lastPayment.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportPaymentStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWritePaymentRequest)
+                                                                        {
+                                                                            <a class="info-button edit-btn" popover-message="Редакция" sc-placement="top" data-content="@Global.Edit" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да направите документа в статус Чернова?" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.MakeDraft, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = lastPayment.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastPayment.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (canEditItem && package.isBeneficiary && !package.isSentChecked && hasOtherPayments && (lastPayment.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportPaymentStatus.Entered)
+                                                                            && CurrentUser.ReadPermissions.canWritePaymentRequest && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                            <a class="info-button send-btn" popover-message="Изпращане" sc-placement="top" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изпратите документа?" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.MakeActual, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = lastPayment.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastPayment.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (isEditable && lastPayment.GetEnumStatus() == Eumis.Documents.Contracts.ContractReportPaymentStatus.Draft
+                                                                                    && CurrentUser.UserType == ReportUserType.Parent)
+                                                                        {
+                                                                            <a class="info-button delete-btn" popover-message="Изтриване" sc-placement="top" style="margin-top:0; padding: 0;" data-toggle="confirmation-no-title" data-title="Сигурни ли сте, че искате да изтриете документа?" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.Delete, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = lastPayment.Gid, packageGid = package.Gid, version = Convert.ToBase64String(lastPayment.Version) }))"></a>
+                                                                        }
+
+                                                                        @if (hasOtherPayments)
+                                                                        {
+                                                                            <a class="info-icon history-btn history-btn-background" sc-placement="top" data-toggle="popover" data-content="История" data-trigger="hover"></a>
+                                                                        }
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            if (hasOtherPayments)
+                                                            {
+                                                                <tr class="history-table">
+                                                                    <td colspan="5">
+                                                                        <div class="history-table-wrapper clearfix">
+                                                                            <table>
+                                                                                <tbody>
+                                                                                    @foreach (var payment in otherPayments)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td class="report-document-type" width="330">
+                                                                                                <img src="@Links.Content.img.icons.pay_request_png" alt="" />
+                                                                                                Искане за плащане
+                                                                                            </td>
+                                                                                            <td width="180">
+                                                                                                @payment.Status.description
+                                                                                            </td>
+                                                                                            <td width="100">@payment.RegNumber</td>
+                                                                                            <td>@Eumis.Common.Helpers.Helper.DateTimeToBgFormat(payment.ModifyDate)</td>
+                                                                                            <td width="210">
+                                                                                                <div class="inline-actions">
+                                                                                                    @if (CurrentUser.ReadPermissions.canReadPaymentRequest)
+                                                                                                    {
+                                                                                                        <a class="info-icon view-btn wait" sc-placement="top" data-toggle="popover" data-content="@Global.ButtonPreviewText" data-trigger="hover" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.Preview, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, gid = payment.Gid, packageGid = package.Gid }))"></a>
+                                                                                                    }
+                                                                                                    @if (!String.IsNullOrWhiteSpace(payment.StatusNote))
+                                                                                                    {
+                                                                                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@payment.StatusNote" data-trigger="hover" alt="" data-original-title="" title="" style="height:26px; vertical-align: inherit;">
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td class="report-document-type">
+                                                                    <img src="@Links.Content.img.icons.pay_request_png" alt="" />
+                                                                    Искане за плащане
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    @if (CurrentUser.ReadPermissions.canWritePaymentRequest)
+                                                                    {
+                                                                        <div class="dropdown payment-dropdown">
+                                                                            <a class="blue-button small dropdown-toggle" data-toggle="dropdown" id="ddl-link">
+                                                                                @Global.AddButton
+                                                                                <span class="caret"></span>
+                                                                            </a>
+                                                                            <ul class="dropdown-menu right-dropdown" aria-labelledby="ddl-link">
+                                                                                @{var types = new Eumis.Documents.Enums.PaymentRequestTypeNomenclature().GetItems(); }
+                                                                                @foreach (var type in types)
+                                                                                {
+                                                                                    <li><a style="width:350px;" href="@(Url.Action(MVC.Report.PaymentRequest.ActionNames.New, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name, packageGid = package.Gid, type= type.Id }))" class="wait">@type.Name</a></li>
+                                                                                }
+                                                                            </ul>
+                                                                        </div>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>В системата няма отчети за избрания договор.</p>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model.Packages,
+                        page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                            (String)ViewContext.RouteData.Values["controller"],
+                            new
+                            {
+                                page = page
+                            }),
+                        Constants.PagedListRenderOptions)
+
+        </div>
+        <script type="text/javascript">
+            var UPLOAD_MICRODATA = function (gid, packageGid, version, modalId) {
+                $(document).ready(function () {
+                    $("#edit" + gid).click(function () {
+                        $("#file" + gid).click();
+                    });
+                    $.when(0).then(function () {
+                        var next = jQuery.Deferred();
+                        var getFile = jQuery.Deferred();
+                        $("#file" + gid).fileupload({
+                            url: '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))',
+                            dataType: 'json',
+                            add: function (e, data) {
+                                var fileName = data.files[0].name;
+                                getFile.promise().then(function (data) {
+                                    next.resolve({ fileName: fileName, blobKey: data.result.fileKey });
+                                });
+                                showWait();
+                                data.submit();
+                            },
+                            done: function (e, data) {
+                                getFile.resolve(data);
+                            }
+                        });
+                        return next.promise();
+                    }).then(function (result) {
+                        var urlRedirect = '@(Html.Raw(Url.Action(MVC.Report.MicroData.ActionNames.SaveDraft, MVC.Report.MicroData.Name, new { area = MVC.Report.Name })))?';
+                        window.location.href = urlRedirect + 'gid=' + gid + '&packageGid=' + packageGid + '&version=' + version + '&blobKey=' + result.blobKey + '&fileName=' + result.fileName;
+                    });
+
+                    if (modalId) {
+                        var $modal = $('#' + modalId);
+
+                        $("#editWithModal" + gid).click(function () {
+                            $modal.modal({
+                                backdrop: 'static',
+                                keyboard: false
+                            });
+                        });
+
+                        $('.btn-ok', $modal).click(function () {
+                            var simevCodeInput = $('[name=simevCode]', $modal);
+                            var simevCode = simevCodeInput.val();
+
+                            if (!simevCode) {
+                                simevCodeInput.addClass('input-validation-error');
+                                simevCodeInput.popover({
+                                    container: 'body',
+                                    content: 'Полето трябва да е попълнено.',
+                                    placement: "top",
+                                    trigger: "hover",
+                                    'template': '<div class="popover popover-error" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+                                });
+
+                                return;
+                            }
+
+                            var urlRedirect = '@(Html.Raw(Url.Action(MVC.Report.MicroData.ActionNames.SaveDraftWithSimevCode, MVC.Report.MicroData.Name, new { area = MVC.Report.Name })))?';
+                            window.location.href = urlRedirect + 'gid=' + gid + '&packageGid=' + packageGid + '&version=' + version + '&simevCode=' + simevCode;
+                        });
+                    }
+                });
+            }
+        </script>
+        <div class="modal fade" id="simevModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Редакция на микроданни участници (ЕСФ) с код от СИМЕВ</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Код от СИМЕВ</label>
+                                <input name="simevCode" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a class="blue-button small btn-ok" data-toggle="confirmation-no-title" data-title="Ако бъде извлечен валиден документ, старите Ви данни ще бъдат заменени. Сигурни ли сте, че искате да продължите?">Въведи</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="blue-button small" data-dismiss="modal">Отказ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

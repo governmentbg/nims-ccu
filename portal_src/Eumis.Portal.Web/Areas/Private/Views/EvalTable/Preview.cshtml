@@ -1,0 +1,19 @@
+﻿@model R_10023.EvalTable
+
+<div class="container">
+    <form>
+        <div class="form-toggle">
+            <img src="@Links.Content.img.icons.eco_tree_png" data-placement="right" data-toggle="popover" data-content="@Global.EcoNotification" data-trigger="hover" class="info-icon" style="padding-top:5px;height: 33px; margin-right:5px; margin-left:-5px;" />
+        </div>
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Private.EvalTable.ActionNames.Print, MVC.Private.EvalTable.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.DisplayFor(m => m)
+
+        </form>
+    </div>
+</div>

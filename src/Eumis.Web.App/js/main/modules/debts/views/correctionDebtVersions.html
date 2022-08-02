@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newAmendmentBtn" btn-click="newAmendment()" text="correctionDebts_searchCorrectionDebtVersions_newAmendment" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebtId) || correctionDebtIsDeleted"></sc-button>
+
+      <sc-datatable items="correctionDebtVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-sref="{ state: 'root.correctionDebts.view.versions.edit', params: {ind: item.correctionDebtVersionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('CorrectionDebtActions.View', item.correctionDebtId)"></sc-button>
+        </sc-column>
+        <sc-column data="orderNum" title="correctionDebts_searchCorrectionDebtVersions_orderNum" type="number">
+        </sc-column>
+        <sc-column data="status" title="correctionDebts_searchCorrectionDebtVersions_status">
+        </sc-column>
+        <sc-column data="debtEuAmount" title="correctionDebts_searchCorrectionDebtVersions_debtEuAmount" type="money">
+        </sc-column>
+        <sc-column data="debtBgAmount" title="correctionDebts_searchCorrectionDebtVersions_debtBgAmount" type="money">
+        </sc-column>
+        <sc-column data="certEuAmount" title="correctionDebts_searchCorrectionDebtVersions_certEuAmount" type="money">
+        </sc-column>
+        <sc-column data="certBgAmount" title="correctionDebts_searchCorrectionDebtVersions_certBgAmount" type="money">
+        </sc-column>
+        <sc-column data="reimbursedEuAmount" title="correctionDebts_searchCorrectionDebtVersions_reimbursedEuAmount" type="money">
+        </sc-column>
+        <sc-column data="reimbursedBgAmount" title="correctionDebts_searchCorrectionDebtVersions_reimbursedBgAmount" type="money">
+        </sc-column>
+        <sc-column data="modifyDate" title="correctionDebts_searchCorrectionDebtVersions_modifyDate" type="date">
+        </sc-column>
+        <sc-column data="createdByUser" title="correctionDebts_searchCorrectionDebtVersions_createdByUser">
+        </sc-column>
+      </sc-datatable>
+  </div>
+</div>

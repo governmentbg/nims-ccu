@@ -1,0 +1,195 @@
+﻿@model R_10043.CostSupportingDocuments
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@CostSupportingDocument.Type</th>
+                <th style="width:120px;">@CostSupportingDocument.Number</th>
+                <th style="width:100px;">@CostSupportingDocument.Date</th>
+                <th style="width:350px;">@CostSupportingDocument.CSDPublisher</th>
+                <th style="width:150px;">@CostSupportingDocument.TotalAmount</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.CostSupportingDocumentCollection != null)
+            {
+                foreach (var item in Model.CostSupportingDocumentCollection)
+                {
+                    <tr>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.CostSupportingDocumentType)
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.Number)
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.Date)
+                        </td>
+                        <td style="word-break: break-all">
+                            @if (item.CompanyType == R_09986.CompanyTypeNomenclature.Beneficiary)
+                            {
+                                @Html.DisplayFor(m => item.Beneficiary)
+                            }
+                            else if (item.CompanyType == R_09986.CompanyTypeNomenclature.Partner)
+                            {
+                                @Html.DisplayFor(m => item.Partner)
+                            }
+                            else if (item.CompanyType == R_09986.CompanyTypeNomenclature.Contractor)
+                            {
+                                @Html.DisplayFor(m => item.Contractor)
+                            }
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.TotalAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="6">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="clearfix">
+                                    <div class="form-group col-md-6">
+                                        <label>@CostSupportingDocument.Type</label>
+                                        @Html.DisplayFor(m => item.CostSupportingDocumentType)
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-group col-md-12">
+                                        <label>@CostSupportingDocument.Description</label>
+                                        @Html.DisplayFor(m => item.CostSupportingDocumentDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-group col-md-4">
+                                        <label>@CostSupportingDocument.Number</label>
+                                        @Html.DisplayFor(m => item.Number)
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>@CostSupportingDocument.Date</label>
+                                        @Html.DisplayFor(m => item.Date)
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>@CostSupportingDocument.PaymentDate</label>
+                                        @Html.DisplayFor(m => item.PaymentDate)
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    @if (item.CompanyType == R_09986.CompanyTypeNomenclature.Beneficiary)
+                                    {
+                                        <div class="form-group col-md-6">
+                                            <label>@CostSupportingDocument.Beneficiary</label>
+                                            @Html.DisplayFor(m => item.Beneficiary)
+                                        </div>
+                                    }
+                                    else if (item.CompanyType == R_09986.CompanyTypeNomenclature.Partner)
+                                    {
+                                        <div class="form-group col-md-6">
+                                            <label>@CostSupportingDocument.Partner</label>
+                                            @Html.DisplayFor(m => item.Partner)
+                                        </div>
+                                    }
+                                    else if (item.CompanyType == R_09986.CompanyTypeNomenclature.Contractor)
+                                    {
+                                        <div class="form-group col-md-6">
+                                            <label>@CostSupportingDocument.Contractor</label>
+                                            @Html.DisplayFor(m => item.Contractor)
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>@CostSupportingDocument.ContractContractor</label>
+                                            @Html.DisplayFor(m => item.ContractContractor)
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="clearfix" style="margin-top:20px;">
+                                    <div class="form-group col-md-12">
+                                        <table class="chart-info dynamic-rows" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width:200px; width:50%;">@CostSupportingDocument.BudgetDetail</th>
+                                                    <th style="min-width:200px; width:50%;">@CostSupportingDocument.ContractActivity</th>
+                                                    <th style="min-width:100px; width: 100px;">@CostSupportingDocument.BudgetItemTotalAmount</th>
+                                                    <th>@Global.Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (item.FinanceReportBudgetItemDataCollection != null)
+                                                {
+                                                    foreach (var budgetItem in item.FinanceReportBudgetItemDataCollection)
+                                                    {
+                                                        <tr>
+                                                            <td style="word-break: break-all">
+                                                                @Html.DisplayFor(m => budgetItem.BudgetDetail)
+                                                            </td>
+                                                            <td style="word-break: break-all">
+                                                                @Html.DisplayFor(m => budgetItem.ContractActivity)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(m => budgetItem.TotalAmount)
+                                                            </td>
+                                                            <td style="border-left:1px solid #8f8f8f;">
+                                                                <a title="" class="history-btn">
+                                                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="history-table">
+                                                            <td colspan="4">
+                                                                <div class="history-table-wrapper clearfix">
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>@CostSupportingDocument.BudgetDetail</label>
+                                                                            @Html.DisplayFor(m => budgetItem.BudgetDetail)
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>@CostSupportingDocument.ContractActivity</label>
+                                                                            @Html.DisplayFor(m => budgetItem.ContractActivity)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>@CostSupportingDocument.GrandAmount</label>
+                                                                            @Html.DisplayFor(m => budgetItem.GrandAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>@CostSupportingDocument.IsVatAmount</label>
+                                                                            @Html.DisplayFor(m => budgetItem.IsVatAmount)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>@CostSupportingDocument.AdvancePayment</label>
+                                                                            @Html.DisplayFor(m => budgetItem.AdvancePayment)
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12" style="margin-top:20px;">
+                                    @Html.DisplayFor(m => item.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.AttachedDocumentsDescriptionOnly)
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

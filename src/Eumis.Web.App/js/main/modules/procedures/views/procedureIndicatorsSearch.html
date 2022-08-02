@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button ng-show="!isProcedureReadonly" name="newBtn" btn-sref="{ state: 'root.procedures.view.indicators.new' }" text="procedures_indicatorsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" style="margin-right: 3px;"
+      ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+    <sc-button ng-show="!isProcedureReadonly && hasIndicatorsForAttach" name="attachBtn" btn-sref="{ state: 'root.procedures.view.indicators.attach' }" text="procedures_indicatorsSearch_attach" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+    <label ng-hide="isProcedureReadonly || hasIndicatorsForAttach" l10n-text="mapNode_indicatorsSearch_hasNoIndicatorsForAttach" style="float: left; padding-top: 6px;"></label>
+    <sc-datatable items="indicators" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="type" row-class="{'deactivated-table-row' : !item.isActive}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.indicators.edit', params: {ind: item.indicatorId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="procedures_indicatorsSearch_programmeName">
+      </sc-column>
+      <sc-column data="measureName" title="procedures_indicatorsSearch_measureName">
+      </sc-column>
+      <sc-column data="name" title="procedures_indicatorsSearch_name" has-content="true">
+        <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="hasGenderDivision" type="boolean" title="procedures_indicatorsSearch_hasGenderDivision">
+      </sc-column>
+      <sc-column data="baseTotalValue" title="procedures_indicatorsSearch_baseTotalValue" type="money">
+      </sc-column>
+      <sc-column data="baseYear" title="procedures_indicatorsSearch_baseYear">
+      </sc-column>
+      <sc-column data="targetTotalValue" title="procedures_indicatorsSearch_targetTotalValue" type="money">
+      </sc-column>
+      <sc-column data="milestoneTargetTotalValue" title="procedures_indicatorsSearch_milestoneTargetTotalValue" type="money">
+      </sc-column>
+      <sc-column data="dataSource" title="procedures_indicatorsSearch_dataSource">
+      </sc-column>
+      <sc-column data="activeStatus" title="procedures_indicatorsSearch_status">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

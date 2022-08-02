@@ -1,0 +1,151 @@
+﻿@model List<R_10048.ProcurementPlan>
+
+@if (Model != null && Model.Count > 0)
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <table class="procurement-plans">
+            <tbody>
+                @if (Model[i].BFPContractPlan != null)
+                {
+                    @Html.Partial(MVC.Shared.Views.Print.BFPContractPlan, Model[i].BFPContractPlan ?? new R_10070.BFPContractPlan())
+                }
+                <tr>
+                    <td style="width: 35%">@ProcurementPlan.MAPreliminaryControl</td>
+                    <td style="width: 65%"><p>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model[i].MAPreliminaryControl ?? new R_09991.EnumNomenclature())</p></td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.PPAPreliminaryControl</td>
+                    <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model[i].PPAPreliminaryControl ?? new R_09991.EnumNomenclature())</td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.PPANumber</td>
+                    <td>@Model[i].PPANumber</td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.InternetAddress</td>
+                    <td>@Model[i].InternetAddress</td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.ExpectedAmount</td>
+                    <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].ExpectedAmount)</td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.NoticeDate</td>
+                    <td>
+                        @if (Model[i].NoticeDate.HasValue)
+                        {
+                            @Html.Partial(MVC.Shared.Views.Print.DateTime, Model[i].NoticeDate.Value)
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.OffersDeadlineDate</td>
+                    <td>
+                        @if (Model[i].OffersDeadlineDate.HasValue)
+                        {
+                            @Html.Partial(MVC.Shared.Views.Print.DateTime, Model[i].OffersDeadlineDate.Value)
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.IsAnnounced</td>
+                    <td>
+                        @Html.Partial(MVC.Shared.Views.Print.Boolean, Model[i].IsAnnounced)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@ProcurementPlan.IsTerminated</td>
+                    <td>
+                        @Html.Partial(MVC.Shared.Views.Print.Boolean, Model[i].IsTerminated)
+                    </td>
+                </tr>
+                @if (Model[i].DifferentiatedPositionCollection != null && Model[i].DifferentiatedPositionCollection.Count > 0)
+                {
+                    <tr>
+                        <td colspan="2"><strong>@ProcurementPlan.DifferentiatedPosition</strong></td>
+                    </tr>
+                    foreach (var position in Model[i].DifferentiatedPositionCollection)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DifferentiatedPosition, position)
+                    }
+                }
+
+                @if (Model[i].AttachedDocumentCollection != null && Model[i].AttachedDocumentCollection.Count > 0)
+                {
+                    <tr>
+                        <td colspan="2"><strong>@ProcurementPlan.AttachedDocuments</strong></td>
+                    </tr>
+                    foreach (var document in Model[i].AttachedDocumentCollection)
+                    {
+                        <tr>
+                            <td>@AttachedDocument.Description</td>
+                            <td>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, document.Description ?? string.Empty)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@AttachedDocument.FileName</td>
+                            <td>
+                                @if (document.AttachedDocumentContent != null)
+                                {
+                                    @document.AttachedDocumentContent.FileName
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+                @if (Model[i].PublicAttachedDocumentCollection != null && Model[i].PublicAttachedDocumentCollection.Count > 0)
+                {
+                    <tr>
+                        <td colspan="2"><strong>@ProcurementPlan.PublicAttachedDocuments</strong></td>
+                    </tr>
+                    foreach (var document in Model[i].PublicAttachedDocumentCollection)
+                    {
+                        <tr>
+                            <td>@AttachedDocument.Description</td>
+                            <td>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, document.Description ?? string.Empty)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@AttachedDocument.FileName</td>
+                            <td>
+                                @if (document.AttachedDocumentContent != null)
+                                {
+                                    @document.AttachedDocumentContent.FileName
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+
+                @if (Model[i].AdditionalAttachedDocumentCollection!= null && Model[i].AdditionalAttachedDocumentCollection.Count > 0)
+                {
+                    <tr>
+                        <td colspan="2"><strong>@ProcurementPlan.AdditionalAttachedDocuments</strong></td>
+                    </tr>
+                    foreach (var document in Model[i].AdditionalAttachedDocumentCollection)
+                    {
+                        <tr>
+                            <td>@AttachedDocument.Description</td>
+                            <td>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, document.Description ?? string.Empty)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@AttachedDocument.FileName</td>
+                            <td>
+                                @if (document.AttachedDocumentContent != null)
+                                {
+                                    @document.AttachedDocumentContent.FileName
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}

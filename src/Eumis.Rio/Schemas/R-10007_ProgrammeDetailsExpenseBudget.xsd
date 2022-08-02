@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10007" 
+	xmlns="http://ereg.egov.bg/segment/R-10007" 
+	
+	xmlns:l="http://ereg.egov.bg/segment/R-09989"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+    xmlns:bdsi="http://ereg.egov.bg/segment/R-10093"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09989" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10093" />
+	
+	<xsd:complexType name="ProgrammeDetailsExpenseBudget">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Ред от бюджета на програма на трето ниво</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+	  <xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="OrderNum" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Nuts" type="l:Location" minOccurs="0" />
+      <xsd:element name="Direction" type="bdsi:Direction" minOccurs="0" />
+	  <xsd:element name="GrandAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="SelfAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TotalAmount" type="xsd:decimal" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

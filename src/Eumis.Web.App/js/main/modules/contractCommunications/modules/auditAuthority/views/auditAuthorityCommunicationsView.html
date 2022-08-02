@@ -1,0 +1,14 @@
+<div>
+
+  <label class="title">{{contractInfo.name}}</label>
+
+  <sc-tabs tab-list="{
+    'auditAuthorityCommunications_tabs_contract': 'root.auditAuthorityCommunications.view.contract',
+    'auditAuthorityCommunications_tabs_communication': 'root.auditAuthorityCommunications.view.communication'
+  }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

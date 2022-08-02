@@ -1,0 +1,47 @@
+﻿@model R_10029.PreliminaryContract
+
+@if (Model != null)
+{
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>@PreliminaryContract.Name</th>
+                    <th style="min-width: 150px;">@PreliminaryContract.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @PreliminaryContract.RequestedFundingAmount
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.RequestedFundingAmount)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.CoFinancingBudgetAmount
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CoFinancingBudgetAmount)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong>@PreliminaryContract.Total</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.IsIncomeExpected
+                    </td>
+                    <td>
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsIncomeExpected)</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

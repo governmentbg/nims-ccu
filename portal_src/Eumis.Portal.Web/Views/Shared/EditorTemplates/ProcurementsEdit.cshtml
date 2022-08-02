@@ -1,0 +1,160 @@
+﻿@model Eumis.Portal.Web.Models.Procurements.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.YesNoNotApplicableNomenclature()).GetItems());
+
+    var jsonSubcontractorMembers = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.SubcontractorMemberTypeNomenclature()).GetItems());
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+
+    var resourcesObjectCompany = new
+    {
+        Search = Company.Search,
+        PleaseWait = Global.PleaseWait,
+        DataFilled = Company.DataFilled,
+        NoResult = Company.NoResult,
+        ValidationError = Company.ValidationError,
+
+        Uin = Company.Uin,
+        UinType = Company.UinType,
+        Name = string.Format("{0} {1}", Company.Name, SymbolsCount.Symbols200),
+        NameEN = string.Format("{0} {1}", Company.NameEN, SymbolsCount.Symbols200),
+        NameENTooltip = Company.NameENTooltip,
+        CompanyType = Company.CompanyType,
+        CompanyLegalType = Company.CompanyLegalType,
+        IsPrivateLegal = Company.IsPrivateLegal,
+        IsCountryLegal = Company.IsCountryLegal,
+        CompanySizeType = Company.CompanySizeType,
+        KidCodeOrganization = Company.KidCodeOrganization,
+        KidCodeProject = Company.KidCodeProject,
+        FinancialContribution = Company.FinancialContribution,
+        Seat = Company.Seat,
+        Management = Company.Management,
+        Correspondence = Company.Correspondence,
+        Email = Company.Email,
+        EmailTooltip = Company.EmailTooltip,
+        Phone1 = Company.Phone1,
+        Phone2 = Company.Phone2,
+        Fax = Company.Fax,
+        CompanyRepresentativePerson = string.Format("{0} {1}", Company.CompanyRepresentativePerson, SymbolsCount.Symbols100),
+        CompanyContactPerson = string.Format("{0} {1}", Company.CompanyContactPerson, SymbolsCount.Symbols100),
+        CompanyContactPersonPhone = Company.CompanyContactPersonPhone,
+        CompanyContactPersonEmail = Company.CompanyContactPersonEmail,
+        Country = Address.Country,
+        Settlement = Address.Settlement,
+        PostCode = Address.PostCode,
+        Street = string.Format("{0} {1}", Address.Street, SymbolsCount.Symbols300),
+        FullAddress = Address.FullAddress,
+        Copy = Address.Copy,
+        Captcha = Global.Captcha,
+        SymbolsCount = Global.SymbolsCount
+    };
+
+    var jsonResourcesObjectCompany = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectCompany);
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+
+
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.Procurements = @(Html.Raw(jsonModel));
+
+        window._eumis_options.resourcesObjectCompany = @(Html.Raw(jsonResourcesObjectCompany));
+
+        // Procurement plan
+        window._eumis_options.acceptances = @(Html.Raw(jsonAcceptances));
+        window._eumis_options.noId = "@Eumis.Documents.Enums.YesNoNotApplicableNomenclature.No.Id";
+        window._eumis_options.noName = "@Eumis.Documents.Enums.YesNoNotApplicableNomenclature.No.Name";
+
+        window._eumis_options.subcontractorMemberTypes = @(Html.Raw(jsonSubcontractorMembers));
+        window._eumis_options.subcontractorId = "@Eumis.Documents.Enums.SubcontractorMemberTypeNomenclature.Subcontractor.Id";
+        window._eumis_options.subcontractorName = "@Eumis.Documents.Enums.SubcontractorMemberTypeNomenclature.Subcontractor.Name";
+
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerProcurements'), ['moduleProcurements']);
+            }, 100);
+        });
+    </script>
+    <div class="procurements" id="containerProcurements" ng-controller="controllerMainProcurements">
+        @{ int sectionNumber = 1;}
+        <h2 data-section="@sectionNumber" class="section-heading" activation-name="procurements" broadcast-name="procurementsActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Procurements.Contractors
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Contractors != null && Model.Contractors.isLocked)
+            {
+                @Html.DisplayFor(m => m.Contractors)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.Contractors.id)
+                @Html.EditorFor(m => m.Contractors.ContractorCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++;}
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Procurements.ContractContractors
+        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Procurements.ContractContractorsLabel" data-trigger="hover" alt="" data-original-title="" title="">
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.ContractContractors != null && Model.ContractContractors.isLocked)
+            {
+                @Html.DisplayFor(m => m.ContractContractors)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.ContractContractors.id)
+                @Html.EditorFor(m => m.ContractContractors.ContractContractorCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++;}
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @Procurements.ProcurementPlans
+            <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Procurements.ProcurementPlansLabel" data-trigger="hover" alt="" data-original-title="" title="">
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.ProcurementPlans != null && Model.ProcurementPlans.isLocked)
+            {
+                @Html.DisplayFor(m => m.ProcurementPlans, MVC.Shared.Views.DisplayTemplates.ProcurementsPlans)
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.ProcurementPlans.id)
+                @Html.EditorFor(m => m.ProcurementPlans.ProcurementPlanCollection, MVC.Shared.Views.EditorTemplates.ProcurementPlanCollection)
+            }
+        </section>
+    </div>
+}

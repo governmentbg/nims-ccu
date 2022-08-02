@@ -1,0 +1,205 @@
+﻿@model R_10041.ContractContractors
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ContractContractorCollection != null && Model.ContractContractorCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.ContractContractorCollection.Count; i++)
+            {
+                <table class="contract-contractors">
+                    <tbody>
+                        <tr>
+                            <td colspan="2"><strong>@ContractContractor.Contract</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 35%;">@ContractContractor.SignDate</td>
+                            <td style="width: 65%;">
+                                @if (Model.ContractContractorCollection[i].SignDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ContractContractorCollection[i].SignDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.Number</td>
+                            <td>@Model.ContractContractorCollection[i].Number</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>@ContractContractor.AmountData</strong></td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.TotalAmountExcludingVAT</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].TotalAmountExcludingVAT)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.ContractAmountWithoutVAT</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].ContractAmountWithoutVAT)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.VATAmountIfEligible</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].VATAmountIfEligible)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.TotalFundedValue</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].TotalFundedValue)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.BudgetDifference</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].BudgetDifference)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.NumberAnnexes</td>
+                            <td>@Model.ContractContractorCollection[i].NumberAnnexes</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.CurrentAnnexTotalAmount</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractContractorCollection[i].CurrentAnnexTotalAmount)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.Comment</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractContractorCollection[i].Comment ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.StartDate</td>
+                            <td>
+                                @if (Model.ContractContractorCollection[i].StartDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ContractContractorCollection[i].StartDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.EndDate</td>
+                            <td>
+                                @if (Model.ContractContractorCollection[i].EndDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ContractContractorCollection[i].EndDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ContractContractor.Contractor</strong></td>
+                            <td>
+                                @if (Model.ContractContractorCollection[i].Contractor != null)
+                                {
+                                    @Model.ContractContractorCollection[i].Contractor.Name
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.HasSubcontractorMember</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.ContractContractorCollection[i].HasSubcontractorMember)</td>
+                        </tr>
+                        <tr>
+                            <td>@ContractContractor.WithoutProcurementPlan</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.ContractContractorCollection[i].WithoutProcurementPlan)</td>
+                        </tr>
+                        @if (Model.ContractContractorCollection[i].HasSubcontractorMember && Model.ContractContractorCollection[i].SubcontractorMemberCollection != null
+                            && Model.ContractContractorCollection[i].SubcontractorMemberCollection.Count > 0)
+                        {
+                            <tr>
+                                <td colspan="2"><strong>@ContractContractor.SubcontractorMembersHeader</strong></td>
+                            </tr>
+                            foreach (var member in Model.ContractContractorCollection[i].SubcontractorMemberCollection)
+                            {
+                                <tr>
+                                    <td>@ContractContractor.SubcontractorMemberType</td>
+                                    <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, member.Type ?? new R_09991.EnumNomenclature())</td>
+                                </tr>
+                                <tr>
+                                    <td>@ContractContractor.SubcontractorMemberName</td>
+                                    <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, member.Contractor ?? new R_10000.PrivateNomenclature())</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong>@ContractContractor.SubcontractorMemberContract</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>@ContractContractor.SubcontractorMemberContractDate</td>
+                                    <td>
+                                        @if (member.ContractDate.HasValue)
+                                        {
+                                            @Html.Partial(MVC.Shared.Views.Print.DateTime, member.ContractDate)
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@ContractContractor.SubcontractorMemberContractNumber</td>
+                                    <td>@member.ContractNumber</td>
+                                </tr>
+                                <tr>
+                                    <td>@ContractContractor.SubcontractorMemberContractAmount</td>
+                                    <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, member.ContractAmount)</td>
+                                </tr>
+                            }
+                        }
+
+                        @if (Model.ContractContractorCollection[i].ActivitiesBudgetDetailsRefCollection != null &&
+                            Model.ContractContractorCollection[i].ActivitiesBudgetDetailsRefCollection.Count > 0)
+                        {
+                            <tr>
+                                <td colspan="2"><strong>@ContractContractor.ActivitiesBudgetDetailsRefData</strong></td>
+                            </tr>
+                            for (int j = 0; j < Model.ContractContractorCollection[i].ActivitiesBudgetDetailsRefCollection.Count; j++)
+                            {
+                                var current = Model.ContractContractorCollection[i].ActivitiesBudgetDetailsRefCollection[j];
+
+                                <tr>
+                                    <td>@ContractContractor.ContractActivity</td>
+                                    <td>
+                                        @if (current.ContractActivity != null)
+                                        {
+                                            @current.ContractActivity.Name
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@ContractContractor.BudgetDetail</td>
+                                    <td>
+                                        @if (current.BudgetDetail != null)
+                                        {
+                                            @current.BudgetDetail.Name
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        @if (Model.ContractContractorCollection[i].AttachedDocumentCollection != null && Model.ContractContractorCollection[i].AttachedDocumentCollection.Count > 0)
+                        {
+                            <tr>
+                                <td colspan="2"><strong>@ContractContractor.AttachedDocuments</strong></td>
+                            </tr>
+                            foreach (var document in Model.ContractContractorCollection[i].AttachedDocumentCollection)
+                            {
+                                <tr>
+                                    <td>@AttachedDocument.Description</td>
+                                    <td>
+                                        @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, document.Description ?? string.Empty)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@AttachedDocument.FileName</td>
+                                    <td>
+                                        @if (document.AttachedDocumentContent != null)
+                                        {
+                                            @document.AttachedDocumentContent.FileName
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        @if (!Model.ContractContractorCollection[i].isActive)
+                        {
+                            <tr>
+                                <td><strong>@ContractContractor.Status</strong></td>
+                                <td>@ContractContractor.Canceled</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

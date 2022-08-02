@@ -1,0 +1,30 @@
+﻿<ng-form name="editProcedureFinalPaymentDocumentsForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editFinalPaymentDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editFinalPaymentDocument_activate" class="btn btn-success btn-xs" ng-show="finalPaymentDocument.isActivated && !finalPaymentDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', finalPaymentDocument.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editFinalPaymentDocument_deactivate" class="btn btn-danger btn-xs" ng-show="finalPaymentDocument.isActivated && finalPaymentDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', finalPaymentDocument.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editFinalPaymentDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="finalPaymentDocument.isActive && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', finalPaymentDocument.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="delete()" text="procedures_editFinalPaymentDocument_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!finalPaymentDocument.isActivated && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', finalPaymentDocument.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editFinalPaymentDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editFinalPaymentDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !finalPaymentDocument.isActive}">
+      <eumis-procedure-contract-report-document name="procedureContractReportDocumentForm" ng-model="finalPaymentDocument" sc-form-params="{ isActivated: finalPaymentDocument.isActivated }"></eumis-procedure-contract-report-document>
+    </div>
+  </div>
+</ng-form>

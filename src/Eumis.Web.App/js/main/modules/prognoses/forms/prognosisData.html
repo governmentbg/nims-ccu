@@ -1,0 +1,114 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'prognosisStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="prognoses_dataForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="prognoses_dataForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" ng-readonly="true" l10n-text="prognoses_dataForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.status === 'deleted'">
+    <sc-field type="textarea" rows="3" ng-model="model.deleteNote" ng-readonly="true" l10n-text="prognoses_dataForm_deleteNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.level === 'programme'">
+    <sc-field type="nomenclature" alias="'prognosisProgrammes'" mode="id" ng-model="model.programmeId" ng-readonly="true" l10n-text="prognoses_dataForm_programme" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+  <div class="row" ng-if="model.level === 'programmePriority'">
+    <sc-field type="nomenclature" alias="'programmePriorities'" mode="id" ng-model="model.programmePriorityId" ng-readonly="true" l10n-text="prognoses_dataForm_programmePriority" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+  <div class="row" ng-if="model.level === 'procedure'">
+    <sc-field type="nomenclature" alias="'prognosisProcedures'" mode="id" ng-model="model.procedureId" ng-readonly="true" l10n-text="prognoses_dataForm_procedure" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'years'" ng-model="model.year" mode="id" ng-readonly="true" l10n-text="prognoses_dataForm_year" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'months'" ng-model="model.month" mode="id" ng-readonly="true" l10n-text="prognoses_dataForm_month" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_contracted"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.contractedEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.contractedBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="contractedBfpAmount">
+      <sc-money ng-model="model.contractedBfpAmount" name="contractedBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateContracted()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_payment"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.paymentEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.paymentBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="paymentBfpAmount">
+      <sc-money ng-model="model.paymentBfpAmount" name="paymentBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculatePayment()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_advancePayment"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.advancePaymentEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.advancePaymentBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="advancePaymentBfpAmount">
+      <sc-money ng-model="model.advancePaymentBfpAmount" name="advancePaymentBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateAdvancePayment()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_advanceVerPayment"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.advanceVerPaymentEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.advanceVerPaymentBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="advanceVerPaymentBfpAmount">
+      <sc-money ng-model="model.advanceVerPaymentBfpAmount" name="advanceVerPaymentBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateVerAdvancePayment()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_intermediatePayment"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.intermediatePaymentEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.intermediatePaymentBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="intermediatePaymentBfpAmount">
+      <sc-money ng-model="model.intermediatePaymentBfpAmount" name="intermediatePaymentBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateIntermediatePayment()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_finalPayment"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.finalPaymentEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.finalPaymentBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="finalPaymentBfpAmount">
+      <sc-money ng-model="model.finalPaymentBfpAmount" name="finalPaymentBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateFinalPayment()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_approved"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.approvedEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.approvedBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="approvedBfpAmount">
+      <sc-money ng-model="model.approvedBfpAmount" name="approvedBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateApproved()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="prognoses_dataForm_certified"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedEuAmount" l10n-text="prognoses_dataForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedBgAmount" l10n-text="prognoses_dataForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="prognoses_dataForm_bfpAmount" field-name="certifiedBfpAmount">
+      <sc-money ng-model="model.certifiedBfpAmount" name="certifiedBfpAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculateCertified()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+</ng-form>

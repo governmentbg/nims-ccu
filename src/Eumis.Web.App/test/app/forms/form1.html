@@ -1,0 +1,73 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.text" ng-required="true" l10n-text="text" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.date" ng-required="true" l10n-text="date" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'brands'" ng-model="model.brandId" ng-required="true" mode="id" l10n-text="nomenclature" class="col-sm-4"></sc-field>
+    <sc-field type="nomenclature" alias="'models'" ng-model="model.modelId" ng-required="true" mode="id" params="{brandId: model.brandId}" l10n-text="nomenclature cascading"
+      class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.textArea" ng-required="true" l10n-text="textarea" class="col-sm-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file"
+      ng-model="model.file"
+      ng-required="true"
+      url-template="TestFile"
+      url-params="{ testparam: 'myparam' }"
+      l10n-text="file"
+      class="col-sm-4"
+    >
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field
+      type="text"
+      ng-model="model.syncValidationText"
+      ng-required="true"
+      l10n-text="custom sync validation"
+      class="col-sm-4"
+      sc-validate="{ customSync: isValidSync }"
+      validations="{ customSync: 'first letter should be uppercase' }"
+    >
+    </sc-field>
+    
+    <sc-field
+      type="text"
+      ng-model="model.asyncValidationText"
+      ng-required="true"
+      l10n-text="custom async validation"
+      class="col-sm-4"
+      sc-validate-async="{ customAsync: isValidAsync }"
+      validations="{ customAsync: 'text without a number is invalid' }"
+    >
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field-group
+      class="col-sm-3"
+      text="field group with money field"
+      validations="{required: 'default'}"
+      field-name="fieldGroupField"
+    >
+      <sc-money
+        ng-model="model.fieldGroupField"
+        name="fieldGroupField"
+        ng-readonly="form.$readonly"
+        ng-required="true"
+      >
+      </sc-money>
+      <sc-button
+        name="customBtn"
+        btn-click="customBtnAction()"
+        ng-disabled="form.$readonly"
+        class="btn btn-default btn-sm"
+        icon="fa-calculator">
+      </sc-button>
+    </sc-field-group>
+  </div>
+</ng-form>

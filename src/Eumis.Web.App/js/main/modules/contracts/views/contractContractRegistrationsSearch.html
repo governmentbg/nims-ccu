@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-button name="newBtn" btn-sref="{ state: 'root.contracts.view.registrations.new' }" text="contracts_registrations_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" style="margin-right: 3px;"
+      ng-disabled="!$canDo('ContractRegistrationActions.CreateOrAttachRegistration', contractId)"></sc-button>
+    <sc-button name="attachBtn" btn-sref="{ state: 'root.contracts.view.registrations.attach' }" text="contracts_registrations_search_attach" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractRegistrationActions.CreateOrAttachRegistration', contractId)"></sc-button>
+
+    <sc-datatable items="contractRegs" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.registrations.edit', params: {ind: item.contractsContractRegistrationId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="email" title="contracts_registrations_search_email">
+      </sc-column>
+      <sc-column data="firstName" title="contracts_registrations_search_firstName">
+      </sc-column>
+      <sc-column data="lastName" title="contracts_registrations_search_lastName">
+      </sc-column>
+      <sc-column data="phone" title="contracts_registrations_search_phone">
+      </sc-column>
+      <sc-column data="isActive" title="contracts_registrations_search_isActive" type="boolean">
+      </sc-column>
+      <sc-column sortable="false" title="contracts_registrations_search_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

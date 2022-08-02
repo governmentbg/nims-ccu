@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-09999"
+	xmlns="http://ereg.egov.bg/segment/R-09999"
+	
+	xmlns:l="http://ereg.egov.bg/segment/R-09989"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09989" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+
+  <xsd:complexType name="NutsAddress">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Адрес по региони</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="NutsLevel" type="prn:PrivateNomenclature" minOccurs="0" />
+
+      <xsd:element name="NutsAddressContent" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Country" type="l:Location" minOccurs="0" />
+            <xsd:element name="ProtectedZone" type="l:Location" minOccurs="0" />
+            <xsd:element name="Nuts1" type="l:Location" minOccurs="0" />
+            <xsd:element name="Nuts2" type="l:Location" minOccurs="0" />
+            <xsd:element name="District" type="l:Location" minOccurs="0" />
+            <xsd:element name="Municipality" type="l:Location" minOccurs="0" />
+            <xsd:element name="Settlement" type="l:Location" minOccurs="0" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

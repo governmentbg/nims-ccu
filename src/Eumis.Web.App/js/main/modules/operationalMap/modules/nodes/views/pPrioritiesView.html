@@ -1,0 +1,11 @@
+<div>
+
+  <label class="title" title="{{info.name}}">{{info.shortName}} {{belongTo}} <a sc-sref="{state: 'root.map.programmes.view', params: { id: info.parentId } }" title="{{info.parentName}}">{{info.parentShortName}}</a></label>
+
+  <sc-tabs tab-list="tabList"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

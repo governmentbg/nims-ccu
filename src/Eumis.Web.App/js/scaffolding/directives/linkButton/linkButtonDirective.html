@@ -1,0 +1,9 @@
+﻿<a>
+  <span ng-class="{
+    'glyphicon': iconBaseClass === 'glyphicon' && !$pending,
+    'fa': iconBaseClass === 'fa' || $pending,
+    'fa-refresh fa-spin-fast': $pending,
+    '{{icon}}': !$pending
+  }"></span>
+  <span>{{text}}</span>
+</a>

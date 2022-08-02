@@ -1,0 +1,6 @@
+﻿GO
+
+ALTER TABLE [dbo].[Users] ALTER COLUMN [Address] NVARCHAR (300) NULL
+ALTER TABLE [dbo].[Users] ALTER COLUMN [Position] NVARCHAR (300) NULL
+
+GO

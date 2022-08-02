@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <!-- inject:styles.css:css -->
+  <!-- endinject -->
+</head>
+<body>
+  <div id="ng-app" ng-app="testapp">
+  
+    <script type="text/javascript">
+      window.eumisConfiguration = {
+        blobServerLocation: "http://localhost:4100/files/",
+        maxBlobSize: "2097152000"
+      };
+    </script>
+
+    <div id="root" ui-view>
+    </div>
+    
+    <!-- inject:lib.js:js -->
+    <!-- endinject -->
+    <!-- inject:app.js:js -->
+    <!-- endinject -->
+    <!-- inject:templates.js:js -->
+    <!-- endinject -->
+  
+  </div>
+</body>
+</html>

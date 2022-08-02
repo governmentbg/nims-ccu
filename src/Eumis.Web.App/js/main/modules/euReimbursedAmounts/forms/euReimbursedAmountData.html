@@ -1,0 +1,53 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" mode="id" ng-model="model.programmeId" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_programme" class="col-sm-8 col-md-7"></sc-field>
+    <sc-field type="nomenclature" alias="'euReimbursedAmountStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row" ng-show="model.status === 'removed'">
+    <sc-field type="textarea" ng-model="model.deleteNote" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_deleteNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'euReimbursedAmountPaymentTypes'" mode="id" ng-model="model.paymentType" l10n-text="euReimbursedAmounts_amountDataForm_paymentType" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.date" l10n-text="euReimbursedAmounts_amountDataForm_date" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.euTranche" l10n-text="euReimbursedAmounts_amountDataForm_euTranche" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="euReimbursedAmounts_amountDataForm_paymentApp"></h5>
+  <div class="row">
+    <sc-field type="text" ng-model="model.paymentAppNum" ng-maxlength="50" validations="{maxlength: 'euReimbursedAmounts_amountDataForm_paymentAppNumMaxLength'}" l10n-text="euReimbursedAmounts_amountDataForm_paymentAppNum" class="col-sm-8 col-md-6"></sc-field>
+    <sc-field type="date" ng-model="model.paymentAppSentDate" l10n-text="euReimbursedAmounts_amountDataForm_paymentAppSentDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.paymentAppDateFrom" l10n-text="euReimbursedAmounts_amountDataForm_paymentAppDateFrom" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.paymentAppDateTo" l10n-text="euReimbursedAmounts_amountDataForm_paymentAppDateTo" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+ <h5 class="table-header" l10n-text="euReimbursedAmounts_amountDataForm_certExpensesEuro"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certExpensesBfpEuAmountEuro" l10n-text="euReimbursedAmounts_amountDataForm_euAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesBfpBgAmountEuro" l10n-text="euReimbursedAmounts_amountDataForm_bgAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesBfpTotalAmountEuro" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_bfpTotalAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesSelfAmountEuro" l10n-text="euReimbursedAmounts_amountDataForm_selfAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesTotalAmountEuro" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div>
+    <h5 class="table-header" style="display: inline-block;" l10n-text="euReimbursedAmounts_amountDataForm_certExpensesLv"></h5>
+    <sc-button name="calcExpensesBtn" ng-show="!form.$readonly" btn-click="calcExpenses()" text="euReimbursedAmounts_amountDataForm_calculate" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary"></sc-button>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certExpensesBfpEuAmountLv" l10n-text="euReimbursedAmounts_amountDataForm_euAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesBfpBgAmountLv" l10n-text="euReimbursedAmounts_amountDataForm_bgAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesBfpTotalAmountLv" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_bfpTotalAmount" class="col-sm-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesSelfAmountLv" l10n-text="euReimbursedAmounts_amountDataForm_selfAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certExpensesTotalAmountLv" ng-readonly="true" l10n-text="euReimbursedAmounts_amountDataForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.note" l10n-text="euReimbursedAmounts_amountDataForm_note" class="ccol-sm-12 col-md-10"></sc-field>
+  </div>
+</ng-form>

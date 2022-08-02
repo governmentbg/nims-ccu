@@ -1,0 +1,27 @@
+﻿@model R_10019.ProjectErrands
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ProjectErrand.Name</th>
+                    <th>@ProjectErrand.ErrandArea</th>
+                    <th>@ProjectErrand.ErrandLegalAct</th>
+                    <th>@ProjectErrand.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ProjectErrandCollection != null && Model.ProjectErrandCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ProjectErrandCollection.Count; i++)
+                    {
+                        @Html.DisplayFor(m => m.ProjectErrandCollection[i])
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

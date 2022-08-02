@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewPaidAmounts_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showRequestedAmounts=!showRequestedAmounts">
+        <span l10n-text="projectDossier_viewPaidAmounts_requestedAmounts"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showRequestedAmounts, 'glyphicon-chevron-right': !showRequestedAmounts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showRequestedAmounts" ng-href="{{requestedAmountsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewPaidAmounts_requestedAmountExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showRequestedAmounts" items="requestedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.search', params: { id: item.contractReportId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+          </sc-column>
+          <sc-column data="requestedAmount" title="projectDossier_viewPaidAmounts_requestedAmount"></sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewPaidAmounts_requestedAmountRegNum"></sc-column>
+          <sc-column data="contractName" title="projectDossier_viewPaidAmounts_requestedAmountContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewPaidAmounts_requestedAmountProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewPaidAmounts_requestedAmountStatus"></sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewPaidAmounts_requestedAmountOrderNum" type="number"></sc-column>
+          <sc-column data="reportType" title="projectDossier_viewPaidAmounts_requestedAmountReportType"></sc-column>
+          <sc-column data="source" title="projectDossier_viewPaidAmounts_requestedAmountSource"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showActuallyPaidAmounts=!showActuallyPaidAmounts" style="cursor:pointer;">
+        <span l10n-text="projectDossier_viewPaidAmounts_actuallyPaidAmounts"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showActuallyPaidAmounts, 'glyphicon-chevron-right': !showActuallyPaidAmounts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showActuallyPaidAmounts" ng-href="{{actuallyPaidAmountsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewPaidAmounts_actuallyPaidAmountExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showActuallyPaidAmounts" items="actuallyPaidAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.actuallyPaidAmounts.view.basicData', params: { id: item.amountId }}"
+              ng-disabled="!$canDo('ActuallyPaidAmountActions.View', item.amountId)"></sc-button>
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewPaidAmounts_actuallyPaidAmountProgramme">
+          </sc-column>
+          <sc-column data="contractRegNumber" title="projectDossier_viewPaidAmounts_actuallyPaidAmountContractRegNumber">
+          </sc-column>
+          <sc-column data="contractReportPaymentNum" title="projectDossier_viewPaidAmounts_actuallyPaidAmountReportPaymentNum" type="number">
+          </sc-column>
+          <sc-column data="contractReportPaymentType" title="projectDossier_viewPaidAmounts_actuallyPaidAmountPaymentType">
+          </sc-column>
+          <sc-column data="financeSource" title="projectDossier_viewPaidAmounts_actuallyPaidAmountFinanceSource">
+          </sc-column>
+          <sc-column data="statusDescr" title="projectDossier_viewPaidAmounts_actuallyPaidAmountStatus">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewPaidAmounts_actuallyPaidAmountRegNumber">
+          </sc-column>
+          <sc-column data="paymentReason" title="projectDossier_viewPaidAmounts_actuallyPaidAmountPaymentReason">
+          </sc-column>
+          <sc-column data="paymentDate" title="projectDossier_viewPaidAmounts_actuallyPaidAmountPaymentDate" type="date">
+          </sc-column>
+          <sc-column data="paidBfpTotalAmount" title="projectDossier_viewPaidAmounts_actuallyPaidAmountPaidBfpTotalAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

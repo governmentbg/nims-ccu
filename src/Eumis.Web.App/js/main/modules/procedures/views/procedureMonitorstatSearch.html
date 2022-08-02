@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="table-header table-header-first pull-left" l10n-text="procedures_searchMonitorstatDocument_title"></h5>
+  </div>
+  <div class="panel-body">
+    <div class="col-sm-12">
+      <div>
+        <sc-button name="newProcedureMonitorstatDocumentBtn" ng-click="chooseReport()" text="procedures_searchMonitorstatDocument_add" class="btn btn-sm btn-primary pull-left" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+      </div>
+    </div>
+    <sc-datatable items="monitorstatDocuments" filterable="true" pageable="true" sortable="false" dynamic-columns="true" default-sort="year" default-sort-asc-desc="asc">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="removeBtn" ng-click="removeItem(item)" class="btn btn-xs btn-danger" icon="glyphicon-remove"></sc-button>
+      </sc-column>
+      <sc-column data="year" title="procedures_searchMonitorstatDocument_year"></sc-column>
+      <sc-column data="surveyCode" title="procedures_searchMonitorstatDocument_survey"></sc-column>
+      <sc-column data="reportName" title="procedures_searchMonitorstatDocument_report"></sc-column>
+      <sc-column data="status" title="procedures_searchMonitorstatDocument_status"></sc-column>
+    </sc-datatable>
+  </div>
+
+  <div class="panel-heading">
+    <h5 class="table-header table-header-first pull-left" l10n-text="procedures_searchMonitorstatEconomicActivities_title"></h5>
+  </div>
+  <div class="panel-body">
+    <div class="col-sm-12">
+      <div>
+        <sc-button name="newProcedureMonitorstatEconomicActivityBtn" btn-sref="{ state: 'root.procedures.view.monitorstat.economicActivities.new' }" text="procedures_searchMonitorstatEconomicActivities_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+      </div>
+      <sc-datatable items="monitorstatEconomicActivities" filterable="true" pageable="true" sortable="false" dynamic-columns="true" default-sort="year" default-sort-asc-desc="asc">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="removeBtn" ng-click="removeActivity(item)" class="btn btn-xs btn-danger" icon="glyphicon-remove"></sc-button>
+        </sc-column>
+        <sc-column data="year" title="procedures_searchMonitorstatEconomicActivities_year"></sc-column>
+        <sc-column data="type" title="procedures_searchMonitorstatEconomicActivities_type"></sc-column>
+        <sc-column data="createDate" title="procedures_searchMonitorstatEconomicActivities_createDate" type="date"></sc-column>
+        <sc-column data="status" title="procedures_searchMonitorstatEconomicActivities_status"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+
+  <div class="panel-heading">
+    <h5 class="table-header pull-left" l10n-text="procedures_searchMonitorstatDocument_requestTitle"></h5>
+  </div>
+  <div class="panel-body">
+    <div class="col-sm-12">
+      <div>
+        <sc-button ng-show="monitorstatDocuments.length || monitorstatEconomicActivities.length" name="newProcedureMonitorstatRequestBtn" btn-sref="{ state: 'root.procedures.view.monitorstat.new' }" text="procedures_searchMonitorstatDocument_addRequest" class="btn btn-sm btn-primary pull-left" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+      </div>
+      <sc-datatable items="monitorstatRequests" filterable="true" pageable="true" sortable="false" dynamic-columns="true" default-sort="year" default-sort-asc-desc="asc">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="viewButton" btn-sref="{state: 'root.procedures.view.monitorstat.edit', params: { id: procedureId, ind: item.procedureMonitorstatRequestId}}" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ProcedureActions.View', procedureId)"></sc-button>
+          <sc-button ng-disabled="item.status !== 'draft'" name="removeBtn" ng-click="removeRequset(item)" class="btn btn-xs btn-danger" icon="glyphicon-remove"></sc-button>
+        </sc-column>
+        <sc-column data="statusDescr" title="procedures_searchMonitorstatDocument_requestStatus"></sc-column>
+        <sc-column data="executionStartDate" title="procedures_searchMonitorstatDocument_executionStartDate" type="date"></sc-column>
+        <sc-column data="executionEndDate" title="procedures_searchMonitorstatDocument_executionEndDate" type="date"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</div>

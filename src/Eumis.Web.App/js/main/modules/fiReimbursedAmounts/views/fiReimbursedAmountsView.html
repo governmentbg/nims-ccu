@@ -1,0 +1,12 @@
+<div>
+  <label class="title">{{infoText}}</label>
+  <sc-tabs tab-list="{
+      'fiReimbursedAmounts_viewReimbursedAmount_view': 'root.fiReimbursedAmounts.view.basicData',
+      'fiReimbursedAmounts_viewReimbursedAmount_reimbursedAmount': 'root.fiReimbursedAmounts.view.amount'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10020.Message
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsMessage</h1>
+</div>
+
+<div class="container">
+
+    <form>
+        <div class="form-toggle">
+            <img src="@Links.Content.img.icons.eco_tree_png" data-placement="right" data-toggle="popover" data-content="@Global.EcoNotification" data-trigger="hover" class="info-icon" style="padding-top:5px;height: 33px; margin-right:5px; margin-left:-5px;" />
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(ProjectCommunication.Question, MVC.Private.ProjectCommunication.ActionNames.Prepare, MVC.Private.ProjectCommunication.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.ProjectCommunication.ActionNames.Display, MVC.Private.ProjectCommunication.Name, new { area = MVC.Private.Name }, new { @class = "tab active" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.ProjectCommunication.ActionNames.Print, MVC.Private.ProjectCommunication.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+        <form class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                             Url.Action(MVC.Private.ProjectCommunication.ActionNames.Prepare, MVC.Private.ProjectCommunication.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                             Url.Action(MVC.Private.ProjectCommunication.ActionNames.Prepare, MVC.Private.ProjectCommunication.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m, MVC.Shared.Views.DisplayTemplates.ProjectCommunication)
+
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.ProjectCommunication.ActionNames.Prepare, MVC.Private.ProjectCommunication.Name, null, new { @class = "blue-button small back left" })
+
+                @Html.ActionLink(ProjectCommunication.Send, MVC.Private.ProjectCommunication.ActionNames.Submit, MVC.Private.ProjectCommunication.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </form>
+    </div>
+</div>

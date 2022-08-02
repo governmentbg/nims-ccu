@@ -1,0 +1,33 @@
+<ng-form name="editFinancialCorrectionVersionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="financialCorrections_editFinancialCorrectionVersion_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="actualBtn" btn-click="changeStatus('actual')" text="financialCorrections_editFinancialCorrectionVersion_actual" class="btn btn-default btn-xs"
+          ng-show="financialCorrectionStatus !== 'removed' && financialCorrectionVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('FinancialCorrectionActions.Edit', financialCorrectionVersion.financialCorrectionId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="financialCorrections_editFinancialCorrectionVersion_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="financialCorrectionStatus !== 'removed' && financialCorrectionVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('FinancialCorrectionActions.Edit', financialCorrectionVersion.financialCorrectionId)">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="financialCorrections_editFinancialCorrectionVersion_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" 
+          ng-show="financialCorrectionStatus === 'entered' && financialCorrectionVersion.status === 'draft' && !editMode" ng-disabled="!$canDo('FinancialCorrectionActions.Edit', financialCorrectionVersion.financialCorrectionId) || financialCorrectionIsDeleted">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="financialCorrections_editFinancialCorrectionVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="financialCorrections_editFinancialCorrectionVersion_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-financial-correction-version name="financialCorrectionVersionForm" ng-model="financialCorrectionVersion"></eumis-financial-correction-version>
+    </div>
+
+  </div>
+</ng-form>

@@ -1,0 +1,27 @@
+<div class="tab-content">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading">{{message.title}}</strong>
+      <div class="pull-right" ng-if="!message.isArchived">
+        <sc-button name="archiveBtn" btn-click="archive()" text="messages_viewIngoing_archive" class="btn btn-danger btn-xs" icon="glyphicon-remove">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <div ng-bind-html="content"></div>
+      <div ng-repeat="file in message.files">
+        <a target="_blank" ng-href="{{file.url}}" sc-access-token style="cursor:pointer;" title="{{file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+        <strong>{{file.description}}</strong>
+      </div>
+      <div class="pull-right" style="color:grey;display:block;">
+        <span title="{{message.sentDate | date:'dd.MM.yyyy'}}" am-time-ago="message.sentDate"></span>
+        <span l10n-text="messages_viewIngoing_by"></span>
+        <span>{{message.sender}}</span>
+        <span l10n-text="messages_viewIngoing_to"></span>
+        <span ng-repeat="recipient in message.recipients">{{recipient}}{{$last ? '' : ', '}}</span>
+      </div>
+    </div>
+  </div>
+</div>

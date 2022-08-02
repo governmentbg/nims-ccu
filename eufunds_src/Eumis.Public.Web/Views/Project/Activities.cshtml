@@ -1,0 +1,50 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractActivitiesVO
+
+@{
+    Layout = MVC.Project.Views._ProjectLayout;
+}
+
+<div class="project-info-box">
+    <div class="head yellow">
+        <h2>@Texts.Project_Details_Description</h2>
+    </div>
+    <div class="content">
+        <div class="list-item">
+            <label>@Texts.Project_Details_ShortProjectDescription</label>
+            @Html.DisplayFor(m => m.TransDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+        @if (Model.Activities != null && Model.Activities.Count() > 0)
+        {
+            <strong>@Texts.Project_Details_Activities</strong>
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>@Texts.Project_Details_Activity</th>
+                            <th>@Texts.Project_Details_Activity_ContractedAmount</th>
+                            <th>@Texts.Project_Details_Activity_ReportedAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var activity in Model.Activities)
+                        {
+                            <tr>
+                                <td>@activity.Title</td>
+                                <td>@Html.DisplayFor(m => activity.TotalAmount)</td>
+                                <td>@Html.DisplayFor(m => activity.TotalReportedAmount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="list-item">
+                <label>@Texts.Project_Details_Activities</label>
+                @Texts.Project_Details_None
+            </div>
+        }
+    </div>
+</div>

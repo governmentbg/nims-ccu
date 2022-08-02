@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DownloadFiles" xml:space="preserve">
+    <value>Файлове за изтегляне</value>
+  </data>
+  <data name="InfoP1" xml:space="preserve">
+    <value>През новия програмен период 2014 – 2020 година, всяка държава членка на Европейския съюз има задължението да създаде и използва своя собствена информационна система за управление, изпълнение и наблюдение на одобрените Оперативни програми, съфинансирани от Кохезионния и Структурните фондове на ЕС. В тази връзка беше разработена настоящата информационна система СУНИ, а в момента се намирате в нейния модул за кандидатстване.</value>
+  </data>
+  <data name="InfoP1Authenticated" xml:space="preserve">
+    <value>През новия програмен период 2014 – 2020 година, всяка държава членка на Европейския съюз има задължението да създаде и използва своя собствена информационна система за управление, изпълнение и наблюдение на одобрените Оперативни програми, съфинансирани от Кохезионния и Структурните фондове на ЕС. В тази връзка беше разработена настоящата информационна система СУНИ, а в момента се намирате в нейния модул за кандидатстване.</value>
+  </data>
+  <data name="InfoP2" xml:space="preserve">
+    <value>Като кандидат по някоя Оперативна програма чрез системата имате възможност да създадете и попълните своя електронен формуляр за кандидатстване, да прикачите всички необходими приложения към него и да подадете своето проектно предложение.</value>
+  </data>
+  <data name="InfoP2Authenticated" xml:space="preserve">
+    <value>Като кандидат по някоя Оперативна програма чрез системата имате възможност да създадете и попълните своя електронен формуляр за кандидатстване, да прикачите всички необходими приложения към него и да подадете своето проектно предложение.</value>
+  </data>
+  <data name="InfoP3" xml:space="preserve">
+    <value>Как става това, стъпките са лесни:</value>
+  </data>
+  <data name="InfoP4AuthenticatedFirst" xml:space="preserve">
+    <value>За повече информация вижте раздел</value>
+  </data>
+  <data name="InfoP4AuthenticatedFourth" xml:space="preserve">
+    <value>на системата.</value>
+  </data>
+  <data name="InfoP4AuthenticatedSecond" xml:space="preserve">
+    <value>и раздел</value>
+  </data>
+  <data name="InfoP4AuthenticatedThird" xml:space="preserve">
+    <value>Въпроси и отговори</value>
+  </data>
+  <data name="InfoP4First" xml:space="preserve">
+    <value>За повече информация вижте раздел</value>
+  </data>
+  <data name="InfoP4Fourth" xml:space="preserve">
+    <value>на системата.</value>
+  </data>
+  <data name="InfoP4Second" xml:space="preserve">
+    <value>и раздел</value>
+  </data>
+  <data name="InfoP4Third" xml:space="preserve">
+    <value>Въпроси и отговори</value>
+  </data>
+  <data name="Link1" xml:space="preserve">
+    <value>Кой може да си създаде потребителски профил и как става това?</value>
+  </data>
+  <data name="Link2" xml:space="preserve">
+    <value>Как да кандидатствам по някоя Оперативна програма?</value>
+  </data>
+  <data name="Link3" xml:space="preserve">
+    <value>Как да подам проектно предложение?</value>
+  </data>
+  <data name="Link4" xml:space="preserve">
+    <value>Може ли да преглеждам и редактирам електронни формуляри създадени от други потребители?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход в системата</value>
+  </data>
+  <data name="MainP1AuthenticatedFirst" xml:space="preserve">
+    <value>СУНИ се поддържа от дирекция „Централно координационно звено“ в администрацията на Министерския съвет. Вашите въпроси може да изпращате на електронен адрес:</value>
+  </data>
+  <data name="MainP1AuthenticatedSecond" xml:space="preserve">
+    <value>или да използвате формата за</value>
+  </data>
+  <data name="MainP1First" xml:space="preserve">
+    <value>СУНИ се поддържа от дирекция „Централно координационно звено“ в администрацията на Министерския съвет. Вашите въпроси може да изпращате на електронен адрес:</value>
+  </data>
+  <data name="MainP1Second" xml:space="preserve">
+    <value>или да използвате формата за</value>
+  </data>
+  <data name="MainP2" xml:space="preserve">
+    <value>При наличието на затруднения и въпроси относно функционирането на системата, моля да се свържете с нас на телефон: (+359) 02 9030 480 или да използвате формата за</value>
+  </data>
+  <data name="MainP2Authenticated" xml:space="preserve">
+    <value>При наличието на затруднения и въпроси относно функционирането на системата, моля да се свържете с нас на телефон: (+359) 02 9030 480 или да използвате формата за</value>
+  </data>
+  <data name="NewComment" xml:space="preserve">
+    <value>Изпрати коментар/предложение</value>
+  </data>
+  <data name="NewProposal" xml:space="preserve">
+    <value>Ново проектно предложение</value>
+  </data>
+  <data name="Step1AuthenticatedFifth" xml:space="preserve">
+    <value>. По време на работа имате възможност да го запишете в собствения си профил или локално на Вашия компютър като файл с разширение „&lt;b&gt;.suni&lt;/b&gt;“. Впоследствие може да изпратите файла на Ваш колега  за редакция, преглед, подаване на проектно предложение или архив.</value>
+  </data>
+  <data name="Step1AuthenticatedFirst" xml:space="preserve">
+    <value>Изберете желаната</value>
+  </data>
+  <data name="Step1AuthenticatedFourth" xml:space="preserve">
+    <value>нов електронен формуляр</value>
+  </data>
+  <data name="Step1AuthenticatedSecond" xml:space="preserve">
+    <value>програма</value>
+  </data>
+  <data name="Step1AuthenticatedThird" xml:space="preserve">
+    <value>и създайте своя</value>
+  </data>
+  <data name="Step1First" xml:space="preserve">
+    <value>Влезте в профила си. Ако все още нямате регистрация, може да</value>
+  </data>
+  <data name="Step1Fourth" xml:space="preserve">
+    <value>Ако не сте влезли в профила си, имате възможност единствено да разглеждате отворените в момента процедури за кандидатстване, както и да зареждате за преглед от файл предварително създадени със системата електронни формуляри</value>
+  </data>
+  <data name="Step1Second" xml:space="preserve">
+    <value>създадете своя собствена</value>
+  </data>
+  <data name="Step1Third" xml:space="preserve">
+    <value>която впоследствие да използвате за работа със системата през целия програмен период.</value>
+  </data>
+  <data name="Step2Authenticated" xml:space="preserve">
+    <value>Когато попълните и приключите електронния формуляр, можете да го окомплектовате със съответните приложения и да подадете проектното предложение.</value>
+  </data>
+  <data name="Step2Fifth" xml:space="preserve">
+    <value>След създаване и/или редакция имате възможност да запишете електронния формуляр в системата в собствения си профил или локално на Вашия компютър като файл с разширение „.isun”. Впоследствие може да изпратите този файл на Ваш колега или клиент за редакция, преглед, подаване на проектно предложение или архив.</value>
+  </data>
+  <data name="Step2First" xml:space="preserve">
+    <value>Изберете желаната</value>
+  </data>
+  <data name="Step2Fourth" xml:space="preserve">
+    <value>нов електронен формуляр.</value>
+  </data>
+  <data name="Step2Second" xml:space="preserve">
+    <value>програма</value>
+  </data>
+  <data name="Step2Third" xml:space="preserve">
+    <value>и създайте своя</value>
+  </data>
+  <data name="Step3" xml:space="preserve">
+    <value>Когато попълните и приключите електронния формуляр, можете да го окомплектовате със съответните приложения и да подадете проектното предложение.</value>
+  </data>
+  <data name="TitleH1" xml:space="preserve">
+    <value>Електронно кандидатстване</value>
+  </data>
+</root>

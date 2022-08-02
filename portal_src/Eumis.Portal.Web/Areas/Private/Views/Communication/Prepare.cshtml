@@ -1,0 +1,69 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Communication.EditVM
+
+@{
+    string breadcrumbString = R_10042.Communication.GetDocumentHeaderText(Model.type);
+}
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.Communication.ActionNames.Prepare,
+    MVC.Private.Communication.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_COMMUNICATION, role = "form", @class = "form-with-sections" }))
+    {
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Private.Communication.ActionNames.Prepare,
+                MVC.Private.Communication.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_COMMUNICATION,
+                formMethod: FormMethod.Post)
+            @breadcrumbString
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.CommunicationEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.Communication.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.Communication.ActionNames.Save,
+                            HasXmlUpdate = true,
+                            FORM_ID = Constants.PARTIAL_SAVE_COMMUNICATION
+                        })
+                    </div>
+
+                    <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+                </div>
+            </div>
+            <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_COMMUNICATION)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Private.Communication.ActionNames.Prepare, MVC.Private.Communication.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_COMMUNICATION)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+            </script>
+    }
+</div>

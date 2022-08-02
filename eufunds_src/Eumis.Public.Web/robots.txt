@@ -1,0 +1,17 @@
+﻿User-agent: *
+Disallow: /*/ExportToXml*
+Disallow: /*/ExportToExcel*
+Disallow: /*/ExportToHtml*
+Disallow: /*/Print*
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /

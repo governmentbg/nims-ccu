@@ -1,0 +1,62 @@
+﻿@model R_10050.PaymentRequestDeclaration
+
+@if (Model != null)
+{
+    <h3 class="margin-bottom-h3">@PaymentRequestDeclaration.Representating</h3>
+
+    <div class="clearfix">
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.RepresentingBeneficiaryEGN, PaymentRequestDeclaration.RepresentingBeneficiaryEGN)
+            @Html.DisplayFor(m => m.RepresentingBeneficiaryEGN)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.RepresentingFirstName, PaymentRequestDeclaration.RepresentingFirstName)
+            @Html.DisplayFor(m => m.RepresentingFirstName)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.RepresentingMiddleName, PaymentRequestDeclaration.RepresentingMiddleName)
+            @Html.DisplayFor(m => m.RepresentingMiddleName)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.RepresentingLastName, PaymentRequestDeclaration.RepresentingLastName)
+            @Html.DisplayFor(m => m.RepresentingLastName)
+        </div>
+    </div>
+
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.AgreementPt1, PaymentRequestDeclaration.AgreementPt1)
+        @Html.DisplayFor(m => m.AgreementPt1)
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.AgreementPt2, PaymentRequestDeclaration.AgreementPt2)
+        @Html.DisplayFor(m => m.AgreementPt2)
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(m => m.MarkerPt3, PaymentRequestDeclaration.MarkerPt3)
+        @Html.DisplayFor(m => m.MarkerPt3)
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.TextPt3, PaymentRequestDeclaration.TextPt3)
+        @Html.DisplayFor(m => m.TextPt3, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-4">
+        @Html.LabelFor(m => m.AgreementPt4ToPt25, PaymentRequestDeclaration.AgreementPt4ToPt25)
+        @Html.DisplayFor(m => m.AgreementPt4ToPt25)
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(m => m.MarkerPt25, PaymentRequestDeclaration.MarkerPt25)
+        @Html.DisplayFor(m => m.MarkerPt25)
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.TextPt25, PaymentRequestDeclaration.TextPt25)
+        @Html.DisplayFor(m => m.TextPt25, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-md-4">
+        @Html.LabelFor(m => m.AgreementPt26ToPt29, PaymentRequestDeclaration.AgreementPt26ToPt29)
+        @Html.DisplayFor(m => m.AgreementPt26ToPt29)
+    </div>
+}

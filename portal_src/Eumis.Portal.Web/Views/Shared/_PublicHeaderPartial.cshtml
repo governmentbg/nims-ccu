@@ -1,0 +1,70 @@
+﻿<header class="public-header">
+    <!-- HEAD -->
+    <div class="container tbl">
+        <a class="logo" href="@Url.Action(MVC.Public.ActionNames.CurrentNews, MVC.Public.Name)" title=""><img class="fluid" src="@Url.Content(Links.Content.img.gerb_jpg)" alt="" /></a>
+        <div class="title">
+            <div class="hidden-xs hidden-sm">
+                @Global.HeaderText2 <br />@Global.HeaderText3
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Global.Eumis</strong>
+            </div>
+            @if (Eumis.Portal.Web.Helpers.EumisEnvironmentManager.Current != Eumis.Portal.Web.Helpers.EumisEnvironment.Production)
+            {
+                <label class="sandbox">@Eumis.Portal.Web.Helpers.EumisEnvironmentManager.CurrentText</label>
+            }
+        </div>
+        <div class="hidden-xs hidden-sm">
+            <div class="line"> </div>
+        </div>
+        <div class="isun hidden-xs hidden-sm">
+            @*<img class="fluid" src="@Url.Content(Links.Content.img.isun_gif)" alt="@Global.Motto" />*@
+        </div>
+        <div class="slogan hidden-xs hidden-sm">
+            @*@Global.LogoMotto1<br /><strong>@Html.Raw(Global.LogoMotto2)</strong>*@
+        </div>
+        <div class="">
+            <div class="line"> </div>
+        </div>
+        <!-- LANG -->
+
+        <div class="lang-login">
+
+
+                <ul class="clock" style="display:none;">
+                    <li class="hidden-xs hidden-sm hidden-md" id="day">@DateTime.Now.Day.ToString("00")</li>
+                    <li class="hidden-xs hidden-sm hidden-md" id="point">.</li>
+                    <li class="hidden-xs hidden-sm hidden-md" id="month">@DateTime.Now.Month.ToString("00")</li>
+                    <li class="hidden-xs hidden-sm hidden-md" id="point">.</li>
+                    <li class="hidden-xs hidden-sm hidden-md" id="year">@DateTime.Now.Year.ToString("00")</li>
+                    <li class="hidden-xs hidden-sm hidden-md">&nbsp;@Global.YearsShort&nbsp;</li>
+
+                    <li id="hours"> </li>
+                    <li id="point">:</li>
+                    <li id="min"> </li>
+                    @*<li id="point">:</li>
+                    <li id="sec"> </li>*@
+                    <li>@Global.HoursShort</li>
+                </ul>
+
+                @if (SystemLocalization.IsLangaugePage(ViewContext.RouteData))
+                {
+                    if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+                    {
+                        <a href="@Html.LanguageUrl("en")" class="lang en">
+                            English
+                        </a>
+                    }
+                    else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+                    {
+                        <a href="@Html.LanguageUrl("bg")" class="lang bg">
+                            Български
+                        </a>
+                    }
+                }
+            </div>
+
+    </div>
+</header>
+
+@Html.Partial("_PublicSubHeader")

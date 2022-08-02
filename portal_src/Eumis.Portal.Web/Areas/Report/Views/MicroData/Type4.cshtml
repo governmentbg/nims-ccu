@@ -1,0 +1,38 @@
+﻿@model Eumis.Portal.Web.Areas.Report.Models.MicroData.MicroStaticPagedList<Eumis.Documents.Contracts.ContractReportMicroType4ItemPVO>
+
+@using PagedList.Mvc;
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }), "Пакет отчетни документи")
+}, "Преглед")
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>Договор № @Model.ContractNumber, Микроданни АСП № @Model.DocNumber</h1>
+</div>
+
+<div class="container">
+    <div class="tab-content" style="border-top:1px solid #d8d8d8;">
+        <form class="form-with-sections">
+
+            @Html.DisplayFor(m => m, MVC.Shared.Views.DisplayTemplates.ContractReportMicroType4Collection)
+
+            @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page,
+                    gid = Request.QueryString["gid"],
+                    packageGid = Request.QueryString["packageGid"]
+                }),
+                Constants.PagedListRenderOptions)
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<ng-form name="editContractReportPaymentForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReportChecks_editContractReportDocumentsPayment_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="changePaymentStatus('draft')" text="contractReportChecks_editContractReportDocumentsPayment_draft" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportPayment.status === 'entered'" >
+        </sc-button>
+
+        <sc-button name="returnBtn" btn-click="changePaymentStatus('returned')" text="contractReportChecks_editContractReportDocumentsPayment_returned" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportPayment.status === 'actual'" >
+        </sc-button>
+
+        <sc-button name="actualBtn" btn-click="changePaymentStatus('actual')" text="contractReportChecks_editContractReportDocumentsPayment_actual" class="btn btn-info btn-xs"
+          ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)" ng-show="contractReportStatus === 'unchecked' && contractReportPayment.status === 'entered'" >
+        </sc-button>
+
+        <sc-button name="backBtn" btn-click="back()" text="contractReportChecks_editContractReportDocumentsPayment_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-payment name="contractReportPaymentForm" ng-model="contractReportPayment"></eumis-contract-report-payment>
+
+      <div class="row">
+        <eumis-structured-document document="contractReportPayment" gid="contractReportPayment.xmlGid" text="contractReportChecks_editContractReportDocumentsPayment_document"
+          readonly="contractReportStatus !== 'unchecked' || contractReportPayment.status !== 'draft' ||!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"
+          class="col-sm-4 col-md-3" doc-updated="reportUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

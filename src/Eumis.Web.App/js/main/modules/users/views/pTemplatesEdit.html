@@ -1,0 +1,30 @@
+<div class="tab-content">
+  <ng-form name="editTemplateForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="pTemplates_edit_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="editBtn" btn-click="edit()" text="pTemplates_edit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+            ng-disabled="!$canDo('PermissionTemplateActions.Edit', permissionTemplate.permissionTemplateId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="pTemplates_edit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="pTemplates_edit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row" >
+          <sc-field type="text" ng-model="permissionTemplate.name" l10n-text="pTemplates_edit_name" ng-required="true" class="col-sm-4"
+            sc-validate-async="{ isNameExist: isNameExist }"
+            validations="{ isNameExist: 'errorTexts_permissionTemplateNameExist' }"
+          >
+          </sc-field>
+        </div>
+        <eumis-permissions name="permissionsForm" ng-model="permissionTemplate.userPermissions"></eumis-permissions>
+      </div>
+    </div>
+  </ng-form>
+</div>

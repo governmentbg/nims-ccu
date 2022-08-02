@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newMeasureBtn" btn-sref="{ state: 'root.map.measures.new' }" text="measures_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('MeasureListActions.Create')"></sc-button>
+
+    <sc-datatable items="measures" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="shortName">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.measures.edit', params: {id: item.measureId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('MeasureActions.View', item.measureId)"></sc-button>
+      </sc-column>
+      <sc-column data="shortName" title="measures_searchForm_shortName">
+      </sc-column>
+      <sc-column data="name" title="measures_searchForm_name">
+      </sc-column>
+      <sc-column data="nameAlt" title="measures_searchForm_nameAlt">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

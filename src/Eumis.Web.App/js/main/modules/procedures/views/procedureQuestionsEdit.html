@@ -1,0 +1,18 @@
+﻿<ng-form name="editProcedureQuestionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureQuestion_title"></strong>
+
+      <div class="pull-right">
+        <sc-button ng-if="!deletable || isProcedureReadonly" name="okBtn" btn-click="ok()" text="procedures_editProcedureQuestion_ok" class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button ng-if="deletable && !isProcedureReadonly" name="deleteBtn" btn-click="deleteQuestion()" text="procedures_editProcedureQuestion_deleteQuestion" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureQuestion.procedureId)"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-procedure-question name="procedureQuestionForm" ng-model="procedureQuestion"></eumis-procedure-question>
+    </div>
+  </div>
+</ng-form>

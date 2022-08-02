@@ -1,0 +1,13 @@
+<div>
+  <label class="title">{{infoText}}</label>
+  <sc-tabs tab-list="{
+    'contractReportCorrections_viewContractReportCorrection_viewTab': 'root.contractReportCorrections.view.basicData',
+    'contractReportCorrections_viewContractReportCorrection_correctionTab': 'root.contractReportCorrections.view.correction',
+    'contractReportCorrections_viewContractReportCorrection_docsTab': 'root.contractReportCorrections.view.docs.search'
+  }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

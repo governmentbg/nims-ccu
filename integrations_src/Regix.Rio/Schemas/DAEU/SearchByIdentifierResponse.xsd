@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/DaeuReports/SearchByIdentifierResponse" targetNamespace="http://egov.bg/RegiX/DaeuReports/SearchByIdentifierResponse" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="ExecutedCallType">
+    <xs:annotation>
+      <xs:documentation>Тип на списъчните данни</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="0">
+      <xs:element name="ApiServiceCallID" type="xs:decimal">
+        <xs:annotation>
+          <xs:documentation>Номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StartTime" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата на извършване на справката</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Справка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LawReason" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Правно основание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Consumer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Консуматор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConsumerAdministration" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Администрация на консуматор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Producer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Система/Регистър</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProducerAdministration" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Първичен администратор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+	<xs:element name="SearchByIdentifierResponse">
+		<xs:annotation>
+			<xs:documentation>Справка за извършвани търсения по идентификатор и период - резултат</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+        <xs:element name="MaxAllowedResults" type="xs:int">
+          <xs:annotation>
+            <xs:documentation>Максимален брой резултати</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TotalResults" type="xs:long">
+          <xs:annotation>
+            <xs:documentation>Общо резултати</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ExecutedCalls" type="ExecutedCallType" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>Информация за извършена справка</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,83 @@
+﻿@model R_10004.Company
+
+@if (Model != null)
+{
+    <div class="clearfix">
+        <div class="form-group col-lg-6 col-md-12">
+            @Html.LabelFor(m => m.Uin, Company.Uin)
+            <span class="filled-value">
+                @if (Model.UinType != null && !String.IsNullOrWhiteSpace(Model.UinType.Name))
+                {
+                    <text>@Model.UinType.Name: </text>
+                }
+                @Model.Uin
+            </span>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="form-group col-lg-12 col-md-12">
+            @Html.LabelFor(m => m.Name, Company.Name)
+            @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+
+        <div class="form-group col-lg-12 col-md-12">
+            @Html.LabelFor(m => m.NameEN, Company.NameEN)
+            @Html.DisplayFor(m => m.NameEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            <label>&nbsp;</label>
+            @if(Model.IsPrivateLegal)
+            {
+                <span class="filled-value">@Company.IsPrivateLegal</span>
+            }
+            else
+            {
+                <span class="filled-value">@Company.IsCountryLegal</span>
+            }
+        </div>
+    </div>
+
+    <h3>@Company.Seat</h3>
+    @Html.DisplayFor(m => m.Seat, MVC.Shared.Views.DisplayTemplates.AddressWithManagement)
+
+    <h3>@Company.Correspondence</h3>
+    @Html.DisplayFor(m => m.Correspondence)
+
+    <div class="clearfix">
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.Email, Company.Email)
+            @Html.DisplayFor(m => m.Email)
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.Phone1, Company.Phone1)
+            @Html.DisplayFor(m => m.Phone1)
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.Phone2, Company.Phone2)
+            @Html.DisplayFor(m => m.Phone2)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.Fax, Company.Fax)
+            @Html.DisplayFor(m => m.Fax)
+        </div>
+        <div class="form-group col-lg-8 col-md-12">
+            @Html.LabelFor(m => m.CompanyRepresentativePerson, Company.CompanyRepresentativePerson)
+            @Html.DisplayFor(m => m.CompanyRepresentativePerson)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.CompanyContactPerson, Company.CompanyContactPerson)
+            @Html.DisplayFor(m => m.CompanyContactPerson)
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.CompanyContactPersonPhone, Company.CompanyContactPersonPhone)
+            @Html.DisplayFor(m => m.CompanyContactPersonPhone)
+        </div>
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.CompanyContactPersonEmail, Company.CompanyContactPersonEmail)
+            @Html.DisplayFor(m => m.CompanyContactPersonEmail)
+        </div>
+    </div>
+}

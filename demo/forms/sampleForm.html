@@ -1,0 +1,86 @@
+<div class="panel panel-default" style="margin-top: 10px">
+  <div class="panel-heading">
+    <strong l10n-text="Адрес"></strong>
+    <div class="pull-right">
+      <sc-button text="Запис"     class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      <sc-button text="Отказ"     class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+      <sc-button text="Изтриване" class="btn btn-danger btn-xs"  icon="glyphicon-remove"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body form-inline">
+    <ng-form sc-validate="{}" sc-form-readonly>
+
+      <div class="form-header form-header-first">Класификация</div>
+      <div class="row">
+        <sc-field class="col-sm-4" l10n-text="Вид адрес"         ng-model="addressType" type="nomenclature" alias="'test'"         ng-required="true"></sc-field>
+        <sc-field class="col-sm-2" l10n-text="Валиден"           ng-model="valid"       type="nomenclature" alias="'boolean'"      ng-required="true"></sc-field>
+      </div>
+
+      <div class="form-header">Данни</div>
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Адрес"             ng-model="address"     type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Адрес на латиница" ng-model="addressAlt"  type="text"                                ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-3" l10n-text="Населено място"    ng-model="settlement"  type="nomenclature" alias="'test'"         ng-required="true"></sc-field>
+        <sc-field class="col-sm-3" l10n-text="П.К."              ng-model="postalCode"  type="text"                                                  ></sc-field>
+        <sc-field class="col-sm-3" l10n-text="Телефон"           ng-model="phone"       type="text"                                                  ></sc-field>
+      </div>
+
+      <div class="form-header">Полета</div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Дата"              ng-model="date"        type="date"                                ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Файл"              ng-model="file"        type="files"                               ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Цяло число"        ng-model="int"         type="int"                                 ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="С плаваща запетая" ng-model="float"       type="float"                               ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Парола"            ng-model="password"    type="password"                            ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Текст"             ng-model="text"        type="text"                                ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Мултиредов текст"  ng-model="textarea"    type="textarea" rows="4"                   ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Време"             ng-model="time"        type="time"                                ng-required="true"></sc-field>
+      </div>
+
+      <div class="form-header">Групи от контроли</div>
+      <div class="row">
+        <sc-field-group class="col-sm-2" text="Поле с префикс">
+          <span>LZ-</span>
+          <sc-text ng-model="prefixGroup" ng-required="true"></sc-int>
+        </sc-field-group>
+        <!-- active|success|info|warning|danger|muted -->
+        <sc-info class="danger"
+            icon="glyphicon glyphicon-remove"
+            text="Внимание грешка!">
+        <sc-info>
+      </div>
+      <div class="row">
+        <sc-field-group class="col-sm-2" text="Поле със суфикс">
+          <sc-float ng-model="suffixGroup" ng-required="true"></sc-float>
+          <span>%</span>
+        </sc-field-group>
+      </div>
+      <div class="row">
+        <sc-field-group class="col-sm-6" text="Поле с бутони">
+          <sc-text ng-model="buttonsGroup" ng-required="true"></sc-text>
+          <button class="btn btn-primary" type="button" l10n-text="Бутон 1"></button>
+          <button class="btn btn-danger" type="button" l10n-text="Бутон 2"></button>
+          <button class="btn btn-default" type="button" l10n-text="Бутон 3"></button>
+        </sc-field-group>
+      </div>
+      
+    </ng-form>
+  </div>
+</div>

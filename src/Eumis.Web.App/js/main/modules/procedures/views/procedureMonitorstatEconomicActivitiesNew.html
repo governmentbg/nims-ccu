@@ -1,0 +1,19 @@
+﻿<ng-form name="newProcedureMonitorsatEconomicActivityForm" sc-validate="{}" >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_newProcedureMonitorsatEconomicActivity_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_newProcedureMonitorsatEconomicActivity_save" class="btn btn-primary btn-xs" icon="glyphicon-edit">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_newProcedureMonitorsatEconomicActivity_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="nomenclature" ng-model="economicActivity.year" alias="'monitorstatAvailableYears'" mode="id" l10n-text="procedures_newProcedureMonitorsatEconomicActivity_year" class="col-sm-6 col-md-4"></sc-field>
+        <sc-field type="nomenclature" ng-model="economicActivity.type" alias="'procedureMonitorstatEconomicActivityTypes'" mode="id" l10n-text="procedures_newProcedureMonitorsatEconomicActivity_type" class="col-sm-6 col-md-4"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,115 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractFinancialInformationVO
+
+@{
+    Layout = MVC.Project.Views._ProjectLayout;
+}
+
+@section scripts{
+    @Scripts.Render(BundleConfig.Highcharts)
+}
+
+@section footerNotes{
+    * @Texts.Project_Details_Chart_PaidAmountsNote<br />
+    <sup>1</sup> @Texts.Project_Details_FinancialCorrections_Amounts_Note1<br />
+    <sup>2</sup> @Texts.Project_Details_FinancialCorrections_Amounts_Note2<br />
+}
+
+<div class="project-info-box">
+    <div class="head red">
+        <h2>@Texts.Project_Details_FinancialInformation</h2>
+    </div>
+    <div class="content">
+        <div class="list-item">
+            <label>@Texts.Project_Details_ProjectTotalAmount</label>
+            @Html.DisplayFor(m => m.ContractedTotalAmount) BGN
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_BFP</label>
+            @Html.DisplayFor(m => m.ContractedBFPAmount) BGN
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_ProjectSelfAmount</label>
+            @Html.DisplayFor(m => m.ContractedSelfAmount) BGN
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_TotalPayed</label>
+            @Html.DisplayFor(m => m.PaidTotalAmount) BGN
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_EuPercent</label>
+            @Html.DisplayFor(m => m.EuPercent) %
+        </div>
+        <div class="chart-wrapper">
+            <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+            @{
+                var model2 = new PieRendererModel(
+                    Texts.Project_Details_ProjectTotalAmount,
+                    new Eumis.Public.Web.InfrastructureClasses.UrlDef(MVC.Project.Name, MVC.Project.ActionNames.GetContractedFundsPieData, new { contractId = Model.ContractId }),
+                    MVC.Infrastructure.Views.Charts.PointValueTooltip,
+                    percentageLabelEnabled: false);
+            }
+
+            @Html.Pie(Url, model2, new { @class = "chart-pie" })
+        </div>
+        <div class="chart-wrapper">
+            <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+            @{
+                var model = new ChartRendererModel(
+                    Texts.Project_Details_ProjectAmount + '*',
+                    Texts.Project_Details_ChartYTitle,
+                    new Eumis.Public.Web.InfrastructureClasses.UrlDef(MVC.Project.Name, MVC.Project.ActionNames.GetPaidAmountsChartData, new { contractId = Model.ContractId }),
+                    MVC.Infrastructure.Views.Charts.PointOnlyTooltip,
+                    true);
+            }
+
+            @Html.Chart(Url, model, new { @class = "chart" })
+        </div>
+    </div>
+</div>
+<div class="project-info-box">
+    <div class="head red">
+        <h2>@Texts.Project_Details_FinancialCorrections</h2>
+    </div>
+    <div class="content">
+        @if (Model.FinancialCorrections != null && Model.FinancialCorrections.Count() > 0)
+        {
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">@Texts.Project_Details_FinancialCorrections_ImposingReason</th>
+                            <th rowspan="2">@Texts.Project_Details_FinancialCorrections_Percent_A<br />@Texts.Project_Details_FinancialCorrections_Percent_B</th>
+                            <th colspan="3">@Texts.Project_Details_FinancialCorrections_Amounts<sup>1,2</sup></th>
+                            <th rowspan="2">@Texts.Project_Details_FinancialCorrections_ContractorName</th>
+                        </tr>
+                        <tr>
+                            <th>@Texts.Project_Details_FinancialCorrections_BfpAmount</th>
+                            <th>@Texts.Project_Details_FinancialCorrections_SelfAmount</th>
+                            <th>@Texts.Project_Details_FinancialCorrections_TotalAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.FinancialCorrections)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.ImposingReason)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.Percent)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.BfpAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.SelfAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.TotalAmount)</td>
+                                <td>@Html.DisplayFor(m => item.ContractorName)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="list-item">
+                <label>@Texts.Project_Details_None</label>
+            </div>
+        }
+    </div>
+</div>

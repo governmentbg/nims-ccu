@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10068" 
+	xmlns="http://ereg.egov.bg/segment/R-10068" 
+            
+	xmlns:frba="http://ereg.egov.bg/segment/R-10058"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10058" />
+
+	<xsd:complexType name="FinanceReportBudgetRowAmounts">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Бюджетни стойности на ред на финансов отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="BFPContractAmounts" type="frba:FinanceReportBudgetAmounts" minOccurs="0" />
+      <xsd:element name="CurrentReportAmounts" type="frba:FinanceReportBudgetAmounts" minOccurs="0" />
+      <xsd:element name="CumulativeAmounts" type="frba:FinanceReportBudgetAmounts" minOccurs="0" />
+
+      <xsd:element name="DifferenceGrand" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="DifferenceGrandPercentage" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="DifferenceTotal" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="DifferenceTotalPercentage" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="LastReportAmounts" type="frba:FinanceReportBudgetAmounts" minOccurs="0" />
+    </xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

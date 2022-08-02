@@ -1,0 +1,118 @@
+﻿@model R_10044.Activities
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ActivityCollection != null && Model.ActivityCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.ActivityCollection.Count; i++)
+            {
+                <table class="contract-activity">
+                    <tbody>
+                        <tr>
+                            <td style="width: 35%">@TechnicalReportActivity.Activity</td>
+                            <td style="width: 65%">
+                                @if (Model.ActivityCollection[i].BFPContractActivity != null)
+                                {
+                                    @Model.ActivityCollection[i].BFPContractActivity.Code
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.ActivityDuration</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].BFPContractActivity != null)
+                                {
+                                    @Model.ActivityCollection[i].BFPContractActivity.Duration
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.StartDate</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].BFPContractActivity.StartDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ActivityCollection[i].BFPContractActivity.StartDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.EndDate</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].BFPContractActivity.EndDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ActivityCollection[i].BFPContractActivity.EndDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.Result</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].BFPContractActivity != null)
+                                {
+                                    @Model.ActivityCollection[i].BFPContractActivity.Result
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.ExecutionDescription</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ActivityCollection[i].ExecutionDescription ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.Status</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.ActivityCollection[i].Status ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.ActualStartDate</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].ActualStartDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ActivityCollection[i].ActualStartDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.ActualEndDate</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].ActualEndDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ActivityCollection[i].ActualEndDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.MonthsDuration</td>
+                            <td>@Model.ActivityCollection[i].MonthsDuration</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.DelayReason</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ActivityCollection[i].DelayReason ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.PeriodResult</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ActivityCollection[i].PeriodResult ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.CumulativeResult</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ActivityCollection[i].CumulativeResult ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportActivity.ContractContractors</td>
+                            <td>
+                                @if (Model.ActivityCollection[i].ContractContractorCollection != null && Model.ActivityCollection[i].ContractContractorCollection.Count > 0)
+                                {
+                                    foreach (var contractor in Model.ActivityCollection[i].ContractContractorCollection)
+                                    {
+                                        <p>
+                                            @Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, contractor ?? new R_10000.PrivateNomenclature())
+                                        </p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

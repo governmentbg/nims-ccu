@@ -1,0 +1,22 @@
+﻿@model R_10026.EvalSheet
+
+<div class="container">
+    <h2>@EvalSheet.EvaluationSheet</h2>
+    <ul class="nav nav-tabs"></ul>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            @Html.Partial(MVC.Private.Shared.Views.Print.EvalSheet, Model)
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.when(0)
+            .then(function () {
+                setTimeout(function () {
+                    print();
+                }, 100);
+            });
+    });
+</script>

@@ -1,0 +1,140 @@
+﻿@model R_10019.ProjectErrandCollection
+@using Eumis.Common.Helpers
+@using Newtonsoft.Json.Converters
+
+@{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+    
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        areItemsValid: @(Model.IsValid.ToString().ToLower()),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerProjectErrandCollection@(guid)'), ['moduleProjectErrandCollection']);
+    });
+
+</script>
+
+<h2 data-section="@Model.SectionNumber" class="section-heading" activation-name="@(guid)" broadcast-name="erandsActivation">
+    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+    @if (isMessageType)
+    {
+        <input type="checkbox" class="bootstrap-switch lock-unlock" readonly="readonly" />
+    }
+    @Model.SectionNumber. @Project.ProjectErrandCollection
+    @if (Model.IsFinalRecipients)
+    {
+        <text>(@Global.NotRequiredSection)</text>
+    }
+    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@String.Format(ProjectErrand.MaxProjectErrandsHint, Eumis.Documents.Constants.ProjectErrandsMaxCount)" data-trigger="hover" alt="" data-original-title="" title="">
+</h2>
+<section data-section="@Model.SectionNumber" class="clearfix">
+    <div class="@(guid)" id="containerProjectErrandCollection@(guid)" ng-controller="controllerProjectErrandCollection" ng-init="init('_eumis_options', 'i@(guid)')">
+        <div ng-if="items.IsActive" class="table-wrapper">
+            <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+            <table class="chart-info" width="100%">
+                <thead>
+                    <tr>
+                        <th>@ProjectErrand.Name</th>
+                        <th>@ProjectErrand.ErrandArea</th>
+                        <th>@ProjectErrand.ErrandLegalAct</th>
+                        <th colspan="2">@ProjectErrand.Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat-start="(index, item) in items" style="display:none;"></tr>
+                    <tr>
+                        <td style="word-break: break-all">
+                            {{item.Name}}
+                        </td>
+                        <td>
+                          {{getDisplayName(item.ErrandArea.Name, item.ErrandArea.NameEN)}}
+                        </td>
+                        <td>
+                          {{getDisplayName(item.ErrandLegalAct.Name, item.ErrandLegalAct.NameEN)}}
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                            </a>
+                        </td>
+                        <td style="width: 130px;">
+                            <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="5">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="form-group col-lg-12 col-md-12">
+                                    <label>@ProjectErrand.Name @SymbolsCount.Symbols1000</label>
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ProjectErrand.ErrandArea</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandAreaValid}" sc-alias="GetErrandAreas" ng-model="item.ErrandArea">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsErrandAreaValid}" type="hidden" value="{{ item.ErrandArea.id }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandArea.id" class="validation-error-key" />
+                                    <input type="hidden" value="{{ item.ErrandArea.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandArea.Name" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ProjectErrand.ErrandLegalAct</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandLegalActValid}" sc-alias="GetErrandLegalActs" ng-model="item.ErrandLegalAct">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsErrandLegalActValid}" type="hidden" value="{{ item.ErrandLegalAct.id }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandLegalAct.id" class="validation-error-key" />
+                                    <input type="hidden" value="{{ item.ErrandLegalAct.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandLegalAct.Name" />
+                                    <input type="hidden" value="{{ item.ErrandLegalAct.NameEN }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandLegalAct.NameEN" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ProjectErrand.ErrandType</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandTypeValid}" sc-alias="GetErrandTypes" ng-model="item.ErrandType" sc-parent-id="item.ErrandLegalAct.id">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsErrandTypeValid}" type="hidden" value="{{ item.ErrandType.id }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandType.id" class="validation-error-key" />
+                                    <input type="hidden" value="{{ item.ErrandType.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandType.Name" />
+                                    <input type="hidden" value="{{ item.ErrandType.NameEN }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandType.NameEN" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ProjectErrand.Amount</label>
+                                    <input ng-class="{'input-validation-error': !item.IsAmountValid}" money type="text" ng-model="item.Amount" name="@(Html.GetNameFor(m => m))[{{ $index }}].Amount" class="form-control sum-field" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ProjectErrand.PlanDate</label>
+                                    <input ng-class="{'input-validation-error': !item.IsPlanDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.PlanDate" name="@(Html.GetNameFor(m => m))[{{ $index }}].PlanDate" class="form-control" onpaste="return false" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6" style="padding-top:25px;">
+                                    <input id="chbIsCentralProcurement{{index}}" type="checkbox" ng-model="item.IsCentralProcurement" />
+                                    <label for="chbIsCentralProcurement{{index}}">@ProjectErrand.CentralProcurement</label>
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index }}].IsCentralProcurement" value="{{item.IsCentralProcurement ? 'True' : 'False'}}" />
+                                </div>
+
+                                <div class="form-group col-lg-12 col-md-12" >
+                                    <label>@ProjectErrand.Description @SymbolsCount.Symbols4000</label>
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsDescriptionValid}" auto-grow ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end style="display:none;"></tr>
+                </tbody>
+            </table>
+            <a ng-class="{'input-validation-error': !areItemsValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()" ng-show="items.length < maxProjectErrands">@Global.AddButton</a>
+            <p class="required-span" ng-show="items.length >= maxProjectErrands">@String.Format(ProjectErrand.MaxProjectErrandsReached, Eumis.Documents.Constants.ProjectErrandsMaxCount)</p>
+        </div>
+        <div ng-show="!items.IsActive">
+            <label id="loading">@Global.Loading</label>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+<ng-form name="editCSDBudgetItemForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-show="contractReportStatus === 'unchecked' && CSDBudgetItem.status === 'draft'" l10n-text="contractReportChecks_editCSDBudgetItem_editTitle"></strong>
+      <strong class="heading" ng-show="contractReportStatus !== 'unchecked' || CSDBudgetItem.status !== 'draft'" l10n-text="contractReportChecks_editCSDBudgetItem_viewTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button name="techCheckBtn" btn-click="techCheck()" text="contractReportChecks_editCSDBudgetItem_techCheck" class="btn btn-default btn-xs"
+          ng-show="contractReportStatus === 'unchecked' && CSDBudgetItem.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditTechnical', contractReportId)"></sc-button>
+
+        <sc-button name="endedBtn" btn-click="changeCSDBudgetItemStatus('ended')" text="contractReportChecks_editCSDBudgetItem_ended" class="btn btn-default btn-xs"
+          ng-show="financialReportStatus === 'actual' && contractReportStatus === 'unchecked' && CSDBudgetItem.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="draftBtn" btn-click="changeCSDBudgetItemStatus('draft')" text="contractReportChecks_editCSDBudgetItem_draft" class="btn btn-success btn-xs"
+          ng-show="financialReportStatus === 'actual' && contractReportStatus === 'unchecked' && CSDBudgetItem.status === 'ended' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportChecks_editContractReportChecksFinancial_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractReportStatus === 'unchecked' && CSDBudgetItem.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportChecks_editCSDBudgetItem_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportChecks_editCSDBudgetItem_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-financial-cost-supporting-document-budget-item name="contractReportFinancialCSDBudgetItemForm" ng-model="CSDBudgetItem"  sc-form-params="{ approvedEdit: true }"></eumis-contract-report-financial-cost-supporting-document-budget-item>
+    </div>
+  </div>
+</ng-form>

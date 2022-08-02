@@ -1,0 +1,197 @@
+﻿@model R_10004.Company
+
+@if (Model != null)
+{
+    string bulgaria = Eumis.Documents.Constants.BulgariaId;
+    
+    <table class="company">
+        <tbody>
+            <tr>
+                <td style="width: 35%;">@Company.Uin</td>
+                <td style="width: 65%;">
+                    @if (Model.UinType != null && !String.IsNullOrWhiteSpace(Model.UinType.Name))
+                    {
+                        <text>@Model.UinType.Name: </text>
+                    }
+                    @Model.Uin
+                </td>
+            </tr>
+            <tr>
+                <td>@Company.Name</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Name ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td>@Company.NameEN</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.NameEN ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td>@Company.CompanyType</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CompanyType ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@Company.CompanyLegalType</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CompanyLegalType ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (Model.IsPrivateLegal)
+                    {
+                        @Company.IsPrivateLegal
+                    }
+                    else
+                    {
+                        @Company.IsCountryLegal
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@Company.CompanySizeType</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CompanySizeType ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@Company.KidCodeOrganization</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.KidCodeOrganization ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@Company.KidCodeProject</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.KidCodeProject ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>@Company.Seat</strong></td>
+            </tr>
+            @{
+                    bool hasCountry = Model.Seat != null && Model.Seat.Country != null && !String.IsNullOrWhiteSpace(Model.Seat.Country.Code) && !String.IsNullOrWhiteSpace(Model.Seat.Country.Name);
+                    bool isBgCode = hasCountry && bulgaria.Equals(Model.Seat.Country.Code);
+            }
+
+            <tr>
+                <td>@Address.Country</td>
+                <td>
+                    @if (hasCountry)
+                    {
+                        @Model.Seat.Country.Name
+                    }
+                </td>
+            </tr>
+            @if (isBgCode && Model.Seat.Settlement != null)
+            {
+                <tr>
+                    <td>@Address.Settlement</td>
+                    <td>@Model.Seat.Settlement.Name</td>
+                </tr>
+            }
+            
+            <tr>
+                <td colspan="2"><strong>@Company.Management</strong></td>
+            </tr>
+            @if (hasCountry)
+            {
+                if (isBgCode)
+                {
+                    <tr>
+                        <td>@Address.PostCode</td>
+                        <td>@Model.Seat.PostCode</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Address.Street</td>
+                        <td>@Model.Seat.Street</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@Address.FullAddress</td>
+                        <td>@Model.Seat.FullAddress</td>
+                    </tr>
+                }
+            }
+            
+            <tr>
+                <td colspan="2"><strong>@Company.Correspondence</strong></td>
+            </tr>
+            @{
+            bool hasCorrespondenceCountry = Model.Correspondence != null && Model.Correspondence.Country != null && !String.IsNullOrWhiteSpace(Model.Correspondence.Country.Code)
+            && !String.IsNullOrWhiteSpace(Model.Correspondence.Country.Name);
+            }
+
+            <tr>
+                <td>@Address.Country</td>
+                <td>
+                    @if (hasCorrespondenceCountry)
+                    {
+                        @Model.Correspondence.Country.Name
+                    }
+                </td>
+            </tr>
+
+            @if (hasCorrespondenceCountry)
+            {
+                if (bulgaria.Equals(Model.Correspondence.Country.Code))
+                {
+                    <tr>
+                        <td>@Address.Settlement</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.Correspondence.Settlement ?? new R_10001.PublicNomenclature())</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Address.PostCode</td>
+                        <td>@Model.Correspondence.PostCode</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Address.Street</td>
+                        <td>@Model.Correspondence.Street</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@Address.FullAddress</td>
+                        <td>@Model.Correspondence.FullAddress</td>
+                    </tr>
+                }
+            }
+            
+            <tr>
+                <td>@Company.Email</td>
+                <td>@Model.Email</td>
+            </tr>
+
+            <tr>
+                <td>@Company.Phone1</td>
+                <td>@Model.Phone1</td>
+            </tr>
+
+            <tr>
+                <td>@Company.Phone2</td>
+                <td>@Model.Phone2</td>
+            </tr>
+
+            <tr>
+                <td>@Company.Fax</td>
+                <td>@Model.Fax</td>
+            </tr>
+
+            <tr>
+                <td>@Company.CompanyRepresentativePerson</td>
+                <td>@Model.CompanyRepresentativePerson</td>
+            </tr>
+
+            <tr>
+                <td>@Company.CompanyContactPerson</td>
+                <td>@Model.CompanyContactPerson</td>
+            </tr>
+
+            <tr>
+                <td>@Company.CompanyContactPersonPhone</td>
+                <td>@Model.CompanyContactPersonPhone</td>
+            </tr>
+
+            <tr>
+                <td>@Company.CompanyContactPersonEmail</td>
+                <td>@Model.CompanyContactPersonEmail</td>
+            </tr>
+        </tbody>
+    </table>
+}

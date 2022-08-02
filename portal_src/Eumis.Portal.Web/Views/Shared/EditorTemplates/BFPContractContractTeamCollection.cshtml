@@ -1,0 +1,74 @@
+﻿@model R_10040.BFPContractContractTeamCollection
+
+<div ng-controller="controllerContractTeams">
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@BFPContractContractTeam.Name</th>
+                    <th>@BFPContractContractTeam.Position</th>
+                    <th colspan="2">@BFPContractContractTeam.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                <tr>
+                    <td style="word-break: break-all">
+                        {{item.Name}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.Position}}
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+                <tr class="history-table">
+                    <td colspan="4">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="clearfix">
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label>@BFPContractContractTeam.Name @SymbolsCount.Symbols100</label>
+                                    <textarea ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label>@BFPContractContractTeam.Position @SymbolsCount.Symbols200</label>
+                                    <textarea ng-class="{'input-validation-error': !item.IsPositionValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Position" name="@(Html.GetNameFor(m => m))[{{ $index }}].Position" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractContractTeam.Responsibilities @SymbolsCount.Symbols3000</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsResponsibilitiesValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Responsibilities" name="@(Html.GetNameFor(m => m))[{{ $index }}].Responsibilities" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractTeam.Phone</label>
+                                <input ng-class="{'input-validation-error': !item.IsPhoneValid}" type="text" ng-model="item.Phone" name="@(Html.GetNameFor(m => m))[{{ $index }}].Phone" class="form-control" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractTeam.Email</label>
+                                <input ng-class="{'input-validation-error': !item.IsEmailValid}" type="text" ng-model="item.Email" name="@(Html.GetNameFor(m => m))[{{ $index }}].Email" class="form-control" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractTeam.Fax</label>
+                                <input ng-class="{'input-validation-error': !item.IsFaxValid}" type="text" ng-model="item.Fax" name="@(Html.GetNameFor(m => m))[{{ $index }}].Fax" class="form-control" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

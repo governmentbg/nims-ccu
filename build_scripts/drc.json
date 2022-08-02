@@ -1,0 +1,102 @@
+{
+  "defaultConfiguration": "EGP06.DRC",
+  "machines": {
+    "egp06-e20a1dr": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../portal_src/Eumis.Portal.Web/Eumis.Portal.Web.csproj",
+          "packageName": "eumis_portal",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "eumis-portal-prod-1"
+          }
+        }
+      }
+    ],
+    "egp06-e20a2dr": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Job.Host/Eumis.Job.Host.csproj",
+          "packageName": "eumis_job",
+          "recycle": true,
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "EumisJob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.PortalIntegration.Host/Eumis.PortalIntegration.Host.csproj",
+          "packageName": "eumis_portal_integration",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "EumisPortalIntegration"
+          }
+        }
+      }
+    ],
+    "egp06-e20a3dr": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../eufunds_src/Eumis.Public.Web/Eumis.Public.Web.csproj",
+          "packageName": "eumis_public",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "eumis-public-web"
+          }
+        }
+      }
+    ],
+    "egp06-u20padr": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Blob.Host/Eumis.Blob.Host.csproj",
+          "packageName": "eumis_blob",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "EumisBlob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "build",
+          "deployDir": "../../deploy_scripts/DbUpdater/",
+          "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+        }
+      }, {
+        "npm": {
+          "location": "../src/Eumis.Web.App",
+          "confTask": {
+            "EGP06.DRC": "build-prod"
+          }
+        },
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Web.Host/Eumis.Web.Host.csproj",
+          "packageName": "eumis",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.DRC": "Eumis"
+          }
+        }
+      }
+    ],"egp06-u20gadr": [
+        {
+            "msbuild": {
+              "task": "package",
+              "projFile": "../integrations_src/Eumis.IntegrationRegiX.Host/Eumis.IntegrationRegiX.Host.csproj",
+              "packageName": "eumis_regix",
+              "takeOffline": false,
+              "confIisAppName": {
+                "EGP06.DRC": "eumis-regix"
+              }
+            }
+        }
+    ]
+  }
+}

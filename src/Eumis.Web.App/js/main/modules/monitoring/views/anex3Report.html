@@ -1,0 +1,15 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contracts'" mode="id" ng-model="filters.contractId" l10n-text="monitoring_anex3Report_contract" class="col-sm-6"></sc-field>
+        <div class="labeless col-sm-6">
+          <sc-link-button ng-href="api/monitoringReports/{{filters.contractId}}/anex3/export"
+                target="_blank" sc-access-token ng-disabled="!filters.contractId"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_anex3Report_excelExport" class="btn btn-primary btn-sm pull-right">
+          </sc-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

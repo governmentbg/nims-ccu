@@ -1,0 +1,20 @@
+<ng-form name="editReimbursedAmountData" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="reimbursedAmounts_editReimbursedAmount_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="reimbursedAmounts_editReimbursedAmount_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="status === 'draft'" ng-disabled="!$canDo('FIReimbursedAmountActions.Edit', reimbursedAmount.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="reimbursedAmounts_editReimbursedAmount_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="reimbursedAmounts_editReimbursedAmount_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-financial-instrument-reimbursed-amount-data name="reimbursedAmountDataForm" ng-model="reimbursedAmount"></eumis-financial-instrument-reimbursed-amount-data>
+    </div>
+  </div>
+</ng-form>

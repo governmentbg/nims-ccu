@@ -1,0 +1,35 @@
+<div class="panel panel-default" style="margin-top: 10px">
+  <div class="panel-heading">
+    <strong l10n-text="Орган за управление и контрол, лице за контакт"></strong>
+    <div class="pull-right">
+      <sc-button text="Запис"     class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      <sc-button text="Отказ"     class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body form-inline">
+    <ng-form sc-validate="{}" sc-form-readonly>
+
+      <div class="form-header form-header-first" >Орган за управление и контрол</div>
+
+      <div class="row">
+        <sc-field class="col-sm-4" l10n-text="Тип" ng-model="type"  type="nomenclature" alias="'institutionType'" ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-8" l10n-text="Ведомство" ng-model="institution"  type="nomenclature" alias="'institution'" ng-required="true"></sc-field>
+      </div>
+
+      <div class="form-header">Лице за контакт</div>
+
+      <div class="row">
+        <sc-field class="col-sm-4" l10n-text="Име" ng-model="person"  type="text" ng-required="true"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Длъжност" ng-model="position"  type="text" ng-required="true"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Телефон" ng-model="phone"  type="text" ng-required="false"></sc-field>
+        <sc-field class="col-sm-2" l10n-text="Факс" ng-model="fax" type="text" ng-required="false"></sc-field>
+        <sc-field class="col-sm-4" l10n-text="Ел.адрес" ng-model="email" type="text" ng-required="false"></sc-field>
+      </div>
+    </ng-form>
+  </div>
+</div>

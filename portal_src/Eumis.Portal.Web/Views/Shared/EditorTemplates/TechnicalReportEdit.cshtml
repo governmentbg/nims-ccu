@@ -1,0 +1,148 @@
+﻿@model Eumis.Portal.Web.Models.TechnicalReport.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+@using Eumis.Portal.Web.Helplers.Extensions;
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+    int sectionNumber = 0;
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.TechnicalReport = @(Html.Raw(jsonModel));
+
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        window._eumis_options.membersImportUrl = "/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/Excel/ReadTeamMembers";
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerTechnicalReport'), ['moduleTechnicalReport']);
+            }, 100);
+        });
+    </script>
+<div class="technicalReport" id="containerTechnicalReport" ng-controller="controllerMainTechnicalReport">
+
+    @if(Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.BasicData))
+    {
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading" activation-name="technicalReport" broadcast-name="technicalReportActivation">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @TechnicalReport.BasicData
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        <div class="table-wrapper">
+            <div class="history-table">
+                @if (Model.BasicData != null && Model.BasicData.isLocked)
+                {
+                    @Html.DisplayFor(m => m.BasicData)
+                }
+                else
+                {
+                    @Html.DisplayFor(m => m.BasicData, MVC.Shared.Views.DisplayTemplates.TechnicalReportBasicDataReadonlyPart)
+                    @Html.EditorFor(m => m.BasicData)
+                }
+            </div>
+        </div>
+    </section>
+    <div class="section-separator"> </div>
+    }
+
+    @if(Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Activities))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Activities
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Activities != null && Model.Activities.isLocked)
+            {
+                @Html.DisplayFor(m => m.Activities)
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Activities.ActivityCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @if(Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Indicators))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Indicators
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Indicators != null && Model.Indicators.isLocked)
+            {
+                @Html.DisplayFor(m => m.Indicators)
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Indicators.IndicatorCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+     @if(Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Team))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Team
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Team != null && Model.Team.isLocked)
+            {
+                @Html.DisplayFor(m => m.Team)
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Team.TeamMemberCollection)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    @{ sectionNumber++; }
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @TechnicalReport.AttachedDocuments
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @if (Model.AttachedDocuments != null && Model.AttachedDocuments.isLocked)
+        {
+            @Html.DisplayFor(m => m.AttachedDocuments)
+        }
+        else
+        {
+            @Html.EditorFor(m => m.AttachedDocuments.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.TechnicalReportAttachedDocumentCollection)
+        }
+    </section>
+
+
+</div>
+}

@@ -1,0 +1,21 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-readonly="true" l10n-text="contracts_contractProjectForm_name" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="model.procedureId" ng-readonly="true" l10n-text="contracts_contractProjectForm_procedureId" class="col-sm-6 col-md-5"></sc-field>
+    <sc-field type="nomenclature" alias="'registrationStatuses'" mode="id" ng-model="model.registrationStatus" ng-readonly="true" l10n-text="contracts_contractProjectForm_registrationStatus" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" ng-readonly="true" l10n-text="contracts_contractProjectForm_companyName" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" ng-readonly="true" l10n-text="contracts_contractProjectForm_companyUinType" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" ng-readonly="true" l10n-text="contracts_contractProjectForm_companyUin" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.regNumber" ng-readonly="true" l10n-text="contracts_contractProjectForm_regNumber" class="col-sm-6 col-md-6"></sc-field>
+    <sc-field type="date" ng-model="model.regDate" ng-readonly="true" l10n-text="contracts_contractProjectForm_regDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="time" ng-model="model.regTime" ng-readonly="true" l10n-text="contracts_contractProjectForm_regTime" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>

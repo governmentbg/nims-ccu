@@ -1,0 +1,32 @@
+﻿@model R_10063.FinanceSourceAmounts
+
+@if (Model == null)
+{
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+}
+else
+{
+    <td>
+        @Html.DisplayFor(m => m.BFPContractAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+    <td>
+        <span class="filled-value">@(Eumis.Common.Helpers.DataUtils.DecimalToStringDecimalPointSpace(Model.BFPContractAmountPercentage) + "%")</span>
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.CurrentReportAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+    <td>
+        <span class="filled-value">@(Eumis.Common.Helpers.DataUtils.DecimalToStringDecimalPointSpace(Model.CurrentReportAmountPercentage) + "%")</span>
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.CumulativeAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+    <td>
+        <span class="filled-value">@(Eumis.Common.Helpers.DataUtils.DecimalToStringDecimalPointSpace(Model.CumulativeAmountPercentage) + "%")</span>
+    </td>
+}

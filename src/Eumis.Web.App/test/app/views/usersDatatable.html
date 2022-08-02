@@ -1,0 +1,17 @@
+<div>
+  <sc-datatable items="users" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+    <sc-column data="username" title="username">
+    </sc-column>
+    <sc-column data="userOrganization" title="user organization">
+    </sc-column>
+    <sc-column data="userType" title="user type">
+    </sc-column>
+    <sc-column data="fullname" title="fullname">
+    </sc-column>
+    <sc-column data="email" title="email">
+    </sc-column>
+    <sc-column title="status" sortable="false" has-content="true">
+      {{(item.isActive ? activeText : inactiveText) + (item.isLocked ? ', ' + lockedText : '') + (item.isDeleted ? ', ' + deletedText : '')}}
+    </sc-column>
+  </sc-datatable>
+</div>

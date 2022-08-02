@@ -1,0 +1,53 @@
+﻿<ng-form name="reportForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'prognosisProgrammes'" mode="id" ng-model="filters.programmeId" params="{ readOnly: true }" ng-required="true" l10n-text="prognoses_monthlyReport_programme" class="col-sm-6"></sc-field>
+          <sc-field type="nomenclature" alias="'years'" mode="id" ng-model="filters.year" ng-required="true" l10n-text="prognoses_monthlyReport_year" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" alias="'months'" mode="id" multiple="multiple" nom-obj="months" ng-model="filters.months" ng-required="true" l10n-text="prognoses_monthlyReport_months" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-2">
+            <sc-button name="searchBtn" btn-click="search()" text="prognoses_monthlyReport_search" class="btn btn-primary btn-sm" icon="glyphicon-search">
+            </sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="isDataVisible">
+        <sc-link-button ng-href="{{excelUrl}}" target="_blank" icon="fa-file-excel-o fa-lg fa-fw" style="margin-bottom:5px;"
+              sc-access-token text="prognoses_monthlyReport_excelExport" class="btn btn-primary btn-xs">
+        </sc-link-button>
+
+        <div class="nav-wrapper">
+          <div class="container no-side-padding">
+            <div class="border-wrap">
+              <ul class="nav nav-tabs tab-drop nav-tabs-large">
+                <li ng-class="{active: prognosis.isActive}" ng-repeat="prognosis in data">
+                  <a sc-click="openProgrammePriority(prognosis)" style="cursor:pointer;">
+                    <img ng-show="prognosis.loading" class="loader" src="img/loader2.gif" alt="" />
+                    <span ng-class="{ 'tab-loading': prognosis.loading }">{{prognosis.programmePriorityCode}}</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <ul class="nav nav-tabs tab-drop">
+                  <li>
+                    <a sc-click="openFinanceSource()" style="cursor:pointer;font-size:12px;">
+                      <img ng-show="true" class="loader" src="img/loader2.gif" alt="" />
+                      <span ng-class="{ 'tab-loading': true }"></span>
+                    </a>
+                  </li>
+                </ul>
+                <div style="margin:15px;">
+                  <canvas id="line" class="chart chart-line" chart-data="chartData.data"
+                    chart-labels="chartData.labels" chart-legend="true" chart-series="chartData.series">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

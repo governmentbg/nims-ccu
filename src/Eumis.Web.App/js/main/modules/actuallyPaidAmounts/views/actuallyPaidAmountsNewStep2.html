@@ -1,0 +1,32 @@
+<div class="tab-content">
+  <ng-form name="paidAmountsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="actuallyPaidAmounts_newStep2_title"></strong>
+
+      <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="actuallyPaidAmounts_newStep2_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="actuallyPaidAmounts_newStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="programmePriorityId" mode="id" params="{contractId: contract.contractId}" ng-required="true" l10n-text="actuallyPaidAmounts_newStep2_programmePriority" class="col-sm-6"></sc-field>
+        </div>
+
+        <div class="row">
+          <sc-field type="nomenclature" alias="'contractReportPayments'" ng-model="contractReportPaymentId" params="{contractId: contract.contractId}" mode="id" l10n-text="actuallyPaidAmounts_newStep2_contractReportPayment" class="col-sm-6"></sc-field>
+          <sc-field type="nomenclature" alias="'actuallyPaidAmountPaymentReasons'" ng-model="paymentReason" mode="id" ng-required="true" l10n-text="actuallyPaidAmounts_newStep2_paymentReason" class="col-sm-4"></sc-field>
+        </div>
+
+        <h5 class="table-header table-header-first" l10n-text="actuallyPaidAmounts_newStep2_contractData"></h5>
+        <eumis-contract-data name="contractDataForm" ng-model="contract" sc-form-readonly="true"></eumis-contract-data>
+
+        <h5 class="table-header" l10n-text="actuallyPaidAmounts_newStep2_beneficiary"></h5>
+        <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="contract" sc-form-readonly="true"></eumis-contract-beneficiary>
+      </div>
+    </div>
+  </ng-form>
+</div>

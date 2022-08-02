@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10077" 
+	xmlns="http://ereg.egov.bg/segment/R-10077"
+	
+	xmlns:sb="http://ereg.egov.bg/segment/R-10076"
+            
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10076" />
+  
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+	
+	<xsd:complexType name="SpendingPlan">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">План за разходване на средства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="EndDate" type="xsd:date" minOccurs="0" />
+
+      <xsd:element name="SpendingBudget" type="sb:SpendingBudget" minOccurs="0" />
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+    <xsd:attribute name="contractVersionGid" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+	</xsd:complexType>
+</xsd:schema>

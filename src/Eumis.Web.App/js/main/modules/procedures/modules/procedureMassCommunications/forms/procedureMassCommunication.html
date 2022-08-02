@@ -1,0 +1,14 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+   <div class="row">
+    <sc-field type="nomenclature" alias="'massCommunicationProgrammes'" mode="id" ng-model="model.programmeId" ng-required="true" l10n-text="procedures_procedureMassCommunicationDocumentForm_programme" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+      <sc-field type="nomenclature" alias="'massCommunicationProcedures'" mode="id" ng-model="model.procedureId" params="{programmeId: model.programmeId}" ng-required="true" l10n-text="procedures_procedureMassCommunicationDocumentForm_procedure" class="col-sm-8 col-md-8"></sc-field>
+    </div>
+  <div class="row">
+    <sc-field ng-readonly="form.$readonly" type="text" ng-model="model.subject"  l10n-text="procedures_procedureMassCommunicationDocumentForm_subject" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field ng-readonly="form.$readonly" type="textarea" ng-model="model.body" rows="5" l10n-text="procedures_procedureMassCommunicationDocumentForm_body" class="col-sm-8 col-md-8"></sc-field>
+  </div>
+</ng-form>

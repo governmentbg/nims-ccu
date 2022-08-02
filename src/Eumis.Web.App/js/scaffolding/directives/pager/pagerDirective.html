@@ -1,0 +1,19 @@
+﻿<nav style="text-align:center;" ng-show="pagingContents.length > 1">
+  <ul class="pagination pagination-sm">
+    <li ng-class="{'disabled' : currentPage === 1}">
+      <a sc-click="change({page: 1})" ng-disabled="currentPage === 1">&laquo;</a>
+    </li>
+    <li ng-class="{'disabled' : currentPage === 1}">
+      <a sc-click="change({page: currentPage - 1})" ng-disabled="currentPage === 1">&#8249;</a>
+    </li>
+    <li ng-class="{'active' : currentPage === page.number, 'disabled': !page.number}" ng-repeat="page in pagingContents">
+      <a sc-click="change({page: page.number})" ng-disabled="!page.number">{{page.number || page.text}}</a>
+    </li>
+    <li ng-class="{'disabled' : currentPage === pageNum}">
+      <a sc-click="change({page: currentPage + 1})" ng-disabled="currentPage === pageNum">&#8250;</a>
+    </li>
+    <li ng-class="{'disabled' : currentPage === pageNum}">
+      <a sc-click="change({page: pageNum})" ng-disabled="currentPage === pageNum">&raquo;</a>
+    </li>
+  </ul>
+</nav>

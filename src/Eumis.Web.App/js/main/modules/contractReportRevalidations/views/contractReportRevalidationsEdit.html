@@ -1,0 +1,20 @@
+<ng-form name="editContractReportRevalidationData" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportRevalidations_editContractReportRevalidation_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportRevalidations_editContractReportRevalidation_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="status === 'draft'" ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidation.contractReportRevalidationId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportRevalidations_editContractReportRevalidation_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportRevalidations_editContractReportRevalidation_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-report-revalidation-data name="contractReportRevalidationForm" ng-model="contractReportRevalidation" sc-form-params="{ approvedEdit: true }"></eumis-contract-report-revalidation-data>
+    </div>
+  </div>
+</ng-form>

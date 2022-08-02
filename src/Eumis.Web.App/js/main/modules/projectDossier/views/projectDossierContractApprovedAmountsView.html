@@ -1,0 +1,161 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewApprovedAmounts_title"></strong>
+  </div>
+  
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showApprovedAmounts=!showApprovedAmounts">
+        <span l10n-text="projectDossier_viewApprovedAmounts_contractReports"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showApprovedAmounts, 'glyphicon-chevron-right': !showApprovedAmounts}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showApprovedAmounts" ng-href="{{contractReportApprovedAmountsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewApprovedAmounts_contractReportExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showApprovedAmounts" items="approvedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.search', params: { id: item.contractReportId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+          </sc-column>
+          <sc-column data="approvedAmount" title="projectDossier_viewApprovedAmounts_contractReportApprovedAmount">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewApprovedAmounts_contractReportContractRegNum">
+          </sc-column>
+          <sc-column data="contractName" title="projectDossier_viewApprovedAmounts_contractReportContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewApprovedAmounts_contractReportProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewApprovedAmounts_contractReportStatus">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewApprovedAmounts_contractReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="reportType" title="projectDossier_viewApprovedAmounts_contractReportReportType">
+          </sc-column>
+          <sc-column data="source" title="projectDossier_viewApprovedAmounts_contractReportSource">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+    
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportCorrections=!showContractReportCorrections">
+        <span l10n-text="projectDossier_viewApprovedAmounts_contractReportCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportCorrections, 'glyphicon-chevron-right': !showContractReportCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportCorrections" ng-href="{{contractReportCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewApprovedAmounts_contractReportCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportCorrections" items="contractReportCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReportCorrections.view.basicData', params: { id: item.contractReportCorrectionId }}"
+              ng-disabled="!$canDo('ContractReportCorrectionActions.View', item.contractReportCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="correctedApprovedBfpTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportCorrectionApprovedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="correctedApprovedSelfAmount" title="projectDossier_viewApprovedAmounts_contractReportCorrectionApprovedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewApprovedAmounts_contractReportCorrectionProgramme">
+          </sc-column>
+          <sc-column data="statusDescr" title="projectDossier_viewApprovedAmounts_contractReportCorrectionStatus">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewApprovedAmounts_contractReportCorrectionRegNumber">
+          </sc-column>
+          <sc-column data="type" title="projectDossier_viewApprovedAmounts_contractReportCorrectionType">
+          </sc-column>
+          <sc-column data="date" title="projectDossier_viewApprovedAmounts_contractReportCorrectionDate" type="date">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showContractReportFinancialCorrections=!showContractReportFinancialCorrections">
+        <span l10n-text="projectDossier_viewApprovedAmounts_contractReportFinancialCorrections"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportFinancialCorrections, 'glyphicon-chevron-right': !showContractReportFinancialCorrections}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportFinancialCorrections" ng-href="{{contractReportFinancialCorrectionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportFinancialCorrections" items="contractReportFinancialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialCorrections.view.contract', params: { id: item.contractReportFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportFinancialCorrectionActions.View', item.contractReportFinancialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="correctedApprovedBfpTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionApprovedBfpTotalAmount" type="money">
+          </sc-column>
+          <sc-column data="correctedApprovedSelfAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionApprovedSelfAmount" type="money">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionContractRegNum">
+          </sc-column>
+          <sc-column data="contractName" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionContractName" has-content="true">
+            <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="procedureName" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionProcedureName" has-content="true">
+            <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="reportOrderNum" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionReportOrderNum" type="number">
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionStatus">
+          </sc-column>
+          <sc-column data="orderNum" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionOrderNum" type="number">
+          </sc-column>
+          <sc-column data="createDate" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionCreateDate" type="date">
+          </sc-column>
+          <sc-column data="notes" title="projectDossier_viewApprovedAmounts_contractReportFinancialCorrectionNotes">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showContractReportFinancialCSDs=!showContractReportFinancialCSDs">
+        <span l10n-text="projectDossier_viewApprovedAmounts_contractReportFinancialCSD"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractReportFinancialCSDs, 'glyphicon-chevron-right': !showContractReportFinancialCSDs}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showContractReportFinancialCSDs" ng-href="{{contractReportFinancialCSDsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewApprovedAmounts_contractReportFinancialCSDExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showContractReportFinancialCSDs" items="contractReportFinancialCSDs" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialCorrections.view.contract', params: { id: item.contractReportFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ContractReportFinancialCorrectionActions.View', item.contractReportFinancialCorrectionId)"></sc-button>
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDContractRegNum">
+          </sc-column>
+          <sc-column data="csd" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDcsd">
+          </sc-column>
+          <sc-column data="reportNum" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDReportNum" has-content="true">
+            {{ item.reportNum }} ({{item.reportSubmitDate | date:'dd.MM.yyyy'}})
+          </sc-column>
+          <sc-column data="paymentDate" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDPaymentDate" has-content="true">
+            {{ item.paymentVersionNum }}.{{ item.paymentVersionSubNum }} ({{item.paymentSubmitDate | date:'dd.MM.yyyy'}})
+          </sc-column>
+          <sc-column data="bfpTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDBfpAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDAmount" type="money">
+          </sc-column>
+          <sc-column data="totalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDTotalAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDAmount" type="money">
+          </sc-column>
+          <sc-column data="approvedBfpTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDBfpAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDApprovedAmount" type="money">
+          </sc-column>
+          <sc-column data="approvedTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDTotalAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDApprovedAmount" type="money">
+          </sc-column>
+          <sc-column data="correctedApprovedBfpTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDBfpAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDCorrectedApprovedAmount" type="money">
+          </sc-column>
+          <sc-column data="correctedApprovedTotalAmount" title="projectDossier_viewApprovedAmounts_contractReportFinancialCSDTotalAmount"
+            col-group="projectDossier_viewApprovedAmounts_contractReportFinancialCSDCorrectedApprovedAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

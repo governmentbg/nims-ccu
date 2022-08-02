@@ -1,0 +1,45 @@
+﻿@model R_10079.OfferBasicData
+
+@if (Model != null)
+{
+    <table>
+        <tbody>
+            <tr>
+                <td style="width:35%">@OfferBasicData.Uin</td>
+                <td style="width:65%">@Model.BeneficiaryUin</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanName</td>
+                <td>@Model.PlanName</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanErrandArea</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.PlanErrandArea ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanErrandLegalAct</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.PlanErrandLegalAct ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanErrandType</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.PlanErrandType ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanExpectedAmount</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.PlanExpectedAmount)</td>
+            </tr>
+            <tr>
+                <td>@OfferBasicData.PlanDescription</td>
+                <td>@Model.PlanDescription</td>
+            </tr>
+
+            @if (Model.DifferentiatedPosition != null)
+            {
+                <tr>
+                    <td colspan="2"><strong>@ProcurementPlan.DifferentiatedPosition</strong></td>
+                </tr>
+                @Html.Partial(MVC.Shared.Views.Print.DifferentiatedPosition, Model.DifferentiatedPosition)
+            }
+        </tbody>
+    </table>
+}

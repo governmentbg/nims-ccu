@@ -1,0 +1,214 @@
+﻿@model R_10036.BFPContractBudget
+
+@if (Model != null)
+{
+    bool hasNutsAddress = false;
+    bool hasInterventionField = false;
+    bool hasFormOfFinance = false;
+    bool hasTerritorialDimension = false;
+    bool hasTerritorialDeliveryMechanism = false;
+    bool hasThematicObjective = false;
+    bool hasESFSecondaryTheme = false;
+    bool hasEconomicDimension = false;
+
+    List<R_10033.BFPContractProgrammeDetailsExpenseBudget> details = new List<R_10033.BFPContractProgrammeDetailsExpenseBudget>();
+    if (Model.BFPContractProgrammeBudgetCollection != null && Model.BFPContractProgrammeBudgetCollection.Count > 0)
+    {
+        foreach (var budget in Model.BFPContractProgrammeBudgetCollection)
+        {
+            foreach (var expense in budget.BFPContractProgrammeExpenseBudgetCollection)
+            {
+                foreach (var detail in expense.BFPContractProgrammeDetailsExpenseBudgetCollection)
+                {
+                    details.Add(detail);
+                }
+            }
+        }
+
+        hasNutsAddress = details.Any(detail => detail.Nuts != null && !String.IsNullOrWhiteSpace(detail.Nuts.Code)) && Model.HasMoreThanOneNutsAddress;
+        hasInterventionField = details.Any(detail => !String.IsNullOrWhiteSpace(detail.InterventionFieldCode)) && Model.HasMoreThanOneInterventionField;
+        hasFormOfFinance = details.Any(detail => !String.IsNullOrWhiteSpace(detail.FormOfFinanceCode)) && Model.HasMoreThanOneFormOfFinance;
+        hasTerritorialDimension = details.Any(detail => !String.IsNullOrWhiteSpace(detail.TerritorialDimensionCode)) && Model.HasMoreThanOneTerritorialDimension;
+        hasTerritorialDeliveryMechanism = details.Any(detail => !String.IsNullOrWhiteSpace(detail.TerritorialDeliveryMechanismCode)) && Model.HasMoreThanOneTerritorialDeliveryMechanism;
+        hasThematicObjective = details.Any(detail => !String.IsNullOrWhiteSpace(detail.ThematicObjectiveCode)) && Model.HasMoreThanOneThematicObjective;
+        hasESFSecondaryTheme = details.Any(detail => !String.IsNullOrWhiteSpace(detail.ESFSecondaryThemeCode)) && Model.HasMoreThanOneESFSecondaryTheme;
+        hasEconomicDimension = details.Any(detail => !String.IsNullOrWhiteSpace(detail.EconomicDimensionCode)) && Model.HasMoreThanOneEconomicDimension;
+    }
+
+    <div>
+        <table class="budget-print">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="min-width: 20px"></th>
+                    <th rowspan="2">@BFPContractBudget.ExpenseName</th>
+                    <th rowspan="2" style="width: 190px;">@BFPContractBudget.DimensionCodes</th>
+                    <th colspan="3">@BFPContractBudget.GrandAmount</th>
+                    <th rowspan="2">@BFPContractBudget.GrandTotalShort @BFPContractBudget.GrandAmount</th>
+                    <th rowspan="2">@BFPContractBudget.SelfAmount</th>
+                    <th rowspan="2">@BFPContractBudget.Amount</th>
+                </tr>
+                <tr>
+                    <th colspan="2">@BFPContractBudget.GrandEUShort</th>
+                    <th>@BFPContractBudget.GrandNationalShort</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.BFPContractProgrammeBudgetCollection != null)
+                {
+                    for (int i = 0; i < Model.BFPContractProgrammeBudgetCollection.Count; i++)
+                    {
+                        var level1 = Model.BFPContractProgrammeBudgetCollection[i];
+                        <tr>
+                            <td colspan="9"><strong>@(Eumis.Common.Helpers.DataUtils.Romanize(level1.OrderNum)). @level1.Name</strong></td>
+                        </tr>
+                        if (Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection != null)
+                        {
+                            for (int j = 0; j < Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection.Count; j++)
+                            {
+                                var level2 = Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j];
+                                <tr>
+                                    <td colspan="9">
+                                        @(level2.OrderNum). @level2.Name
+                                    </td>
+                                </tr>
+                                if (Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection != null)
+                                {
+                                    for (int k = 0; k < Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection.Count; k++)
+                                    {
+                                        var level3 = Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection[k];
+                                        <tr>
+                                            <td rowspan="@(Model.IsInitial ? "1" : "3")">
+                                                @(level2.OrderNum).@(level3.OrderNum).
+                                            </td>
+                                            <td rowspan="@(Model.IsInitial ? "1" : "3")">
+                                                @level3.Name
+                                                @if (!level3.isActive)
+                                                {
+                                                    <br />
+                                                    <br />
+                                                    <text>@BFPContractBudget.Status: @BFPContractBudget.Canceled</text>
+                                                }
+                                            </td>
+                                            <td rowspan="@(Model.IsInitial ? "1" : "3")" class="paragraph-margin0">
+                                                @if (hasInterventionField)
+                                                {
+                                                    <p>
+                                                        01. : @level3.InterventionFieldCode
+                                                    </p>
+                                                }
+                                                @if (hasFormOfFinance)
+                                                {
+                                                    <p>
+                                                        02. : @level3.FormOfFinanceCode
+                                                    </p>
+                                                }
+                                                @if (hasTerritorialDimension)
+                                                {
+                                                    <p>
+                                                        03. : @level3.TerritorialDimensionCode
+                                                    </p>
+                                                }
+                                                @if (hasTerritorialDeliveryMechanism)
+                                                {
+                                                    <p>
+                                                        04. : @level3.TerritorialDeliveryMechanismCode
+                                                    </p>
+                                                }
+                                                @if (hasThematicObjective)
+                                                {
+                                                    <p>
+                                                        05. : @level3.ThematicObjectiveCode
+                                                    </p>
+                                                }
+                                                @if (hasESFSecondaryTheme)
+                                                {
+                                                    <p>
+                                                        06. : @level3.ESFSecondaryThemeCode
+                                                    </p>
+                                                }
+                                                @if (hasEconomicDimension)
+                                                {
+                                                    <p>
+                                                        07. : @level3.EconomicDimensionCode
+                                                    </p>
+                                                }
+                                                @if (hasNutsAddress)
+                                                {
+                                                    <p>
+                                                        08. : @level3.Nuts.Name
+                                                    </p>
+                                                }
+                                            </td>
+                                            <td>
+                                                @BFPContractBudget.ContractValueShort
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.EUAmounts.ContractValue)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.NationalAmounts.ContractValue)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.TotalAmounts.ContractValue)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.SelfAmounts.ContractValue)
+                                            </td>
+                                            <td style="text-align: right; white-space: nowrap;">
+                                                @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.TotalAmountsDisplay.ContractValue)
+                                            </td>
+                                            @*<td></td>*@
+                                        </tr>
+                                        if (!Model.IsInitial)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @BFPContractBudget.ModificationShort
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.EUAmounts.Modification)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.NationalAmounts.Modification)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.TotalAmounts.Modification)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.SelfAmounts.Modification)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.TotalAmountsDisplay.Modification)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @BFPContractBudget.CurrentStateShort
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.EUAmounts.CurrentState)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.NationalAmounts.CurrentState)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.GrandAmounts.TotalAmounts.CurrentState)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.SelfAmounts.CurrentState)
+                                                </td>
+                                                <td style="text-align: right; white-space: nowrap;">
+                                                    @Html.Partial(MVC.Shared.Views.Print.Decimal, level3.TotalAmountsDisplay.CurrentState)
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

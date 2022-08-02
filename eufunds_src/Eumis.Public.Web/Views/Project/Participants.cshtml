@@ -1,0 +1,262 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractParticipantsVO
+
+@{
+    Layout = "_ProjectLayout.cshtml";
+}
+
+@section footerNotes{
+    * @Texts.Project_Details_ContractedAmount_Note:
+    <ul>
+        <li>@Texts.Project_Details_ContractedAmount_SubNote1</li>
+        <li>@Texts.Project_Details_ContractedAmount_SubNote2</li>
+        <li>@Texts.Project_Details_ContractedAmount_SubNote3</li>
+    </ul>
+    ** @Texts.Project_Details_Contractor_ReportedAmount_Note<br />
+
+}
+
+<div class="project-info-box">
+    <div class="head green">
+        <h2>@Texts.Project_Details_ParticipatingOrganizations</h2>
+    </div>
+    <div class="content">
+        <div class="list-item">
+            <label>@Texts.Project_Details_Partners</label>
+            @if (Model.Partners != null && Model.Partners.Count() > 0)
+            {
+                if (Model.PartnersNonPersonal != null && Model.PartnersNonPersonal.Count() > 0)
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="50%">@Texts.Project_Details_Partner @Texts.Project_Details_NonPersonal</th>
+                                    <th width="25%">@Texts.Project_Details_Partner_ContractedAmount*</th>
+                                    <th width="25%">@Texts.Project_Details_Partner_ReportedAmount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var partner in Model.PartnersNonPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(partner.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(partner.Uin), uinType = partner.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Partner }, null)</td>
+                                        <td>@Html.DisplayFor(m => partner.TotalFinancialContribution)</td>
+                                        <td>@Html.DisplayFor(m => partner.TotalReportedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                if (Model.PartnersPersonal != null && Model.PartnersPersonal.Count() > 0)
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="50%">@Texts.Project_Details_Partner @Texts.Project_Details_Personal</th>
+                                    <th width="25%">@Texts.Project_Details_Partner_ContractedAmount*</th>
+                                    <th width="25%">@Texts.Project_Details_Partner_ReportedAmount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var partner in Model.PartnersPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(partner.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(partner.Uin), uinType = partner.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Partner }, null)</td>
+                                        <td>@Html.DisplayFor(m => partner.TotalFinancialContribution)</td>
+                                        <td>@Html.DisplayFor(m => partner.TotalReportedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+            else
+            {
+                @Texts.Project_Details_None
+            }
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_Contractors</label>
+            @if (Model.Contractors != null && Model.Contractors.Count() > 0)
+            {
+                if (Model.ContractorsNonPersonal != null && Model.ContractorsNonPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="50%">@Texts.Project_Details_Contractor @Texts.Project_Details_NonPersonal</th>
+                                    <th width="25%">@Texts.Project_Details_Contractor_ContractedAmount*</th>
+                                    <th width="25%">@Texts.Project_Details_Contractor_ReportedAmount**</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var contractor in Model.ContractorsNonPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(contractor.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(contractor.Uin), uinType = contractor.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Contractor }, null)</td>
+                                        <td>@Html.DisplayFor(m => contractor.TotalContractedAmount)</td>
+                                        <td>@Html.DisplayFor(m => contractor.TotalReportedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                if (Model.ContractorsPersonal != null && Model.ContractorsPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="50%">@Texts.Project_Details_Contractor @Texts.Project_Details_Personal</th>
+                                    <th width="25%">@Texts.Project_Details_Contractor_ContractedAmount*</th>
+                                    <th width="25%">@Texts.Project_Details_Contractor_ReportedAmount**</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var contractor in Model.ContractorsPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(contractor.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(contractor.Uin), uinType = contractor.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Contractor }, null)</td>
+                                        <td>@Html.DisplayFor(m => contractor.TotalContractedAmount)</td>
+                                        <td>@Html.DisplayFor(m => contractor.TotalReportedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+            else
+            {
+                @Texts.Project_Details_None
+            }
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_Subcontractors</label>
+            @if (Model.Subcontractors != null && Model.Subcontractors.Count() > 0)
+            {
+                if (Model.SubcontractorsNonPersonal != null && Model.SubcontractorsNonPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="75%">@Texts.Project_Details_Subcontractor @Texts.Project_Details_NonPersonal</th>
+                                    <th width="25%" style="border-left:solid 1px;">@Texts.Project_Details_Subcontractor_ContractedAmount*</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var subcontractor in Model.SubcontractorsNonPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(subcontractor.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(subcontractor.Uin), uinType = subcontractor.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Subcontractor }, null)</td>
+                                        <td style="border-left:solid 1px;">@Html.DisplayFor(m => subcontractor.TotalContractedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                if (Model.SubcontractorsPersonal != null && Model.SubcontractorsPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="75%">@Texts.Project_Details_Subcontractor @Texts.Project_Details_Personal</th>
+                                    <th width="25%" style="border-left:solid 1px;">@Texts.Project_Details_Subcontractor_ContractedAmount*</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var subcontractor in Model.SubcontractorsPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(subcontractor.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(subcontractor.Uin), uinType = subcontractor.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Subcontractor }, null)</td>
+                                        <td style="border-left:solid 1px;">@Html.DisplayFor(m => subcontractor.TotalContractedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+            else
+            {
+                @Texts.Project_Details_None
+            }
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_Members</label>
+            @if (Model.Members != null && Model.Members.Count() > 0)
+            {
+                if (Model.MembersNonPersonal != null && Model.MembersNonPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="75%">@Texts.Project_Details_Member @Texts.Project_Details_NonPersonal</th>
+                                    <th width="25%" style="border-left:solid 1px;">@Texts.Project_Details_Member_ContractedAmount*</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var member in Model.MembersNonPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(member.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(member.Uin), uinType = member.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Member }, null)</td>
+                                        <td style="border-left:solid 1px;">@Html.DisplayFor(m => @member.TotalContractedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                if (Model.MembersPersonal != null && Model.MembersPersonal.Any())
+                {
+                    <div class="table-wrapper">
+                        <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                        <table class="chart-info">
+                            <thead>
+                                <tr>
+                                    <th width="75%">@Texts.Project_Details_Member @Texts.Project_Details_Personal</th>
+                                    <th width="25%" style="border-left:solid 1px;">@Texts.Project_Details_Member_ContractedAmount*</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var member in Model.MembersPersonal)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(member.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(member.Uin), uinType = member.UinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Member }, null)</td>
+                                        <td style="border-left:solid 1px;">@Html.DisplayFor(m => @member.TotalContractedAmount)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+            else
+            {
+                @Texts.Project_Details_None
+            }
+        </div>
+    </div>
+</div>

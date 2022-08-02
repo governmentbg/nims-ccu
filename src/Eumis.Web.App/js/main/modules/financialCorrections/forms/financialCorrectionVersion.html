@@ -1,0 +1,42 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="financialCorrections_financialCorrectionVersionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'financialCorrectionVersionStatuses'" ng-model="model.status" ng-disabled="true" l10n-text="financialCorrections_financialCorrectionVersionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-4 col-md-3" sc-has-error="percent">
+      <label class="control-label" l10n-text="financialCorrections_financialCorrectionVersionForm_percent"></label>
+      <sc-validation-error field-name="percent" validations="{max: 'default'}"></sc-validation-error>
+      <div class="input-group input-group-sm">
+        <sc-money ng-model="model.percent" name="percent" max="10000" ng-readonly="form.$readonly" class="input-sm form-control"></sc-money>
+        <span class="input-group-addon">%</span>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-4 col-md-3" style="margin-top: 19px;">
+      <sc-button name="calcualteBtn" btn-click="calculate()" ng-disabled="form.$readonly || !model.percent" class="btn btn-default btn-sm" text="financialCorrections_financialCorrectionVersionForm_calculate"></sc-button>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.totalAmount" ng-required="true" l10n-text="financialCorrections_financialCorrectionVersionForm_totalAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'financialCorrectionVersionViolationFoundBy'" ng-model="model.violationFoundBy" ng-required="true" l10n-text="financialCorrections_financialCorrectionVersionForm_violationFoundBy" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'financialCorrectionImposingReasons'" ng-model="model.financialCorrectionImposingReasonId" ng-required="true" l10n-text="financialCorrections_financialCorrectionVersionForm_financialCorrectionImposingReasonId" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'amendmentReasons'" ng-model="model.amendmentReason" ng-required="!model.isFirstVersion" ng-show="!model.isFirstVersion" l10n-text="financialCorrections_financialCorrectionVersionForm_amendmentReason" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'correctionBearers'" ng-model="model.correctionBearer" ng-required="true" l10n-text="financialCorrections_financialCorrectionVersionForm_correctionBearer" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'otherViolations'" multiple="multiple" ng-model="model.violationIds" l10n-text="financialCorrections_financialCorrectionVersionForm_violationIds" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" ng-model="model.file" url-template="FinancialCorrectionVersionFile" url-params="{ id: model.financialCorrectionId }" l10n-text="financialCorrections_financialCorrectionVersionForm_file" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" l10n-text="financialCorrections_financialCorrectionVersionForm_description" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

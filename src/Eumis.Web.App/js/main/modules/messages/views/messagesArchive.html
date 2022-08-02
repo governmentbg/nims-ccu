@@ -1,0 +1,19 @@
+<div class="row">
+  <sc-button name="newBtn" btn-sref="{ state: 'root.messages.new' }" text="messages_search_newMessage" class="btn btn-sm btn-primary pull-left" icon="glyphicon-send" style="display: block;"></sc-button>
+</div>
+<div class="row">
+  <div class="list-group message-list" ng-show="messagesQuery.count !== 0">
+    <a class="list-group-item message-item" ng-repeat="item in messagesQuery.messages" ng-click="view(item.messageId)">
+      <strong class="list-group-item-heading message-title">{{item.title}}</strong>
+      <div class="list-group-item-text">{{item.content | trim : 500}}</div>
+      <div class="pull-right" style="color:grey;">
+        <span title="{{item.sentDate | date:'dd.MM.yyyy'}}" am-time-ago="item.sentDate"></span>
+        <span l10n-text="messages_searchArchive_by"></span>
+        <span>{{item.sender}}</span>
+      </div>
+    </a>
+  </div>
+  <sc-pager count="messagesQuery.count" page="page" change="pageChange(page)"></sc-pager>
+
+  <div ng-show="messagesQuery.count === 0" l10n-text="messages_searchArchive_noMessages" style="margin-top: 5px;"></div>
+</div>

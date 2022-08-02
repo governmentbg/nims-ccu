@@ -1,0 +1,107 @@
+﻿@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+@model Eumis.Portal.Web.Models.Offers.IndexVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers)
+}, Offers.Archive)
+
+<div class="container page-title">
+  <h1>@Offers.Archive</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    @Html.Partial(MVC.Offers.Views._NavTabs, MVC.Offers.Views.Archived)
+    <div class="tab-content">
+        <div class="tab-pane active">
+            @using (Html.BeginForm(MVC.Offers.ActionNames.Archived,
+                MVC.Offers.Name,
+                FormMethod.Get,
+                new { role = "form", @class = "form-with-sections" }))
+            {
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.DifferentiatedPosition</label>
+                        @Html.TextBoxFor(m => m.DpName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.ProcurementSubject</label>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>@Offers.Beneficiary</label>
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-xs-3">
+                        <input type="submit" class="submit wait" value="@Global.ButtonSearchText">
+                    </div>
+                </div>
+            }
+            <div class="table-wrapper">
+                @if (Model.SearchItems != null && Model.SearchItems.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%">@Offers.OffersDeadlineDate </th>
+                                <th style="width: 25%">@Offers.DifferentiatedPosition</th>
+                                <th style="width: 25%">@Offers.ProcurementSubject</th>
+                                <th style="width: 20%">@Offers.Beneficiary</th>
+                                <th style="width: 15%">@Global.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var position in Model.SearchItems)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => position.OffersDeadlineDate, MVC.Shared.Views.DisplayTemplates.DateTimeWithoutSpan)
+                                    </td>
+                                    <td>
+                                        @position.DpName
+                                    </td>
+                                    <td>
+                                        @position.Name
+                                    </td>
+                                    <td>
+                                        @position.CompanyName
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action(MVC.Offers.ActionNames.Details, MVC.Offers.Name, new { id = position.DpGid })" title="" class="view-btn wait">@Global.ButtonPreviewText</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pull-right m-3">
+                        @Html.ActionLink(Offers.Export, MVC.Offers.ArchivedExport(Model.DpName, Model.Name, Model.CompanyName), new { @class = "download-as-file" })
+                    </div>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Offers.NoOffersFound</p>
+                    </div>
+                }
+            </div>
+
+            @Html.PagedListPager(Model.SearchItems,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page,
+                    dpName = Model.DpName,
+                    name = Model.Name,
+                    companyName = Model.CompanyName
+                }),
+                Constants.PagedListRenderOptions)
+
+        </div>
+    </div>
+</div>

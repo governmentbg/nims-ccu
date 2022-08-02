@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="contracts_modals_chooseContractRegistration_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_modals_chooseContractRegistration_cancel" class="btn btn-default btn-xs"
+        icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div>
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="text" ng-model="filters.email" l10n-text="contracts_modals_chooseContractRegistration_email" class="col-sm-2"></sc-field>
+          <sc-field type="text" ng-model="filters.uin" l10n-text="contracts_modals_chooseContractRegistration_uin" class="col-sm-2"></sc-field>
+          <sc-field type="text" ng-model="filters.firstName" l10n-text="contracts_modals_chooseContractRegistration_firstName" class="col-sm-2"></sc-field>
+          <sc-field type="text" ng-model="filters.lastName" l10n-text="contracts_modals_chooseContractRegistration_lastName" class="col-sm-2"></sc-field>
+          <sc-field type="text" ng-model="filters.phone" l10n-text="contracts_modals_chooseContractRegistration_phone" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-2">
+            <sc-button name="seachBtn" btn-click="search()" text="contracts_modals_chooseContractRegistration_search" class="btn btn-default btn-sm pull-right"
+              icon="glyphicon-search">
+            </sc-button>
+          </div>
+        </div>
+      </div>
+
+      <sc-datatable items="contractRegs" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="chooseButton" btn-click="choose(item)" class="btn btn-sm btn-primary" text="contracts_modals_chooseContractRegistration_choose"></sc-button>
+        </sc-column>
+        <sc-column data="email" title="contracts_modals_chooseContractRegistration_email">
+        </sc-column>
+        <sc-column data="uinType" title="contracts_modals_chooseContractRegistration_uinType">
+        </sc-column>
+        <sc-column data="uin" title="contracts_modals_chooseContractRegistration_uin">
+        </sc-column>
+        <sc-column data="firstName" title="contracts_modals_chooseContractRegistration_firstName">
+        </sc-column>
+        <sc-column data="lastName" title="contracts_modals_chooseContractRegistration_lastName">
+        </sc-column>
+        <sc-column data="phone" title="contracts_modals_chooseContractRegistration_phone">
+        </sc-column>
+        <sc-column data="contractRegNums" title="contracts_modals_chooseContractRegistration_contractRegNums" has-content="true">
+          {{item.contractRegNums | join:', '}}
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</div>

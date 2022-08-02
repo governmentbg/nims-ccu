@@ -1,0 +1,26 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+  string procCode = (string)Model["procCode"];
+  string procName = (string)Model["procName"];
+  string programmeName = (string)Model["programmeName"];
+  string companyName = (string)Model["companyName"];
+  string projectName = (string)Model["projectName"];
+  string questionRegNumber = (string)Model["regNumber"];
+  string email = (string)Model["email"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Вашия отговор на въпрос от оценителна комисия по схема за кандидатстване: @procCode - @procName, Основна организация @programmeName, с кандидат @companyName и наименование: <strong>@projectName</strong>, беше приет успешно от системата.</p>
+
+<p style="margin-bottom: 15px;">Регистрационен номер: <strong>@questionRegNumber</strong></p>
+
+<p style="margin-bottom: 15px;">Отговорът се съхранява в системата и може да бъде намерен в менюто „Проектни предложения“, раздел „Подадени“, „История“ на адрес <a href="@(portalUrl)">@portalUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>.</p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br/>

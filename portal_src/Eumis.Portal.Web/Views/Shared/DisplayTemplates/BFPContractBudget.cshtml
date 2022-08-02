@@ -1,0 +1,165 @@
+﻿@model R_10036.BFPContractBudget
+
+@if (Model != null && Model.BFPContractProgrammeBudgetCollection != null)
+{
+
+    bool hasNutsAddress = false;
+
+    List<R_10033.BFPContractProgrammeDetailsExpenseBudget> details = new List<R_10033.BFPContractProgrammeDetailsExpenseBudget>();
+    if (Model.BFPContractProgrammeBudgetCollection != null && Model.BFPContractProgrammeBudgetCollection.Count > 0)
+    {
+        foreach (var level1 in Model.BFPContractProgrammeBudgetCollection)
+        {
+            if (level1.BFPContractProgrammeExpenseBudgetCollection != null)
+            {
+                foreach (var level2 in level1.BFPContractProgrammeExpenseBudgetCollection)
+                {
+                    if (level2.BFPContractProgrammeDetailsExpenseBudgetCollection != null)
+                    {
+                        foreach (var level3 in level2.BFPContractProgrammeDetailsExpenseBudgetCollection)
+                        {
+                            details.Add(level3);
+                        }
+                    }
+                }
+            }
+        }
+
+        hasNutsAddress = details.Any(detail => detail.Nuts != null && !String.IsNullOrWhiteSpace(detail.Nuts.Code)) && Model.HasMoreThanOneNutsAddress;
+    }
+
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info dynamic-rows bfp-budget-table">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width:40px; max-width: 40px;"></th>
+                    <th rowspan="2" style="width:@(Model.HasDirections?40:50)%">@BFPContractBudget.ExpenseName</th>
+                    @if (Model.HasDirections)
+                    { 
+                        <th rowspan="2" style="width:50%;">@BFPContractBudget.Directions</th>
+                    }
+                    <th rowspan="2" style="width:80px;">@BFPContractBudget.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.BFPContractProgrammeBudgetCollection.Count; i++)
+                {
+                    var level1 = Model.BFPContractProgrammeBudgetCollection[i];
+                    <tr class="level1 auto-calc-percent @(level1.IsDeactivated ? "deactivated-gray" : "")">
+                        <td colspan="3">
+                            @(Eumis.Common.Helpers.DataUtils.Romanize(level1.OrderNum)). @level1.Name
+                        </td>
+
+                        <td style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => level1.TotalAmount)</td>
+
+                        <td>
+                            @if (level1.IsDeactivated)
+                            {
+                                <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover">
+                            }
+                        </td>
+                    </tr>
+                    if (Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection != null)
+                    {
+                        for (int j = 0; j < Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection.Count; j++)
+                        {
+                            var level2 = Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j];
+                            bool hasAidMode = level2.AidMode != null && !String.IsNullOrWhiteSpace(level2.AidMode.Description);
+
+                            <tr class="level2 @(level1.IsDeactivated || level2.IsDeactivated ? "deactivated-gray" : "")">
+                                <td colspan="3">
+                                    @(level2.OrderNum). @level2.Name
+                                    @if (hasAidMode)
+                                    {
+                                        <text>@ProgrammeBudget.AidMode: @level2.AidMode.Description</text>
+                                    }
+                                </td>
+
+                                <td style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => level2.TotalAmount)</td>
+
+                                <td>
+                                    @if (level1.IsDeactivated || level2.IsDeactivated)
+                                    {
+                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover">
+                                    }
+                                </td>
+                            </tr>
+                            if (Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection != null)
+                            {
+                                for (int k = 0; k < Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection.Count; k++)
+                                {
+                                    var level3 = Model.BFPContractProgrammeBudgetCollection[i].BFPContractProgrammeExpenseBudgetCollection[j].BFPContractProgrammeDetailsExpenseBudgetCollection[k];
+                                    <tr class="level3 @(level1.IsDeactivated || level2.IsDeactivated || !level3.isActive ? "deactivated-gray" : "") @(k != 0 ? "border-top-row" : "")" style="vertical-align: top">
+                                        <td rowspan="1">
+                                            @(level2.OrderNum).@(level3.OrderNum).
+
+                                            @if (!level3.isActive)
+                                            {
+                                                <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.ElementCanceled" data-trigger="hover" alt="" data-original-title="" title="">
+                                            }
+                                        </td>
+                                        <td rowspan="1">
+                                            @Html.DisplayFor(m => level3.Name)
+                                        </td>
+                                        <td rowspan="1" style="padding:0px;">
+                                            @if (hasNutsAddress)
+                                            {
+                                                <span class="preview">
+                                                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@NutsAddress.NutsLevel" data-trigger="hover" alt="" data-original-title="" title=""> 08. :
+                                                    @Html.DisplayFor(m => level3.Nuts.Name)
+                                                </span>
+                                            }
+                                            @if (Model.HasDirections)
+                                            { 
+                                                @Html.DisplayFor(m => level3.Direction.DirectionItem)
+                                                @Html.DisplayFor(m => level3.Direction.SubDirection)
+                                            }
+                                        </td>
+
+                                        <td class="text-right">
+                                            @Html.DisplayFor(m => level3.GrandAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    @*if (!Model.IsInitial)
+                                    {
+                                        <tr class="@(level1.IsDeactivated || level2.IsDeactivated || !level3.isActive ? "deactivated-gray" : "")">
+                                            <td class="text-right" style="border-left: 1px solid #E6E6E6">
+                                                <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="top" data-toggle="popover" data-content="@BFPContractBudget.Modification" data-trigger="hover">
+                                                @BFPContractBudget.ModificationShort
+                                            </td>
+                                            <td class="text-right">
+                                                @Html.DisplayFor(m => level3.GrandAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="@(level1.IsDeactivated || level2.IsDeactivated || !level3.isActive ? "deactivated-gray" : "")">
+                                            <td class="text-right" style="border-left: 1px solid #E6E6E6">
+                                                <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="top" data-toggle="popover" data-content="@BFPContractBudget.CurrentState" data-trigger="hover">
+                                                @BFPContractBudget.CurrentStateShort
+                                            </td>
+                                            <td class="text-right">
+                                                @Html.DisplayFor(m => level3.TotalAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    }*@
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <tr class="level1">
+                    <td colspan="3" class="text-right">
+                        @BFPContractBudget.Total:
+                    </td>
+
+                    <td style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => Model.TotalAmount)</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

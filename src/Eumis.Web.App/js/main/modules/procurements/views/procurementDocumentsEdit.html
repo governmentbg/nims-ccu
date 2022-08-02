@@ -1,0 +1,23 @@
+<ng-form name="editProcurementDocumentForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="procurements_procurementDocumentEdit_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="procurements_procurementDocumentEdit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && status === 'draft'"
+          ng-disabled="!$canDo('ProgrammeListActions.Create')">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="procurements_procurementDocumentEdit_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && status === 'draft'"
+          ng-disabled="!$canDo('ProgrammeListActions.Create')">
+        </sc-button>
+        <sc-button ng-show="status === 'draft'" name="saveBtn" btn-click="save()" text="procurements_procurementDocumentEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procurements_procurementDocumentEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-document name="documentForm" ng-model="procurementDocument" sc-form-params="{ urlTemplate: 'ProcurementFile', urlParamsId: procurementId }"></eumis-document>
+    </div>
+  </div>
+</ng-form>

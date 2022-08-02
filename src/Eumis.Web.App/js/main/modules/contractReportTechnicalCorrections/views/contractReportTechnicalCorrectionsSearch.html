@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.contractRegNum" l10n-text="contractReportTechnicalCorrections_search_contractRegNum" class="col-sm-4"></sc-field>
+        <sc-field type="date" ng-model="filters.fromDate" l10n-text="contractReportTechnicalCorrections_search_fromDate" class="col-sm-3"></sc-field>
+        <sc-field type="date" ng-model="filters.toDate" l10n-text="contractReportTechnicalCorrections_search_toDate" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportTechnicalCorrections_search_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newReportBtn" btn-sref="{ state: 'root.contractReportTechnicalCorrections.new' }" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" text="contractReportTechnicalCorrections_search_new"
+      ng-disabled="!$canDo('ContractReportTechnicalCorrectionListActions.Create')"></sc-button>
+
+    <sc-datatable items="contractReportTechnicalCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportTechnicalCorrections.view.contract', params: { id: item.contractReportTechnicalCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.View', item.contractReportTechnicalCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="contractRegNum" title="contractReportTechnicalCorrections_search_contractRegNum"></sc-column>
+      <sc-column data="contractName" title="contractReportTechnicalCorrections_search_contractName" has-content="true">
+        <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="procedureName" title="contractReportTechnicalCorrections_search_procedureName" has-content="true">
+        <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="reportOrderNum" title="contractReportTechnicalCorrections_search_reportOrderNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportTechnicalCorrections_search_status"></sc-column>
+      <sc-column data="orderNum" title="contractReportTechnicalCorrections_search_orderNum" type="number"></sc-column>
+      <sc-column data="correctionDate" title="contractReportTechnicalCorrections_search_correctionDate" type="date"></sc-column>
+      <sc-column data="createDate" title="contractReportTechnicalCorrections_search_createDate" type="date"></sc-column>
+      <sc-column data="notes" title="contractReportTechnicalCorrections_search_notes"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

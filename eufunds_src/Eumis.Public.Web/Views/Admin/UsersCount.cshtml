@@ -1,0 +1,60 @@
+﻿@model Eumis.Public.Data.UmisVOs.UsersCountVO
+@using Eumis.Public.Web.InfrastructureClasses
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() {
+        new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+        new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.Index, MVC.Admin.Name), Texts.Global_AdministrativeEnquiries)
+    };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Admin_UsersCount)
+
+@{
+    var firstDivClass = "col-lg-6 col-md-8 col-sm-10";
+    var secondDivClass = "col-lg-6 col-md-4 col-sm-2 text-right";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="project-info-box" style="margin-top:50px;">
+                <div class="head green">
+                    <h2>@Texts.Admin_UsersCount</h2>
+                </div>
+                <div class="content">
+                    <div class="list-item">
+                        <div class="row">
+                            <div class="@firstDivClass">
+                                @Html.ActionLink(Texts.Admin_UsersCount_PortalUsersCount, MVC.Admin.ActionNames.UsersStatistics, MVC.Admin.Name)
+                            </div>
+                            <div class="@secondDivClass" style="font-weight:bold;">
+                                @Html.DisplayFor(m => m.PortalUsersCount)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="row">
+                            <div class="@firstDivClass">
+                                @Texts.Admin_UsersCount_ReportUsersCount
+                            </div>
+                            <div class="@secondDivClass" style="font-weight:bold;">
+                                @Html.DisplayFor(m => m.ReportUsersCount)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="row">
+                            <div class="@firstDivClass">
+                                @Texts.Admin_UsersCount_PrivateUsersCount
+                            </div>
+                            <div class="@secondDivClass" style="font-weight:bold;">
+                                @Html.DisplayFor(m => m.PrivateUsersCount)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

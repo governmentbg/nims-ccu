@@ -1,0 +1,490 @@
+﻿@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters;
+@using Eumis.Portal.Web.Helplers.Extensions;
+@using Eumis.Documents.Enums;
+@model Eumis.Portal.Web.Models.Project.EditVM
+
+@if (Model != null)
+{
+    bool areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+
+    <div id="containerProject">
+
+        @if (Model.ProjectHeader != null)
+        {
+            <section class="clearfix" style="display: block;">
+                @Html.DisplayFor(m => m.ProjectHeader)
+            </section>
+            <div class="section-separator"> </div>
+        }
+
+        @{int sectionNumber = 0; }
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.BasicData))
+        {
+            sectionNumber++;
+            <h2 data-section="@sectionNumber" class="section-heading">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                @if (isMessageType)
+                {
+                    @Html.CheckBoxFor(m => m.ProjectBasicData.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                }
+                @sectionNumber. @Project.ProjectBasicData
+            </h2>
+            <section data-section="@sectionNumber" class="clearfix">
+                @if (Model.ProjectBasicData != null && Model.ProjectBasicData.isLocked)
+                {
+                    @Html.DisplayFor(m => m.ProjectBasicData)
+                }
+                else
+                {
+                    @Html.DisplayFor(m => m.ProjectBasicData, MVC.Shared.Views.DisplayTemplates.ProjectBasicDataReadonlyPart)
+                    @Html.EditorFor(m => m.ProjectBasicData)
+                }
+            </section>
+            <div class="section-separator"> </div>
+        }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Beneficary))
+        {
+            sectionNumber++;
+            <h2 data-section="@sectionNumber" class="section-heading">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                @if (isMessageType)
+                {
+                    @Html.CheckBoxFor(m => m.Candidate.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                }
+                @sectionNumber. @Project.Candidate
+            </h2>
+            <section data-section="@sectionNumber" class="clearfix">
+                @if (Model.Candidate != null && Model.Candidate.isLocked)
+                {
+                    @Html.DisplayFor(m => m.Candidate)
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.Candidate)
+                }
+
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(m => m.ProjectBasicData.AdditionalDescription, string.Format("{0} {1}", ProjectBasicData.AdditionalDescription, SymbolsCount.Symbols2000))
+
+                    @if (Model.ProjectBasicData != null && Model.ProjectBasicData.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.ProjectBasicData.AdditionalDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    }
+                    else
+                    {
+                        <span style="top: 10px; right: 15px; display: block; position: absolute;"><span symbols-target="@Html.GetNameFor(m => m.ProjectBasicData.AdditionalDescription)"></span></span>
+                        @Html.TextAreaFor(m => m.ProjectBasicData.AdditionalDescription, new { @class = Model.ProjectBasicData.IsAdditionalDescriptionValid ? "form-control symbols-count" : "form-control symbols-count input-validation-error", rows = "2", @style = "height:60px;" })
+                    }
+                </div>
+            </section>
+            <div class="section-separator"> </div>
+        }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Partners))
+        {
+            sectionNumber++;
+            Model.Partners.PartnerCollection.SectionNumber = sectionNumber;
+            if (Model.Partners != null && Model.Partners.isLocked)
+            {
+                <h2 data-section="@sectionNumber" class="section-heading">
+                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                    @if (isMessageType)
+                    {
+                        @Html.CheckBoxFor(m => m.Partners.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                    }
+                    @sectionNumber. @Project.Partner
+                </h2>
+                <section data-section="@sectionNumber" class="clearfix">
+                    @Html.DisplayFor(m => m.Partners)
+                </section>
+            }
+            else
+            {
+                @Html.EditorFor(m => m.Partners)
+            }
+            <div class="section-separator"> </div>
+        }
+        @if(Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Budget))
+        { 
+            for (int i = 0; i < Model.DirectionsBudgetContractCollection.Count; i++)
+            {
+                Model.DirectionsBudgetContractCollection[i].SectionNumber = sectionNumber;
+                if (Model.DirectionsBudgetContractCollection[i] != null && Model.DirectionsBudgetContractCollection[i].isLocked)
+                {
+                    @Html.DisplayFor(m => m.DirectionsBudgetContractCollection[i])
+                }
+                else
+                {
+                    @* HACK TO INIT NUTS NOMENCLATURE, REWRITE ALL PROJECT TO USE SINGLE MODEL *@
+                    @* *********************************************************************** *@
+                    if (Model.ProjectBasicData != null && Model.ProjectBasicData.isLocked)
+                    {
+                        if (Model.ProjectBasicData.NutsAddress != null
+                            && Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection != null
+                            && Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Count > 0)
+                        {
+                            List<R_09989.Location> values;
+                            var nutsValue = Model.ProjectBasicData.NutsAddress.NutsLevel.Id;
+                            if (nutsValue == NutsLevelNomenclature.CountryEU.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.Country).ToList();
+                            }
+                            else if (nutsValue == NutsLevelNomenclature.ProtectedZone.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.ProtectedZone).ToList();
+                            }
+                            else if (nutsValue == NutsLevelNomenclature.Nuts1.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.Nuts1).ToList();
+                            }
+                            else if (nutsValue == NutsLevelNomenclature.Nuts2.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.Nuts2).ToList();
+                            }
+                            else if (nutsValue == NutsLevelNomenclature.District.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.District).ToList();
+                            }
+                            else if (nutsValue == NutsLevelNomenclature.Municipality.Id)
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.Municipality).ToList();
+                            }
+                            else
+                            {
+                                values = Model.ProjectBasicData.NutsAddress.NutsAddressContentCollection.Select(item => item.Settlement).ToList();
+                            }
+                            
+                            var selectedNuts = values.Select(e => new
+                            {
+                                Code = e.Code,
+                                FullPath = e.FullPath,
+                                FullPathName = e.FullPathName,
+                                id = e.Code,
+                                text = e.displayName,
+                                Name = e.Name,
+                                NameEN = e.NameEN,
+                                FullPathNameEN = e.FullPathNameEN
+                            });
+                
+                            var jsonSelectedNuts = Newtonsoft.Json.JsonConvert.SerializeObject(selectedNuts);
+                
+                            <script type="text/javascript">
+                                window._eumis_options = window._eumis_options || {};
+                                window._eumis_options._selected_nuts_addresses = @(Html.Raw(jsonSelectedNuts));
+                            </script>
+                        }
+                    }
+
+                    @* *********************************************************************** *@
+                    Model.DirectionsBudgetContractCollection[i].IsDirectionSelected = Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Directions);
+                    @Html.EditorFor(m => m.DirectionsBudgetContractCollection[i])
+                }
+                
+                if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Directions))
+                {
+                    sectionNumber += 3;
+                }
+                else
+                {
+                    sectionNumber += 2;
+                }
+            }
+        }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Activities))
+        {
+            if (Model.ProgrammeContractActivitiesCollection != null)
+            {
+                for (int i = 0; i < Model.ProgrammeContractActivitiesCollection.Count; i++)
+                {
+                    sectionNumber++;
+                    Model.ProgrammeContractActivitiesCollection[i].SectionNumber = sectionNumber;
+
+                    <div class="section-separator"> </div>
+                    if (Model.ProgrammeContractActivitiesCollection[i] != null && Model.ProgrammeContractActivitiesCollection[i].isLocked)
+                    {
+                        <h2 data-section="@sectionNumber" class="section-heading">
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                            @if (isMessageType)
+                            {
+                                @Html.CheckBoxFor(m => m.ProgrammeContractActivitiesCollection[i].isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                            }
+                            @sectionNumber. @Project.ContractActivity
+                            @if (Model.IsFinalRecipients)
+                            {
+                                <text>(@Global.NotRequiredSection)</text>
+                            }
+                            @Model.ProgrammeContractActivitiesCollection[i].ProgrammeNameFormatted
+                        </h2>
+                        <section data-section="@sectionNumber" class="clearfix">
+                            @Html.DisplayFor(m => m.ProgrammeContractActivitiesCollection[i])
+                        </section>
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.ProgrammeContractActivitiesCollection[i])
+                    }
+                }
+
+                @* HACK TO INIT COMPANIES NOMENCLATURE, REWRITE ALL PROJECT TO USE SINGLE MODEL *@
+                @* **************************************************************************** *@
+                if (Model.ProgrammeContractActivitiesCollection != null
+                    && Model.ProgrammeContractActivitiesCollection.Count > 0
+                    && Model.ProgrammeContractActivitiesCollection.Any(e => !e.isLocked))
+                {
+
+
+                    // candidate
+                    if (Model.Candidate != null
+                        && Model.Candidate.isLocked
+                        && !string.IsNullOrEmpty(Model.Candidate.Uin)
+                        && !string.IsNullOrEmpty(Model.Candidate.Name))
+                    {
+                        var selectedCandidate = new
+                        {
+                            id = Model.Candidate.Uin,
+                            text = SystemLocalization.GetDisplayName(Model.Candidate.Name, Model.Candidate.NameEN),
+                            Name = Model.Candidate.Name,
+                            NameEN = Model.Candidate.NameEN
+                        };
+
+                        var jsonSelectedCandidat = Newtonsoft.Json.JsonConvert.SerializeObject(selectedCandidate);
+
+                        <script type="text/javascript">
+                            window._eumis_options = window._eumis_options || {};
+                            window._eumis_options._selected_candidate = @(Html.Raw(jsonSelectedCandidat));
+                        </script>
+                    }
+
+                    // partners
+                    if (Model.Partners != null
+                        && Model.Partners.isLocked
+                        && Model.Partners.PartnerCollection != null
+                        && Model.Partners.PartnerCollection.Count > 0)
+                    {
+                        List<Tuple<string, string, string>> partners
+                        = new List<Tuple<string, string, string>>();
+
+                        foreach (var partner in Model.Partners.PartnerCollection)
+                        {
+                            if (!string.IsNullOrEmpty(partner.Uin)
+                                && !string.IsNullOrEmpty(partner.Name))
+                            {
+                                partners.Add(new Tuple<string, string, string>(partner.Uin, partner.Name, partner.NameEN));
+                            }
+                        }
+
+                        var selectedPartners = partners.Select(e => new
+                        {
+                            id = e.Item1,
+                            text = SystemLocalization.GetDisplayName(e.Item2, e.Item3),
+                            Name = e.Item2,
+                            NameEN = e.Item3,
+                        });
+
+                        var jsonSelectedPartners = Newtonsoft.Json.JsonConvert.SerializeObject(selectedPartners);
+
+                        <script type="text/javascript">
+                            window._eumis_options = window._eumis_options || {};
+                            window._eumis_options._selected_partners = window._eumis_options._selected_partners || [];
+
+                            var partners = @(Html.Raw(jsonSelectedPartners));
+                            partners.forEach(function (partner) {
+                                var map = $.map(window._eumis_options._selected_partners, function (val) { return val.id; });
+                                if (map.indexOf(partner.id) == -1) {
+                                    window._eumis_options._selected_partners.push(partner);
+                                }
+                            });
+                        </script>
+                    }
+                }
+            }
+        }
+
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Indicators))
+        {
+            if (Model.ProgrammeIndicatorsCollection != null)
+            {
+                for (int i = 0; i < Model.ProgrammeIndicatorsCollection.Count; i++)
+                {
+                    sectionNumber++;
+                    <div class="section-separator"> </div>
+                    <h2 data-section="@sectionNumber" class="section-heading">
+                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                        @if (isMessageType)
+                        {
+                            @Html.CheckBoxFor(m => m.ProgrammeIndicatorsCollection[i].isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                        }
+                        @sectionNumber. @Project.ProgrammeIndicators @Model.ProgrammeIndicatorsCollection[i].ProgrammeNameFormatted
+                    </h2>
+                    <section data-section="@sectionNumber" class="clearfix">
+                        @if (Model.ProgrammeIndicatorsCollection[i] != null && Model.ProgrammeIndicatorsCollection[i].isLocked)
+                        {
+                            @Html.DisplayFor(m => m.ProgrammeIndicatorsCollection[i])
+                        }
+                        else
+                        {
+                            @Html.EditorFor(m => m.ProgrammeIndicatorsCollection[i])
+                        }
+                    </section>
+                }
+            }
+        }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Team))
+        {
+            if (!Model.IsFinancialIntermediaries)
+            {
+                sectionNumber++;
+                Model.ContractTeams.ContractTeamCollection.SectionNumber = sectionNumber;
+
+                <div class="section-separator"> </div>
+                if (Model.ContractTeams != null && Model.ContractTeams.isLocked)
+                {
+                    <h2 data-section="@sectionNumber" class="section-heading">
+                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                        @if (isMessageType)
+                        {
+                            @Html.CheckBoxFor(m => m.ContractTeams.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                        }
+                        @sectionNumber. @Project.ContractTeamCollection
+                        @if (Model.IsFinalRecipients)
+                        {
+                            <text>(@Global.NotRequiredSection)</text>
+                        }
+                    </h2>
+                    <section data-section="@sectionNumber" class="clearfix">
+                        @Html.DisplayFor(m => m.ContractTeams)
+                    </section>
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.ContractTeams)
+                }
+
+            }
+            if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ProcurementPlan))
+            {
+                sectionNumber++;
+                Model.ProjectErrands.ProjectErrandCollection.SectionNumber = sectionNumber;
+
+                <div class="section-separator"> </div>
+                if (Model.ProjectErrands != null && Model.ProjectErrands.isLocked)
+                {
+                    <h2 data-section="@sectionNumber" class="section-heading">
+                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                        @if (isMessageType)
+                        {
+                            @Html.CheckBoxFor(m => m.ProjectErrands.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                        }
+                        @sectionNumber. @Project.ProjectErrandCollection
+                        @if (Model.IsFinalRecipients)
+                        {
+                            <text>(@Global.NotRequiredSection)</text>
+                        }
+                    </h2>
+                    <section data-section="@sectionNumber" class="clearfix">
+                        @Html.DisplayFor(m => m.ProjectErrands)
+                    </section>
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.ProjectErrands)
+                }
+            }
+        }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.AdditionalInformation))
+        {
+            if (Model.HasProjectSpecFields)
+            {
+                <div class="section-separator"></div>
+                sectionNumber++;
+                <h2 data-section="@sectionNumber" class="section-heading">
+                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                    @if (isMessageType)
+                    {
+                        @Html.CheckBoxFor(m => m.ProjectSpecFields.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                    }
+                    @sectionNumber. @(areFinLabels ? Project.FinancialIntermediariesProjectSpecFieldCollection : Project.ProjectSpecFieldCollection)
+                </h2>
+                <section data-section="@sectionNumber" class="clearfix">
+                    @if (Model.ProjectSpecFields != null && Model.ProjectSpecFields.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.ProjectSpecFields)
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.ProjectSpecFields)
+                    }
+                </section>
+            }
+        }
+
+         @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.ElectronicDeclarations) && Model.HasElectronicDeclarations)
+         {
+             <div class="section-separator"> </div>
+             sectionNumber++;
+             <h2 data-section="@sectionNumber" class="section-heading">
+                 <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                 @if (isMessageType)
+                 {
+                     @Html.CheckBoxFor(m => m.ElectronicDeclarations.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                 }
+                 @sectionNumber. @Project.Declarations
+             </h2>
+             <section data-section="@sectionNumber" class="clearfix">
+                 @if (Model.ElectronicDeclarations != null && Model.ElectronicDeclarations.isLocked)
+                 {
+                     @Html.DisplayFor(m => m.ElectronicDeclarations)
+                 }
+                 else
+                 {
+                     @Html.EditorFor(m => m.ElectronicDeclarations)
+                 }
+             </section>
+         }
+
+        @if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.AttachedDocuments))
+        {
+            if (Model.HasAttachedDocuments)
+            {
+                <div class="section-separator"> </div>
+                sectionNumber++;
+                <h2 data-section="@sectionNumber" class="section-heading">
+                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                    @if (isMessageType)
+                    {
+                        @Html.CheckBoxFor(m => m.AttachedDocuments.isLocked, new { @class = "bootstrap-switch lock-unlock", @readonly = "readonly" })
+                    }
+                    @sectionNumber. @Project.AttachedDocumentCollection
+                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@String.Format(AttachedDocument.MaxDocumentsHint, Eumis.Documents.Constants.AttachedDocumentsMaxCount)" data-trigger="hover" alt="" data-original-title="" title="">
+                </h2>
+                <section data-section="@sectionNumber" class="clearfix">
+                    @if (Model.IsSubmitted && Model.AttachedDocuments != null && Model.AttachedDocuments.AttachedDocumentCollection != null && Model.AttachedDocuments.AttachedDocumentCollection.Count > 0)
+                    {
+                        <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                            <a href="@(Url.Action(MVC.Private.Project.ActionNames.DownloadFiles, MVC.Project.Name, new { projectGid = Model.ProjectGid, hash = @Model.ProjectBasicData.GetHashCode().ToString() }))" title="">
+                                <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                                <span>@Project.DownloadFiles</span>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Model.AttachedDocuments != null && Model.AttachedDocuments.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.AttachedDocuments, MVC.Shared.Views.DisplayTemplates.ProjectAttachedDocuments)
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.AttachedDocuments)
+                    }
+                </section>
+            }
+        }
+    </div>
+}

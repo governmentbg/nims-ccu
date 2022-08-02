@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newResultAdminAdmissBtn" ng-if="evalSessionResults.canCreateAdminAdmiss" btn-click="create('adminAdmiss')" text="evalSessions_evalSessionResultSearch_newAdminAdmiss" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || isSessionEndedByLAG"></sc-button>
+    <sc-button name="newResultPreliminaryBtn" ng-if="evalSessionResults.canCreatePreliminary" btn-click="create('preliminary')" text="evalSessions_evalSessionResultSearch_newPreliminary" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || isSessionEndedByLAG"></sc-button>
+    <sc-button name="newResultStandingBtn" btn-click="create('standing')" text="evalSessions_evalSessionResultSearch_newStanding" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || isSessionEndedByLAG"></sc-button>
+
+    <sc-datatable items="evalSessionResults.tables" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.statusDesc === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.result.edit', params: { ind: item.evalSessionResultId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="evalSessions_evalSessionResultSearch_orderNum" type="number"></sc-column>
+      <sc-column data="statusDesc" title="evalSessions_evalSessionResultSearch_status"></sc-column>
+      <sc-column data="typeDesc" title="evalSessions_evalSessionResultSearch_type"></sc-column>
+      <sc-column data="createDate" title="evalSessions_evalSessionResultSearch_createDate" type="datetime"></sc-column>
+      <sc-column data="statusNote" title="evalSessions_evalSessionResultSearch_statusNote"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

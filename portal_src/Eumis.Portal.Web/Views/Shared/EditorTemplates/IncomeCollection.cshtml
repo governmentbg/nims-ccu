@@ -1,0 +1,36 @@
+﻿@model R_10043.IncomeCollection
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerIncomes">
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th style="width:70%">@Income.IncomeType</th>
+                    <th style="width:30%">@Income.Amount</th>
+                    <th style="width:40px;">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="(index1, item) in items" style="display:none;"></tr>
+                <tr>
+                    <td>
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsIncomeTypeValid}" sc-alias="GetIncomeTypes" ng-model="item.IncomeType">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsIncomeTypeValid}" type="hidden" value="{{ item.IncomeType.Value }}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].IncomeType.Value" class="validation-error-key" />
+                        <input type="hidden" value="{{ item.IncomeType.Description }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].IncomeType.Description" />
+                    </td>
+                    <td>
+                        <input ng-class="{'input-validation-error': !item.IsAmountValid}" money type="text" ng-model="item.Amount" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Amount" class="form-control sum-field" />
+                    </td>
+                    <td>
+                        <a class="delete-btn" confirm-click="delItem(item)" style="margin-top:0;">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

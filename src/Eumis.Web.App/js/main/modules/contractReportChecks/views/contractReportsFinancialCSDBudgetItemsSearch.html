@@ -1,0 +1,32 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.csd" l10n-text="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_csd" class="col-sm-6"></sc-field>
+        <sc-field type="text" ng-model="filters.company" l10n-text="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_company" class="col-sm-4"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+    
+    <sc-link-button ng-href="{{budgetItemsExportUrl}}" target="_blank" sc-access-token ng-if="$canDo('ContractReportCheckActions.View', contractReportId)"
+      icon="fa-file-excel-o fa-lg fa-fw" text="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_excelExport" class="btn btn-default btn-sm pull-left">
+    </sc-link-button>
+
+    <sc-datatable items="contractReportFinancialCSDBudgetItems" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.csds.edit', params: { ind: item.contractReportFinancialCSDBudgetItemId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="csd" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_csd"></sc-column>
+      <sc-column data="budgetDetailName" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_budgetDetail"></sc-column>
+      <sc-column data="contractActivityName" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_contractActivity"></sc-column>
+
+      <sc-column data="status" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_status"></sc-column>
+      <sc-column data="costSupportingDocumentApproved" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_approval" type="boolean"></sc-column>
+      <sc-column data="totalAmount" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_csdAmount" type="money"></sc-column>
+      <sc-column data="approvedTotalAmount" title="contractReportChecks_contractReportsFinancialCSDBudgetItemsSearch_approvedAmount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

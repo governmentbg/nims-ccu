@@ -1,0 +1,48 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="model.programmePriorityId" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_programmePriority" class="col-sm-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.approval" alias="'contractReportAdvancePaymentAmountApprovals'" mode="id" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_approval" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportAdvancePaymentAmountStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <div ng-show="model.checkedDate">
+      <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_checkedByUser" class="col-sm-6 col-md-4"></sc-field>
+      <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_checkedDate" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+  <div class="row">
+    
+    <sc-field-group class="col-sm-3 col-md-2" text="contractReportChecks_contractReportAdvancePaymentAmountForm_bfpTotalAmount" field-name="approvedBfpTotalAmount">
+      <sc-money ng-model="model.approvedBfpTotalAmount" name="approvedBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('approved')" ng-disabled="form.$readonly || !approvedEdit" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_certAmount"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.certStatus" alias="'contractReportFinancialCSDBudgetItemCertStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_certStatus" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.certCheckedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_certCheckedByUser" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.certCheckedDate" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_certCheckedDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_uncertifiedAmount"></h5>
+  <div class="row">
+    <sc-field-group class="col-sm-3 col-md-2" text="contractReportChecks_contractReportAdvancePaymentAmountForm_bfpTotalAmount" field-name="uncertifiedApprovedBfpTotalAmount">
+      <sc-money ng-model="model.uncertifiedApprovedBfpTotalAmount" name="uncertifiedApprovedBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('cert')" ng-disabled="form.$readonly || !certEdit" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_certifiedAmount"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedApprovedBfpTotalAmount" ng-readonly="true" l10n-text="contractReportChecks_contractReportAdvancePaymentAmountForm_bfpTotalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>

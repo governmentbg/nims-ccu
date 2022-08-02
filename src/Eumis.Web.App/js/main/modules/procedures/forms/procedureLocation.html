@@ -1,0 +1,25 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header" l10n-text="procedures_procedureLocationForm_location"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'nutsLevels'" mode="id" ng-model="model.nutsLevel" ng-change="changedNutsLevel()" ng-required="true" l10n-text="procedures_procedureLocationForm_nutsLevel" class="col-sm-3 col-lg-2"></sc-field>
+  </div>
+  <div ng-show="model.nutsLevel">
+    <div class="row">
+      <sc-field type="nomenclature" alias="'countries'" mode="id" ng-model="model.countryId" ng-show="model.nutsLevel === 'country'" ng-required="model.nutsLevel === 'country'" l10n-text="procedures_procedureLocationForm_countryId" class="col-sm-4 col-lg-3"></sc-field>
+      <sc-field type="nomenclature" alias="'nuts1'" mode="id" ng-model="model.nuts1Id" ng-show="model.nutsLevel === 'regionNUTS1'" ng-required="model.nutsLevel === 'regionNUTS1'" nom-obj="nuts1Obj" l10n-text="procedures_procedureLocationForm_nuts1Id" class="col-sm-4 col-lg-3"></sc-field>
+      <sc-field type="nomenclature" alias="'nuts2'" mode="id" ng-model="model.nuts2Id" ng-show="model.nutsLevel === 'regionNUTS2'" ng-required="model.nutsLevel === 'regionNUTS2'" nom-obj="nuts2Obj" l10n-text="procedures_procedureLocationForm_nuts2Id" class="col-sm-4 col-lg-3"></sc-field>
+      <sc-field type="nomenclature" alias="'districts'" mode="id" ng-model="model.districtId" ng-show="model.nutsLevel === 'district'" ng-required="model.nutsLevel === 'district'" nom-obj="districtObj" l10n-text="procedures_procedureLocationForm_districtId" class="col-sm-4 col-md-3"></sc-field>
+      <sc-field type="nomenclature" alias="'municipalities'" mode="id" ng-model="model.municipalityId" ng-show="model.nutsLevel === 'municipality'" ng-required="model.nutsLevel === 'municipality'" nom-obj="municipalityObj" l10n-text="procedures_procedureLocationForm_municipalityId" class="col-sm-4 col-md-3"></sc-field>
+      <sc-field type="nomenclature" alias="'settlements'" mode="id" ng-model="model.settlementId" ng-show="model.nutsLevel === 'settlement'" ng-required="model.nutsLevel === 'settlement'" nom-obj="settlementObj" l10n-text="procedures_procedureLocationForm_settlementId" class="col-sm-4 col-md-3"></sc-field>
+      <sc-field type="nomenclature" alias="'protectedZones'" mode="id" ng-model="model.protectedZoneId" ng-show="model.nutsLevel === 'protectedZone'" ng-required="model.nutsLevel === 'protectedZone'" nom-obj="protectedZoneObj" l10n-text="procedures_procedureLocationForm_protectedZoneId" class="col-sm-4 col-md-3"></sc-field>
+      <div style="padding-top: 24px;">
+        <span ng-show="model.nutsLevel === 'regionNUTS1' && model.nuts1Id">{{nuts1Obj.fullPathName}}</span>
+        <span ng-show="model.nutsLevel === 'regionNUTS2' && model.nuts2Id">{{nuts2Obj.fullPathName}}</span>
+        <span ng-show="model.nutsLevel === 'district' && model.districtId">{{districtObj.fullPathName}}</span>
+        <span ng-show="model.nutsLevel === 'municipality' && model.municipalityId">{{municipalityObj.fullPathName}}</span>
+        <span ng-show="model.nutsLevel === 'settlement' && model.settlementId">{{settlementObj.fullPathName}}</span>
+        <span ng-show="model.nutsLevel === 'protectedZone' && model.protectedZoneId">{{protectedZoneObj.fullPathName}}</span>
+      </div>
+    </div>
+  </div>
+</ng-form>

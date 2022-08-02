@@ -1,0 +1,1337 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/5/2018 4:05:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-5MS5ERJ"
+  DTS:CreatorName="DESKTOP-5MS5ERJ\georgi"
+  DTS:DTSID="{344745C1-1377-4522-84AD-29E70666EC3E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.98"
+  DTS:LocaleID="1026"
+  DTS:ObjectName="LogsSyncPackage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{9DFB923B-0320-4D2C-AFD5-B383ECEC92DF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Local]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{520559DF-F810-4767-B51E-860D922DE65F}"
+      DTS:ObjectName="Local">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=EumisLogs;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Log]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BAEB9A97-C33E-41ED-8C79-BD71EDA0E5E9}"
+      DTS:ObjectName="Log">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SSISLOG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Remote]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F40FBD74-9F24-4A24-9459-FFAB78DD6D46}"
+      DTS:ObjectName="Remote">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.101.118;User ID=sa;Initial Catalog=EumisLogs1;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiKT/flAipUCPC8HAjQZmfQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAEmk3GoA88/VO1pH3yewJ/xEzL8pxddGXo12ZRYCC9iQAAAAAOgAAAAAIAACAAAADKPZ1lNdo3ySXwhMW+5D41mUzAkY9UYRm0K+ee+ZzriGAAAAAKUy6nY4hYv5vMRAAaFPRbca0ElhU+plEB9W1dcHoutYSCU8ME9knoYw26cTKBuZInrT1Iv+wvOUbZqcSB2BtiqhHCRkhdt76uC+mqmnYVZkp0JgmiOKGiXUCDnQxO56VAAAAA+h6ClAvW3vrK7iZ/keMbKgMqKHNE+8IDC1nwcdll4rr7mgWnDlEEeCjKzu6SaYFbqqHzzsJcAU4GsLBGFXAPJg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="Log"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{2D8893BA-A088-49AB-82C1-12B301FA3228}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB5C8472-4EF5-411F-885A-2781994BE1A9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastLogId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">21,7,OnError,19,OnExecStatusChanged,13,OnInformation,27,OnPipelinePostComponentCall,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,26,OnPipelinePreComponentCall,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic,12,DiagnosticEx</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="DiagnosticEx"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{2D8893BA-A088-49AB-82C1-12B301FA3228}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get last uploaded logId"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{91A07139-6E72-410D-B232-18D916572117}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get last uploaded logId"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{520559DF-F810-4767-B51E-860D922DE65F}"
+          SQLTask:SqlStatementSource="select coalesce(max(LogId), 0) as lastLogId&#xA;from Logs&#xA;where LogDate &gt; (select DATEADD(day, -7, coalesce(max(LogDate), CAST('2015-01-01' AS DATETIME2))) as lastLogDate from Logs)&#xA;&#xA;&#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="lastLogId"
+            SQLTask:DtsVariableName="User::LastLogId" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Upload new logs"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{299254A8-535C-442F-BE6C-DAB2EC9EAB21}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:FailParentOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Upload new logs"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferMaxRows="800"
+          defaultBufferSize="50485760"
+          version="1">
+          <components>
+            <component
+              refId="Package\Upload new logs\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+       [LogId]
+      ,[Level]
+      ,[Application]
+      ,CAST([LogDate] AS DATETIME2) AS [LogDate]
+      ,[Message]
+      ,[IP]
+      ,[Method]
+      ,[RawUrl]
+      ,[UserAgent]
+      ,[SessionId]
+      ,[RequestId]
+      ,[UserId]
+      ,[RegistrationId]
+      ,[ElapsedMilliseconds]
+      ,[Status]
+      ,[ContractRegistrationId]
+      ,[ContractAccessCodeId]
+FROM
+       [Logs]
+WHERE
+       [LogId] &gt; ?
+ORDER BY
+       [LogId]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{FB5C8472-4EF5-411F-885A-2781994BE1A9};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Upload new logs\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Remote]"
+                  connectionManagerRefId="Package.ConnectionManagers[Remote]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LogId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogId]"
+                      name="LogId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Level]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Level]"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Level]"
+                      name="Level"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Application]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Application]"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Application]"
+                      name="Application"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Message]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Message]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Message]"
+                      name="Message"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[IP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IP]"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[IP]"
+                      name="IP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Method]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Method]"
+                      length="10"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Method]"
+                      name="Method"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawUrl]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawUrl]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawUrl]"
+                      name="RawUrl"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserAgent]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserAgent]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserAgent]"
+                      name="UserAgent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[SessionId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SessionId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[SessionId]"
+                      name="SessionId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RequestId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RequestId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RequestId]"
+                      name="RequestId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserId]"
+                      name="UserId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegistrationId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegistrationId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegistrationId]"
+                      name="RegistrationId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ElapsedMilliseconds]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ElapsedMilliseconds]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ElapsedMilliseconds]"
+                      name="ElapsedMilliseconds"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractRegistrationId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContractRegistrationId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractRegistrationId]"
+                      name="ContractRegistrationId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractAccessCodeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContractAccessCodeId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractAccessCodeId]"
+                      name="ContractAccessCodeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LogDate]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogDate]"
+                      name="LogDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LogId]"
+                      dataType="i4"
+                      name="LogId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Level]"
+                      dataType="wstr"
+                      length="50"
+                      name="Level" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Application]"
+                      dataType="wstr"
+                      length="50"
+                      name="Application" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Message]"
+                      dataType="nText"
+                      name="Message" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IP]"
+                      dataType="wstr"
+                      length="50"
+                      name="IP" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Method]"
+                      dataType="wstr"
+                      length="10"
+                      name="Method" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RawUrl]"
+                      dataType="nText"
+                      name="RawUrl" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserAgent]"
+                      dataType="nText"
+                      name="UserAgent" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SessionId]"
+                      dataType="guid"
+                      name="SessionId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RequestId]"
+                      dataType="guid"
+                      name="RequestId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UserId]"
+                      dataType="i4"
+                      name="UserId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RegistrationId]"
+                      dataType="i4"
+                      name="RegistrationId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ElapsedMilliseconds]"
+                      dataType="i8"
+                      name="ElapsedMilliseconds" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      dataType="nText"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContractRegistrationId]"
+                      dataType="i4"
+                      name="ContractRegistrationId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContractAccessCodeId]"
+                      dataType="i4"
+                      name="ContractAccessCodeId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LogDate]"
+                      dataType="dbTimeStamp2"
+                      name="LogDate"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LogId]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LogId]"
+                      name="LogId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Level]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Level]"
+                      name="Level" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Application]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Application]"
+                      name="Application" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LogDate]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LogDate]"
+                      name="LogDate"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Message]"
+                      dataType="nText"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Message]"
+                      name="Message" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IP]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IP]"
+                      name="IP" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Method]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Method]"
+                      name="Method" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawUrl]"
+                      dataType="nText"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RawUrl]"
+                      name="RawUrl" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserAgent]"
+                      dataType="nText"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserAgent]"
+                      name="UserAgent" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SessionId]"
+                      dataType="guid"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SessionId]"
+                      name="SessionId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RequestId]"
+                      dataType="guid"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RequestId]"
+                      name="RequestId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserId]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UserId]"
+                      name="UserId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegistrationId]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RegistrationId]"
+                      name="RegistrationId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ElapsedMilliseconds]"
+                      dataType="i8"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ElapsedMilliseconds]"
+                      name="ElapsedMilliseconds" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      dataType="nText"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContractRegistrationId]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContractRegistrationId]"
+                      name="ContractRegistrationId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContractAccessCodeId]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContractAccessCodeId]"
+                      name="ContractAccessCodeId" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Upload new logs\SQL Server Destination"
+              componentClassID="Microsoft.SQLServerDestination"
+              contactInfo="SQL Server Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="SQL Server Destination"
+              name="SQL Server Destination"
+              version="5">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the database object to copy data into."
+                  expressionType="Notify"
+                  name="BulkInsertTableName">[dbo].[Logs]</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any constraints on the destination object are checked during the data copy operation. Corresponds to the bulk insert CHECK_CONSTRAINTS option."
+                  name="BulkInsertCheckConstraints">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the first row to copy. Corresponds to the bulk insert FIRSTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertFirstRow">-1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any insert triggers defined on the destination object will execute during the data copy. Corresponds to the bulk insert FIRE_TRIGGERS option."
+                  name="BulkInsertFireTriggers">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Corresponds to the bulk insert KEEPIDENTITY option."
+                  name="BulkInsertKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null copied to the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="BulkInsertKeepNulls">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the last row to copy. Corresponds to the bulk insert LASTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertLastRow">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of syntax errors and compilation errors that can occur before the data copy operation is canceled. Each row that cannot be copied is ignored and counted as one error. Corresponds to the bulk insert MAXERRORS option."
+                  name="BulkInsertMaxErrors">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies how the data to be copied is sorted. Corresponds to the bulk insert ORDER option."
+                  expressionType="Notify"
+                  name="BulkInsertOrder"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that a table-level lock is acquired for the duration of the data copy operation. Corresponds to the bulk insert TABLOCK option."
+                  name="BulkInsertTablock">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies in seconds the amount of time the SQL Destination adapter will wait before terminating if there is no data available for insertion.  A timeout value of 0 means the SQL Destination adapter will not time out."
+                  expressionType="Notify"
+                  name="Timeout">30</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion."
+                  name="MaxInsertCommitSize">10000</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Upload new logs\SQL Server Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Local]"
+                  connectionManagerRefId="Package.ConnectionManagers[Local]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input]"
+                  hasSideEffects="true"
+                  name="SQL Server Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[LogId]"
+                      cachedDataType="i4"
+                      cachedName="LogId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[LogId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Level]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Level"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Level]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Level]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Application]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Application"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Application]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Application]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Message]"
+                      cachedDataType="nText"
+                      cachedName="Message"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Message]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Message]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[IP]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="IP"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[IP]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[IP]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Method]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Method"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Method]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Method]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[RawUrl]"
+                      cachedDataType="nText"
+                      cachedName="RawUrl"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RawUrl]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RawUrl]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[UserAgent]"
+                      cachedDataType="nText"
+                      cachedName="UserAgent"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UserAgent]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserAgent]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[SessionId]"
+                      cachedDataType="guid"
+                      cachedName="SessionId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SessionId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[SessionId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[RequestId]"
+                      cachedDataType="guid"
+                      cachedName="RequestId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RequestId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RequestId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[UserId]"
+                      cachedDataType="i4"
+                      cachedName="UserId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UserId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[UserId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[RegistrationId]"
+                      cachedDataType="i4"
+                      cachedName="RegistrationId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RegistrationId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[RegistrationId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ElapsedMilliseconds]"
+                      cachedDataType="i8"
+                      cachedName="ElapsedMilliseconds"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ElapsedMilliseconds]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ElapsedMilliseconds]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Status]"
+                      cachedDataType="nText"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ContractRegistrationId]"
+                      cachedDataType="i4"
+                      cachedName="ContractRegistrationId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ContractRegistrationId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractRegistrationId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ContractAccessCodeId]"
+                      cachedDataType="i4"
+                      cachedName="ContractAccessCodeId"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ContractAccessCodeId]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContractAccessCodeId]" />
+                    <inputColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[LogDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="LogDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[LogDate]"
+                      lineageId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output].Columns[LogDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[LogDate]"
+                      dataType="dbTimeStamp2"
+                      name="LogDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[LogId]"
+                      dataType="i4"
+                      name="LogId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Level]"
+                      dataType="wstr"
+                      length="50"
+                      name="Level" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Application]"
+                      dataType="wstr"
+                      length="50"
+                      name="Application" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Message]"
+                      dataType="nText"
+                      name="Message" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[IP]"
+                      dataType="wstr"
+                      length="50"
+                      name="IP" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Method]"
+                      dataType="wstr"
+                      length="10"
+                      name="Method" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RawUrl]"
+                      dataType="nText"
+                      name="RawUrl" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UserAgent]"
+                      dataType="nText"
+                      name="UserAgent" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SessionId]"
+                      dataType="guid"
+                      name="SessionId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RequestId]"
+                      dataType="guid"
+                      name="RequestId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UserId]"
+                      dataType="i4"
+                      name="UserId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[RegistrationId]"
+                      dataType="i4"
+                      name="RegistrationId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ContractRegistrationId]"
+                      dataType="i4"
+                      name="ContractRegistrationId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ContractAccessCodeId]"
+                      dataType="i4"
+                      name="ContractAccessCodeId" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ElapsedMilliseconds]"
+                      dataType="i8"
+                      name="ElapsedMilliseconds" />
+                    <externalMetadataColumn
+                      refId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Status]"
+                      dataType="nText"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Upload new logs.Paths[OLE DB Source Output]"
+              endId="Package\Upload new logs\SQL Server Destination.Inputs[SQL Server Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Upload new logs\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{786D2627-06AD-4471-A28A-384F41A01FC4}"
+      DTS:From="Package\Get last uploaded logId"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Upload new logs" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Get last uploaded logId"
+          TopLeft="411,193" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Upload new logs"
+          TopLeft="439,335" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="520.5,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100"
+              Start="0,0"
+              End="0,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Upload new logs">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Upload new logs\SQL Server Destination"
+          TopLeft="399,280" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Upload new logs\OLE DB Source"
+          TopLeft="418,78" />
+        <EdgeLayout
+          Id="Package\Upload new logs.Paths[OLE DB Source Output]"
+          TopLeft="496.25,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,160"
+              Start="0,0"
+              End="0,152.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,152.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Upload new logs\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Upload new logs\SQL Server Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

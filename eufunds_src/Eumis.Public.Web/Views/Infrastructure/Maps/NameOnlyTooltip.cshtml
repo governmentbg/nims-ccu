@@ -1,0 +1,16 @@
+﻿@using Eumis.Public.Common
+
+<div data-header="true">{series.name}<br /></div>
+<div data-point="true">
+    <strong>
+        @if (Language == Eumis.Public.Common.Configuration.LANG_BG)
+        {
+            <text>{point.name}</text>
+        }
+        else if (Language == Eumis.Public.Common.Configuration.LANG_EN)
+        {
+            <text>{point.nameAlt}</text>
+        }
+    </strong>
+</div>
+<div data-footer="true"></div>

@@ -1,0 +1,125 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<Eumis.Documents.Contracts.RegProjectXmlPVO>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered)
+}
+    , Registered.Paper)
+
+<div class="container page-title">
+    <h1>@Registered.Paper</h1>
+</div>
+
+@if (CurrentUser.HasNewMessages)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@Registered.QuestionFromEvalCommittee</p>
+            <p>@Registered.Warning</p>
+        </div>
+    </div>
+}
+
+@if (CurrentUser.HasNewCommunications)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@ProjectCommunication.QuestionFromManagingAuthority</p>
+            <p>@ProjectCommunication.QuestionEndDateWarning</p>
+        </div>
+    </div>
+}
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li>@Html.ActionLink(Registered.RegisteredTab, MVC.Registered.ActionNames.Index, MVC.Registered.Name)</li>
+        @if (CurrentUser.HasMessages)
+        {
+            <li>@Html.ActionLink(Message.MessagesTab, MVC.Message.ActionNames.Index, MVC.Message.Name, null, new { style = "color:red;" })</li>
+        }
+        <li>
+            @Html.ActionLink(Registered.ManagingAuthorityCommunication, MVC.Registered.ActionNames.Communication, MVC.Registered.Name, null, new { style = CurrentUser.HasNewCommunications ? "color:red;" : "" })
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="table-wrapper">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px">@Registered.PreparationDate</th>
+                                <th>@Registered.ProgrammeProcedure</th>
+                                <th style="width: 180px">@Registered.CompanyName</th>
+                                <th style="width: 190px">@Registered.Actions</th>
+                                <th style="width: 190px">@Registered.DeclaracyLabel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var registered in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Eumis.Common.Helpers.Helper.DateTimeFormat(registered.modifyDate)
+                                    </td>
+                                    <td>
+                                        @if (!String.IsNullOrWhiteSpace(registered.displayProjectName))
+                                        {
+                                            <p style="font-weight: bold;">@registered.displayProjectName</p>
+                                        }
+
+                                        @if (!String.IsNullOrWhiteSpace(registered.displayProgrammeName))
+                                        {
+                                            <text>@registered.displayProgrammeName, <br /></text>
+                                        }
+
+                                        @registered.procedureCode -
+                                        @registered.displayProcedureName
+                                    </td>
+                                    <td>
+                                        @registered.displayCompanyName
+                                    </td>
+                                    <td>
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.Preview, MVC.Registered.Name, new { gid = registered.gid }))" title="" class="view-btn">@Registered.Display</a>
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.SaveAsFile, MVC.Registered.Name, new { gid = registered.gid, hash = registered.hash }))" class="draft-link">
+                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveAsFile
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.SaveDeclaration, MVC.Registered.Name, new { hash = registered.hash, gid = registered.gid }))" class="draft-link">
+                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveDeclaration
+                                        </a>
+
+                                        <a href="@(Url.Action(MVC.Registered.ActionNames.SaveLabel, MVC.Registered.Name, new { hash = registered.hash, gid = registered.gid }))" class="draft-link">
+                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveLabel
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Registered.PaperNotFound @Html.ActionLink(Registered.RegisteredTab, MVC.Registered.ActionNames.Index, MVC.Registered.Name).</p>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page
+                }),
+                Constants.PagedListRenderOptions)
+        </div>
+    </div>
+</div>

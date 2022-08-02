@@ -1,0 +1,22 @@
+﻿@model Eumis.Portal.Web.Models.Helpers.ModalWindowModel
+@{ 
+    string htmlElementId = System.Guid.NewGuid().ToString();
+}
+<div class="modal" id="@htmlElementId" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="min-width: 800px;">
+            <div style="text-align: center">
+                <h2 style="color:red; font-weight: 400; font-size:30px;">@Model.Title</h2>
+                <div class="isun-line"> </div>
+            </div>
+            <p style="font-size:20px;"><b>@Model.Message</b></p>
+            <div class="modal-buttons">
+                <a data-dismiss="modal" href="" class="blue-button welcome-button">@Draft.ConfirmButton</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#@htmlElementId").modal('show');
+</script>
+

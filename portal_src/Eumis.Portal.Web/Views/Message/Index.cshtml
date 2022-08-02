@@ -1,0 +1,308 @@
+﻿@model Eumis.Portal.Web.Models.Message.IndexVM
+
+@using System.IdentityModel.Protocols.WSTrust
+@using Eumis.Documents.Contracts
+@using Eumis.Portal.Web.Helpers
+@using Eumis.Portal.Web.Models.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered)
+}
+        , Message.MessagesTab)
+
+<div class="container page-title">
+    <h1>@Message.MessagesTab</h1>
+</div>
+
+@if (CurrentUser.HasNewMessages)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@MessageIndex.Question</p>
+            <p>@MessageIndex.QuestionsEndDate</p>
+        </div>
+    </div>
+}
+
+@if (CurrentUser.HasNewCommunications)
+{
+    <div class="container page-title" style="margin-top: 10px; margin-bottom: 0">
+        <div class="info-block warning">
+            <p>@ProjectCommunication.QuestionFromManagingAuthority</p>
+            <p>@ProjectCommunication.QuestionEndDateWarning</p>
+        </div>
+    </div>
+}
+
+@if (Model.HasFinishedAnswer.HasValue && Model.HasFinishedAnswer == true)
+{
+    @Html.Partial(MVC.Shared.Views._ModalWindow, new ModalWindowModel(Message.AnswerFinished));
+}
+
+<!-- PAGE CONTENT -->
+<div class="container">
+
+    @if (TempData["SuccessAction"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>@TempData["SuccessAction"].ToString()</li>
+            </ul>
+        </div>
+    }
+
+    <ul class="nav nav-tabs">
+        <li>@Html.ActionLink(Registered.RegisteredTab, MVC.Registered.ActionNames.Index, MVC.Registered.Name)</li>
+        <li class="active"><a style="color:red;">@Message.MessagesTab</a></li>
+        <li>
+            @Html.ActionLink(Registered.ManagingAuthorityCommunication, MVC.Registered.ActionNames.Communication, MVC.Registered.Name, null, new { style = CurrentUser.HasNewCommunications ? "color:red;" : "" })
+        </li>
+
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="table-wrapper">
+                @if (Model != null && Model.Messages != null && Model.Messages.results != null && Model.Messages.results.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px">@Message.SendDate</th>
+                                <th style="width: 100px">@Message.AnswerDeadline</th>
+                                <th style="width: 120px">@Message.Status</th>
+                                <th>@Message.ProgrammeProcedure</th>
+                                <th style="width: 190px">@Message.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var message in Model.Messages.results)
+                            {
+                                <tr class="@(message.status ==  RegMessageStatusPVO.Cancelled || message.status ==  RegMessageStatusPVO.Expired ? "deactivated-gray" : string.Empty )">
+                                    <td>
+                                        @Eumis.Common.Helpers.Helper.DateTimeFormat(message.sentDate)
+                                    </td>
+                                    <td>
+                                        @if (message.messageEndingDate.HasValue)
+                                        {
+                                            if (message.messageEndingDate.Value >= DateTime.Now)
+                                            {
+                                                <span class="required-span">@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(message.messageEndingDate)</span>
+                                            }
+                                            else
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(message.messageEndingDate)</text>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @message.displayStatusText
+                                    </td>
+                                    <td class="separated-p-min">
+                                        @if (message.submitDate.HasValue)
+                                        {
+                                            <p>@Registered.RegistrationDate: <span style="font-weight: bold">@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(message.submitDate.Value)</span></p>
+                                        }
+
+                                        @if (!String.IsNullOrWhiteSpace(message.registrationNumber))
+                                        {
+                                            <p>@MessageIndex.RegestrationNumber<span style="font-weight: bold">@message.registrationNumber</span></p>
+                                        }
+
+
+                                        @if (!String.IsNullOrWhiteSpace(message.displayProjectName))
+                                        {
+                                            <p style="font-weight: bold;">@message.displayProjectName</p>
+                                        }
+
+                                        <p>
+                                            @if (!String.IsNullOrWhiteSpace(message.programmeName))
+                                            {
+                                                <text>@message.programmeName, <br /></text>
+                                            }
+
+                                            @message.procedureCode -
+                                            @message.displayProcedureName
+                                        </p>
+
+                                        @if (message.messageReadDate.HasValue && !String.IsNullOrWhiteSpace(message.message))
+                                        {
+                                            <p class="text-justify">@message.message</p>
+                                        }
+
+                                        @if (!message.messageEndingDate.HasValue)
+                                        {
+                                            <p class="text-justify" style="text-decoration: underline">@MessageIndex.TimeToAnswer</p>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        <a href="@Url.Action(MVC.Message.ActionNames.Preview, MVC.Message.Name, new { gid = message.gid })" title="" class="view-btn wait">@Registered.Display</a>
+
+                                        @if ((!message.messageEndingDate.HasValue || message.messageEndingDate >= DateTime.Now) &&
+                                            (message.status == RegMessageStatusPVO.New || message.status == RegMessageStatusPVO.Submitted) && !message.isProjectWithdrawn)
+                                        {
+                                            if (message.answers != null && message.answers.Count == 0)
+                                            {
+                                                <a class="new-button" href="@(Url.Action(MVC.Message.ActionNames.NewAnswer, MVC.Message.Name, new { communicationGid = message.gid, version = Convert.ToBase64String(message.version) }))">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    @Message.AnswerQuestion
+                                                </a>
+                                            }
+                                            else if (message.answers != null && message.answers.Count > 0 && message.answers.All(a => a.status == RegMessageAnswerType.Answer || a.status == RegMessageAnswerType.Canceled))
+                                            {
+                                                <a class="new-button" data-target="#answerModal-@(message.gid)" data-toggle="modal" data-message-gid="@message.gid">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    @Message.AnswerQuestion
+                                                </a>
+
+                                                <div class="modal" id="answerModal-@(message.gid)" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="min-width: 800px;">
+                                                            <div style="text-align: center">
+                                                                <h2 style="color:red; font-weight: 400; font-size:30px;">@Message.Warning</h2>
+                                                                <div class="isun-line"> </div>
+                                                            </div>
+                                                            <p style="font-size:20px;">
+                                                                @Message.QuestionAnswered
+                                                            </p>
+                                                            <p style="font-size:20px; margin-top: 20px;">
+                                                                @Message.Continue
+                                                            </p>
+                                                            <div class="modal-buttons">
+                                                                <a class="blue-button welcome-button" href="@(Url.Action(MVC.Message.ActionNames.NewAnswer, MVC.Message.Name, new { communicationGid = message.gid, version = Convert.ToBase64String(message.version) }))">
+                                                                    @Global.Yes
+                                                                </a>
+                                                                <a data-dismiss="modal" href="" class="blue-button welcome-button">@Global.No</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                        @if (message.answers != null && message.answers.Count > 0)
+                                        {
+                                            <a href="#" data-rel="@(message.gid)" class="history-btn">
+                                                <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif">@Message.Answers
+                                            </a>
+                                        }
+
+                                    </td>
+                                </tr>
+
+
+
+                                var messageHasFinishedAnswer =
+                                    (!message.messageEndingDate.HasValue || message.messageEndingDate >= DateTime.Now) &&
+                                    (message.status == RegMessageStatusPVO.Finalized || message.status == RegMessageStatusPVO.Submitted) &&
+                                    message.answers != null &&
+                                    message.answers.Count > 0 &&
+                                    message.answers.Any(a => a.status == RegMessageAnswerType.AnswerFinalized);
+
+                                <tr class="history-table" data-rel="@(message.gid)" style="@(messageHasFinishedAnswer ? "display: table-row;" : "display: none;")" width="100%">
+                                    <td colspan="7">
+                                        <div class="history-table-wrapper" style="@(messageHasFinishedAnswer ? "display: block;" : "display: none;")">
+                                            <h4 style="margin: 0px 0 5px 0">@Message.Answers</h4>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 80px;">@Message.AnswerOrderNum</th>
+                                                        <th>@Message.Status</th>
+                                                        <th>@Message.AnswerDate</th>
+                                                        <th style="width: 240px">@Message.Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (message.answers != null)
+                                                    {
+                                                        foreach (var answer in message.answers)
+                                                        {
+                                                            <tr class="@(answer.status == RegMessageAnswerType.Canceled ? "deactivated-gray" : string.Empty )">
+                                                                <td>@answer.orderNum</td>
+                                                                <td>@answer.displayStatusText</td>
+                                                                <td>@Eumis.Common.Helpers.Helper.DateTimeFormat(answer.answerDate)</td>
+                                                                <td>
+                                                                    <a href="@Url.Action(MVC.Message.ActionNames.PreviewAnswer, MVC.Message.Name, new { communicationGid = message.gid, answerGid = answer.answerGid })" title="" class="view-btn wait">@Global.ButtonPreviewText</a>
+
+                                                                    @if ((!message.messageEndingDate.HasValue || message.messageEndingDate >= DateTime.Now) &&
+                                                                        answer.status != RegMessageAnswerType.Canceled &&
+                                                                        message.status != RegMessageStatusPVO.Cancelled &&
+                                                                        message.status != RegMessageStatusPVO.Expired &&
+                                                                        message.status != RegMessageStatusPVO.Processed &&
+                                                                        !message.isProjectWithdrawn)
+                                                                    {
+                                                                        if (answer.status == RegMessageAnswerType.AnswerFinalized)
+                                                                        {
+                                                                            <a title="" class="edit-btn" href="@Url.Action(
+                                                                                MVC.Message.ActionNames.Edit,
+                                                                                MVC.Message.Name,
+                                                                                new {
+                                                                                    communicationGid = message.gid,
+                                                                                    answerGid = answer.answerGid,
+                                                                                    status = answer.status,
+                                                                                    version = Convert.ToBase64String(message.version)
+                                                                                })"
+                                                                               data-toggle="confirmation-no-title" data-title="@MessageIndex.EndEdit">
+                                                                                @Global.Edit
+                                                                            </a>
+
+                                                                            <a class="blue-button small wait" href="@Url.Action(MVC.Message.ActionNames.Submit, MVC.Message.Name, new { communicationGid = message.gid, answerGid = answer.answerGid })" title="">@MessageIndex.Answer</a>
+                                                                        }
+                                                                        else if (answer.status != RegMessageAnswerType.PaperAnswer &&
+                                                                            answer.status != RegMessageAnswerType.Answer &&
+                                                                            answer.status != RegMessageAnswerType.Canceled)
+                                                                        {
+                                                                            <a title="" class="edit-btn wait" href="@Url.Action(
+                                                                                    MVC.Message.ActionNames.Edit,
+                                                                                    MVC.Message.Name,
+                                                                                    new {
+                                                                                        communicationGid = message.gid,
+                                                                                        answerGid = answer.answerGid,
+                                                                                        status = answer.status,
+                                                                                        version = Convert.ToBase64String(message.version)})">
+                                                                                @Global.Edit
+                                                                            </a>
+                                                                        }
+
+                                                                        if ((!message.messageEndingDate.HasValue || message.messageEndingDate >= DateTime.Now) && answer.status == RegMessageAnswerType.Draft)
+                                                                        {
+                                                                            <a href="@Url.Action(MVC.Message.ActionNames.Delete, MVC.Message.Name,  new { communicationGid = message.gid, answerGid = answer.answerGid, version = Convert.ToBase64String(message.version) })" data-toggle="confirmation-no-title" data-title="@MessageIndex.DeleteConfirm">
+                                                                                <img src="@Links.Content.img.icons.delete_btn_png" alt="">
+                                                                                @MessageIndex.Delete
+                                                                            </a>
+                                                                        }
+                                                                    }
+
+                                                                    @if (answer.status == RegMessageAnswerType.PaperAnswer)
+                                                                    {
+                                                                        <a href="@(Url.Action(MVC.Message.ActionNames.GetDeclaration, MVC.Message.Name, new { hash = answer.hash, gid = message.gid }))" title="" class="draft-link">
+                                                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveDeclaration
+                                                                        </a>
+                                                                        <a href="@(Url.Action(MVC.Message.ActionNames.GetLabel, MVC.Message.Name, new { hash = answer.hash, communicationGid = message.gid, answerGid = answer.answerGid }))" title="" class="draft-link">
+                                                                            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Registered.SaveLabel
+                                                                        </a>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Message.MessagesNotFound</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

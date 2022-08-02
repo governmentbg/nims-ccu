@@ -1,0 +1,24 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_microdataEsfReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_microdataEsfReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_microdataEsfReport_procedure" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_microdataEsfReport_toDate" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-10">
+            <sc-link-button ng-href="api/monitoringReports/microdataEsf/export?procedureId={{filters.procedureId}}&toDate={{filters.toDate}}"
+                            target="_blank" sc-access-token ng-disabled="!filters.procedureId"
+                            icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_microdataEsfReport_excelExport" class="btn btn-primary btn-sm pull-right">
+            </sc-link-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

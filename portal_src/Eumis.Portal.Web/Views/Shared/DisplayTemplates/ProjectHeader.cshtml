@@ -1,0 +1,14 @@
+﻿@model Eumis.Documents.Contracts.ContractProjectHeader
+
+@if (Model != null)
+{
+    <h2>@ProjectHeader.RegistrationData</h2>
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.regNumber, ProjectHeader.regNumber)
+        @Html.DisplayFor(m => m.regNumber)
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.regDate, ProjectHeader.regDate)
+        @Html.DisplayFor(m => m.regDate)
+    </div>
+}

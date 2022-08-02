@@ -1,0 +1,1178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{31E2413E-7640-490C-9120-C91C7E6B0040}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Data</RootNamespace>
+    <AssemblyName>Eumis.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="DistributedLock, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DistributedLock.1.3.1\lib\net45\DistributedLock.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionLogs\Repositories\ActionLogsAddRepository.cs" />
+    <Compile Include="ActuallyPaidAmounts\Repositories\IActuallyPaidAmountsRepository.cs" />
+    <Compile Include="ActuallyPaidAmounts\Repositories\ActuallyPaidAmountsRepository.cs" />
+    <Compile Include="ActuallyPaidAmounts\ViewObjects\ActuallyPaidAmountBasicDataVO.cs" />
+    <Compile Include="ActuallyPaidAmounts\ViewObjects\ActuallyPaidAmountDocumentVO.cs" />
+    <Compile Include="ActuallyPaidAmounts\ViewObjects\ActuallyPaidAmountCreationType.cs" />
+    <Compile Include="ActuallyPaidAmounts\ViewObjects\ActuallyPaidAmountVO.cs" />
+    <Compile Include="Allowances\Repositories\AllowancesRepository.cs" />
+    <Compile Include="Allowances\Repositories\AllowanceNomsRepository.cs" />
+    <Compile Include="Allowances\Repositories\IAllowancesRepository.cs" />
+    <Compile Include="Allowances\ViewObjects\AllowanceVO.cs" />
+    <Compile Include="ActuallyPaidAmounts\ViewObjects\ActuallyPaidAmountInfoVO.cs" />
+    <Compile Include="AnnualAccountReports\Repositories\AnnualAccountReportsRepository.cs" />
+    <Compile Include="AnnualAccountReports\Repositories\IAnnualAccountReportsRepository.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportInfoVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportApprovedCertifiedGroupedAmountVO.cs" />
+    <Compile Include="Arachne\Repositories\IArachneRepository.cs" />
+    <Compile Include="Arachne\Repositories\ArachneRepository.cs" />
+    <Compile Include="Audits\Repositories\IAuditsRepository.cs" />
+    <Compile Include="Audits\Repositories\AuditsRepository.cs" />
+    <Compile Include="Audits\Repositories\IAuditItemNomsRepository.cs" />
+    <Compile Include="Audits\Repositories\AuditItemNomsRepository.cs" />
+    <Compile Include="Audits\ViewObjects\AuditBasicDataVO.cs" />
+    <Compile Include="Audits\ViewObjects\TechnicalReportAuditVO.cs" />
+    <Compile Include="Audits\ViewObjects\InternalЕnvironmentAuditVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditInfoVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditDocVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditAscertainmentVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditProgrammePriorityItemVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditProcedureItemVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditContractItemVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditContractContractItemVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditProjectVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditAscertainmentContentVO.cs" />
+    <Compile Include="Audits\ViewObjects\AuditAscertainmentFulfilledStatusVO.cs" />
+    <Compile Include="BasicInterestRates\Repositories\BasicInterestRatesRepository.cs" />
+    <Compile Include="BasicInterestRates\Repositories\IBasicInterestRatesRepository.cs" />
+    <Compile Include="BasicInterestRates\Repositories\BasicInterestRateNomsRepository.cs" />
+    <Compile Include="BasicInterestRates\ViewObjects\BasicInterestRateVO.cs" />
+    <Compile Include="CertAuthorityChecks\Repositories\CertAuthorityChecksRepository.cs" />
+    <Compile Include="CertAuthorityChecks\Repositories\ICertAuthorityChecksRepository.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckAscertainmentExecutionStatusVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckAscertainmentContentVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckAscertainmentVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckInfoVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckProjectVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckProgrammeItemVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckProgrammePriorityItemVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckProcedureItemVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckContractItemVO.cs" />
+    <Compile Include="CertAuthorityChecks\ViewObjects\CertAuthorityCheckDocumentVO.cs" />
+    <Compile Include="CertReports\Repositories\CertReportSnapshotsRepository.cs" />
+    <Compile Include="CertReports\Repositories\CertReportsRepository.cs" />
+    <Compile Include="CertReports\Repositories\ICertReportSnapshotsRepository.cs" />
+    <Compile Include="CertReports\Repositories\ICertReportsRepository.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportApprovedCertifiedGroupedAmountVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportInfoVO.cs" />
+    <Compile Include="CheckBlankTopics\Repositories\ICheckBlankTopicsRepository.cs" />
+    <Compile Include="CheckBlankTopics\Repositories\CheckBlankTopicsRepository.cs" />
+    <Compile Include="CheckBlankTopics\ViewObjects\CheckBlankTopicVO.cs" />
+    <Compile Include="Companies\Repositories\CompanyNomsRepository.cs" />
+    <Compile Include="Companies\PortalViewObjects\CompanyPVO.cs" />
+    <Compile Include="Companies\Repositories\ICompaniesRepository.cs" />
+    <Compile Include="Companies\Repositories\CompaniesRepository.cs" />
+    <Compile Include="Companies\Repositories\ICompanyNomsRepository.cs" />
+    <Compile Include="Companies\ViewObjects\CompaniesVO.cs" />
+    <Compile Include="Companies\ViewObjects\LocalActionGroupMunicipalitiesVO.cs" />
+    <Compile Include="CompensationDocuments\Repositories\CompensationDocumentsRepository.cs" />
+    <Compile Include="CompensationDocuments\Repositories\ICompensationDocumentsRepository.cs" />
+    <Compile Include="CompensationDocuments\ViewObjects\CompensationDocumentBasicDataVO.cs" />
+    <Compile Include="CompensationDocuments\ViewObjects\CompensationDocumentInfoVO.cs" />
+    <Compile Include="CompensationDocuments\ViewObjects\CompensationDocumentVO.cs" />
+    <Compile Include="CompensationDocuments\ViewObjects\CompensationDocumentDocVO.cs" />
+    <Compile Include="ContractRegistrations\ViewObjects\ContractRegistrationContractVO.cs" />
+    <Compile Include="ContractReportCertAuthorityCorrections\Repositories\ContractReportCertAuthorityCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityCorrections\Repositories\IContractReportCertAuthorityCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\ContractReportCertAuthorityFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\ContractReportCertAuthorityFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\ContractReportCertAuthorityFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\IContractReportCertAuthorityFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\IContractReportCertAuthorityFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportCertAuthorityFinancialCorrections\Repositories\IContractReportCertAuthorityFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportIndicators\ViewObjects\ContractPhysicalExecutionIndicatorVO.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityCorrections\Repositories\ContractReportRevalidationCertAuthorityCorrectionsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityCorrections\Repositories\IContractReportRevalidationCertAuthorityCorrectionsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\ContractReportRevalidationCertAuthorityFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\ContractReportRevalidationCertAuthorityFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\ContractReportRevalidationCertAuthorityFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\IContractReportRevalidationCertAuthorityFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\IContractReportRevalidationCertAuthorityFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportRevalidationCertAuthorityFinancialCorrections\Repositories\IContractReportRevalidationCertAuthorityFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\CheckSheetFinancialCorrectionPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\CheckSheetProcurementPlanPVO.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportTypeNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportTypeNomsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\ContractReportTechnicalCorrectionIndicatorsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\ContractReportTechnicalCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\ContractReportTechnicalCorrectionsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\IContractReportTechnicalCorrectionIndicatorsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\IContractReportTechnicalCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportTechnicalCorrections\Repositories\IContractReportTechnicalCorrectionsRepository.cs" />
+    <Compile Include="ContractReportFinancialCSDs\PortalViewObjects\ContractReportFinancialCSDBudgetItemPVO.cs" />
+    <Compile Include="ContractReportFinancialCSDs\Repositories\ContractReportFinancialCSDBudgetItemsRepository.cs" />
+    <Compile Include="ContractReportFinancialCSDs\Repositories\IContractReportFinancialCSDBudgetItemsRepository.cs" />
+    <Compile Include="ContractReportIndicators\PortalViewObjects\ContractReportIndicatorsPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroItemsPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportTechnicalPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportFinancialPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportPaymentPVO.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\ContractReportFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\ContractReportFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroType1ItemPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroType2ItemPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroType3ItemPVO.cs" />
+    <Compile Include="ContractReports\PortalViewObjects\ContractReportMicroType4ItemPVO.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportFinancialsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportPaymentsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportTechnicalsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportFinancialChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportPaymentChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportTechnicalChecksRepository.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\ContractReportFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\IContractReportFinancialCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\IContractReportFinancialCorrectionsRepository.cs" />
+    <Compile Include="ContractReportFinancialCorrections\Repositories\IContractReportFinancialCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportMicrosRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportMicrosDistrictNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportMicroChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportMicrosSettlementNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportMicrosSettlementNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportMicroChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportMicrosDistrictNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportMicrosRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportTechnicalChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportPaymentChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportFinancialChecksRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportFinancialsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportTechnicalsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportPaymentsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportPaymentNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportPaymentNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportMicrosMunicipalityNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportMicrosMunicipalityNomsRepository.cs" />
+    <Compile Include="ContractReports\ViewObjects\ContractReportMicrosMunicipalityNomVO.cs" />
+    <Compile Include="ContractReports\ViewObjects\ContractReportMicrosSettlementNomVO.cs" />
+    <Compile Include="ContractReports\ViewObjects\ActuallyPaidAmountContractReportPaymentVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\AccessCodePermissionPVO.cs" />
+    <Compile Include="Core\Nomenclatures\EntityGidNomPVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionLoadedProjectsFromFileVO.cs" />
+    <Compile Include="Monitorstat\Contracts\ActivityDO.cs" />
+    <Compile Include="Monitorstat\Contracts\FileDO.cs" />
+    <Compile Include="Monitorstat\Contracts\ProcedureDO.cs" />
+    <Compile Include="Monitorstat\Contracts\ProcedureInquiryDO.cs" />
+    <Compile Include="Monitorstat\Contracts\ProgrammeDO.cs" />
+    <Compile Include="Monitorstat\Contracts\ProgrammePriorityDO.cs" />
+    <Compile Include="Monitorstat\Contracts\ReportDO.cs" />
+    <Compile Include="Monitorstat\Contracts\SubjectRequestDO.cs" />
+    <Compile Include="Monitorstat\Repositories\IMonitorstatMapNodesRepository.cs" />
+    <Compile Include="Monitorstat\Repositories\IMonitorstatSurveyNomsRepository.cs" />
+    <Compile Include="Monitorstat\Repositories\IMonitorstatSurveysRepository.cs" />
+    <Compile Include="Monitorstat\Repositories\MonitorstatMapNodesRepository.cs" />
+    <Compile Include="Monitorstat\Repositories\MonitorstatSurveyNomsRepository.cs" />
+    <Compile Include="Monitorstat\Repositories\MonitorstatSurveysRepository.cs" />
+    <Compile Include="Monitorstat\ViewObjects\MonitorstatReportVO.cs" />
+    <Compile Include="Monitorstat\ViewObjects\MonitorstatSurveyVO.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProcedureApplicationDocNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProcedureMonitorstatRequestNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProcedureSpecFieldMaxLengthNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProcedureApplicationDocNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProcedureMonitorstatRequestNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProcedureSpecFieldMaxLengthNomsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\ViewObjects\DirectionItemVO.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\IProgrammeAppFormDeclarationsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\IProgrammeAppFormDeclarationNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammeAppFormDeclarationsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammeAppFormDeclarationNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeDeclarationItemVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeDeclarationVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeProcedureVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\AppGuidelinePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureApplicationSectionAdditionalSettingPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureDeclarationItemPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureDeclarationPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureDiscussionsInfoPVO.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureAppFormDeclarationsRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureMonitorstatDocumentsRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureMonitorstatEconomicActivitiesRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureMonitorstatRequestsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureAppFormDeclarationsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureMonitorstatDocumentsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureMonitorstatEconomicActivitiesRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureMonitorstatRequestsRepository.cs" />
+    <Compile Include="Procedures\ViewObjects\ApplicationSectionAdditionalSettingVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureDeclarationVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMonitorstatDocumentVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMonitorstatEconomicActivityVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMonitorstatRequestsVO.cs" />
+    <Compile Include="Procurements\PortalViewObjects\CentralDifferentiatedPositionPVO.cs" />
+    <Compile Include="Procurements\PortalViewObjects\CentralProcurementDocumentPVO.cs" />
+    <Compile Include="Procurements\PortalViewObjects\CentralProcurementPlan.cs" />
+    <Compile Include="Procurements\PortalViewObjects\CentralProcurementPVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractAccessCodePVO.cs" />
+    <Compile Include="ContractRegistrations\Repositories\ContractRegistrationNomsRepository.cs" />
+    <Compile Include="ContractRegistrations\Repositories\IContractRegistrationNomsRepository.cs" />
+    <Compile Include="ContractRegistrations\ViewObjects\ContractRegistrationNomVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractVersionPVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractProcurementPVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractSpendingPlanPVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractDifferentiatedPositionPVO.cs" />
+    <Compile Include="Contracts\Repositories\ContractAccessCodesRepository.cs" />
+    <Compile Include="ContractReports\Repositories\ContractReportProcedureNomsRepository.cs" />
+    <Compile Include="ContractReports\Repositories\IContractReportProcedureNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractProcurementPlanNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractReportStatusWithoutDraftNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractSpendingPlansRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractContractNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractBudgetLevel3NomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractUserNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractProcurementPlanNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractUserNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractReportStatusWithoutDraftNomsRepository.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractPhysicalExecutionActivityVO.cs" />
+    <Compile Include="Core\Nomenclatures\DependentEntityNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\IDependentEntityNomsRepository.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionActionsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionResultTablesVO.cs" />
+    <Compile Include="Indicators\Repositories\IndicatorItemTypeNomsRepository.cs" />
+    <Compile Include="Indicators\Repositories\IIndicatorItemTypesRepository.cs" />
+    <Compile Include="Indicators\Repositories\IndicatorItemTypesRepository.cs" />
+    <Compile Include="Indicators\ViewObjects\IndicatorItemTypesVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\ExpenseTypesReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\V4Plus4ReportItem.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ErrandTypeNomsCodeRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProjectVersionXmlFileNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProjectVersionXmlFileNomsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\Repositories\DirectionNomsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\Repositories\DirectionsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\Repositories\IDirectionsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\Repositories\ISubDirectionNomsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\Repositories\SubDirectionNomsRepository.cs" />
+    <Compile Include="OperationalMap\Directions\ViewObjects\DirectionInfoVO.cs" />
+    <Compile Include="OperationalMap\Directions\ViewObjects\DirectionVO.cs" />
+    <Compile Include="OperationalMap\Directions\ViewObjects\SubDirectionVO.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\IProgrammePriorityCompanyNomsRepository.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\ProgrammePriorityCompanyNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\IProgrammeApplicationDocumentNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammeApplicationDocumentNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ProjectDossierContractNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractBudgetLevel3NomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractContractNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractSpendingPlansRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractAccessCodesRepository.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractPVO.cs" />
+    <Compile Include="Contracts\PortalViewObjects\ContractCommunicationPVO.cs" />
+    <Compile Include="Contracts\Repositories\IContractNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IProjectDossierContractNomsRepository.cs" />
+    <Compile Include="Contracts\ViewObjects\AdminAuthorityContractCommunicationVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractContractItemVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractAccessCodeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractProcurementOfferVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractSpendingPlanVO.cs" />
+    <Compile Include="ContractReportFinancialCSDs\Repositories\ContractReportFinancialCSDsRepository.cs" />
+    <Compile Include="ContractReportFinancialCSDs\Repositories\IContractReportFinancialCSDsRepository.cs" />
+    <Compile Include="ContractReportIndicators\Repositories\ContractReportIndicatorsRepository.cs" />
+    <Compile Include="ContractReportIndicators\Repositories\IContractReportIndicatorsRepository.cs" />
+    <Compile Include="ContractReportIndicators\ViewObjects\ContractReportIndicatorsVO.cs" />
+    <Compile Include="ContractReportAdvancePaymentAmounts\Repositories\ContractReportAdvancePaymentAmountsRepository.cs" />
+    <Compile Include="ContractReportAdvancePaymentAmounts\Repositories\IContractReportAdvancePaymentAmountsRepository.cs" />
+    <Compile Include="ContractReportCorrections\Repositories\ContractReportCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCorrections\Repositories\IContractReportCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertCorrections\Repositories\ContractReportCertCorrectionsRepository.cs" />
+    <Compile Include="ContractReportCertCorrections\Repositories\IContractReportCertCorrectionsRepository.cs" />
+    <Compile Include="ContractReportRevalidations\Repositories\ContractReportRevalidationsRepository.cs" />
+    <Compile Include="ContractReportRevalidations\Repositories\IContractReportRevalidationsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\ContractReportFinancialRevalidationCSDsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\ContractReportFinancialRevalidationProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\ContractReportFinancialRevalidationsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\IContractReportFinancialRevalidationCSDsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\IContractReportFinancialRevalidationProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialRevalidations\Repositories\IContractReportFinancialRevalidationsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\ContractReportFinancialCertCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\ContractReportFinancialCertCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\ContractReportFinancialCertCorrectionsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\IContractReportFinancialCertCorrectionCSDsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\IContractReportFinancialCertCorrectionProcedureNomsRepository.cs" />
+    <Compile Include="ContractReportFinancialCertCorrections\Repositories\IContractReportFinancialCertCorrectionsRepository.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractUserVO.cs" />
+    <Compile Include="Contracts\ViewObjects\FinanceSourceAmountsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractVersionSAPDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ProgrammePriorityAmountsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ProjectDossierContractNomVO.cs" />
+    <Compile Include="ContractReportAdvanceNVPaymentAmounts\Repositories\ContractReportAdvanceNVPaymentAmountsRepository.cs" />
+    <Compile Include="ContractReportAdvanceNVPaymentAmounts\Repositories\IContractReportAdvanceNVPaymentAmountsRepository.cs" />
+    <Compile Include="CertReports\Repositories\CertReportsNomsRepository.cs" />
+    <Compile Include="Core\Interception\BridgingDbCommandInterceptor.cs" />
+    <Compile Include="Core\Interception\IEumisDbCommandInterceptor.cs" />
+    <Compile Include="Core\Interception\WhereInFixupEumisDbCommandInterceptor.cs" />
+    <Compile Include="Core\BridgingDbContext.cs" />
+    <Compile Include="Core\Nomenclatures\EntityGidNomVOJsonConverter.cs" />
+    <Compile Include="Core\Nomenclatures\EntityCodeNomVOJsonConverter.cs" />
+    <Compile Include="Core\Nomenclatures\EntityNomVOJsonConverter.cs" />
+    <Compile Include="Core\Permissions\PermissionsRepositoryQueries.cs" />
+    <Compile Include="Core\Relations\IRelationsRepository.cs" />
+    <Compile Include="Core\Relations\RelationsRepository.cs" />
+    <Compile Include="DataEnumTexts.en.Designer.cs">
+      <DependentUpon>DataEnumTexts.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataEnumTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataEnumTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DataTexts.en.Designer.cs">
+      <DependentUpon>DataTexts.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Debts\ViewObjects\ContractDebtNomVO.cs" />
+    <Compile Include="Declarations\Repositories\DeclarationsRepository.cs" />
+    <Compile Include="Declarations\Repositories\IDeclarationsRepository.cs" />
+    <Compile Include="Declarations\ViewObjects\DeclarationFileVO.cs" />
+    <Compile Include="Declarations\ViewObjects\DeclarationVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionPreliminaryProjectsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionAdminAdmissProjectsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionResultProjectsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionResultsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionStandingProjectsVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySignalBasicDataVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\AdvancePaymentsReportItem.cs" />
+    <Compile Include="News\PortalViewObjects\FilePVO.cs" />
+    <Compile Include="News\PortalViewObjects\NewsFilePVO.cs" />
+    <Compile Include="News\PortalViewObjects\NewsPVO.cs" />
+    <Compile Include="Notifications\Repositories\INotificationEventsNomsRepository.cs" />
+    <Compile Include="Notifications\Repositories\INotificationEventsPermissionsRepository.cs" />
+    <Compile Include="Notifications\Repositories\NotificationEventsNomsRepository.cs" />
+    <Compile Include="Notifications\Repositories\INotificationEntriesRepository.cs" />
+    <Compile Include="Notifications\Repositories\IUserNotificationsRepository.cs" />
+    <Compile Include="Notifications\Repositories\NotificationEntriesRepository.cs" />
+    <Compile Include="Notifications\Repositories\NotificationEventsPermissionsRepository.cs" />
+    <Compile Include="Notifications\Repositories\NotificationSettingsRepository.cs" />
+    <Compile Include="Notifications\Repositories\INotificationSettingsRepository.cs" />
+    <Compile Include="Notifications\Repositories\UserNotificationsRepository.cs" />
+    <Compile Include="Notifications\ViewObjects\NotificationPermissionVO.cs" />
+    <Compile Include="Notifications\ViewObjects\NotificationSettingInfoVO.cs" />
+    <Compile Include="Notifications\ViewObjects\NotificationSettingVO.cs" />
+    <Compile Include="Notifications\ViewObjects\UserNotificationVO.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeDirectionVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeApplicationDocumentNomVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeApplicationDocumentProcedureVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeApplicationDocumentsVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeProcedureManualsVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\CommunicationPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\DirectionPairPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\FilePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\LocationPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureApplicationSectionPVO.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureMassCommunicationsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureMassCommunicationsRespository.cs" />
+    <Compile Include="Procedures\ViewObjects\ApplicationSectionVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetComponentsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureContractReportDocumentVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureDirectionVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureLocationsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMassCommunicationDocumentVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMassCommunicationInfoVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMassCommunicationRecipientVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureMassCommunicationVO.cs" />
+    <Compile Include="Procurements\Repositories\IProcurementsRepository.cs" />
+    <Compile Include="Procurements\Repositories\ProcurementsRepository.cs" />
+    <Compile Include="Procurements\ViewObjects\ProcurementDifferentiatedPositionVO.cs" />
+    <Compile Include="Procurements\ViewObjects\ProcurementDocumentVO.cs" />
+    <Compile Include="Procurements\ViewObjects\ProcurementInfoVO.cs" />
+    <Compile Include="Procurements\ViewObjects\ProcurementVO.cs" />
+    <Compile Include="Projects\PortalViewObjects\ProjectCommunicationPVO.cs" />
+    <Compile Include="Projects\PortalViewObjects\ProjectCommunicationSentPVO.cs" />
+    <Compile Include="Projects\PortalViewObjects\ProjectMassCommunicationPVO.cs" />
+    <Compile Include="Projects\Repositories\IProjectManagingAuthorityCommunicationsRepository.cs" />
+    <Compile Include="Projects\Repositories\IProjectMassManagingAuthorityCommunicationsRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectManagingAuthorityCommunicationsRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectMassManagingAuthorityCommunicationsRepository.cs" />
+    <Compile Include="Projects\ViewObjects\EvalSessionProjectMonitorstatRequestsVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectCommunicationAnswerVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectDirectionVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectManagingAuthorityCommunicationVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMassManagingAuthorityCommunicationDocumentVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMassManagingAuthorityCommunicationInfoVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMassManagingAuthorityCommunicationRecipientVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMassManagingAuthorityCommunicationVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMonitorstatRequestsVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectMonitorstatResponseVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectQuestionExpirationEmailVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectRegistrationsWithDirectionsVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\ProjectCommunicationAnswerPVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\ProjectCommunicationQuestionPVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\ProjectManagingAuthorityCommunicationPortalStatus.cs" />
+    <Compile Include="Registrations\PortalViewObjects\ProjectVersionPVO.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Address.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Case.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\GetStateOfPlayRequestCase.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Communication.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Document.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Entry.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Event.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\GetStateOfPlayRequest.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\IdentificationDoc.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\LegalEntity.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\NaturalPerson.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\NomenclatureEntry.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\StateOfPlay.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\Subject.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropAccountingRecordForm.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropActivityDate.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropActivityKID2003.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropActivityKID2008.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropCollectiveBody.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropFundingSource.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropInstallments.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropLifeTime.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropOwnershipForm.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropProfession.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropRepresentationType.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropScopeOfActivity.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectPropState.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectRelAssignee.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectRelBelonging.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectRelCollectiveBodyMember.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectRelManager.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubjectRelPartner.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\SubscriptionElement.cs" />
+    <Compile Include="Regix\Contracts\Bulstat\UIC.cs" />
+    <Compile Include="Regix\Contracts\Mp\NPODetailsResponse.cs" />
+    <Compile Include="Regix\Contracts\Tr\ActualStateResponse.cs" />
+    <Compile Include="Regix\Contracts\Tr\Common.cs" />
+    <Compile Include="Regix\Contracts\Grao\ValidPersonRepsonse.cs" />
+    <Compile Include="Regix\Contracts\Mvr\PersonalIdentityInfoResponse.cs" />
+    <Compile Include="Regix\Helpers\Bulstat\AddressType.cs" />
+    <Compile Include="Regix\Helpers\Bulstat\BulstatHelper.cs" />
+    <Compile Include="Regix\Helpers\Bulstat\CommunicationType.cs" />
+    <Compile Include="Regix\Helpers\Bulstat\Country.cs" />
+    <Compile Include="Regix\Helpers\Bulstat\CountryMap.cs" />
+    <Compile Include="Regix\Partials\Bulstat\Address.cs" />
+    <Compile Include="Regix\Partials\Tr\AddressType.cs" />
+    <Compile Include="SapInterfaces\ViewObjects\SapFileDistributedLimitVO.cs" />
+    <Compile Include="Sebra\ViewObjects\SebraCompanyVO.cs" />
+    <Compile Include="Sebra\ViewObjects\SebraProjectInfoVO.cs" />
+    <Compile Include="Sebra\ViewObjects\SebraProjectVO.cs" />
+    <Compile Include="Sebra\ViewObjects\SebraProjectIbanVO.cs" />
+    <Compile Include="Sebra\Repositories\ISebraRepository.cs" />
+    <Compile Include="Sebra\Repositories\SebraRepository.cs" />
+    <Compile Include="SpotChecks\ViewObjects\TechnicalReportSpotCheckVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckRecommendationExecutionStatusVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckRecommendationContentVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckAscertainmentContentVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\InternalЕnvironmentSpotCheckVO.cs" />
+    <Compile Include="Users\ViewObjects\UserUnacceptedDeclarationVO.cs" />
+    <Compile Include="FIReimbursedAmounts\Repositories\FIReimbursedAmountsRepository.cs" />
+    <Compile Include="FIReimbursedAmounts\Repositories\IFIReimbursedAmountsRepository.cs" />
+    <Compile Include="FIReimbursedAmounts\ViewObjects\FIReimbursedAmountBasicDataVO.cs" />
+    <Compile Include="FIReimbursedAmounts\ViewObjects\FIReimbursedAmountInfoVO.cs" />
+    <Compile Include="FIReimbursedAmounts\ViewObjects\FIReimbursedAmountVO.cs" />
+    <Compile Include="Core\FilePVO.cs" />
+    <Compile Include="Core\InternalFileVO.cs" />
+    <Compile Include="Contracts\Repositories\ContractsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractVersionsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractProcurementsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractCommunicationXmlsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractCommunicationXmlsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractProcurementsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractVersionsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractProcedureNomsRepository.cs" />
+    <Compile Include="Contracts\Repositories\ContractProcedureNomsRepository.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractVersionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractProcurementVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractCommunicationVO.cs" />
+    <Compile Include="ContractRegistrations\Repositories\ContractRegistrationsRepository.cs" />
+    <Compile Include="ContractRegistrations\Repositories\IContractRegistrationsRepository.cs" />
+    <Compile Include="ContractRegistrations\ViewObjects\ContractRegistrationsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractContractRegistrationsVO.cs" />
+    <Compile Include="Core\Nomenclatures\IEntityGidNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EntityGidNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EntityCodeNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\IEntityCodeNomsRepository.cs" />
+    <Compile Include="Core\Interception\LoggingEumisDbCommandInterceptor.cs" />
+    <Compile Include="Core\PagePVO.cs" />
+    <Compile Include="Debts\Repositories\ContractDebtsRepository.cs" />
+    <Compile Include="Debts\Repositories\ContractDebtVersionsRepository.cs" />
+    <Compile Include="Debts\Repositories\ContractDebtNomsRepository.cs" />
+    <Compile Include="Debts\Repositories\IContractDebtsRepository.cs" />
+    <Compile Include="Debts\Repositories\IContractDebtVersionsRepository.cs" />
+    <Compile Include="Debts\Repositories\IContractDebtNomsRepository.cs" />
+    <Compile Include="Debts\Repositories\CorrectionDebtsRepository.cs" />
+    <Compile Include="Debts\Repositories\CorrectionDebtVersionsRepository.cs" />
+    <Compile Include="Debts\Repositories\ICorrectionDebtsRepository.cs" />
+    <Compile Include="Debts\Repositories\ICorrectionDebtVersionsRepository.cs" />
+    <Compile Include="DomainServices\NomenclatureDomainService.cs" />
+    <Compile Include="DomainServices\ProcedureDomainService.cs" />
+    <Compile Include="Emails\Repositories\IEmailsRepository.cs" />
+    <Compile Include="Emails\Repositories\EmailsRepository.cs" />
+    <Compile Include="EuReimbursedAmounts\Repositories\EuReimbursedAmountsRepository.cs" />
+    <Compile Include="EuReimbursedAmounts\Repositories\IEuReimbursedAmountsRepository.cs" />
+    <Compile Include="EuReimbursedAmounts\ViewObjects\EuReimbursedAmountInfoVO.cs" />
+    <Compile Include="EuReimbursedAmounts\ViewObjects\EuReimbursedAmountCertReportVO.cs" />
+    <Compile Include="EuReimbursedAmounts\ViewObjects\EuReimbursedAmountVO.cs" />
+    <Compile Include="EvalSessions\PortalViewObjects\EvalSessionSheetData.cs" />
+    <Compile Include="EvalSessions\PortalViewObjects\EvalSessionSheetXmlData.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionProjectStandingRejectionReasonNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionStandpointStatusEnumNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionStandpointStatusEnumNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionStandpointXmlsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionStandpointXmlsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionReportsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionSheetStatusEnumNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionReportsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionSheetStatusEnumNomsRepository.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionStandingsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionReportVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionProjectStandingVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionDocumentsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionStandpointVO.cs" />
+    <Compile Include="FinancialCorrections\Repositories\IFinancialCorrectionVersionsRepository.cs" />
+    <Compile Include="FinancialCorrections\Repositories\FinancialCorrectionVersionsRepository.cs" />
+    <Compile Include="FinancialCorrections\Repositories\FinancialCorrectionsRepository.cs" />
+    <Compile Include="FinancialCorrections\Repositories\IFinancialCorrectionsRepository.cs" />
+    <Compile Include="FinancialCorrections\Repositories\IFinancialCorrectionNomsRepository.cs" />
+    <Compile Include="FinancialCorrections\Repositories\FinancialCorrectionNomsRepository.cs" />
+    <Compile Include="FinancialCorrections\ViewObjects\FinancialCorrectionInfoVO.cs" />
+    <Compile Include="FinancialCorrections\ViewObjects\FinancialCorrectionVersionVO.cs" />
+    <Compile Include="FinancialCorrections\ViewObjects\FinancialCorrectionVO.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\FlatFinancialCorrectionNomsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\FlatFinancialCorrectionContractNomsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\IFlatFinancialCorrectionNomsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\IFlatFinancialCorrectionContractNomsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\IFlatFinancialCorrectionsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\Repositories\FlatFinancialCorrectionsRepository.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionContractContractItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionContractItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionProcedureItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionProgrammePriorityItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionProgrammeItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionItemVO.cs" />
+    <Compile Include="FlatFinancialCorrections\ViewObjects\FlatFinancialCorrectionVO.cs" />
+    <Compile Include="HistoricContracts\Repositories\IHistoricContractRequestRepository.cs" />
+    <Compile Include="HistoricContracts\Repositories\HistoricContractRequestRepository.cs" />
+    <Compile Include="HistoricContracts\ViewObjects\HistoricContractRequestInfoVO.cs" />
+    <Compile Include="HistoricContracts\ViewObjects\HistoricContractRequestVO.cs" />
+    <Compile Include="InterestSchemes\Repositories\InterestSchemeNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularityNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularityNomsRepository.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySignalRegisterInvolvedPersonVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySignalRegisterItemVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrrReportItemVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrrReportInvolvedPersonVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityFinancialCorrectionVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrrRegisterItemVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrrByQuarterReportVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrrReportVersionDataVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\ReportIrregularityVersionVO.cs" />
+    <Compile Include="Linq\ExpressionExpander.cs" />
+    <Compile Include="Monitoring\Repositories\MonitoringReportsRepository.cs" />
+    <Compile Include="Monitoring\Repositories\IMonitoringReportsRepository.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3FlatRateExpenseVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\BudgetLevelsReportResultItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ContractsReportContractAmountsGroupingItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ContractsReportContractAmountsItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\MicrodataEsfReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\PinReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\IrregularitiesReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ProgrammeSummaryReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ContractReportPaymentsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\EvaluationsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\BeneficiaryProjectsContractsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ConcludedContractsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\FinancialCorrectionsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\BudgetLevelsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ContractsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\ContractsReportReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\FinancialExecutionTable3ReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\FinancialExecutionTable1ReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\FinancialExecutionTable2ReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\IndicatorReportItemVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\ProjectsReportItemEvalResult.cs" />
+    <Compile Include="Monitoring\ViewObjects\ProjectsReportItemStandingStatus.cs" />
+    <Compile Include="Monitoring\ViewObjects\ProjectsReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\MonitoringIndicatorPeriodAmountVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3IndicatorVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3PaymentVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3ReimbursedAmountVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3ReportVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\Anex3StandardTablesExpenseVO.cs" />
+    <Compile Include="Monitoring\ViewObjects\DoubleFundingReportItem.cs" />
+    <Compile Include="Monitoring\ViewObjects\PhysicalExecutionReportItem.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IDistrictNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\INuts1NomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\INuts2NomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProtectedZoneNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\RegulationInvestmentPriorityNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IRegulationInvestmentPriorityNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProjectDossierDocumentTypeEnumNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\FinancialCorrectionImposingReasonNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProjectDossierDocumentTypeEnumNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IOtherViolationNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\OtherViolationNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularitySanctionTypeNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularitySanctionTypeNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularitySanctionCategoryNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularityFinancialStatusNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularityTypeNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularityTypeNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularityCategoryNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularityVersionsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularityVersionsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularitiesRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularitiesRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularitySignalNomsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularitySignalNomsRepository.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySanctionTypeVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityTypeVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityDataVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityInfoVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityVersionVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityInvolvedPersonVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularityDocVO.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySignalInfoVO.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ISettlementNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IMunicipalityNomsRepository.cs" />
+    <Compile Include="Guidances\Repositories\IGuidancesRepository.cs" />
+    <Compile Include="Guidances\Repositories\GuidancesRepository.cs" />
+    <Compile Include="Guidances\ViewObjects\GuidanceDataVO.cs" />
+    <Compile Include="Guidances\ViewObjects\GuidanceVO.cs" />
+    <Compile Include="Messages\Repositories\IMessagesRepository.cs" />
+    <Compile Include="Messages\Repositories\MessagesRepository.cs" />
+    <Compile Include="Messages\ViewObjects\IngoingMessagesVO.cs" />
+    <Compile Include="Messages\ViewObjects\IngoingMessageVO.cs" />
+    <Compile Include="Messages\ViewObjects\MessageFileVO.cs" />
+    <Compile Include="Messages\ViewObjects\MessagesCountVO.cs" />
+    <Compile Include="Messages\ViewObjects\MessageVO.cs" />
+    <Compile Include="Messages\ViewObjects\OutgoingMessagesVO.cs" />
+    <Compile Include="Messages\ViewObjects\OutgoingMessageVO.cs" />
+    <Compile Include="News\Repositories\NewsRepository.cs" />
+    <Compile Include="News\Repositories\INewsRepository.cs" />
+    <Compile Include="News\ViewObjects\AllNewsVO.cs" />
+    <Compile Include="News\ViewObjects\NewsFeedVO.cs" />
+    <Compile Include="News\ViewObjects\NewsVO.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ErrandAreaNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ErrandTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProjectRegistrationStatusEnumNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProcedureEvalTableTypeEnumNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProcedureEvalTableTypeEnumNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionProcedureNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionSheetXmlsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionSheetXmlsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionUserNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionUserNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionProcedureNomsRepository.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionDistributionProjectsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionEvaluationVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionDistributionsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionProjectsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionSheetsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionsVO.cs" />
+    <Compile Include="EvalSessions\ViewObjects\EvalSessionUsersVO.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionDistributionNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionDistributionNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionProjectNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\EvalSessionUserTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProjectRecieveTypeEnumNomsRepository.cs" />
+    <Compile Include="ExpenseTypes\Repositories\ExpenseTypesRepository.cs" />
+    <Compile Include="ExpenseTypes\Repositories\IExpenseTypesRepository.cs" />
+    <Compile Include="ExpenseTypes\ViewObjects\ExpenseTypeVO.cs" />
+    <Compile Include="InterestSchemes\Repositories\InterestSchemesRepository.cs" />
+    <Compile Include="InterestSchemes\Repositories\IInterestSchemesRepository.cs" />
+    <Compile Include="InterestSchemes\ViewObjects\InterestSchemeVO.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProtectedZoneNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ICompanySizeTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ErrandLegalActGidNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ICompanyLegalTypeNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionProjectNomsRepository.cs" />
+    <Compile Include="EvalSessions\Repositories\IEvalSessionUserTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Repos\IBlobsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Repos\IRegulationInvestmentPrioritiesRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Repos\BlobsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Repos\RegulationInvestmentPrioritiesRepository.cs" />
+    <Compile Include="NonAggregates\ViewObjects\CompanyLegalTypeGidNomVO.cs" />
+    <Compile Include="NonAggregates\ViewObjects\CompanySizeTypeGidNomVO.cs" />
+    <Compile Include="NonAggregates\ViewObjects\CompanyTypeGidNomVO.cs" />
+    <Compile Include="NonAggregates\ViewObjects\ProcedureTypeNomVO.cs" />
+    <Compile Include="NonAggregates\ViewObjects\NutsCodeNomVO.cs" />
+    <Compile Include="NonAggregates\ViewObjects\SettlementCodeNomVO.cs" />
+    <Compile Include="ActionLogs\Repositories\ActionLogGroupNomsRepository.cs" />
+    <Compile Include="ActionLogs\Repositories\ActionLogPortalGroupNomsRepository.cs" />
+    <Compile Include="ActionLogs\Repositories\ActionLogsRepository.cs" />
+    <Compile Include="ActionLogs\Repositories\IActionLogPortalGroupNomsRepository.cs" />
+    <Compile Include="ActionLogs\Repositories\IActionLogGroupNomsRepository.cs" />
+    <Compile Include="ActionLogs\Repositories\IActionLogsRepository.cs" />
+    <Compile Include="ActionLogs\ViewObjects\ActionLogVO.cs" />
+    <Compile Include="ActionLogs\ViewObjects\ActionLogDataVO.cs" />
+    <Compile Include="OperationalMap\MapNodes\Repositories\MapNodeNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammeCompanyNomsRepository.cs" />
+    <Compile Include="OperationalMap\MapNodes\Repositories\IMapNodeIndicatorsRepository.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeInfoVO.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\IProgrammeNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EnumPVO.cs" />
+    <Compile Include="PermissionTemplates\ViewObjects\PermissionTemplateUserInfoVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\BudgetLevel2EuPercentPVO.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureNomsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureVersionsRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureVersionsRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProcedureEvalTableXmlsRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureEvalTableXmlsRepository.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBasicDataVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureQuestionsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureEvalTablesVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureInfoVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetValidationRuleVO.cs" />
+    <Compile Include="Prognoses\Repositories\PrognosesRepository.cs" />
+    <Compile Include="Prognoses\Repositories\IPrognosesRepository.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisProgrammeReportVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisMonthlyReportItemVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisMonthlyReportVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisProgrammePriorityReportVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisSummaryReportVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisYearlyReportItemVO.cs" />
+    <Compile Include="Prognoses\ViewObjects\PrognosisYearlyReportVO.cs" />
+    <Compile Include="Projects\PortalViewObjects\RegMessageCountPVO.cs" />
+    <Compile Include="Projects\PortalViewObjects\RegMessageType.cs" />
+    <Compile Include="Projects\PortalViewObjects\RegMessagePVO.cs" />
+    <Compile Include="Projects\Repositories\IProjectCommunicationFilesRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectCommunicationFilesRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectCommunicationsRepository.cs" />
+    <Compile Include="Projects\Repositories\IProjectCommunicationsRepository.cs" />
+    <Compile Include="Projects\Repositories\IProjectFilesRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectFilesRepository.cs" />
+    <Compile Include="Projects\Repositories\IProjectProcedureNomsRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectProcedureNomsRepository.cs" />
+    <Compile Include="Projects\ViewObjects\CommunicationVO.cs" />
+    <Compile Include="Projects\ViewObjects\CommunicationRegVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectDossierDocumentVO.cs" />
+    <Compile Include="Projects\ViewObjects\EvalSessionCommunicationVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectVersionVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectRegistrationDataVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\ContractRegOfferXmlPVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\MessagePVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\RegOfferXmlPVO.cs" />
+    <Compile Include="Registrations\PortalViewObjects\RegProjectXmlPVO.cs" />
+    <Compile Include="Registrations\Repositories\IRegOfferXmlsRepository.cs" />
+    <Compile Include="Registrations\Repositories\IRegProjectXmlsRepository.cs" />
+    <Compile Include="Registrations\Repositories\RegOfferXmlsRepository.cs" />
+    <Compile Include="Registrations\Repositories\RegProjectXmlsRepository.cs" />
+    <Compile Include="Registrations\Repositories\IRegistrationsRepository.cs" />
+    <Compile Include="Registrations\Repositories\RegistrationsRepository.cs" />
+    <Compile Include="Registrations\ViewObjects\ContractOfferVO.cs" />
+    <Compile Include="Registrations\ViewObjects\RegistrationsVO.cs" />
+    <Compile Include="Core\Nomenclatures\EntityCodeNomVO.cs" />
+    <Compile Include="Core\Nomenclatures\EntityGidNomVO.cs" />
+    <Compile Include="Core\Nomenclatures\EntityNomsRepository.cs" />
+    <Compile Include="Core\Permissions\PermissionsRepository.cs" />
+    <Compile Include="Core\Permissions\IPermissionsRepository.cs" />
+    <Compile Include="Counters\CountersRepository.cs" />
+    <Compile Include="Counters\ICountersRepository.cs" />
+    <Compile Include="OperationalMap\MapNodes\Repositories\IMapNodesRepository.cs" />
+    <Compile Include="OperationalMap\MapNodes\Repositories\MapNodesRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IProjectTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\ProjectTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\CompanyLegalTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\CompanyTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\CompanySizeTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\KidCodeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\UinTypeEnumNomsRepository.cs" />
+    <Compile Include="PermissionTemplates\Repositories\PermissionTemplateNomsRepository.cs" />
+    <Compile Include="PermissionTemplates\Repositories\IPermissionTemplatesRepository.cs" />
+    <Compile Include="PermissionTemplates\Repositories\PermissionTemplatesRepository.cs" />
+    <Compile Include="PermissionTemplates\ViewObjects\PermissionTemplateVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ApplicationDocPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\BudgetExpenseDetailPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\BudgetExpensePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\BudgetExpenseTypePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureInfoPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\IndicatorPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureProgrammePriorityTreePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureProgrammePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureProgrammeTreePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureAppDataPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProcedureTreePVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\ProgrammePriorityPVO.cs" />
+    <Compile Include="Procedures\PortalViewObjects\SpecFieldPVO.cs" />
+    <Compile Include="Procedures\Repositories\IProceduresRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProceduresRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProcedureNomsRepository.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureAppDocsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureSpecificTargetsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureInvestmentPrioritiesVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureSpecFieldVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureAppGuidelinesVO.cs" />
+    <Compile Include="Core\Nomenclatures\IEntitySuggestionsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Suggestions\ExpenseSubTypeSuggestionsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\NutsLevelEnumNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\SettlementNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\MunicipalityNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\DistrictNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\Nuts2NomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\Nuts1NomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\CountryNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Suggestions\IExpenseSubTypeSuggestionsRepository.cs" />
+    <Compile Include="ExpenseTypes\Repositories\ExpenseTypeNomsRepository.cs" />
+    <Compile Include="ExpenseTypes\Repositories\IExpenseTypeNomsRepository.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetTreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetLevel3TreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetLevel0TreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetLevel2TreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureBudgetLevel1TreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureDocumentsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureTimeLimitsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureSharesVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureTreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureProgrammeTreeVO.cs" />
+    <Compile Include="Core\DataObjectNotFoundException.cs" />
+    <Compile Include="Measures\Repositories\MeasureNomsRepository.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureInterventionCategoriesByDimensionVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureInterventionCategoryVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureProgrammePriorityTreeVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureIndicatorsVO.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\IProgrammePriorityNomsRepository.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\ProgrammePriorityNomsRepository.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ViewObjects\ProgrammePriorityBudgetsWrapperVO.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammeNomsRepository.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeDocumentVO.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeInterventionCategoriesByDimensionVO.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeInterventionCategoryVO.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ViewObjects\ProgrammePriorityBudgetsVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeBudgetsWrapperVO.cs" />
+    <Compile Include="Projects\Repositories\IProjectsRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectsRepository.cs" />
+    <Compile Include="Projects\Repositories\IProjectVersionXmlsRepository.cs" />
+    <Compile Include="Projects\Repositories\ProjectVersionXmlsRepository.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectRegistrationsVO.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\IProgrammePrioritiesRepository.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\Repositories\ProgrammePrioritiesRepository.cs" />
+    <Compile Include="Core\DataException.cs" />
+    <Compile Include="Core\DataUpdateConcurrencyException.cs" />
+    <Compile Include="Core\IAggregateRepository.cs" />
+    <Compile Include="Core\Nomenclatures\IEnumNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EnumNomVO.cs" />
+    <Compile Include="Core\Nomenclatures\IEntityNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EnumNomsRepository.cs" />
+    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\AggregateRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EntityNomVO.cs" />
+    <Compile Include="Core\Repository.cs" />
+    <Compile Include="Core\UnitOfWork.cs" />
+    <Compile Include="DataModule.cs" />
+    <Compile Include="Indicators\Repositories\IIndicatorNomsRepository.cs" />
+    <Compile Include="Indicators\Repositories\IndicatorNomsRepository.cs" />
+    <Compile Include="Indicators\Repositories\IIndicatorsRepository.cs" />
+    <Compile Include="Indicators\Repositories\IndicatorsRepository.cs" />
+    <Compile Include="Indicators\ViewObjects\IndicatorNomVO.cs" />
+    <Compile Include="Linq\EnumerableExtensions.cs" />
+    <Compile Include="Linq\ExpressionExpanderExtensions.cs" />
+    <Compile Include="Linq\ExpressionExtensions.cs" />
+    <Compile Include="Linq\ExpressionHelper.cs" />
+    <Compile Include="Linq\ExpressionParameterRebinder.cs" />
+    <Compile Include="Linq\PredicateBuilder.cs" />
+    <Compile Include="Linq\QueryableExtensions.cs" />
+    <Compile Include="Measures\Repositories\IMeasuresRepository.cs" />
+    <Compile Include="Measures\Repositories\MeasuresRepository.cs" />
+    <Compile Include="Measures\ViewObjects\MeasuresVO.cs" />
+    <Compile Include="Indicators\ViewObjects\IndicatorsVO.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\BudgetPeriodNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IBudgetPeriodNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\IInstitutionNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\InstitutionTypeNomsRepository.cs" />
+    <Compile Include="NonAggregates\Repositories\Noms\InstitutionNomsRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\IProgrammesRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\Repositories\ProgrammesRepository.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeBudgetsVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\SpecificTargetTreeVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\InvestmentPriorityTreeVO.cs" />
+    <Compile Include="OperationalMap\MapNodes\ViewObjects\MapNodeIndicatorVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeInstitutionsVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammePriorityTreeVO.cs" />
+    <Compile Include="OperationalMap\Programmes\ViewObjects\ProgrammeTreeVO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReimbursedAmounts\Repositories\ContractReimbursedAmountsRepository.cs" />
+    <Compile Include="ReimbursedAmounts\Repositories\IContractReimbursedAmountsRepository.cs" />
+    <Compile Include="ReimbursedAmounts\Repositories\IDebtReimbursedAmountsRepository.cs" />
+    <Compile Include="ReimbursedAmounts\Repositories\DebtReimbursedAmountsRepository.cs" />
+    <Compile Include="RequestPackages\Repositories\IRequestPackagesRepository.cs" />
+    <Compile Include="RequestPackages\Repositories\RequestPackagesRepository.cs" />
+    <Compile Include="RequestPackages\ViewObjects\RequestPackageInfoVO.cs" />
+    <Compile Include="RequestPackages\ViewObjects\RequestPackageUserVO.cs" />
+    <Compile Include="RequestPackages\ViewObjects\RequestPackageVO.cs" />
+    <Compile Include="Irregularities\Repositories\IrregularitySignalsRepository.cs" />
+    <Compile Include="Irregularities\Repositories\IIrregularitySignalsRepository.cs" />
+    <Compile Include="Irregularities\ViewObjects\IrregularitySignalVO.cs" />
+    <Compile Include="SapInterfaces\Repositories\SapSchemasRepository.cs" />
+    <Compile Include="SapInterfaces\Repositories\ISapSchemasRepository.cs" />
+    <Compile Include="SapInterfaces\Repositories\SapFilesRepository.cs" />
+    <Compile Include="SapInterfaces\Repositories\ISapFilesRepository.cs" />
+    <Compile Include="SapInterfaces\ViewObjects\SapFileInfoVO.cs" />
+    <Compile Include="SapInterfaces\ViewObjects\SapFilePaidAmountVO.cs" />
+    <Compile Include="SapInterfaces\ViewObjects\SapFileVO.cs" />
+    <Compile Include="SpotChecks\Repositories\SpotCheckItemNomsRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\ISpotCheckItemNomsRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\ISpotCheckPlanNomsRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\SpotCheckPlanNomsRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\SpotCheckPlansRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\ISpotCheckPlansRepository.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractItemVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureItemVO.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ViewObjects\ProgrammePriorityItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckAscertainmentItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckContractContractItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckContractItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckProcedureItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckProgrammePriorityItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckRecommendationItemVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckRecommendationVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckTargetVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckPlanBasicDataVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckPlanInfoVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckPlanVO.cs" />
+    <Compile Include="SpotChecks\Repositories\ISpotChecksRepository.cs" />
+    <Compile Include="SpotChecks\Repositories\SpotChecksRepository.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckAscertainmentVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckBasicDataVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckDocVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckInfoVO.cs" />
+    <Compile Include="SpotChecks\ViewObjects\SpotCheckVO.cs" />
+    <Compile Include="UserOrganizations\Repositories\IUserOrganizationNomsRepository.cs" />
+    <Compile Include="UserOrganizations\Repositories\IUserOrganizationsRepository.cs" />
+    <Compile Include="UserOrganizations\Repositories\UserOrganizationNomsRepository.cs" />
+    <Compile Include="UserOrganizations\Repositories\UserOrganizationsRepository.cs" />
+    <Compile Include="UserOrganizations\ViewObjects\UserOrganizationsVO.cs" />
+    <Compile Include="Messages\Repositories\MessageRecipientsNomsRepository.cs" />
+    <Compile Include="Messages\Repositories\IMessageRecipientsNomsRepository.cs" />
+    <Compile Include="Users\Repositories\IUsersRepository.cs" />
+    <Compile Include="Users\Repositories\UsersRepository.cs" />
+    <Compile Include="Users\ViewObjects\UserDeclarationVO.cs" />
+    <Compile Include="Users\ViewObjects\UserRequestsWrapperVO.cs" />
+    <Compile Include="Users\ViewObjects\UserGDPRDeclarationInfoVO.cs" />
+    <Compile Include="Users\ViewObjects\UserVO.cs" />
+    <Compile Include="UserTypes\Repositories\IUserNomsRepository.cs" />
+    <Compile Include="UserTypes\Repositories\IUserTypeNomsRepository.cs" />
+    <Compile Include="UserTypes\Repositories\UserNomsRepository.cs" />
+    <Compile Include="UserTypes\Repositories\UserTypeNomsRepository.cs" />
+    <Compile Include="UserTypes\Repositories\IUserTypesRepository.cs" />
+    <Compile Include="UserTypes\Repositories\UserTypesRepository.cs" />
+    <Compile Include="UserTypes\ViewObjects\UserTypesVO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataEnumTexts.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataEnumTexts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataEnumTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataEnumTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataTexts.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataTexts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFramework.Utilities\EntityFramework.Utilities.csproj">
+      <Project>{c3211bac-13f0-42a7-924c-34bb0ee77914}</Project>
+      <Name>EntityFramework.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj">
+      <Project>{dfc4f396-946c-440c-9d39-4d541dfce6f0}</Project>
+      <Name>Eumis.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Domain\Eumis.Domain.csproj">
+      <Project>{2a54b65e-7cac-4397-8266-60b9f10d7463}</Project>
+      <Name>Eumis.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Log\Eumis.Log.csproj">
+      <Project>{716b39b1-8609-4834-829c-b4c8a71202c8}</Project>
+      <Name>Eumis.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Rio\Eumis.Rio.csproj">
+      <Project>{ae6e8f22-5574-40e6-9c19-212794757c57}</Project>
+      <Name>Eumis.Rio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

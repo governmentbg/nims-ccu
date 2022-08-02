@@ -1,0 +1,148 @@
+﻿@model  Eumis.Public.Web.Models.ContractContractors.ContractContractsSearchVM
+@using Eumis.Public.Web.InfrastructureClasses
+
+@using PagedList
+@using PagedList.Mvc;
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Global_ContractContracts)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.ContractContracts_Search_ContractContracts</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ContractContracts_Search_Company</label>
+                        @Html.TextBoxFor(m => m.Beneficiary, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ContractContracts_Search_Programme</label>
+                        @Html.TextBoxFor(m => m.ProgrammeId, new { id = "programme-ddl" })
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ContractContracts_Search_CompanyUin:</label><br>
+                        @Html.TextBoxFor(m => m.CompanyUin, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ContractContracts_Search_ErrandLegalAct</label>
+                        @Html.TextBoxFor(m => m.ErrandLegalActId, new { id = "errandLegalAct-ddl" })
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            createSelect2('#programme-ddl', '/@Language/@OpId/@PrId/ProjectProposals/GetProgramme', '/@Language//@OpId/@PrId/ProjectProposals/GetProgrammes');
+                            createSelect2('#errandLegalAct-ddl', '/@Language/@OpId/@PrId/ContractContracts/GetErrandLegalAct', '/@Language//@OpId/@PrId/ContractContracts/GetErrandLegalActs');
+                        });
+                    </script>
+
+                    <div class="form-submit col-lg-3 col-sm-12">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix">
+                    <h2>@Texts.ContractContracts_Search_ContractContracts</h2>
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th width="100px">@Texts.ContractContracts_Search_ContractContractNumber</th>
+                                <th width="250px">@Texts.ContractContracts_Search_ContractProcurementPlanName</th>
+                                <th width="250px">@Texts.ContractContracts_Search_ContractDifferentiatedPositionName</th>
+                                <th width="150px">@Texts.ContractContracts_Search_Contract</th>
+                                <th width="150px">@Texts.ContractContracts_Search_Company</th>
+                                <th width="120px">@Texts.ContractContracts_Search_Uin</th>
+                                <th width="150px">@Texts.ContractContracts_Search_CompanyType</th>
+                                <th width="150px">@Texts.ContractContracts_Search_ContractContractor</th>
+                                <th width="120px">@Texts.ContractContracts_Search_ContractContractorUin</th>
+                                <th width="150px">@Texts.ContractContracts_Search_TotalFundedValue</th>
+                                <th width="150px">@Texts.ContractContracts_Search_ErrandAreaName</th>
+                                <th width="120px">@Texts.ContractContracts_Search_ErrandLegalActName</th>
+                                <th width="150px">@Texts.ContractContracts_Search_ErrandTypeName</th>
+                                <th width="120px">@Texts.ContractContracts_Search_ContractContractEndDate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var contractContract in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@contractContract.ContractContractNumber</td>
+                                    <td>@contractContract.ContractProcurementPlanName</td>
+                                    <td>@contractContract.ContractDifferentiatedPositions</td>
+                                    <td>@Html.ActionLink(contractContract.ContractTransName, MVC.Project.BasicData(Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(contractContract.ContractId), false), new { @class = "wait" })</td>
+                                    <td>@contractContract.CompanyTransName</td>
+                                    <td>@contractContract.CompanyUin</td>
+                                    <td>@contractContract.CompanyTypeTransName</td>
+                                    <td>@contractContract.ContractContractorTransName</td>
+                                    <td>@contractContract.ContractContractorUin</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => contractContract.TotalFundedValue)</td>
+                                    <td>@contractContract.ErrandAreaName</td>
+                                    <td>@contractContract.ErrandLegalActName</td>
+                                    <td>@contractContract.ErrandTypeName</td>
+                                    <td>@Html.DisplayFor(m => contractContract.ContractContractEndDate)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.ContractContracts.ActionNames.Index, MVC.ContractContracts.Name
+                            , new
+                            {
+                                programmeId = Request.QueryString["programmeId"],
+                                beneficary = Request.QueryString["beneficary"],
+                                companyUin = Request.QueryString["companyUin"],
+                                errandLegalActId = Request.QueryString["errandLegalActId"],
+                                showRes = true,
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+
+                <h2>@Texts.Global_Note:</h2>
+                <div class="note">
+                    @Texts.Global_NoteBGN
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+
+        }
+    </div>
+</div>

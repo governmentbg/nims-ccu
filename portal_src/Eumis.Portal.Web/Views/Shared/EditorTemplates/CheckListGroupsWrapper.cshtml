@@ -1,0 +1,149 @@
+﻿@model Eumis.Portal.Web.Models.CheckList.CheckListGroupsWrapper
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        model: @(Html.Raw(jsonModel))
+        };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerCheckListGroups@(guid)'), ['moduleCheckListGroups']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerCheckListGroups@(guid)" ng-controller="controllerCheckListGroups" ng-init="init('_eumis_options', 'i@(guid)')">
+    <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%" id="check-list">
+        <thead>
+            <tr>
+                <th style="width:40px;"></th>
+                <th style="width:240px; border-left: 1px solid transparent;"></th>
+                <th style="width:200px; border-left: 1px solid transparent;"></th>
+                <th style="width:95px; border-left: 1px solid transparent;"></th>
+                <th ng-repeat-start="user in users" style="width:120px;"></th>
+                <th ng-repeat-end style="display:none"></th>
+                <th style="width:200px; border-left: 1px solid #8f8f8f;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4"></td>
+                <td ng-repeat-start="user in users" style="width:120px;">
+                    <textarea ng-class="{'input-validation-error': !user.IsRoleValid}" rows="1" auto-grow ng-model="user.Role" name="@(Html.GetNameFor(m => m.CheckListUserCollection))[{{ $index }}].Role" class="form-control"></textarea>
+                    <input type="hidden" value="{{user.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckListUserCollection))[{{ $index }}].OrderNum">
+                    <br />
+
+                    <div ng-if="isContractReportCheckList">
+                        <input id="ver_chb{{user.OrderNum}}" type="checkbox" ng-model="user.HideVerificationData" />
+                        <label for="ver_chb{{user.OrderNum}}" style="margin:0px;">@CheckList.HideVerification</label>
+                        <input type="hidden" value="{{user.HideVerificationData}}" name="@(Html.GetNameFor(m => m.CheckListUserCollection))[{{ $index }}].HideVerificationData">
+                    </div>
+
+                    <a class="delete-btn" confirm-click="delUser($index)">@Global.DeleteButton</a>
+                </td>
+                <td ng-repeat-end style="display:none"></td>
+                <td style="border-left: 1px solid #8f8f8f;">
+                    <a ng-class="{'input-validation-error': !hasUsers}"  name="CheckListGroupsWrapper.CheckListUserCollection" class="add-new-btn" ng-click="addUser()">@CheckList.AddUser</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="{{userColonsCount + 5}}">
+                    <div class="history-table-wrapper clearfix">
+                        <table class="chart-info dynamic-rows  criteria-table fixed-table" width="100%">
+                            <thead ng-repeat-start="group in groups">
+                                <tr>
+                                    <th style="width:40px; text-align: center;">{{romanize($index + 1)}}.</th>
+                                    <th style="width:240px;" class="group-header">@CheckList.Group</th>
+                                    <th style="width:200px; border-left: 1px solid transparent;"></th>
+                                    <th style="width:95px;"></th>
+                                    <th ng-repeat-start="user in users" style="width:120px;"></th>
+                                    <th ng-repeat-end style="display:none"></th>
+                                    <th style="width:200px; border-left: 1px solid #8f8f8f;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-size: 15px;"></td>
+                                    <td colspan="2">
+                                        <textarea ng-class="{'input-validation-error': !group.IsNameValid}" style="font-size: 15px;" rows="1" auto-grow ng-model="group.Name" name="@(Html.GetNameFor(m => m.CheckListGroupCollection))[{{ $index }}].Name" class="form-control"></textarea>
+                                        <input type="hidden" value="{{group.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckListGroupCollection))[{{ $index }}].OrderNum">
+                                    </td>
+                                    <td>
+                                        <a class="delete-btn" confirm-click="delGroup($index)">@Global.DeleteButton</a>
+                                    </td>
+                                    <td ng-repeat-start="user in users" style="width:120px;">
+                                        <input id="chbAll{{user.OrderNum}}_{{group.OrderNum}}" type="checkbox" ng-change="setUserAnswersForGroup(group.OrderNum, user.OrderNum, group.groupUsers[$index])" ng-model="group.groupUsers[$index]" />
+                                        <label for="chbAll{{user.OrderNum}}_{{group.OrderNum}}" style="margin:0px;">@CheckList.SetAll</label>
+                                    </td>
+                                    <td ng-repeat-end style="display:none"></td>
+                                    <td style="border-left: 1px solid #8f8f8f;"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="{{userColonsCount + 4}}" style="border-left: 1px solid #8f8f8f; padding: 0px;">
+                                        <div class="history-table-wrapper clearfix">
+                                            <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:40px;"></th>
+                                                        <th style="width:400px;" class="criteria-header">@CheckList.Question</th>
+                                                        <th style="width:95px;"></th>
+                                                        <th ng-repeat-start="user in users" style="width:120px;"></th>
+                                                        <th ng-repeat-end style="display:none"></th>
+                                                        <th style="width:200px; border-left: 1px solid #8f8f8f;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="auto-calc-percent" ng-repeat-start="question in group.CheckListQuestionCollection">
+                                                        <td class="text-right">{{$index + 1}}.</td>
+                                                        <td>
+                                                            <textarea ng-class="{'input-validation-error': !question.IsContentValid}" rows="1" auto-grow ng-model="question.Content" name="@(Html.GetNameFor(m => m.CheckListGroupCollection))[{{ $parent.$index }}].CheckListQuestionCollection[{{ $index }}].Content" class="form-control"></textarea>
+                                                            <input type="hidden" value="{{question.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckListGroupCollection))[{{ $parent.$index }}].CheckListQuestionCollection[{{ $index }}].OrderNum">
+                                                        </td>
+                                                        <td>
+                                                            <a class="delete-btn" confirm-click="delQuestion($parent.$index, $index)">@Global.DeleteButton</a>
+                                                        </td>
+                                                        <td ng-repeat-start="user in users">
+                                                            <div ng-init="userQuestion = getUserQuestion(user.OrderNum, group.OrderNum, question.OrderNum)">
+                                                                <div>
+                                                                    <input id="chb{{user.OrderNum}}_{{group.OrderNum}}_{{question.OrderNum}}" type="checkbox" ng-model="userQuestion.IsApplicable" ng-change="setUserQuestion(userQuestion)" />
+                                                                    <label for="chb{{user.OrderNum}}_{{group.OrderNum}}_{{question.OrderNum}}" style="margin:0px;">@CheckList.Applicable</label>
+                                                                    <input type="hidden" name="@(Html.GetNameFor(m => m.CheckListUserQuestionCollection))[{{ userQuestion.mapIndex }}].IsApplicable" value="{{userQuestion.IsApplicable}}" />
+                                                                    <input type="hidden" name="@(Html.GetNameFor(m => m.CheckListUserQuestionCollection))[{{ userQuestion.mapIndex }}].UserOrderNum" value="{{user.OrderNum}}" />
+                                                                    <input type="hidden" name="@(Html.GetNameFor(m => m.CheckListUserQuestionCollection))[{{ userQuestion.mapIndex }}].GroupOrderNum" value="{{group.OrderNum}}" />
+                                                                    <input type="hidden" name="@(Html.GetNameFor(m => m.CheckListUserQuestionCollection))[{{ userQuestion.mapIndex }}].QuestionOrderNum" value="{{question.OrderNum}}" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td ng-repeat-end style="display:none"></td>
+                                                        <td style="border-left: 1px solid #8f8f8f;"></td>
+                                                    </tr>
+                                                    <tr ng-repeat-end style="display:none"></tr>
+                                                    <tr class="no-bottom-border">
+                                                        <td></td>
+                                                        <td colspan="2">
+                                                            <a ng-class="{'input-validation-error': !group.HasQuestions}" class="add-new-btn" ng-click="addQuestion($index)" name="ChecklistGroupsWrapper.CheckListGroupCollection[{{ $index }}]">@CheckList.AddQuestion</a>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <thead ng-repeat-end style="display:none"></thead>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <a ng-class="{'input-validation-error': !hasGroups}" name="CheckListGroupsWrapper.CheckListGroupCollection" class="add-new-btn" ng-click="addGroup()">@CheckList.AddGroup</a>
+</div>

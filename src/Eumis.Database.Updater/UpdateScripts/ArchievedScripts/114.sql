@@ -1,0 +1,9 @@
+﻿GO
+
+ALTER TABLE [dbo].[MapNodes] ADD
+    [Gid]       UNIQUEIDENTIFIER                NOT NULL UNIQUE CONSTRAINT DEFAULT_MapNodeGid DEFAULT NEWID()
+GO
+
+ALTER TABLE [dbo].[MapNodes]
+DROP
+  CONSTRAINT DEFAULT_MapNodeGid

@@ -1,0 +1,39 @@
+<ng-form name="form.chooseAndEvaluateProjectForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong ng-if="evaluationType === 'adminAdmiss'" class="heading" l10n-text="evalSessions_chooseAndEvaluateProjectModal_adminAdmissTitle"></strong>
+      <strong ng-if="evaluationType === 'techFinance'" class="heading" l10n-text="evalSessions_chooseAndEvaluateProjectModal_techFinanceTitle"></strong>
+      <strong ng-if="evaluationType === 'complex'"     class="heading" l10n-text="evalSessions_chooseAndEvaluateProjectModal_complexTitle"></strong>
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_chooseAndEvaluateProjectModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <sc-button name="bulkEvaluation" ng-if="showBulkEvalButton" btn-click="evaluate()" text="evalSessions_chooseAndEvaluateProjectModal_evaluate" class="btn btn-sm btn-primary"
+      ng-if="projects.length > 0"></sc-button>
+      <sc-datatable items="projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="chooseBtn" btn-click="choose(item)" text="evalSessions_chooseAndEvaluateProjectModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+        </sc-column>
+
+        <sc-column data="projectRegNumber" title="evalSessions_chooseAndEvaluateProjectModal_projectRegNumber">
+        </sc-column>
+        <sc-column title="evalSessions_chooseAndEvaluateProjectModal_projectName" has-content="true" data="projectName">
+          <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="projectKidCode" title="evalSessions_chooseAndEvaluateProjectModal_projectKidCode">
+        </sc-column>
+        <sc-column data="company" title="evalSessions_chooseAndEvaluateProjectModal_company">
+        </sc-column>
+        <sc-column data="companyKidCode" title="evalSessions_chooseAndEvaluateProjectModal_companyKidCode">
+        </sc-column>
+        <sc-column data="projectRegDate" title="evalSessions_chooseAndEvaluateProjectModal_projectRegDate" type="datetime">
+        </sc-column>
+        <sc-column data="projectRegistrationStatus" title="evalSessions_chooseAndEvaluateProjectModal_projectRegistrationStatus">
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

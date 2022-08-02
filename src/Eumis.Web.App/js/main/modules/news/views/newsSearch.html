@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="date" ng-model="filters.dateFrom" l10n-text="news_searchForm_dateFrom" class="col-sm-2"></sc-field>
+        <sc-field type="date" ng-model="filters.dateTo" l10n-text="news_searchForm_dateTo" class="col-sm-2"></sc-field>
+        <sc-field type="nomenclature" alias="'newsTypes'" mode="id" ng-model="filters.type" l10n-text="news_searchForm_type" class="col-sm-3"></sc-field>
+        <sc-field type="nomenclature" alias="'newsStatuses'" mode="id" ng-model="filters.status" l10n-text="news_searchForm_status" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="news_searchForm_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" btn-sref="{ state: 'root.news.new' }" text="news_searchForm_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('NewsListActions.Create')"></sc-button>
+
+    <sc-datatable items="news" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.news.edit', params: {id: item.newsId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('NewsActions.View', item.newsId)"></sc-button>
+      </sc-column>
+      <sc-column data="createDate" title="news_searchForm_createDate" type="date">
+      </sc-column>
+      <sc-column data="type" title="news_searchForm_type">
+      </sc-column>
+      <sc-column data="status" title="news_searchForm_status">
+      </sc-column>
+      <sc-column data="dateFrom" title="news_searchForm_dateFrom" type="date">
+      </sc-column>
+      <sc-column data="dateTo" title="news_searchForm_dateTo" type="date">
+      </sc-column>
+      <sc-column data="title" title="news_searchForm_title">
+      </sc-column>
+      <sc-column data="creator" title="news_searchForm_creator">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

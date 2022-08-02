@@ -1,0 +1,77 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.Indicators
+@using Eumis.Public.Web.Models.Admin
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model ProcedureProjectsStatisticsVM
+
+@{ 
+    string headerText = Texts.Admin_ProcedureProjects + " " + Model.TransProcedureName;
+}
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.Index, MVC.Admin.Name), Texts.Global_AdministrativeEnquiries),
+    new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.OPStatistics, MVC.Admin.Name, new { programmeId = Request.QueryString["programmeId"], showRes = true }), Texts.Admin_OPStatistics),
+    new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.ProgrammeProjectsCount, MVC.Admin.Name, new { programmeId = Request.QueryString["programmeId"] }), Texts.Admin_ProceduresStatistics)
+}, headerText)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@headerText</h1>
+    </div>
+
+    <div class="page-content">
+        <div class="heading-with-export clearfix">
+            @Html.Partial(MVC.Shared.Views._ExportIcons)
+        </div>
+
+        <div class="table-wrapper">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th>@Texts.Admin_ProcedureProjects_Number</th>
+                        <th>@Texts.Admin_ProcedureProjects_Beneficiary</th>
+                        <th>@Texts.Admin_ProcedureProjects_Project</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model.PageProjects)
+                    {
+                        <tr>
+                            <td>@project.UserId</td>
+                            <td>@project.BeneficiaryName</td>
+                            <td>@project.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.PageProjects != null && Model.PageProjects.PageCount > 1)
+            {
+                <div class="paging clearfix">
+                    <span>@Texts.Global_Page (@Model.PageProjects.PageNumber/@Model.PageProjects.PageCount):</span>
+                    @Html.PagedListPager(Model.PageProjects,
+                        page => Url.Action(MVC.AdminProcedure.ActionNames.ProcedureProjects, MVC.AdminProcedure.Name
+                            , new
+                            {
+                                programmeId = Request.QueryString["programmeId"],
+                                procedureId = Request.QueryString["procedureId"],
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                </div>
+            }
+        </div>
+    </div>
+</div>

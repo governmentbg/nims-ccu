@@ -1,0 +1,51 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home)
+}, Texts.Global_AccessibilityPolicy)
+
+<div class="container page-title">
+    <h1>@Texts.Global_AccessibilityPolicy</h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix text-justify">
+        <div class="col-xs-12">
+            @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+            {
+                <h2>Декларация за достъпност</h2>
+                <p>Дирекция „Централно координационно звено“ към Администрацията на Министерски съвет се ангажира да осигури достъпност на ИСУН 2020 за максимално широка група потребители независимо от използваните технологии и умения.</p>
+                <p>Ние активно работим за подобряване на достъпността и използваемостта на ИСУН и в тази си дейност се придържаме към наличните стандарти и добри практики.</p>
+                <p>За да отговорим на поставените изисквания и критерии за ниво на достъпност, поставени от Европейската комисия относно интернет страниците на публичната администрация, и същевременно да посрещнем изискванията на текущите интернет технологии, ще се придържаме към стандартите на WCAG 2.0 и ниво на съответствие "Двойно-A".</p>
+
+                <h2>Инициатива за уеб достъпност</h2>
+                <p>ИСУН 2020 ще се опитва да покрие ниво на достъпност двойно-А според последните стандарти на World Wide Web Consortium - Web Content Accessibility Guidelines 2.0 (WCAG 2.0), като използва най-добрите практики и техники.</p>
+                <p>WCAG 2.0 обяснява как съдържанието в интернет страниците да бъде направено по-достъпно за хора с увреждания. Изпълнението на насоките ще помогне на повече хора да се чувстват удобно и да се възползват от предимствата на интернет.</p>
+
+                <h2>W3C Стандарти</h2>
+                <p>ИСУН 2020 ще се опитва да покрие ниво на достъпност двойно-А според последните стандарти на World Wide Web Consortium - Web Content Accessibility Guidelines 2.0 (WCAG 2.0), като използва най-добрите практики и техники.</p>
+
+                <h2>Изключения</h2>
+                <p>Макар да се стремим да осигурим съвместимост с наличните стандарти за достъпност, това не винаги е възможно във всеки един аспект. Браузърите и техниките за разработка и достъп до интернет се развиват много бързо и понякога някои от стандартните изисквания за достъпност стават излишни. В тази светлина ние непрекъснато развиваме технологично ИСУН 2020 с оглед постигането на високи стандарти на достъпност и използваемост на съдържанието в него.</p>
+
+            }
+            else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+            {
+                <h2>Declaration of Accessibility</h2>
+                <p>"Central coordination unit" Directorate at the Administration of the Council of Ministers undertakes the obligation to ensure accessibility of UMIS 2020 for maximum wide group of users regardless of the used technologies and skills.</p>
+                <p>We work actively for improvement of accessibility and usability of UMIS 2020 and so we are abide by the existing standards and good practices.</p>
+                <p>We will adhere to the WCAG 2.0 standards and "Double-A" level of conformity in order to meet the defined requirements and criteria of accessibility's level specified by the European Commission referred to the web pages of public administrations, and at the same time we will strive for meeting the requirements of the current internet technologies.</p>
+
+                <h2>Web Accessibility Initiative</h2>
+                <p>UMIS 2020 will try to cover a "Double-A" level of accessibility according to the last standards of World Wide Web Consortium - Web Content Accessibility Guidelines 2.0.(WCAG 2.0) and "Double-A" level of conformity.</p>
+                <p>WCAG 2.0 describes how the web pages content can be done more accessible. Carrying out the terms of reference will help more people to feel comfortable and to avail themselves of internet's priorities.</p>
+
+                <h2>W3C Standards</h2>
+                <p>UMIS 2020 will try to cover a "Double-A" level of accessibility according to the last standards of World Wide Web Consortium - Web Content Accessibility Guidelines 2.0.(WCAG 2.0) and "Double-A" level of conformity.</p>
+
+                <h2>Exceptions</h2>
+                <p>Although we try to ensure compatibility with the available standards of accessibility that is not always possible in every aspect. The browsers and development techniques and Internet access grow very fast and some of the standard requirements for accessibility sometimes become redundant.</p>
+            }
+        </div>
+    </div>
+</div>

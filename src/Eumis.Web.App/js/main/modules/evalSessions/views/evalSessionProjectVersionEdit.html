@@ -1,0 +1,53 @@
+<ng-form name="editProjectVersionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionProjectVersion_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_editEvalSessionProjectVersion_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="evalSessions_editEvalSessionProjectVersion_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="projectVersion.status === 'draft' && !editMode"
+          ng-disabled="!$canDo('ProjectVersionActions.Edit', versionId) || !isSessionActive"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="evalSessions_editEvalSessionProjectVersion_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="projectVersion.status === 'draft' && !editMode"
+          ng-disabled="!$canDo('ProjectVersionActions.Delete', versionId) || !isSessionActive"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_editEvalSessionProjectVersion_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_editEvalSessionProjectVersion_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : projectVersion.status === 'archive'}">
+      <eumis-project-version name="projectVersionForm" ng-model="projectVersion"></eumis-project-version>
+
+      <div class="row" ng-show="!editMode">
+        <eumis-structured-document text="evalSessions_editEvalSessionProjectVersion_template" document="projectVersion" gid="projectVersion.xmlGid" readonly="!$canDo('ProjectVersionActions.Edit', versionId) || !isSessionActive || projectVersion.status !== 'draft'"
+           class="col-sm-4 col-md-3" doc-updated="versionUpdated">
+        </eumis-structured-document>
+      </div>
+
+      <div ng-show="projectVersion.projectFile">
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectVersion_file"></label>  
+        <div class="row">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{projectVersion.projectFile.url}}" sc-access-token title="{{projectVersion.projectFile.name}}">
+              <span class="glyphicon glyphicon-file">{{projectVersion.projectFile.name}}</span>
+            </a>
+          </div>
+        </div>
+
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectVersion_signatures" ></label>
+        <div class="row" ng-repeat="pfs in projectVersion.projectFileSignatures">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{pfs.url}}" sc-access-token title="{{pfs.name}}">
+              <span class="glyphicon glyphicon-file">{{pfs.name}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,41 @@
+﻿@model R_10002.ProjectBasicData
+
+@if (Model != null)
+{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    @Html.Partial("DisplayTemplates/" + MVC.Shared.Views.DisplayTemplates.ProjectBasicDataReadonlyPart, Model)
+    <div class="form-group col-md-9">
+        @if (areFinLabels)
+        {
+            @Html.LabelFor(m => m.Name, ProjectBasicData.FinancialIntermediariesName)
+        }
+        else
+        {
+            @Html.LabelFor(m => m.Name, ProjectBasicData.Name)
+        }
+        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(m => m.Duration, Model.MaxDuration == 0 ? ProjectBasicData.Duration : string.Format("{0} (1-{1})", ProjectBasicData.Duration, Model.MaxDuration))
+        @Html.DisplayFor(m => m.Duration)
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.NameEN, ProjectBasicData.NameEN)
+        @Html.DisplayFor(m => m.NameEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    @Html.DisplayFor(m => m.NutsAddress)
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.Description, ProjectBasicData.Description)
+        @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.DescriptionEN, ProjectBasicData.DescriptionEN)
+        @Html.DisplayFor(m => m.DescriptionEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.Purpose, ProjectBasicData.Purpose)
+        @Html.DisplayFor(m => m.Purpose, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+}

@@ -1,0 +1,23 @@
+<div>
+  <div class="well well-sm">
+    <div class="row">
+      <sc-field type="text" ng-model="filters.username" l10n-text="actionLogs_login_search_username" class="col-sm-2"></sc-field>
+      <sc-field type="date" ng-model="filters.logDate" l10n-text="actionLogs_login_search_logDate" class="col-sm-2"></sc-field>
+      <sc-field type="text" ng-model="filters.remoteIpAddress" l10n-text="actionLogs_login_search_remoteIpAddress" class="col-sm-2"></sc-field>
+      <div class="labeless col-sm-6">
+        <sc-button name="seachBtn" btn-click="search()" text="actionLogs_login_search_search"
+          class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+        </sc-button>
+      </div>
+    </div>
+  </div>
+
+  <sc-datatable items="actionLogs" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+    <sc-column data="logDate" title="actionLogs_login_search_logDate" type="datetime">
+    </sc-column>
+    <sc-column data="username" title="actionLogs_login_search_username">
+    </sc-column>
+    <sc-column data="remoteIpAddress" title="actionLogs_login_search_remoteIpAddress">
+    </sc-column>
+  </sc-datatable>
+</div>

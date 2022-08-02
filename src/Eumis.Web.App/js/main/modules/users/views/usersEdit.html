@@ -1,0 +1,27 @@
+<ng-form name="editUserForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="users_edit_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="deleteBtn" btn-click="deleteUser()" text="users_edit_delete" class="btn btn-danger btn-xs" icon="fa-times" ng-show="!user.isDeleted && !editMode"
+          ng-disabled="!$canDo('UserActions.SetIsDeleted', user.userId)">
+        </sc-button>
+        <sc-button name="recoverBtn" btn-click="recover()" text="users_edit_recover" class="btn btn-success btn-xs" icon="fa-check" ng-show="user.isDeleted && !editMode"
+          ng-disabled="!$canDo('UserActions.SetIsDeleted', user.userId)">
+        </sc-button>
+        <sc-button name="lockBtn" btn-click="lock()" text="users_edit_lock" class="btn btn-danger btn-xs" icon="fa-lock" ng-show="!user.isLocked && !editMode"
+          ng-disabled="!$canDo('UserActions.SetIsLocked', user.userId)">
+        </sc-button>
+        <sc-button name="unlockBtn" btn-click="unlock()" text="users_edit_unlock" class="btn btn-success btn-xs" icon="fa-unlock" ng-show="user.isLocked && !editMode"
+          ng-disabled="!$canDo('UserActions.SetIsLocked', user.userId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-user-data name="userForm" ng-model="user" sc-form-params="{ isNew: false }"></eumis-user-data>
+    </div>
+  </div>
+</ng-form>

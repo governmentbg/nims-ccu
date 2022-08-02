@@ -1,0 +1,56 @@
+﻿@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+@model Eumis.Portal.Web.Models.ProcedureDiscussion.ProcedureDiscussionsInfoVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+    {
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.Ended, MVC.Procedure.Name), Global.BreadcrumbsEndedProcedures)
+    }
+    , Question.QuestionName)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.EndedProcedure</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li>@Html.ActionLink(ProcedureInfo.Title, MVC.Procedure.ActionNames.InfoEnded, MVC.Procedure.Name, new { id = Model.Id.Value }, new { @class = "wait" })</li>
+        <li class="active"><a>@ProcedureInfo.QA</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active clearfix">
+            @foreach (var file in Model.Questions)
+            {
+                var extenstion = file.qaFileName.Split('.').Last();
+                if (extenstion == "docx") { extenstion = "doc"; }
+                if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                {
+                    extenstion = string.Empty;
+                }
+                else
+                {
+                    extenstion = "file-" + extenstion;
+                }
+                <div class="m-top-30">
+                    <ul class="file-list">
+                        <li class="@(extenstion)">
+
+                            <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoDownload(Model.Id.Value, file.qaBlobKey.Value)))">
+                                @ProcedureInfo.QA
+                            </a>
+
+                            @if (file.qaModifyDate.HasValue)
+                            {
+                                <span>(@ProcedureInfo.ModifyDate: @Eumis.Common.Helpers.Helper.DateTimeFormat(file.qaModifyDate.Value))</span>
+                            }
+
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

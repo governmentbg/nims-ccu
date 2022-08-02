@@ -1,0 +1,84 @@
+﻿@using PagedList.Mvc;
+@using Eumis.Portal.Web.Helpers
+@model PagedList.IPagedList<Eumis.Documents.Contracts.ContractPVO>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton)
+}
+                    , "Договори")
+
+<div class="container page-title">
+    <h1>Договори</h1>
+</div>
+
+<div class="container">
+
+    <div class="page-content clearfix">
+        <div class="table-wrapper">
+            @if (Model != null && Model.Count > 0)
+            {
+                <table class="chart-info dynamic-rows" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px">Дата</th>
+                            <th>
+                                Договор №, Наименование на проект,<br />
+                                Основна организация, схема за кандидатстване
+                            </th>
+                            <th style="width: 200px">Кандидат</th>
+                            <th style="width: 180px">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Eumis.Common.Helpers.Helper.DateToBgFormat(contract.contractDate)
+                                </td>
+                                <td>
+                                    @contract.registrationNumber
+                                    @if (!String.IsNullOrWhiteSpace(contract.projectName))
+                                    {
+                                        <p style="font-weight: bold;">@contract.projectName</p>
+                                    }
+
+                                    @if (!String.IsNullOrWhiteSpace(contract.programmeName))
+                                    {
+                                        <text>@contract.programmeName,</text>
+                                    }
+
+                                    @contract.procedureCode -
+                                    @contract.procedureName
+                                </td>
+                                <td>
+                                    @contract.companyName
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Избери договор", MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name, cgid = contract.gid }, new { @class = "blue-button small" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="info-block">
+                    <p>В системата няма договори асоциирани с Вашия профил.</p>
+                </div>
+            }
+        </div>
+
+        @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page
+                }),
+                Constants.PagedListRenderOptions)
+    </div>
+</div>
+

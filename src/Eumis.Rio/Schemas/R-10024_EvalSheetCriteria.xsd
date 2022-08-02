@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10024" 
+	xmlns="http://ereg.egov.bg/segment/R-10024" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:etc="http://ereg.egov.bg/segment/R-10021"
+            
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10021" />
+
+  <xsd:complexType name="EvalSheetCriteria">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Критерий за оценка в оценителен лист</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="EvalTableCriteria" type="etc:EvalTableCriteria" minOccurs="0" />
+			<xsd:element name="Accept" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="Evaluation" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="Note" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

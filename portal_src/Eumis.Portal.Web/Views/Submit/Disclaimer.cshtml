@@ -1,0 +1,105 @@
+﻿@using Eumis.Portal.Web.Helpers
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Disclaimer.ProjectProposal</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    @Html.ValidationSummary()
+    <div class="page-content clearfix">
+        <!-- form with sections -->
+        <div class="form-with-sections">
+            <div class="col-xs-12 clearfix" style="text-align: justify">
+                <p class="clearfix">@Disclaimer.InThisPage</p>
+                <p class="clearfix"><strong style="color: red;">@Disclaimer.Warning</strong>@Disclaimer.SubmissionProjectProposal</p>
+
+                <div class="info-block font-20 warning">
+                    <p>@Disclaimer.CurrentEmail<strong>@(CurrentUser.Email)</strong></p>
+                    <p>@Disclaimer.IsAppliciant <strong>@Disclaimer.Appliciant</strong></p>
+                </div>
+                @using (Html.BeginForm(MVC.Submit.ActionNames.Disclaimer,
+                        MVC.Submit.Name,
+                        null,
+                        FormMethod.Post,
+                        new { id = "disclaimer_form" }))
+                {
+
+                    var isAcceptedDisclaimer = SubmissionState.Current.IsAcceptedDisclaimer;
+
+                    <div class="col-lg-9 col-md-9 col-sm-7" style="text-align: justify">
+                        <input name="@(Html.GetNameFor(m => isAcceptedDisclaimer))" id="@(Html.GetNameFor(m => isAcceptedDisclaimer))" type="checkbox" value="true" @(isAcceptedDisclaimer ? "checked='checked'" : string.Empty) />
+                        <label class="separated" for="@(Html.GetNameFor(m => isAcceptedDisclaimer))">@Disclaimer.EmailAgreement<strong>@(CurrentUser.Email)</strong>.</label>
+                        <input name="@(Html.GetNameFor(m => isAcceptedDisclaimer))" type="hidden" value="false">
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-5 txt-align-right">
+                        <input type="submit" class="submit blue-button pull-right" value="@Global.ButtonContinueTextUpper" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="page-content agreed submission-type clearfix">
+        <h2>@Disclaimer.ChooseProjectProposal</h2>
+        <div class="col-xs-12">
+            @using (Html.BeginForm(MVC.Submit.ActionNames.LoadIsunFile,
+                MVC.Submit.Name,
+                null,
+                FormMethod.Post,
+                new { id = "main_form", enctype = "multipart/form-data" }))
+            {
+                <div class="col-md-6">
+                    <a class="submission load-btn">
+                        <img class="act visible-lg" src="@(Url.Content(Links.Content.img.icons.subm_add_gif))" alt="" />
+                        <img class="arr hidden-xs" src="@(Url.Content(Links.Content.img.icons.arrow_right_png))" alt="" />
+                        <span>@Disclaimer.ShortProjectProposal </span>
+                        <span>@Disclaimer.ProposeFromFile</span>
+                        <span>@Html.Raw(Disclaimer.Nbsp)</span>
+                        <strong>@Disclaimer.LoadFromExternalFile</strong>
+                    </a>
+                </div>
+                <input type="file" name="applied_isun_file" id="applied_isun_file" style="display: none;" accept=".suni" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".load-btn").click(function () {
+                            $('#applied_isun_file').click();
+                        });
+                        $("#applied_isun_file").change(function () {
+                            showWait();
+                            submitForm("#main_form");
+                        });
+                    });
+                </script>
+            }
+
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Submit.ActionNames.Finalized, MVC.Submit.Name))" title="" class="submission wait">
+                    <img class="act visible-lg" src="@(Url.Content(Links.Content.img.icons.subm_choose_gif))" alt="" />
+                    <img class="arr hidden-xs" src="@(Url.Content(Links.Content.img.icons.arrow_right_png))" alt="" />
+                    <span>@Disclaimer.ShortProjectProposal </span>
+                    <span>@Disclaimer.SystemProposal</span>
+                    <span>@Html.Raw(Disclaimer.Nbsp)</span>
+                    <strong>@Disclaimer.ChooseFromEnded</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            @if (SubmissionState.Current.IsAcceptedDisclaimer)
+            {
+                <text>
+
+            $('.agreed').fadeIn(400);
+            offset = $(".submission-type").offset().top;
+            if ($('.validation-summary-errors').length === 0) {
+                setTimeout(function () { $('html, body').animate({ scrollTop: offset }, 1400, 'easeOutQuint'); }, 300);
+            }
+            </text>
+            }
+        });
+    </script>
+</div>

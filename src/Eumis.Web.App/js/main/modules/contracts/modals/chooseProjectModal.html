@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="contracts_modals_chooseProjectModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_modals_chooseProjectModal_cancel"
+        class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contractProcedures'" mode="id" ng-model="filters.procedureId" l10n-text="contracts_modals_chooseProjectModal_procedure" class="col-sm-5 col-md-5"></sc-field>
+        <sc-field type="text" ng-model="filters.projectNumber" l10n-text="contracts_modals_chooseProjectModal_regNumber" class="col-sm-5 col-md-4"></sc-field>
+        <div class="labeless col-md-2 col-sm-3">
+          <sc-button name="seachBtn" btn-click="search()" text="projects_modals_chooseCompanyModal_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseBtn" btn-click="choose(item)" text="contracts_modals_chooseProjectModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+      </sc-column>
+      <sc-column data="procedureName" title="contracts_modals_chooseProjectModal_procedure">
+      </sc-column>
+      <sc-column data="regNumber" title="contracts_modals_chooseProjectModal_regNumber">
+      </sc-column>
+      <sc-column title="contracts_modals_chooseProjectModal_name" has-content="true" data="name">
+        <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="company" title="contracts_modals_chooseProjectModal_company">
+      </sc-column>
+      <sc-column data="regDate" title="contracts_modals_chooseProjectModal_regDate" type="datetime">
+      </sc-column>
+      <sc-column data="registrationStatus" title="contracts_modals_chooseProjectModal_registrationStatus">
+      </sc-column>
+      <sc-column data="projectType" title="contracts_modals_chooseProjectModal_projectType">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

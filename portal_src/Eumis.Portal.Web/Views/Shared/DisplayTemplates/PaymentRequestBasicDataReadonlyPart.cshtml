@@ -1,0 +1,11 @@
+﻿@model R_10049.PaymentRequestBasicData
+
+@if (Model != null)
+{
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.Type, PaymentRequestBasicData.Type)
+        @Html.DisplayFor(m => m.Type)
+    </div>
+    
+    <div class="clearfix"></div>
+}

@@ -1,0 +1,96 @@
+﻿@model R_10041.ContractorCollection
+@using Eumis.Common.Helpers
+@using Newtonsoft.Json.Converters
+
+<div ng-controller="controllerContractorCollection">
+    <div class="table-wrapper">
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@Contractor.Name</th>
+                    <th>@Contractor.Uin</th>
+                    <th colspan="2">@Contractor.Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="(index, item) in items">
+                <tr ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td style="width:550px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.Name}}
+                        </div>
+                    </td>
+                    <td style="width:300px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.UinType.Name}} {{item.Uin}}
+                        </div>
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        @* Not activated *@
+                        <a class="delete-btn" confirm-click="delItem(item)" ng-if="!item.isActivated">@Global.DeleteButton</a>
+                        <input type="hidden" ng-if="!item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{index}}].isActive" />
+
+                        @* Activated *@
+                        <input id="contractor_chbx{{index}}" type="checkbox" ng-model="item.isActive" ng-if="item.isActivated" />
+                        <label for="contractor_chbx{{index}}"><img class="info-icon" ng-if="item.isActivated" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Global.ActivatedDisabledDelete" data-trigger="hover"></label>
+                        <input type="hidden" ng-if="item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{index}}].isActivated" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{index}}].isActive" ng-value="item.isActive" />
+                    </td>
+                </tr>
+                <tr class="history-table" ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td colspan="4">
+                        <div class="history-table-wrapper clearfix">
+
+                            <h3 class="margin-bottom-h3">@Contractor.ContractorEntity</h3>
+
+                            <eumis-company-search company="item"
+                                                  path="@(Html.GetNameFor(m => m))[{{index}}]"
+                                                  bg-code="@Eumis.Documents.Constants.BulgariaId"
+                                                  resources="resourcesObjectCompany">
+                            </eumis-company-search>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-12">
+                                    <label>@Contractor.Name</label>
+                                    <textarea ng-readonly="!item.isActive" symbols-count count-text="{{ resources.SymbolsCount }}" ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Name" name="@(Html.GetNameFor(m=>m))[{{index}}].Name" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@Contractor.NameEN</label>
+                                    <textarea ng-readonly="!item.isActive" symbols-count count-text="{{ resources.SymbolsCount }}" ng-class="{'input-validation-error': !item.IsNameEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.NameEN" name="@(Html.GetNameFor(m=>m))[{{index}}].NameEN" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <h3>@Company.Seat</h3>
+
+                            <eumis-address path="@(Html.GetNameFor(m => m))[{{index}}].Seat"
+                                           bg-code="@Eumis.Documents.Constants.BulgariaId"
+                                           ng-model="item.Seat"
+                                           resources="resourcesObjectCompany">
+                            </eumis-address>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-4">
+                                    <label>@Contractor.VATRegistration</label>
+                                    <div>
+                                        <nom-radio ng-model="item.VATRegistration"
+                                                   path="@(Html.GetNameFor(m => m))[{{ index }}].VATRegistration"
+                                                   model-name="Description"
+                                                   model-id="Value"
+                                                   nom-items="acceptances">
+                                        </nom-radio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

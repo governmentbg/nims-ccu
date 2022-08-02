@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10017" 
+	xmlns="http://ereg.egov.bg/segment/R-10017" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="ProjectSpecField">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Допълнителна информация необходима за оценка на проектното предложение</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Id" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Title" type="xsd:string" minOccurs="0" />
+			<xsd:element name="TitleEN" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Description" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DescriptionEN" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Value" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

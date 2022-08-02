@@ -1,0 +1,35 @@
+<ng-form name="validationRuleForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" ng-hide="editMode" l10n-text="procedures_modals_budgetValidationRuleModal_newTitle"></strong>
+      <strong class="heading" ng-show="editMode" l10n-text="procedures_modals_budgetValidationRuleModal_editTitle"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_modals_budgetValidationRuleModal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_modals_budgetValidationRuleModal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+          <sc-field type="textarea" rows="3" ng-required="true" ng-model="budgetValidationRule.message" l10n-text="procedures_modals_budgetValidationRuleModal_message" class="col-sm-12"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="textarea" rows="3" ng-model="budgetValidationRule.condition" l10n-text="procedures_modals_budgetValidationRuleModal_condition" class="col-sm-12"></sc-field>
+        <div ng-show="!!conditionError" class="col-sm-12 has-error">
+          <label class="control-label">{{conditionError}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <sc-field type="textarea" rows="3" ng-required="true" ng-model="budgetValidationRule.rule" l10n-text="procedures_modals_budgetValidationRuleModal_rule" class="col-sm-12"></sc-field>
+        <div ng-show="!!ruleError" class="col-sm-12 has-error">
+          <label class="control-label">{{ruleError}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-form>

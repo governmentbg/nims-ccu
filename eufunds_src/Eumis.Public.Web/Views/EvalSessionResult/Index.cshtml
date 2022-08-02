@@ -1,0 +1,110 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.EvalSessionResult
+@using Eumis.Public.Domain.Entities.Umis.EvalSessions
+@using Eumis.Public.Common.Json;
+
+
+@model EvalSessionResultSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.EvalSessionResult_Index_Title)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.EvalSessionResult_Index_Title</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-5">
+                        <label>@Texts.ProjectsEvaluation_Search_Programme</label>
+                        @Html.TextBoxFor(m => m.ProgrammeId, new { id = "programme-ddl" })
+                    </div>
+
+                    <div class="form-group col-sm-5">
+                        <label>@Texts.ProjectsEvaluation_Search_Procedure</label>
+                        @Html.TextBoxFor(m => m.ProcedureId, new { id = "procedure-ddl" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-5">
+                        <label>@Texts.ProjectsEvaluation_Search_Type</label>
+                        @Html.TextBoxFor(m => m.ResultType, new { id = "resultType-ddl" })
+                    </div>
+                    <div class="form-submit col-sm-2">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            createSelect2('#programme-ddl', '/@Language/@OpId/@PrId/EvalSessionResult/GetProgramme', '/@Language//@OpId/@PrId/EvalSessionResult/GetProgrammes');
+                            createSelect2('#procedure-ddl', '/@Language//@OpId/@PrId/EvalSessionResult/GetProcedure', '/@Language//@OpId/@PrId/EvalSessionResult/GetProcedures', '#programme-ddl');
+                            createSelect2('#resultType-ddl', '/@Language//@OpId/@PrId/EvalSessionResult/GetResultType', '/@Language//@OpId/@PrId/EvalSessionResult/GetResultTypes', '#procedure-ddl');
+                        });
+                    </script>
+
+                </div>
+                <div class="row">
+                    @foreach (string error in Model.Errors)
+                    {
+                        <div class="text-red col-sm-6">
+                            <strong>@error</strong>
+                        </div>
+                    }
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix" style="margin-top:20px;">
+                    <h2>@Texts.ProjectsResults_Index_Results</h2>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.ProjectsResults_Index_EvalSessionCode</th>
+                                <th>@Texts.ProjectsResults_Index_PublicationDate</th>
+                                <th>@Texts.ProjectsResults_Index_Status</th>
+                                <th>@Texts.ProjectsResults_Index_Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var result in Model.SearchResults)
+                            {
+                                var currentClass = result.Status == EvalSessionResultStatus.Published ? "bold" : "default"; 
+                                <tr>
+                                    <td class="@currentClass">@result.EvalSessionNum</td>
+                                    <td class="@currentClass">@result.PublicationDate.ToShortDateString()</td>
+                                    <td class="@currentClass">@result.Status.GetEnumDescription()</td>
+                                    <td class="@currentClass">@Html.ActionLink(Texts.ProjectsResults_Index_Preview, MVC.EvalSessionResult.ActionNames.Show, new {resultId = result.EncryptedResultId, resultType=result.EncryptedType })</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="panel panel-default" style="margin-top: 10px">
+  <div class="panel-heading">
+    <strong l10n-text="Оперативна програма"></strong>
+    <div class="pull-right">
+      <sc-button text="Запис"     class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      <sc-button text="Отказ"     class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+      <sc-button text="Изтриване" class="btn btn-danger btn-xs"  icon="glyphicon-remove"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body form-inline">
+    <ng-form sc-validate="{}" sc-form-readonly>
+
+      <div class="form-header form-header-first">Оперативна програма</div>
+      <div class="row">
+        <sc-field class="col-sm-2" l10n-text="Код"                       ng-model="code"                type="text"                                ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-4" l10n-text="Решение"                   ng-model="regulationNumber"    type="text"                                ng-required="true"></sc-field>
+        <sc-field class="col-sm-2" l10n-text="Дата на решение"           ng-model="regulationDate"      type="date"                                ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Наименование"              ng-model="name"                type="textarea" rows="2"                   ng-required="true"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Наименование на английски" ng-model="nameAlt"             type="textarea" rows="2"                   ng-required="true"></sc-field>
+      </div>
+
+      <div class="row">
+        <sc-field class="col-sm-6" l10n-text="Описание"                  ng-model="description"         type="textarea" rows="4"                    ng-required="fasle"></sc-field>
+        <sc-field class="col-sm-6" l10n-text="Описание на английски"     ng-model="descriptionAlt"      type="textarea" rows="4"                    ng-required="fasle"></sc-field>
+      </div>
+
+      <div class="row"></div>
+      <div class="form-header">Органи за управление и контрол</div>
+      <sc-datatable items="'institutions' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button btn-sref="{ state: 'programmes/programmeInstitution' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        </sc-column>
+        <sc-column data="type" title="Тип"></sc-column>
+        <sc-column data="institution" title="Ведомство"></sc-column>
+        <sc-column data="person" title="Лице за контакт" class="wrap"></sc-column>
+        <sc-column data="phone" title="Телефон"></sc-column>
+      </sc-datatable>
+
+      <div class="row"></div>
+      <div class="pull-right">
+          <sc-button text="Добави"   btn-sref="{ state: 'programmes/programmeInstitution' }"  class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      </div>
+
+      <div class="row">
+      </div>
+
+      <div class="row"></div>
+      <div class="form-header">Финансиране по години</div>
+      <sc-datatable items="'programmeBudgets' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button btn-sref="{ state: 'programmes/programmeBudget' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        </sc-column>
+        <sc-column data="budgetPeriod" title="Година"></sc-column>
+        <sc-column data="budgetSource" title="Източник"></sc-column>
+        <sc-column data="euAmount" title="Размер на финансиране от ЕС"  class="wrap"></sc-column>
+        <sc-column data="bgAmount" title="Размер на финансиране от Нац.фонд"  class="wrap"></sc-column>
+        <sc-column data="euReserveAmount" title="Резерв.план от ЕС"  class="wrap"></sc-column>
+        <sc-column data="bgReserveAmount" title="Резерв.план от Нац.фонд" class="wrap"></sc-column>
+      </sc-datatable>
+      <div class="row"></div>
+      <div class="pull-right">
+          <sc-button text="Добави"   btn-sref="{ state: 'programmes/programmeBudget' }"  class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      </div>
+
+      <div class="row"></div>
+      <div class="form-header">Инвестиционни категории</div>
+      <sc-datatable items="'programmeInterventionCategories' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button btn-sref="{ state: 'programmes/programmeInterventionCategory' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        </sc-column>
+        <sc-column data="Dimension" title="Измерение"></sc-column>
+        <sc-column data="InterventionCategory" title="Инвестиционна категория"></sc-column>
+        <sc-column data="Amount" title="Стойност"  class="wrap"></sc-column>
+      </sc-datatable>
+      <div class="row"></div>
+      <div class="pull-right">
+          <sc-button text="Добави"   btn-sref="{ state: 'programmes/programmeInterventionCategory' }"  class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk"></sc-button>
+      </div>
+
+    </ng-form>
+  </div>
+</div>

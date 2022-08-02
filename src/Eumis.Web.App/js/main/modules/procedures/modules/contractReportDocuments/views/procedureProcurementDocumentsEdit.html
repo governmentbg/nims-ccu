@@ -1,0 +1,30 @@
+﻿<ng-form name="editProcedureProcurementDocumentsForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcurementDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editProcurementDocument_activate" class="btn btn-success btn-xs" ng-show="procurementDocument.isActivated && !procurementDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procurementDocument.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editProcurementDocument_deactivate" class="btn btn-danger btn-xs" ng-show="procurementDocument.isActivated && procurementDocument.isActive && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procurementDocument.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcurementDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="procurementDocument.isActive && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procurementDocument.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="delete()" text="procedures_editProcurementDocument_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!procurementDocument.isActivated && !editMode && !isSectionReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procurementDocument.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcurementDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcurementDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !procurementDocument.isActive}">
+      <eumis-procedure-contract-report-document name="procedureContractReportDocumentForm" ng-model="procurementDocument"  sc-form-params="{ isActivated: procurementDocument.isActivated }"></eumis-procedure-contract-report-document>
+    </div>
+  </div>
+</ng-form>

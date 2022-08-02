@@ -1,0 +1,61 @@
+﻿@model List<R_10017.ProjectSpecField>
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel))
+        };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerProjectSpecFields@(guid)'), ['moduleProjectSpecFields']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerProjectSpecFields@(guid)" ng-controller="controllerProjectSpecFields" ng-init="init('_eumis_options', 'i@(guid)')">
+    <div ng-repeat-start="item in items" style="display:none;"></div>
+    <div ng-if="item.IsDeactivated" class="deactivated clearfix">
+        <div class="form-group col-md-10">
+            <label>
+                {{item.DisplayTitle}}
+                <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                <br />
+                <span style="font-style: italic;">({{item.DisplayDescription}})</span>
+            </label>
+            <pre><span class="filled-value">{{item.Value}}</span></pre>
+
+            <input type="hidden" value="{{item.Id}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].Id" />
+            <input type="hidden" value="{{item.Value}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].Value" />
+            <input type="hidden" value="True" name="@(Html.GetNameFor(m=>m))[{{ $index }}].IsDeactivated" />
+            <input type="hidden" value="{{item.MaxLength}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].MaxLength" />
+            <input type="hidden" value="{{item.TitleEN}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].TitleEN" />
+            <input type="hidden" value="{{item.DescriptionEN}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].DescriptionEN" />
+        </div>
+        <div class="form-group col-md-2">
+            <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+        </div>
+    </div>
+
+    <div ng-if="!item.IsDeactivated" class="clearfix">
+        <div class="form-group col-md-12">
+            <label style="width: 90%;">
+                {{item.DisplayTitle}} <span ng-if="!item.IsIBANField">(@Global.Until {{item.MaxLength}} @Global.Symbols)</span><br />
+                <span style="font-style: italic;">({{item.DisplayDescription}})</span>
+            </label>
+            <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsValueValid}" auto-grow ng-model="item.Value" name="@(Html.GetNameFor(m => m))[{{ $index }}].Value" class="form-control" rows="2" style="height: 60px;"></textarea>
+
+            <input type="hidden" value="{{item.Id}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].Id" />
+            <input type="hidden" value="{{item.MaxLength}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].MaxLength" />
+            <input type="hidden" value="{{item.TitleEN}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].TitleEN" />
+            <input type="hidden" value="{{item.DescriptionEN}}" name="@(Html.GetNameFor(m=>m))[{{ $index }}].DescriptionEN" />
+        </div>
+    </div>
+    <div ng-repeat-end style="display:none;"></div>
+
+</div>

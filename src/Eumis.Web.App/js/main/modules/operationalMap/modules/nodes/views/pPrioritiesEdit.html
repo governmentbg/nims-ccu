@@ -1,0 +1,30 @@
+<ng-form name="editProgrammePriorityDataForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmePriorities_editProgrammePriorityData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="changeStatusToDraft()" text="programmePriorities_editProgrammePriorityData_draft" class="btn btn-success btn-xs"
+          ng-if="programmePriority.status !== 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programmePriority.programmePriorityId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="changeStatusToEntered()" text="programmePriorities_editProgrammePriorityData_enter" class="btn btn-success btn-xs"
+          ng-if="programmePriority.status === 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programmePriority.programmePriorityId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="programmePriorities_editProgrammePriorityData_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-if="programmePriority.status !== 'canceled'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programmePriority.programmePriorityId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="programmePriorities_editProgrammePriorityData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="programmePriority.status === 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programmePriority.programmePriorityId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmePriorities_editProgrammePriorityData_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmePriorities_editProgrammePriorityData_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-programme-priority-data name="programmePriorityDataForm" ng-model="programmePriority" sc-form-params="{ isNew: fasle }"></eumis-programme-priority-data>
+    </div>
+  </div>
+</ng-form>

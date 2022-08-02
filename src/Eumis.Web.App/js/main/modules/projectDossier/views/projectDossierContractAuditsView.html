@@ -1,0 +1,85 @@
+﻿<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewAudits_title"></strong>
+  </div>
+  
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showInternalEnvironmentAudits=!showInternalEnvironmentAudits">
+        <span l10n-text="projectDossier_viewAudits_internalЕnvironmentAudits"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showInternalEnvironmentAudits, 'glyphicon-chevron-right': !showInternalEnvironmentAudits}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showInternalEnvironmentAudits" ng-href="{{internalEnvironmentAuditsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewAudits_internalЕnvironmentAuditExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showInternalEnvironmentAudits" items="internalEnvironmentAudits" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.audits.view.basicData', params: { id: item.auditId }}"
+              ng-disabled="!$canDo('AuditActions.View', item.auditId)"></sc-button>
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewAudits_internalЕnvironmentAuditProgrammeName">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewAudits_internalЕnvironmentAuditContractRegNum">
+          </sc-column>
+          <sc-column data="auditInstitution" title="projectDossier_viewAudits_internalЕnvironmentAuditAuditInstitution">
+          </sc-column>
+          <sc-column data="auditType" title="projectDossier_viewAudits_internalЕnvironmentAuditType">
+          </sc-column>
+          <sc-column data="auditKind" title="projectDossier_viewAudits_internalЕnvironmentAuditKind">
+          </sc-column>
+          <sc-column data="level" title="projectDossier_viewAudits_internalЕnvironmentAuditLevel">
+          </sc-column>
+          <sc-column title="projectDossier_viewAudits_internalЕnvironmentAuditAscertainmentOrderNum" has-content="true">
+            <div ng-repeat='ascertainment in item.ascertainments'>
+              <a target="_blank" ui-sref="root.audits.view.ascertainments.edit({ id: item.auditId, ind:ascertainment.id })">
+                {{ascertainment.orderNum}}
+              </a>
+            </div>
+          </sc-column>
+          <sc-column title="projectDossier_viewAudits_internalЕnvironmentAuditIsRecommendationsFulfilled" has-content="true">
+            <div ng-repeat='recommendationsFulfilledStatus in item.recommendationsFulfilledStatuses track by recommendationsFulfilledStatus.id'>
+              {{recommendationsFulfilledStatus.recommendationsFulfilledStatus == null ? '---' : recommendationsFulfilledStatus.recommendationsFulfilledStatus}}
+            </div>
+          </sc-column>
+          <sc-column title="projectDossier_viewAudits_internalЕnvironmentAuditIsFinancial" has-content="true">
+            <div ng-repeat='recommendationsFulfilledStatus in item.recommendationsFulfilledStatuses track by recommendationsFulfilledStatus.id'>
+              {{recommendationsFulfilledStatus.isFinancial == null ? '---' : recommendationsFulfilledStatus.isFinancial}}
+            </div>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showTechnicalReportAudits=!showTechnicalReportAudits">
+        <span l10n-text="projectDossier_viewAudits_technicalReportAudits"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showTechnicalReportAudits, 'glyphicon-chevron-right': !showTechnicalReportAudits}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showTechnicalReportAudits" ng-href="{{technicalReportAuditsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewAudits_technicalReportAuditExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showTechnicalReportAudits" items="technicalReportAudits" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column data="versionNum" title="projectDossier_viewAudits_technicalReportAuditVersionNum" type="number">
+          </sc-column>
+          <sc-column data="institutionName" title="projectDossier_viewAudits_technicalReportAuditInstitutionName">
+          </sc-column>
+          <sc-column data="typeDesc" title="projectDossier_viewAudits_technicalReportAuditTypeDesc">
+          </sc-column>
+          <sc-column data="kindDesc" title="projectDossier_viewAudits_technicalReportAuditKindDesc">
+          </sc-column>
+          <sc-column data="finalReportNumber" title="projectDossier_viewAudits_technicalReportAuditFinalReportNumber">
+          </sc-column>
+          <sc-column data="finalReportDate" title="projectDossier_viewAudits_technicalReportAuditFinalReportDate" type="date">
+          </sc-column>
+          <sc-column sortable="false" title="projectDossier_viewAudits_technicalReportAuditPreview" has-content="true">
+            <a target="_blank" ng-href="{{item.viewXmlUrl}}" sc-access-token>
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

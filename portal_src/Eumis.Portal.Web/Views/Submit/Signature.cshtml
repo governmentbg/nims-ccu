@@ -1,0 +1,178 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using R_09992
+@model List<Eumis.Portal.Web.Models.Submit.SignatureVM>
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+
+    <div class="page-content submission-type clearfix">
+
+        <div class="form-with-sections" style="text-align: justify">
+
+            <div class="clearfix">
+                <div class="col-xs-12">
+                    <div class="info-block font-17">
+                        <p class="clearfix"><b>@Signatures.SubmitOnline</b></p>
+                        <p>@Html.Raw(Signatures.Nbsp)</p>
+                        <p class="clearfix"><b>@Signatures.ProjectProposalQualifiedElectronicSignature</b></p>
+
+                        <p class="clearfix">@Signatures.ElectronicSignatureDiscription</p>
+
+                        <p class="clearfix">@Html.Raw(Signatures.ProjectProposalInstructions)</p>
+
+                        <p class="clearfix">@Signatures.FollowTheInstructions</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-top-30 col-xs-12 col-xs-offset-0 col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                @Html.ValidationSummary()
+                <div class="col-xs-12">
+                    <h3>@Signatures.DownloadProjectProposal</h3>
+                    <a href="@(Url.Action(MVC.Submit.ActionNames.Download, MVC.Submit.Name))" title="" class="download-paper download-to-sign">
+                        <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.subm_download_png))" alt="">
+                        <span>@Signatures.DownloadThis</span>
+                        <strong>@Signatures.ProjectProposal</strong>
+                    </a>
+                </div>
+                <div class="clear"></div>
+                <div class="step-separator"> </div>
+                <div class="col-xs-12">
+                    <h3>@Signatures.ElectronicSignature</h3>
+                    <p class="m-left-35">
+                        @Html.Raw(Signatures.SignatureHelp)
+                        <img style="cursor: pointer; width: 15px; height: 15px;" class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Signatures.ElectronicSignatureDiscription" data-trigger="hover" alt="" data-original-title="" title="">
+
+                    </p>
+                    <p class="m-left-35">
+                        <strong style="color:red">@Signatures.Warning</strong> @Html.Raw(Signatures.FileSignatureExtension)
+                    </p>
+                </div>
+                <div class="clear"></div>
+                <div class="step-separator"> </div>
+                <div class="col-xs-12">
+                    <h3>@Signatures.LoadSignature</h3>
+                    <p class="m-left-35">
+                        @Html.Raw(Signatures.LoadSignatureType)
+                    </p>
+                    <p class="m-left-35">
+                        @Signatures.PersonsRepresentingCandidate
+                    </p>
+                    <p class="m-left-35">
+                        @Html.Raw(Signatures.FileExtension)
+                    </p>
+
+                    <p class="m-left-35">
+                        <strong style="color:red">@Signatures.Warning</strong> @Signatures.CheckSignature
+                    </p>
+
+
+                    @{
+                        var guid = Guid.NewGuid().ToString().Replace('-', '_');
+                        var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+                    }
+
+                    <script type="text/javascript">
+
+                        window._eumis_options = window._eumis_options || {};
+                        window._eumis_options.i@(guid) = {
+                            items: @(Html.Raw(jsonModel)),
+                            url: '@(Html.Raw("/api/" +this.ViewContext.RouteData.Values[Constants.SessionKey].ToString() + "/file/signatureUpload/"))',
+                        };
+
+                        $(document).ready(function () {
+                            angular.bootstrap($('#containerAttachedSignatures@(guid)'), ['moduleAttachedSignatures']);
+                        });
+
+                    </script>
+
+                    <div class="table-wrapper" id="containerAttachedSignatures@(guid)" ng-controller="controllerAttachedSignatures" ng-init="init('_eumis_options', 'i@(guid)')">
+                        <table class="chart-info dynamic-rows file-upload">
+                            <thead>
+                                <tr>
+                                    <th>@Signatures.File</th>
+                                    <th width="120">@Signatures.Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items">
+                                    <td>
+                                        <div ng-if="!item.showError" ng-show="item.showUploader">
+                                            <span class="fileinput-button">
+                                                <span>@(Global.ButtonChooseFile)</span>
+                                                <input type="file" ui-jq="fileupload" ui-options="item.options" value="{{ item.progress }}" />
+                                            </span>
+
+                                            <div class="progress" ng-hide="item.progress == 0">
+                                                <div class="progress-bar progress-bar-success" ng-style="{ width: item.progress + '%'}">{{ item.progress }}%</div>
+                                            </div>
+                                        </div>
+
+                                        <table ng-if="!item.showError" class="signTable signTable-uploadedFile" ng-show="!item.showUploader" style="text-align: left;">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mini"><strong>@Signatures.FileName</strong> {{ item.fileName }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini header">@XMLDigitalSignature.CertificateData</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini">@XMLDigitalSignature.SerialNumber: {{ item.serialNumber }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini">@XMLDigitalSignature.EffectiveDate: {{ item.effectiveDate }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini">@XMLDigitalSignature.ExpirationDate: ‎{{ item.expirationDate }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini header">@XMLDigitalSignature.Issuer</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini">{{ item.issuer }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini header">@XMLDigitalSignature.Subject</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mini">{{ item.subject }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="validation-summary-errors" style="margin: 2% 2% 2% 0%; width: 98%;" ng-if="item.showError">
+                                            <ul>
+                                                <li>@Signatures.InvalideSignature</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a confirm-click="delItem(item)" class="delete-btn">@Global.DeleteButton</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+                <div class="step-separator"> </div>
+                <div class="col-xs-12">
+                    <h3>@Signatures.SubmissionProjectProposal</h3>
+                    <p class="m-left-35">@Html.Raw(Signatures.ProjectProposalRegistrationNumber)</p>
+                    @using (Html.BeginForm(MVC.Submit.ActionNames.Signature, MVC.Submit.Name, FormMethod.Post, new { id = Constants.SIGNATURE_SUBMIT }))
+                    {
+                        <input class="final-submit" type="submit" name="submit" value="@Signatures.SubmissionProjectProposal">
+                        <script type="text/javascript">
+                            $('#@(Constants.SIGNATURE_SUBMIT)').submit(function () {
+                                $(this).find('input[type=submit]').attr('disabled', 'disabled');
+                            });
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

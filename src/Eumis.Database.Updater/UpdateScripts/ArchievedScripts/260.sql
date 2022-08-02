@@ -1,0 +1,3 @@
+﻿GO
+
+ALTER TABLE [Indicators] ADD [HasSF] BIT NOT NULL DEFAULT(0);

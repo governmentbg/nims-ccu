@@ -1,0 +1,50 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_pin_programme" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_pin_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_pin_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="text" ng-model="filters.uin" l10n-text="monitoring_pin_uin" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-6">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_pin_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_pin_uin"></th>
+                <th class="text-center" l10n-text="monitoring_pin_name"></th>
+                <th class="text-center" l10n-text="monitoring_pin_date"></th>
+                <th class="text-center" l10n-text="monitoring_pin_hours"></th>
+                <th class="text-center" l10n-text="monitoring_pin_contractRegNum"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="result in results">
+                <td>{{result.uin}}</td>
+                <td>{{result.name}}</td>
+                <td>{{result.date | date:'dd.MM.yyyy'}}</td>
+                <td>{{result.hours}}</td>
+                <td>{{result.contractRegNum}}</td>
+              </tr>
+              <tr ng-if="results.length === 0">
+                <td colspan="4" class="text-center" l10n-text="monitoring_pin_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

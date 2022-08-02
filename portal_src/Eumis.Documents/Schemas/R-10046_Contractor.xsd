@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10046" 
+	xmlns="http://ereg.egov.bg/segment/R-10046" 
+	
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:a="http://ereg.egov.bg/segment/R-10003"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10003" />
+	
+	<xsd:complexType name="Contractor">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Изпълнител</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Uin" type="xsd:string" minOccurs="0" />
+      <xsd:element name="UinType" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="NameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Seat" type="a:Address" minOccurs="0" />
+      <xsd:element name="VATRegistration" type="en:EnumNomenclature" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="isActivated" type="xsd:boolean"/>
+    <xsd:attribute name="isActive" type="xsd:boolean"/>
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

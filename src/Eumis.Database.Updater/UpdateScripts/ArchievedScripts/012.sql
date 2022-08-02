@@ -1,0 +1,3 @@
+﻿GO
+
+ALTER TABLE [Users] ADD [IsSystem] BIT NOT NULL DEFAULT(0);

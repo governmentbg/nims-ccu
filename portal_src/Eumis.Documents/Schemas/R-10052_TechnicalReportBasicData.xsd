@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10052" 
+	xmlns="http://ereg.egov.bg/segment/R-10052"
+            
+	xmlns:com="http://ereg.egov.bg/segment/R-10004"
+            
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+            
+	xmlns:pbd="http://ereg.egov.bg/segment/R-09997"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10004" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09997" />
+  
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="TechnicalReportBasicData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Основни данни на технически отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Procedure" type="pun:PublicNomenclature" minOccurs="0" />
+      <xsd:element name="ProjectName" type="xsd:string" minOccurs="0" />
+      
+      <xsd:element name="Beneficiary" type="com:Company" minOccurs="0" />
+      
+      <xsd:element name="Partner" type="com:Company" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="ExecutionPeriodStartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="ExecutionPeriodEndDate" type="xsd:date" minOccurs="0" />
+
+      <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="EndDate" type="xsd:date" minOccurs="0" />
+
+      <xsd:element name="PreparerName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="PreparerPosition" type="xsd:string" minOccurs="0" />
+      <xsd:element name="PreparerPhone" type="xsd:string" minOccurs="0" />
+      <xsd:element name="PreparerEmail" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

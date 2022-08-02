@@ -1,0 +1,27 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header form-header-first" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_reportTechnicalCorrection"></h5>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportTechnicalCorrectionStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" ng-model="model.file" ng-required="true" url-template="ContractReportTechnicalCorrectionFile" url-params="{ id: model.contractReportTechnicalCorrectionId }" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_file" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.correctionDate" ng-required="true" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_correctionDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-show="model.checkedDate">
+    <sc-field type="date" ng-model="model.checkedDate"  ng-readonly="true" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_checkedByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_notes" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_reportTechnical"></h5>
+  <eumis-contract-report-technical name="contractReportTechnicalForm" ng-model="model.contractReportTechnical"></eumis-contract-report-technical>
+  <div class="row">
+    <eumis-structured-document document="contractReportTechnical" gid="model.contractReportTechnical.xmlGid"
+      text="contractReportTechnicalCorrections_contractReportTechnicalCorrectionForm_document" view-mode class="col-sm-4 col-md-3">
+    </eumis-structured-document>
+  </div>
+</ng-form>
+

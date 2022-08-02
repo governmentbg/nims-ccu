@@ -1,0 +1,6 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'directions'" ng-required="true" ng-model="model.directionId" mode="id"  l10n-text="programmes_programmeDirectionForm_direction" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'subDirections'"  ng-model="model.subDirectionId" params="{ directionId: model.directionId }" mode="id" l10n-text="programmes_programmeDirectionForm_subDirection" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+</ng-form>

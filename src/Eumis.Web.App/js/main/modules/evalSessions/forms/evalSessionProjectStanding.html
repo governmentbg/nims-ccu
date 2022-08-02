@@ -1,0 +1,67 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{evalSessionId: model.evalSessionId}" ng-disabled="true" l10n-text="evalSessions_evalSessionProjectStandingForm_projectId" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="evalSessions_evalSessionProjectStandingForm_projectVersion"></h5>
+  <eumis-project-version name="projectVersionForm" ng-model="model.projectVersion" sc-form-readonly="true"></eumis-project-version>
+
+  <div class="row" style="margin-top: 5px;">
+    <eumis-structured-document text="evalSessions_evalSessionProjectStandingForm_template" document="projectVersion" gid="model.projectVersion.xmlGid"
+      view-mode class="col-sm-4 col-md-3">
+    </eumis-structured-document>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionProjectStandingForm_evaluations"></h5>
+      <sc-datatable items="model.projectEvaluations" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.isDeleted === true}">
+        <sc-column data="evalTableTypeName" title="evalSessions_evalSessionProjectStandingForm_type">
+        </sc-column>
+        <sc-column data="calculationType" title="evalSessions_evalSessionProjectStandingForm_calculationType">
+        </sc-column>
+        <sc-column data="evalIsPassed" title="evalSessions_evalSessionProjectStandingForm_pass" type="boolean">
+        </sc-column>
+        <sc-column data="evalPoints" title="evalSessions_evalSessionProjectStandingForm_result" type="number">
+        </sc-column>
+        <sc-column data="evalNote" title="evalSessions_evalSessionProjectStandingForm_note">
+        </sc-column>
+        <sc-column data="createDate" title="evalSessions_evalSessionProjectStandingForm_createDate" type="datetime">
+        </sc-column>
+        <sc-column data="isDeleted" title="evalSessions_evalSessionProjectStandingForm_isDeleted" type="boolean">
+        </sc-column>
+        <sc-column data="isDeletedNote" title="evalSessions_evalSessionProjectStandingForm_isDeletedNote">
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+
+  <h5 class="form-header" l10n-text="evalSessions_evalSessionProjectStandingForm_projectStanding"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isPreliminary" ng-readonly="true" l10n-text="evalSessions_evalSessionProjectStandingForm_isPreliminary" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'evalSessionProjectStandingStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-change="statusChanged()" l10n-text="evalSessions_evalSessionProjectStandingForm_status" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="int" ng-model="model.orderNum" l10n-text="evalSessions_evalSessionProjectStandingForm_orderNum" ng-required="model.status === 'approved' || model.status === 'reserve'" class="col-sm-3 col-md-2" min="1"
+      ng-show="model.status === 'approved' || model.status === 'reserve'"
+      sc-validate-async="{ unique: isUniqueOrderNum }"
+      validations="{ unique: 'evalSessions_evalSessionProjectStandingForm_orderNumExists' }"
+    >
+    </sc-field>
+
+    <sc-field type="money" ng-model="model.grandAmount" l10n-text="evalSessions_evalSessionProjectStandingForm_grandAmount" ng-disabled="true" class="col-sm-3 col-md-2"
+      ng-show="model.status === 'approved' || model.status === 'reserve'" validations="{ min: 'default'}"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="evalSessions_evalSessionProjectStandingForm_notes" class="col-sm-9 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionProjectStandingTypes'" mode="id" ng-model="model.type" ng-readonly="true" l10n-text="evalSessions_evalSessionProjectStandingForm_standingType" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionProjectStandingForm_createDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isDeleted" ng-readonly="true" l10n-text="evalSessions_evalSessionProjectStandingForm_isDeleted" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row" ng-if="model.status === 'rejected' || model.status === 'rejectedAtASD' || model.status === 'rejectedAtTFO'">
+    <sc-field type="nomenclature" alias="'evalSessionProjectStandingRejectionReasons'" mode="id" ng-model="model.rejectionReasonId" l10n-text="evalSessions_evalSessionProjectStandingForm_rejectionReason" class="col-sm-9 col-md-6"></sc-field>
+  </div>
+  <div class="row" ng-if="model.isDeleted">
+    <sc-field type="textarea" rows="3" ng-model="model.isDeletedNote" l10n-text="evalSessions_evalSessionProjectStandingForm_isDeletedNote" ng-readonly="true" class="col-sm-9 col-md-6"></sc-field>
+  </div>
+</ng-form>

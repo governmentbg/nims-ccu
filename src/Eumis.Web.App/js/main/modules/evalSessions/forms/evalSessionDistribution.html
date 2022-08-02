@@ -1,0 +1,54 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedureEvalTableTypes'" mode="id" ng-model="model.evalTableType" params="{ evalSessionId: model.evalSessionId }" ng-disabled="true" l10n-text="evalSessions_evalSessionDistributionForm_type" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="int" ng-model="model.assessorsPerProject" ng-required="true" min="1" l10n-text="evalSessions_evalSessionDistributionForm_assessorsPerProject" class="col-sm-3 col-md-3"
+      sc-validate="{ validAssessorCount: isValidAssessorCount }"
+      sc-revalidate-on="['model.assessors']"
+      validations="{ validAssessorCount: 'evalSessions_evalSessionDistributionForm_invalidAssessorCount' }"
+    >
+    </sc-field>
+    <sc-field type="nomenclature" alias="'evalSessionDistributionStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionDistributionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.code" ng-readonly="true" l10n-text="evalSessions_evalSessionDistributionForm_code" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionDistributionForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-if="model.statusNote" ng-model="model.statusNote" ng-readonly="true" l10n-text="evalSessions_evalSessionDistributionForm_statusNote" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div style="padding-bottom: 20px;">
+        <h5 class="table-header pull-left" l10n-text="evalSessions_evalSessionDistributionForm_assessors"></h5>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <th></th>
+          <th l10n-text="evalSessions_evalSessionDistributionForm_assessor"></th>
+          <th l10n-text="evalSessions_evalSessionDistributionForm_isDeleted"></th>
+          <th l10n-text="evalSessions_evalSessionDistributionForm_isDeletedNote" style="width: 50%"></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="assessor in model.assessors">
+            <td style="white-space: nowrap; padding: 4px; width: 20px; padding-top: 11px;">
+              <sc-button name="deleteBtn" ng-show="!assessor.isDeleted" btn-click="deleteAssessor(assessor)" ng-disabled="form.$readonly" class="btn btn-primary btn-xs"  icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+              <sc-button name="addBtn"    ng-show="assessor.isDeleted"  btn-click="addAssessor(assessor)"    ng-disabled="form.$readonly" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            </td>
+            <td>
+              {{assessor.fullname + '(' + assessor.username + ')'}}
+            </td>
+            <td>
+              {{assessor.isDeleted ? noText : yesText}}
+            </td>
+            <td>
+              <sc-text ng-model="assessor.isDeletedNote" ng-readonly="!assessor.isDeleted || form.$readonly"></sc-text>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-form>

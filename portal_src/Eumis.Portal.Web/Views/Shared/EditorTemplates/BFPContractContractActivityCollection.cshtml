@@ -1,0 +1,125 @@
+﻿@model R_10040.BFPContractContractActivityCollection
+
+@{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<div ng-controller="controllerBFPContractContractActivities">
+    <div class="table-wrapper">
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th style="width:40px;"></th>
+                    <th>@BFPContractContractActivity.Code</th>
+                    <th>@BFPContractContractActivity.CompanyShort</th>
+                    <th colspan="2">@BFPContractContractActivity.Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in items">
+                <tr ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td>
+                        <div style="display: block; width: 100%;">
+                            {{$index + 1}}
+                        </div>
+                    </td>
+                    <td style="word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.Code}}
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: block; width: 100%;">
+                            <span ng-repeat="selected in item.CompanyCollection">{{selected.Name}} <br /></span>
+                        </div>
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        @* Not activated *@
+                        <a class="delete-btn" confirm-click="delItem(item)" ng-if="!item.isActivated">@Global.DeleteButton</a>
+                        <input type="hidden" ng-if="!item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" />
+
+                        @* Activated *@
+                        <input id="activ_chbx{{$index}}" type="checkbox" ng-model="item.isActive" ng-if="item.isActivated" />
+                        <label for="activ_chbx{{$index}}"><img class="info-icon" ng-if="item.isActivated" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" sc-placement="top" data-toggle="popover" data-content="@Global.ActivatedDisabledDelete" data-trigger="hover"></label>
+                        <input type="hidden" ng-if="item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActivated" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" ng-value="item.isActive" />
+                    </td>
+                </tr>
+
+                <tr class="history-table" ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td colspan="6">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label>@BFPContractContractActivity.Company</label>
+                                <div ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsCompanyValid}" ng-model="item.CompanyCollection" ui-select2="{ allowClear: true, placeholder: ' ', query: loadCompanyNomenclature, multiple: true }"></div>
+
+                                <input value="{{ item.gid }}" name="@(Html.GetNameFor(e => e))[{{ $index }}].gid" type="hidden" />
+
+                                <input ng-class="{'input-validation-error': !item.IsCompanyValid}" type="hidden" class="validation-error-key" name="@(Html.GetNameFor(m => m))[{{ $index }}].CompanyCollection" disabled />
+                                <input ng-repeat="selected in item.CompanyCollection" value="{{ selected.id }}" name="@(Html.GetNameFor(e => e))[{{ $parent.$index }}].CompanyCollection[{{ $index }}].Id" type="hidden" />
+                                <input ng-repeat="selected in item.CompanyCollection" value="{{ selected.Name }}" name="@(Html.GetNameFor(e => e))[{{ $parent.$index }}].CompanyCollection[{{ $index }}].Name" type="hidden" />
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractContractActivity.Code @SymbolsCount.Symbols400</label>
+                                <textarea ng-readonly="!item.isActive" symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsCodeValid}" auto-grow ng-model="item.Code" name="@(Html.GetNameFor(m => m))[{{ $index }}].Code" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractContractActivity.Name @SymbolsCount.Symbols4000</label>
+                                <textarea ng-readonly="!item.isActive" symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractContractActivity.ExecutionMethod @SymbolsCount.Symbols3000</label>
+                                <textarea ng-readonly="!item.isActive" symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsExecutionMethodValid}" auto-grow ng-model="item.ExecutionMethod" name="@(Html.GetNameFor(m => m))[{{ $index }}].ExecutionMethod" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractContractActivity.Result @SymbolsCount.Symbols3000</label>
+                                <textarea ng-readonly="!item.isActive" symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsResultValid}" auto-grow ng-model="item.Result" name="@(Html.GetNameFor(m => m))[{{ $index }}].Result" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractActivity.StartMonth</label>
+                                <input ng-readonly="!item.isActive" valid-number ng-class="{'input-validation-error': !item.IsStartMonthValid}" ng-model="item.StartMonth" name="@(Html.GetNameFor(m => m))[{{ $index }}].StartMonth" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractActivity.Duration</label>
+                                <input ng-readonly="!item.isActive" valid-number ng-class="{'input-validation-error': !item.IsDurationValid}" ng-model="item.Duration" name="@(Html.GetNameFor(m => m))[{{ $index }}].Duration" class="form-control sum-field" />
+                            </div>
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractContractActivity.Amount</label>
+                                <input ng-readonly="!item.isActive" money ng-class="{'input-validation-error': !item.IsAmountValid}" ng-model="item.Amount" name="@(Html.GetNameFor(m => m))[{{ $index }}].Amount" class="form-control sum-field" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+    <div class="table-wrapper">
+        <table class="chart-info months-table" width="100%">
+            <tr class="months-bold">
+                <td rowspan="2" style="width:40px;"></td>
+                <td rowspan="2">@BFPContractContractActivity.Code</td>
+                <td colspan="{{ months.length > 0 ? months.length : 1 }}">@BFPContractContractActivity.Months</td>
+            </tr>
+            <tr class="months-bold">
+                <td ng-repeat="month in months">{{month}}</td>
+            </tr>
+            <tr ng-repeat="item in items" class="months-row" ng-class="{'input-validation-error': !item.isPeriodValid}" name="@(Html.GetNameFor(m => m))[{{ $index }}].IsPeriodValid">
+                <td>{{$index + 1}}</td>
+                <td style="width: 30%;word-break: break-all">{{item.Code}}</td>
+                <td ng-if="item.StartMonth && item.Duration && (item.StartMonth + item.Duration) <= maxDiagramMonth" ng-repeat="month in months" ng-class="{'marked-month': (item.StartMonth && month >= item.StartMonth && item.Duration && month <= (item.StartMonth + item.Duration - 1)) }"></td>
+                <td ng-if="item.StartMonth && item.Duration && (item.StartMonth + item.Duration) > maxDiagramMonth" colspan="{{ months.length > 0 ? months.length : 1 }}" style="color: #af1717;">@BFPContractContractActivity.OutOfRangeMessage</td>
+                <td ng-if="!item.StartMonth || !item.Duration" ng-repeat="month in months"></td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newContractUserBtn" btn-sref="{ state: 'root.contracts.view.users.new' }" text="contracts_contractUserSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+
+    <sc-datatable items="contractUsers" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.users.edit', params: {ind: item.contractUserId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="fullname" title="contracts_contractUserSearch_fullname"></sc-column>
+      <sc-column data="username" title="contracts_contractUserSearch_username"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

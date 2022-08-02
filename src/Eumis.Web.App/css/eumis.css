@@ -1,0 +1,141 @@
+.operational-map
+{
+  height: 500px;
+  overflow: auto;
+  background: whitesmoke;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.operational-map .abn-tree-animate-enter, li.abn-tree-row.ng-enter
+{
+  position: static;
+}
+
+.operational-map .abn-tree-animate-leave, li.abn-tree-row.ng-leave
+{
+  position: static;
+}
+
+.operational-map ul.nav.abn-tree .level-1 .indented
+{
+  position: static;
+}
+.operational-map ul.nav.abn-tree .level-2 .indented
+{
+  position: static;
+}
+.operational-map ul.nav.abn-tree .level-3 .indented
+{
+  position: static;
+}
+.operational-map  ul.nav.abn-tree .level-4 .indented
+{
+  position: static;
+}
+.operational-map ul.nav.abn-tree .level-5 .indented
+{
+  position: static;
+}
+.operational-map  ul.nav.abn-tree .level-6 .indented
+{
+  position: static;
+}
+.operational-map ul.nav.nav-list.abn-tree .level-7 .indented
+{
+  position: static;
+}
+.operational-map  ul.nav.nav-list.abn-tree .level-8 .indented
+{
+  position: static;
+}
+.operational-map ul.nav.nav-list.abn-tree .level-9 .indented
+{
+  position: static;
+}
+
+.operational-map ul.nav.abn-tree .level-1 a
+{
+  padding-left: 5px;
+}
+.operational-map ul.nav.abn-tree .level-2 a
+{
+  padding-left: 25px;
+}
+.operational-map ul.nav.abn-tree .level-3 a
+{
+  padding-left: 45px;
+}
+.operational-map ul.nav.abn-tree .level-4 a
+{
+  padding-left: 65px;
+}
+.operational-map ul.nav.abn-tree .level-5 a
+{
+  padding-left: 85px;
+}
+.operational-map ul.nav.abn-tree .level-6 a
+{
+  padding-left: 105px;
+}
+.operational-map ul.nav.nav-list.abn-tree .level-7 a
+{
+  padding-left: 125px;
+}
+.operational-map ul.nav.nav-list.abn-tree .level-8 a
+{
+  padding-left: 145px;
+}
+.operational-map ul.nav.nav-list.abn-tree .level-9 a
+{
+  padding-left: 165px;
+}
+
+form.map-position-form span.input-group-addon
+{
+  min-width: 165px;
+  text-align: left;
+}
+
+.form-group .boolean-field
+{
+  width: 70px;
+}
+
+.btn-no-border
+{
+  border: 0px;
+}
+
+.uin-search-btn
+{
+  color: rgb(66, 139, 202);
+  font-size: 13px;
+}
+
+.fa-spin-fast {
+  -webkit-animation: fa-spin 1s infinite linear;
+  -moz-animation: fa-spin 1s infinite linear;
+  -o-animation: fa-spin 1s infinite linear;
+  animation: fa-spin 1s infinite linear;
+}
+
+.deactivated-table-row {
+    background-color: rgb(200, 200, 200);
+}
+
+.deactivated-panel-body {
+    opacity: 0.7;
+}
+
+table.table-with-vertically-centered-headers thead th {
+    vertical-align: middle;
+}
+
+.applicationSection th {
+  font-size: 14px;
+}
+
+.scdt-applicationSectionDesc {
+  vertical-align: middle !important;
+} 

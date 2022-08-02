@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Лицензиране на авиационен персонал, въздухоплавателни средства и летателна годност</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="version" content="1.0.0.0#4ea24e">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="bower_components/select2/select2.css">
+  <link rel="stylesheet" href="bower_components/select2-bootstrap-css/select2-bootstrap.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-datepicker/css/datepicker3.css">
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css">
+  <link rel="stylesheet" href="bower_components/blueimp-file-upload/css/jquery.fileupload.css">
+  <link rel="stylesheet" href="css/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/uxp.css">
+</head>
+<body id="ng-app" ng-app="app">
+  <noscript>
+    <h2 style="text-align: center;">Страницата не може да бъде показана, ако сте спрели изпълнението на JavaScript</h2>
+  </noscript>
+
+  <div ui-view class="container"></div>
+
+  <script src="bower_components/jquery-legacy/jquery.js"></script>
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/select2/select2.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-i18n/angular-locale_bg-bg.js"></script>
+  <script src="bower_components/angular-l10n/build/l10n-with-tools.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+  <script src="bower_components/angular-ui-sortable/src/sortable.js"></script>
+  <script src="bower_components/angular-ui-utils/modules/jq/jq.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.bg.js"></script>
+  <script src="bower_components/jquery-ui/ui/jquery.ui.widget.js"></script>
+  <script src="bower_components/jquery-ui/ui/jquery.ui.core.js"></script>
+  <script src="bower_components/jquery-ui/ui/jquery.ui.mouse.js"></script>
+  <script src="bower_components/jquery-ui/ui/jquery.ui.sortable.js"></script>
+  <script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+  <script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+  <script src="bower_components/typeahead.js/dist/typeahead.jquery.js"></script>
+  <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-scrollto/angular-scrollto.js"></script>
+  <script src="bower_components/autofill-event/src/autofill-event.js"></script>
+  <script src="bower_components/jquery-treetable/javascripts/src/jquery.treetable.js"></script>
+
+  <script src="js/app.js"></script>
+
+  <script src="js/mockHttp/delay.js"></script>
+  <script src="js/mockHttp/e2eMocksSetup.js"></script>
+  <script src="js/mockHttp/httpBackendConfiguratorProvider.js"></script>
+  <script src="js/mockHttp/nomenclaturesHttp.js"></script>
+  <script src="js/mockHttp/sampleDataFilter.js"></script>
+
+  <script src="js/scaffolding/scaffolding.js"></script>
+  <script src="js/scaffolding/scaffolding_bg-bg.js"></script>
+  <script src="js/scaffolding/decorators/formDecorator.js"></script>
+  <script src="js/scaffolding/decorators/ngModelDecorator.js"></script>
+  <script src="js/scaffolding/providers/scModalProvider.js"></script>
+  <script src="js/scaffolding/providers/scaffoldingProvider.js"></script>
+  <script src="js/scaffolding/resources/nomenclatures.js"></script>
+  <script src="js/scaffolding/directives/button/buttonDirective.js"></script>
+  <script src="js/scaffolding/directives/click/clickDirective.js"></script>
+  <script src="js/scaffolding/directives/datatable/columnDirective.js"></script>
+  <script src="js/scaffolding/directives/datatable/datatableCtrl.js"></script>
+  <script src="js/scaffolding/directives/datatable/datatableDirective.js"></script>
+  <script src="js/scaffolding/directives/date/dateDirective.js"></script>
+  <script src="js/scaffolding/directives/dropdownButton/dropdownButtonDirective.js"></script>
+  <script src="js/scaffolding/directives/breadcrumb/breadcrumbDirective.js"></script>
+  <script src="js/scaffolding/directives/field/fieldDirective.js"></script>
+  <script src="js/scaffolding/directives/fieldGroup/fieldGroupDirective.js"></script>
+  <script src="js/scaffolding/directives/files/filesCtrl.js"></script>
+  <script src="js/scaffolding/directives/files/filesDirective.js"></script>
+  <script src="js/scaffolding/directives/files/filesModalCtrl.js"></script>
+  <script src="js/scaffolding/directives/files/singleFileModalCtrl.js"></script>
+  <script src="js/scaffolding/directives/formName/formNameDirective.js"></script>
+  <script src="js/scaffolding/directives/formReadonly/formReadonlyDirective.js"></script>
+  <script src="js/scaffolding/directives/hasError/hasErrorDirective.js"></script>
+  <script src="js/scaffolding/directives/info/infoDirective.js"></script>
+  <script src="js/scaffolding/directives/navigation/navigationDirective.js"></script>
+  <script src="js/scaffolding/directives/navigation/navigationItemDirective.js"></script>
+  <script src="js/scaffolding/directives/nomenclature/nomenclatureDirective.js"></script>
+  <script src="js/scaffolding/directives/linkButton/linkButtonDirective.js"></script>
+  <script src="js/scaffolding/directives/number/numberDirectives.js"></script>
+  <script src="js/scaffolding/directives/password/passwordDirective.js"></script>
+  <script src="js/scaffolding/directives/promiseState/promiseStateDirective.js"></script>
+  <script src="js/scaffolding/directives/search/filterDirective.js"></script>
+  <script src="js/scaffolding/directives/search/searchButtonDirective.js"></script>
+  <script src="js/scaffolding/directives/search/searchDirective.js"></script>
+  <script src="js/scaffolding/directives/select/selectDirective.js"></script>
+  <script src="js/scaffolding/directives/sref/srefDirective.js"></script>
+  <script src="js/scaffolding/directives/suggestion/suggestionDirectives.js"></script>
+  <script src="js/scaffolding/directives/tabs/tabsDirective.js"></script>
+  <script src="js/scaffolding/directives/text/textDirective.js"></script>
+  <script src="js/scaffolding/directives/textarea/textareaDirective.js"></script>
+  <script src="js/scaffolding/directives/time/timeDirective.js"></script>
+  <script src="js/scaffolding/directives/treetable/treeColumnDirective.js"></script>
+  <script src="js/scaffolding/directives/treetable/treetableCtrl.js"></script>
+  <script src="js/scaffolding/directives/treetable/treetableDirective.js"></script>
+  <script src="js/scaffolding/directives/validate/validateDirective.js"></script>
+  <script src="js/scaffolding/directives/validationError/validationErrorDirective.js"></script>
+  <script src="js/scaffolding/services/message/messageModalCtrl.js"></script>
+  <script src="js/scaffolding/services/message/messageService.js"></script>
+
+</body>
+</html>

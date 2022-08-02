@@ -1,0 +1,12 @@
+﻿@{
+    var constants = Newtonsoft.Json.JsonConvert.SerializeObject(new Eumis.Documents.Constants());
+}
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.constants = @(Html.Raw(constants));
+    window._eumis_options.session = '@(this.ViewContext.RouteData.Values[Constants.SessionKey] ?? "s")';
+    window._eumis_options.attachedDocumentMaxSize = @System.Web.Configuration.WebConfigurationManager.AppSettings["Eumis.Documents:AttachedDocumentMaxSizeInBytes"];
+    window._eumis_options.currentCulture = '@(string.IsNullOrEmpty(SystemLocalization.GetCurrentCulture()) ? SystemLocalization.GetDefaultCulture() : SystemLocalization.GetCurrentCulture())';
+    
+</script>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10063" 
+	xmlns="http://ereg.egov.bg/segment/R-10063" 
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:complexType name="FinanceSourceAmounts">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Стойности на източници на финансиране</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="BFPContractAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BFPContractAmountPercentage" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="CurrentReportAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="CurrentReportAmountPercentage" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="CumulativeAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="CumulativeAmountPercentage" type="xsd:decimal" minOccurs="0" />
+    </xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

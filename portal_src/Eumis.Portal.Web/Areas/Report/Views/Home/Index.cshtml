@@ -1,0 +1,63 @@
+﻿
+<div class="container page-title">
+    <h1><strong>@Global.ProgrammePeriod – Модул за управление на проекти и отчитане</strong></h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix">
+        <div class="col-md-12">
+            <p class="text-justify">Чрез този модул имате възможност да управлявате договорите си, да се отчитате електронно и да осъществите комуникация с отговорната организация.</p>
+            <p class="text-justify">Най-общо потребителите на системата са два вида – Ръководител проект и всички други експерти, които го подпомагат. Именно затова и достъпът до системата се осъществява по два различни начина:</p>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Вход с парола</h2>
+            <p class="text-justify">
+                Този достъп се осъществява с помощта на потребителско име и парола и е предназначен само за Ръководителя на проекта от страна на бенефициента. Правата се предоставят от отговорната организация, която финансира договорът.
+            </p>
+            <p class="text-justify">
+                От този профил Ръководителят на проекта от страна на бенефициента има възможност да управлява проекта, да извършва електронна комуникация с отговорната организация, да предоставя права за достъп на експертите, подпомагащи го в отчитането.
+            </p>
+            @if (!Request.IsAuthenticated)
+            {
+                <div class="home-login">
+                    <div class="txt-align-center">
+                        @Html.ActionLink("Вход с парола", MVC.Report.Account.ActionNames.Login, MVC.Report.Account.Name, new { area = MVC.Report.Name }, new { @class = "login-btn" })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Вход с код за достъп</h2>
+            <p class="text-justify">
+                Този достъп е предназначен за експертите, подпомагащи Ръководителя на проекта в отчитането и се осъществява с помощта на потребителско име, номер на договор и код за достъп. Права до различните документи се създават и управляват от Ръководителя на проекта.
+            </p>
+            <p class="text-justify">
+                С този достъп, според предоставените му права, съответният експерт има възможност да разглежда договора и неговите изменения, да следи комуникацията с отговорната организация, да въвежда, редактира и чете различните отчетни документи.
+            </p>
+            @if (!Request.IsAuthenticated)
+            {
+                <div class="home-login">
+                    <div class="txt-align-center">
+                        @Html.ActionLink("Вход с код за достъп", MVC.Report.Account.ActionNames.AccessCodeLogin, MVC.Report.Account.Name, new { area = MVC.Report.Name }, new { @class = "login-btn" })
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-xs-12">
+            <p class="text-justify">
+                За повече информация вижте раздел „@Html.ActionLink("Помощ", MVC.Help.ActionNames.Index, MVC.Help.Name, new { area = MVC.Report.Name }, null)“
+                или раздел „<a href="@Url.Action(MVC.Help.ActionNames.Index, MVC.Help.Name, new { area = MVC.Report.Name })/#q-a">Въпроси и отговори</a>“ на системата.
+            </p>
+
+            <p class="text-justify">
+                СУНИ се поддържа от дирекция „Централно координационно звено“ в администрацията на Министерския съвет. Вашите въпроси може да изпращате на електронен адрес:
+                <img src="@(Url.Content(Links.Content.img.support_mail_PNG))" title="mail" />
+                или да използвате формата за
+                @Html.ActionLink("Обратна връзка", MVC.Feedback.ActionNames.Index, MVC.Feedback.Name, new { area = MVC.Report.Name }, null).
+            </p>
+        </div>
+
+    </div>
+</div>

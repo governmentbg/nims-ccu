@@ -1,0 +1,17 @@
+﻿@model R_10041.Procurements
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Private.Procurements.ActionNames.Print, MVC.Private.Procurements.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.DisplayFor(m => m)
+
+        </form>
+    </div>
+</div>

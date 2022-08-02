@@ -1,0 +1,32 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-button name="newProjectRegistrationCommunicationBtn" btn-click="newCommunication()" text="projects_projectRegistrationCommunicationsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationListActions.Create')"></sc-button>
+
+    <sc-datatable items="projectRegistrationCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.projects.view.communications.edit', params: { ind: item.projectCommunicationId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', item.projectCommunicationId)"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="projects_projectRegistrationCommunicationsSearch_orderNum" type="number">
+      </sc-column>
+      <sc-column data="questionSendDate" title="projects_projectRegistrationCommunicationsSearch_questionSendDate" type="datetime">
+      </sc-column>
+      <sc-column data="questionReadDate" title="projects_projectRegistrationCommunicationsSearch_questionReadDate" type="datetime">
+      </sc-column>
+      <sc-column data="answerDate" title="projects_projectRegistrationCommunicationsSearch_answerDate" type="datetime">
+      </sc-column>
+      <sc-column data="projectRegNumber" title="projects_projectRegistrationCommunicationsSearch_projectRegNumber">
+      </sc-column>
+      <sc-column data="statusDescr" title="projects_projectRegistrationCommunicationsSearch_status">
+      </sc-column>
+      <sc-column data="source" title="projects_projectRegistrationCommunicationsSearch_source">
+      </sc-column>
+      <sc-column data="regNumber" title="projects_projectRegistrationCommunicationsSearch_regNumber">
+      </sc-column>
+      <sc-column data="subject" title="projects_projectRegistrationCommunicationsSearch_subject">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

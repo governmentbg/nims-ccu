@@ -1,0 +1,7 @@
+﻿<a>
+  <span ng-if="$pending" class="fa fa-refresh fa-spin-fast"></span>
+  <span ng-if="!$pending && !isDisabled" ng-class="[iconBaseClass, icon]"></span>
+  <span ng-if="!$pending && isDisabled" ng-class="[iconBaseClass, iconDisabled]"></span>
+  <span>{{text}}</span>
+</a>
+

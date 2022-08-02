@@ -1,0 +1,72 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Eumis.Web.Host.Nancy.Models.LayoutModel>
+@using Eumis.Web.Host.Nancy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--[if lt IE 9]>
+      <script type="text/javascript">
+        window.location.replace("/browserNotSupported");
+      </script>
+    <![endif]-->
+
+    <title>@RazorViewTexts.Layout_UmisTitle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="version" content="@Model.ProductVersion">
+    <meta name="environment" content="@Environment.MachineName.Substring(Environment.MachineName.Length - 3)">
+
+    <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/img/favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    @RenderSection("Styles")
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', '@Model.GoogleTrackingId', 'auto');
+        ga('set', 'dimension1', '@Model.ProductVersion');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    @RenderSection("Header", false)
+
+    <noscript>
+        <h2 style="text-align: center;">@RazorViewTexts.Layout_WarningIfJavaScriptIsDisabled</h2>
+    </noscript>
+
+    @RenderBody()
+
+    <div class="eu-funds">
+        @if (Model.ShowLanguageSwitcher)
+        {
+            <form method="post" action='@(Model.IsBgVersion ? "/en-GB/" : "/bg-BG/")'>
+                <button type="submit" style="background: none; border: 0px; padding: 0px;">
+                    <span class="fa fa-globe"></span>
+                    @(Model.IsBgVersion ? "english version" : "българскa версия")
+                </button>
+            </form>
+        }
+        
+        @if (Model.IsBgVersion)
+        {
+            <img src="img/logo_good_governance_bg.png" alt="" />
+        }
+        else
+        {
+            <img src="img/logo_good_governance_en.png" alt="" />
+        }
+        <span>@RazorViewTexts.Layout_EuFundsFooter</span>
+        <a href="http://www.eufunds.bg">www.eufunds.bg</a>
+    </div>
+</body>
+</html>

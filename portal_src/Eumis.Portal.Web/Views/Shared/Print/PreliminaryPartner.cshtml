@@ -1,0 +1,19 @@
+﻿@model R_10028.PreliminaryPartner
+
+@if (Model != null)
+{
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td style="width: 35%;">
+                        @PreliminaryPartner.ArePartnersIncluded
+                    </td>
+                    <td style="width: 65%;">
+                        @Html.Partial(MVC.Shared.Views.Print.Boolean, Model.ArePartnersIncluded)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

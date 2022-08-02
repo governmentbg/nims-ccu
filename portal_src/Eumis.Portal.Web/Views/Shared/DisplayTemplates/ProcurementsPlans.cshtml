@@ -1,0 +1,27 @@
+﻿@model R_10041.ProcurementPlans
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@BFPContractPlan.Name</th>
+                    <th>@BFPContractPlan.ErrandArea</th>
+                    <th>@BFPContractPlan.ErrandLegalAct</th>
+                    <th>@ProcurementPlan.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ProcurementPlanCollection != null && Model.ProcurementPlanCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ProcurementPlanCollection.Count; i++)
+                    {
+                        @Html.DisplayFor(m => m.ProcurementPlanCollection[i])
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

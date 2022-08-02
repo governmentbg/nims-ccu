@@ -1,0 +1,88 @@
+﻿@model R_10041.Contractors
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@Contractor.Name</th>
+                    <th>@Contractor.Uin</th>
+                    <th>@Contractor.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ContractorCollection != null && Model.ContractorCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ContractorCollection.Count; i++)
+                    {
+                        var item = Model.ContractorCollection[i];
+                        <tr class="@(!item.isActive ? "deactivated-gray" : "")">
+                            <td style="width:600px; word-break: break-all">
+                                @item.Name
+                                @if (!item.isActive)
+                                {
+                                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.ElementCanceled" data-trigger="hover" alt="" data-original-title="" title="">
+                                }
+                            </td>
+                            <td style="width:380px; word-break: break-all">
+                                @if (item.UinType != null && !String.IsNullOrWhiteSpace(item.UinType.Name))
+                                {
+                                    <text>@item.UinType.Name: </text>
+                                }
+                                @item.Uin
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="history-table @(!item.isActive ? "deactivated-gray" : "")">
+                            <td colspan="4">
+                                <div class="history-table-wrapper clearfix">
+
+                                    <h3 class="margin-bottom-h3">@Contractor.ContractorEntity</h3>
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-lg-6 col-md-12">
+                                            <label>@Contractor.Uin</label>
+                                            <span class="filled-value">
+                                                @if (item.UinType != null && !String.IsNullOrWhiteSpace(item.UinType.Name))
+                                                {
+                                                    <text>@item.UinType.Name: </text>
+                                                }
+                                                @item.Uin
+                                            </span>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label>@Contractor.Name</label>
+                                            @Html.DisplayFor(m => item.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label>@Contractor.NameEN</label>
+                                            @Html.DisplayFor(m => item.NameEN, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+                                    </div>
+
+                                    <h3>@Company.Seat</h3>
+                                    @Html.DisplayFor(m => item.Seat)
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-md-4">
+                                            <label>@Contractor.VATRegistration</label>
+                                            @Html.DisplayFor(m => item.VATRegistration)
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

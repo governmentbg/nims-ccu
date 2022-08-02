@@ -1,0 +1,21 @@
+﻿GO
+
+ALTER TABLE [dbo].[MapNodes] ADD
+      [IrregularityCode]      NVARCHAR(200)      NULL
+GO
+
+UPDATE [dbo].[MapNodes]
+SET [IrregularityCode] = CASE [Code]
+      WHEN N'2014BG05SFOP001' THEN N'ОПДУ20'
+      WHEN N'2014BG16M1OP001' THEN N'ОПТИ20'
+      WHEN N'2014BG16RFOP001' THEN N'ОПРР20'
+      WHEN N'2014BG05M9OP001' THEN N'ОПЧР20'
+      WHEN N'2014BG16RFOP002' THEN N'ОПИК20'
+      WHEN N'2014BG16M1OP002' THEN N'ОПОС20'
+      WHEN N'2014BG05M2OP001' THEN N'ОПНО20'
+      WHEN N'2014BG05FMOP001' THEN N'ОПХР20'
+      WHEN N'2015BG16RFSM001' THEN N'ОПИП20'
+      WHEN N'2014BG14MFOP001' THEN N'ПМДР20'
+    END
+WHERE [Type] = 'Programme'
+GO

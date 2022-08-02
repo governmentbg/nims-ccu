@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <strong class="heading" style="font-size:20px;" l10n-text="news_allNews_title"></strong>
+  <div class="panel-body news-list">
+    <div class="list-group">
+      <a class="list-group-item news-item" ng-repeat="item in newsQuery.news" ng-click="view(item.newsId)">
+        <strong class="list-group-item-heading news-title">{{item.title}}</strong>
+        <div class="list-group-item-text">{{item.content | trim : 500}}</div>
+        <div class="pull-right" style="color:grey;">
+          <span title="{{item.dateFrom | date:'dd.MM.yyyy'}}">{{item.dateFrom | amCalendar}}</span>
+          <span l10n-text="news_allNews_by"></span>
+          <span>{{item.creator}}</span>
+        </div>
+      </a>
+    </div>
+    <sc-pager count="newsQuery.count" page="page" change="pageChange(page)"></sc-pager>
+
+    <div ng-show="newsQuery.count === 0" l10n-text="news_allNews_noNews"></div>
+  </div>
+</div>

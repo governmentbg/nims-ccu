@@ -1,0 +1,42 @@
+<div class="tab-content">
+  <ng-form name="editRequestPackageForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="requestPackages_edit_title"></strong>
+
+        <div class="pull-right">
+
+          <sc-button name="canceledBtn" btn-click="changeStatus('canceled')" ng-show="requestPackage.status !== 'canceled' && requestPackage.status !== 'ended' && !editMode" text="requestPackages_edit_canceled" class="btn btn-danger btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetCanceled', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="draftBtn" btn-click="changeStatus('draft')" ng-show="requestPackage.status !== 'draft' && requestPackage.status !== 'ended' && !editMode" text="requestPackages_edit_draft" class="btn btn-success btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetDraft', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="enteredBtn" btn-click="changeStatus('entered')" ng-show="requestPackage.status === 'draft' && !editMode" text="requestPackages_edit_entered" class="btn btn-default btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetEntered', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="checkedBtn" btn-click="changeStatus('checked')" ng-show="requestPackage.status === 'entered' && !editMode && requestPackage.type === 'request'" text="requestPackages_edit_checked" class="btn btn-default btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetChecked', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="endedBtn" btn-click="changeStatus('ended')" ng-show="requestPackage.status === 'checked' && !editMode && requestPackage.type === 'request'" text="requestPackages_edit_ended" class="btn btn-default btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetEnded', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="checkEndBtn" btn-click="changeStatus('ended')" ng-show="requestPackage.status === 'entered' && !editMode && requestPackage.type === 'directChange'" text="requestPackages_edit_checkEnd" class="btn btn-default btn-xs"
+            ng-disabled="!$canDo('RequestPackageActions.SetEnded', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="editBtn" btn-click="edit()" text="requestPackages_edit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && requestPackage.status == 'draft'"
+            ng-disabled="!$canDo('RequestPackageActions.Edit', requestPackage.requestPackageId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="requestPackages_edit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="requestPackages_edit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-request-package name="requestPackageForm" ng-model="requestPackage" sc-form-params="{ isDirect: !requestPackage.userOrganizationId}"></eumis-request-package>
+      </div>
+    </div>
+  </ng-form>
+</div>

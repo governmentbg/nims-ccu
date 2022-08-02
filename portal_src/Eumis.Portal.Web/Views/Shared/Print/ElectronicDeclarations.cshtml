@@ -1,0 +1,56 @@
+﻿@model R_10019.ElectronicDeclarations
+
+@if (Model != null)
+{
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%">@ElectronicDeclaration.Name</th>
+                    <th style="width: 50%">@ElectronicDeclaration.Content</th>
+                    <th style="width: 5%">@ElectronicDeclaration.IsRequired</th>
+                    <th style="width: 25%">@ElectronicDeclaration.Approval</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ElectronicDeclarationCollection != null && Model.ElectronicDeclarationCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ElectronicDeclarationCollection.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model.ElectronicDeclarationCollection[i].Name
+                            </td>
+                            <td>
+                                <pre>@Model.ElectronicDeclarationCollection[i].Content</pre>
+                            </td>
+                            <td>
+                                @(Model.ElectronicDeclarationCollection[i].IsRequired ? Global.Yes : Global.No)
+                            </td>
+                            <td>
+                                @if (Model.ElectronicDeclarationCollection[i].FieldType == R_10098.FieldType.CheckBox)
+                                {
+                                    @(Model.ElectronicDeclarationCollection[i].FieldValue == "True" ? Global.Yes : Global.No)
+                                }
+                                else if (Model.ElectronicDeclarationCollection[i].FieldType == R_10098.FieldType.Period && !string.IsNullOrWhiteSpace(Model.ElectronicDeclarationCollection[i].FieldValue))
+                                {
+                                    var dates = Model.ElectronicDeclarationCollection[i].FieldValue.Split('$').ToList();
+                                    var fromDate = dates.FirstOrDefault();
+                                    var toDate = dates.LastOrDefault();
+
+                                    @ElectronicDeclaration.FromDate @fromDate <br />
+
+                                    @ElectronicDeclaration.ToDate @toDate
+                                }
+                                else
+                                {
+                                    <pre>@Model.ElectronicDeclarationCollection[i].FieldValue</pre>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

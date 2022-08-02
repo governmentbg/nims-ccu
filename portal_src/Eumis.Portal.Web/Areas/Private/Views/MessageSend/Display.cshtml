@@ -1,0 +1,39 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10020.Message
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsMessage</h1>
+</div>
+
+<div class="container">
+
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Message.Question, MVC.Private.MessageSend.ActionNames.Prepare, MVC.Private.MessageSend.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.MessageSend.ActionNames.Display, MVC.Private.MessageSend.Name, new { area = MVC.Private.Name }, new { @class = "tab active" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.MessageSend.ActionNames.Print, MVC.Private.MessageSend.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+        <form class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                             Url.Action(MVC.Private.MessageSend.ActionNames.Prepare, MVC.Private.MessageSend.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                             Url.Action(MVC.Private.MessageSend.ActionNames.Prepare, MVC.Private.MessageSend.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.MessageSend.ActionNames.Prepare, MVC.Private.MessageSend.Name, null, new { @class = "blue-button small back left" })
+
+                @Html.ActionLink(Message.Send, MVC.Private.MessageSend.ActionNames.Submit, MVC.Private.MessageSend.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </form>
+    </div>
+</div>

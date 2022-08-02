@@ -1,0 +1,81 @@
+﻿@model xmldsig.Signature
+@using System.Security.Cryptography.X509Certificates;
+@using Eumis.Portal.Web.Helpers
+
+
+@if (Model != null && Model.KeyInfo != null)
+{
+    var editorId = Html.GetUniqueEditorId();
+
+    // Extract Certificates
+    if (Model.KeyInfo.X509DataCollection != null && Model.KeyInfo.X509DataCollection.Count > 0)
+    {
+        foreach (var x509Certificate in Model.KeyInfo.X509DataCollection)
+        {
+            if (x509Certificate.X509Certificate != null)
+            {
+                X509Certificate2 cert = new X509Certificate2(x509Certificate.X509Certificate);
+
+                var subjectAlternativeName = cert.Extensions["Subject Alternative Name"];
+
+                string validity = Global.No;
+                if (X509SignatureHelper.IsSignatureValid(Model.Id))
+                {
+                    validity = Global.Yes;
+                }
+
+                <div class="section-separator"> </div>
+
+                <h2 data-section="@editorId" class="section-heading">
+                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                    @XMLDigitalSignature.DigitalSignature
+                </h2>
+
+                <section data-section="@editorId" class="clearfix">
+                    <div class="col-xs-12">
+                        <table cellpadding="" cellspacing="0" class="signTable" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td class="mini header">@XMLDigitalSignature.Validity</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@validity</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini header">@XMLDigitalSignature.CertificateData</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@XMLDigitalSignature.SerialNumber: ‎@cert.GetSerialNumberString()</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@XMLDigitalSignature.EffectiveDate: ‎@cert.GetEffectiveDateString()</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@XMLDigitalSignature.ExpirationDate: ‎@cert.GetExpirationDateString()</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@XMLDigitalSignature.Issuer: @cert.Issuer</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">@XMLDigitalSignature.Subject: @cert.Subject</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini header">@XMLDigitalSignature.SubjectAlternativeName</td>
+                                </tr>
+                                <tr>
+                                    <td class="mini">
+                                        @if (subjectAlternativeName != null)
+                                        {
+                                            <text>@subjectAlternativeName.Format(false).Replace(" +", ",").Replace("+", ",")</text>
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            }
+        }
+    }
+}
+

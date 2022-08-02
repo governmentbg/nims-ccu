@@ -1,0 +1,27 @@
+<ng-form name="editNotificationSetting" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <strong class="heading" class="heading" l10n-text="notificationSetting_notificationSettingsEdit_title"></strong>
+        <div class="pull-right">
+          <sc-button name="actualBtn" btn-click="changeStatus('actual')" text="notificationSetting_notificationSettingsEdit_actual" class="btn btn-default btn-xs"
+            ng-show="notificationSetting.status === 'draft' && !editMode"></sc-button>
+          <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="notificationSetting_notificationSettingsEdit_draft" class="btn btn-success btn-xs"
+            ng-show="notificationSetting.status === 'actual'"></sc-button>
+          <sc-button name="editBtn" btn-click="edit()" text="notificationSetting_notificationSettingsEdit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && notificationSetting.status === 'draft'">
+          </sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="notificationSetting_notificationSettingsEdit_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+            ng-show="notificationSetting.status === 'draft' && !editMode">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="notificationSetting_notificationSettingsEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="notificationSetting_notificationSettingsEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+        </div>
+      </div>
+  
+      <div class="panel-body">
+        <eumis-notification-setting name="notificationSettingForm" ng-model="notificationSetting"></eumis-notification-setting>
+      </div>
+    </div>
+  </ng-form>
+  

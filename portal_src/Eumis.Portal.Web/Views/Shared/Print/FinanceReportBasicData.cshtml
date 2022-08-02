@@ -1,0 +1,27 @@
+﻿@model R_10078.FinanceReportBasicData
+
+@if (Model != null)
+{
+    <table class="technical-report-basic-data">
+        <tbody>
+            <tr>
+                <td style="width: 35%;">@FinanceReportBasicData.StartDate</td>
+                <td style="width: 65%;">
+                    @if (Model.StartDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.StartDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@FinanceReportBasicData.EndDate</td>
+                <td>
+                    @if (Model.EndDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.EndDate.Value)
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

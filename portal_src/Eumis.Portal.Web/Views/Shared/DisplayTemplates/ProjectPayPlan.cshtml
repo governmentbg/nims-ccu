@@ -1,0 +1,20 @@
+﻿@model R_10012.ProjectPayPlan
+
+@if (Model != null)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Amount)
+        </td>
+        <td></td>
+    </tr>
+}

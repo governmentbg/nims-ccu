@@ -1,0 +1,156 @@
+﻿@using Eumis.Public.Web.Models.Home
+@model IndexModel
+
+@section scripts {
+    @Scripts.Render(BundleConfig.PageHomeDefault)
+}
+
+<div class="container">
+    <div class="home-link-boxes">
+        <div class="col-lg-4 col-md-12 m-top-neg-155" id="@Eumis.Public.Common.Configuration.HTML_OPERATIONAL_PROGRAMS_ID">
+            <div class="link-box auto-height">
+                <div class="head green">
+                    <img src="/Content/img/icons/isun.png" alt="" />
+                </div>
+                <div class="title">
+                    <strong>@Texts.Global_OperationalPrograms</strong>
+                </div>
+                <ul class="links">
+                    @foreach (NomenclatureModel nm in Model.ProgrammeGroups)
+                    {
+                        <li><a href="@Url.Action(MVC.ProgrammeGroups.ActionNames.Index, MVC.ProgrammeGroups.Name, new { programmeGroupId = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(nm.Id.ToString() )} )" title="" class="wait">@nm.Text</a></li>
+                    }
+                    <li><a href="@Url.Action(MVC.OperationalPrograms.ActionNames.Index, MVC.OperationalPrograms.Name, new { getProgrammeGroups = false })" title="" class="wait">@Texts.ProgrammeGroups_Other</a></li>
+                    <li><a href="@Url.Action(MVC.OperationalPrograms.ActionNames.Index, MVC.OperationalPrograms.Name, new { getProgrammeGroups = true })" title="" class="wait">@Texts.ProgrammeGroups_All</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 m-top-neg-155">
+            <div class="link-box auto-height">
+                <div class="head yellow">
+                    <img src="/Content/img/icons/mappointer.png" alt="" />
+                </div>
+                <div class="title">
+                    <strong>@Texts.Home_Index_PlaningRegions</strong>
+                </div>
+                <ul class="links">
+                    @foreach (NomenclatureModel nm in Model.PlanningRegions)
+                    {
+                        <li><a href="@Url.Action(MVC.PlanningRegions.ActionNames.Index, MVC.PlanningRegions.Name, new RouteValueDictionary() {  { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, nm.Id } })" title="" class="wait">@nm.Text</a></li>
+                    }
+                    <li>
+                        @Html.ActionLink(Texts.Global_International, MVC.Project.ActionNames.Search, MVC.Project.Name, new RouteValueDictionary() { { "showRes", true }, { RouteConfig.PRABB, Eumis.Public.Common.Configuration.PR_INTERNATIONAL_ID } }, new Dictionary<string, object> { { "class", "wait" } })
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 m-top-neg-155">
+            <div class="link-box">
+                <div class="head red">
+                    <img src="/Content/img/icons/people.png" alt="" />
+                </div>
+                <div class="title">
+                    <strong>@Texts.Home_Index_Companies</strong>
+                </div>
+                <ul class="links">
+                    <li><a href="@Url.Action(MVC.Beneficiary.ActionNames.Index, MVC.Beneficiary.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_Beneficiaries</a></li>
+                    <li><a href="@Url.Action(MVC.Partner.ActionNames.Index, MVC.Partner.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_Partners</a></li>
+                    <li><a href="@Url.Action(MVC.Contractor.ActionNames.Index, MVC.Contractor.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_Contractors</a></li>
+                    <li><a href="@Url.Action(MVC.Subcontractor.ActionNames.Index, MVC.Subcontractor.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_Subcontractors</a></li>
+                    <li><a href="@Url.Action(MVC.Member.ActionNames.Index, MVC.Member.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_Members</a></li>
+                    <li><a href="@Url.Action(MVC.ContractContracts.ActionNames.Index, MVC.ContractContracts.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="" class="wait">@Texts.Global_ContractContracts</a></li>
+                </ul>
+            </div>
+            <div class="link-box search">
+                <div class="head blue">
+                    <img src="/Content/img/icons/search.png" alt="">
+                </div>
+                <a href="@Url.Action(MVC.Project.ActionNames.Search, MVC.Project.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title="">@Texts.Home_Index_AdvancedSearch</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 home-stat-boxes" id="@Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID">
+        <div class="link-box">
+            <div class="head green">
+                <img src="/Content/img/icons/stats.png" alt="" />
+            </div>
+            <div class="title">
+                <strong>@Texts.Global_Enquiries</strong>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.Implementation.ActionNames.Index, MVC.Implementation.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.Implementation_Index_OpExecution
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.Operations.ActionNames.Index, MVC.Operations.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.Operations_Index_OperationsList
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.Indicators.ActionNames.Index, MVC.Indicators.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.Indicators_Index_IndicatorsInfo
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink(Texts.Operations508_Index_OperationsList, MVC.Operations508.Index(), new { @class = "stat wait" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.EvalSessionResult.ActionNames.Index, MVC.EvalSessionResult.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.EvalSessionResult_Index_Title
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.ProjectProposals.ActionNames.Index, MVC.ProjectProposals.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.ProjectProposals_Index_ProjectProposals
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.ActuallyPaidAmounts.ActionNames.Index, MVC.ActuallyPaidAmounts.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.ActuallyPaidAmounts_Index_Title
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.OpenData.ActionNames.Index, MVC.OpenData.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.OpenData_Index_Title
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.BeneficiaryWithoutFinancialCorrections.ActionNames.Index, MVC.BeneficiaryWithoutFinancialCorrections.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.BeneficiaryWithoutFC_Index_ShortName
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.ExecutedContracts.ActionNames.Index, MVC.ExecutedContracts.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.ExecutedContracts_Index_Title
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.IndicativeAnnualWorkingProgrammes.ActionNames.Index, MVC.IndicativeAnnualWorkingProgrammes.Name, new RouteValueDictionary() { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" class="stat wait">
+                        @Texts.IndicativeAnnualWorkingProgrammes_Index_Title
+                    </a>
+                </div>
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+</div>

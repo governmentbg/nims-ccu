@@ -1,0 +1,50 @@
+﻿<footer>
+    <div class="container">
+        <span class="go-to-top">
+            <img class="fliud" src="@Url.Content(Links.Content.img.icons.gototop_png)" alt="" />
+        </span>
+        <div class="footer-top">
+            <a><img src="@Url.Content(Links.Content.img.gerb_footer_png)" alt="" /></a><br />
+            <div class="hidden-xs hidden-sm">
+                <p style="margin: 0 auto;">@Global.HeaderText2 @Global.HeaderText3</p>
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Global.Eumis</strong><br /><br />
+            </div>
+        </div>
+        @{
+            var url = Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name, new {area = string.Empty});
+            var linkText = "Отворени схеми за кандидатстване";
+
+            var publicUrl = "http://2020.eufunds.bg/";
+            var publicLinkText = "Информация за изпълнението и напредъка на оперативните програми";
+            
+        }
+        <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -15px 0;">
+            <a href="@url" target="_blank" style="color: red; font-weight: bold">@linkText</a>
+        </div>
+        <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+            <a href="@url" target="_blank" style="color: red; font-weight: bold">@linkText</a>
+        </div>
+
+        <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 -25px 0;">
+            <a href="@publicUrl" target="_blank" style="color: red; font-weight: bold">@publicLinkText</a>
+        </div>
+        <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+            <a href="@publicUrl" target="_blank" style="color: red; font-weight: bold">@publicLinkText</a>
+        </div>
+
+        <div class="col-md-6 txt-align-right links">
+        </div>
+        <div class="col-md-6 links mobile_m_bottom_60">
+        </div>
+        <img class="eu_flag" src="@Url.Content(Links.Content.img.eu_flag_gif)" alt="" />
+    </div>
+</footer>
+
+<div class="subfooter">
+    <div class="container">
+        <span>@Global.SubfooterMessage <br /> @Global.SubfooterMessage2</span>
+        <img class="fliud hidden-xs hidden-sm" src="@Url.Content(Links.Content.img.logo_good_governance_bg_png)" alt="" />
+    </div>
+</div>

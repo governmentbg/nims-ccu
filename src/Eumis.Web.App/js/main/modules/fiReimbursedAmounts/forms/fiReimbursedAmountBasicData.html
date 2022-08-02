@@ -1,0 +1,30 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'fiReimbursedAmountStatuses'" ng-model="model.status" mode="id" l10n-text="fiReimbursedAmounts_basicDataForm_status" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="fiReimbursedAmounts_basicDataForm_regNumber" class="col-sm-7 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.isDeletedNote" ng-show="model.status === 'deleted'" rows="2" l10n-text="fiReimbursedAmounts_basicDataForm_isDeletedNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-model="model.programmeId" mode="id" l10n-text="fiReimbursedAmounts_basicDataForm_programme" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="fiReimbursedAmounts_basicDataForm_contract"></h5>
+  <div class="row">
+    <sc-field type="text" ng-model="model.contractRegNumber" l10n-text="fiReimbursedAmounts_basicDataForm_contractRegNumber" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.contractName" rows="2" l10n-text="fiReimbursedAmounts_basicDataForm_contractName" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="fiReimbursedAmounts_basicDataForm_beneficiary"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" l10n-text="fiReimbursedAmounts_basicDataForm_uinType" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" l10n-text="fiReimbursedAmounts_basicDataForm_uin" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" l10n-text="fiReimbursedAmounts_basicDataForm_name" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

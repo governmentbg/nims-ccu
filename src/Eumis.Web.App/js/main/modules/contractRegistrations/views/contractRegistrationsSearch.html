@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-link-button ng-href="{{contractRegsExportUrl}}" target="_blank" sc-access-token icon="fa-file-excel-o fa-lg fa-fw" 
+      text="contractRegistrations_searchForm_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contractRegs" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractRegistrations.view', params: {id: item.contractRegistrationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="email" title="contractRegistrations_searchForm_email">
+      </sc-column>
+      <sc-column data="firstName" title="contractRegistrations_searchForm_firstName">
+      </sc-column>
+      <sc-column data="lastName" title="contractRegistrations_searchForm_lastName">
+      </sc-column>
+      <sc-column data="phone" title="contractRegistrations_searchForm_phone">
+      </sc-column>
+      <sc-column data="contractRegNums" title="contractRegistrations_searchForm_contractRegNums" has-content="true" width="250">
+        <div ng-repeat="contract in item.contracts">
+          <a target="_blank" ng-if="contract.contractId && $canDo('ContractActions.View', contract.contractId)" ui-sref="root.contracts.view({ id: contract.contractId })">{{contract.regNumber}}</a>
+          <span ng-if="contract.contractId && !$canDo('ContractActions.View', contract.contractId)">{{contract.regNumber}}</span>
+          <span ng-show="$index !== item.contracts.length - 1 && item.contracts[$index + 1].contractId">,</span>
+        </div>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

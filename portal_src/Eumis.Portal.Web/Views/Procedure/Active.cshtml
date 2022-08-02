@@ -1,0 +1,88 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model List<Eumis.Documents.Contracts.ContractProcedureProgrammesTree>
+
+@Html.Breadcrumb(new List<BreadcrumbItem>
+()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+, Global.TitleProcedureGrants)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.TitleProcedureGrants</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>@Global.TitleActiveProcedure</a></li>
+        <li>@Html.ActionLink(Global.TitleEndedProcedure, MVC.Procedure.ActionNames.Ended, MVC.Procedure.Name, null, new { @class = "wait" })</li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active clearfix">
+            <div class="easy-tree">
+                <button class="tree-collapse">
+                    <span class="glyphicon glyphicon-minus"></span>
+                    @Global.ButtonCollapseAll
+                </button>
+                <button class="tree-expand" style="display: none;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    @Global.ButtonExpandAll
+                </button>
+                
+                <ul>
+                    <li>
+                        @Global.OperationalProgrammes
+                        <ul>
+                            @foreach (var programme in Model)
+                            {
+                                int programmeProcedureCount = 0;
+                                if (programme != null && programme.programmePriorities != null)
+                                {
+                                    programmeProcedureCount = programme.programmePriorities.Where(p => p != null && p.procedures != null).Sum(p => p.procedures.Count);
+                                }
+
+                                bool hasProgrammeProcedures = programmeProcedureCount > 0;
+
+                                <li class="@(hasProgrammeProcedures ? " active-node" : "" )">
+                                    @programme.displayName @(hasProgrammeProcedures ? "(" + programmeProcedureCount + ")" : "")
+                                    @if (hasProgrammeProcedures)
+                                    {
+                                        <ul>
+                                            @foreach (var priority in programme.programmePriorities)
+                                            {
+                                                int priorityProcedureCount = 0;
+                                                if (priority != null && priority.procedures != null)
+                                                {
+                                                    priorityProcedureCount = priority.procedures.Count;
+                                                }
+
+                                                bool hasPriorityProcedures = priorityProcedureCount > 0;
+
+                                                if (priorityProcedureCount > 0)
+                                                {
+                                                    <li class="active-node">
+                                                        @(string.Format("{0} - ", priority.code)) @priority.displayName (@priorityProcedureCount)
+                                                        <ul>
+                                                            @foreach (var procedure in priority.procedures)
+                                                            {
+                                                                <li class="@(procedure.isIntroducedByLAG ? "lag-procedure" : string.Empty) wait active-node" data-href="@(Url.Action(MVC.Procedure.ActionNames.Info, MVC.Procedure.Name, new {id = procedure.gid}))">
+                                                                    @(string.Format("{0} - ", procedure.code)) @procedure.displayName
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

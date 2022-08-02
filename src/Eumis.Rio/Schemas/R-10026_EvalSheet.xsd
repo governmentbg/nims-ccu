@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10026" 
+	xmlns="http://ereg.egov.bg/segment/R-10026" 
+	
+	xmlns:esg="http://ereg.egov.bg/segment/R-10025"
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+            
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:ettn="http://ereg.egov.bg/nomenclature/R-09993"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10025" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+  
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/nomenclature/R-09993" />
+	
+	<xsd:complexType name="EvalSheet">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Оценителен лист</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="EvalSheetGroup" type="esg:EvalSheetGroup" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="EvalTableAttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+
+			<xsd:element name="Limit" type="xsd:decimal" minOccurs="0" />
+			<xsd:element name="Total" type="xsd:decimal" minOccurs="0" />
+      
+			<xsd:element name="IsSuccess" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="IsManual" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="ReasonManual" type="xsd:string" minOccurs="0" />
+
+			<xsd:element name="Note" type="xsd:string" minOccurs="0" />
+    
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    <xsd:attribute name="type" type="ettn:EvalTypeNomenclature"/>
+  
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+	</xsd:complexType>
+</xsd:schema>

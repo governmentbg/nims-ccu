@@ -1,0 +1,46 @@
+﻿@model R_10003.Address
+
+@if (Model != null)
+{
+    string bulgaria = Eumis.Documents.Constants.BulgariaId;
+
+    <div class="form-group col-lg-6 col-md-12">
+        @Html.LabelFor(m => m.Country, Address.Country)
+        @Html.DisplayFor(m => m.Country)
+    </div>
+
+    if (Model != null && Model.Country != null && !String.IsNullOrWhiteSpace(Model.Country.Code))
+    {
+        if (bulgaria.Equals(Model.Country.Code))
+        {
+            <div class="form-group col-lg-6 col-md-12">
+                @Html.LabelFor(m => m.Settlement, Address.Settlement)
+                @Html.DisplayFor(m => m.Settlement)
+            </div>
+
+            <div class="clearfix"></div>
+            <h3>@Company.Management</h3>
+    
+            <div class="form-group col-md-2">
+                @Html.LabelFor(m => m.PostCode, Address.PostCode)
+                @Html.DisplayFor(m => m.PostCode)
+            </div>
+            <div class="form-group col-md-10">
+                @Html.LabelFor(m => m.Street, Address.Street)
+                @Html.DisplayFor(m => m.Street, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+            </div>
+        }
+        else
+        {
+            <div class="clearfix"></div>
+            <h3>@Company.Management</h3>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.FullAddress, Address.FullAddress)
+                @Html.DisplayFor(m => m.FullAddress)
+            </div>
+        }
+    }
+    
+    <div class="clearfix"></div>
+}

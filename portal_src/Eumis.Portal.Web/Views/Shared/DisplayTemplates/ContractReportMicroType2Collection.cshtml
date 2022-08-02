@@ -1,0 +1,140 @@
+﻿@using Eumis.Documents.Contracts
+
+@model IEnumerable<ContractReportMicroType2ItemPVO>
+
+<div class="container">
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="table-wrapper micro">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="12">Общи данни за всички участници</th>
+                        <th colspan="7">Уязвими групи</th>
+                        <th colspan="3">Домакинство</th>
+                        <th colspan="4">Информация за участие</th>
+                        <th colspan="4">Информация при напускане на проекта</th>
+                    </tr>
+                    <tr>
+                        <th>№</th>
+                        <th>Име</th>
+                        <th>Презиме</th>
+                        <th>Фамилия</th>
+                        <th>ЕГН</th>
+                        <th>Пол</th>
+                        <th>Възраст</th>
+                        <th>Статут на пазара на труда</th>
+                        <th>Степен на завършено образование</th>
+                        <th>Настоящ адрес (област)</th>
+                        <th>Настоящ адрес (населено място)</th>
+                        <th>Телефон за контакт</th>
+                        <th>e-mail</th>
+                        <th>Мигрант</th>
+                        <th>Участник с произход от друга държава</th>
+                        <th>Малцинства</th>
+                        <th>Роми</th>
+                        <th>Хора с увреждания</th>
+                        <th>Бездомни или засегнати от жилищно изключване</th>
+                        <th>Други хора в неравностойно положение</th>
+                        <th>Участници, които живеят в безработни домакинства</th>
+                        <th>Участници, които живеят в безработни домакинства с деца на издръжка</th>
+                        <th>Участници, които живеят в едночленно домакинство с деца на издръжка</th>
+                        <th>Дата на включване в дейности (година, месец, ден)</th>
+                        <th>Дейност</th>
+                        <th>Място на изпълнение на дейността (област)</th>
+                        <th>Място на изпълнение на дейността (населено място)</th>
+                        <th>Статут на участие</th>
+                        <th>Дата на напускане на дейности (година, месец, ден)</th>
+                        <th>Причини за отпадане</th>
+                        <th>Статут на участника при излизане от операцията</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Number</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.MiddleName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Uin</td>
+                            <td>@item.Gender</td>
+                            <td class="text-right">@item.Age</td>
+                            <td>@item.Occupation</td>
+                            <td>@item.Education</td>
+                            <td>@item.AddressDistrict</td>
+                            <td>@item.AddressSettlement</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>
+                                @if (item.IsEmigrant.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsEmigrant.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsForeigner.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsForeigner.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsMinority.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsMinority.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsGypsy.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsGypsy.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsDisabledPerson.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsDisabledPerson.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsHomeless.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsHomeless.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>@item.DisadvantagedPerson</td>
+                            <td>
+                                @if (item.IsLivingInUnemployedHousehold.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsLivingInUnemployedHousehold.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsLivingInUnemployedHouseholdWithChildren.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsLivingInUnemployedHouseholdWithChildren.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsLivingInFamilyOfOneWithChildren.HasValue)
+                                {
+                                    @Html.DisplayFor(m => item.IsLivingInFamilyOfOneWithChildren.Value, MVC.Shared.Views.DisplayTemplates.BooleanWithoutSpan)
+                                }
+                        </td>
+                        <td>@Html.DisplayFor(m => item.JoiningDate, MVC.Shared.Views.DisplayTemplates.DateTimeWithoutSpan)</td>
+                        <td>@item.Activity</td>
+                        <td>@item.ActivityPlaceDistrict</td>
+                        <td>@item.ActivityPlaceSettlement</td>
+                        <td>@item.ParticipationState</td>
+                        <td>@Html.DisplayFor(m => item.LeavingDate, MVC.Shared.Views.DisplayTemplates.DateTimeWithoutSpan)</td>
+                        <td>@item.CancelationReason</td>
+                        <td>@item.LeavingState</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

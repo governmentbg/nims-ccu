@@ -1,0 +1,577 @@
+﻿@model R_10043.CostSupportingDocumentCollection
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerCostSupportingDocuments">
+    <div class="fixed">
+        <div style="display: inline-block;" ng-show="isDefault">
+            <a href="/docs/templates/Docs.xlsx" title="" target="_blank" class="download-as-file">
+                @CostSupportingDocument.DownloadTemplate
+            </a>
+        </div>
+        <span class="fileinput-link-button" ng-show="isDefault">
+            <a class="save-as-draft" style="cursor: pointer">
+                @CostSupportingDocument.LoadFromExcel
+            </a>
+            <input type="file" ui-jq="fileupload" ui-options="options" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+        </span>
+        <div style="display: inline-block; margin-left: 10px; margin-top: 10px">
+            <div ng-show="isPleaseWait">
+                <img src="/Content/img/loader_h26.gif" alt="">
+                @Global.PleaseWait
+            </div>
+            <div ng-show="isOK" class="success">
+                <img src="/Content/img/icons/success.png" style="display: inline-block">
+                <span>@CostSupportingDocument.DataFilled</span>
+            </div>
+            <div ng-show="isGeneralError || isValidationError" class="err">
+                <img src="/Content/img/icons/warning.png" style="display: inline-block">
+                <span ng-show="isGeneralError">@CostSupportingDocument.ExcelError</span>
+                <span ng-show="isValidationError">{{validationError}}</span>
+            </div>
+        </div>
+        <div style="display: inline-block" ng-show="isDefault">
+            <a class="delete-btn" confirm-click="deleteAllItems()">@CostSupportingDocument.DeleteAll</a>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@CostSupportingDocument.Type</th>
+                    <th style="width:120px;">@CostSupportingDocument.Number</th>
+                    <th style="width:80px;">@CostSupportingDocument.Date</th>
+                    <th style="width:250px;">@CostSupportingDocument.CSDPublisher</th>
+                    <th style="width:150px;">@CostSupportingDocument.TotalAmount</th>
+                    <th colspan="2">@Global.Actions</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="(index1, item) in items" style="display:none;"></tr>
+                <tr>
+                    <td style="word-break: break-all">
+                        {{item.CostSupportingDocumentType.Description}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.Number}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.Date}}
+                    </td>
+                    <td style="word-break: break-all" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Beneficiary)'">
+                        {{beneficiary.Name}}
+                    </td>
+                    <td style="word-break: break-all" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Partner)'">
+                        {{item.Partner.Name}}
+                    </td>
+                    <td style="word-break: break-all" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Contractor)'">
+                        {{item.Contractor.Name}}
+                    </td>
+                    <td style="word-break: break-all" ng-if="!item.CompanyType"></td>
+                    <td style="word-break: break-all">
+                        {{(item.TotalAmount || 0).toFixed(2)}}
+                    </td>
+                    <td style="width: 110px;" ng-if="!item.IsLocked">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" ng-click="accordion(index1, $event)" ng-class="{'opened': item.isOpen}" sc-fire-validation-popover="item.isOpen">
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 110px;" colspan="2" ng-if="item.IsLocked">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" ng-click="accordion(index1, $event)" ng-class="{'opened': item.isOpen}" sc-fire-validation-popover="item.isOpen">
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                        </a>
+                    </td>
+                    <td style="width: 110px;" ng-if="!item.IsLocked">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                    <td style="width: 130px;">
+                        <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-normal bootstrap-switch-readonly" style="width: 180px; margin-top:10px;">
+                            <div class="bootstrap-switch-container">
+                                <span ng-if="!item.IsLocked" class="bootstrap-switch-handle-on bootstrap-switch-success" style="width: 90px;">@Global.Unlocked</span>
+                                <span ng-if="item.IsLocked" class="bootstrap-switch-handle-off bootstrap-switch-danger" style="width: 90px; margin-left: 90px;">@Global.Locked</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="history-table" ng-if="item.isOpen && !item.IsLocked" style="display: table-row;">
+                    <td colspan="8">
+                        <div class="history-table-wrapper clearfix" style="display: block;">
+                            <div class="clearfix">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Type</label>
+                                    <sc-nomenclature ng-class="{'input-validation-error': !item.IsTypeValid}" sc-alias="GetCostSupprotingDocumentTypes" ng-model="item.CostSupportingDocumentType">
+                                    </sc-nomenclature>
+                                    <input ng-class="{'input-validation-error': !item.IsTypeValid}" type="hidden" value="{{ item.CostSupportingDocumentType.Value }}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CostSupportingDocumentType.Value" class="validation-error-key" />
+                                    <input type="hidden" value="{{ item.CostSupportingDocumentType.Description }}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CostSupportingDocumentType.Description" />
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-group col-md-12">
+                                    <label>@CostSupportingDocument.Description</label>
+                                    <textarea ng-class="{'input-validation-error': !item.IsDescriptionValid}" auto-grow ng-model="item.CostSupportingDocumentDescription" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CostSupportingDocumentDescription" class="form-control" rows="2" style="height:60px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.Number</label>
+                                    <input ng-class="{'input-validation-error': !item.IsNumberValid}" type="text" ng-model="item.Number" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Number" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.Date</label>
+                                    <input ng-class="{'input-validation-error': !item.IsDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.Date" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Date" class="form-control" onpaste="return false" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.PaymentDate</label>
+                                    <input ng-class="{'input-validation-error': !item.IsPaymentDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.PaymentDate" name="@(Html.GetNameFor(m => m))[{{ index1 }}].PaymentDate" class="form-control" onpaste="return false" />
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-12">
+                                    <div>
+                                        <input ng-model="item.CompanyType" type="radio" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CompanyType" id="{{index1}}_Beneficiary" value="@R_09986.CompanyTypeNomenclature.Beneficiary" />
+                                        <label for="{{index1}}_Beneficiary">@CostSupportingDocument.Beneficiary</label>
+
+                                        <input ng-model="item.CompanyType" type="radio" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CompanyType" id="{{index1}}_Contractor" value="@R_09986.CompanyTypeNomenclature.Contractor" />
+                                        <label for="{{index1}}_Contractor">@CostSupportingDocument.Contractor</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Beneficiary)'">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Beneficiary</label>
+                                    <span class="filled-value">{{beneficiary.Name}}</span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Contractor)'">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Contractor</label>
+
+                                    <input type="hidden" ng-model="item.Contractor"
+                                           ng-class="{'input-validation-error': !item.IsContractorValid}"
+                                           ui-select2="{ allowClear: true, placeholder: ' ', query: loadContractorsNomenclature }"
+                                           ng-change="clearContractContractors(item)" />
+
+                                    <input ng-class="{'input-validation-error': !item.IsContractorValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Contractor.Id"
+                                           value="{{ item.Contractor.id }}" class="validation-error-key" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Contractor.Name"
+                                           value="{{ item.Contractor.Name }}" />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.ContractContractor</label>
+
+                                    <input type="hidden" ng-model="item.ContractContractor"
+                                           ng-class="{'input-validation-error': !item.IsContractContractorValid}"
+                                           ui-select2="contractsConfig(item)"
+                                           ng-change="clearBudgetActivities(item)" />
+
+                                    <input ng-class="{'input-validation-error': !item.IsContractContractorValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ContractContractor.Id"
+                                           value="{{ item.ContractContractor.id }}" class="validation-error-key" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ContractContractor.Name"
+                                           value="{{ item.ContractContractor.Name }}" />
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="clearfix" style="margin-top:20px;">
+                                <div class="form-group col-md-12">
+                                    <table class="chart-info dynamic-rows" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:200px; width:50%;">@CostSupportingDocument.BudgetDetail</th>
+                                                <th style="min-width:200px; width:50%;">@CostSupportingDocument.ContractActivity</th>
+                                                <th style="min-width:100px; width:100px;">@CostSupportingDocument.BudgetItemTotalAmount</th>
+                                                <th colspan="2">@Global.Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat-start="(index2, budgetItem) in item.FinanceReportBudgetItemDataCollection" style="display:none;"></tr>
+                                            <tr>
+                                                <td style="word-break: break-all">
+                                                    {{budgetItem.BudgetDetail.Name}}
+                                                </td>
+                                                <td style="word-break: break-all">
+                                                    {{budgetItem.ContractActivity.Name}}
+                                                </td>
+                                                <td>
+                                                    {{budgetItem.TotalAmount}}
+                                                </td>
+                                                <td style="width: 130px;">
+                                                    <a title="" id="{{budgetItem.editTriggerId}}" class="history-btn" history-btn>
+                                                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                                                    </a>
+                                                </td>
+                                                <td style="width: 130px;">
+                                                    <a class="delete-btn" confirm-click="delBudgetItem(item, budgetItem, index1)">@Global.DeleteButton</a>
+                                                </td>
+                                            </tr>
+                                            <tr class="history-table">
+                                                <td colspan="5">
+                                                    <div class="history-table-wrapper clearfix">
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.BudgetDetail</label>
+                                                                <input type="hidden" ng-model="budgetItem.BudgetDetail"
+                                                                       ng-class="{'input-validation-error': !budgetItem.IsBudgetDetailValid}"
+                                                                       ui-select2="budgetDetailsConfig(item, budgetItem)" />
+
+                                                                <input ng-class="{'input-validation-error': !budgetItem.IsBudgetDetailValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].BudgetDetail.Id"
+                                                                       value="{{ budgetItem.BudgetDetail.id }}" class="validation-error-key" />
+                                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].BudgetDetail.Name"
+                                                                       value="{{ budgetItem.BudgetDetail.Name }}" />
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.ContractActivity</label>
+                                                                <input type="hidden" ng-model="budgetItem.ContractActivity"
+                                                                       ng-class="{'input-validation-error': !budgetItem.IsContractActivityValid}"
+                                                                       ui-select2="contractActivitiesConfig(item, budgetItem)" />
+
+                                                                <input ng-class="{'input-validation-error': !budgetItem.IsContractActivityValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].ContractActivity.Id"
+                                                                       value="{{ budgetItem.ContractActivity.id }}" class="validation-error-key" />
+                                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].ContractActivity.Name"
+                                                                       value="{{ budgetItem.ContractActivity.Name }}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.AdvancePayment</label>
+                                                                <div class="filled-value">{{budgetItem.AdvancePayment.Description}}</div>
+
+                                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].AdvancePayment.Description"
+                                                                       value="{{ budgetItem.AdvancePayment.Description }}" />
+                                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].AdvancePayment.Value"
+                                                                       value="{{ budgetItem.AdvancePayment.Value }}" />
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label>@CostSupportingDocument.IsVatAmount</label>
+                                                                <boolean-radio ng-model="budgetItem.IsVatAmount" resources="resourcesObjectBoolean" path="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].IsVatAmount"></boolean-radio>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <label>@CostSupportingDocument.GrandAmount</label>
+                                                                <input sc-validation-popover type="text" ng-class="{'input-validation-error': !budgetItem.IsGrandAmountValid}" ng-change="sumTotalAmount(index1)" money max-value="999999999" ng-model="budgetItem.GrandAmount" name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].GrandAmount" class="form-control sum-field" />
+                                                                <input type="hidden" sc-validation-popover ng-model="budgetItem.TotalAmount"
+                                                                       name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection[{{ index2 }}].TotalAmount" class="form-control sum-field"
+                                                                       value="{{budgetItem.TotalAmount = (((1 * budgetItem.GrandAmount) || 0)).toFixed(2)}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-repeat-end style="display:none;"></tr>
+                                        </tbody>
+                                    </table>
+                                    <a name="@(Html.GetNameFor(m => m))[{{ index1 }}].FinanceReportBudgetItemDataCollection" class="add-new-btn" ng-click="addBudgetItem(item)">@Global.AddButton</a>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper form-group col-md-12" style="margin-top:20px;">
+                                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                                <table class="chart-info dynamic-rows file-upload" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@AttachedDocument.DocumentType</th>
+                                            <th>@AttachedDocument.VersionNumber</th>
+                                            <th>@AttachedDocument.ActivationDate</th>
+                                            <th>@AttachedDocument.Description</th>
+                                            <th colspan="2">@AttachedDocument.FileName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="(index2, attachedDocumentItem) in item.AttachedDocumentCollection" style="display:none;"></tr>
+                                        <tr>
+                                            <td style="min-width:200px;">
+                                                <div ng-if="isCurrentVersion(attachedDocumentItem)" style="display:block; width:100%;">
+                                                    <sc-nomenclature ng-class="{'input-validation-error': !attachedDocumentItem.IsTypeValid}" sc-alias="GetContractReportDocumentTypes" ng-model="attachedDocumentItem.Type">
+                                                    </sc-nomenclature>
+                                                    <input ng-class="{'input-validation-error': !attachedDocumentItem.IsTypeValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.id"
+                                                           value="{{ attachedDocumentItem.Type.id }}" class="validation-error-key" />
+                                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name"
+                                                           value="{{ attachedDocumentItem.Type.Name }}" />
+                                                </div>
+                                                <div ng-if="!isCurrentVersion(attachedDocumentItem)" style="display:block; width:100%;">
+                                                    <span>{{attachedDocumentItem.Type.Name}}</span>
+                                                </div>
+                                            </td>
+                                            <td style="min-width:100px;">
+                                                {{attachedDocumentItem.RegNumber}}
+                                            </td>
+                                            <td style="min-width:150px;">
+                                                {{attachedDocumentItem.ActivationDate}}
+                                            </td>
+                                            <td style="width:60%;">
+                                                <textarea rows="1" style="height:29px; margin-top:5px;" auto-grow ng-class="{'input-validation-error': !attachedDocumentItem.IsDescriptionValid}" ng-model="attachedDocumentItem.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentCollection[{{ index2 }}].Description" class="form-control"></textarea>
+                                            </td>
+                                            <td style="min-width:190px;">
+                                                <sc-file ng-if="isCurrentVersion(attachedDocumentItem)"
+                                                         path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentCollection[{{ index2 }}].AttachedDocumentContent"
+                                                         resources="resourcesObject"
+                                                         url="{{ url }}"
+                                                         ng-model="attachedDocumentItem.AttachedDocumentContent">
+                                                </sc-file>
+                                                <div ng-if="!isCurrentVersion(attachedDocumentItem)
+                                                     && attachedDocumentItem.AttachedDocumentContent
+                                                     && attachedDocumentItem.AttachedDocumentContent.FileName
+                                                     && attachedDocumentItem.AttachedDocumentContent.BlobContentId"
+                                                     class="files">
+                                                    <p>{{attachedDocumentItem.AttachedDocumentContent.FileName}}</p>
+                                                    <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{attachedDocumentItem.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                </div>
+                                            </td>
+                                            <td style="min-width:102px;">
+                                                <a ng-if="isCurrentVersion(attachedDocumentItem) || !attachedDocumentItem.AttachedDocumentContent.BlobContentId" class="delete-btn" confirm-click="delAttachedDocumentItem(item, attachedDocumentItem)">@Global.DeleteButton</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end style="display:none;"></tr>
+                                    </tbody>
+                                </table>
+                                <a name="@(Html.GetNameFor(m => m))[{{ index1 }}].AttachedDocumentCollection" class="add-new-btn" ng-click="addAttachedDocumentItem(item)">@Global.AddButton</a>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr class="history-table" ng-if="item.isOpen && item.IsLocked" style="display: table-row;">
+                    <td colspan="8">
+                        <div class="history-table-wrapper clearfix" style="display: block;">
+                            <div class="clearfix">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Type</label>
+                                    <span class="filled-value">{{item.CostSupportingDocumentType.Description}}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-group col-md-12">
+                                    <label>@CostSupportingDocument.Description</label>
+                                    <span class="filled-value">{{item.CostSupportingDocumentDescription}}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.Number</label>
+                                    <span class="filled-value">{{item.Number}}</span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.Date</label>
+                                    <span class="filled-value">{{item.Date}}</span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>@CostSupportingDocument.PaymentDate</label>
+                                    <span class="filled-value">{{item.PaymentDate}}</span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Beneficiary)'">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Beneficiary</label>
+                                    <span class="filled-value">{{beneficiary.Name}}</span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Partner)'">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Partner</label>
+                                    <span class="filled-value">{{item.Partner.Name}}</span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-if="item.CompanyType == '@(R_09986.CompanyTypeNomenclature.Contractor)'">
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.Contractor</label>
+                                    <span class="filled-value">{{item.Contractor.Name}}</span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>@CostSupportingDocument.ContractContractor</label>
+                                    <span class="filled-value">{{item.ContractContractor.Name}}</span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" style="margin-top:20px;">
+                                <div class="form-group col-md-12">
+                                    <table class="chart-info dynamic-rows" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:200px; width:50%;">@CostSupportingDocument.BudgetDetail</th>
+                                                <th style="min-width:200px; width:50%;">@CostSupportingDocument.ContractActivity</th>
+                                                <th style="min-width:100px; width:100px;">@CostSupportingDocument.BudgetItemTotalAmount</th>
+                                                <th colspan="2">@Global.Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat-start="(index2, budgetItem) in item.FinanceReportBudgetItemDataCollection" style="display:none;"></tr>
+                                            <tr>
+                                                <td style="word-break: break-all">
+                                                    {{budgetItem.BudgetDetail.Name}}
+                                                </td>
+                                                <td style="word-break: break-all">
+                                                    {{budgetItem.ContractActivity.Name}}
+                                                </td>
+                                                <td>
+                                                    {{budgetItem.TotalAmount.toFixed(2)}}
+                                                </td>
+                                                <td style="width: 130px;">
+                                                    <a title="" id="{{budgetItem.editTriggerId}}" class="history-btn" history-btn>
+                                                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                                    </a>
+                                                </td>
+                                                <td style="width: 130px;">
+                                                </td>
+                                            </tr>
+                                            <tr class="history-table">
+                                                <td colspan="5">
+                                                    <div class="history-table-wrapper clearfix">
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.BudgetDetail</label>
+                                                                <span class="filled-value">{{budgetItem.BudgetDetail.Name}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.ContractActivity</label>
+                                                                <span class="filled-value">{{budgetItem.ContractActivity.Name}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-4">
+                                                                <label>@CostSupportingDocument.GrandAmount</label>
+                                                                <span class="filled-value">{{budgetItem.GrandAmount.toFixed(2)}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label>@CostSupportingDocument.SelfAmount</label>
+                                                                <span class="filled-value">{{budgetItem.SelfAmount.toFixed(2)}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label>@CostSupportingDocument.BudgetItemTotalAmount</label>
+                                                                <span class="filled-value">{{budgetItem.TotalAmount.toFixed(2)}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-4">
+                                                                <label>@CostSupportingDocument.CrossFinancing</label>
+                                                                <span class="filled-value">{{budgetItem.CrossFinancing.Description}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label>@CostSupportingDocument.IsVatAmount</label>
+                                                                <span class="filled-value">{{budgetItem.IsVatAmount ? 'Да' : 'Не'}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.UnitDefinition</label>
+                                                                <span class="filled-value">{{budgetItem.UnitDefinition}}</span>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+                                                                <label>@CostSupportingDocument.ProducedUnitsCount</label>
+                                                                <span class="filled-value">{{budgetItem.ProducedUnitsCount}}</span>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3">
+                                                                <label>@CostSupportingDocument.UnitCost</label>
+                                                                <span class="filled-value">{{budgetItem.UnitCost.toFixed(2)}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.InsideEU</label>
+                                                                <span class="filled-value">{{budgetItem.InsideEU.Description}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.OutsideEU</label>
+                                                                <span class="filled-value">{{budgetItem.OutsideEU.Description}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.OutsideEUInProgrammingAreaEFRR</label>
+                                                                <span class="filled-value">{{budgetItem.OutsideEUInProgrammingAreaEFRR.Description}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.ThirdCountriesEFRR</label>
+                                                                <span class="filled-value">{{budgetItem.ThirdCountriesEFRR.Description}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.AdvancePayment</label>
+                                                                <span class="filled-value">{{budgetItem.AdvancePayment.Description}}</span>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label>@CostSupportingDocument.ContributionNature</label>
+                                                                <span class="filled-value">{{budgetItem.ContributionNature.Description}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-repeat-end style="display:none;"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper form-group col-md-12" style="margin-top:20px;">
+                                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                                <table class="chart-info dynamic-rows file-upload" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:17%;">@AttachedDocument.DocumentType</th>
+                                            <th style="width:9%;">@AttachedDocument.VersionNumber</th>
+                                            <th style="width:14%;">@AttachedDocument.ActivationDate</th>
+                                            <th style="width:30%;">@AttachedDocument.Description</th>
+                                            <th style="width:30%;">@AttachedDocument.FileName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="(index2, attachedDocumentItem) in item.AttachedDocumentCollection" style="display:none;"></tr>
+                                        <tr>
+                                            <td>
+                                                {{attachedDocumentItem.Type.Name}}
+                                            </td>
+                                            <td>
+                                                {{attachedDocumentItem.RegNumber}}
+                                            </td>
+                                            <td>
+                                                {{attachedDocumentItem.ActivationDate}}
+                                            </td>
+                                            <td>
+                                                <span class="filled-value">{{attachedDocumentItem.Description}}</span>
+                                            </td>
+                                            <td>
+                                                <sc-file ng-if="isCurrentVersion(attachedDocumentItem)"
+                                                         path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentCollection[{{ index2 }}].AttachedDocumentContent"
+                                                         resources="resourcesObject"
+                                                         url="{{ url }}"
+                                                         ng-model="attachedDocumentItem.AttachedDocumentContent">
+                                                </sc-file>
+                                                <div ng-if="!isCurrentVersion(attachedDocumentItem)
+                                                     && attachedDocumentItem.AttachedDocumentContent
+                                                     && attachedDocumentItem.AttachedDocumentContent.FileName
+                                                     && attachedDocumentItem.AttachedDocumentContent.BlobContentId"
+                                                     class="files">
+                                                    <p>{{attachedDocumentItem.AttachedDocumentContent.FileName}}</p>
+                                                    <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{attachedDocumentItem.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end style="display:none;"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

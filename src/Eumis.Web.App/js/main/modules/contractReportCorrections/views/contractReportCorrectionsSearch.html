@@ -1,0 +1,36 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contractReportCorrectionProgrammes'" mode="id" ng-model="filters.programmeId" l10n-text="contractReportCorrections_searchContractReportCorrections_programme" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'contractReportCorrectionTypes'" mode="id" ng-model="filters.type" l10n-text="contractReportCorrections_searchContractReportCorrections_type" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'contractReportCorrectionStatuses'" mode="id" ng-model="filters.status" l10n-text="contractReportCorrections_searchContractReportCorrections_status" class="col-sm-2"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportCorrections_searchContractReportCorrections_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="contractReportCorrections_searchContractReportCorrections_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.contractReportCorrections.new' }"
+      ng-disabled="!$canDo('ContractReportCorrectionListActions.Create')" style="margin-right: 5px;"></sc-button>
+
+    <sc-datatable items="contractReportCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReportCorrections.view.basicData', params: { id: item.contractReportCorrectionId }}"
+          ng-disabled="!$canDo('ContractReportCorrectionActions.View', item.contractReportCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="contractReportCorrections_searchContractReportCorrections_programme">
+      </sc-column>
+      <sc-column data="statusDescr" title="contractReportCorrections_searchContractReportCorrections_status">
+      </sc-column>
+      <sc-column data="regNumber" title="contractReportCorrections_searchContractReportCorrections_regNumber">
+      </sc-column>
+      <sc-column data="type" title="contractReportCorrections_searchContractReportCorrections_type">
+      </sc-column>
+      <sc-column data="correctedApprovedBfpTotalAmount" title="contractReportCorrections_searchContractReportCorrections_correctedApprovedBfpTotalAmount" type="money">
+      </sc-column>
+      <sc-column data="date" title="contractReportCorrections_searchContractReportCorrections_date" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

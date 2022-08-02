@@ -1,0 +1,27 @@
+<div class="tab-content">
+  <ng-form name="newTemplateForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="pTemplates_new_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="pTemplates_new_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="pTemplates_new_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row" >
+          <sc-field type="text" ng-model="newPermissionTemplate.name" l10n-text="pTemplates_new_name" ng-required="true" class="col-sm-4"
+            sc-validate="{ isNameExist: isNameExist }"
+            validations="{ isNameExist: 'errorTexts_permissionTemplateNameExist' }"
+          >
+          </sc-field>
+        </div>
+        <eumis-permissions name="permissionsForm" ng-model="newPermissionTemplate.userPermissions"></eumis-permissions>
+      </div>
+    </div>
+  </ng-form>
+</div>

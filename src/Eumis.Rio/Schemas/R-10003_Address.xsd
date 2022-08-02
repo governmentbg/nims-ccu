@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10003" 
+	xmlns="http://ereg.egov.bg/segment/R-10003" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="Address">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Адрес</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Country" type="pun:PublicNomenclature" minOccurs="0" />
+			<xsd:element name="Settlement" type="pun:PublicNomenclature" minOccurs="0" />
+			<xsd:element name="PostCode" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Street" type="xsd:string" minOccurs="0" />
+			<xsd:element name="FullAddress" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

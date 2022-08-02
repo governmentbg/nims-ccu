@@ -1,0 +1,42 @@
+<ng-form name="editProjectVersionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projectDossier_editProjectVersion_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="projectDossier_editProjectVersion_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : projectVersion.status === 'archive'}">
+      <eumis-project-version name="projectVersionForm" ng-model="projectVersion"></eumis-project-version>
+
+      <div class="row" ng-show="!editMode">
+        <eumis-structured-document text="projectDossier_editProjectVersion_template" document="projectVersion" gid="projectVersion.xmlGid" view-mode
+           class="col-sm-4 col-md-3">
+        </eumis-structured-document>
+      </div>
+
+      <div ng-show="projectVersion.projectFile">
+        <label class="control-label" style="width: 100%;" l10n-text="projectDossier_editProjectVersion_file" ></label>
+        <div class="row">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{projectVersion.projectFile.url}}" sc-access-token title="{{projectVersion.projectFile.name}}">
+              <span class="glyphicon glyphicon-file">{{projectVersion.projectFile.name}}</span>
+            </a>
+          </div>
+        </div>
+
+        <label class="control-label" style="width: 100%;" l10n-text="projectDossier_editProjectVersion_signatures" ></label>
+        <div class="row" ng-repeat="pfs in projectVersion.projectFileSignatures">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{pfs.url}}" sc-access-token title="{{pfs.name}}">
+              <span class="glyphicon glyphicon-file">{{pfs.name}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

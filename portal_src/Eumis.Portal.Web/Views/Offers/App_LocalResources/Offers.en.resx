@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnnouncementsOffers" xml:space="preserve">
+    <value>Tenders and Offers</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="ArchivedProcurement" xml:space="preserve">
+    <value>Archive of advertisements for collecting offers</value>
+  </data>
+  <data name="Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Name (Beneficiary name from Grants contract)</value>
+  </data>
+  <data name="CompanyUin" xml:space="preserve">
+    <value>UIN</value>
+  </data>
+  <data name="CompanyUinType" xml:space="preserve">
+    <value>UIN ((Beneficiary UIN from Grants contract)</value>
+  </data>
+  <data name="ConfirmationWithdrawOffer" xml:space="preserve">
+    <value>Are you sure you want to withdraw the offer? Please note that it will not be visible to the beneficiary.</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Signed contract</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DifferentiatedPosition" xml:space="preserve">
+    <value>Lot</value>
+  </data>
+  <data name="DraftOffers" xml:space="preserve">
+    <value>Draft Offers</value>
+  </data>
+  <data name="ErrandArea" xml:space="preserve">
+    <value>Procedure objective</value>
+  </data>
+  <data name="ErrandLegalAct" xml:space="preserve">
+    <value>Applicable legal act</value>
+  </data>
+  <data name="ErrandType" xml:space="preserve">
+    <value>Procedure type</value>
+  </data>
+  <data name="ExpectedAmount" xml:space="preserve">
+    <value>Estimated value according the announcement</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="IsAnnounced" xml:space="preserve">
+    <value>Announced</value>
+  </data>
+  <data name="IsTerminated" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="NoOffersFound" xml:space="preserve">
+    <value>No offers found in the system.</value>
+  </data>
+  <data name="NoticeDate" xml:space="preserve">
+    <value>Announcement date of procedure for external assignment</value>
+  </data>
+  <data name="OfferDetailsNotAuthenticated" xml:space="preserve">
+    <value>On this page you can see the tender, the deadline and all the documents required for submission. If you have not accessed the system through a profile, the functionality for creating a new offer is not available. In order to create and submit an offer, you need to be logged in or to create a profile from the "Login" menu</value>
+  </data>
+  <data name="OffersDeadlineDate" xml:space="preserve">
+    <value>Offers submission deadline</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="PreviewProcurement" xml:space="preserve">
+    <value>Review of the tender</value>
+  </data>
+  <data name="ProcurementSubject" xml:space="preserve">
+    <value>Procedure subject</value>
+  </data>
+  <data name="RankedOffersCount" xml:space="preserve">
+    <value>Number of ranked offers</value>
+  </data>
+  <data name="ReviewSubmittedOffer" xml:space="preserve">
+    <value>Submitted offer review</value>
+  </data>
+  <data name="SubmissionDate" xml:space="preserve">
+    <value>Sumission date</value>
+  </data>
+  <data name="SubmittedOffers" xml:space="preserve">
+    <value>Submitted Offers</value>
+  </data>
+  <data name="SubmittedOffersCount" xml:space="preserve">
+    <value>Submitted offers count</value>
+  </data>
+  <data name="SubmmitOffer" xml:space="preserve">
+    <value>Submit an offer</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>Withdraw</value>
+  </data>
+</root>

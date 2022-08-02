@@ -1,0 +1,65 @@
+﻿using System;
+using System.Linq.Expressions;
+using System.Reflection;
+
+namespace Eumis.Data.Linq
+{
+    internal class ExpressionExpander : ExpressionVisitor
+    {
+        internal ExpressionExpander()
+        {
+        }
+
+        protected override Expression VisitMethodCall(MethodCallExpression m)
+        {
+            // Expand calls to an expression's Compile() method:
+            if (m.Method.Name == "Compile" && m.Object is MemberExpression)
+            {
+                var me = (MemberExpression)m.Object;
+                Expression newExpr = this.TransformExpr(me);
+                if (newExpr != me)
+                {
+                    return newExpr;
+                }
+            }
+
+            return base.VisitMethodCall(m);
+        }
+
+        private Expression TransformExpr(MemberExpression input)
+        {
+            // Collapse captured outer variables
+            if (input == null
+                || !(input.Member is FieldInfo)
+                || !input.Member.ReflectedType.IsNestedPrivate
+                || !input.Member.ReflectedType.Name.StartsWith("<>"))
+            {
+                return input;
+            }
+
+            if (input.Expression is ConstantExpression)
+            {
+                object obj = ((ConstantExpression)input.Expression).Value;
+                if (obj == null)
+                {
+                    return input;
+                }
+
+                Type t = obj.GetType();
+                if (!t.IsNestedPrivate || !t.Name.StartsWith("<>"))
+                {
+                    return input;
+                }
+
+                FieldInfo fi = (FieldInfo)input.Member;
+                object result = fi.GetValue(obj);
+                if (result is Expression)
+                {
+                    return this.Visit((Expression)result);
+                }
+            }
+
+            return input;
+        }
+    }
+}

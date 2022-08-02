@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button ng-if="status === 'draft'" name="chooseItemsBtn" btn-click="chooseItems()" text="procedureMassCommunications_procedureMassCommunicationRecipientsSearch_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProcedureMassCommunicationActions.Edit', communicationId)"></sc-button>
+
+    <sc-datatable items="recipients" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.data', params: {id: item.contractId} }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+        <sc-button ng-if="status === 'draft'" name="delBtn" btn-click="delItem(item.contractId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+           ng-disabled="!$canDo('ProcedureMassCommunicationActions.Edit', communicationId)"></sc-button>
+      </sc-column>
+      <sc-column data="contractRegNumber" title="procedureMassCommunications_procedureMassCommunicationRecipientsSearch_contractRegNumber">
+      </sc-column>
+      <sc-column data="contractName" title="procedureMassCommunications_procedureMassCommunicationRecipientsSearch_contractName">
+      </sc-column>
+      <sc-column data="contractDate" title="procedureMassCommunications_procedureMassCommunicationRecipientsSearch_contractDate" type="date">
+      </sc-column>
+      <sc-column data="beneficiaryName" title="procedureMassCommunications_procedureMassCommunicationRecipientsSearch_beneficiaryName">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

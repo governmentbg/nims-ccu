@@ -1,0 +1,14 @@
+﻿<ng-form name="messageNoteForm" sc-validate="{}">
+  <div class="modal-body message-modal-body">
+    <h5 l10n-text="{{l10nConfirmMessage}}"></h5>
+    <div class="row">
+      <sc-field type="textarea" rows="3" ng-model="model.note" ng-required="true" l10n-text="{{l10nNoteLabel}}" class="col-sm-12"></sc-field>
+    </div>
+  </div>
+  <div class="modal-footer message-modal-footer">
+    <sc-button name="okBtn" btn-click="ok()" text="common_modals_messageNoteModal_ok" class="btn btn-primary btn-sm" icon="glyphicon-ok">
+    </sc-button>
+    <sc-button name="cancelBtn" btn-click="cancel()" text="common_modals_messageNoteModal_cancel" class="btn btn-default btn-sm" icon="glyphicon-ban-circle">
+    </sc-button>
+  </div>
+</ng-form>

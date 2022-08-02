@@ -1,0 +1,36 @@
+﻿@model R_10041.Procurements
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.Procurements</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Procurements, MVC.Private.Procurements.ActionNames.Prepare, MVC.Private.Procurements.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.Procurements.ActionNames.Display, MVC.Private.Procurements.Name, new { area = MVC.Private.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.Procurements.ActionNames.Print, MVC.Private.Procurements.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Private.Procurements.ActionNames.Prepare, MVC.Private.Procurements.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(Model.RemoteValidationWarnings, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Private.Procurements.ActionNames.Prepare, MVC.Private.Procurements.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.Procurements.ActionNames.Prepare, MVC.Private.Procurements.Name, null, new { @class = "blue-button small back left" })
+                @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.Procurements.ActionNames.Submit, MVC.Private.Procurements.Name, null, new { @class = "blue-button wait" })
+                @*@Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.Procurements.ActionNames.Finish, MVC.Private.Procurements.Name, null, new { @class = "blue-button wait", style="background: red;" })*@
+            </div>
+        </div>
+    </div>
+</div>

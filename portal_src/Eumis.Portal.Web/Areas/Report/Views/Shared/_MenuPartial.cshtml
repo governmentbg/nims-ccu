@@ -1,0 +1,25 @@
+﻿@using Eumis.Portal.Web.Helpers
+@{
+    string actionName = ViewContext.RouteData.Values["action"] as string;
+    string controllerName = ViewContext.RouteData.Values["controller"] as string;
+    var menuItem = Utils.GetCurrentMenuItem(actionName, controllerName, Request.IsAuthenticated);
+}
+
+<div class="container main-menu">
+    <nav>
+        @Html.ActionLink(Global.HomeButton, MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }
+                , new { @class = menuItem.Equals(MenuItems.Home) ? "active" : "" })
+
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Договори", MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }
+                                          , new { @class = "wait" + (menuItem.Equals(MenuItems.Contract) ? " active" : "") })
+        }
+
+        @Html.ActionLink(Feedback.FeedbackPageTitle, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name, new { area = MVC.Report.Name }
+                , new { @class = menuItem.Equals(MenuItems.Feedback) ? " active" : "" })
+
+        @Html.ActionLink(Global.BreadcrumbsHelp, MVC.Help.ActionNames.Index, MVC.Help.Name, new { area = MVC.Report.Name }
+                , new { @class = menuItem.Equals(MenuItems.Help) ? " active" : "" })
+    </nav>
+</div>

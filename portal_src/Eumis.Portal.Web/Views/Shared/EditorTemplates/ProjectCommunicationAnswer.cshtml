@@ -1,0 +1,44 @@
+﻿@model Eumis.Portal.Web.Models.ProjectCommunicationAnswer.EditVM
+
+@if (Model != null)
+{
+    <h2>@ProjectCommunication.Subject</h2>
+    <section class="clearfix" style="display: block;">
+        <div class="form-group col-md-4">
+            @Html.DisplayFor(m => m.Subject)
+            @Html.HiddenFor(m => m.Subject)
+        </div>
+    </section>
+
+    <h2>@ProjectCommunication.Question</h2>
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = "3", @style = "height:85px;", @readonly = "readonly" })
+            </div>
+        </div>
+    </section>
+
+    if (Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@Message.ContentAttachedDocumentCollection</h2>
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.ContentAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    <h2>@Message.Reply @SymbolsCount.Symbols35000</h2>
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.EditorFor(m => m.Reply, MVC.Shared.Views.EditorTemplates.SymbolsCountTextArea3)
+            </div>
+        </div>
+    </section>
+
+    <h2>@Message.ReplyAttachedDocumentCollection</h2>
+    <section class="clearfix" style="display:block;">
+        @Html.EditorFor(m => m.ReplyAttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.UndefinedAttachedDocumentCollection)
+    </section>
+}

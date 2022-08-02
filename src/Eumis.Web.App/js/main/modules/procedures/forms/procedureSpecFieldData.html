@@ -1,0 +1,21 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="textarea" rows="2" ng-model="model.title" l10n-text="procedures_procedureSpecFieldForm_title" ng-required="true" class="col-sm-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="2" ng-model="model.titleAlt" l10n-text="procedures_procedureSpecFieldForm_titleAlt" class="col-sm-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="4" ng-model="model.description" l10n-text="procedures_procedureSpecFieldForm_description" ng-required="true" class="col-sm-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="4" ng-model="model.descriptionAlt" l10n-text="procedures_procedureSpecFieldForm_descriptionAlt" class="col-sm-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isRequired" mode="id" ng-required="true" l10n-text="procedures_procedureSpecFieldForm_isRequired" class="col-sm-2"></sc-field>
+    <sc-field type="nomenclature" alias="'procedureSpecFieldMaxLengths'" ng-model="model.maxLength" mode="id" ng-required="true" l10n-text="procedures_procedureSpecFieldForm_maxLength" class="col-sm-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="procedures_procedureSpecFieldForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

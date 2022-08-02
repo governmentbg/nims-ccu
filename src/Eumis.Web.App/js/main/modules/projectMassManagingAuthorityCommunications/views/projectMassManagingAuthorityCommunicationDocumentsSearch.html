@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button ng-if="status === 'draft'" name="newDocumentBtn" btn-sref="{ state: 'root.projectMassManagingAuthorityCommunications.view.documents.new' }" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationDocumentsSearch_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProjectMassManagingAuthorityCommunicationActions.Edit', communicationId)"></sc-button>
+
+    <sc-datatable items="documents" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.projectMassManagingAuthorityCommunications.view.documents.edit', params: {ind: item.documentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+        <sc-button ng-if="status === 'draft'" name="delBtn" btn-click="delItem(item.documentId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ProjectMassManagingAuthorityCommunicationActions.Edit', communicationId)">
+        </sc-button>
+      </sc-column>
+      <sc-column data="name" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationDocumentsSearch_name">
+      </sc-column>
+      <sc-column data="description" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationDocumentsSearch_description">
+      </sc-column>
+      <sc-column sortable="false" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationDocumentsSearch_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

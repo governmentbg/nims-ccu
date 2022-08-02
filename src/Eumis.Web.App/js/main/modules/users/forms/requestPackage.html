@@ -1,0 +1,56 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row" ng-if="model.endedMessage">
+    <sc-field type="textarea" rows="3" ng-model="model.endedMessage" ng-readonly="true" l10n-text="requestPackages_edit_endedMessage" class="col-sm-7 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'requestPackageTypes'" mode="id" ng-model="model.type" ng-required="true" ng-disabled="true" l10n-text="requestPackages_requestPackagesForm_type" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'requestPackageStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-disabled="true" l10n-text="requestPackages_requestPackagesForm_status" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row" ng-if="!isDirect">
+    <sc-field type="nomenclature" alias="'userOrganizations'" mode="id" ng-model="model.userOrganizationId" ng-required="true" ng-disabled="!isNew" l10n-text="requestPackages_requestPackagesForm_userOrganizationId" class="col-sm-7 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.code" ng-readonly="true" l10n-text="requestPackages_requestPackagesForm_code" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="requestPackages_requestPackagesForm_createDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.packageDescription" l10n-text="requestPackages_requestPackagesForm_packageDescription" class="col-sm-7 col-md-5"></sc-field>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div style="padding-bottom: 20px;">
+        <h5 class="table-header pull-left" l10n-text="requestPackages_requestPackagesForm_documents"></h5>
+        <sc-button name="newBtn" btn-click="addDocument()" ng-if="shownDocumentsIndexes.length < maxDocumentsAllowed" ng-disabled="form.$readonly" style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary" text="requestPackages_requestPackagesForm_addDocument"></sc-button>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <th l10n-text="requestPackages_requestPackagesForm_file" style="width: 25%"></th>
+          <th l10n-text="requestPackages_requestPackagesForm_description"></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="index in shownDocumentsIndexes track by $index">
+            <td>
+              <div class="form-group" sc-has-error="{{'file' + index}}">
+                <sc-validation-error field-name="{{'file' + index}}" validations="{eumisMaxBlobSize: 'default'}"></sc-validation-error>
+                <sc-file ng-model="model['file' + index]" ng-readonly="form.$readonly" name="{{'file' + index}}" url-template="RequestPackageFile" url-params="{id: model.requestPackageId}" ng-change="docFileChange(index)" eumis-max-blob-size></sc-file>
+              </div>
+            </td>
+            <td>
+              <sc-text ng-model="model['description' + index]" ng-readonly="!model['file' + index] || form.$readonly"></sc-text>
+            </td>
+            <td style="white-space: nowrap; padding: 4px; width: 20px; padding-top: 11px;">
+              <sc-button name="deleteBtn" btn-click="deleteDocument(index)" ng-disabled="form.$readonly" class="btn btn-danger btn-xs" icon="glyphicon-remove"></sc-button>
+            </td>
+          </tr>
+          <tr ng-if="!shownDocumentsIndexes.length">
+            <td colspan="8" class="text-center" l10n-text="requestPackages_requestPackagesForm_noDocuments"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-form>

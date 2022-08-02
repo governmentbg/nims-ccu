@@ -1,0 +1,87 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_concludedContractsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_concludedContractsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_concludedContractsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_concludedContractsReport_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_concludedContractsReport_toDate" class="col-sm-2"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'currencies'" mode="id" ng-model="filters.currency" l10n-text="monitoring_concludedContractsReport_currency" class="col-sm-3 col-md-2"></sc-field>
+          <sc-field type="text" ng-model="filters.uin" l10n-text="monitoring_concludedContractsReport_uin" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-7">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_concludedContractsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractContractRegNum"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_companyName"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_companyUin"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractDate"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractRegNum"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractCompanyName"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractCompanyUin"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractCompanyType"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractCompanyLegalType"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_contractContractName"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_errandArea"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_errandLegalAct"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_errandType"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_maPreliminaryControl"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_ppaPreliminaryControl"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_totalFundedValue"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_subcontractors"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_unionMembers"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_reportedTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_approvedTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_concludedContractsReport_financialCorrectionTotalAmount"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="concludedContract in concludedContracts">
+                <td>{{concludedContract.contractContractRegNum}}</td>
+                <td>{{concludedContract.companyName}}</td>
+                <td>{{concludedContract.companyUin}}</td>
+                <td>{{concludedContract.contractDate | date:'dd.MM.yyyy'}}</td>
+                <td>{{concludedContract.contractRegNum}}</td>
+                <td>{{concludedContract.contractCompanyName}}</td>
+                <td>{{concludedContract.contractCompanyUin}}</td>
+                <td>{{concludedContract.contractCompanyType}}</td>
+                <td>{{concludedContract.contractCompanyLegalType}}</td>
+                <td>{{concludedContract.contractContractName}}</td>
+                <td>{{concludedContract.errandArea}}</td>
+                <td>{{concludedContract.errandLegalAct}}</td>
+                <td>{{concludedContract.errandType}}</td>
+                <td>{{concludedContract.maPreliminaryControl}}</td>
+                <td>{{concludedContract.ppaPreliminaryControl}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{concludedContract.totalFundedValue | money}}</td>
+                <td>{{concludedContract.subcontractors}}</td>
+                <td>{{concludedContract.unionMembers}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{concludedContract.reportedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{concludedContract.approvedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{concludedContract.financialCorrectionTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="concludedContracts.length === 0">
+                <td colspan="35" class="text-center" l10n-text="monitoring_concludedContractsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

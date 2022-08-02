@@ -1,0 +1,65 @@
+﻿<div class="lang-login">
+
+    <div class="lang-clock">
+        <ul class="clock" style="display:none;">
+            <li class="hidden-xs hidden-sm hidden-md" id="day">@DateTime.Now.Day.ToString("00")</li>
+            <li class="hidden-xs hidden-sm hidden-md" id="point">.</li>
+            <li class="hidden-xs hidden-sm hidden-md" id="month">@DateTime.Now.Month.ToString("00")</li>
+            <li class="hidden-xs hidden-sm hidden-md" id="point">.</li>
+            <li class="hidden-xs hidden-sm hidden-md" id="year">@DateTime.Now.Year.ToString("00")</li>
+            <li class="hidden-xs hidden-sm hidden-md">&nbsp;@Global.YearsShort&nbsp;</li>
+
+            <li id="hours"> </li>
+            <li id="point">:</li>
+            <li id="min"> </li>
+            <li>@Global.HoursShort</li>
+        </ul>
+    </div>
+
+    @if (Request.IsAuthenticated)
+    {
+        <script>
+          if (typeof dtrum !== "undefined") {
+            dtrum.identifyUser("@CurrentUser.Email");
+          }     
+        </script>
+
+        <span class="welcome">
+            @Global.User: <strong>@CurrentUser.FirstName @CurrentUser.LastName</strong>
+        </span>
+        <div class="btn-group nav-dropdown">
+            @if (CurrentUser.UserType == ReportUserType.Parent)
+            {
+                <a class="dropdown-toggle login" data-toggle="dropdown">@Global.BreadcrumbsProfile <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    @if (CurrentUser.UserType == ReportUserType.Parent)
+                    {
+                        <li><a href="@Url.Action(MVC.Report.Account.ActionNames.ProfileEdit, MVC.Report.Account.Name, new {area = MVC.Report.Name})"><span class="glyphicon glyphicon-user"></span> @ProfileEdit.Profile</a></li>
+                        <li><a href="@Url.Action(MVC.Report.Account.ActionNames.ChangePassword, MVC.Report.Account.Name, new {area = MVC.Report.Name})"><span class="glyphicon glyphicon-cog"></span> @ProfileEdit.ChangePassword</a></li>
+                    }
+                    <li>
+                        <a href="@Url.Action(MVC.Report.Account.ActionNames.Logout, MVC.Report.Account.Name, new {area = MVC.Report.Name})"
+                           data-toggle="confirmation-no-title" data-placement="bottom"
+                           data-title="Ако имате отворен документ за редакция, няма да можете да запазите направените от Вас промени. Сигурни ли сте, че искате да излезете?">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            @Global.Logout
+                        </a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <a class="login" href="@Url.Action(MVC.Report.Account.ActionNames.Logout, MVC.Report.Account.Name, new {area = MVC.Report.Name})"
+                   data-toggle="confirmation-no-title" data-placement="bottom"
+                   data-title="Ако имате отворен документ за редакция, няма да можете да запазите направените от Вас промени. Сигурни ли сте, че искате да излезете?">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    @Global.Logout
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        @Html.ActionLink(Global.Login, MVC.Report.Account.ActionNames.Login, MVC.Report.Account.Name, new { area = MVC.Report.Name }, new { @class = "login" })
+    }
+</div>

@@ -1,0 +1,129 @@
+﻿@model R_10002.ProjectBasicData
+
+@{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+
+    bool isSelection = Model != null && Model.ApplicationFormType != null && Eumis.Documents.Enums.ApplicationFormTypeNomenclature.StandardWithPreliminarySelection.Code.Equals(Model.ApplicationFormType.Value);
+
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var model = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    var resourcesObjectNuts = new
+    {
+        NutsLevel = NutsAddress.NutsLevel,
+        Country = NutsAddress.Country,
+        ProtectedZone = NutsAddress.ProtectedZone,
+        Nuts1 = NutsAddress.Nuts1,
+        Nuts2 = NutsAddress.Nuts2,
+        District = NutsAddress.District,
+        Municipality = NutsAddress.Municipality,
+        Settlement = NutsAddress.Settlement,
+        DeleteButton = Global.DeleteButton,
+        AddButton = Global.AddButton
+    };
+    var jsonResourcesObjectNuts = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectNuts);
+
+    var jsonNuts = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.NutsLevelNomenclature()).GetItems());
+}
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        projectBasicData: @(Html.Raw(model)),
+        resourcesObjectBoolean: @(Html.Raw(jsonResourcesObjectBoolean)),
+        resourcesObjectNuts: @(Html.Raw(jsonResourcesObjectNuts)),
+        nuts: @(Html.Raw(jsonNuts)),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerProjectBasicData@(guid)'), ['moduleProjectBasicData']);
+    });
+
+</script>
+
+<div id="containerProjectBasicData@(guid)" data-ng-controller="controllerProjectBasicData" data-ng-init="init('_eumis_options', 'i@(guid)')">
+    @if (isSelection)
+    {
+        <div class="form-group col-md-3">
+            <label>@ProjectBasicData.PreliminarySelectionProjectRegNumber</label>
+            <input type="text" ng-model="model.PreliminarySelectionProjectRegNumber" name="@(Html.GetNameFor(m => m)).PreliminarySelectionProjectRegNumber" class="form-control" />
+        </div>
+    }
+
+    <div class="form-group col-md-9">
+        <label>
+            @if (areFinLabels)
+            {
+                <text>@ProjectBasicData.FinancialIntermediariesName</text>
+            }
+            else
+            {
+                <text>@ProjectBasicData.Name</text>
+            }
+            @SymbolsCount.Symbols400
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsNameValid}" auto-grow ng-model="model.Name" name="@(Html.GetNameFor(m => m)).Name" class="form-control" rows="2" style="height:60px;" readonly></textarea>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsNameValid}" auto-grow ng-model="model.Name" name="@(Html.GetNameFor(m => m)).Name" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@ProjectBasicData.Duration (1-@Model.MaxDuration)</label>
+        <input ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsDurationValid}" type="text" ng-model="model.Duration" name="@(Html.GetNameFor(m => m)).Duration" class="form-control sum-field" readonly />
+        <input valid-number min-value="1" max-value="@Model.MaxDuration" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsDurationValid}" type="text" ng-model="model.Duration" name="@(Html.GetNameFor(m => m)).Duration" class="form-control sum-field" />
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>
+            @if (areFinLabels)
+            {
+                <text>@ProjectBasicData.FinancialIntermediariesNameEN</text>
+            }
+            else
+            {
+                <text>@ProjectBasicData.NameEN</text>
+            }
+
+            @SymbolsCount.Symbols400
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@ProjectBasicData.NameENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsNameEnValid}" auto-grow ng-model="model.NameEN" name="@(Html.GetNameFor(m => m)).NameEN" class="form-control" rows="2" style="height:60px;" readonly></textarea>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsNameEnValid}" auto-grow ng-model="model.NameEN" name="@(Html.GetNameFor(m => m)).NameEN" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <nuts-address ng-model="model.NutsAddress"
+                  nuts="nuts"
+                  global-key="globalKey"
+                  path="@Html.GetNameFor(m => m.NutsAddress)"
+                  resources="resourcesObjectNuts">
+    </nuts-address>
+    <div class="form-group col-md-12">
+        <label>
+            <text>@ProjectBasicData.Description</text>
+            @SymbolsCount.Symbols2000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@ProjectBasicData.DescriptionTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsDescriptionValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Description" name="@(Html.GetNameFor(m => m)).Description" class="form-control" readonly></textarea>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsDescriptionValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Description" name="@(Html.GetNameFor(m => m)).Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group col-md-12">
+        <label>
+            <text>@ProjectBasicData.DescriptionEN</text>
+            @SymbolsCount.Symbols2000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@ProjectBasicData.DescriptionENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsDescriptionEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.DescriptionEN" name="@(Html.GetNameFor(m => m)).DescriptionEN" class="form-control" readonly></textarea>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsDescriptionEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.DescriptionEN" name="@(Html.GetNameFor(m => m)).DescriptionEN" class="form-control"></textarea>
+    </div>
+    <div class="form-group col-md-12">
+        <label>
+            <text>@ProjectBasicData.Purpose</text>
+            @SymbolsCount.Symbols3000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@ProjectBasicData.PurposeTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="model.FillMainData" ng-class="{'input-validation-error': !model.IsPurposeValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Purpose" name="@(Html.GetNameFor(m => m)).Purpose" class="form-control" readonly></textarea>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-if="!model.FillMainData" ng-class="{'input-validation-error': !model.IsPurposeValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Purpose" name="@(Html.GetNameFor(m => m)).Purpose" class="form-control"></textarea>
+    </div>
+</div>
