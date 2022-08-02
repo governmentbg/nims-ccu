@@ -1,0 +1,34 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contractReportCertCorrectionProgrammes'" mode="id" ng-model="filters.programmeId" l10n-text="contractReportCertCorrections_searchContractReportCertCorrections_programme" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'contractReportCertCorrectionTypes'" mode="id" ng-model="filters.type" l10n-text="contractReportCertCorrections_searchContractReportCertCorrections_type" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'contractReportCertCorrectionStatuses'" mode="id" ng-model="filters.status" l10n-text="contractReportCertCorrections_searchContractReportCertCorrections_status" class="col-sm-2"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportCertCorrections_searchContractReportCertCorrections_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="contractReportCertCorrections_searchContractReportCertCorrections_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.contractReportCertCorrections.new' }"
+      ng-disabled="!$canDo('ContractReportCertCorrectionListActions.Create')" style="margin-right: 5px;"></sc-button>
+
+    <sc-datatable items="contractReportCertCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReportCertCorrections.view.basicData', params: { id: item.contractReportCertCorrectionId }}"
+          ng-disabled="!$canDo('ContractReportCertCorrectionActions.View', item.contractReportCertCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="contractReportCertCorrections_searchContractReportCertCorrections_programme">
+      </sc-column>
+      <sc-column data="statusDescr" title="contractReportCertCorrections_searchContractReportCertCorrections_status">
+      </sc-column>
+      <sc-column data="regNumber" title="contractReportCertCorrections_searchContractReportCertCorrections_regNumber">
+      </sc-column>
+      <sc-column data="type" title="contractReportCertCorrections_searchContractReportCertCorrections_type">
+      </sc-column>
+      <sc-column data="date" title="contractReportCertCorrections_searchContractReportCertCorrections_date" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

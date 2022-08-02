@@ -1,0 +1,140 @@
+﻿@model R_10019.CompanyCollection
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+@{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+
+    string bulgaria = Eumis.Documents.Constants.BulgariaId;
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.Mm[i].yyyy" });
+    var resourcesObject = new
+    {
+        Search = Company.Search,
+        PleaseWait = Global.PleaseWait,
+        DataFilled = Company.DataFilled,
+        NoResult = Company.NoResult,
+        ValidationError = Company.ValidationError,
+
+        Uin = Company.Uin,
+        UinType = Company.UinType,
+        Name = string.Format("{0} {1}", Company.Name, SymbolsCount.Symbols200),
+        NameEN = string.Format("{0} {1}", Company.NameEN, SymbolsCount.Symbols200),
+        NameENTooltip = Company.NameENTooltip,
+        CompanyType = Company.CompanyType,
+        CompanyLegalType = Company.CompanyLegalType,
+        IsPrivateLegal = Company.IsPrivateLegal,
+        IsCountryLegal = Company.IsCountryLegal,
+        CompanySizeType = Company.CompanySizeType,
+        KidCodeOrganization = Company.KidCodeOrganization,
+        KidCodeProject = Company.KidCodeProject,
+        FinancialContribution = Company.FinancialContribution,
+        Seat = Company.Seat,
+        Management = Company.Management,
+        Correspondence = Company.Correspondence,
+        Email = Company.Email,
+        Phone1 = Company.Phone1,
+        Phone2 = Company.Phone2,
+        Fax = Company.Fax,
+        CompanyRepresentativePerson = string.Format("{0} {1}", Company.CompanyRepresentativePerson, SymbolsCount.Symbols100),
+        CompanyContactPerson = string.Format("{0} {1}", Company.CompanyContactPerson, SymbolsCount.Symbols100),
+        CompanyContactPersonPhone = Company.CompanyContactPersonPhone,
+        CompanyContactPersonEmail = Company.CompanyContactPersonEmail,
+        Country = Address.Country,
+        Settlement = Address.Settlement,
+        PostCode = Address.PostCode,
+        Street = string.Format("{0} {1}", Address.Street, SymbolsCount.Symbols300),
+        FullAddress = Address.FullAddress,
+        Copy = Address.Copy,
+        Captcha = Global.Captcha,
+        SymbolsCount = Global.SymbolsCount
+    };
+
+    var jsonResourcesObject = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObject);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        partners: @(Html.Raw(jsonModel)),
+        resourcesObject: @(Html.Raw(jsonResourcesObject)),
+        hasValidCount: @(Model.HasValidCount.ToString().ToLower()),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerPartners@(guid)'), ['modulePartners']);
+    });
+
+</script>
+
+<h2 data-section="@Model.SectionNumber" class="section-heading" activation-name="@(guid)" broadcast-name="partnersActivation">
+    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+    @if (isMessageType)
+    {
+        <input type="checkbox" class="bootstrap-switch lock-unlock" readonly="readonly" />
+    }
+    @Model.SectionNumber. @Project.Partner
+    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@String.Format(Company.MaxPartnersHint, Eumis.Documents.Constants.PartnersMaxCount)" data-trigger="hover" alt="" data-original-title="" title="">
+</h2>
+<section data-section="@Model.SectionNumber" class="clearfix">
+    <div class="@(guid)" id="containerPartners@(guid)" ng-controller="controllerPartners" ng-init="init('_eumis_options', 'i@(guid)')">
+        <div ng-if="partners.IsActive" class="table-wrapper">
+            <table class="chart-info" width="100%">
+                <thead>
+                    <tr>
+                        <th>@Company.Name</th>
+                        <th>@Company.Uin</th>
+                        <th>@Company.CompanyType</th>
+                        <th colspan="2">@Company.Actions</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="partner in partners">
+                    <tr>
+                        <td style="width:400px; word-break: break-all">
+                            <div style="display: block; width: 100%;">
+                                {{getDisplayName(partner.Name, partner.NameEN)}}
+                            </div>
+                        </td>
+                        <td style="width:200px; word-break: break-all">
+                            <div style="display: block; width: 100%;">
+                                {{partner.UinType.displayName}} {{partner.Uin}}
+                            </div>
+                        </td>
+                        <td style="width:250px;">
+                            <div style="display: block; width: 100%;">
+                                {{partner.CompanyType.displayName}}
+                            </div>
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" id="{{partner.editTriggerId}}" class="history-btn" ng-click="accordion($index, $event)" ng-class="{'opened': partner.isOpen}" sc-fire-validation-popover="partner.isOpen">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                            </a>
+                        </td>
+                        <td style="width: 130px;">
+                            <a class="delete-btn" confirm-click="delItem(partner)">@Global.DeleteButton</a>
+                        </td>
+                    </tr>
+                    <tr class="history-table" ng-if="partner.isOpen" style="display: table-row;">
+                        <td colspan="5">
+                            <div class="history-table-wrapper clearfix" style="display: table-row;">
+                                <eumis-company partner="partner"
+                                               path="@(Html.GetNameFor(m => m))[{{ $index }}]"
+                                               bg-code="@bulgaria"
+                                               physical-gid="@Eumis.Documents.Constants.CompanyLegalTypePhysicalGid"
+                                               resources="resourcesObject">
+                                </eumis-company>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a ng-class="{'input-validation-error': !hasValidCount}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()" ng-show="partners.length < maxPartners">@Global.AddButton</a>
+            <p class="required-span" ng-show="partners.length >= maxPartners">@String.Format(Company.MaxPartnersReached, Eumis.Documents.Constants.PartnersMaxCount)</p>
+        </div>
+        <div ng-show="!partners.IsActive">
+            <label id="loading">@Global.Loading</label>
+        </div>
+    </div>
+</section>

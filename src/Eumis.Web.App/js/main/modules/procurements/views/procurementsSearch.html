@@ -1,0 +1,27 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newProcurementBtn" btn-sref="{ state: 'root.procurements.new' }" text="procurements_procurementsSearch_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+
+    <sc-datatable items="procurements" filterable="true" pageable="true" sortable="true" dynamic-columns="true"
+      scrollable="false" default-sort="listingDate" default-sort-asc-desc="asc">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewButton"
+          btn-sref="{state: 'root.procurements.view.edit', params: { id: item.procurementId }}"
+          class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="procurements_procurementsSearch_name" width="30%">
+      </sc-column>
+      <sc-column data="status" title="procurements_procurementsSearch_status">
+      </sc-column>
+      <sc-column data="errandArea" title="procurements_procurementsSearch_errandArea">
+      </sc-column>
+      <sc-column data="errandLegalAct" title="procurements_procurementsSearch_errandLegalAct">
+      </sc-column>
+      <sc-column data="ppaNumber" title="procurements_procurementsSearch_pPANumber">
+      </sc-column>
+      <sc-column data="prognosysAmount" title="procurements_procurementsSearch_prognosysAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="financialCorrections_financialCorrectionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.impositionDate" ng-required="true" l10n-text="financialCorrections_financialCorrectionForm_impositionDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'contractContracts'" ng-readonly="model.financialCorrectionId" ng-model="model.contractContractId" params="{contractId: model.contractId}" ng-show="model.contractContractId" l10n-text="financialCorrections_financialCorrectionForm_contractContractId" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'contractBudgetLevel3s'" ng-readonly="model.financialCorrectionId" ng-model="model.contractBudgetLevel3AmountId" params="{contractContractId: model.contractContractId}" ng-show="model.contractBudgetLevel3AmountId" l10n-text="financialCorrections_financialCorrectionForm_contractBudgetLevel3AmountId" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'boolean'" ng-readonly="true" ng-model="model.isDeleted" l10n-text="financialCorrections_financialCorrectionForm_isDeleted" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.isDeletedNote">
+    <sc-field type="textarea" rows="3" ng-model="model.deleteNote" ng-readonly="true" l10n-text="financialCorrections_financialCorrectionForm_isDeletedNote" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

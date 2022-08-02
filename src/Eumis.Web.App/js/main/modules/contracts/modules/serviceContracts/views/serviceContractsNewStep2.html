@@ -1,0 +1,35 @@
+<div class="tab-content">
+  <ng-form name="serviceContractsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contracts_serviceContractsNewStep2_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="next()" text="contracts_serviceContractsNewStep2_next" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-if="results.company.isCreated">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="createContinue()" text="contracts_serviceContractsNewStep2_createContinue" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-if="!results.company.isCreated"
+          ng-disabled="!$canDo('CompanyListActions.Create')"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_serviceContractsNewStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="results.procedureId" ng-readonly="true" l10n-text="contracts_serviceContractsNewStep2_procedureId" class="col-sm-10 col-md-7"></sc-field>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-12 has-error" ng-show="!results.company.isCreated">
+            <label class="control-label" l10n-text="contracts_serviceContractsNewStep2_companyNotFound"></label>
+          </div>
+        </div>
+        <h5 class="form-header form-header-first" l10n-text="contracts_serviceContractsNewStep2_company"></h5>
+        <eumis-company-data name="companyDataForm" ng-model="results.company" sc-form-readonly="true" ng-if="results.company.isCreated"></eumis-company-data>
+
+        <eumis-company-data name="companyDataForm" ng-model="results.company" ng-if="!results.company.isCreated"></eumis-company-data>
+      </div>
+    </div>
+  </ng-form>
+</div>

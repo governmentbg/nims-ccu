@@ -1,0 +1,58 @@
+﻿@model R_10040.BFPContractPartners
+
+<div class="table-wrapper">
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@Company.Name</th>
+                <th>@Company.Uin</th>
+                <th>@Company.CompanyType</th>
+                <th>@Company.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.PartnerCollection.Count; i++)
+            {
+                if (Model != null && Model.PartnerCollection != null && Model.PartnerCollection.Count > 0)
+                {
+                    <tr class="@(!Model.PartnerCollection[i].isActive ? "deactivated-gray" : "")">
+                        <td style="word-break: break-all">
+                            <span class="filled-value">
+                                @Model.PartnerCollection[i].Name
+
+                                @if (!Model.PartnerCollection[i].isActive)
+                                {
+                                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.ElementCanceled" data-trigger="hover" alt="" data-original-title="" title="">
+                                }
+                            </span>
+                        </td>
+                        <td style="word-break: break-all">
+                            <span class="filled-value">
+                                @if (Model.PartnerCollection[i].UinType != null && !String.IsNullOrWhiteSpace(Model.PartnerCollection[i].UinType.Name))
+                                {
+                                    <text>@Model.PartnerCollection[i].UinType.Name: </text>
+                                }
+                                @Model.PartnerCollection[i].Uin
+                            </span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.PartnerCollection[i].CompanyType)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="history-table @(!Model.PartnerCollection[i].isActive ? "deactivated-gray" : "")">
+                        <td colspan="4">
+                            <div class="history-table-wrapper clearfix">
+                                @Html.DisplayFor(m => m.PartnerCollection[i])
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

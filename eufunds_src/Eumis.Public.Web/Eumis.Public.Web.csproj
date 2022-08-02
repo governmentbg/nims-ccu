@@ -1,0 +1,872 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.4\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.4\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.4\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.4\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60D22C02-F274-48EB-BCD0-C8F167B5EFA1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Public.Web</RootNamespace>
+    <AssemblyName>Eumis.Public.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.7.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.7\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.4.2.2\lib\net45\T4MVCExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Parameters.xml" />
+    <None Include="Parameters.Ciela.CI.xml">
+      <DependentUpon>Parameters.xml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActuallyPaidAmountsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminProcedureController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IoCConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BaseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseWithExportController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeneficiaryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeneficiaryWithoutFinancialCorrectionsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BgMapsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ContractContractsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContractorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ActuallyPaidAmountsController.cs" />
+    <Compile Include="Controllers\AdminProcedureController.cs" />
+    <Compile Include="Controllers\BaseWithExportController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BeneficiaryWithoutFinancialCorrectionsController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\BeneficiaryController.cs" />
+    <Compile Include="Controllers\BgMapsController.cs" />
+    <Compile Include="Controllers\ContractContractsController.cs" />
+    <Compile Include="Controllers\ContractorController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ControllerExtensions.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\ExecutedContractsController.cs" />
+    <Compile Include="Controllers\IndicativeAnnualWorkingProgrammesController.cs" />
+    <Compile Include="Controllers\Operations508Controller.cs" />
+    <Compile Include="Controllers\ProgrammeGroupsController.cs" />
+    <Compile Include="Controllers\OpenDataController.cs" />
+    <Compile Include="Controllers\ProceduresController.cs" />
+    <Compile Include="Controllers\ProjectProposalsController.cs" />
+    <Compile Include="Controllers\IndicatorsController.cs" />
+    <Compile Include="Controllers\OperationsController.cs" />
+    <Compile Include="Controllers\ImplementationController.cs" />
+    <Compile Include="Controllers\NomenclatureController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OPProfileController.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
+    <Compile Include="Controllers\PlanningRegionsController.cs" />
+    <Compile Include="Controllers\OperationalProgramsController.cs" />
+    <Compile Include="Controllers\PriorityLinesController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\EvalSessionResultController.cs" />
+    <Compile Include="Controllers\SubcontractorController.cs" />
+    <Compile Include="EvalSessionResultController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExecutedContractsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImplementationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IndicativeAnnualWorkingProgrammesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IndicatorsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InfrastructureClasses\BreadcrumbItem.cs" />
+    <Compile Include="InfrastructureClasses\Charts\ChartsHtmlHelper.cs" />
+    <Compile Include="InfrastructureClasses\Charts\ChartRendererModel.cs" />
+    <Compile Include="InfrastructureClasses\Charts\JsonChartResult.cs" />
+    <Compile Include="InfrastructureClasses\ClearRouteAttribute.cs" />
+    <Compile Include="InfrastructureClasses\JsonResultCameCase.cs" />
+    <Compile Include="InfrastructureClasses\Maps\BgMapRendererModel.cs" />
+    <Compile Include="InfrastructureClasses\Maps\IMapsDataExtractorGeneric.cs" />
+    <Compile Include="InfrastructureClasses\Maps\MapRendererModel.cs" />
+    <Compile Include="InfrastructureClasses\Maps\MapsHtmlHelper.cs" />
+    <Compile Include="InfrastructureClasses\MapRegionHelper.cs" />
+    <Compile Include="InfrastructureClasses\Maps\RendererType.cs" />
+    <Compile Include="InfrastructureClasses\Pies\PieRendererModel.cs" />
+    <Compile Include="InfrastructureClasses\Pies\PiesHtmlHelper.cs" />
+    <Compile Include="InfrastructureClasses\Pies\JsonPieResult.cs" />
+    <Compile Include="InfrastructureClasses\PublicEnvironment\EnvironmentManager.cs" />
+    <Compile Include="InfrastructureClasses\PublicEnvironment\EnvironmentTuple.cs" />
+    <Compile Include="InfrastructureClasses\PublicEnvironment\EnvironmentType.cs" />
+    <Compile Include="InfrastructureClasses\Maps\BgMapsDataExtractor.cs" />
+    <Compile Include="InfrastructureClasses\Maps\IMapsContainer.cs" />
+    <Compile Include="InfrastructureClasses\Maps\JsonMapsResult.cs" />
+    <Compile Include="InfrastructureClasses\Maps\BgMapsContainer.cs" />
+    <Compile Include="InfrastructureClasses\Maps\BgMapDataType.cs" />
+    <Compile Include="InfrastructureClasses\Maps\MapsModule.cs" />
+    <Compile Include="InfrastructureClasses\TabType.cs" />
+    <Compile Include="InfrastructureClasses\TooltipHtmlHelper.cs" />
+    <Compile Include="InfrastructureClasses\UrlDef.cs" />
+    <Compile Include="InfrastructureClasses\UtilHelpers.cs" />
+    <Compile Include="InfrastructureClasses\Utils.cs" />
+    <Compile Include="InfrastructureController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActuallyPaidAmounts\ActuallyPaidAmountsSearchVM.cs" />
+    <Compile Include="Models\Admin\ProcedureProjectsStatisticsVM.cs" />
+    <Compile Include="Models\Admin\ProgrammesProceduresStatisticsVM.cs" />
+    <Compile Include="Models\BeneficiaryWithoutFinancialCorrections\BeneficiaryWithoutFinancialCorrectionsSearchVM.cs" />
+    <Compile Include="Models\Company\CompanyDetailsVM.cs" />
+    <Compile Include="Models\Beneficiary\BeneficiarySearchVM.cs" />
+    <Compile Include="Models\Charts\ChartDataModel.cs" />
+    <Compile Include="Models\Charts\ChartModel.cs" />
+    <Compile Include="Models\Company\CompanyEnumType.cs" />
+    <Compile Include="Models\ContractContractors\ContractContractsSearchVM.cs" />
+    <Compile Include="Models\Contractor\ContractorSearchVM.cs" />
+    <Compile Include="Models\Admin\OPStatisticsSearchVM.cs" />
+    <Compile Include="Models\EvalSessionResult\EvalSessionResultSearchVM.cs" />
+    <Compile Include="Models\EvalSessionResult\StandingSearchVM.cs" />
+    <Compile Include="Models\EvalSessionResult\PreliminarySearchVM.cs" />
+    <Compile Include="Models\EvalSessionResult\AdminAdmissSearchVM.cs" />
+    <Compile Include="Models\Events\EventModel.cs" />
+    <Compile Include="Models\ExecutedContracts\ExecutedContractsSearchVM.cs" />
+    <Compile Include="Models\Home\GreenCornerModel.cs" />
+    <Compile Include="Models\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammesSearchVM.cs" />
+    <Compile Include="Models\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableSearchVM.cs" />
+    <Compile Include="Models\Operations508\SearchVM.cs" />
+    <Compile Include="Models\OPProfile\ProgrammeBudgetBySource.cs" />
+    <Compile Include="Models\OPProfile\ProgrammeBudgetWithContractedAndPayed.cs" />
+    <Compile Include="Models\ProgrammeGroup\ProgrammeGroupIndexModel.cs" />
+    <Compile Include="Models\OpenData\OpenDataModel.cs" />
+    <Compile Include="Models\Procedures\ProceduresSearchVM.cs" />
+    <Compile Include="Models\ProjectProposals\ProjectProposalsSearchVM.cs" />
+    <Compile Include="Models\Indicators\IndicatorsSearchVM.cs" />
+    <Compile Include="Models\Operations\OperationsSearchVM.cs" />
+    <Compile Include="Models\Home\IndexModel.cs" />
+    <Compile Include="Models\Home\NomenclatureModel.cs" />
+    <Compile Include="Models\Maps\IMarkupMapModel.cs" />
+    <Compile Include="Models\Maps\MapDataModel.cs" />
+    <Compile Include="Models\Maps\MapModel.cs" />
+    <Compile Include="Models\Maps\MapRegionModel.cs" />
+    <Compile Include="Models\Maps\MapRegionDataModel.cs" />
+    <Compile Include="Models\OperationalProgram\OpIndexModel.cs" />
+    <Compile Include="Models\OperationalProgram\OpSearchVM.cs" />
+    <Compile Include="Models\OPProfile\OPProfileIndexModel.cs" />
+    <Compile Include="Models\Partner\PartnerSearchVM.cs" />
+    <Compile Include="Models\Pies\PieDataModel.cs" />
+    <Compile Include="Models\Pies\PieModel.cs" />
+    <Compile Include="Models\PriorityLines\PriorityAxisModel.cs" />
+    <Compile Include="Models\PriorityLines\PriorityLinesIndexModel.cs" />
+    <Compile Include="Models\PriorityLines\ProcedureModel.cs" />
+    <Compile Include="Models\Project\ProjectSearchVM.cs" />
+    <Compile Include="Models\Member\MemberSearchVM.cs" />
+    <Compile Include="Models\Subcontractor\SubcontractorSearchVM.cs" />
+    <Compile Include="NomenclatureController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpenDataController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationalProgramsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Operations508Controller.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OPProfileController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlanningRegionsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriorityLinesController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProgrammeGroupsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProceduresController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectProposalsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubcontractorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EumisPublicBaseView.cs" />
+    <Compile Include="Views\ViewSectionNames.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\bootstrap-switch.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom-public.css" />
+    <Content Include="Content\css\custom-style.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\lightbox\close.png" />
+    <Content Include="Content\css\lightbox\jquery.lightbox.min.css" />
+    <Content Include="Content\css\lightbox\loading.gif" />
+    <Content Include="Content\css\lightbox\next.png" />
+    <Content Include="Content\css\lightbox\previous.png" />
+    <Content Include="Content\css\print-style.css" />
+    <Content Include="Content\css\responsive-calendar.css" />
+    <Content Include="Content\css\select2\select2-spinner.gif" />
+    <Content Include="Content\css\select2\select2.css" />
+    <Content Include="Content\css\select2\select2.png" />
+    <Content Include="Content\css\select2\select2x2.png" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\tabdrop.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\browser_chrome.png" />
+    <Content Include="Content\img\browser_firefox.png" />
+    <Content Include="Content\img\browser_ie.png" />
+    <Content Include="Content\img\browser_opera.png" />
+    <Content Include="Content\img\browser_safari.png" />
+    <Content Include="Content\img\eea_norway_grants.png" />
+    <Content Include="Content\img\eu.png" />
+    <Content Include="Content\img\eu_big.jpg" />
+    <Content Include="Content\img\eu_flag.gif" />
+    <Content Include="Content\img\gallery\01.gif" />
+    <Content Include="Content\img\gallery\02.gif" />
+    <Content Include="Content\img\gallery\03.gif" />
+    <Content Include="Content\img\gallery\04.gif" />
+    <Content Include="Content\img\gerb.jpg" />
+    <Content Include="Content\img\gerb_footer.png" />
+    <Content Include="Content\img\green_logo.png" />
+    <Content Include="Content\img\icons\add-new-btn.png" />
+    <Content Include="Content\img\icons\arrow-back.png" />
+    <Content Include="Content\img\icons\arrow-down.gif" />
+    <Content Include="Content\img\icons\arrow-right.png" />
+    <Content Include="Content\img\icons\back_btn_arrow.png" />
+    <Content Include="Content\img\icons\blue_arrow_right.gif" />
+    <Content Include="Content\img\icons\blue_arrow_right.png" />
+    <Content Include="Content\img\icons\blue_arrow_right_small.gif" />
+    <Content Include="Content\img\icons\breadcrumb-sep.png" />
+    <Content Include="Content\img\icons\browsers\chrome.jpg" />
+    <Content Include="Content\img\icons\browsers\firefox.jpg" />
+    <Content Include="Content\img\icons\browsers\ie.jpg" />
+    <Content Include="Content\img\icons\browsers\opera.jpg" />
+    <Content Include="Content\img\icons\browsers\safari.jpg" />
+    <Content Include="Content\img\icons\deadline.gif" />
+    <Content Include="Content\img\icons\delete-btn.png" />
+    <Content Include="Content\img\icons\delete-file-btn.png" />
+    <Content Include="Content\img\icons\download-as-file.gif" />
+    <Content Include="Content\img\icons\download-icon.png" />
+    <Content Include="Content\img\icons\drop-arrow.gif" />
+    <Content Include="Content\img\icons\eco_tree.png" />
+    <Content Include="Content\img\icons\edit-btn.png" />
+    <Content Include="Content\img\icons\error.gif" />
+    <Content Include="Content\img\icons\favicon.ico" />
+    <Content Include="Content\img\icons\files\doc.png" />
+    <Content Include="Content\img\icons\files\file.png" />
+    <Content Include="Content\img\icons\files\html.jpg" />
+    <Content Include="Content\img\icons\files\html.png" />
+    <Content Include="Content\img\icons\files\pdf.png" />
+    <Content Include="Content\img\icons\files\ppt.png" />
+    <Content Include="Content\img\icons\files\print.jpg" />
+    <Content Include="Content\img\icons\files\txt.png" />
+    <Content Include="Content\img\icons\files\xls.jpg" />
+    <Content Include="Content\img\icons\files\xls.png" />
+    <Content Include="Content\img\icons\files\xml.jpg" />
+    <Content Include="Content\img\icons\files\zip.png" />
+    <Content Include="Content\img\icons\filter.png" />
+    <Content Include="Content\img\icons\gototop.png" />
+    <Content Include="Content\img\icons\green-tick.gif" />
+    <Content Include="Content\img\icons\history-btn.png" />
+    <Content Include="Content\img\icons\horizontal-scroll.png" />
+    <Content Include="Content\img\icons\info-white.png" />
+    <Content Include="Content\img\icons\info.png" />
+    <Content Include="Content\img\icons\isun.png" />
+    <Content Include="Content\img\icons\lang.jpg" />
+    <Content Include="Content\img\icons\list-arrow-right.gif" />
+    <Content Include="Content\img\icons\mappointer.png" />
+    <Content Include="Content\img\icons\people.png" />
+    <Content Include="Content\img\icons\preview-btn.png" />
+    <Content Include="Content\img\icons\print-2.gif" />
+    <Content Include="Content\img\icons\print.gif" />
+    <Content Include="Content\img\icons\save-as-draft.gif" />
+    <Content Include="Content\img\icons\search-btn.png" />
+    <Content Include="Content\img\icons\search.png" />
+    <Content Include="Content\img\icons\stats.png" />
+    <Content Include="Content\img\icons\step-final.png" />
+    <Content Include="Content\img\icons\subm-add.gif" />
+    <Content Include="Content\img\icons\subm-choose.gif" />
+    <Content Include="Content\img\icons\subm-download.gif" />
+    <Content Include="Content\img\icons\subm-download.png" />
+    <Content Include="Content\img\icons\subm-print.gif" />
+    <Content Include="Content\img\icons\subm-sign.gif" />
+    <Content Include="Content\img\icons\success.gif" />
+    <Content Include="Content\img\icons\success.png" />
+    <Content Include="Content\img\icons\tick.gif" />
+    <Content Include="Content\img\icons\tick_blue.gif" />
+    <Content Include="Content\img\icons\validate.gif" />
+    <Content Include="Content\img\icons\warning-orange.png" />
+    <Content Include="Content\img\icons\warning-red.gif" />
+    <Content Include="Content\img\icons\warning.gif" />
+    <Content Include="Content\img\icons\warning.png" />
+    <Content Include="Content\img\icons\zoomin.gif" />
+    <Content Include="Content\img\isun-lg.gif" />
+    <Content Include="Content\img\isun-line.jpg" />
+    <Content Include="Content\img\isun.gif" />
+    <Content Include="Content\img\loader.gif" />
+    <Content Include="Content\img\loader_h26.gif" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo_big.jpg" />
+    <Content Include="Content\img\logo_good_governance_bg.png" />
+    <Content Include="Content\img\narrow-subheader.jpg" />
+    <Content Include="Content\img\qr.jpg" />
+    <Content Include="Content\img\subheader.jpg" />
+    <Content Include="Content\img\support-mail.PNG" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Error\Error.html" />
+    <Content Include="Error\NoScript.html" />
+    <Content Include="Error\NotSupportedBrowser.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\autogrow.min.js" />
+    <Content Include="Scripts\bootstrap-confirmation.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.en.js" />
+    <Content Include="Scripts\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-switch.min.js" />
+    <Content Include="Scripts\bootstrap-tabdrop.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\highcharts-custom.js" />
+    <Content Include="Scripts\highcharts-7.2.0.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\highmaps-1.1.5.js" />
+    <Content Include="Scripts\highmaps-custom.js" />
+    <Content Include="Scripts\highmaps-data-1.1.5.js" />
+    <Content Include="Scripts\highmaps-drilldown.js" />
+    <Content Include="Scripts\highmaps-exporting-1.1.5.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery.ba-resize.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.lightbox.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lodash-4.7.15.js" />
+    <Content Include="Scripts\map\Map.js" />
+    <Content Include="Scripts\map\MapData.js" />
+    <Content Include="Scripts\Pages\HomeDefault.js" />
+    <Content Include="Scripts\responsive-calendar.min.js" />
+    <Content Include="Scripts\scripts-custom.js" />
+    <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\select2_locale_en.js" />
+    <Content Include="Scripts\select2_locale_bg.js" />
+    <Content Include="Scripts\time.js" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.hooks.t4" />
+    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Scripts\tree\jquery.treetable.css" />
+    <Content Include="Scripts\tree\jquery.treetable.js" />
+    <Content Include="Views\EvalSessionResult\AdminAdmiss.cshtml" />
+    <Content Include="Views\EvalSessionResult\Preliminary.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_SubHeader.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Views\Infrastructure\Maps\NameOnlyTooltip.cshtml" />
+    <Content Include="Views\Infrastructure\Charts\PointOnlyTooltip.cshtml" />
+    <Content Include="Views\OPProfile\Index.cshtml" />
+    <Content Include="Views\PriorityLines\Index.cshtml" />
+    <Content Include="Views\PlanningRegions\Index.cshtml" />
+    <Content Include="Views\Beneficiary\Index.cshtml" />
+    <Content Include="Views\Contractor\Index.cshtml" />
+    <Content Include="Views\Partner\Index.cshtml" />
+    <Content Include="Views\Project\Search.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TextAreaPre.cshtml" />
+    <Content Include="Views\Home\Glossary.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AccessibilityPolicy.cshtml" />
+    <Content Include="Views\Shared\_Title.cshtml" />
+    <Content Include="Views\Shared\_Tabs.cshtml" />
+    <Content Include="Views\Shared\Print.cshtml" />
+    <Content Include="Views\Shared\ExportHtml.cshtml" />
+    <Content Include="Views\Shared\_ExportIcons.cshtml" />
+    <Content Include="Views\Project\PrintProject.cshtml" />
+    <Content Include="Views\OperationalPrograms\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DecimalWithoutDecimalDigits.cshtml" />
+    <Content Include="Views\Implementation\Index.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Subcontractor\Index.cshtml" />
+    <Content Include="Views\Operations\Index.cshtml" />
+    <Content Include="Views\Shared\_LoaderPartial.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Shared\_JsResources.cshtml" />
+    <Content Include="Views\Indicators\Index.cshtml" />
+    <Content Include="Views\ProjectProposals\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\UsersCount.cshtml" />
+    <Content Include="Views\Admin\OPStatistics.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Int64.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Int32.cshtml" />
+    <Content Include="Views\Admin\UsersStatistics.cshtml" />
+    <Content Include="Views\Admin\ProgrammeProjectsCount.cshtml" />
+    <Content Include="Views\AdminProcedure\ProcedureProjects.cshtml" />
+    <Content Include="Views\Admin\Test.cshtml" />
+    <Content Include="Views\EvalSessionResult\Index.cshtml" />
+    <Content Include="Views\EvalSessionResult\Standing.cshtml" />
+    <Content Include="Views\Shared\Calendar.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\ProgrammeGroups\Index.cshtml" />
+    <Content Include="Views\Shared\_GroupTitle.cshtml" />
+    <Content Include="Views\OpenData\Index.cshtml" />
+    <Content Include="Views\Procedures\Index.cshtml" />
+    <Content Include="Views\ActuallyPaidAmounts\Index.cshtml" />
+    <Content Include="Views\ExecutedContracts\Index.cshtml" />
+    <Content Include="Views\ContractContracts\Index.cshtml" />
+    <Content Include="Views\Shared\_GreenCorner.cshtml" />
+    <Content Include="Views\Infrastructure\Charts\PointValueTooltip.cshtml" />
+    <Content Include="Views\BeneficiaryWithoutFinancialCorrections\Index.cshtml" />
+    <Content Include="Views\Project\_Tabs.cshtml" />
+    <Content Include="Views\Project\Activities.cshtml" />
+    <Content Include="Views\Project\BasicData.cshtml" />
+    <Content Include="Views\Project\Procurements.cshtml" />
+    <Content Include="Views\Project\Participants.cshtml" />
+    <Content Include="Views\Project\FinancialInformation.cshtml" />
+    <Content Include="Views\Project\Indicators.cshtml" />
+    <Content Include="Views\Project\_ProjectLayout.cshtml" />
+    <Content Include="Views\IndicativeAnnualWorkingProgrammes\Index.cshtml" />
+    <Content Include="Views\IndicativeAnnualWorkingProgrammes\IawpTable.cshtml" />
+    <Content Include="Views\IndicativeAnnualWorkingProgrammes\IawpTableForIntegratedProcedures.cshtml" />
+    <Content Include="Views\Operations508\Index.cshtml" />
+    <None Include="Web.Ciela.CI.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.David.CI.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.EGP06.DRC.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.EGP06.Learn.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.EGP06.Prod.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.EGP06.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Views\Shared\_NotSupportedBrowser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Public.Common\Eumis.Public.Common.csproj">
+      <Project>{37af0238-0356-4b8d-97fa-7d6fef00c48d}</Project>
+      <Name>Eumis.Public.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Data\Eumis.Public.Data.csproj">
+      <Project>{907d99c1-4b7e-4bd0-aa5c-fc51aaaaac52}</Project>
+      <Name>Eumis.Public.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Domain\Eumis.Public.Domain.csproj">
+      <Project>{4adbf91a-047e-46ad-b14c-d09ccb9055db}</Project>
+      <Name>Eumis.Public.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Resources\Eumis.Public.Resources.csproj">
+      <Project>{f5d0cb10-74c0-4a84-8ee5-bd8278c1a68a}</Project>
+      <Name>Eumis.Public.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51190</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51190/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.4\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.4\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.4\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.4\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.4\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

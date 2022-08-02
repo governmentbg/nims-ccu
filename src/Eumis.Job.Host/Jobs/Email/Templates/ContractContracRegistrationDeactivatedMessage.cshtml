@@ -1,0 +1,21 @@
+﻿@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+  string portalRoot = portalUrl + "/bg/s";
+  string portalFeedback = portalUrl + "/bg/s/feedback";
+  string email = (string)Model["email"];
+  string contractNum = (string)Model["contractNum"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Здравейте, <br/>
+Вашият потребителски профил за отчитане, асоцииран с имейл адрес: <strong style="color: #444444;">@email</strong> беше премахнат от управлението на договор <strong style="color: #444444;">@contractNum</strong>.</p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл. Той е изпратен автоматично от служебната поща на системата.<br/>
+При необходимост от съдействие и помощ, моля, използвайте контактите, посочени на портала <a href="@portalRoot">СУНИ</a> или формата на системата за <a href="@portalFeedback">Обратна връзка</a>.</p>

@@ -1,0 +1,35 @@
+﻿@model R_10070.BFPContractPlan
+
+<tr>
+    <td style="word-break: break-all">@BFPContractPlan.Name</td>
+    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Name ?? string.Empty)</td>
+</tr>
+<tr>
+    <td style="width: 35%;">@BFPContractPlan.ErrandArea</td>
+    <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ErrandArea ?? new R_10001.PublicNomenclature())</td>
+</tr>
+<tr>
+    <td>@BFPContractPlan.ErrandLegalAct</td>
+    <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ErrandLegalAct ?? new R_10000.PrivateNomenclature())</td>
+</tr>
+<tr>
+    <td>@BFPContractPlan.ErrandType/td>
+    <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ErrandType ?? new R_10001.PublicNomenclature())</td>
+</tr>
+<tr>
+    <td>@BFPContractPlan.Amount</td>
+    <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amount)</td>
+</tr>
+<tr>
+    <td>@BFPContractPlan.PlanDate</td>
+    <td>
+        @if (Model.PlanDate.HasValue)
+        {
+            @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.PlanDate)
+        }
+    </td>
+</tr>
+<tr>
+    <td>@BFPContractPlan.Description</td>
+    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Description ?? string.Empty)</td>
+</tr>

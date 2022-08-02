@@ -1,0 +1,18 @@
+﻿<div class="form-group">
+  <label class="control-label" l10n-text="{{text}}"></label>
+  <div class="input-group input-group-sm">
+    <div class="input-group form-control input-md" style="height: auto;" ng-disabled="true">
+      <a ng-href="{{viewUrl()}}" target="_blank" style="cursor: pointer">
+        <span l10n-text="common_documentDirective_text"></span>
+      </a>
+    </div>
+    <span class="input-group-btn">
+      <span class="btn btn-default" sc-click="view()">
+        <i class="glyphicon glyphicon-eye-open"></i>
+      </span>
+      <span class="btn btn-default" ng-disabled="readonly()" sc-click="edit()" ng-if="!viewMode">
+        <i class="glyphicon glyphicon-edit"></i>
+      </span>
+    </span>
+  </div>
+</div>

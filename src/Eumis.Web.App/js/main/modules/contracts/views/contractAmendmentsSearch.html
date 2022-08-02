@@ -1,0 +1,93 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_amendmentsSearch_versions"></h5>
+          <sc-button name="newAnnexBtn" btn-click="newContractVersion('annex')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" text="contracts_amendmentsSearch_newAnnex" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+          <sc-button name="newChangeBtn" btn-click="newContractVersion('change')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" text="contracts_amendmentsSearch_newChange" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+          <sc-button name="newPartialAnnexBtn" btn-click="newContractVersion('partialAnnex')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" text="contracts_amendmentsSearch_newPartialAnnex" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+          <sc-button name="newPartialChangeBtn" btn-click="newContractVersion('partialChange')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" text="contracts_amendmentsSearch_newPartialChange" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+        </div>
+        <sc-datatable items="contractVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editVersionBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              btn-sref="{ state: 'root.contracts.view.amendments.versions.edit', params: { vid: item.contractVersionId } }" ng-disabled="!$canDo('ContractVersionActions.View', item.contractVersionId)"></sc-button>
+          </sc-column>
+          <sc-column data="versionNumber" title="contracts_amendmentsSearch_versionNum">
+          </sc-column>
+          <sc-column data="versionType" title="contracts_amendmentsSearch_versionType"></sc-column>
+          <sc-column data="regNumber" title="contracts_amendmentsSearch_versionRegNumber"></sc-column>
+          <sc-column data="createNote" title="contracts_amendmentsSearch_versionCreateNote"></sc-column>
+          <sc-column data="contractDate" title="contracts_amendmentsSearch_versionContractDate" type="date"></sc-column>
+          <sc-column data="status" title="contracts_amendmentsSearch_versionStatus"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_amendmentsSearch_procurements"></h5>
+          <sc-button name="newProcurementBtn" btn-click="newContractProcurement()" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+        </div>
+        <sc-datatable items="contractProcurements" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              btn-sref="{ state: 'root.contracts.view.amendments.procurements.edit', params: { pid: item.contractProcurementId } }" ng-disabled="!$canDo('ContractProcurementActions.View', item.contractProcurementId)"></sc-button>
+          </sc-column>
+          <sc-column data="source" title="contracts_amendmentsSearch_procurementSource"></sc-column>
+          <sc-column data="status" title="contracts_amendmentsSearch_procurementStatus"></sc-column>
+          <sc-column data="createDate" title="contracts_amendmentsSearch_procurementCreateDate" type="date"></sc-column>
+          <sc-column data="modifyDate" title="contracts_amendmentsSearch_procurementModifyDate" type="date"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_amendmentsSearch_spendingPlans"></h5>
+          <sc-button name="newSpendingPlanBtn" btn-click="newContractSpendingPlan()" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ContractActions.Edit', contractId)"></sc-button>
+        </div>
+        <sc-datatable items="contractSpendingPlans" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              btn-sref="{ state: 'root.contracts.view.amendments.spendingPlans.edit', params: { spid: item.contractSpendingPlanId } }" ng-disabled="!$canDo('ContractSpendingPlanActions.View', item.contractSpendingPlanId)"></sc-button>
+          </sc-column>
+          <sc-column data="source" title="contracts_amendmentsSearch_spendingPlanSource"></sc-column>
+          <sc-column data="status" title="contracts_amendmentsSearch_spendingPlanStatus"></sc-column>
+          <sc-column data="createDate" title="contracts_amendmentsSearch_spendingPlanCreateDate" type="date"></sc-column>
+          <sc-column data="modifyDate" title="contracts_amendmentsSearch_spendingPlanModifyDate" type="date"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_amendmentsSearch_offers"></h5>
+        </div>
+        <sc-datatable items="contractOffers" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              btn-sref="{ state: 'root.contracts.view.amendments.offers.edit', params: { oid: item.id } }" ng-disabled="!item.canBeDisplayed"></sc-button>
+          </sc-column>
+          <sc-column data="submitDate" title="contracts_amendmentsSearch_offersSubmitDate" type="date"></sc-column>
+          <sc-column data="procurementPlanExpectedAmount" title="contracts_amendmentsSearch_offersExpectedAmount" type="money"></sc-column>
+          <sc-column data="procurementPlanSubject" title="contracts_amendmentsSearch_offersName" ></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

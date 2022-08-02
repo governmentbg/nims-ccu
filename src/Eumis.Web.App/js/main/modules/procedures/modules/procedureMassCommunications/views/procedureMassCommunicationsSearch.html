@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newProcedureMassCommunicationsBtn" btn-sref="{ state: 'root.procedureMassCommunications.new' }" text="procedureMassCommunications_procedureMassCommunicationsSearch_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractCommunicationListActions.Search')"></sc-button>
+
+    <sc-datatable items="procedureMassCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procedureMassCommunications.view.edit', params: {id: item.procedureMassCommunicationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ></sc-button>
+      </sc-column>
+      <sc-column data="subject" title="procedureMassCommunications_procedureMassCommunicationsSearch_subject">
+      </sc-column>
+      <sc-column data="status" title="procedureMassCommunications_procedureMassCommunicationsSearch_status">
+      </sc-column>
+      <sc-column data="modifyDate" title="procedureMassCommunications_procedureMassCommunicationsSearch_modifyDate" type="date">
+      </sc-column>
+      <sc-column data="procedureCode" title="procedureMassCommunications_procedureMassCommunicationsSearch_procedureCode">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

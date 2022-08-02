@@ -1,0 +1,26 @@
+<div class="tab-content">
+  <ng-form name="correctionDebtsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="correctionDebts_newCorrectionDebtStep2_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="correctionDebts_newCorrectionDebtStep2_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="correctionDebts_newCorrectionDebtStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="date" ng-required="true" ng-model="newCorrectionDebt.regDate" l10n-text="correctionDebts_newCorrectionDebtStep2_regDate" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+
+        <h5 class="table-header" l10n-text="correctionDebts_newCorrectionDebtStep2_correctionData"></h5>
+        <eumis-flat-financial-correction-info name="flatFinancialCorrectionInfoForm" ng-model="flatFinancialCorrectionInfo" sc-form-readonly="true"></eumis-flat-financial-correction-info>
+      </div>
+    </div>
+  </ng-form>
+</div>

@@ -1,0 +1,5 @@
+.vs/
+build_scripts/build/
+build_scripts/node_modules/
+deploy_scripts/DbUpdater/
+src/UpgradeLog.htm

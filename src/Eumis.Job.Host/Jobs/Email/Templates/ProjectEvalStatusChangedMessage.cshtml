@@ -1,0 +1,29 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+    string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+    string procCode = (string)Model["procCode"];
+    string procName = (string)Model["procName"];
+    string programmeName = (string)Model["programmeName"];
+    string companyName = (string)Model["companyName"];
+    string projectName = (string)Model["projectName"];
+    string projectRegNumber = (string)Model["projectRegNumber"];
+    string email = (string)Model["email"];
+    string statusDescription = (string)Model["statusDescription"];
+    string status = (string)Model["status"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Вашето проектно предложение по схема за кандидатстване: @procCode - @procName, Основна организация @programmeName, с кандидат @companyName и наименование: <strong>@projectName</strong> е в статус @statusDescription.</p>
+@if (status == "evaluation")
+{
+  <p style="margin-bottom: 15px;"><strong>Внимание</strong>: <span style="color: red;">Всички въпроси имат зададен от оценителната комисия срок за отговор, поради което е необходимо периодично да проверявате имейл адреса си и профила, асоцииран с него. След този срок въпросите ще бъдат затворени и системата няма да Ви позволи да извършвате каквито и да било действия освен „Преглед“.</span></p>
+}
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">
+  Поздрави, <br />
+  Екипът на СУНИ
+</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br />

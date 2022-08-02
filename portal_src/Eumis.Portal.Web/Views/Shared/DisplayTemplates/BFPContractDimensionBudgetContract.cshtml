@@ -1,0 +1,33 @@
+﻿@model R_10040.BFPContractDirectionsBudgetContract
+
+@{
+    var sectionNumber = Model.SectionNumber + 1;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @BFPContract.Directions
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Directions)
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @BFPContract.Budget
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.BFPContractBudget)
+    </section>
+    <div class="section-separator"> </div>
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @BFPContract.Contract
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.Contract, "BFPContractContract")
+    </section>
+    <div class="section-separator"> </div>
+}

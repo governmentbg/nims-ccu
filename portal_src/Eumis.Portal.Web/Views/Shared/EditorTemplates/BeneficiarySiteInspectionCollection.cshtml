@@ -1,0 +1,90 @@
+﻿@model R_10044.BeneficiarySiteInspectionCollection
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBeneficiarySiteInspections">
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@BeneficiarySiteInspection.Number</th>
+                    <th>@BeneficiarySiteInspection.StartDate</th>
+                    <th>@BeneficiarySiteInspection.EndDate</th>
+                    <th colspan="2">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                <tr>
+                    <td style="word-break: break-all">
+                        {{item.Number}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.StartDate}}
+                    </td>
+                    <td style="word-break: break-all">
+                        {{item.EndDate}}
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+                <tr class="history-table">
+                    <td colspan="5">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@BeneficiarySiteInspection.Number</label>
+                                    <input ng-class="{'input-validation-error': !item.IsNumberValid}" type="text" ng-model="item.Number" name="@(Html.GetNameFor(m => m))[{{ $index }}].Number" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@BeneficiarySiteInspection.CheckSubject</label>
+                                    <input ng-class="{'input-validation-error': !item.IsCheckSubjectValid}" type="text" ng-model="item.CheckSubject" name="@(Html.GetNameFor(m => m))[{{ $index }}].CheckSubject" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@BeneficiarySiteInspection.Range</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsRangeValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Range" name="@(Html.GetNameFor(m => m))[{{ $index }}].Range" class="form-control"></textarea>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@BeneficiarySiteInspection.StartDate</label>
+                                    <input ng-class="{'input-validation-error': !item.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.StartDate" name="@(Html.GetNameFor(m => m))[{{ $index }}].StartDate" class="form-control" onpaste="return false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@BeneficiarySiteInspection.EndDate</label>
+                                    <input ng-class="{'input-validation-error': !item.IsEndDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.EndDate" name="@(Html.GetNameFor(m => m))[{{ $index }}].EndDate" class="form-control" onpaste="return false" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@BeneficiarySiteInspection.KeyRecommendations</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsKeyRecommendationsValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.KeyRecommendations" name="@(Html.GetNameFor(m => m))[{{ $index }}].KeyRecommendations" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@BeneficiarySiteInspection.RecommendationsFulfilled</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsRecommendationsFulfilledValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.RecommendationsFulfilled" name="@(Html.GetNameFor(m => m))[{{ $index }}].RecommendationsFulfilled" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>@BeneficiarySiteInspection.Comment</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsCommentValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Comment" name="@(Html.GetNameFor(m => m))[{{ $index }}].Comment" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4ADBF91A-047E-46AD-B14C-D09CCB9055DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Public.Domain</RootNamespace>
+    <AssemblyName>Eumis.Public.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Custom\Events\EventType.cs" />
+    <Compile Include="Entities\OpStatOverride.cs" />
+    <Compile Include="Entities\Umis\Allowances\Allowance.cs" />
+    <Compile Include="Entities\Umis\Allowances\AllowanceRate.cs" />
+    <Compile Include="Entities\Umis\Allowances\AllowancesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Audits\Audit.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditAscertainment.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditAscertainmentItem.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditDoc.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditInstitution.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditItemLevel.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditKind.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditLevel.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditLevelItem.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditSubjectType.cs" />
+    <Compile Include="Entities\Umis\Audits\AuditType.cs" />
+    <Compile Include="Entities\Umis\Automatizations\AutomatizationsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Automatizations\ContractReportAcceptedAutomatization.cs" />
+    <Compile Include="Entities\Umis\Automatizations\ContractReportAcceptedAutomatizationStatus.cs" />
+    <Compile Include="Entities\Umis\Automatizations\ProjectContractAutomatization.cs" />
+    <Compile Include="Entities\Umis\Automatizations\ProjectContractAutomatizationStatus.cs" />
+    <Compile Include="Entities\Umis\BasicInterestRates\BasicInterestRate.cs" />
+    <Compile Include="Entities\Umis\BasicInterestRates\BasicInterestRateModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\BasicInterestRates\InterestRate.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheck.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckAscertainment.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckAscertainmentExecutionStatus.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckAscertainmentStatus.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckAscertainmentType.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckDocument.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckKind.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckLevel.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckLevelItem.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityChecksModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckStatus.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckSubjectType.cs" />
+    <Compile Include="Entities\Umis\CertAuthorityChecks\CertAuthorityCheckType.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReport.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReportAttachedCertReport.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReportDocument.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReportModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReportStatus.cs" />
+    <Compile Include="Entities\Umis\CertReports\CertReportType.cs" />
+    <Compile Include="Entities\Umis\CertReports\IntermediateFinalCertReportSummaryTables.cs" />
+    <Compile Include="Entities\Umis\CertReports\YearlyCertReportSummaryTables.cs" />
+    <Compile Include="Entities\Umis\CheckBlankTopics\CheckBlankTopic.cs" />
+    <Compile Include="Entities\Umis\Companies\CompaniesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Companies\Company.cs" />
+    <Compile Include="Entities\Umis\Companies\CompanyLegalStatus.cs" />
+    <Compile Include="Entities\Umis\Companies\CompanyPerson.cs" />
+    <Compile Include="Entities\Umis\Contracts\Contract.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractAccessCode.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractActivity.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractActivityCompany.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractAmountType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractBudgetLevel3Amount.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractCommunicationSource.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractCommunicationStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractCommunicationType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractCommunicationXml.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractContract.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractContractActivity.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractContractor.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractDifferentiatedPosition.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractExecutionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractExtension.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractExtensionDiscriminator.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractExtensionVesselIdentifier.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractIndicator.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractLocation.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractPartner.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractProcurementPlan.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractProcurementPlanPublicDocument.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractProcurementStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractProcurementXml.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractProcurementXmlFileType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractRegistration.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReport.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvanceNVPaymentAmount.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvanceNVPaymentAmount.Logic.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvanceNVPaymentAmountApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvanceNVPaymentAmountStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvancePaymentAmount.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvancePaymentAmountApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvancePaymentAmountCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAdvancePaymentAmountStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportAttachedFinancialCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCertCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCertCorrectionDocument.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCertCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCertCorrectionType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCorrectionCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCorrectionDocument.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportCorrectionType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancial.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCertCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCertCorrectionCSD.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCertCorrectionCSDStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCertCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCheck.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCheckApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCheckStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCorrectionCSD.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCorrectionCSDCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCorrectionCSDStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCSD.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCSDBudgetItem.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCSDBudgetItemCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCSDBudgetItemStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialCSDFile.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialRevalidation.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialRevalidationCSD.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialRevalidationCSDCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialRevalidationCSDStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialRevalidationStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportFinancialStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportIndicator.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportIndicatorApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportIndicatorStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicro.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroCheck.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroCheckApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroCheckStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosDistrict.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosMunicipality.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosSettlement.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosType1Item.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosType2Item.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosType4Item.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosType3Item.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicrosType3ItemFoodData.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemActivity.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemCancelationReason.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemEducation.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemGender.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemLeavingState.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemOccupation.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportMicros\ContractReportMicroType2ItemParticipationState.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPayment.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentCheck.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentCheckAmount.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentCheckApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentCheckCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentCheckStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportPaymentType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportRevalidation.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportRevalidationCertStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportRevalidationDocument.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportRevalidationStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportRevalidationType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnical.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCheck.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCheckApproval.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCheckStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCorrection.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCorrectionIndicator.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCorrectionIndicatorStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportTechnicalType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractReportType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractsContractRegistration.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractSpendingPlanStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractSpendingPlanXml.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractSubcontract.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractSubcontractType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractVersionStatus.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractVersionType.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractVersionXml.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractVersionXmlAmount.cs" />
+    <Compile Include="Entities\Umis\Contracts\ContractVersionXmlFileType.cs" />
+    <Compile Include="Entities\Umis\Contracts\CorrectionType.cs" />
+    <Compile Include="Entities\Umis\Contracts\CorrectionTypeExtended.cs" />
+    <Compile Include="Entities\Umis\Contracts\CostSupportingDocumentCompanyType.cs" />
+    <Compile Include="Entities\Umis\Contracts\CostSupportingDocumentType.cs" />
+    <Compile Include="Entities\Umis\Contracts\DataObjects\ContractDataDO.cs" />
+    <Compile Include="Entities\Umis\Contracts\DataObjects\ContractReportPaymentCheckAmountDO.cs" />
+    <Compile Include="Entities\Umis\Contracts\Source.cs" />
+    <Compile Include="Entities\Umis\Contracts\Views\VwAccessCode.cs" />
+    <Compile Include="Entities\Umis\Core\DomainException.cs" />
+    <Compile Include="Entities\Umis\Core\DomainObjectNotFoundException.cs" />
+    <Compile Include="Entities\Umis\Core\DomainValidationException.cs" />
+    <Compile Include="Entities\Umis\Core\EventHandler.cs" />
+    <Compile Include="Entities\Umis\Core\IAggregateRoot.cs" />
+    <Compile Include="Entities\Umis\Core\IDomainEvent.cs" />
+    <Compile Include="Entities\Umis\Core\IEventEmitter.cs" />
+    <Compile Include="Entities\Umis\Core\IEventHandler.cs" />
+    <Compile Include="Entities\Umis\Core\RioXmlFile.cs" />
+    <Compile Include="Entities\Umis\Core\Sign.cs" />
+    <Compile Include="Entities\Umis\Core\YesNoNonApplicable.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebt.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtCertStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtExecutionStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtInterest.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtVersion.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtVersionPayment.cs" />
+    <Compile Include="Entities\Umis\Debts\ContractDebtVersionStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\CorrectionDebt.cs" />
+    <Compile Include="Entities\Umis\Debts\CorrectionDebtStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\CorrectionDebtVersion.cs" />
+    <Compile Include="Entities\Umis\Debts\CorrectionDebtVersionStatus.cs" />
+    <Compile Include="Entities\Umis\Debts\DebtsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Emails\Email.cs" />
+    <Compile Include="Entities\Umis\Emails\EmailsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\EuReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\EuReimbursedAmountCertReport.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\EuReimbursedAmountPaymentType.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\EuReimbursedAmountsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\EuReimbursedAmountStatus.cs" />
+    <Compile Include="Entities\Umis\EuReimbursedAmounts\IrregularityExpenses.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSession.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionAdminAdmissEvaluation.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionResultProject.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionResult.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDistribution.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDistributionProject.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDistributionStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDistributionType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDistributionUser.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionDocument.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionEvaluation.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionEvaluationCalculationType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionEvaluationResult.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionEvaluationSheet.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProject.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectStanding.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectStandingEvaluation.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectStandingRejectionReason.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectStandingStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectStandingType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionProjectWorkStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionReport.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionReportProject.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionReportProjectPartner.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionReportProjectStandingStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionReportType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionResultStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionResultType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionSheet.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionSheetStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionSheetXml.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStanding.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStandingProject.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStandingStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStandpoint.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStandpointStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStandpointXml.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionStatus.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionType.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionUser.cs" />
+    <Compile Include="Entities\Umis\EvalSessions\EvalSessionUserType.cs" />
+    <Compile Include="Entities\Umis\Events\AnswerReceivedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractBeneficiaryCommunicationSentEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractContractRegistrationActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractContractRegistrationDeactivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractProcurementXmlActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractRegistrationCreatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractRegistrationPasswordRecoveredEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractReportStatusChangedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ContractVersionActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\EvalSessionSheetCanceledEvent.cs" />
+    <Compile Include="Entities\Umis\Events\EvalSessionStandpointCanceledEvent.cs" />
+    <Compile Include="Entities\Umis\Events\MessageSentEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureCanceledEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureEndedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureQaActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureSetToDraftEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProcedureTerminatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProjectRegisteredEvent.cs" />
+    <Compile Include="Entities\Umis\Events\ProjectVersionActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\QuestionSentEvent.cs" />
+    <Compile Include="Entities\Umis\Events\RegistrationCreatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\RegistrationPasswordRecoveredEvent.cs" />
+    <Compile Include="Entities\Umis\Events\RequestPackageCheckedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\RequestPackageEndedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\RequestPackageEnteredEvent.cs" />
+    <Compile Include="Entities\Umis\Events\UserActivatedEvent.cs" />
+    <Compile Include="Entities\Umis\Events\UserPasswordRecoveredEvent.cs" />
+    <Compile Include="Entities\Umis\Events\UserUpdatedEvent.cs" />
+    <Compile Include="Entities\Umis\ExpenseTypes\ExpenseSubType.cs" />
+    <Compile Include="Entities\Umis\ExpenseTypes\ExpenseType.cs" />
+    <Compile Include="Entities\Umis\ExpenseTypes\ExpenseTypesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\FIReimbursedAmounts\FIReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\FIReimbursedAmounts\FIReimbursedAmount.Logic.cs" />
+    <Compile Include="Entities\Umis\FIReimbursedAmounts\FIReimbursedAmountModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\FIReimbursedAmounts\FIReimbursedAmountStatus.cs" />
+    <Compile Include="Entities\Umis\FIReimbursedAmounts\FIReimbursementType.cs" />
+    <Compile Include="Entities\Umis\Guidances\Guidance.cs" />
+    <Compile Include="Entities\Umis\Guidances\GuidanceModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Guidances\GuidanceModule.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContract.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractActivity.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractActuallyPaidAmount.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractContractedAmount.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractLocation.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractPartner.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractPartnerType.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractProcurementPlan.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractProcurementPlanPosition.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\HistoricContracts\HistoricContractsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgramme.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeAssistance.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeStatus.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTable.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableCandidate.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableProgramme.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableTimeLimit.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeType.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTypeConducting.cs" />
+    <Compile Include="Entities\Umis\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeYear.cs" />
+    <Compile Include="Entities\Umis\Indicators\Indicator.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorAggregatedReport.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorAggregatedTarget.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorKind.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorReportingType.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorTrend.cs" />
+    <Compile Include="Entities\Umis\Indicators\IndicatorType.cs" />
+    <Compile Include="Entities\Umis\InterestSchemes\InterestScheme.cs" />
+    <Compile Include="Entities\Umis\InterestSchemes\InterestSchemesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Irregularities\InvolvedPersonLegalType.cs" />
+    <Compile Include="Entities\Umis\Irregularities\Irregularity.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityCaseState.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityCategory.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityCheckTime.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityClassification.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityDoc.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityFinancialCorrection.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityFinancialStatus.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityImpairedRegulation.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityImpairedRegulationAct.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityProcedureStatus.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityRapporteur.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityReasonNotReportingToOlaf.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanction.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanctionCategory.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanctionProcedureKind.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanctionProcedureStatus.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanctionProcedureType.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySanctionType.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySignal.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySignalDoc.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySignalInvolvedPerson.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularitySignalStatus.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityStatus.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityType.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityVersion.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityVersionDoc.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityVersionInvolvedPerson.cs" />
+    <Compile Include="Entities\Umis\Irregularities\IrregularityVersionStatus.cs" />
+    <Compile Include="Entities\Umis\Measures\Measure.cs" />
+    <Compile Include="Entities\Umis\Messages\Message.cs" />
+    <Compile Include="Entities\Umis\Messages\MessageFile.cs" />
+    <Compile Include="Entities\Umis\Messages\MessageModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Messages\MessageRecipient.cs" />
+    <Compile Include="Entities\Umis\Messages\MessageStatus.cs" />
+    <Compile Include="Entities\Umis\Messages\MessageType.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ActuallyPaidAmount.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ActuallyPaidAmountStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\AmendmentReason.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CompensationDocuments\CompensationDocument.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CompensationDocuments\CompensationDocumentDoc.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CompensationDocuments\CompensationDocumentStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CompensationDocuments\CompensationDocumentType.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CompensationDocuments\CompensationSign.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\CorrectionBearer.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrectionImposingReason.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrection.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersion.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionViolation.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionViolationFoundBy.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrection.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevel.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionContractContractItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionContractItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionLevelItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionProcedureItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionProgrammeItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\FlatFinancialCorrectionProgrammePriorityItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionLevelItem\IFlatFinancialCorrectionItem.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\FlatFinancialCorrectionType.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\MonitoringFinancialControlModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\OtherViolation.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\PaymentReason.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\Prognosis.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\PrognosisLevel.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\PrognosisStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\ContractReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\DebtReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmount.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmountDiscriminator.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmountStatus.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\Reimbursement.cs" />
+    <Compile Include="Entities\Umis\MonitoringFinancialControl\ReimbursedAmounts\ReimbursementType.cs" />
+    <Compile Include="Entities\Umis\News\News.cs" />
+    <Compile Include="Entities\Umis\News\NewsFile.cs" />
+    <Compile Include="Entities\Umis\News\NewsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\News\NewsStatus.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\GroupingLevel.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\PersonalUinType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ActionLogType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\BfpAmount.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Blob.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\BudgetPeriod.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\CompanyLegalType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\CompanySizeType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\CompanyType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Country.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Dimension.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\District.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\EmailStatus.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ErrandArea.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ErrandLegalAct.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ErrandType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ExpensesAmount.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\FinanceSource.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Institution.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\InstitutionPerson.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\InstitutionType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\InterventionCategory.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\KidCode.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Month.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Municipality.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\NonAggregatesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Nuts1.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Nuts2.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\NutsLevel.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\ProtectedZone.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Quarter.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\RegionCategory.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\RegulationInvestmentPriority.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Settlement.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\UinType.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\Year.cs" />
+    <Compile Include="Entities\Umis\NonAggregates\YesNoOther.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\InvestmentPriorities\InvestmentPrioritiesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\InvestmentPriorities\InvestmentPriority.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\DataObjects\ProgrammePriorityBudgetDO.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNode.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeBudget.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeDocument.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeFinanceSource.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicator.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable12.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable13.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable3.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable4.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable4a.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable5.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorTable6.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\MapNodeIndicatorType.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeIndicators\Views\VwMonitoringMapNodeIndicator.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeInstitution.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeInterventionCategory.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeRelation.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeStatus.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeType.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\MapNodes\MapNodeWithCategories.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\ProgrammeGroups\ProgrammeGroup.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\ProgrammeGroups\ProgrammeGroupsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\ProgrammePriorities\ProgrammePrioritiesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\ProgrammePriorities\ProgrammePriority.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\Programmes\Programme.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\Programmes\ProgrammesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\SpecificTargets\SpecificTarget.cs" />
+    <Compile Include="Entities\Umis\OperationalMap\SpecificTargets\SpecificTargetsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\PermissionTemplates\PermissionTemplate.cs" />
+    <Compile Include="Entities\Umis\PhysicalExecution\PhysicalExecutionTables.cs" />
+    <Compile Include="Entities\Umis\PhysicalExecution\PhysicalExecutionYear.cs" />
+    <Compile Include="Entities\Umis\Procedures\ActiveStatus.cs" />
+    <Compile Include="Entities\Umis\Procedures\AllowedRegistrationType.cs" />
+    <Compile Include="Entities\Umis\Procedures\ApplicationFormType.cs" />
+    <Compile Include="Entities\Umis\Procedures\PublicDiscussion.cs" />
+    <Compile Include="Entities\Umis\Procedures\InvestmentPriorityJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\BudgetExpenseDetailJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\BudgetExpenseJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\BudgetExpenseTypeJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\IndicatorJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureAppDocJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureAppGuidlineJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureCategoriesJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureCategoryJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureProgrammeJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureSpecFieldJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProcedureVersionJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Json\ProgrammePriorityJson.cs" />
+    <Compile Include="Entities\Umis\Procedures\Procedure.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureApplicationDoc.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureApplicationGuideline.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureBudgetLevel1.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureBudgetLevel2.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureBudgetLevel2AidMode.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureBudgetLevel3.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureBudgetValidationRule.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureDocument.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalTable.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalTableStatus.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalTableType.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalTableTypeShort.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalTableXml.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureEvalType.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureIndicativeAnnualWorkingProgramme.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureIndicativeAnnualWorkingProgrammeCandidate.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureIndicativeAnnualWorkingProgrammeCompany.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureIndicator.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureInterventionCategory.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureInvestmentPriority.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureLocation.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureNumber.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureProgramme.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureQuestion.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureShare.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProceduresModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureSpecField.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureSpecFieldMaxLength.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureSpecificTarget.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureStatus.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureTimeLimit.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureType.cs" />
+    <Compile Include="Entities\Umis\Procedures\ProcedureVersion.cs" />
+    <Compile Include="Entities\Umis\Procedures\PublicDiscussionCommentsSectionStatus.cs" />
+    <Compile Include="Entities\Umis\Procedures\PublicDiscussionStatus.cs" />
+    <Compile Include="Entities\Umis\Procedures\SpecificTargetJson.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectDossierDocumentType.cs" />
+    <Compile Include="Entities\Umis\Projects\Project.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunication.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationFile.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationFileSignature.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationMessage.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationMessageFile.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationMessageType.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectCommunicationStatus.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectEvalStatus.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectFile.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectFileSignature.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectRecieveType.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectRegistrationStatus.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectType.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectVersionXml.cs" />
+    <Compile Include="Entities\Umis\Projects\ProjectVersionXmlStatus.cs" />
+    <Compile Include="Entities\Umis\Registrations\Registration.cs" />
+    <Compile Include="Entities\Umis\Registrations\RegistrationsModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\Registrations\RegOfferXml.cs" />
+    <Compile Include="Entities\Umis\Registrations\RegProjectXml.cs" />
+    <Compile Include="Entities\Umis\Registrations\RegProjectXmlRegType.cs" />
+    <Compile Include="Entities\Umis\Registrations\RegProjectXmlStatus.cs" />
+    <Compile Include="Entities\Umis\Registrations\RioXmlDocumentWithFiles.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\PermissionRequest.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RegDataRequest.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestPackage.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestPackagesModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestPackageStatus.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestPackageType.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestPackageUser.cs" />
+    <Compile Include="Entities\Umis\RequestPackages\RequestStatus.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\Contract.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\ContractPayment.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\Currency.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\EuFund.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\FinanceSource.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\PaymentType.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\ReqPayment.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapDocuments\SapDocument.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapFile.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapFile.Logic.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapFileStatus.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapImportModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapPaidAmount.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapPaidAmountCurrency.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapPaidAmountFinanceSource.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapPaidAmountFund.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapPaymentType.cs" />
+    <Compile Include="Entities\Umis\SapInterfaces\SapSchema.cs" />
+    <Compile Include="Entities\Umis\Services\INomenclatureDomainService.cs" />
+    <Compile Include="Entities\Umis\Services\IProcedureDomainService.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheck.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckAscertainment.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckAscertainmentItem.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckAscertainmentStatus.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckAscertainmentType.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckDoc.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckItem.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckItemLevel.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckLevel.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckPlace.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckPlan.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckPlanDoc.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckPlanItem.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckPlanTarget.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckRecommendation.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckRecommendationAscertainment.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckRecommendationStatus.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotChecksModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckStatus.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckTarget.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckTargetType.cs" />
+    <Compile Include="Entities\Umis\SpotChecks\SpotCheckType.cs" />
+    <Compile Include="Entities\Umis\UserOrganizations\UserOrganization.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\ActionLogPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\CertAuthorityCheckPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\CompanyPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\ContractRegistrationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\GuidancePermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\MonitoringPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\NewsPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\OperationalMapAdminPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\RegistrationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\SapInterfacePermission.cs" />
+    <Compile Include="Entities\Umis\Users\CommonPermissions\UserAdminPermission.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionAggregations\CommonPermissionAggregationItem.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionAggregations\PermissionAggregation.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionAggregations\ProgrammePermissionAggregationItem.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionTables\CommonPermissionTable.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionTables\Permission.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionTables\PermissionTable.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionTables\PermissionType.cs" />
+    <Compile Include="Entities\Umis\Users\PermissionTables\ProgrammePermissionTable.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\AuditAuthorityCommunicationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ProjectDossierPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\AuditPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\CertAuthorityCommunicationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\CertificationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ContractCommunicationPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ContractPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ContractReportPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\EuReimbursedAmountPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\EvalSessionPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\IrregularityPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\IrregularitySignalPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\MonitoringFInancialControlPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\OperationalMapPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ProcedurePermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\ProjectPermission.cs" />
+    <Compile Include="Entities\Umis\Users\ProgrammePermissions\SpotCheckPermission.cs" />
+    <Compile Include="Entities\Umis\Users\User.cs" />
+    <Compile Include="Entities\Umis\Users\UserPermission.cs" />
+    <Compile Include="Entities\Umis\Users\UsersModelDbConfiguration.cs" />
+    <Compile Include="Entities\Umis\UserTypes\UserType.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\LocalizableDescriptionAttribute.cs" />
+    <Compile Include="Core\DomainException.cs" />
+    <Compile Include="Core\DomainObjectNotFoundException.cs" />
+    <Compile Include="Core\DomainValidationException.cs" />
+    <Compile Include="Core\EventHandler.cs" />
+    <Compile Include="Core\IAggregateRoot.cs" />
+    <Compile Include="Core\IDomainEvent.cs" />
+    <Compile Include="Core\IEventEmitter.cs" />
+    <Compile Include="Core\IEventHandler.cs" />
+    <Compile Include="Custom\Maps\Map.cs" />
+    <Compile Include="Custom\Maps\MapTypeEnum.cs" />
+    <Compile Include="Custom\Maps\NomenclatureType.cs" />
+    <Compile Include="DbConfiguration.cs" />
+    <Compile Include="DomainModule.cs" />
+    <Compile Include="Entities\Map.cs" />
+    <Compile Include="Entities\MapRegion.cs" />
+    <Compile Include="Entities\MapType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Public.Common\Eumis.Public.Common.csproj">
+      <Project>{37af0238-0356-4b8d-97fa-7d6fef00c48d}</Project>
+      <Name>Eumis.Public.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Resources\Eumis.Public.Resources.csproj">
+      <Project>{f5d0cb10-74c0-4a84-8ee5-bd8278c1a68a}</Project>
+      <Name>Eumis.Public.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

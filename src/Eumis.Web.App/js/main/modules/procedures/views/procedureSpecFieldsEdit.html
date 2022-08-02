@@ -1,0 +1,30 @@
+<ng-form name="editProcedureSpecFieldForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_procedureSpecField_edit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_procedureSpecField_edit_activate" class="btn btn-success btn-xs" ng-show="procedureSpecField.isActivated && !procedureSpecField.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureSpecField.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_procedureSpecField_edit_deactivate" class="btn btn-danger btn-xs" ng-show="procedureSpecField.isActivated && procedureSpecField.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureSpecField.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_procedureSpecField_edit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!procedureSpecField.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureSpecField.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="deleteField()" text="procedures_procedureSpecField_edit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!procedureSpecField.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', procedureSpecField.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_procedureSpecField_edit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_procedureSpecField_edit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !procedureSpecField.isActive}">
+      <eumis-procedure-spec-field-data  name="procedureSpecFieldForm" ng-model="procedureSpecField"></eumis-procedure-spec-field-data>
+    </div>
+  </div>
+</ng-form>

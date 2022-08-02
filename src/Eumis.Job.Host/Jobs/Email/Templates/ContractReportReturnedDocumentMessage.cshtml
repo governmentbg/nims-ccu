@@ -1,0 +1,24 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+    string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+    string documentType = (string)Model["documentType"];
+    string documentNumber = (string)Model["documentNumber"];
+    string contractReportNumber = (string)Model["contractReportNumber"];
+    string contractCompanyName = (string)Model["contractCompanyName"];
+    string contractCompanyUin = (string)Model["contractCompanyUin"];
+    string contractName = (string)Model["contractName"];
+    string contractRegNumber = (string)Model["contractRegNumber"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Имате получено искане за коригиране на данни в @documentType с номер: <strong>@documentNumber</strong> към пакет отчетни документи с номер: <strong>@contractReportNumber</strong>, във връзка с договор с номер: <strong>@contractRegNumber</strong> сключен с бенефициент @contractCompanyName (@contractCompanyUin) </p>
+<p style="margin-bottom: 15px;">Документа може да намерите в раздел „Отчетни документи“ на системата.</p>
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">
+  Поздрави, <br />
+  Екипът на СУНИ
+</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br />

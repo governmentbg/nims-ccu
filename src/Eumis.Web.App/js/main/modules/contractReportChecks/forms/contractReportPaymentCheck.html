@@ -1,0 +1,28 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractReportChecks_contractReportChecksPaymentForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportPaymentCheckStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportChecksPaymentForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.approval" alias="'contractReportPaymentCheckApprovals'" mode="id" l10n-text="contractReportChecks_contractReportChecksPaymentForm_approval" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="file" ng-model="model.file" url-template="ContractReportCheckFile" url-params="{ id: model.contractReportId }" l10n-text="contractReportChecks_contractReportChecksPaymentForm_file" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.checkedDate" l10n-text="contractReportChecks_contractReportChecksPaymentForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportChecksPaymentForm_checkedByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div ng-repeat="amount in model.contractReportPaymentCheckAmounts track by $index">
+    <h5 class="form-header">{{amount.header}}</h5>
+    <h5 class="table-header" l10n-text="contractReportChecks_contractReportChecksPaymentForm_approvedAmounts"></h5>
+    <div class="row">
+      <sc-field type="money" ng-model="amount.approvedBgAmount" l10n-text="contractReportChecks_contractReportChecksPaymentForm_approvedBgAmount" ng-readonly="true" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+
+    <h5 class="table-header" l10n-text="contractReportChecks_contractReportChecksPaymentForm_paidAmounts"></h5>
+    <div class="row">
+      <sc-field type="money" ng-model="amount.paidBgAmount" l10n-text="contractReportChecks_contractReportChecksPaymentForm_paidBgAmount" ng-change="paidAmountChanged($index)" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+  </div>
+</ng-form>
+

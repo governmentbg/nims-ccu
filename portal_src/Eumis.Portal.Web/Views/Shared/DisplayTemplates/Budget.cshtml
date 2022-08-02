@@ -1,0 +1,147 @@
+﻿@model R_10010.Budget
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+@if (Model != null)
+{
+    bool hasNutsAddress = false;
+    int columnCount = 5;
+
+    List<R_10007.ProgrammeDetailsExpenseBudget> details = new List<R_10007.ProgrammeDetailsExpenseBudget>();
+    if (Model.ProgrammeBudgetCollection != null && Model.ProgrammeBudgetCollection.Count > 0)
+    {
+        foreach (var budget in Model.ProgrammeBudgetCollection)
+        {
+            foreach (var expense in budget.ProgrammeExpenseBudgetCollection)
+            {
+                foreach (var detail in expense.ProgrammeDetailsExpenseBudgetCollection)
+                {
+                    details.Add(detail);
+                }
+            }
+        }
+
+        hasNutsAddress = details.Any(detail => detail.Nuts != null && !String.IsNullOrWhiteSpace(detail.Nuts.Code)) && Model.HasMoreThanOneNutsAddress;
+    }
+
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info dynamic-rows budget-table">
+            <thead>
+                <tr>
+                    <th class="index"></th>
+                    <th style="min-width: 350px">@ProgrammeBudget.ExpenseName</th>
+                    <th class="codes">@ProgrammeBudget.Direction</th>
+                    <th colspan="2">
+                        @if(Model.IsFinalRecipients || Model.IsFinancialIntermediaries)
+                        {
+                            <text>@ProgrammeBudget.FinancialIntermediariesGrandAmount</text>
+                        }
+                        else
+                        {
+                            <text>@ProgrammeBudget.GrandAmount</text>
+                        }
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ProgrammeBudgetCollection != null)
+                {
+                    for (int i = 0; i < Model.ProgrammeBudgetCollection.Count; i++)
+                    {
+                        var level1 = Model.ProgrammeBudgetCollection[i];
+                        <tr class="level1 @(level1.IsDeactivated ? "deactivated" : "")">
+                            <td colspan="3">
+                                @(Eumis.Common.Helpers.DataUtils.Romanize(level1.OrderNum)). @level1.DisplayName
+                                @if (level1.IsDeactivated)
+                                {
+                                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                                }
+                            </td>
+                            <td colspan="2" style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => level1.GrandDisplay, MVC.Shared.Views.DisplayTemplates.Money)</td>
+                            <td></td>
+                        </tr>
+                        if (Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection != null)
+                        {
+                            for (int j = 0; j < Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection.Count; j++)
+                            {
+                                var level2 = Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j];
+                                bool hasAidMode = level2.AidMode != null && !String.IsNullOrWhiteSpace(level2.AidMode.Description);
+
+                                <tr class="level2 @(level1.IsDeactivated || level2.IsDeactivated ? "deactivated" : "")">
+                                    <td colspan="3">
+                                        @(level2.OrderNum). @level2.DisplayName
+                                        @if (level2.IsDeactivated)
+                                        {
+                                            <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                                        }
+
+                                        @if (hasAidMode)
+                                        {
+                                            <text>(</text>
+                                            
+                                            if (hasAidMode)
+                                            {
+                                                <text>@ProgrammeBudget.AidMode: @level2.AidMode.text</text>
+                                            }
+
+                                            if (hasAidMode)
+                                            {
+                                                <text>, </text>
+                                            }
+
+                                            <text>@ProgrammeBudget.IsEligibleCostTrue</text>
+                                            <text>)</text>
+                                        }
+                                    </td>
+                                    <td colspan="2" style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => level2.GrandDisplay, MVC.Shared.Views.DisplayTemplates.Money)</td>
+                                    <td></td>
+                                </tr>
+                                if (Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection != null)
+                                {
+                                    for (int k = 0; k < Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection.Count; k++)
+                                    {
+                                        var level3 = Model.ProgrammeBudgetCollection[i].ProgrammeExpenseBudgetCollection[j].ProgrammeDetailsExpenseBudgetCollection[k];
+                                        <tr class="level3  @(level1.IsDeactivated || level2.IsDeactivated ? "deactivated" : "")">
+                                            <td>
+                                                @(level2.OrderNum).@(level3.OrderNum).
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(m => level3.Name)
+                                            </td>
+                                            <td>
+                                                @if (hasNutsAddress)
+                                                {
+                                                    <span class="preview">
+                                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@NutsAddress.NutsLevel" data-trigger="hover" alt="" data-original-title="" title=""> 08. :
+                                                        @Html.DisplayFor(m => level3.Nuts.Name)
+                                                    </span>
+                                                }
+                                                
+                                                @Html.DisplayFor(m => level3.Direction.DirectionItem)
+                                                @Html.DisplayFor(m => level3.Direction.SubDirection)
+                                                
+                                            </td>
+                                            <td colspan="2" class="text-right">
+                                                @Html.DisplayFor(m => level3.GrandAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    <tr class="level1">
+                        <td colspan="3" class="text-right">
+                            @ProgrammeBudget.Total:
+                        </td>
+                       <td colspan="2" style="vertical-align: middle;" class="text-right">@Html.DisplayFor(m => Model.GrandDisplay, MVC.Shared.Views.DisplayTemplates.Money)</td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,41 @@
+<ng-form name="editContractReportForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractReports_editContractReport_title"></strong>
+
+      <div class="pull-right">
+
+          <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="contractReports_editContractReport_draft" class="btn btn-success btn-xs"
+            ng-show="!editMode && (contractReport.status === 'entered' || contractReport.status === 'sentChecked')"
+            ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId) || (contractReport.source === 'beneficiary' && (contractReport.status === 'draft' || contractReport.status === 'entered' || contractReport.status === 'sentChecked'))">
+          </sc-button>
+
+          <sc-button name="enteredBtn" btn-click="changeStatus('entered')" text="contractReports_editContractReport_entered" class="btn btn-default btn-xs"
+            ng-show="!editMode && contractReport.status === 'draft'" ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)">
+          </sc-button>
+
+          <sc-button name="sentCheckedBtn" btn-click="changeStatus('sentChecked')" text="contractReports_editContractReport_sentChecked" class="btn btn-default btn-xs"
+            ng-show="!editMode && contractReport.status === 'entered'"
+            ng-disabled="!$canDo('ContractReportActions.MarkAsChecked', contractReportId) || (contractReport.source === 'beneficiary' && (contractReport.status === 'draft' || contractReport.status === 'entered' || contractReport.status === 'sentChecked'))">
+          </sc-button>
+
+          <sc-button name="editBtn" btn-click="edit()" text="contractReports_editContractReport_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && contractReport.status === 'draft'"
+            ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)">
+          </sc-button>
+
+          <sc-button name="deleteBtn" btn-click="del()" text="contractReports_editContractReport_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+            ng-disabled="!$canDo('ContractReportActions.Delete', contractReportId)" ng-show="contractReport.status === 'draft' && !editMode"></sc-button>
+
+          <sc-button name="saveBtn" btn-click="save()" text="contractReports_editContractReport_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contractReports_editContractReport_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report name="contractReportForm" ng-model="contractReport" sc-form-params="{ contractId: contractId }"></eumis-contract-report>
+    </div>
+  </div>
+</ng-form>

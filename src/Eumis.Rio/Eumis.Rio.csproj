@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE6E8F22-5574-40E6-9C19-212794757C57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Rio</RootNamespace>
+    <AssemblyName>Eumis.Rio</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\R-09986_CompanyTypeNomenclature.cs" />
+    <Compile Include="Classes\R-09987_CommunicationTypeNomenclature.cs" />
+    <Compile Include="Classes\R-09988_BFPContractTypeNomenclature.cs" />
+    <Compile Include="Classes\R-09989_Location.cs" />
+    <Compile Include="Classes\R-09990_MessageTypeNomenclature.cs" />
+    <Compile Include="Classes\R-09991_EnumNomenclature.cs" />
+    <Compile Include="Classes\R-09992_AttachedDocumentContent.cs" />
+    <Compile Include="Classes\R-09993_EvalTypeNomenclature.cs" />
+    <Compile Include="Classes\R-09994_PaperAttachedDocument.cs" />
+    <Compile Include="Classes\R-09995_ProgrammeContractActivities.cs" />
+    <Compile Include="Classes\R-09997_ProgrammeBasicData.cs" />
+    <Compile Include="Classes\R-09998_DirectionsBudgetContract.cs" />
+    <Compile Include="Classes\R-09999_NutsAddress.cs" />
+    <Compile Include="Classes\R-10000_PrivateNomenclature.cs" />
+    <Compile Include="Classes\R-10001_PublicNomenclature.cs" />
+    <Compile Include="Classes\R-10002_ProjectBasicData.cs" />
+    <Compile Include="Classes\R-10003_Address.cs" />
+    <Compile Include="Classes\R-10004_Company.cs" />
+    <Compile Include="Classes\R-10005_InterventionCategoryDimensions.cs" />
+    <Compile Include="Classes\R-10006_Contract.cs" />
+    <Compile Include="Classes\R-10007_ProgrammeDetailsExpenseBudget.cs" />
+    <Compile Include="Classes\R-10008_ProgrammeExpenseBudget.cs" />
+    <Compile Include="Classes\R-10009_ProgrammeBudget.cs" />
+    <Compile Include="Classes\R-10010_Budget.cs" />
+    <Compile Include="Classes\R-10011_ContractActivity.cs" />
+    <Compile Include="Classes\R-10012_ProjectPayPlan.cs" />
+    <Compile Include="Classes\R-10013_Indicator.cs" />
+    <Compile Include="Classes\R-10014_ProgrammeIndicators.cs" />
+    <Compile Include="Classes\R-10015_ContractTeam.cs" />
+    <Compile Include="Classes\R-10016_ProjectErrand.cs" />
+    <Compile Include="Classes\R-10017_ProjectSpecField.cs" />
+    <Compile Include="Classes\R-10018_AttachedDocument.cs" />
+    <Compile Include="Classes\R-10019_Project.cs" />
+    <Compile Include="Classes\R-10020_Message.cs" />
+    <Compile Include="Classes\R-10021_EvalTableCriteria.cs" />
+    <Compile Include="Classes\R-10022_EvalTableGroup.cs" />
+    <Compile Include="Classes\R-10023_EvalTable.cs" />
+    <Compile Include="Classes\R-10024_EvalSheetCriteria.cs" />
+    <Compile Include="Classes\R-10025_EvalSheetGroup.cs" />
+    <Compile Include="Classes\R-10026_EvalSheet.cs" />
+    <Compile Include="Classes\R-10027_Standpoint.cs" />
+    <Compile Include="Classes\R-10028_PreliminaryPartner.cs" />
+    <Compile Include="Classes\R-10029_PreliminaryContract.cs" />
+    <Compile Include="Classes\R-10030_PreliminaryContractActivity.cs" />
+    <Compile Include="Classes\R-10031_BFPContractBasicData.cs" />
+    <Compile Include="Classes\R-10032_BFPContractBudgetAmounts.cs" />
+    <Compile Include="Classes\R-10033_BFPContractProgrammeDetailsExpenseBudget.cs" />
+    <Compile Include="Classes\R-10034_BFPContractProgrammeExpenseBudget.cs" />
+    <Compile Include="Classes\R-10035_BFPContractProgrammeBudget.cs" />
+    <Compile Include="Classes\R-10036_BFPContractBudget.cs" />
+    <Compile Include="Classes\R-10037_BFPContractContractActivity.cs" />
+    <Compile Include="Classes\R-10038_BFPContractIndicator.cs" />
+    <Compile Include="Classes\R-10039_BFPContractContractTeam.cs" />
+    <Compile Include="Classes\R-10040_BFPContract.cs" />
+    <Compile Include="Classes\R-10041_Procurements.cs" />
+    <Compile Include="Classes\R-10042_Communication.cs" />
+    <Compile Include="Classes\R-10043_FinanceReport.cs" />
+    <Compile Include="Classes\R-10044_TechnicalReport.cs" />
+    <Compile Include="Classes\R-10045_PaymentRequest.cs" />
+    <Compile Include="Classes\R-10046_Contractor.cs" />
+    <Compile Include="Classes\R-10047_ContractContractor.cs" />
+    <Compile Include="Classes\R-10048_ProcurementPlan.cs" />
+    <Compile Include="Classes\R-10049_PaymentRequestBasicData.cs" />
+    <Compile Include="Classes\R-10050_PaymentRequestDeclaration.cs" />
+    <Compile Include="Classes\R-10051_BFPContractSAPData.cs" />
+    <Compile Include="Classes\R-10052_TechnicalReportBasicData.cs" />
+    <Compile Include="Classes\R-10053_TechnicalReportActivity.cs" />
+    <Compile Include="Classes\R-10054_TechnicalReportIndicator.cs" />
+    <Compile Include="Classes\R-10057_TechnicalReportTeamMember.cs" />
+    <Compile Include="Classes\R-10058_FinanceReportBudgetAmounts.cs" />
+    <Compile Include="Classes\R-10059_FinanceBudgetLevel3.cs" />
+    <Compile Include="Classes\R-10060_FinanceBudgetLevel2.cs" />
+    <Compile Include="Classes\R-10061_FinanceBudgetLevel1.cs" />
+    <Compile Include="Classes\R-10062_FinanceBudget.cs" />
+    <Compile Include="Classes\R-10063_FinanceSourceAmounts.cs" />
+    <Compile Include="Classes\R-10065_FinanceReportBudgetItemData.cs" />
+    <Compile Include="Classes\R-10066_CostSupportingDocument.cs" />
+    <Compile Include="Classes\R-10067_FinanceSourceReportAmounts.cs" />
+    <Compile Include="Classes\R-10068_FinanceReportBudgetRowAmounts.cs" />
+    <Compile Include="Classes\R-10069_SubcontractorMember.cs" />
+    <Compile Include="Classes\R-10070_BFPContractPlan.cs" />
+    <Compile Include="Classes\R-10071_DifferentiatedPosition.cs" />
+    <Compile Include="Classes\R-10072_QuarterlyDistribution.cs" />
+    <Compile Include="Classes\R-10073_SpendingBudgetLevel3.cs" />
+    <Compile Include="Classes\R-10074_SpendingBudgetLevel2.cs" />
+    <Compile Include="Classes\R-10075_SpendingBudgetLevel1.cs" />
+    <Compile Include="Classes\R-10076_SpendingBudget.cs" />
+    <Compile Include="Classes\R-10077_SpendingPlan.cs" />
+    <Compile Include="Classes\R-10078_FinanceReportBasicData.cs" />
+    <Compile Include="Classes\R-10079_OfferBasicData.cs" />
+    <Compile Include="Classes\R-10080_Offer.cs" />
+    <Compile Include="Classes\R-10093_Direction.cs" />
+    <Compile Include="Classes\R-10098_ElectronicDeclaration.cs" />
+    <Compile Include="Classes\xmlsig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RioExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassGeneration.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassGeneration.tt</DependentUpon>
+    </None>
+    <None Include="Schemas\R-09986_CompanyTypeNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09987_CommunicationTypeNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09988_BFPContractTypeNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09989_Location.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09990_MessageTypeNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09991_EnumNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09992_AttachedDocumentContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09993_EvalTypeNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09994_PaperAttachedDocument.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09995_ProgrammeContractActivities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09997_ProgrammeBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09998_DirectionsBudgetContract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-09999_NutsAddress.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10000_PrivateNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10001_PublicNomenclature.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10002_ProjectBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10003_Address.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10004_Company.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10005_InterventionCategoryDimensions.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10006_Contract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10007_ProgrammeDetailsExpenseBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10008_ProgrammeExpenseBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10009_ProgrammeBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10010_Budget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10011_ContractActivity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10012_ProjectPayPlan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10013_Indicator.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10014_ProgrammeIndicators.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10015_ContractTeam.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10016_ProjectErrand.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10017_ProjectSpecField.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10018_AttachedDocument.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10019_Project.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10020_Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10021_EvalTableCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10022_EvalTableGroup.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10023_EvalTable.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10024_EvalSheetCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10025_EvalSheetGroup.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10026_EvalSheet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10027_Standpoint.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10028_PreliminaryPartner.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10029_PreliminaryContract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10030_PreliminaryContractActivity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10031_BFPContractBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10032_BFPContractBudgetAmounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10033_BFPContractProgrammeDetailsExpenseBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10034_BFPContractProgrammeExpenseBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10035_BFPContractProgrammeBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10036_BFPContractBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10037_BFPContractContractActivity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10038_BFPContractIndicator.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10039_BFPContractContractTeam.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10040_BFPContract.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10041_Procurements.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10042_Communication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10043_FinanceReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10044_TechnicalReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10045_PaymentRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10046_Contractor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10047_ContractContractor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10048_ProcurementPlan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10049_PaymentRequestBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10050_PaymentRequestDeclaration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10051_BFPContractSAPData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10052_TechnicalReportBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10053_TechnicalReportActivity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10054_TechnicalReportIndicator.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10057_TechnicalReportTeamMember.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10058_FinanceReportBudgetAmounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10059_FinanceBudgetLevel3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10060_FinanceBudgetLevel2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10061_FinanceBudgetLevel1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10062_FinanceBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10063_FinanceSourceAmounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10065_FinanceReportBudgetItemData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10066_CostSupportingDocument.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10067_FinanceSourceReportAmounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10068_FinanceReportBudgetRowAmounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10069_SubcontractorMember.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10070_BFPContractPlan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10071_DifferentiatedPosition.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10072_QuarterlyDistribution.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10073_SpendingBudgetLevel3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10074_SpendingBudgetLevel2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10075_SpendingBudgetLevel1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10076_SpendingBudget.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10077_SpendingPlan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10078_FinanceReportBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10079_OfferBasicData.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10080_Offer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10098_ElectronicDeclaration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\R-10093_Direction.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Schemas\xmlsig.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClassGeneration.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClassGeneration.log</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

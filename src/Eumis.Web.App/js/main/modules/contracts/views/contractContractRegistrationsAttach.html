@@ -1,0 +1,28 @@
+<ng-form name="attachForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractRegistrations_attachForm_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="contractRegistrations_attachForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractRegistrations_attachForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contractRegistrations'" params="{ contractId: contractId }" l10n-text="contractRegistrations_contractRegistrationDataForm_email" class="col-sm-4 col-md-3" style="padding-right: 33px;"
+          mode="id" ng-model="contractRegistrationId" nom-obj="contractContractReg.contractRegistration"></sc-field>
+        <div class="col-sm-4 col-md-3" style="margin-left: -64px;">
+          <sc-button name="chooseRegistrationBtn" btn-click="chooseRegistration()" class="btn btn-sm btn-default" icon="glyphicon-search" style="margin-top: 19px;"></sc-button>
+        </div>
+      </div>
+
+      <eumis-contract-contract-registration name="contractRegistrationForm" ng-model="contractContractReg" sc-form-params="{ isReadonly: true, hideEmail: true }"></eumis-contract-contract-registration>
+
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Amount" xml:space="preserve">
+    <value>Стойност</value>
+  </data>
+  <data name="CoFinancingBudgetAmount" xml:space="preserve">
+    <value>Съфинансиране от бенефициента/партньорите (средства от бюджетни предприятия)</value>
+  </data>
+  <data name="CoFinancingNonBudgetAmount" xml:space="preserve">
+    <value>Съфинансиране от бенефициента/партньорите (средства, които не са от бюджетни предприятия)</value>
+  </data>
+  <data name="EBRDAmount" xml:space="preserve">
+    <value>- ЕБВР</value>
+  </data>
+  <data name="EIBAmount" xml:space="preserve">
+    <value>- ЕИБ</value>
+  </data>
+  <data name="ExpectedLeverageLoanAmount" xml:space="preserve">
+    <value>Очакван лостов ефект за заем/гаранция/дялови или квазидялови инвестиции/друг финансов продукт</value>
+  </data>
+  <data name="ExpectedRevenue" xml:space="preserve">
+    <value>Очаквани приходи от проекта</value>
+  </data>
+  <data name="FinancialIntermediariesExpectedRevenue" xml:space="preserve">
+    <value>Очаквани приходи от проекта/продукта</value>
+  </data>
+  <data name="FinancialIntermediariesIneligibleCosts" xml:space="preserve">
+    <value>Недопустими разходи, необходими за изпълнението на проекта/продукта (когато е приложимо)</value>
+  </data>
+  <data name="FinancialIntermediariesRatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Съотношение Финансов инструмент към Общо допустими разходи</value>
+  </data>
+  <data name="FinancialIntermediariesRequestedFundingAmount" xml:space="preserve">
+    <value>Искано финансиране (Финансов инструмент)</value>
+  </data>
+  <data name="FinancialIntermediariesTotalProjectCost" xml:space="preserve">
+    <value>Обща стойност на проектното предложение/информацията</value>
+  </data>
+  <data name="FundingFrom" xml:space="preserve">
+    <value>вкл. финансиране от:</value>
+  </data>
+  <data name="IneligibleCosts" xml:space="preserve">
+    <value>Недопустими разходи, необходими за изпълнението на проекта (когато е приложимо)</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="OtherAmount" xml:space="preserve">
+    <value>- Други</value>
+  </data>
+  <data name="OtherMFIAmount" xml:space="preserve">
+    <value>- Други МФИ</value>
+  </data>
+  <data name="RatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Съотношение Безвъзмездна финансова помощ към Общо допустими разходи</value>
+  </data>
+  <data name="RequestedFundingAmount" xml:space="preserve">
+    <value>Искано финансиране (Безвъзмездна финансова помощ)</value>
+  </data>
+  <data name="RequestedFundingPartOfCrossFinancingAmount" xml:space="preserve">
+    <value>- в т.ч. кръстосано финансиране</value>
+  </data>
+  <data name="TotalCoFinancingAmount" xml:space="preserve">
+    <value>Общо съфинансиране</value>
+  </data>
+  <data name="TotalEligibleCosts" xml:space="preserve">
+    <value>Общо допустими разходи</value>
+  </data>
+  <data name="TotalEligibleCostsPublicFunding" xml:space="preserve">
+    <value>Общо допустими разходи (публично финансиране)</value>
+  </data>
+  <data name="OtherContributionsOutsideESI" xml:space="preserve">
+    <value>Общ размер на другия принос, извън ЕСИ фондовете, за които е поет ангажимент в споразумението за финансиране с органа, изпълняващ финансовия инструмент (за финансови инструменти)</value>
+  </data>
+  <data name="TotalProjectCost" xml:space="preserve">
+    <value>Обща стойност</value>
+  </data>
+  <data name="WBAmount" xml:space="preserve">
+    <value>- СБ</value>
+  </data>
+  <data name="OtherContributionsOutsideESIPrivate" xml:space="preserve">
+    <value>Частен принос</value>
+  </data>
+  <data name="OtherContributionsOutsideESIPublic" xml:space="preserve">
+    <value>Публичен принос</value>
+  </data>
+  <data name="OtherContributionsOutsideESITotal" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+</root>

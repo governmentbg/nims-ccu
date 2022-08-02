@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button ng-show="!isProcedureReadonly" name="newProcedureDirectionBtn" ng-click="chooseDirections()" text="procedures_procedureDirection_search_attach" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+
+    <sc-datatable items="procedureDirections" filterable="true" pageable="true" sortable="false" dynamic-columns="true" default-sort-asc-desc="asc">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.directions.edit', params: { ind: item.procedureDirectionId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="direction" title="procedures_procedureDirection_search_direction" ></sc-column>
+      <sc-column data="subDirection" title="procedures_procedureDirection_search_subDirection"></sc-column>
+      <sc-column data="amount" title="procedures_procedureDirection_search_amount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

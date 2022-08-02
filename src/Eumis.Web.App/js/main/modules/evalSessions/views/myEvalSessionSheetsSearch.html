@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionProjects'" mode="id" ng-model="filters.project" params="{evalSessionId: evalSessionId, notDeletedOnly: false}" l10n-text="evalSessions_evalSessionSheetsSearch_project" class="col-sm-5 col-md-4"></sc-field>
+        <sc-field type="nomenclature" alias="'procedureEvalTableTypes'" mode="id" ng-model="filters.evalTableType" params="{evalSessionId: evalSessionId}" l10n-text="evalSessions_evalSessionSheetsSearch_type" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="nomenclature" alias="'evalSessionDistributions'" mode="id" ng-model="filters.distribution" params="{evalSessionId: evalSessionId}" l10n-text="evalSessions_evalSessionSheetsSearch_distribution" class="col-sm-5 col-md-4"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionSheetStatuses'" mode="id" multiple="multiple" ng-model="filters.statuses" l10n-text="evalSessions_evalSessionSheetsSearch_statuses" class="col-sm-5 col-md-4"></sc-field>
+        <div class="labeless col-md-4 col-sm-2 pull-right">
+          <sc-button name="seachBtn" btn-click="search()" text="evalSessions_evalSessionsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="evalSessionSheets" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.my.view.sheets.edit', params: { ind: item.evalSessionSheetId} }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"
+          ng-disabled="!$canDo('MyEvalSessionSheetActions.Edit', item.evalSessionSheetId)"></sc-button>
+      </sc-column>
+      <sc-column data="statusName" title="evalSessions_evalSessionSheetsSearch_status"></sc-column>
+      <sc-column title="evalSessions_evalSessionSheetsSearch_project" has-content="true" data="projectRegNumber + ' ' + projectName">
+        <span title="{{item.projectName}}">{{item.projectRegNumber}} - {{item.projectName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="evalTableTypeName" title="evalSessions_evalSessionSheetsSearch_type"></sc-column>
+      <sc-column data="distributionType" title="evalSessions_evalSessionSheetsSearch_distributionType"></sc-column>
+      <sc-column data="evalIsPassed" title="evalSessions_evalSessionSheetsSearch_pass" type="boolean"></sc-column>
+      <sc-column data="evalPoints" title="evalSessions_evalSessionSheetsSearch_result" type="number"></sc-column>
+      <sc-column data="evalNote" title="evalSessions_evalSessionSheetsSearch_note"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

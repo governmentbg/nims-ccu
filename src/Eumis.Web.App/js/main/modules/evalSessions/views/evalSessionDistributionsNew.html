@@ -1,0 +1,57 @@
+<ng-form name="newEvalSessionDistributionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_newEvalSessionDistribution_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_newEvalSessionDistribution_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_newEvalSessionDistribution_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-distribution name="evalSessionDistributionForm" ng-model="newEvalSessionDistribution"></eumis-eval-session-distribution>
+
+      <h5 class="table-header" l10n-text="evalSessions_newEvalSessionDistribution_projects"></h5>
+      
+      <sc-button name="addAllBtn" ng-hide="allAdded"  btn-click="addAll()" text="evalSessions_newEvalSessionDistribution_projects_all" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw">
+      </sc-button>
+      <sc-button name="deleteAllBtn" ng-hide="!allAdded" btn-click="deleteAll()" text="evalSessions_newEvalSessionDistribution_projects_none" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw">
+      </sc-button>
+
+      <sc-datatable items="newEvalSessionDistribution.projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button ng-show="!item.isDeleted" ng-disabled="item.isSystemDeleted" btn-click="deleteProject(item)" name="selectedBtn" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          <sc-button ng-show="item.isDeleted" ng-disabled="item.isSystemDeleted" btn-click="addProject(item)" name="notSelectedBtn" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+        </sc-column>
+        <sc-column data="procedureName" title="evalSessions_newEvalSessionDistribution_procedureName">
+        </sc-column>
+        <sc-column data="projectRegNumber" title="evalSessions_newEvalSessionDistribution_projectRegNumber">
+        </sc-column>
+        <sc-column title="evalSessions_newEvalSessionDistribution_projectName" has-content="true" data="projectName">
+          <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="companyName" title="evalSessions_newEvalSessionDistribution_companyName">
+        </sc-column>
+        <sc-column data="projectRegDate" title="evalSessions_newEvalSessionDistribution_projectRegDate" type="datetime">
+        </sc-column>
+        <sc-column data="projectRegistrationStatus" title="evalSessions_newEvalSessionDistribution_projectRegistrationStatus">
+        </sc-column>
+        <sc-column title="evalSessions_newEvalSessionDistribution_isDeleted" has-content="true">
+          {{item.isDeleted ? noText : yesText}}
+        </sc-column>
+        <sc-column title="evalSessions_newEvalSessionDistribution_isDeletedNote" has-content="true">
+          <div class="form-group"
+            ng-if="item.isDeleted && !item.isSystemDeleted"
+            ng-class="{ 'has-error': (newEvalSessionDistributionForm.$submitted && !newEvalSessionDistributionForm.$readonly) && !item.isDeletedNote }"
+          >
+            <textarea ng-model="item.isDeletedNote" title="{{requiredText}}" rows="2" class="form-control input-md"></textarea>
+          </div>
+          <span ng-if="item.isDeleted && item.isSystemDeleted">{{item.isDeletedNote}}</span>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

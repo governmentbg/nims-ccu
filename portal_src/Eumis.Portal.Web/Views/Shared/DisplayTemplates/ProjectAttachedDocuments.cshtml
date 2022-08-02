@@ -1,0 +1,28 @@
+﻿@model R_10019.AttachedDocuments
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info dynamic-rows file-upload" width="100%">
+            <thead>
+                <tr>
+                    <th style="width:400px;">@AttachedDocument.Type</th>
+                    <th style="width:130px;">@AttachedDocument.Date</th>
+                    <th>@AttachedDocument.Description</th>
+                    <th style="width:200px;">@AttachedDocument.FileName</th>
+                    <th style="width:200px;">@AttachedDocument.Signature</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.AttachedDocumentCollection.Count; i++)
+                    {
+                        @Html.DisplayFor(m => m.AttachedDocumentCollection[i], MVC.Shared.Views.DisplayTemplates.ProjectAttachedDocument)
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

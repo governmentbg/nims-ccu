@@ -1,0 +1,73 @@
+﻿@model R_10029.PreliminaryContract
+
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+}
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        resourcesObjectBoolean: @(Html.Raw(jsonResourcesObjectBoolean)),
+        model: @(Html.Raw(jsonModel))
+    };
+
+    $(document).ready(function () {
+        setTimeout(function() {
+            angular.bootstrap($('#containerPreliminaryContract@(guid)'), ['modulePreliminaryContract']);
+        }, 100);
+    });
+
+</script>
+
+<div id="containerPreliminaryContract@(guid)" ng-controller="controllerPreliminaryContract" ng-init="init('_eumis_options', 'i@(guid)')">
+    @Html.HiddenFor(e => e.id)
+
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%" style="min-width: 400px;">
+            <thead>
+                <tr>
+                    <th>@PreliminaryContract.Name</th>
+                    <th style="min-width: 150px;">@PreliminaryContract.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @PreliminaryContract.RequestedFundingAmount
+                    </td>
+                    <td>
+                        <input money ng-model="model.RequestedFundingAmount" ng-class="{'input-validation-error': !model.IsRequestedFundingAmountValid}" name="@(Html.GetNameFor(m => m.RequestedFundingAmount))" type="text" class="form-control sum-field" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.CoFinancingBudgetAmount
+                    </td>
+                    <td>
+                        <input money ng-model="model.CoFinancingBudgetAmount" ng-class="{'input-validation-error': !model.IsCoFinancingBudgetAmountValid}" name="@(Html.GetNameFor(m => m.CoFinancingBudgetAmount))" type="text" class="form-control sum-field" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong>@PreliminaryContract.Total</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.IsIncomeExpected
+                    </td>
+                    <td>
+                        <boolean-radio ng-model="model.IsIncomeExpected" resources="resourcesObjectBoolean" path="@(Html.GetNameFor(m => m.IsIncomeExpected))"></boolean-radio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@model R_10052.TechnicalReportBasicData
+
+@if (Model != null)
+{
+    <table class="technical-report-basic-data">
+        <tbody>
+            <tr>
+                <td style="width: 35%">@TechnicalReportBasicData.ProcedureName</td>
+                <td style="width: 65%">@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.Procedure ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.ProcedureCode</td>
+                <td>
+                    @if (Model.Procedure != null)
+                    {
+                        @Model.Procedure.Code
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.ProjectName</td>
+                <td>@Model.ProjectName</td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.Beneficiary</td>
+                <td>
+                    @if (Model.Beneficiary != null)
+                    {
+                        @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.CompanyUinName)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.PartnerNames</td>
+                <td>
+                    @if (Model.PartnerCollection != null)
+                    {
+                        foreach (var partner in Model.PartnerCollection)
+                        {
+                            @Html.DisplayFor(m => partner, MVC.Shared.Views.DisplayTemplates.CompanyUinName)
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>@TechnicalReportBasicData.ExecutionPeriod</strong></td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.ExecutionPeriodStartDate</td>
+                <td>
+                    @if (Model.ExecutionPeriodStartDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ExecutionPeriodStartDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.ExecutionPeriodEndDate</td>
+                <td>
+                    @if (Model.ExecutionPeriodEndDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ExecutionPeriodEndDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.StartDate</td>
+                <td>
+                    @if (Model.StartDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.StartDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.EndDate</td>
+                <td>
+                    @if (Model.EndDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.EndDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.ReportType</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.ReportType ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>@TechnicalReportBasicData.Preparer</strong></td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.PreparerName</td>
+                <td>@Model.PreparerName</td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.PreparerPosition</td>
+                <td>@Model.PreparerPosition</td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.PreparerPhone</td>
+                <td>@Model.PreparerPhone</td>
+            </tr>
+            <tr>
+                <td>@TechnicalReportBasicData.PreparerEmail</td>
+                <td>@Model.PreparerEmail</td>
+            </tr>
+        </tbody>
+    </table>
+}

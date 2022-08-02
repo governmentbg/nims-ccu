@@ -1,0 +1,9 @@
+<div class="modal-body message-modal-body">
+  <div>
+    <h5 l10n-text="common_modals_validationErrorsModal_hasErrors"></h5>
+    <pre ng-repeat="err in errors">{{'- ' + err}}</pre>
+  </div>
+</div>
+<div class="modal-footer message-modal-footer">
+  <sc-button name="cancelBtn" btn-click="cancel()" text="common_modals_validationErrorsModal_cancel"class="btn btn-default btn-sm" icon="glyphicon-ban-circle"></sc-button>
+</div>

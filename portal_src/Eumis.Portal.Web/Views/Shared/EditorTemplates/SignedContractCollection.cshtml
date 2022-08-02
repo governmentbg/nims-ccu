@@ -1,0 +1,33 @@
+﻿@model R_10040.AttachedDocumentCollection
+
+<div class="table-wrapper" ng-controller="controllerSignedContracts">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr>
+                <th>@AttachedDocument.Description</th>
+                <th colspan="2">@AttachedDocument.FileName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr>
+                <td style="width:60%;">
+                    <textarea rows="1" style="height:29px;" auto-grow ng-class="{'input-validation-error': !item.IsDescriptionValid}" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control"></textarea>
+                </td>
+                <td style="min-width:190px;">
+                    <sc-file path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent"
+                             resources="resourcesObject"
+                             url="{{ url }}"
+                             ng-model="item.AttachedDocumentContent">
+                    </sc-file>
+                </td>
+                <td style="min-width:102px;">
+                    <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a ng-class="{'input-validation-error': !hasValidCount}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+</div>

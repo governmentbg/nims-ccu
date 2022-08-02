@@ -1,0 +1,105 @@
+﻿@model R_10040.BFPContractIndicators
+
+<tr>
+    @if (Model != null && Model.BFPContractIndicatorCollection != null && Model.BFPContractIndicatorCollection.Count > 0)
+    {
+        for (int i = 0; i < Model.BFPContractIndicatorCollection.Count; i++)
+        {
+            <table class="indicators">
+                <tbody>
+
+                    <tr>
+                        <td style="width: 35%;">@BFPContractIndicators.Name</td>
+                        <td style="width: 65%;">@Model.BFPContractIndicatorCollection[i].SelectedIndicator.Name</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.Type</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.TypeName</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.Trend</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.TrendName</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.Kind</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.KindName</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.Measure</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.MeasureName</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.AggregatedReport</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedReport</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.AggregatedTarget</td>
+                        <td>@Model.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedTarget</td>
+                    </tr>
+
+                    @if (Model.BFPContractIndicatorCollection[i].SelectedIndicator.HasGenderDivision)
+                    {
+                        <tr>
+                            <td>@BFPContractIndicators.BaseMen</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].BaseMen)</td>
+                        </tr>
+                        <tr>
+                            <td>@BFPContractIndicators.BaseWomen</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].BaseWomen)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td>@BFPContractIndicators.BaseTotal</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].BaseTotal)</td>
+                    </tr>
+
+                    @if (Model.BFPContractIndicatorCollection[i].SelectedIndicator.HasGenderDivision)
+                    {
+                        <tr>
+                            <td>@BFPContractIndicators.TargetMen</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].TargetMen)</td>
+                        </tr>
+                        <tr>
+                            <td>@BFPContractIndicators.TargetWomen</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].TargetWomen)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td>@BFPContractIndicators.TargetTotal</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractIndicatorCollection[i].TargetTotal)</td>
+                    </tr>
+                    <tr>
+                        <td>@BFPContractIndicators.Description</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.BFPContractIndicatorCollection[i].Description ?? string.Empty)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@BFPContractIndicators.ProgrammePriority</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.BFPContractIndicatorCollection[i].ProgrammePriority ?? new R_10000.PrivateNomenclature())</td>
+                    </tr>          
+                    <tr>
+                        <td>@BFPContractIndicators.FinanceSource</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.BFPContractIndicatorCollection[i].FinanceSource ?? new R_09991.EnumNomenclature())</td>
+                    </tr>            
+                    <tr>
+                        <td>@BFPContractIndicators.InvestmentPriority</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.BFPContractIndicatorCollection[i].InvestmentPriority ?? new R_10000.PrivateNomenclature())</td>
+                    </tr>          
+                    <tr>
+                        <td>@BFPContractIndicators.SpecificTarget</td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.BFPContractIndicatorCollection[i].SpecificTarget ?? new R_10000.PrivateNomenclature())</td>
+                    </tr>
+
+                    @if (!Model.BFPContractIndicatorCollection[i].isActive)
+                    {
+                        <tr>
+                            <td>@BFPContractIndicators.Status</td>
+                            <td>@BFPContractIndicators.Canceled</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+    }
+</div>

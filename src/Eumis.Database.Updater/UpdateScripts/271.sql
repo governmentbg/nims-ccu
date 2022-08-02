@@ -1,0 +1,5 @@
+﻿GO
+
+ALTER TABLE [ExpenseTypes] ADD [IsActive] BIT NOT NULL DEFAULT(1);
+
+GO

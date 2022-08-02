@@ -1,0 +1,26 @@
+﻿@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+  string portalRoot = portalUrl + "/bg/s";
+  string portalFeedback = portalUrl + "/bg/s/feedback";
+  string activationLink = string.Format("{0}/Report/s/Account/activate?ac={1}", portalUrl, (string)Model["activationCode"]);
+  string email = (string)Model["registrationEmail"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Здравейте, <br/>
+В <strong style="color: #444444;">СУНИ</strong> беше получена заявка за създаване и активиране на нов потребителски профил за отчитане, асоцииран с имейл адрес: <strong style="color: #444444;">@email</strong>.</p>
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Ако заявката не е направена от Вас, моля, изтрийте този имейл.</strong></p>
+
+<p style="margin-bottom: 15px;">Ако заявката е Ваша, натиснете хипервръзката за активиране на новия профил: <br/>
+<a href="@(activationLink)">@(activationLink)</a></p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл. Той е изпратен автоматично от служебната поща на системата.<br/>
+При необходимост от съдействие и помощ, моля, използвайте контактите, посочени на портала <a href="@portalRoot">СУНИ</a> или формата на системата за <a href="@portalFeedback">Обратна връзка</a>.</p>

@@ -1,0 +1,63 @@
+﻿@model R_10080.OfferAttachedDocuments
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info dynamic-rows file-upload" width="100%">
+            <thead>
+                <tr>
+                    <th>@OfferAttachedDocument.Number</th>
+                    <th>@OfferAttachedDocument.Name</th>
+                    <th style="width:200px;">@OfferAttachedDocument.FileName</th>
+                    <th style="width:200px;">@OfferAttachedDocument.Signature</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.AttachedDocumentCollection.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <span class="filled-value">@(i+1)</span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.AttachedDocumentCollection[i].Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                            </td>
+                            <td>
+                                <div class="files">
+                                    @if (Model.AttachedDocumentCollection[i].AttachedDocumentContent != null && !String.IsNullOrWhiteSpace(Model.AttachedDocumentCollection[i].AttachedDocumentContent.FileName) && !String.IsNullOrWhiteSpace(Model.AttachedDocumentCollection[i].AttachedDocumentContent.BlobContentId))
+                                    {
+                                        <p>@Model.AttachedDocumentCollection[i].AttachedDocumentContent.FileName</p>
+                                        <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/@(Model.AttachedDocumentCollection[i].AttachedDocumentContent.BlobContentId)" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <div class="files">
+                                    @if (Model.AttachedDocumentCollection[i].SignatureContentCollection != null)
+                                    {
+                                        for (int j = 0; j < Model.AttachedDocumentCollection[i].SignatureContentCollection.Count; j++)
+                                        {
+                                            if (Model.AttachedDocumentCollection[i].SignatureContentCollection[j] != null
+                                                && !String.IsNullOrWhiteSpace(Model.AttachedDocumentCollection[i].SignatureContentCollection[j].FileName)
+                                                && !String.IsNullOrWhiteSpace(Model.AttachedDocumentCollection[i].SignatureContentCollection[j].BlobContentId))
+                                            {
+                                                <div class="signature-wrapper">
+                                                    <p>@Model.AttachedDocumentCollection[i].SignatureContentCollection[j].FileName</p>
+                                                    <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/@(Model.AttachedDocumentCollection[i].SignatureContentCollection[j].BlobContentId)" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

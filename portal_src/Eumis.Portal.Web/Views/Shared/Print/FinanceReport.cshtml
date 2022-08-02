@@ -1,0 +1,59 @@
+﻿@model R_10043.FinanceReport
+
+@if (Model != null)
+{
+    <h3>Договор № @Model.contractNumber, @Global.FinanceReport № @Model.docNumber</h3>
+
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @FinanceReport.BasicData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.FinanceReportBasicData, Model.BasicData ?? new R_10078.FinanceReportBasicData())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @FinanceReport.FinanceBudget
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.FinanceBudget, Model.FinanceBudget ?? new R_10062.FinanceBudget())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @FinanceReport.FinanceSources
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.FinanceSources, Model.FinanceSources ?? new R_10064.FinanceSources())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @FinanceReport.CostSupportingDocuments
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.CostSupportingDocuments, Model.CostSupportingDocuments ?? new R_10043.CostSupportingDocuments())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @FinanceReport.Incomes
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.Incomes, Model.Incomes ?? new R_10043.Incomes())
+    </section>
+
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @FinanceReport.FinanceInstrumentsReport
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.FinanceInstrumentsReport, Model.FinanceInstrumentsReport ?? new R_10082.FinanceInstrumentsReport())
+    </section>
+}

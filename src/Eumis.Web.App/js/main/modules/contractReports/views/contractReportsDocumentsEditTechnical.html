@@ -1,0 +1,30 @@
+<ng-form name="editContractReportTechnicalForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReports_editContractReportDocumentsTechnical_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="draftTechnical()" text="contractReports_editContractReportDocumentsTechnical_draft" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)" ng-show="contractReportStatus === 'draft' && contractReportTechnical.status === 'entered'" >
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReports_editContractReportDocumentsTechnical_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+            ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)" ng-show="contractReportStatus === 'draft' && contractReportTechnical.status === 'draft'"></sc-button>
+
+        <sc-button name="backBtn" btn-click="back()" text="contractReports_editContractReportDocumentsTechnical_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-technical name="contractReportTechnicalForm" ng-model="contractReportTechnical"></eumis-contract-report-technical>
+
+      <div class="row">
+        <eumis-structured-document document="contractReportTechnical" gid="contractReportTechnical.xmlGid" text="contractReports_editContractReportDocumentsTechnical_document"
+          readonly="contractReportStatus !== 'draft' || contractReportTechnical.status !== 'draft' ||!$canDo('ContractReportActions.Edit', contractReportId)"
+          class="col-sm-4 col-md-3" doc-updated="reportUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

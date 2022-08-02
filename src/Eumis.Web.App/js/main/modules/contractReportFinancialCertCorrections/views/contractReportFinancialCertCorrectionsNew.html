@@ -1,0 +1,40 @@
+<div class="tab-content">
+  <ng-form name="newContractReportFinancialCertCorrectionsForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'contractReportFinancialCertCorrectionProcedures'" mode="id" ng-model="model.procedureId" l10n-text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_procedureId" class="col-sm-5 col-md-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="text" ng-model="model.contractNumber" ng-required="true" l10n-text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_contractNumber" class="col-sm-5 col-md-5"
+            sc-validate-async="{ numValid: isValidContractNum }"
+            sc-revalidate-on="['model.procedureId']"
+            validations="{ numValid: 'contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_contractNumberInvalid' }"
+          >
+          </sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="int" ng-model="model.contractReportNum" ng-required="true" l10n-text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_contractReportNumber" class="col-sm-4 col-md-3"
+            sc-validate-async="{ numValid: isValidContractReportNum }"
+            validations="{ numValid: 'contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_contractReportNumberInvalid' }"
+          >
+          </sc-field>
+
+          <sc-button name="chooseContractReportBtn" btn-click="chooseContractReport()" text="contractReportFinancialCertCorrections_newContractReportFinancialCertCorrection_chooseContractReport" class="btn btn-primary btn-sm" icon="glyphicon-search" style="margin-top: 19px;">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

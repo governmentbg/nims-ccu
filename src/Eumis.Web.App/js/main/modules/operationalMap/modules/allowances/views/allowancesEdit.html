@@ -1,0 +1,47 @@
+<div class="tab-content">
+  <ng-form name="editAllowanceForm" sc-validate="{}" sc-form-readonly="!editMode">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="allowances_editForm_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="editBtn" btn-click="edit()" text="allowances_editForm_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+            ng-disabled="!$canDo('AllowanceActions.Edit', allowance.allowanceData.allowanceId)">
+          </sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="allowances_editForm_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode"
+            ng-disabled="!$canDo('AllowanceActions.Delete', allowance.allowanceData.allowanceId)">
+          </sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="allowances_editForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="allowances_editForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-allowance-data name="allowanceForm" ng-model="allowance.allowanceData"></eumis-allowance-data>
+
+        <div>
+          <h5 class="table-header pull-left" l10n-text="allowances_editForm_rates"></h5>
+          <sc-button name="newRateBtn" btn-click="newRate()" style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('AllowanceActions.Edit', allowance.allowanceData.allowanceId)"></sc-button>
+        </div>
+        <sc-datatable items="allowance.rates" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editRate(item.allowanceRateId)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('AllowanceActions.Edit', allowance.allowanceData.allowanceId)"></sc-button>
+            <sc-button name="deleteRateBtn" btn-click="deleteRate(item.allowanceRateId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+              ng-disabled="!$canDo('AllowanceActions.Edit', allowance.allowanceData.allowanceId)"></sc-button>
+          </sc-column>
+          <sc-column data="date" title="allowances_editForm_rateDate" type="date">
+          </sc-column>
+          <sc-column data="rate" title="allowances_editForm_rateRate">
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+    </div>
+  </ng-form>
+</div>

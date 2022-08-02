@@ -1,0 +1,60 @@
+﻿@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+, Global.BreadcrumbsDocumentPreview)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsDocumentPreview</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <div class="page-content">
+        <div class="col-xs-12">
+            <div class="info-block">
+                @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+                {
+                    <p>В тази страница имате възможност да заредите и след това да прегледате проектно предложение, предварително създадено с помощта на информационната система СУНИ. Файлът, който може да заредите, трябва да е с разширение „<b>.isun</b>“. За повече информация вижте раздел "@Html.ActionLink("Помощ", MVC.Help.ActionNames.Index, MVC.Help.Name)".</p>
+                }
+                else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+                {
+                    <p>On this page there is an option to load and preview the project proposal, which was previously created via the information system UMIS 2020. The file, which is loaded, must be with an extension "<b>.isun</b>". For more information, please see "@Html.ActionLink("Help", MVC.Help.ActionNames.Index, MVC.Help.Name)".</p>
+                }
+            </div>
+        </div>
+        @using (Html.BeginForm(MVC.Procedure.ActionNames.PublicPreview,
+            MVC.Procedure.Name,
+            null,
+            FormMethod.Post,
+            new { id = "main_form", enctype = "multipart/form-data" }))
+        {
+            <div class="form-group col-xs-12">
+                @Html.ValidationSummary()
+            </div>
+            <section class="clearfix" style="display: block;">
+                <div class="form-group col-lg-4 col-sm-6 load-from-file">
+                    <span class="fileinput-button" style="max-width:300px;">
+                        <span>@Global.LoadProposal</span>
+                        <input type="file" name="applied_isun_file" id="applied_isun_file" accept=".suni" />
+                    </span>
+
+                    <div id="progress" class="progress" style="display: none;">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#applied_isun_file").change(function () {
+            showWait();
+            submitForm("#main_form");
+        });
+    });
+</script>

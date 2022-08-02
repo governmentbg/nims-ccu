@@ -1,0 +1,38 @@
+﻿@using Eumis.Public.Common
+
+@{
+    var resources = Newtonsoft.Json.JsonConvert.SerializeObject(new
+    {
+        lang = Texts.Js_Lang,
+        export = Texts.Js_Export,
+        backTo = Texts.Js_BackTo,
+        choose = Texts.Js_Choose,
+        collapse = Texts.Js_Collapse,
+        expand = Texts.Js_Expand,
+        international = Texts.Global_International,
+        bulgaria = Texts.Global_Bulgaria,
+        bg = Eumis.Public.Common.Configuration.LANG_BG,
+        en = Eumis.Public.Common.Configuration.LANG_EN,
+        placeholder = Texts.Global_Placeholder,
+        monthsArray = new List<string>
+            {
+                Texts.Calendar_Month_January,
+                Texts.Calendar_Month_February,
+                Texts.Calendar_Month_March,
+                Texts.Calendar_Month_April,
+                Texts.Calendar_Month_May,
+                Texts.Calendar_Month_June,
+                Texts.Calendar_Month_July,
+                Texts.Calendar_Month_August,
+                Texts.Calendar_Month_September,
+                Texts.Calendar_Month_October,
+                Texts.Calendar_Month_November,
+                Texts.Calendar_Month_December
+            }
+    });
+}
+<script type="text/javascript">
+
+    window._resources = @(Html.Raw(resources));
+
+</script>

@@ -1,0 +1,27 @@
+<ng-form name="editProcedureTimeLimitForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong ng-if="!editable" class="heading" l10n-text="procedures_procedureTimeLimit_edit_viewTitle"></strong>
+      <strong ng-if="editable" class="heading" l10n-text="procedures_procedureTimeLimit_edit_editTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button ng-if="!editable" name="okBtn" btn-click="ok()" text="procedures_procedureTimeLimit_edit_ok" class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <div ng-if="editable">
+          <sc-button name="editBtn" btn-click="edit()" text="procedures_procedureTimeLimit_edit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && !isProcedureReadonly"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureTimeLimit.procedureId)"></sc-button>
+          <sc-button name="deleteBtn" btn-click="del()" text="procedures_procedureTimeLimit_edit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && !isProcedureReadonly"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureTimeLimit.procedureId)"></sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="procedures_procedureTimeLimit_edit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_procedureTimeLimit_edit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+        <eumis-procedure-time-limit-data name="procedureTimeLimitForm" ng-model="procedureTimeLimit" sc-form-params="{ hasEndTimeValidation: true }"></eumis-procedure-time-limit-data>
+    </div>
+  </div>
+</ng-form>

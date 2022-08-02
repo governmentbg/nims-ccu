@@ -1,0 +1,53 @@
+﻿@model R_10079.OfferBasicData
+
+@if (Model != null)
+{
+    <div class="clearfix">
+        <div class="form-group col-lg-6 col-md-12">
+            @Html.LabelFor(m => m.BeneficiaryUin, OfferBasicData.Uin)
+            <span class="filled-value">
+                @if (Model.BeneficiaryUinType != null && !String.IsNullOrWhiteSpace(Model.BeneficiaryUinType.Name))
+                {
+                    <text>@Model.BeneficiaryUinType.Name: </text>
+                }
+                @Model.BeneficiaryUin
+            </span>
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-lg-12 col-md-12">
+            @Html.LabelFor(m => m.PlanName, OfferBasicData.PlanName)
+            @Html.DisplayFor(m => m.PlanName, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.PlanErrandArea, OfferBasicData.PlanErrandArea)
+            @Html.DisplayFor(m => m.PlanErrandArea)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.PlanErrandLegalAct, OfferBasicData.PlanErrandLegalAct)
+            @Html.DisplayFor(m => m.PlanErrandLegalAct)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.PlanErrandType, OfferBasicData.PlanErrandType)
+            @Html.DisplayFor(m => m.PlanErrandType)
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            @Html.LabelFor(m => m.PlanExpectedAmount, OfferBasicData.PlanExpectedAmount)
+            @Html.DisplayFor(m => m.PlanExpectedAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+        </div>
+
+        <div class="form-group col-lg-12 col-md-12">
+            @Html.LabelFor(m => m.PlanDescription, OfferBasicData.PlanDescription)
+            @Html.DisplayFor(m => m.PlanDescription, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </div>
+    </div>
+
+    <h3 class="margin-bottom-h3">@OfferBasicData.DifferentiatedPositionHeader</h3>
+
+    @Html.DisplayFor(m => m.DifferentiatedPosition)
+}

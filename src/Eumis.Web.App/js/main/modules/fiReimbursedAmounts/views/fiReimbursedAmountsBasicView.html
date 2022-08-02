@@ -1,0 +1,26 @@
+<ng-form name="editReimbursedAmountForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="fiReimbursedAmounts_basicData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="setToDraft()" text="fiReimbursedAmounts_basicData_draft" class="btn btn-success btn-xs"
+          ng-if="reimbursedAmountData.status === 'entered'" ng-disabled="!$canDo('FIReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="enter()" text="fiReimbursedAmounts_basicData_enter" class="btn btn-primary btn-xs"
+          ng-if="reimbursedAmountData.status === 'draft'" ng-disabled="!$canDo('FIReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="fiReimbursedAmounts_basicData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="reimbursedAmountData.status === 'draft' && !reimbursedAmountData.isActivated" ng-disabled="!$canDo('FIReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="removeBtn" btn-click="remove()" text="fiReimbursedAmounts_basicData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="reimbursedAmountData.status === 'draft' && reimbursedAmountData.isActivated" ng-disabled="!$canDo('FIReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-financial-instrument-reimbursed-amount-basic-data name="reimbursedAmountDataForm" ng-model="reimbursedAmountData" sc-form-readonly="true"></eumis-financial-instrument-reimbursed-amount-basic-data>
+    </div>
+  </div>
+</ng-form>

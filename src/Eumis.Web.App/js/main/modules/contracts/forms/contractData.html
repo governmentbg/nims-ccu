@@ -1,0 +1,25 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-model="model.programmeId" mode="id" l10n-text="contracts_contractDataForm_programme" class="col-sm-6 col-md-5"></sc-field>
+    <sc-field type="nomenclature" alias="'procedures'" ng-model="model.procedureId" mode="id" l10n-text="contracts_contractDataForm_procedure" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="contracts_contractDataForm_regNumber" class="col-sm-6 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'contractTypes'" ng-model="model.contractType" mode="id" l10n-text="contracts_contractDataForm_type" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'contractRegistrationTypes'" ng-model="model.registrationType" mode="id" l10n-text="contracts_contractDataForm_registrationType" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="date" ng-if="model.contractStatus !== 'draft'" ng-model="model.contractDate" l10n-text="contracts_contractDataForm_contractDate" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.name" rows="2" l10n-text="contracts_contractDataForm_name" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row" ng-if="model.contractType === 'agentAgreement' || model.contractType === 'endUserAgreement'">
+    <sc-field type="nomenclature" alias="'contracts'" ng-model="model.attachedContractId" mode="id" ng-required="true" l10n-text="contracts_contractDataForm_attachedContractId" class="col-sm-6 col-md-5"></sc-field>
+  </div>
+  <div class="row" ng-if="model.contractStatus !== 'draft'">
+    <sc-field type="nomenclature" alias="'contractExecutionStatuses'" mode="id" ng-model="model.executionStatus" l10n-text="contracts_contractDataForm_executionStatus" class="col-sm-5 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.startDate" l10n-text="contracts_contractDataForm_startDate" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.contractStatus !== 'draft'">
+    <sc-field type="textarea" ng-model="model.startConditions" rows="2" l10n-text="contracts_contractDataForm_startConditions" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

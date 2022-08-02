@@ -1,0 +1,58 @@
+﻿@model R_10044.Team
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.TeamMemberCollection != null && Model.TeamMemberCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.TeamMemberCollection.Count; i++)
+            {
+                <table class="team">
+                    <tbody>
+                        <tr>
+                            <td style="width:35%">@TechnicalReportTeamMember.Name</td>
+                            <td style="width:65%">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TeamMemberCollection[i].Name ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Position</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TeamMemberCollection[i].Position ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.UinType</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.TeamMemberCollection[i].UinType ?? new R_10000.PrivateNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Uin</td>
+                            <td>@Model.TeamMemberCollection[i].Uin</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.CommitmentType</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.TeamMemberCollection[i].CommitmentType ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Date</td>
+                            <td>
+                                @if (Model.TeamMemberCollection[i].Date.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.TeamMemberCollection[i].Date.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Hours</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TeamMemberCollection[i].Hours)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Activity</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TeamMemberCollection[i].Activity ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportTeamMember.Result</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TeamMemberCollection[i].Result ?? string.Empty)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

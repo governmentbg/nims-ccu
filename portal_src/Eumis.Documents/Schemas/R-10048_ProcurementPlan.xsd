@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10048"
+	xmlns="http://ereg.egov.bg/segment/R-10048"
+
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+
+	xmlns:cc="http://ereg.egov.bg/segment/R-10047"
+
+	xmlns:bcp="http://ereg.egov.bg/segment/R-10070"
+
+	xmlns:dp="http://ereg.egov.bg/segment/R-10071"
+
+  xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10047" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10070" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10071" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+
+	<xsd:complexType name="ProcurementPlan">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Процедура за избор на изпълнител и сключени договори</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="CentralProcurement" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="BFPContractPlan" type="bcp:BFPContractPlan" minOccurs="0" />
+
+      <xsd:element name="PPANumber" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="ExpectedAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NoticeDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="OffersDeadlineDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="IsAnnounced" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="AnnouncedDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="IsTerminated" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="TerminatedDate" type="xsd:date" minOccurs="0" />
+
+      <xsd:element name="DifferentiatedPosition" type="dp:DifferentiatedPosition" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

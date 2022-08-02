@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <h5 class="table-header table-header-first pull-left" l10n-text="sapFiles_distributedLimits_data"></h5>
+        <sc-datatable items="distributedLimits" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="false" scrollable="false"
+            row-class="{'success' : !item.hasError && !item.hasWarning, 'danger': item.hasError, 'warning': !item.hasError && item.hasWarning}">
+          <sc-column data="isImported" title="sapFiles_distributedLimits_imported" ng-show="sapFileStatus === 'imported'" type="boolean">
+          </sc-column>
+          <sc-column sortable="false" title="sapFiles_distributedLimits_importedDoc" ng-show="item.isImported" has-content="true">
+            <a target="_blank" ui-sref="root.actuallyPaidAmounts.view({ id: item.actuallyPaidAmountId })" ng-show="!!item.actuallyPaidAmountId">
+              <span class="glyphicon glyphicon-link"></span>
+            </a>
+            <a target="_blank" ui-sref="root.debtReimbursedAmounts.view({ id: item.reimbursedAmountId })" ng-show="!!item.reimbursedAmountId">
+              <span class="glyphicon glyphicon-link"></span>
+            </a>
+          </sc-column>
+          <sc-column data="contractSapNum" title="sapFiles_distributedLimits_contractSapNum">
+          </sc-column>
+          <sc-column data="contractReportPaymentNum" title="sapFiles_distributedLimits_contractReportPaymentNum">
+          </sc-column>
+          <sc-column data="contractReportPaymentDate" title="sapFiles_distributedLimits_contractReportPaymentDate" type="date">
+          </sc-column>
+          <sc-column data="paidAmount" title="sapFiles_distributedLimits_paidAmount" type="money">
+          </sc-column>
+          <sc-column data="paymentType" title="sapFiles_distributedLimits_paymentType">
+          </sc-column>
+          <sc-column data="comment" title="sapFiles_distributedLimits_comment">
+          </sc-column>
+          <sc-column data="errors" title="sapFiles_distributedLimits_errors" has-content="true" >
+            <p ng-repeat="error in item.errors">{{error}}</p>
+          </sc-column>
+          <sc-column data="warnings" title="sapFiles_distributedLimits_warnings" has-content="true">
+            <p ng-if="!item.errors.length" ng-repeat="warning in item.warnings">{{warning}}</p>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

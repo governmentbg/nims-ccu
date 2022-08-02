@@ -1,0 +1,151 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.ActuallyPaidAmounts
+
+@using PagedList.Mvc;
+
+
+@model ActuallyPaidAmountsSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.ActuallyPaidAmounts_Index_Title)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.ActuallyPaidAmounts_Index_Title</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ActuallyPaidAmounts_Index_Programme</label>
+                        @Html.TextBoxFor(m => m.ProgrammeId, new { id = "programme-ddl" })
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ActuallyPaidAmounts_Index_PriorityAxis</label>
+                        @Html.TextBoxFor(m => m.ProgrammePriorityId, new { id = "priority-ddl" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.ActuallyPaidAmounts_Index_Procedure</label>
+                        @Html.TextBoxFor(m => m.ProcedureId, new { id = "procedure-ddl" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label>@Texts.ActuallyPaidAmounts_Index_GroupingLevel</label>
+                        @Html.TextBoxFor(m => m.GroupingLevel, new { id = "groupingLevel-ddl" })
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label>@Texts.ActuallyPaidAmounts_Index_DateTo</label><br>
+                        @Html.TextBoxFor(m => m.DateTo, new { @class = "form-control datepicker" })
+                    </div>
+                    <div class="form-submit col-sm-2">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            createSelect2('#programme-ddl', '/@Language/@OpId/@PrId/ActuallyPaidAmounts/GetProgramme', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetProgrammes');
+                            createSelect2('#priority-ddl', '/@Language/@OpId/@PrId/ActuallyPaidAmounts/GetPriority', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetPriorities', '#programme-ddl');
+                            createSelect2('#procedure-ddl', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetProcedure', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetProcedures', '#priority-ddl');
+                            createSelect2('#groupingLevel-ddl', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetGroupingLevel', '/@Language//@OpId/@PrId/ActuallyPaidAmounts/GetGroupingLevels', '#priority-ddl', false, "4", '#procedure-ddl');
+                        });
+                    </script>
+
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix" style="margin-top:20px;">
+                    <h2>@Texts.ProjectsResults_Index_Results</h2>
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.ActuallyPaidAmounts_Index_RegNumber</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_Programme</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_Priority</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_Procedure</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ProcedureNumber</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ContractedTotalAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ContractedEuAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ContractedBgAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ContractedSelfAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ActuallyPaidTotalAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ActuallyPaidEuAmount</th>
+                                <th>@Texts.ActuallyPaidAmounts_Index_ActuallyPaidBgAmount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var result in Model.SearchResults)
+                            {
+                            <tr>
+                                <td>@Html.DisplayFor(m => result.ContractRegNumber)</td>
+                                <td>@Html.DisplayFor(m => result.ProgrammeName)</td>
+                                <td>@Html.DisplayFor(m => result.ProgrammePriorityName)</td>
+                                <td>@Html.DisplayFor(m => result.ProcedureName)</td>
+                                <td>@Html.DisplayFor(m => result.ProcedureNumber)</td>
+                                <td>@Html.DisplayFor(m => result.ContractedTotalAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ContractedEuAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ContractedBgAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ContractedSelfAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ActuallyPaidTotalAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ActuallyPaidEuAmount)</td>
+                                <td>@Html.DisplayFor(m => result.ActuallyPaidBgAmount)</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.ActuallyPaidAmounts.ActionNames.Index, MVC.ActuallyPaidAmounts.Name
+                            , new
+                            {
+                                programmeId = Request.QueryString["programmeId"],
+                                programmePriorityId = Request.QueryString["programmePriorityId"],
+                                procedureId = Request.QueryString["procedureId"],
+                                groupingLevel = Request.QueryString["groupingLevel"],
+                                dateTo = Request.QueryString["dateTo"],
+                                showRes = true,
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

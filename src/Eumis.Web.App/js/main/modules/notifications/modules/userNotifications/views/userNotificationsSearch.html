@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="well well-sm">
+    <div class="row">
+      <sc-field type="nomenclature" mode="id" alias="'notificationEvents'" ng-model="filters.notificationEventId" l10n-text="userNotifications_userNotificationsSearch_eventName" class="col-sm-4 col-md-6"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="filters.isRead" l10n-text="userNotifications_userNotificationsSearch_isRead" class="col-sm-3 col-md-2"></sc-field>
+      <div class="labeless col-sm-2">
+        <sc-button name="seachBtn" btn-click="search()" text="contractReports_search_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <sc-datatable items="userNotifications" filterable="true" pageable="true" sortable="true" default-sort="createDate" dynamic-columns="true" scrollable="true" row-class="{'success' : item.isRead}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-eye-open" btn-click="viewNotification(item.userNotificationId)"></sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteNotification(item)" class="btn btn-danger btn-xs" icon="glyphicon-remove"></sc-button>
+      </sc-column>
+      <sc-column data="eventName" title="userNotifications_userNotificationsSearch_eventName">
+      </sc-column>
+      <sc-column data="isRead" title="userNotifications_userNotificationsSearch_isRead"  type="boolean">
+      </sc-column>
+      <sc-column data="programmeCode" title="userNotifications_userNotificationsSearch_programmeCode">
+      </sc-column>
+      <sc-column data="programmePriorityCode" title="userNotifications_userNotificationsSearch_programmePriorityCode">
+      </sc-column>
+      <sc-column data="procedureCode" title="userNotifications_userNotificationsSearch_procedureCode">
+      </sc-column>
+      <sc-column data="contractCode" title="userNotifications_userNotificationsSearch_contractCode">
+      </sc-column>
+      <sc-column data="createDate" title="userNotifications_userNotificationsSearch_createDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<ng-form name="editInterestRate" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="bInterestRates_editRateModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="bInterestRates_editRateModal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="bInterestRates_editRateModal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-interest-rate name="interestRateForm" ng-model="interestRate"></eumis-interest-rate>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,58 @@
+﻿.paletteColor1 {
+    background-color: #005EAE;
+}
+.paletteColor2 {
+    background-color: #FFF000;
+}
+.paletteColor3 {
+    background-color: #ED1C24;
+}
+.paletteColor4 {
+    background-color: #F7A35C;
+}
+.paletteColor5 {
+    background-color: #8085E9;
+}
+.paletteColor6 {
+    background-color: #F15C80;
+}
+.paletteColor7 {
+    background-color: #E4D354;
+}
+.paletteColor8 {
+    background-color: #8D4653;
+}
+.paletteColor9 {
+    background-color: #91E8E1;
+}
+
+.mapWidth {
+    float:left;
+}
+
+.mapTree {
+    float: left;
+}
+
+.planningregionsChoose {
+}
+
+.table-wrapper div.table-heading {
+    cursor: pointer;
+    min-height: 35px;
+}
+.form-with-sections div.table-heading img.arrow{
+	/*transition: all 0.2s linear 0.1s;
+	-webkit-transition: all 0.2s linear 0.1s;
+	-moz-transition: all 0.2s linear 0.1s;
+	-o-transition: all 0.2s linear 0.1s;*/
+	
+	height: 30px;
+}
+.form-with-sections div.table-heading.opened img.arrow{
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); /* IE 9 */
+	-webkit-transform:rotate(90deg); /* Opera, Chrome, and Safari */
+	-moz-transform:rotate(90deg); /* Opera, Chrome, and Safari */
+	-o-transform:rotate(90deg); /* Opera, Chrome, and Safari */
+}

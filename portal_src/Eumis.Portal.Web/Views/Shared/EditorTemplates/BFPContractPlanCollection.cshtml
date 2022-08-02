@@ -1,0 +1,97 @@
+﻿@model R_10040.BFPContractPlanCollection
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerPlans">
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@BFPContractPlan.Name</th>
+                    <th>@BFPContractPlan.ErrandArea</th>
+                    <th>@BFPContractPlan.ErrandLegalAct</th>
+                    <th colspan="2">@BFPContractPlan.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                <tr>
+                    <td style="word-break: break-all">
+                        {{item.Name}}
+                    </td>
+                    <td>
+                        {{item.ErrandArea.Name}}
+                    </td>
+                    <td>
+                        {{item.ErrandLegalAct.Name}}
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+                <tr class="history-table">
+                    <td colspan="5">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractPlan.Name @SymbolsCount.Symbols1000</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractPlan.ErrandArea</label>
+                                <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandAreaValid}" sc-alias="GetErrandAreas" ng-model="item.ErrandArea">
+                                </sc-nomenclature>
+                                <input ng-class="{'input-validation-error': !item.IsErrandAreaValid}" type="hidden" value="{{ item.ErrandArea.Code }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandArea.Code" class="validation-error-key" />
+                                <input type="hidden" value="{{ item.ErrandArea.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandArea.Name" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractPlan.ErrandLegalAct</label>
+                                <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandLegalActValid}" sc-alias="GetErrandLegalActs" ng-model="item.ErrandLegalAct">
+                                </sc-nomenclature>
+                                <input ng-class="{'input-validation-error': !item.IsErrandLegalActValid}" type="hidden" value="{{ item.ErrandLegalAct.id }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandLegalAct.id" class="validation-error-key" />
+                                <input type="hidden" value="{{ item.ErrandLegalAct.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandLegalAct.Name" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractPlan.ErrandType</label>
+                                <sc-nomenclature ng-class="{'input-validation-error': !item.IsErrandTypeValid}" sc-alias="GetErrandTypes" ng-model="item.ErrandType" sc-parent-id="item.ErrandLegalAct.id">
+                                </sc-nomenclature>
+                                <input ng-class="{'input-validation-error': !item.IsErrandTypeValid}" type="hidden" value="{{ item.ErrandType.Code }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandType.Code" class="validation-error-key" />
+                                <input type="hidden" value="{{ item.ErrandType.Name }}" name="@(Html.GetNameFor(m => m))[{{ $index }}].ErrandType.Name" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractPlan.Amount</label>
+                                <input ng-class="{'input-validation-error': !item.IsAmountValid}" money type="text" ng-model="item.Amount" name="@(Html.GetNameFor(m => m))[{{ $index }}].Amount" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@BFPContractPlan.PlanDate</label>
+                                <input ng-class="{'input-validation-error': !item.IsPlanDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.PlanDate" name="@(Html.GetNameFor(m => m))[{{ $index }}].PlanDate" class="form-control" onpaste="return false" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" style="padding-top:25px;">
+                                <input id="chbIsCentralProcurement{{index}}" type="checkbox" ng-model="item.IsCentralProcurement" />
+                                <label for="chbIsCentralProcurement{{index}}">@ProjectErrand.CentralProcurement</label>
+                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index }}].IsCentralProcurement" value="{{item.IsCentralProcurement ? 'True' : 'False'}}" />
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@BFPContractPlan.Description @SymbolsCount.Symbols4000</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsDescriptionValid}" auto-grow ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

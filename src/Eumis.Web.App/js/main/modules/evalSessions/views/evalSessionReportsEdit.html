@@ -1,0 +1,125 @@
+<ng-form name="editEvalSessionReportForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionReport_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="deleteBtn" btn-click="deleteReport()" text="evalSessions_editEvalSessionReport_delete" class="btn btn-danger btn-xs" ng-show="!evalSessionReport.isDeleted"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionReport.evalSessionId) ||  (!isSessionActive && !isSessionEndedByLAG)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-eval-session-report name="evalSessionReportForm" ng-model="evalSessionReport" sc-form-params="{ isNew: false }"></eumis-eval-session-report>
+
+      <div>
+        <h5 class="table-header pull-left" l10n-text="evalSessions_editEvalSessionReport_projects"></h5>
+        <sc-link-button ng-href="api/evalSessions/{{evalSessionId}}/reports/{{reportId}}/excelExport" target="_blank" sc-access-token style="position:relative; right: 0px; top: 16px;"
+          ng-if="$canDo('EvalSessionActions.EditSessionData', evalSessionId)"
+          icon="fa-file-excel-o fa-lg fa-fw" text="evalSessions_editEvalSessionReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th rowspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_regNumber"></th>
+              <th rowspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_regDate"></th>
+              <th rowspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_recieveDate"></th>
+              <th rowspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_recieveType"></th>
+              <th colspan="5" class="text-center" l10n-text="evalSessions_editEvalSessionReport_company"></th>
+              <th colspan="7" class="text-center" l10n-text="evalSessions_editEvalSessionReport_project"></th>
+              <th colspan="6" class="text-center" l10n-text="evalSessions_editEvalSessionReport_partners" ng-if="showPartners"></th>
+              <th colspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_adminAdmissResult" ng-if="showAdminAdmissResult"></th>
+              <th colspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_techFinanceResult" ng-if="showTechFinanceResult"></th>
+              <th colspan="2" class="text-center" l10n-text="evalSessions_editEvalSessionReport_complexResult" ng-if="showComplexResult"></th>
+              <th colspan="3" class="text-center" l10n-text="evalSessions_editEvalSessionReport_standing"></th>
+            </tr>
+            <tr>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_companyUin"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_companyName"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_companyKidCode"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_regEmail"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_correspondence"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_name"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_projectKidCode"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_companySizeType"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_duration"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_projectPlace"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_grandAmount"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_coFinancingAmount"></th>
+
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerUin" ng-if="showPartners"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerName" ng-if="showPartners"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerLegalType" ng-if="showPartners"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerAddress" ng-if="showPartners"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerFinancialContribution" ng-if="showPartners"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_partnerRepresentative" ng-if="showPartners"></th>
+
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_status" ng-if="showAdminAdmissResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_points" ng-if="showAdminAdmissResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_status" ng-if="showTechFinanceResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_points" ng-if="showTechFinanceResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_status" ng-if="showComplexResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_points" ng-if="showComplexResult"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_standingNum"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_standingStatus"></th>
+              <th class="text-center" l10n-text="evalSessions_editEvalSessionReport_standingGrandAmount"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat-start="project in evalSessionReport.projects" ng-class="{
+              'success': project.standingStatusId === 'approved',
+              'warning': project.standingStatusId === 'reserve',
+              'danger': project.standingStatusId !== 'approved' && project.standingStatusId !== 'reserve'}">
+              <td rowspan="{{project.partners.length || 1}}">{{project.regNumber}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.regDate | date:'dd.MM.yyyy HH:mm'}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.recieveDate | date:'dd.MM.yyyy HH:mm'}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.recieveType}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.companyUin}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.companyName}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.companyKidCode}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.regEmail}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.correspondence}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.name}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.projectKidCode}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.companySizeType}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.duration}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.projectPlace}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.grandAmount | money}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.coFinancingAmount | money}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerUin}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerName}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerLegalType}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerAddress}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerFinancialContribution}}</td>
+              <td ng-if="showPartners">{{project.partners.length === 0 ? null : project.partners[0].partnerRepresentative}}</td>
+              <td ng-if="showAdminAdmissResult" rowspan="{{project.partners.length || 1}}">{{project.adminAdmissResult}}</td>
+              <td ng-if="showAdminAdmissResult" rowspan="{{project.partners.length || 1}}">{{project.adminAdmissPoints}}</td>
+              <td ng-if="showTechFinanceResult" rowspan="{{project.partners.length || 1}}">{{project.techFinanceResult}}</td>
+              <td ng-if="showTechFinanceResult" rowspan="{{project.partners.length || 1}}">{{project.techFinancePoints}}</td>
+              <td ng-if="showComplexResult" rowspan="{{project.partners.length || 1}}">{{project.complexResult}}</td>
+              <td ng-if="showComplexResult" rowspan="{{project.partners.length || 1}}">{{project.complexPoints}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.standingNum}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.standingStatus}}</td>
+              <td rowspan="{{project.partners.length || 1}}">{{project.standingGrandAmount | money}}</td>
+            </tr>
+
+            <tr ng-repeat-end ng-repeat="partner in project.partners" ng-hide="$first" ng-class="{
+              'success': project.standingStatusId === 'approved',
+              'warning': project.standingStatusId === 'reserve',
+              'danger': project.standingStatusId !== 'approved' && project.standingStatusId !== 'reserve'}">
+              <td>{{partner.partnerUin}}</td>
+              <td>{{partner.partnerName}}</td>
+              <td>{{partner.partnerLegalType}}</td>
+              <td>{{partner.partnerAddress}}</td>
+              <td>{{partner.partnerFinancialContribution}}</td>
+              <td>{{partner.partnerRepresentative}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-form>

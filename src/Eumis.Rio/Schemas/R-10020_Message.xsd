@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10020"
+	xmlns="http://ereg.egov.bg/segment/R-10020"
+	
+	xmlns:p="http://ereg.egov.bg/segment/R-10019"
+	xmlns:mtn="http://ereg.egov.bg/nomenclature/R-09990"
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10019" />
+  <xsd:import namespace="http://ereg.egov.bg/nomenclature/R-09990" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#"
+              
+  schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="Message">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Съобщение</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Content" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ContentAttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="Project" type="p:Project" minOccurs="0" />
+
+      <xsd:element name="Reply" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ReplyAttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    <xsd:attribute name="type" type="mtn:MessageTypeNomenclature"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

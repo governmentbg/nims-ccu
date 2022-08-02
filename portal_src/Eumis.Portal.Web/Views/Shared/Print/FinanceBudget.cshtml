@@ -1,0 +1,115 @@
+﻿@model R_10062.FinanceBudget
+
+@if (Model != null && Model.FinanceBudgetLevel1Collection != null)
+{
+    <div class="table-wrapper">
+        <table class="chart-info dynamic-rows bfp-budget-table">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width:40px; max-width: 40px;"></th>
+                    <th rowspan="2" style="width:300px;">@FinanceBudget.ExpenseName</th>
+
+                    <th rowspan="2" colspan="2" style="width:160px; max-width:160px;">@FinanceBudget.GrandAmount</th>
+                    <th rowspan="2" style="width:110px; max-width:110px;">@FinanceBudget.SelfAmount</th>
+                    <th rowspan="2" style="width:110px; max-width:110px;">@FinanceBudget.TotalAmount</th>
+
+                    <th colspan="2">@FinanceBudget.DifferenceGrandHeader</th>
+                    <th colspan="2">@FinanceBudget.DifferenceTotalHeader</th>
+                </tr>
+                <tr style="border-top: 1px solid #8f8f8f;">
+                    <th style="border-left: 1px solid #8f8f8f; width:110px; max-width:110px;">@FinanceBudget.DifferenceGrand</th>
+                    <th style="width:70px; max-width:70px;">@FinanceBudget.DifferenceGrandPercentage</th>
+                    <th style="width:110px; max-width:110px;">@FinanceBudget.DifferenceTotal</th>
+                    <th style="width:70px; max-width:70px;">@FinanceBudget.DifferenceTotalPercentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.FinanceBudgetLevel1Collection.Count; i++)
+                {
+                    var level1 = Model.FinanceBudgetLevel1Collection[i];
+                    @Html.Partial(MVC.Shared.Views.Print.FinanceBudgetLevel1, level1 ?? new R_10061.FinanceBudgetLevel1())
+
+                    if (level1.FinanceBudgetLevel2Collection != null)
+                    {
+                        for (int j = 0; j < level1.FinanceBudgetLevel2Collection.Count; j++)
+                        {
+                            var level2 = level1.FinanceBudgetLevel2Collection[j];
+                            level2.Level1OrderNum = level1.OrderNum;
+                            @Html.Partial(MVC.Shared.Views.Print.FinanceBudgetLevel2, level2 ?? new R_10060.FinanceBudgetLevel2())
+
+                            if (level2.FinanceBudgetLevel3Collection != null)
+                            {
+                                for (int k = 0; k < level2.FinanceBudgetLevel3Collection.Count; k++)
+                                {
+                                    var level3 = level2.FinanceBudgetLevel3Collection[k];
+                                    level3.Level1OrderNum = level1.OrderNum;
+                                    level3.Level2OrderNum = level2.OrderNum;
+                                    @Html.Partial(MVC.Shared.Views.Print.FinanceBudgetLevel3, level3 ?? new R_10059.FinanceBudgetLevel3())
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <tr class="level1 auto-calc-percent">
+                    <td colspan="2" rowspan="3">
+                        @FinanceBudget.TotalBudget
+                    </td>
+                    <td style="width:60px; min-width: 60px;">
+                        @FinanceBudget.BFPContractAmountShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.BFPContractAmounts.TotalAmount)
+                    </td>
+
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.DifferenceGrand)
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @(Model.Amounts.DifferenceGrandPercentage + "%")
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.DifferenceTotal)
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @(Model.Amounts.DifferenceTotalPercentage + "%")
+                    </td>
+                </tr>
+                <tr class="level1">
+                    <td style="width:60px; min-width: 60px;">
+                        @FinanceBudget.CurrentReportAmountShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Amounts.CurrentReportAmounts.TotalAmount)
+                    </td>
+                </tr>
+                <tr class="level1">
+                    <td style="width:60px; min-width: 60px;">
+                        @FinanceBudget.CumulativeShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.TotalAmount)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

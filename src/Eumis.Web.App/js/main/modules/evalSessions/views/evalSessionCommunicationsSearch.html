@@ -1,0 +1,52 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionProjects'" mode="id" ng-model="filters.projectId" params="{evalSessionId: evalSessionId}" l10n-text="evalSessions_evalSessionCommunicationsSearch_project" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="nomenclature" alias="'projectCommunicationStatuses'" mode="id" ng-model="filters.statusId" l10n-text="evalSessions_evalSessionCommunicationsSearch_status" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="date" ng-model="filters.questionDateFrom" l10n-text="evalSessions_evalSessionCommunicationsSearch_questionDateFrom" class="col-sm-3"></sc-field>
+        <sc-field type="date" ng-model="filters.questionDateTo" l10n-text="evalSessions_evalSessionCommunicationsSearch_questionDateTo" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-6">
+          <sc-button name="seachBtn" btn-click="search()" text="evalSessions_evalSessionCommunicationsSearch_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token icon="fa-file-excel-o fa-lg fa-fw"
+      ng-if="$canDo('EvalSessionActions.EditSessionData', evalSessionId)"
+      text="evalSessions_evalSessionCommunicationsSearch_excelExport" class="btn btn-default btn-sm pull-left">
+    </sc-link-button>
+
+    <sc-datatable items="evalSessionCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.projects.view.communications.edit', params: { id: evalSessionId, ind: item.projectId, mid: item.projectCommunicationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil">
+        </sc-button>
+      </sc-column>
+      <sc-column data="createDate" title="evalSessions_evalSessionCommunicationsSearch_createDate" type="date">
+      </sc-column>
+      <sc-column data="status" title="evalSessions_evalSessionCommunicationsSearch_status">
+      </sc-column>
+      <sc-column data="regNumber" title="evalSessions_evalSessionCommunicationsSearch_regNumber">
+      </sc-column>
+      <sc-column data="questionDate" title="evalSessions_evalSessionCommunicationsSearch_questionDate" type="date">
+      </sc-column>
+      <sc-column data="questionEndingDate" title="evalSessions_evalSessionCommunicationsSearch_questionEndingDate" type="date">
+      </sc-column>
+      <sc-column data="answerDate" title="evalSessions_evalSessionCommunicationsSearch_answerDate" type="date">
+      </sc-column>
+      <sc-column data="questionReadDate" title="evalSessions_evalSessionCommunicationsSearch_questionReadDate" type="date">
+      </sc-column>
+      <sc-column data="projectRegNumber" title="evalSessions_evalSessionCommunicationsSearch_projectRegNumber">
+      </sc-column>
+      <sc-column data="projectName" title="evalSessions_evalSessionCommunicationsSearch_projectName" has-content="true">
+        <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="companyName" title="evalSessions_evalSessionCommunicationsSearch_companyName">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

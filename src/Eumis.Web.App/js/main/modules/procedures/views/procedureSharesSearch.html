@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_procedureShare_search_title"></h5>
+          <sc-button ng-show="!isProcedureReadonly" name="newShareBtn" btn-sref="{ state: 'root.procedures.view.procedureShares.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+        <sc-datatable items="procedureShares" filterable="false" pageable="false" sortable="false" dynamic-columns="false" scrollable="false" has-info-text="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.procedureShares.edit', params: { ind: item.procedureShareId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="programmeName" title="procedures_procedureShare_search_programme"></sc-column>
+          <sc-column title="procedures_procedureShare_search_programmePriority" has-content="true" width="450">
+            {{ item.programmePriorityCode + ' ' + item.programmePriorityName }}
+          </sc-column>
+          <sc-column data="bgAmount" title="procedures_procedureShare_search_bgAmount" type="money"></sc-column>
+          <sc-column data="isPrimary" title="procedures_procedureShare_search_isPrimary" type="boolean"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

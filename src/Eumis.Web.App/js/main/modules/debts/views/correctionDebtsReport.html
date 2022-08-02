@@ -1,0 +1,53 @@
+<ng-form name="reportSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th rowspan="2" class="text-center" l10n-text="correctionDebts_report_correctionOrderNum"></th>
+              <th rowspan="2" class="text-center" l10n-text="correctionDebts_report_correctionImpositionDate"></th>
+              <th rowspan="2" class="text-center" l10n-text="correctionDebts_report_correctionImpositionNumber"></th>
+              <th rowspan="2" class="text-center" l10n-text="correctionDebts_report_correctionLevel"></th>
+              <th colspan="3" class="text-center" l10n-text="correctionDebts_report_debt"></th>
+              <th colspan="3" class="text-center" l10n-text="correctionDebts_report_reimbursed"></th>
+              <th colspan="3" class="text-center" l10n-text="correctionDebts_report_remaining"></th>
+            </tr>
+            <tr>
+              <th class="text-center" l10n-text="correctionDebts_report_bgAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_euAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_totalAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_bgAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_euAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_totalAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_bgAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_euAmount"></th>
+              <th class="text-center" l10n-text="correctionDebts_report_totalAmount"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="correctionDebt in correctionDebts">
+              <td>{{correctionDebt.correctionOrderNum}}</td>
+              <td>{{correctionDebt.correctionImpositionDate | date: 'dd.MM.yyyy'}}</td>
+              <td>{{correctionDebt.correctionImpositionNumber}}</td>
+              <td>{{correctionDebt.correctionLevel}}</td>
+              <td>{{correctionDebt.debtBgAmount}}</td>
+              <td>{{correctionDebt.debtEuAmount}}</td>
+              <td>{{correctionDebt.debtTotalAmount}}</td>
+              <td>{{correctionDebt.reimbursedBgAmount}}</td>
+              <td>{{correctionDebt.reimbursedEuAmount}}</td>
+              <td>{{correctionDebt.reimbursedTotalAmount}}</td>
+              <td>{{correctionDebt.remainingBgAmount}}</td>
+              <td>{{correctionDebt.remainingEuAmount}}</td>
+              <td>{{correctionDebt.remainingTotalAmount}}</td>
+            </tr>
+
+            <tr ng-if="correctionDebts.length === 0">
+              <td colspan="13" l10n-text="correctionDebts_report_noResults"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-form>

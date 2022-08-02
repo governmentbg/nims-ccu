@@ -1,0 +1,393 @@
+﻿@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+    , Global.BreadcrumbsHelp)
+<div class="container page-title">
+    <h1>@Help.Header</h1>
+</div>
+
+<!-- HELP PAGE -->
+<div class="container">
+    <div class="page-content help-page clearfix form-with-sections text-justify">
+        @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+        {
+            <div class="col-xs-12">
+                <p style="font-size:28px;"><strong>СУНИ</strong></p>
+                <p style="font-size:20px;"><strong>СИСТЕМА ЗА УПРАВЛЕНИЕ НА НАЦИОНАЛНИТЕ ИНВЕСТИЦИИ</strong></p>
+
+                <h3>Модул за редакция на електронни формуляри и подаване на проектни предложения</h3>
+                <p>
+                    С помощта на модула имате възможност да създадете проектно предложение, като отворите нов формуляр, попълните, приложите съответните изискуеми документи към него и го подадете електронно. За информация как става това, вижте раздел
+                    "@Html.ActionLink("Ръководство за работа със системата", MVC.Default.ActionNames.Manual, MVC.Default.Name)", както и разделите по-долу.
+                </p>
+
+                <h3>Потребител и потребителски профил</h3>
+                <p>За да използвате пълната функционалност на системата, е необходимо да имате регистриран потребителски профил, който се използва за създаване, редакция, съхранение и подаване на проектното предложение.</p>
+                <p>Ако не сте потребител на системата или не сте влезли в потребителския си профил, имате възможност единствено да разглеждате списъка и указанията на текущо отворените схеми за кандидатсване на различните организации, както и да преглеждате и разпечатвате електронни формуляри, предварително създадени със системата от Вас или Ваш колега.</p>
+                <p>Ако сте регистриран потребител и сте влезли в системата, имате възможност да създавате ново проектно предложение, да редактирате вече съществуващо, да прилагате приложения към него или да го подавате електронно.</p>
+                <p>
+                    За повече информация вижте раздела по-долу
+                    "<a href="#q-a">Въпроси и отговори</a>"
+                    , както и раздела
+                    "@Html.ActionLink("Ръководство за работа със системата", MVC.Default.ActionNames.Manual, MVC.Default.Name)".
+                </p>
+
+                <h3>Отворени схеми за кандидатстване</h3>
+                <p>В този раздел на системата имате възможност да видите всички текущо отворени схеми за кандидатстване на различните организации. Разделът е достъпен от менюто „@Html.ActionLink("Отворени схеми за кандидатстване", MVC.Procedure.ActionNames.Active, MVC.Procedure.Name)“.</p>
+                <p>От дървото „Отворени схеми за кандидатстване“, чрез избор на Основна организация имате възможност да достъпите съответната схема. Схеми, които вече са затворени или предстоят да се отворят, не се показват. В скоби след всяка организация е указан броят на текущо отворените схеми. Кодът на всяка организация и схема е изписан пред тях. Чрез избора на конкретна схема може да влезете в страницата с информация за нея, имате възможност да видите кратка анотация, срока за кандидатстване, всички необходими документи за кандидатстване, насоки, въпроси и отговори и др.</p>
+
+                <h3>Формуляри</h3>
+                <p>От менюто формуляри може да достъпите всички Ваши формуляри, разделени в две групи – „Работни” и „Приключили”. Според вида и типа на формуляра можете да отворите формуляр за преглед и печат, да го заредите в системата за редакция, да го запишете локално на компютъра си или на външен електронен носител (CD, флаш памет) или да го изтриете от профила си. Също така имате възможност да заредите в системата за преглед или редакция външен електронен формуляр (файл с разширение <b>.suni</b>), например създаден преди това от Вас или Ваш колега.</p>
+                <p>За повече информация вижте раздела "@Html.ActionLink("Ръководство за работа със системата", MVC.Default.ActionNames.Manual, MVC.Default.Name)".</p>
+
+                <h3>Подаване на проектно предложение</h3>
+                <p>От менюто „Подай предложение“ имате възможност да подадете проектно предложение електронно. </p>
+                <p>За повече информация вижте раздела "@Html.ActionLink("Ръководство за работа със системата", MVC.Default.ActionNames.Manual, MVC.Default.Name)".</p>
+
+                <h3>Проектни предложения</h3>
+                <p>От менюто „Проектни предложения“ може да видите списък на Вашите подадени проектни предложения.</p>
+                <p>Всички проектни предложения се подготвят и подават чрез системата. Когато подавате електронно, е необходимо да подпишете предложението с електронен подпис и да го подадете чрез системата. След успешно приемане на предложението от системата, получавате регистрационен номер, а проектното Ви предложение автоматично се премества в списъка „Подадени“.</p>
+                <p>
+                    За повече информация вижте раздела по-долу
+                    "<a href="#q-a">Въпроси и отговори</a>"
+                    , както и раздела
+                    "@Html.ActionLink("Ръководство за работа със системата", MVC.Default.ActionNames.Manual, MVC.Default.Name)".
+                </p>
+
+                <h3 style="color:#FF0000">При използването на системата обърнете внимание на няколко важни неща</h3>
+                <ul style="font-weight: bold;">
+                    <li>Използвайте свой собствен профил и не го давайте на други потребители;</li>
+                    <li>По време на редакция на формуляр, периодично записвайте своите промени;</li>
+                    <li>Подаването на проектно предложение се извършва само и единствено от профила на кандидата.</li>
+                </ul>
+
+                <h3>Технически изисквания</h3>
+                <p>За правилната работа на системата е необходимо в браузъра да е разрешено изпълнението на JavaScript. За подробности относно включването и изключването на тази функционалност вижте потребителската документация на използвания от Вас браузър.</p>
+                <p>Системата е разработена и тествана за работа със следните видове браузъри:</p>
+                <ul class="browsers">
+                    <li><a target="_blank" title="Internet Explorer" href="http://windows.microsoft.com/bg-bg/internet-explorer/ie-9-worldwide-languages"><img src="@Links.Content.img.icons.browsers.ie_jpg" alt="" />Microsoft Internet Explorer 9 или по-нов;</a></li>
+                    <li><a target="_blank" title="Mozilla Firefox" href="http://www.mozilla.org/bg/firefox/new/"><img src="@Links.Content.img.icons.browsers.firefox_jpg" alt="" />Mozilla Firefox 15 или по-нов;</a></li>
+                    <li><a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/"><img src="@Links.Content.img.icons.browsers.chrome_jpg" alt="" />Google Chrome 25 или по-нов;</a></li>
+                    <li><a target="_blank" title="Safari" href="https://www.apple.com/safari/"><img src="@Links.Content.img.icons.browsers.safari_jpg" alt="" />Safari 7 или по-нов;</a></li>
+                    <li><a target="_blank" title="Opera" href="http://www.opera.com/bg/computer/windows"><img src="@Links.Content.img.icons.browsers.opera_jpg" alt="" />Opera 15 или по-нов;</a></li>
+                </ul>
+                <p>В момента по наши наблюдения от проведените тестове, системата работи най-добре и бързо с браузъра  <a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/">Google Chrome</a>.</p>
+                <p>Препоръката ни е винаги да се стремите да използвате съвременни и по-мощни компютри, както и винаги да работите с последна актуална версия на използвания от Вас браузър.</p>
+                <p>За повече информация вижте раздела по-долу "<a href="#q-a">Въпроси и отговори</a>"</p>
+
+                <h2 id="q-a">ВЪПРОСИ И ОТГОВОРИ</h2>
+                <div class="help-questions">
+                    <h3 data-section="1" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        Потребител и потребителски профил
+                    </h3>
+                    <section data-section="1" class="clearfix">
+                        <h4 data-section="1-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Как да създам потребителски профил?
+                        </h4>
+                        <section data-section="1-1" class="clearfix">
+                            <p>От менюто горе в дясно чрез натискане на бутона „Вход“ се отваря нова страница, в която имате възможност да въведете потребителско име и парола, за да влезете в системата. Ако обаче сте нов потребител за системата и все още нямате създаден потребителски профил, чрез избора на линка „Нов потребител“ може да си създадете нова регистрация.</p>
+                            <p>При създаване на нов профил системата изисква да въведете собствено и фамилно име и имейл адрес, който ще се използва за потребителско име и на който ще Ви известим при нужда, например при отстраняване на забелязани неточности по време на етап „Оценка на проектно предложение“.</p>
+                            <p>След натискане на бутона „Продължи“, системата създава профил към посочения имейл адрес и Ви изпраща на него хипервръзка за активиране.</p>
+                            <p>Отидете в електронната си поща и от получения имейл изберете изпратената хипервръзка. Хипервръзката ще отвори системата отново с опция за въвеждане на желаната от Вас парола за профил. Следвайте инструкциите и след потвърждение потребителският Ви профил ще бъде създаден, активиран и готов за работа.</p>
+                            <p><span class="required-span">Не споделяйте профила си с други потребители!</span> Това означава да запазите паролата си само и единствено за Вас. Към един имейл адрес може да се направи само един потребителски профил и не можете да си отворите друг профил със същия имейл адрес. Освен това, този профил и асоциираният към него имейл ще се използват за комуникация с Вас по време на етапа по оценка на проектно предложение. И не на последно място, ако двама потребители отворят един и същ формуляр от един и същ профил, при команда „Запис на формуляра в системата“ формулярът ще се записва от всеки един от тях, без знанието на другия.</p>
+                            <p>При проблеми с паролата имате възможност да я смените от менюто „Забравена парола“ или ако сте влезли в системата, от менюто горе в дясно изберете „Профил“ и след това „Смяна на парола“.</p>
+                        </section>
+
+                        <h4 data-section="1-2" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Как да си възстановя забравената парола?
+                        </h4>
+                        <section data-section="1-2" class="clearfix">
+                            <p>От менюто горе в дясно, чрез натискане на бутона „Вход“ се отваря нова страница, в която имате възможност да въведете потребителско име и парола, за да влезете в системата. Ако обаче сте забравили паролата си, чрез избора на линка „Забравена парола“ може да я смените.</p>
+                            <p>При избора на командата за забравена парола системата изисква да укажете кой потребител сте и след като Ви открие, Ви изпраща имейл с хипервръзка за смяна на парола. Отидете в електронната си поща и от получения имейл изберете изпратената Ви хипервръзка. Хипервръзката ще отвори системата отново с опция за въвеждане на нова парола. Следвайте инструкциите и след потвърждение, паролата на потребителския Ви профил ще бъде сменена.</p>
+                        </section>
+
+                        <h4 data-section="1-3" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Може ли няколко потребители да използваме един профил с една парола?
+                        </h4>
+                        <section data-section="1-3" class="clearfix">
+                            <p>Всеки потребителски профил поддържа само едно потребителско име (имейл адрес) и една парола. Поради някои технически ограничения при уеб базираните приложения, в момента системата позволява в един профил едновременно да могат да влязат няколко различни потребители с една и съща парола. Това става възможно в случаите, когато сте дали паролата от профила Ви и на други хора.</p>
+                            <p><span class="required-span">Споделянето на профила ви с други потребители не е препоръчително.</span></p>
+                            <p><strong>Това означава да запазите паролата си само за Вас</strong>, поради няколко основни съображения:</p>
+                            <ul>
+                                <li style="margin-bottom:5px;">към един имейл адрес може да се направи само един потребителски профил, не можете да си отворите друг профил със същия имейл адрес.</li>
+                                <li style="margin-bottom:5px;">този профил и асоциирания към него имейл ще се използват за комуникация с Вас по време на етапа „Оценка на проектно предложение“ за отстраняване на забелязани неточности.</li>
+                                <li style="margin-bottom:5px;">ако двама потребители отворят един и същ формуляр от един и същ профил, при команда „Запис на формуляра в системата“ формулярът ще се записва само от първия инициирал командата, като следващия потребител ще трябва да отвори отново формуляра (системата извежда грешка “Възникна грешка. Моля, опитайте отново по-късно.”)</li>
+                            </ul>
+                            <p>Ако все пак сте дали на някого паролата си и впоследствие искате да я смените, имате възможност да го направите от менюто „Забравена парола“ или ако сте в системата, от менюто горе в дясно изберете „Профил“ и след това „Смяна на парола“.</p>
+                        </section>
+                    </section>
+                    <div class="section-separator"> </div>
+
+                    <h3 data-section="2" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        Подаване на проектно предложение
+                    </h3>
+                    <section data-section="2" class="clearfix">
+                        <h4 data-section="2-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Как да подам проектно предложение електронно?
+                        </h4>
+                        <section data-section="2-1" class="clearfix">
+                            <p>Начинът на подаване на проектно предложение е изцяло електронен.</p>
+                            <p><strong>Подготовката и изпращането на проектно предложение става единствено чрез системата с помощта на менюто „Подаване на предложение“.</strong></p>
+                            <p>За да подадете проектно предложение, трябва да знаете предварително, че проектно предложение се подава винаги от профила на <b>кандидата</b>, не от друг профил и, че впоследствие ще използвате именно този профил за отстраняване на забелязани неточности  по време на етапа „Оценка на проектно предложение“.</p>
+                            <p>За да подадете проектно предложение електронно, влезте във Вашия профил, уверете се, че именно Вие сте кандидатът и изберете менюто „Подаване на предложение“, след което следвайте инструкциите. При успешно подаване системата ще Ви върне Регистрационен номер на прието проектно предложение.</p>
+                        </section>
+                    </section>
+                    <div class="section-separator"> </div>
+
+                    <h3 data-section="3" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        Технически въпроси
+                    </h3>
+                    <section data-section="3" class="clearfix">
+                        <h4 data-section="3-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Защо някои функционалности в системата не работят?
+                        </h4>
+                        <section data-section="3-1" class="clearfix">
+                            <p>За правилната работа на системата е необходимо в браузъра да е разрешено изпълнението на JavaScript. За подробности относно включването и изключването на тази функционалност вижте потребителската документация на използвания от Вас браузър.</p>
+                        </section>
+
+                        <h4 data-section="3-2" class="section-heading" id="slow">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Защо при проверка системата работи бавно?
+                        </h4>
+                        <section data-section="3-2" class="clearfix">
+                            <p>По същество системата е доста сложна и повечето от записите, структурата и данните във формуляра са динамични, например, ако добавите нова дейност в проекта, тя се отразява и в секциите Бюджет, План за изпълнение, План за външно възлагане и т.н. Освен това съществуват множество зависимости между отделните секции и стойности в полетата, създадени с цел да се сведе до минимум възможността от пропуск или  въвеждане на грешна стойност. Системата има функция за проверка, достъпна от менюто долу „Провери формуляра за грешка“. Изборът на тази команда, както и изпълнението й изискват значително време и компютърен ресурс. Възможно е да се появи системно съобщение от самия браузър, че сървърът не отговаря или системата да Ви изглежда като „заспала“. Това се дължи на обстоятелството че операциите, които трябва да се извършат са много, а тези, свързани с финансовата част на формуляра са и доста сложни.</p>
+                            <p>Във връзка с това препоръката ни е винаги да се стремите да използвате съвременни и по-мощни компютри, както и винаги да работите с последна актуална версия на използвания от Вас браузър.</p>
+                        </section>
+
+                        <h4 data-section="3-3" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Кой браузър да използвам, за да работя със системата?
+                        </h4>
+                        <section data-section="3-3" class="clearfix">
+                            <p>Системата е разработена и тествана за работа със следните видове браузъри:</p>
+                            <ul class="browsers">
+                                <li><a target="_blank" title="Internet Explorer" href="http://windows.microsoft.com/bg-bg/internet-explorer/ie-9-worldwide-languages"><img src="@Links.Content.img.icons.browsers.ie_jpg" alt="" />Microsoft Internet Explorer 9 или по-нов;</a></li>
+                                <li><a target="_blank" title="Mozilla Firefox" href="http://www.mozilla.org/bg/firefox/new/"><img src="@Links.Content.img.icons.browsers.firefox_jpg" alt="" />Mozilla Firefox 15 или по-нов;</a></li>
+                                <li><a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/"><img src="@Links.Content.img.icons.browsers.chrome_jpg" alt="" />Google Chrome 25 или по-нов;</a></li>
+                                <li><a target="_blank" title="Safari" href="https://www.apple.com/safari/"><img src="@Links.Content.img.icons.browsers.safari_jpg" alt="" />Safari 7 или по-нов;</a></li>
+                                <li><a target="_blank" title="Opera" href="http://www.opera.com/bg/computer/windows"><img src="@Links.Content.img.icons.browsers.opera_jpg" alt="" />Opera 15 или по-нов;</a></li>
+                            </ul>
+                            <p>В момента по наши наблюдения от проведените тестове, системата работи най-добре и бързо с браузъра <a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/">Google Chrome</a>.</p>
+                            <p>Препоръката ни е винаги да се стремите да използвате съвременни и по-мощни компютри, както и винаги да работите с последна актуална версия на използвания от Вас браузър.</p>
+                            <p>За повече подробности вижте: <a class="work-slow-section-link" href="#slow">Защо при проверка системата работи бавно?</a></p>
+                        </section>
+                    </section>
+                </div>
+
+            </div>
+        }
+        else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+        {
+            <div class="col-xs-12">
+                <p style="font-size:28px;"><strong>UMIS 2020</strong></p>
+                <p style="font-size:20px;"><strong>INFORMATION SYSTEM FOR MANAGEMENT AND MONITORING OF EU FUNDS 2020</strong></p>
+
+                <h3>Module for editing electronic forms and submission of project proposals</h3>
+                <p>
+                    With the module you can create a project proposal by opening a new form, fill, attach the relevant documents required to it and submit electronic or "over the counter". For information on how this works, see section
+                    "@Html.ActionLink("Guide to working with the system", MVC.Default.ActionNames.Manual, MVC.Default.Name)".
+                </p>
+
+                <h3>User and user profile</h3>
+                <p>To use the full functionality of the system is necessary to have created a profile, which is used for creating, editing, storage and submission of the project proposal.</p>
+                <p>If you are not a user of the system or are not logged into your profile, you can only browse the list and the instructions of the currently open procedures in the various Operational Programmes, as well as view and print electronic forms with pre-built system or your colleague.</p>
+                <p>If you are a registered user and logged in, you can create a new project proposal to edit an existing already, apply appended thereto or to submit electronic or "over the counter".</p>
+                <p>
+                    For more information, see the section below
+                    "<a href="#q-a">Questions and answers</a>"
+                    and tab
+                    "@Html.ActionLink("Guide to working with the system", MVC.Default.ActionNames.Manual, MVC.Default.Name)".
+                </p>
+
+                <h3>Open application procedures</h3>
+                <p>In this section of the system you can see all currently open for application procedures for the various operational programs. Section is accessible from the menu "@Html.ActionLink("Open procedures", MVC.Procedure.ActionNames.Active, MVC.Procedure.Name)".</p>
+                <p>The tree "Open application procedures", by selecting the Operational Programme and axis have the opportunity to access the relevant procedure. Procedures that are already closed or to be open not displayed. In parentheses after each operational program and axis are shown the currently open procedures. Code of each axis and the procedure is displayed in front of them. By choosing a particular procedure can enter the information page for it, you can see a brief annotation, the application deadline, all necessary application documents, such as guidelines, questions and answers and more.</p>
+
+                <h3>Forms</h3>
+                <p>Menu forms, you can access all your forms, divided into three groups, working forms Completed forms and archive forms. According to the type and the type of form you can open the form for viewing and printing, load it into the system to edit, save it locally on your computer or an external electronic media (CD, flash memory), or delete it from your account. You also have the opportunity to load the system for viewing or editing an external electronic form (file extension .suni), as previously created by you or your colleague.</p>
+                <p>For more information see section "@Html.ActionLink("Guide to working with the system", MVC.Default.ActionNames.Manual, MVC.Default.Name)".</p>
+
+                <h3>Submitting a project proposal</h3>
+                <p>From the "Pass the proposal", you can submit a project proposal electronically or "over the counter".</p>
+                <p>For more information see section "@Html.ActionLink("Guide to working with the system", MVC.Default.ActionNames.Manual, MVC.Default.Name)".</p>
+
+                <h3>Project proposal</h3>
+                <p>From the "Project proposals", you can see a list of your proposals grouped into three groups made of the filing counter and Archived.</p>
+                <p>No matter how you want to submit your project proposal, electronic or "over the counter" in the records of the Managing Authority, all proposals are prepared and submitted through the system. When you submit electronically must sign the proposal with electronic signature and submit it through the system. After the successful adoption of the proposal by the system, you receive a registration number, and design your proposal moves in the "Applications". When you want to submit a project proposal "over the counter", it is necessary to prepare it for submission to the system (menu Pass proposal) after the system check it issue a unique number, shall prepare a statement and label for filing a motion moved in " filing the counter. " Old proposals, you can move them to "Archived".</p>
+                <p>
+                    For more information, see the section below
+                    "<a href="#q-a">Questions and answers</a>"
+                    and section
+                    "@Html.ActionLink("Guide to working with the system", MVC.Default.ActionNames.Manual, MVC.Default.Name)".
+                </p>
+
+                <h3 style="color:#FF0000">When using the system pay attention to several important things</h3>
+                <ul style="font-weight: bold;">
+                    <li>Use your own profile and give it to other users</li>
+                    <li>During the editing form, periodically save your changes</li>
+                    <li>Submitting a project proposal is performed only on the profile of the candidate, whether electronic or "over the counter"</li>
+                </ul>
+
+                <h3>Technical requirements</h3>
+                <p>For proper operation of the system is necessary in the browser is allowed execution of JavaScript. For details on the inclusion and exclusion of this functionality, see the user documentation of your browser.</p>
+                <p>The system is designed and tested to work with the following browsers:</p>
+                <ul class="browsers">
+                    <li><a target="_blank" title="Internet Explorer" href="http://windows.microsoft.com/bg-bg/internet-explorer/ie-9-worldwide-languages"><img src="@Links.Content.img.icons.browsers.ie_jpg" alt="" />Microsoft Internet Explorer 9 or newer;</a></li>
+                    <li><a target="_blank" title="Mozilla Firefox" href="http://www.mozilla.org/bg/firefox/new/"><img src="@Links.Content.img.icons.browsers.firefox_jpg" alt="" />Mozilla Firefox 15 or newer;</a></li>
+                    <li><a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/"><img src="@Links.Content.img.icons.browsers.chrome_jpg" alt="" />Google Chrome 25 or newer;</a></li>
+                    <li><a target="_blank" title="Safari" href="https://www.apple.com/safari/"><img src="@Links.Content.img.icons.browsers.safari_jpg" alt="" />Safari 7 or newer;</a></li>
+                    <li><a target="_blank" title="Opera" href="http://www.opera.com/bg/computer/windows"><img src="@Links.Content.img.icons.browsers.opera_jpg" alt="" />Opera 15 or newer;</a></li>
+                </ul>
+                <p>At present our observations of tests, the system best and fast browsers Microsoft Internet Explorer and <a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/">Google Chrome</a>.</p>
+                <p>Our recommendation is to always strive to use modern and more powerful computers, and always to work with Latest version of the browser you're using.</p>
+                <p>For more details see: <strong>Why the system is running slow?</strong></p>
+
+                <h2 id="q-a">QUESTIONS AND ANSWERS</h2>
+                <div class="help-questions">
+                    <h3 data-section="1" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        User and user profile
+                    </h3>
+                    <section data-section="1" class="clearfix">
+                        <h4 data-section="1-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            How do I create a profile?
+                        </h4>
+                        <section data-section="1-1" class="clearfix">
+                            <p>From the top menu, on the right, by pressing the "Enter" button opens a new page where you can enter your username and password to log in, but if you are new to the system and still not created a profile through selecting the link "new user" can create a new registration.</p>
+                            <p>When creating a new profile system required to enter a first and last name and email address will be used for user name and which will notify you if needed, for example in the removal of irregularities during the evaluation stage of the project proposal.</p>
+                            <p>After clicking the "Continue" button, your system creates a profile to that email address and sends it to a hyperlink activation.</p>
+                            <p>Go to your email and received mail sent, select the hyperlink. It will open the system again with the option of entering the password you want to profile. Follow the instructions and after confirmation, your profile will be created, activated and ready for use.</p>
+                            <p><span class="required-span">Do not share your profile with other users!</span> This means to keep your password only for you to an email address can be done only one profile, you can not open another account with the same email address. Furthermore, the profile and associated to the email will be used to communicate with you during the assessment phase of the project proposal. And last but not least, if two users open the same form of the same profile in command "Save the form in the" form will be recorded by each of them, without the knowledge of the other.</p>
+                            <p>The password you have the option to change the menu "Forgot password" or if you are logged in, the menu at the top right select "Profile" and then "Change password".</p>
+                        </section>
+
+                        <h4 data-section="1-2" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            How to recover a forgotten password?
+                        </h4>
+                        <section data-section="1-2" class="clearfix">
+                            <p>From the top menu, on the right, by pressing the "Enter" button opens a new page where you can enter your username and password to log in, but if you forgot your password by selecting the "forgot password" may to replace it.</p>
+                            <p>When choosing a command forgotten password system requires you to specify which user you after you find you send an email with a link to change your password. Go to your email and receive emails sent to you, select the hyperlink, it will open the system again with the option to enter a new password. Follow the instructions and then confirm the password of your profile will be replaced.</p>
+                        </section>
+
+                        <h4 data-section="1-3" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Can multiple users to use a profile with a password?
+                        </h4>
+                        <section data-section="1-3" class="clearfix">
+                            <p>Each profile supports only one user name (email address) and a password. Due to some technical limitations in web-based applications on the system allows one account simultaneously can enter several different user with the same password. This is where you give the password of your account and to others.</p>
+                            <p><span class="required-span">Sharing your account with others is not recommended.</span></p>
+                            <p><strong>This means to save your password for you</strong> reasons for this are mainly a few:</p>
+                            <ul>
+                                <li style="margin-bottom:5px;">to an email address can be done only one profile, you can not open another account with the same email address.</li>
+                                <li style="margin-bottom:5px;">profile and associated to the email will be used to communicate with you during the assessment phase of the project proposal to eliminate any inconsistencies.</li>
+                                <li style="margin-bottom:5px;">if two users open the same form of the same profile in command "Save the form in the" form will be recorded by each of them, without the knowledge of the other person.</li>
+                            </ul>
+                            <p>However, if you give someone your password and subsequently want to change it, you can do it from the "Forgot Password" or if you are in the system menu above right "profile", "Change password".</p>
+                        </section>
+                    </section>
+                    <div class="section-separator"> </div>
+
+                    <h3 data-section="2" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        Submitting a project proposal
+                    </h3>
+                    <section data-section="2" class="clearfix">
+                        <h4 data-section="2-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            How to submit a project proposal electronically?
+                        </h4>
+                        <section data-section="2-1" class="clearfix">
+                            <p>How to submit a project proposal can be fully electronic, "over the counter" in the records of the Managing Authority or mixed, as the candidate prefers: an electronic or "over the counter". Possible way of applying is indicated by the MA guidelines for each specific procedure.</p>
+                            <p><strong>By whatever means will submit a project proposal electronically or "over the counter", preparing and submitting the project proposal only via the system by using the "Submit Proposal".</strong></p>
+                            <p>To submit project proposals need to know in advance that the project proposal is submitted always the profile of the candidate, not from another account and that will subsequently use that profile to remove irregularities during the assessment phase of the project proposal and you can use a foreign account, regardless of how you filed: electronic or "over the counter" in the records of the Managing Authority.</p>
+                            <p>To submit a project proposal electronically sign in to your account, make sure that it is you're the candidate and select the "Submit Proposal", follow the instructions. Upon successful submission system will return the registration number of the accepted project proposal.</p>
+                        </section>
+
+                        <h4 data-section="2-2" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            How to submit a project proposal "over the counter"?
+                        </h4>
+                        <section data-section="2-2" class="clearfix">
+                            <p>How to submit a project proposal can be fully electronic, "over the counter" in the records of the Managing Authority or mixed, as the candidate prefers: an electronic or "over the counter". Possible way of applying is indicated by the MA guidelines for each procedure.</p>
+                            <p><strong>By whatever means will submit a project proposal electronically or "over the counter", preparing and submitting the project proposal only via the system by using the "Submit Proposal".</strong></p>
+                            <p>To submit project proposals need to know in advance that the project proposal is submitted always the profile of <strong>candidate</strong>, not from another account and that will subsequently use that profile to remove irregularities during the stage assessment of the project proposal and can not use someone else's account, regardless of how you filed: electronic or "over the counter" in the records of the Managing Authority.</p>
+                            <p>To submit a project proposal "over the counter" sign in your account, make sure you say you are the candidate and select the "Submit Proposal", follow the instructions. The system will prepare a file that you can save on an external electronic format (CD or flash memory) will prepare you for submitting a declaration "Checkout" that you must print, fill out and submit and prepare you label envelope Submission project proposal.</p>
+                            <p>Then you have to bundle your project proposal, both in envelope inserting electronic form (file extension ".suni") of external electronic format (CD or flash memory), all applications on paper and the declaration of submission "Checkout" printed system and completed manuscript. So complete project proposal envelope closes, label submission that contains a unique identification code of the sender and project proposal and submitted to the registry of the respective Managing Authority.</p>
+                        </section>
+                    </section>
+                    <div class="section-separator"> </div>
+
+                    <h3 data-section="3" class="section-heading">
+                        <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                        Technical issues
+                    </h3>
+                    <section data-section="3" class="clearfix">
+                        <h4 data-section="3-1" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Why are some features in the system not work?
+                        </h4>
+                        <section data-section="3-1" class="clearfix">
+                            <p>For proper operation of the system is necessary in the browser is allowed execution of JavaScript. For details on the inclusion and exclusion of this functionality, see the user documentation of your browser.</p>
+                        </section>
+
+                        <h4 data-section="3-2" class="section-heading" id="slow">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Why in the verification system is running slow?
+                        </h4>
+                        <section data-section="3-2" class="clearfix">
+                            <p>In essence, the system is quite complex and most of the records, data structure and form are dynamic, for example, if you add a new business project, it is reflected in sections Budget Implementation Plan, Indicators Plan for outsourcing, etc. . Moreover, there many dependencies between the different sections and values ​​in order to minimize the possibility of omission or enter the wrong value, the system check function, accessible from the menu below "Check form mistake." Selecting this command, as well as implementation and requires considerable time and computer resources. You may come up system message from the browser itself, that server does not respond or the system may seem like "asleep", but the operations to be carried out are many, and those related to the financial part and quite complex.</p>
+                            <p>In this connection, our recommendation is to always strive to use modern and more powerful computers, and always to work with Latest version of the browser you're using.</p>
+                        </section>
+
+                        <h4 data-section="3-3" class="section-heading">
+                            <img class="arrow" src="@Links.Content.img.icons.blue_arrow_right_gif" alt="">
+                            Which browser I use to work with the system?
+                        </h4>
+                        <section data-section="3-3" class="clearfix">
+                            <p>The system is designed and tested to work with the following browsers:</p>
+                            <ul class="browsers">
+                                <li><a target="_blank" title="Internet Explorer" href="http://windows.microsoft.com/bg-bg/internet-explorer/ie-9-worldwide-languages"><img src="@Links.Content.img.icons.browsers.ie_jpg" alt="" />Microsoft Internet Explorer 9 or newer;</a></li>
+                                <li><a target="_blank" title="Mozilla Firefox" href="http://www.mozilla.org/bg/firefox/new/"><img src="@Links.Content.img.icons.browsers.firefox_jpg" alt="" />Mozilla Firefox 15 or newer;</a></li>
+                                <li><a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/"><img src="@Links.Content.img.icons.browsers.chrome_jpg" alt="" />Google Chrome 25 or newer;</a></li>
+                                <li><a target="_blank" title="Safari" href="https://www.apple.com/safari/"><img src="@Links.Content.img.icons.browsers.safari_jpg" alt="" />Safari 7 or newer;</a></li>
+                                <li><a target="_blank" title="Opera" href="http://www.opera.com/bg/computer/windows"><img src="@Links.Content.img.icons.browsers.opera_jpg" alt="" />Opera 15 or newer;</a></li>
+                            </ul>
+                            <p>At present our observations of tests, the system best and fast browsers Microsoft Internet Explorer and <a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/">Google Chrome</a>.</p>
+                            <p>Our recommendation is to always strive to use modern and more powerful computers, and always to work with Latest version of the browser you're using.</p>
+                            <p>For more details see: <a class="work-slow-section-link" href="#slow">Why the system is running slow?</a></p>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- SCRIPTS FOR HELP PAGE: -->
+<!-- lightbox init: -->
+<script>
+    $(function () {
+        $('.gallery a').lightbox();
+
+        $('.work-slow-section-link').click(function () {
+            var section = $(this).parents('section[data-section]');
+            $('h4.section-heading[data-section="' + section.attr('data-section') + '"]').click();
+
+            var heading = $('h4.section-heading#slow');
+            if(!heading.hasClass("opened"))
+                heading.click();
+        });
+    });
+</script>

@@ -1,0 +1,10 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-disabled="true" l10n-text="projects_projectCommunicationAnswerDataForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.answerDate" l10n-text="projects_projectCommunicationAnswerDataForm_answerDate" ng-readonly="true" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.source" alias="'projectCommunicationAnswerSources'" mode="id" ng-disabled="true" l10n-text="projects_projectCommunicationAnswerDataForm_source" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'projectCommunicationAnswerStatuses'" mode="id" ng-disabled="true" l10n-text="projects_projectCommunicationAnswerDataForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

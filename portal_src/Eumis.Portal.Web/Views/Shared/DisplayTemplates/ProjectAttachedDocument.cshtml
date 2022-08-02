@@ -1,0 +1,57 @@
+﻿@model R_10018.AttachedDocument
+
+@if (Model != null)
+{
+    <tr class="@(Model.IsDeactivated ? "deactivated" : "")">
+        <td>
+            <span class="filled-value">
+                @if (Model.Type != null)
+                {
+                    <text>@Model.Type.Name</text>
+                }
+                @if (Model.IsDeactivated)
+                {
+                    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                }
+            </span>
+        </td>
+        <td>
+            @if (Model.ActivationDate.HasValue)
+            {
+                <span class="filled-value">@Model.ActivationDate.Value.ToString("dd/MM/yyy HH:mm")</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.Description)
+        </td>
+        <td>
+            <div class="files">
+                @if (Model.AttachedDocumentContent != null && !String.IsNullOrWhiteSpace(Model.AttachedDocumentContent.FileName) && !String.IsNullOrWhiteSpace(Model.AttachedDocumentContent.BlobContentId))
+                {
+                    <p>@Model.AttachedDocumentContent.FileName</p>
+                    <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/@(Model.AttachedDocumentContent.BlobContentId)" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                }
+            </div>
+        </td>
+        <td>
+            <div class="files">
+                @if (Model.SignatureContentCollection != null)
+                {
+                    for (int j = 0; j < Model.SignatureContentCollection.Count; j++)
+                    {
+                        if (Model.SignatureContentCollection[j] != null
+                            && !String.IsNullOrWhiteSpace(Model.SignatureContentCollection[j].FileName)
+                            && !String.IsNullOrWhiteSpace(Model.SignatureContentCollection[j].BlobContentId))
+                        {
+                            <div class="signature-wrapper">
+                                <p>@Model.SignatureContentCollection[j].FileName</p>
+                                <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/@(Model.SignatureContentCollection[j].BlobContentId)" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    }
+                }
+            </div>
+        </td>
+    </tr>
+}

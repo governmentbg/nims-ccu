@@ -1,0 +1,193 @@
+﻿@using Eumis.Portal.Web.Areas.Report
+@using Eumis.Portal.Web.Helpers;
+@using PagedList.Mvc;
+
+@model Eumis.Portal.Web.Areas.Report.Models.Communication.IndexVM
+
+@{
+    string breadcrumbString = R_10042.Communication.GetDocumentHeaderText(Model.type);
+
+    string newItemString = Global.CommunicationNew;
+
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Cert)
+    {
+        newItemString = Global.CommunicationCertNew;
+    }
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Audit)
+    {
+        newItemString = Global.CommunicationAuditNew;
+    }
+
+    string deleteItemString = Global.CommunicationDelete;
+
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Cert)
+    {
+        deleteItemString = Global.CommunicationCertDelete;
+    }
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Audit)
+    {
+        deleteItemString = Global.CommunicationAuditDelete;
+    }
+
+    string noResultItemString = Global.CommunicationNoResult;
+
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Cert)
+    {
+        noResultItemString = Global.CommunicationCertNoResult;
+    }
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Audit)
+    {
+        noResultItemString = Global.CommunicationAuditNoResult;
+    }
+
+    ContractTabs activeTab = Eumis.Portal.Web.Areas.Report.ContractTabs.Communication;
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Cert)
+    {
+        activeTab = Eumis.Portal.Web.Areas.Report.ContractTabs.CommunicationCert;
+    }
+
+    if (Model.type == R_09987.CommunicationTypeNomenclature.Audit)
+    {
+        activeTab = Eumis.Portal.Web.Areas.Report.ContractTabs.CommunicationAudit;
+    }
+}
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader)
+}, breadcrumbString)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<div class="container">
+    <form class="form-with-sections">
+        @Html.Partial(MVC.Report.Shared.Views._ContractTabsPartial, (object)activeTab)
+        <div class="tab-content">
+
+            @if (TempData["SuccessAction"] != null)
+            {
+                <div class="validation-summary-errors validation-success">
+                    <ul>
+                        <li>@TempData["SuccessAction"].ToString()</li>
+                    </ul>
+                </div>
+            }
+
+            @if (CurrentUser.UserType == ReportUserType.Parent)
+            {
+                <div style="padding: 10px 0px 0px 10px;">
+                    <a class="blue-button" href="@Url.Action(MVC.Report.Communication.ActionNames.New, MVC.Report.Communication.Name, new { type = Model.type })" title=""><span class="glyphicon glyphicon-plus"></span> @newItemString</a>
+                </div>
+            }
+            <!-- form with sections -->
+            <div class="table-wrapper">
+                @if (Model != null && Model.Communications != null && Model.Communications.Count > 0)
+                {
+                    <table class="chart-info medium-table white-header vertical-top-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="130">Вх/Изх</th>
+                                <th>Заглавие</th>
+                                <th width="160">Дата на прочитане</th>
+                                <th width="250">
+                                    Регистрационен № <br />
+                                    Дата на редакция/изпращане
+                                </th>
+                                @if (CurrentUser.ReadPermissions.canReadCommunication)
+                                {
+                                    <th width="130">Действия</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var comm in Model.Communications)
+                            {
+                                <tr class="@(comm.isBeneficiary ? "outgoing" : "incoming") @(!comm.isRead && !comm.isBeneficiary ? "unread-row" : "")" style="">
+                                    <td>
+                                        @if (comm.isBeneficiary)
+                                        {
+                                            <img src="@Url.Content(Links.Content.img.icons.outgoing_png)" alt="" />
+                                            <text>Изходяща</text>
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content(Links.Content.img.icons.incoming_png)" alt="" />
+                                            <text>Входяща</text>
+                                        }
+                                    </td>
+                                    <td>@comm.subject</td>
+                                    <td>
+                                        @if (comm.isDraft)
+                                        {
+                                            <text>Чернова</text>
+                                        }
+                                        else if (comm.readDate.HasValue)
+                                        {
+                                            <text>@Eumis.Common.Helpers.Helper.DateTimeToBgFormatWithoutSeconds(comm.readDate)</text>
+                                        }
+                                        else
+                                        {
+                                            <text>Непрочетена</text>
+                                        }
+                                    </td>
+                                    <td>
+                                        @comm.regNumber
+                                        @if (!String.IsNullOrWhiteSpace(comm.regNumber)
+                                            && ((comm.isDraft && comm.modifyDate.HasValue) || (!comm.isDraft && comm.sendDate.HasValue)))
+                                        {
+                                            <br /><br />
+                                        }
+                                        @if (comm.isDraft)
+                                        {
+                                            <text>@Eumis.Common.Helpers.Helper.DateTimeToBgFormatWithoutSeconds(comm.modifyDate)</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@Eumis.Common.Helpers.Helper.DateTimeToBgFormatWithoutSeconds(comm.sendDate)</text>
+                                        }
+                                    </td>
+                                    @if (CurrentUser.ReadPermissions.canReadCommunication)
+                                    {
+                                        <td>
+                                            <a class="info-icon-static view-btn" data-placement="top" data-toggle="popover" data-content="Преглед" data-trigger="hover" href="@Url.Action(MVC.Report.Communication.ActionNames.Preview, MVC.Report.Communication.Name, new {gid = comm.xmlGid})">Преглед</a>
+                                            @if (comm.isBeneficiary && comm.isDraft)
+                                            {
+                                                <a class="info-icon-static edit-btn" data-placement="top" data-toggle="popover" data-content="Редакция" data-trigger="hover" href="@Url.Action(MVC.Report.Communication.ActionNames.Edit, MVC.Report.Communication.Name, new {gid = comm.xmlGid})">Редакция</a>
+                                                <a href="@Url.Action(MVC.Report.Communication.ActionNames.Delete, MVC.Report.Communication.Name, new { gid = comm.xmlGid, type = Model.type })" data-toggle="confirmation-no-title" data-title="@deleteItemString">
+                                                <img src="@Links.Content.img.icons.delete_btn_png" alt="">
+                                                Изтриване
+                                                </a>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@noResultItemString</p>
+                    </div>
+                }
+            </div>
+
+            @Html.PagedListPager(Model.Communications,
+        page => Url.Action((String)ViewContext.RouteData.Values["action"],
+            (String)ViewContext.RouteData.Values["controller"],
+            new
+            {
+                page = page,
+                type = Request.QueryString["type"]
+            }),
+        Constants.PagedListRenderOptions)
+
+        </div>
+    </form>
+</div>

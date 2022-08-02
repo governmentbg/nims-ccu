@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="chooseItemsBtn" btn-click="chooseItems()" text="euReimbursedAmounts_certReportsSearch_choose" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('EuReimbursedAmountActions.Edit', euReimbursedAmountId) || status !== 'draft'"></sc-button>
+
+    <sc-datatable items="certReports" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="delBtn" btn-click="delItem(item.euReimbursedAmountCertReportId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="!$canDo('EuReimbursedAmountActions.Edit', euReimbursedAmountId) || status !== 'draft'"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="euReimbursedAmounts_certReportsSearch_orderNum" type="number">
+      </sc-column>
+      <sc-column data="regDate" title="euReimbursedAmounts_certReportsSearch_regDate" type="date">
+      </sc-column>
+      <sc-column data="dateFrom" title="euReimbursedAmounts_certReportsSearch_dateFrom" type="date">
+      </sc-column>
+      <sc-column data="dateTo" title="euReimbursedAmounts_certReportsSearch_dateTo" type="date">
+      </sc-column>
+      <sc-column data="type" title="euReimbursedAmounts_certReportsSearch_type">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

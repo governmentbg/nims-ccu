@@ -1,0 +1,35 @@
+﻿@model R_10040.BFPContract
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BFPContract</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.BFPContract, MVC.Private.BFPContract.ActionNames.Prepare, MVC.Private.BFPContract.Name, new { area = MVC.Private.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Private.BFPContract.ActionNames.Display, MVC.Private.BFPContract.Name, new { area = MVC.Private.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Private.BFPContract.ActionNames.Print, MVC.Private.BFPContract.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Private.BFPContract.ActionNames.Prepare, MVC.Private.BFPContract.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Private.BFPContract.ActionNames.Prepare, MVC.Private.BFPContract.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Private.BFPContract.ActionNames.Prepare, MVC.Private.BFPContract.Name, null, new { @class = "blue-button small back left" })
+                @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Private.BFPContract.ActionNames.Submit, MVC.Private.BFPContract.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </div>
+    </div>
+</div>

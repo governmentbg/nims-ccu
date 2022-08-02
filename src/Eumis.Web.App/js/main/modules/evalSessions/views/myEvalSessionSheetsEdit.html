@@ -1,0 +1,18 @@
+<ng-form name="editEvalSessionSheetForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionSheet_title"></strong>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-sheet ng-if="evalSessionSheet.status === 'canceled'" name="evalSessionSheetForm" ng-model="evalSessionSheet" sc-form-params="{ canViewDistribution: false }" sc-form-readonly="true"></eumis-eval-session-sheet>
+      <eumis-eval-session-sheet ng-if="evalSessionSheet.status !== 'canceled'" name="evalSessionSheetForm" ng-model="evalSessionSheet" sc-form-params="{ canViewDistribution: false, viewProjectState: {state: 'root.evalSessions.my.view.sheets.edit.project'} }" sc-form-readonly="true"></eumis-eval-session-sheet>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionSheet_template" document="evalSessionSheet" gid="evalSessionSheet.xmlGid" readonly="!isSessionActive || evalSessionSheet.status !== 'draft'"
+           class="col-sm-4 col-md-3" doc-updated="sheetUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

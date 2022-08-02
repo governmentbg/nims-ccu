@@ -1,0 +1,16 @@
+﻿@model string
+
+@{
+    var htmlAttributes = new { @class = "wait" };
+    var active = "active";
+}
+
+    <ul class="nav nav-tabs">
+        <li class="@(Model.Equals(MVC.Offers.Views.Index) ? active : string.Empty)">@Html.ActionLink(Offers.AnnouncementsOffers, MVC.Offers.ActionNames.Index, MVC.Offers.Name, null, htmlAttributes)</li>
+        @if (Request.IsAuthenticated)
+        {
+            <li class="@(Model.Equals(MVC.Offers.Views.Drafts) ? active : string.Empty)">@Html.ActionLink(Offers.DraftOffers, MVC.Offers.ActionNames.Drafts, MVC.Offers.Name, null, htmlAttributes)</li>
+            <li class="@(Model.Equals(MVC.Offers.Views.Submitted) ? active : string.Empty)">@Html.ActionLink(Offers.SubmittedOffers, MVC.Offers.ActionNames.Submitted, MVC.Offers.Name, null, htmlAttributes)</li>
+        }
+        <li class="@(Model.Equals(MVC.Offers.Views.Archived) ? active : string.Empty)">@Html.ActionLink(Offers.Archive, MVC.Offers.ActionNames.Archived, MVC.Offers.Name, null, htmlAttributes)</li>
+    </ul>

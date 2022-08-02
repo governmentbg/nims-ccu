@@ -1,0 +1,17 @@
+<ng-form name="editOfferForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="projectDossier_offersEdit_title"></strong>
+      </div>
+    
+      <div class="well-sm panel-body">
+        <eumis-contract-offer name="offerForm" ng-model="offer"></eumis-contract-offer>
+        <div class="row">
+          <eumis-structured-document text="projectDossier_offersEdit_template" document="contractOffer" gid="offer.gid"
+            readonly="true"
+            class="col-sm-6 col-md-4">
+          </eumis-structured-document>
+        </div>
+      </div>
+    </div>
+  </ng-form>

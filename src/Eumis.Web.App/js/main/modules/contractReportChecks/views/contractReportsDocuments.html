@@ -1,0 +1,69 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contractReportChecks_contractReportDocuments_reportTechnical"></h5>
+    </div>
+
+
+    <sc-datatable items="contractReportTechnicals" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.editTechnical', params: { ind: item.contractReportTechnicalId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))"></sc-button>
+      </sc-column>
+      <sc-column data="versionNum" title="contractReportChecks_contractReportDocuments_reportTechnical_versionNum" type="number"></sc-column>
+      <sc-column data="versionSubNum" title="contractReportChecks_contractReportDocuments_reportTechnical_versionSubNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportDocuments_reportTechnical_status"></sc-column>
+      <sc-column data="type" title="contractReportChecks_contractReportDocuments_reportTechnical_type"></sc-column>
+      <sc-column data="submitDate" title="contractReportChecks_contractReportDocuments_reportTechnical_submitDate" type="date"></sc-column>
+      <sc-column data="returnDate" title="contractReportChecks_contractReportDocuments_reportTechnical_returnDate" type="date"></sc-column>
+      <sc-column data="dateFrom" title="contractReportChecks_contractReportDocuments_reportTechnical_dateFrom" type="date"></sc-column>
+      <sc-column data="dateTo" title="contractReportChecks_contractReportDocuments_reportTechnical_dateTo" type="date"></sc-column>
+      <sc-column data="contractRegistrationEmail" title="contractReportChecks_contractReportDocuments_reportTechnical_sentEmail"></sc-column>
+    </sc-datatable>
+
+    <div class="mutiple-tables-spacing"></div>
+
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contractReportChecks_contractReportDocuments_reportFinancial"></h5>
+    </div>
+
+    <sc-datatable items="contractReportFinancials" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.editFinancial', params: { ind: item.contractReportFinancialId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))"></sc-button>
+      </sc-column>
+      <sc-column data="versionNum" title="contractReportChecks_contractReportDocuments_reportFinancial_versionNum" type="number"></sc-column>
+      <sc-column data="versionSubNum" title="contractReportChecks_contractReportDocuments_reportFinancial_versionSubNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportDocuments_reportFinancial_status"></sc-column>
+      <sc-column data="submitDate" title="contractReportChecks_contractReportDocuments_reportFinancial_submitDate" type="date"></sc-column>
+      <sc-column data="returnDate" title="contractReportChecks_contractReportDocuments_reportFinancial_returnDate" type="date"></sc-column>
+      <sc-column data="startDate" title="contractReports_contractReportDocuments_reportFinancial_startDate" type="date"></sc-column>
+      <sc-column data="endDate" title="contractReports_contractReportDocuments_reportFinancial_endDate" type="date"></sc-column>
+      <sc-column data="contractRegistrationEmail" title="contractReports_contractReportDocuments_reportFinancial_sentEmail"></sc-column>
+    </sc-datatable>
+
+    <div class="mutiple-tables-spacing"></div>
+
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contractReportChecks_contractReportDocuments_reportPayment"></h5>
+    </div>
+
+    <sc-datatable items="contractReportPayments" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.documents.editPayment', params: { ind: item.contractReportPaymentId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))"></sc-button>
+      </sc-column>
+      <sc-column data="versionNum" title="contractReportChecks_contractReportDocuments_reportPayment_versionNum" type="number"></sc-column>
+      <sc-column data="versionSubNum" title="contractReportChecks_contractReportDocuments_reportPayment_versionSubNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportDocuments_reportPayment_status"></sc-column>
+      <sc-column data="paymentType" title="contractReportChecks_contractReportDocuments_reportPayment_paymentType"></sc-column>
+      <sc-column data="submitDate" title="contractReportChecks_contractReportDocuments_reportPayment_submitDate" type="date"></sc-column>
+      <sc-column data="returnDate" title="contractReportChecks_contractReportDocuments_reportPayment_returnDate" type="date"></sc-column>
+      <sc-column data="dateFrom" title="contractReportChecks_contractReportDocuments_reportPayment_dateFrom" type="date"></sc-column>
+      <sc-column data="dateTo" title="contractReportChecks_contractReportDocuments_reportPayment_dateTo" type="date"></sc-column>
+      <sc-column data="requestedAmount" title="contractReportChecks_contractReportDocuments_reportPayment_requestedAmount" type="money"></sc-column>
+      <sc-column data="contractRegistrationEmail" title="contractReportChecks_contractReportDocuments_reportPayment_sentEmail"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

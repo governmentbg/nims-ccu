@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-datatable items="contractReportTechnicalCorrectionIndicators" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportTechnicalCorrections.view.correctedIndicators.edit', params: { ind: item.contractReportTechnicalCorrectionIndicatorId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.View', contractReportTechnicalCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="indicatorName" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_indicator"></sc-column>
+
+      <sc-column data="status" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_status"></sc-column>
+
+      <sc-column data="approvedPeriodAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_periodAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_approvedAmount" type="money"></sc-column>
+      <sc-column data="approvedCumulativeAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_cumulativeAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_approvedAmount" type="money"></sc-column>
+      <sc-column data="approvedResidueAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_residueAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_approvedAmount" type="money"></sc-column>
+
+      <sc-column data="correctedApprovedPeriodAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_periodAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_correctedApprovedAmount" type="money"></sc-column>
+      <sc-column data="correctedApprovedCumulativeAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_cumulativeAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_correctedApprovedAmount" type="money"></sc-column>
+      <sc-column data="correctedApprovedResidueAmountTotal" title="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_residueAmount"
+        col-group="contractReportTechnicalCorrections_contractReportTechnicalCorrectionsCorrectedIndicatorsSearch_correctedApprovedAmount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

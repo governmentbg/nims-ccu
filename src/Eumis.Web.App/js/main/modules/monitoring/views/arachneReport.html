@@ -1,0 +1,17 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" ng-required="true" l10n-text="monitoring_arachne_programme" class="col-sm-5"></sc-field>
+          <div class="labeless col-sm-6">
+            <sc-link-button ng-href="api/monitoringReports/arachne/export?programmeId={{filters.programmeId}}"
+                            target="_blank" sc-access-token ng-disabled="!filters.programmeId"
+                            icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_arachne_xmlExport" class="btn btn-primary btn-sm pull-right">
+            </sc-link-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

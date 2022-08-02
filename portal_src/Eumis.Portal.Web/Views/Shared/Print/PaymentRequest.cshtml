@@ -1,0 +1,25 @@
+﻿@model R_10045.PaymentRequest
+
+@if (Model != null)
+{
+    <h3>Договор № @Model.contractNumber, @Global.PaymentRequest № @Model.docNumber</h3>
+
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @PaymentRequest.BasicData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.PaymentRequestBasicData, Model.BasicData ?? new R_10049.PaymentRequestBasicData())
+    </section>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @PaymentRequest.AttachedDocuments
+    </h3>
+    if (Model.AttachedDocuments != null && Model.AttachedDocuments.AttachedDocumentCollection != null && Model.AttachedDocuments.AttachedDocumentCollection.Count > 0)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.PaymentRequestAttachedDocuments, Model.AttachedDocuments)
+        </section>
+    }
+}

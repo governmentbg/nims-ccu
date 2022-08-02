@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10013"
+	xmlns="http://ereg.egov.bg/segment/R-10013"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+
+  <xsd:complexType name="Indicator">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Индикатор</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Id" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="NameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="TypeName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="TypeNameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="TrendName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="TrendNameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="KindName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="KindNameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="MeasureName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="MeasureNameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AggregatedReport" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AggregatedReportEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AggregatedTarget" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AggregatedTargetEN" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="BaseMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BaseWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="BaseTotal" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="TargetMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TargetWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TargetTotal" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="HasGenderDivision" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="Description" type="xsd:string" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

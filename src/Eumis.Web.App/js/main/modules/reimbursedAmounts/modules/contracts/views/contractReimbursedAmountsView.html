@@ -1,0 +1,12 @@
+<div>
+  <label class="title">{{infoText}}</label>
+  <sc-tabs tab-list="{
+      'contractReimbursedAmounts_viewReimbursedAmount_view': 'root.contractReimbursedAmounts.view.basicData',
+      'contractReimbursedAmounts_viewReimbursedAmount_reimbursedAmount': 'root.contractReimbursedAmounts.view.amount'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

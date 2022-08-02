@@ -1,0 +1,158 @@
+﻿@model R_09995.ProgrammeContractActivities
+
+@Html.HiddenFor(m => m.programmeName)
+
+@if (Model != null && Model.ContractActivityCollection != null)
+{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+    
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model.ContractActivityCollection);
+
+    <script type="text/javascript">
+
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.i@(guid) = {
+            items: @(Html.Raw(jsonModel)),
+            index: @(Model.Index),
+            areItemsValid: @(Model.IsValid.ToString().ToLower()),
+            isPeriodValid: @(Model.IsPeriodValid.ToString().ToLower()),
+        };
+
+        $(document).ready(function () {
+            angular.bootstrap($('#containerProgrammeContractActivities@(guid)'), ['moduleProgrammeContractActivities']);
+        });
+
+    </script>
+
+    <h2 data-section="@Model.SectionNumber" class="section-heading" activation-name="@(guid)" broadcast-name="programmesActivation">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @if (isMessageType)
+        {
+            <input type="checkbox" class="bootstrap-switch lock-unlock" readonly="readonly" />
+        }
+        @Model.SectionNumber. @Project.ContractActivity
+        @if (Model.IsFinalRecipients)
+        {
+            <text>(@Global.NotRequiredSection)</text>
+        }
+        @Model.ProgrammeNameFormatted
+        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@String.Format(ContractActivity.MaxContractActivitiesHint, Eumis.Documents.Constants.ContractActivitiesMaxCount)" data-trigger="hover" alt="" data-original-title="" title="">
+    </h2>
+    <section data-section="@Model.SectionNumber" class="clearfix">
+        <div id="containerProgrammeContractActivities@(guid)" ng-controller="controllerProgrammeContractActivities" ng-init="init('_eumis_options', 'i@(guid)')" class="program-contract-activities @(guid)">
+            <div ng-if="items.IsActive" class="table-wrapper">
+                <table class="chart-info" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="width:40px;"></th>
+                            <th>@ContractActivity.Code</th>
+                            <th>@ContractActivity.CompanyShort</th>
+                            <th colspan="2">@ContractActivity.Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="item in items">
+                        <tr>
+                            <td>
+                                <div style="display: block; width: 100%;">
+                                    {{$index + 1}}
+                                </div>
+                            </td>
+                            <td style="word-break: break-all">
+                                <div style="display: block; width: 100%;">
+                                    {{item.Code}}
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: block; width: 100%;">
+                                    <span ng-repeat="selected in item.CompanyCollection">{{selected.displayName}} <br /></span>
+                                </div>
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                                </a>
+                            </td>
+                            <td style="width: 130px;">
+                                <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                            </td>
+                        </tr>
+
+                        <tr class="history-table">
+                            <td colspan="6">
+                                <div class="history-table-wrapper clearfix">
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label>@ContractActivity.Company</label>
+                                        <div ng-class="{'input-validation-error': !item.IsCompanyValid}" ng-model="item.CompanyCollection" ui-select2="{ allowClear: true, placeholder: ' ', query: loadCompanyNomenclature, multiple: true }"></div>
+
+                                        <input ng-class="{'input-validation-error': !item.IsCompanyValid}" type="hidden" class="validation-error-key" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].CompanyCollection" disabled />
+                                        <input ng-repeat="selected in item.CompanyCollection" value="{{ selected.id }}" name="@(Html.GetNameFor(e => e.ContractActivityCollection))[{{ $parent.$index }}].CompanyCollection[{{ $index }}].Id" type="hidden" />
+                                        <input ng-repeat="selected in item.CompanyCollection" value="{{ selected.Name }}" name="@(Html.GetNameFor(e => e.ContractActivityCollection))[{{ $parent.$index }}].CompanyCollection[{{ $index }}].Name" type="hidden" />
+                                        <input ng-repeat="selected in item.CompanyCollection" value="{{ selected.NameEN }}" name="@(Html.GetNameFor(e => e.ContractActivityCollection))[{{ $parent.$index }}].CompanyCollection[{{ $index }}].NameEN" type="hidden" />
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>@ContractActivity.Code @SymbolsCount.Symbols400</label>
+                                        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsCodeValid}" auto-grow ng-model="item.Code" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].Code" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>@ContractActivity.Name @SymbolsCount.Symbols4000</label>
+                                        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow ng-model="item.Name" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].Name" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>@ContractActivity.ExecutionMethod @SymbolsCount.Symbols3000</label>
+                                        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsExecutionMethodValid}" auto-grow ng-model="item.ExecutionMethod" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].ExecutionMethod" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>@ContractActivity.Result @SymbolsCount.Symbols3000</label>
+                                        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsResultValid}" auto-grow ng-model="item.Result" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].Result" class="form-control" rows="2" style="height: 60px;"></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        <label>@ContractActivity.StartMonth</label>
+                                        <input valid-number ng-class="{'input-validation-error': !item.IsStartMonthValid}" ng-model="item.StartMonth" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].StartMonth" class="form-control sum-field" />
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        <label>@ContractActivity.Duration</label>
+                                        <input valid-number ng-class="{'input-validation-error': !item.IsDurationValid}" ng-model="item.Duration" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].Duration" class="form-control sum-field" />
+                                    </div>
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        <label>@ContractActivity.Amount</label>
+                                        <input money ng-class="{'input-validation-error': !item.IsAmountValid}" ng-model="item.Amount" name="@(Html.GetNameFor(m => m.ContractActivityCollection))[{{ $index }}].Amount" class="form-control sum-field" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a ng-class="{'input-validation-error': !areItemsValid}" name="@(Html.GetNameFor(m => m))" sc-validation-popover class="add-new-btn" ng-click="addItem()" ng-show="items.length < maxContractActivities">@Global.AddButton</a>
+                <p class="required-span" ng-show="items.length >= maxContractActivities">@String.Format(ContractActivity.MaxContractActivitiesReached, Eumis.Documents.Constants.ContractActivitiesMaxCount)</p>
+            </div>
+            <div ng-show="!items.IsActive">
+                <label id="loading">@Global.Loading</label>
+            </div>
+            <div class="table-wrapper">
+                <table class="chart-info months-table" width="100%" ng-class="{'input-validation-error': !isPeriodValid}" name="@(Html.GetNameFor(m => m)).IsPeriodValid">
+                    <tr class="months-bold">
+                        <td rowspan="2" style="width:40px;"></td>
+                        <td rowspan="2">@ContractActivity.Code</td>
+                        <td colspan="{{ months.length > 0 ? months.length : 1 }}">@ContractActivity.Months</td>
+                    </tr>
+                    <tr class="months-bold">
+                        <td ng-repeat="month in months">{{month}}</td>
+                    </tr>
+                    <tr ng-repeat="item in items" class="months-row">
+                        <td>{{$index + 1}}</td>
+                        <td style="width: 30%;word-break: break-all">{{item.Code}}</td>
+                        <td ng-if="item.StartMonth && item.Duration && (item.StartMonth + item.Duration) <= maxDiagramMonth" ng-repeat="month in months" ng-class="{'marked-month': (item.StartMonth && month >= item.StartMonth && item.Duration && month <= (item.StartMonth + item.Duration - 1)) }"></td>
+                        <td ng-if="item.StartMonth && item.Duration && (item.StartMonth + item.Duration) > maxDiagramMonth" colspan="{{ months.length > 0 ? months.length : 1 }}" style="color: #af1717;">@ContractActivity.OutOfRangeMessage</td>
+                        <td ng-if="!item.StartMonth || !item.Duration" ng-repeat="month in months"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,70 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h5 class="table-header table-header-first pull-left" l10n-text="users_requests_search_regDataRequests"></h5>
+
+        <sc-datatable items="userRequestsWrapper.regDataRequests" filterable="false" pageable="false" sortable="false" scrollable="false" dynamic-columns="false" has-info-text="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewButton" btn-click="viewRegDataRequest(item)" class="btn-primary btn btn-xs " icon="glyphicon-eye-open"
+              ng-disabled="!$canDo('RequestPackageActions.View', item.requestPackageId)"></sc-button>
+          </sc-column>
+          <sc-column data="packageType" title="users_requests_search_packageType">
+          </sc-column>
+          <sc-column data="packageNumber" title="users_requests_search_packageNumber">
+          </sc-column>
+          <sc-column data="packageCreateDate" title="users_requests_search_packageCreateDate" type="date">
+          </sc-column>
+          <sc-column data="packageModifyDate" title="users_requests_search_packageModifyDate" type="datetime">
+          </sc-column>
+          <sc-column data="statusName" title="users_requests_search_statusName">
+          </sc-column>
+          <sc-column data="rejectionMessage" title="users_requests_search_rejectionMessage">
+          </sc-column>
+          <sc-column data="enteredByUser" title="users_requests_search_enteredByUser">
+          </sc-column>
+          <sc-column data="checkedByUser" title="users_requests_search_checkedByUser">
+          </sc-column>
+          <sc-column data="endedByUser" title="users_requests_search_endedByUser">
+          </sc-column>
+        </sc-datatable>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+
+        <h5 class="table-header table-header-first pull-left" l10n-text="users_requests_search_permissionRequests"></h5>
+
+        <sc-datatable items="userRequestsWrapper.permissionRequests" filterable="false" pageable="false" sortable="false" scrollable="false" dynamic-columns="false" has-info-text="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewButton" btn-click="viewPermissionRequest(item)" class="btn-primary btn btn-xs " icon="glyphicon-eye-open"
+              ng-disabled="!$canDo('RequestPackageActions.View', item.requestPackageId)"></sc-button>
+          </sc-column>
+          <sc-column data="packageType" title="users_requests_search_packageType">
+          </sc-column>
+          <sc-column data="packageNumber" title="users_requests_search_packageNumber">
+          </sc-column>
+          <sc-column data="packageCreateDate" title="users_requests_search_packageCreateDate" type="date">
+          </sc-column>
+          <sc-column data="packageModifyDate" title="users_requests_search_packageModifyDate" type="datetime">
+          </sc-column>
+          <sc-column data="statusName" title="users_requests_search_statusName">
+          </sc-column>
+          <sc-column data="rejectionMessage" title="users_requests_search_rejectionMessage">
+          </sc-column>
+          <sc-column data="enteredByUser" title="users_requests_search_enteredByUser">
+          </sc-column>
+          <sc-column data="checkedByUser" title="users_requests_search_checkedByUser">
+          </sc-column>
+          <sc-column data="endedByUser" title="users_requests_search_endedByUser">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model Eumis.Portal.Web.Models.Account.AccessCodeLoginVM
+
+@using Eumis.Common.ReCaptcha
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton)
+}
+                , "Вход с код за достъп")
+
+<div class="container page-title">
+    <h1>Вход с код за достъп</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+    <div class="page-content clearfix">
+        <form method="post">
+            <div class="col-lg-10 col-lg-offset-1 col-sm-12 col-sm-offset-0">
+                <div class="col-xs-12">
+                    <h2 class="m-top-10">
+                        Вход с код за достъп
+                    </h2>
+                </div>
+                <div class="col-md-6 clearfix">
+                    <div class="info-block">
+                        <p class="text-justify">Този достъп е предназначен за експертите, подпомагащи Ръководителя на проекта в отчитането и се осъществява с помощта на потребителско име, номер на договор и код за достъп.</p>
+                        <p class="text-justify">Кодът за достъп и правата до различните документи се създават и управляват от Ръководителя на проекта.</p>
+                        <p class="text-justify">Ако сте Ръководител на проект, моля, влезте в системата с помощта на потребителско име и парола от бутона по-долу.</p>
+                    </div>
+                    <div class="home-login">
+                        <div class="txt-align-center">
+                            @Html.ActionLink("Вход с парола", MVC.Report.Account.ActionNames.Login, MVC.Report.Account.Name, new { area = MVC.Report.Name }, new { @class = "login-btn" })
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 clearfix">
+                    <div class="form-group">
+                        <label><span class="required-span">*</span> @Login.Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @autofocus = "" })
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="required-span">*</span>
+                            № на договор
+                        </label>
+                        @Html.TextBoxFor(m => m.ContractNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="required-span">*</span>
+                            Код за достъп
+                        </label>
+                        @Html.PasswordFor(m => m.Code, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ReCaptcha(Constants.ReCaptchaSiteKey)
+                    </div>
+                    <div class="row">
+                        <div class="form-group new-forg-pass col-xs-6">
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="submit" class="submit m-top-10 wait pull-right" value="@Global.Login">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

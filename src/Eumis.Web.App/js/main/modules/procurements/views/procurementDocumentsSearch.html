@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="procurements_searchProcurementDocuments_header"></h5>
+      <sc-button name="newProcurementDocumentBtn" btn-sref="{ state: 'root.procurements.view.documents.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+        ng-show="status === 'draft'" ng-disabled="!$canDo('ProgrammeListActions.Create')">
+    </div>
+    <sc-datatable items="procurementDocuments" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procurements.view.documents.edit', params: {ind: item.procurementDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="procurements_searchProcurementDocuments_name">
+      </sc-column>
+      <sc-column data="description" title="procurements_searchProcurementDocuments_description">
+      </sc-column>
+      <sc-column sortable="false" title="procurements_searchProcurementDocuments_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

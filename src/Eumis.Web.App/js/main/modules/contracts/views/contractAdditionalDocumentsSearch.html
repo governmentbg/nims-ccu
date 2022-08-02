@@ -1,0 +1,157 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_additionalDocumentsSearch_actuallyPaidAmounts"></h5>
+        </div>
+          <sc-datatable items="actuallyPaidAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.actuallyPaidAmounts.view.basicData', params: { id: item.amountId }}"
+                ng-disabled="!$canDo('ActuallyPaidAmountActions.View', item.amountId)"></sc-button>
+            </sc-column>
+            <sc-column data="programmeName" title="actuallyPaidAmounts_paidAmountsSearch_programme">
+            </sc-column>
+            <sc-column data="contractRegNumber" title="actuallyPaidAmounts_paidAmountsSearch_contractRegNumber">
+            </sc-column>
+            <sc-column data="statusDescr" title="actuallyPaidAmounts_paidAmountsSearch_status">
+            </sc-column>
+            <sc-column data="regNumber" title="actuallyPaidAmounts_paidAmountsSearch_regNumber">
+            </sc-column>
+            <sc-column data="paymentReason" title="actuallyPaidAmounts_paidAmountsSearch_paymentReason">
+            </sc-column>
+            <sc-column data="paymentDate" title="actuallyPaidAmounts_paidAmountsSearch_paymentDate" type="date">
+            </sc-column>
+            <sc-column data="paidBfpTotalAmount" title="actuallyPaidAmounts_paidAmountsSearch_paidBfpTotalAmount" type="money">
+            </sc-column>
+          </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_additionalDocumentsSearch_contractDebts"></h5>
+        </div>
+          <sc-datatable items="contractDebts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.isRemoved}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.contractDebts.view.edit', params: {id: item.contractDebtId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ContractDebtActions.View', item.contractDebtId)"></sc-button>
+            </sc-column>
+            <sc-column data="contractRegNumber" title="contractDebts_searchContractDebt_contractRegNumber">
+            </sc-column>
+            <sc-column data="companyName" title="contractDebts_searchContractDebt_companyName">
+            </sc-column>
+            <sc-column data="regNumber" title="contractDebts_searchContractDebt_regNumber">
+            </sc-column>
+            <sc-column data="executionStatus" title="contractDebts_searchContractDebt_status">
+            </sc-column>
+            <sc-column data="regDate" title="contractDebts_searchContractDebt_regDate" type="date">
+            </sc-column>
+            <sc-column data="modifyDate" title="contractDebts_searchContractDebt_modifyDate" type="date">
+            </sc-column>
+            <sc-column data="euAmount" title="contractDebts_searchContractDebt_euAmount" type="money">
+            </sc-column>
+            <sc-column data="bgAmount" title="contractDebts_searchContractDebt_bgAmount" type="money">
+            </sc-column>
+            <sc-column data="totalAmount" title="contractDebts_searchContractDebt_totalAmount" type="money">
+            </sc-column>
+          </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_additionalDocumentsSearch_reimbursedAmounts"></h5>
+        </div>
+          <sc-datatable items="reimbursedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReimbursedAmounts.view.basicData', params: { id: item.amountId }}"
+                ng-disabled="!$canDo('ContractReimbursedAmountActions.View', item.amountId)"></sc-button>
+            </sc-column>
+            <sc-column data="programmeName" title="contractReimbursedAmounts_amountsSearch_programme">
+            </sc-column>
+            <sc-column data="contractRegNumber" title="contractReimbursedAmounts_amountsSearch_contractRegNumber">
+            </sc-column>
+            <sc-column data="statusDescr" title="contractReimbursedAmounts_amountsSearch_status">
+            </sc-column>
+            <sc-column data="regNumber" title="contractReimbursedAmounts_amountsSearch_regNumber">
+            </sc-column>
+            <sc-column data="type" title="contractReimbursedAmounts_amountsSearch_type">
+            </sc-column>
+            <sc-column data="reimbursement" title="contractReimbursedAmounts_amountsSearch_reimbursement">
+            </sc-column>
+            <sc-column data="reimbursementDate" title="contractReimbursedAmounts_amountsSearch_reimbursementDate" type="date">
+            </sc-column>
+          </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_additionalDocumentsSearch_financialCorrections"></h5>
+        </div>
+          <sc-datatable items="financialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.financialCorrections.view.edit', params: {id: item.financialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('FinancialCorrectionActions.View', item.financialCorrectionId)"></sc-button>
+            </sc-column>
+            <sc-column data="orderNum" title="financialCorrections_searchFinancialCorrection_orderNum" type="number">
+            </sc-column>
+            <sc-column data="impositionDate" title="financialCorrections_searchFinancialCorrection_impositionDate" type="date">
+            </sc-column>
+            <sc-column data="contractRegNumber" title="financialCorrections_searchFinancialCorrection_contractRegNumber"
+              col-group="financialCorrections_searchFinancialCorrection_contract"></sc-column>
+            <sc-column data="contractName" title="financialCorrections_searchFinancialCorrection_contractName"
+              col-group="financialCorrections_searchFinancialCorrection_contract" has-content="true">
+              <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+            </sc-column>
+            <sc-column data="contractCompany" title="financialCorrections_searchFinancialCorrection_contractCompany"
+              col-group="financialCorrections_searchFinancialCorrection_contract"></sc-column>
+            <sc-column data="contractContractNumber" title="financialCorrections_searchFinancialCorrection_contractContractNumber"
+              col-group="financialCorrections_searchFinancialCorrection_contractContract"></sc-column>
+            <sc-column data="contractContractorCompany" title="financialCorrections_searchFinancialCorrection_contractContractorCompany"
+              col-group="financialCorrections_searchFinancialCorrection_contractContract"></sc-column>
+            <sc-column data="contractBudgetLevel3Name" title="financialCorrections_searchFinancialCorrection_contractBudgetLevel3Name">
+            </sc-column>
+          </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contracts_additionalDocumentsSearch_flatFinancialCorrections"></h5>
+        </div>
+          <sc-datatable items="flatFinancialCorrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="shortName">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.flatFinancialCorrections.view.edit', params: {id: item.flatFinancialCorrectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('FlatFinancialCorrectionActions.View', item.flatFinancialCorrectionId)"></sc-button>
+            </sc-column>
+            <sc-column data="name" title="flatFinancialCorrections_searchFlatFinancialCorrection_name">
+            </sc-column>
+            <sc-column data="orderNum" title="flatFinancialCorrections_searchFlatFinancialCorrection_orderNum" type="number">
+            </sc-column>
+            <sc-column data="level" title="flatFinancialCorrections_searchFlatFinancialCorrection_level">
+            </sc-column>
+            <sc-column data="type" title="flatFinancialCorrections_searchFlatFinancialCorrection_type">
+            </sc-column>
+            <sc-column data="status" title="flatFinancialCorrections_searchFlatFinancialCorrection_status">
+            </sc-column>
+            <sc-column data="impositionDate" title="flatFinancialCorrections_searchFlatFinancialCorrection_impositionDate" type="date">
+            </sc-column>
+            <sc-column data="impositionNumber" title="flatFinancialCorrections_searchFlatFinancialCorrection_impositionNumber">
+            </sc-column>
+          </sc-datatable>
+      </div>
+    </div>
+
+  </div>
+</div>

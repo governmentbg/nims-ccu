@@ -1,0 +1,19 @@
+<ng-form name="editEvalSessionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contracts_contractData_title"></strong>
+    </div>
+
+    <div class="panel-body">
+      <h5 class="table-header table-header-first" l10n-text="contracts_contractData_contractData"></h5>
+      <eumis-contract-data name="contractDataForm" ng-model="contract"></eumis-contract-data>
+
+      <sc-button name="projectDossierBtn" class="btn btn-sm btn-default" text="contracts_contractData_projectDossier"
+        btn-sref="{ state: 'root.projectDossier.view.project', params: { id: contract.projectId, contractId: contract.contractId } }"
+        ng-disabled="!$canDo('ProjectDossierActions.View', contract.projectId)"></sc-button>
+
+      <h5 class="table-header" l10n-text="contracts_contractData_beneficiary"></h5>
+      <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="contract"></eumis-contract-beneficiary>
+    </div>
+  </div>
+</ng-form>

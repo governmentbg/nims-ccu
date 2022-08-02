@@ -1,0 +1,74 @@
+{
+  "defaultConfiguration": "EGP06.Learn",
+  "machines": {
+    "egp06-lappt": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Blob.Host/Eumis.Blob.Host.csproj",
+          "packageName": "eumis_blob",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.Learn": "LearnEumisBlob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "build",
+          "deployDir": "../../deploy_scripts/DbUpdater/",
+          "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Job.Host/Eumis.Job.Host.csproj",
+          "packageName": "eumis_job",
+          "recycle": true,
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.Learn": "LearnEumisJob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.PortalIntegration.Host/Eumis.PortalIntegration.Host.csproj",
+          "packageName": "eumis_portal_integration",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.Learn": "LearnEumisPortalIntegration"
+          }
+        }
+      }, {
+        "npm": {
+          "location": "../src/Eumis.Web.App",
+          "confTask": {
+            "EGP06.Learn": "build-prod"
+          }
+        },
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Web.Host/Eumis.Web.Host.csproj",
+          "packageName": "eumis",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.Learn": "LearnEumis"
+          }
+        }
+      }
+    ],
+    "egp06-tappt": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../portal_src/Eumis.Portal.Web/Eumis.Portal.Web.csproj",
+          "packageName": "eumis_portal",
+          "takeOffline": true,
+          "confIisAppName": {
+            "EGP06.Learn": "eumis-portal-learn"
+          }
+        }
+      }
+    ]
+  }
+}

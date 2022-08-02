@@ -1,0 +1,47 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'years'" mode="id" ng-model="filters.year" l10n-text="prognoses_search_year" class="col-sm-3"></sc-field>
+        <sc-field type="nomenclature" alias="'months'" mode="id" ng-model="filters.month" l10n-text="prognoses_search_month" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-3">
+          <sc-button name="seachBtn" btn-click="search()" text="prognoses_search_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="prognoses_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.programmePrognoses.new' }"
+      ng-disabled="!$canDo('PrognosisListActions.Create')" style="margin-right: 5px;"></sc-button>
+
+    <sc-datatable items="programmePrognoses" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.programmePrognoses.view', params: { id: item.prognosisId }}"
+          ng-disabled="!$canDo('ProgrammePrognosisActions.View', item.prognosisId)"></sc-button>
+      </sc-column>
+      <sc-column data="programme" title="prognoses_search_programme">
+      </sc-column>
+      <sc-column data="year" title="prognoses_search_year">
+      </sc-column>
+      <sc-column data="month" title="prognoses_search_month">
+      </sc-column>
+      <sc-column data="statusDescr" title="prognoses_search_status">
+      </sc-column>
+      <sc-column data="contractedAmount" title="prognoses_search_contractedAmount" type="money">
+      </sc-column>
+      <sc-column data="paymentAmount" title="prognoses_search_paymentAmount" type="money">
+      </sc-column>
+      <sc-column data="advancePaymentAmount" title="prognoses_search_advancePaymentAmount" type="money">
+      </sc-column>
+      <sc-column data="advanceVerPaymentAmount" title="prognoses_search_advanceVerPaymentAmount" type="money">
+      </sc-column>
+      <sc-column data="intermediatePaymentAmount" title="prognoses_search_intermediatePaymentAmount" type="money">
+      </sc-column>
+      <sc-column data="finalPaymentAmount" title="prognoses_search_finalPaymentAmount" type="money">
+      </sc-column>
+      <sc-column data="approvedAmount" title="prognoses_search_approvedAmount" type="money">
+      </sc-column>
+      <sc-column data="certifiedAmount" title="prognoses_search_certifiedAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

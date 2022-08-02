@@ -1,0 +1,58 @@
+<ng-form name="v4Plus4ReportForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_v4Plus4Report_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" alias="'financeSources'" mode="id" ng-model="filters.financeSource" l10n-text="monitoring_v4Plus4Report_financeSource" class="col-sm-4 col-md-3"></sc-field>
+          <div class="labeless col-sm-5">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_v4Plus4Report_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_v4Plus4Report_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_financeSource"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_proceduresEuAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_proceduresBgAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_proceduresBfpTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_projectsBfpTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_contractsEuAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_contractsBgAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_contractsBfpTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_actuallyPaidEuAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_actuallyPaidBgAmount"></th>
+                <th class="text-center" l10n-text="monitoring_v4Plus4Report_actuallyPaidTotalAmount"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="result in results">
+                <td>{{result.financeSource}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.proceduresEuAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.proceduresBgAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.proceduresBfpTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.projectsBfpTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.contractsEuAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.contractsBgAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.contractsBfpTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.actuallyPaidEuAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.actuallyPaidBgAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.actuallyPaidTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="results.length === 0">
+                <td colspan="21" class="text-center" l10n-text="monitoring_programmeSummary_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

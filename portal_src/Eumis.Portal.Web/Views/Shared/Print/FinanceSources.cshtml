@@ -1,0 +1,161 @@
+﻿@using Eumis.Documents.Enums;
+
+@model R_10064.FinanceSources
+
+@if (Model != null)
+{
+    if (Model.HasCoFinancingBudgetAmount)
+    {
+        <div class="info-block">
+            <p>@FinanceSources.HasCoFinancingBudgetAmountInfo</p>
+        </div>
+    }
+    
+    <table class="glossary-table" style="margin-top:20px; width:100%;">
+        <tbody>
+            <tr>
+                <td rowspan="2" style="width:25%;"><strong>@FinanceSources.FinanceSourceName</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.BFPContractAmount</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.CurrentReportAmount</strong></td>
+                <td colspan="2" style="width:25%;"><strong>@FinanceSources.ReportCumulativeAmount</strong></td>
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+                <td><strong>@FinanceSources.AmountLv</strong></td>
+                <td><strong>@FinanceSources.Percent</strong></td>
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSourceNomenclature.EuropeanSocialFund.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.EuropeanSocialFund ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSourceNomenclature.YouthEmploymentInitiative.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.YouthEmploymentInitiative ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSourceNomenclature.EuropeanRegionalDevelopmentFund.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.EuropeanRegionalDevelopmentFund ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSourceNomenclature.CohesionFund.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.CohesionFund ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSourceNomenclature.FundForEuropeanAidToTheMostDeprived.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.FundForEuropeanAidToTheMostDeprived ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.National</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.National ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>в режим @AidModeNomenclature.Deminimis.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.Deminimis ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>в режим @AidModeNomenclature.StateAid.Name</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.StateAid ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.CrossFinancing</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.CrossFinancing ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.GrandTotal</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.GrandTotal ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.Self</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.Self ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.ProjectTotal</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceAmounts, Model.Total ?? new R_10063.FinanceSourceAmounts())
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="glossary-table" style="margin-top:20px; width:100%;">
+        <tbody>
+            <tr>
+                <td style="width:40%;"></td>
+                <td style="width:20%;"><strong>@FinanceSources.Grand</strong></td>
+                <td style="width:20%;"><strong>@FinanceSources.Self</strong></td>
+                <td style="width:20%;"><strong>@FinanceSources.Total</strong></td>
+            </tr>
+            <tr>
+                <td><strong>@FinanceSources.InsideEU</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.InsideEU ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.OutsideEU</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.OutsideEU ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.OutsideEUInProgrammingAreaEFRR</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.OutsideEUInProgrammingAreaEFRR ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.ThirdCountriesEFRR</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.ThirdCountriesEFRR ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.AdvancePayment</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.AdvancePayment ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+            @if (Model.IsPaymentRequestTypeAdvanceVerification)
+            {
+                <tr>
+                    <td><strong>@FinanceSources.NotAdvancePayment</strong></td>
+                    @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.NotAdvancePayment ?? new R_10067.FinanceSourceReportAmounts())
+                </tr>
+            }
+            <tr>
+                <td><strong>@FinanceSources.OneTimeSums</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.OneTimeSums ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.EuApprovedOneTimeSums</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.EuApprovedOneTimeSums ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.FlatRates</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.FlatRates ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.StandardTables</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.StandardTables ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.EuApprovedStandardTables</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.EuApprovedStandardTables ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.Land</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.Land ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+            <tr>
+                <td><strong>@FinanceSources.ContributionNature</strong></td>
+                @Html.Partial(MVC.Shared.Views.Print.FinanceSourceReportAmounts, Model.ContributionNature ?? new R_10067.FinanceSourceReportAmounts())
+            </tr>
+
+        </tbody>
+    </table>
+}

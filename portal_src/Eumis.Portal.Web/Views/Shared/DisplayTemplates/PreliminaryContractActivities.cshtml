@@ -1,0 +1,57 @@
+﻿@model R_10019.PreliminaryContractActivities
+
+<div class="table-wrapper">
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th style="width:40px;"></th>
+                <th>@PreliminaryContractActivity.Code</th>
+                <th>@PreliminaryContractActivity.Name</th>
+                <th>@PreliminaryContractActivity.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.PreliminaryContractActivityCollection != null && Model.PreliminaryContractActivityCollection.Count > 0)
+            {
+                for (int i = 0; i < Model.PreliminaryContractActivityCollection.Count; i++)
+                {
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>
+                            @Html.DisplayFor(m => m.PreliminaryContractActivityCollection[i].Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.PreliminaryContractActivityCollection[i].Name)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr class="history-table">
+                        <td colspan="5">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="form-group col-lg-12 col-md-12">
+                                    @Html.LabelFor(m => m.PreliminaryContractActivityCollection[i].Code, PreliminaryContractActivity.Code)
+                                    @Html.DisplayFor(m => m.PreliminaryContractActivityCollection[i].Code, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-lg-12 col-md-12">
+                                    @Html.LabelFor(m => m.PreliminaryContractActivityCollection[i].Name, PreliminaryContractActivity.Name)
+                                    @Html.DisplayFor(m => m.PreliminaryContractActivityCollection[i].Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-lg-12 col-md-12">
+                                    @Html.LabelFor(m => m.PreliminaryContractActivityCollection[i].Result, PreliminaryContractActivity.Result)
+                                    @Html.DisplayFor(m => m.PreliminaryContractActivityCollection[i].Result, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,164 @@
+pipeline {
+    agent any
+    tools {
+        nodejs 'node15'
+    }
+
+    environment {
+
+        // use a separate npm cache folder for each workspace
+        // as it breaks when used concurrently
+        npm_config_cache = "${env.WORKSPACE}\\npm-cache"
+
+        SKIP_BUILD = powershell(returnStdout: true, script: '$env:GIT_COMMIT -eq $env:GIT_PREVIOUS_SUCCESSFUL_COMMIT')
+        
+        MSTEAMS_WEBHOOK = "https://davidholdingbg.webhook.office.com/webhookb2/ef20156f-ac99-4f2e-834c-f46828ac2138@4df2c718-f205-4c5f-a496-f493edf8107e/JenkinsCI/94c71d3ff55a4b7b9b38a5a3484cd9f5/1dcc1662-7540-49b7-bea7-20e82ecf0b96"
+    }
+
+    options {
+        timeout(time: 90, unit: 'MINUTES')
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    stages {
+        stage('Build') {
+            when { equals expected: false, actual: SKIP_BUILD.toBoolean() }
+            steps {
+                dir('build_scripts') {
+                    powershell 'npm install --quiet'
+					powershell 'npm run clean'
+                    powershell '''
+                        ########### improve error handling ###########
+                        $ErrorActionPreference = "Stop"
+                        ##############################################
+
+                        if ([string]::IsNullOrWhiteSpace($env:GIT_PREVIOUS_SUCCESSFUL_COMMIT)) {
+                            npm run utf8-check-files -- ..
+                        } else {
+                            npm run utf8-check-files -- .. $env:GIT_PREVIOUS_SUCCESSFUL_COMMIT $env:GIT_COMMIT
+                        }
+                    '''
+                }
+                dir('src') {
+                    powershell '.\\.nuget\\NuGet.exe restore .\\Eumis.sln -verbosity quiet'
+                }
+                dir('src\\Eumis.Web.App') {
+                    powershell 'npm install'
+                    powershell 'npm run eslint'
+                    powershell '''
+                        ########### improve error handling ###########
+                        $ErrorActionPreference = "Stop"
+                        ##############################################
+
+                        if ([string]::IsNullOrWhiteSpace($env:GIT_PREVIOUS_SUCCESSFUL_COMMIT)) {
+                            $emptyTreeHash = "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # git hash-object -t tree /dev/null
+                            npm run prettier-precise-commits -- --base=$emptyTreeHash --check-only --whitelist=src\\Eumis.Web.App\\**\\*.js
+                        } else {
+                            npm run prettier-precise-commits -- --base=$env:GIT_PREVIOUS_SUCCESSFUL_COMMIT --head=$env:GIT_COMMIT --check-only --whitelist=src\\Eumis.Web.App\\**\\*.js
+                        }
+                    '''
+                }
+                dir('portal_src') {
+                    powershell '.\\.nuget\\NuGet.exe restore .\\Eumis.Portal.sln -configFile .\\.nuget\\NuGet.Config -verbosity quiet'
+                }
+                dir('eufunds_src') {
+                    powershell '.\\.nuget\\NuGet.exe restore .\\Eumis.Public.sln -configFile .\\.nuget\\NuGet.Config -verbosity quiet'
+                }
+                dir('build_scripts') {
+                    powershell 'npm run gulp -- package -d DAVID.CI'
+                }
+            }
+        }
+        stage('Upgrade database') {
+            when { equals expected: false, actual: SKIP_BUILD.toBoolean() }
+            steps {
+                powershell '''
+                    ########### improve error handling ###########
+                    $ErrorActionPreference = "Stop"
+                    ##############################################
+
+                    $hash = $env:GIT_COMMIT.Substring(0, 6)
+                    $packageLocation = Join-Path (Get-Location) "build_scripts\\build\\eumis@$hash-DAVID.CI"
+                    $dbUpdater = Join-Path $packageLocation "DbUpdater.exe"
+                    $dbUpdaterConfig = Join-Path $packageLocation "DbUpdater.exe.config"
+
+                    if (!(Test-Path $dbUpdater -PathType Leaf)) {
+                        write-host 'Could not find DbUpdater.exe'
+                        exit 1
+                    }
+
+                    if (!(Test-Path $dbUpdaterConfig -PathType Leaf)) {
+                        write-host 'Could not find DbUpdater.exe.config'
+                        exit 1
+                    }
+
+                    .\\deploy_scripts\\set-connection-string.ps1 `
+                        -ConfigFile $dbUpdaterConfig `
+                        -ConnectionStrings @{
+                            "DbContext"="Data Source=%EUMIS_SQL_SERVER_IP%;Initial Catalog=dev-Suni;MultipleActiveResultSets=True;User Id=%EUMIS_SQL_SERVER_USER%;Password=%EUMIS_SQL_SERVER_PASS%;";
+                        }
+
+                    & $dbUpdater
+                '''
+            }
+        }
+        stage('Deploy') {
+            when { equals expected: false, actual: SKIP_BUILD.toBoolean() }
+            steps {
+                powershell '''
+                    ########### improve error handling ###########
+                    $ErrorActionPreference = "Stop"
+                    ##############################################
+
+                    $hash = $env:GIT_COMMIT.Substring(0, 6)
+
+                    $packageLocation = Join-Path (Get-Location) "build_scripts\\build\\eumis@$hash-DAVID.CI"
+
+                    if (!(Test-Path $packageLocation -PathType Container)) {
+                        write-host 'Could not find package'
+                        exit 1
+                    }
+
+                    .\\deploy_scripts\\remote-deploy-core.ps1 "DAVID.CI" "C:/enims-config"
+                '''
+            }
+        }
+    }
+     post {
+        success {
+            script {
+                def hash = env.GIT_COMMIT.substring(0,6)
+                def commiter = bat(script: "@git --no-pager show -s --format=%%an ${env.GIT_COMMIT}", returnStdout: true).trim()
+                def message = bat(script: '@git log -1 --pretty=%%B', returnStdout: true).split("\\r?\\n")[0].trim()
+
+                if(!SKIP_BUILD.toBoolean())
+                {
+                    office365ConnectorSend (
+                        message: "BUILD SUCCEEDED '${message}' ${env.BRANCH_NAME}#${hash} by ${commiter}",
+                        status: "SUCCESS",
+                        color: "90EE90",
+                        webhookUrl: "${env.MSTEAMS_WEBHOOK}"
+                    )
+                }
+            }
+        }
+
+        failure {
+            script {
+                def hash = env.GIT_COMMIT.substring(0,6)
+                def commiter = bat(script: "@git --no-pager show -s --format=%%an ${env.GIT_COMMIT}", returnStdout: true).trim()
+                def message = bat(script: '@git log -1 --pretty=%%B', returnStdout: true).split("\\r?\\n")[0].trim()
+                
+                println currentBuild.description
+                
+                office365ConnectorSend (
+                    message: "BUILD FAILED '${message}' ${env.BRANCH_NAME}#${hash} by ${commiter}",
+                    status: "FAILURE",
+                    color: "D00000",
+                    webhookUrl: "${env.MSTEAMS_WEBHOOK}"
+                )
+            }
+        }
+    }
+}

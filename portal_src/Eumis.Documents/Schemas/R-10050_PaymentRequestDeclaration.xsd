@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10050" 
+	xmlns="http://ereg.egov.bg/segment/R-10050"
+            
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="PaymentRequestDeclaration">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Декларация на искане за плащане</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="RepresentingBeneficiaryEGN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="RepresentingFirstName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="RepresentingMiddleName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="RepresentingLastName" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AgreementPt1" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="AgreementPt2" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="MarkerPt3" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="TextPt3" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AgreementPt4ToPt25" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="MarkerPt25" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="TextPt25" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AgreementPt26ToPt29" type="en:EnumNomenclature" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,46 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10020.Message
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Message.AnswerQuestionHeader</h1>
+</div>
+
+<div class="container">
+    <form>
+        <div class="form-toggle">
+            <img src="@Links.Content.img.icons.eco_tree_png" data-placement="right" data-toggle="popover" data-content="@Global.EcoNotification" data-trigger="hover" class="info-icon" style="padding-top:5px;height: 33px; margin-right:5px; margin-left:-5px;" />
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Message.ActionNames.Print, MVC.Message.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, MessagePrepare.HasErrors, MessagePrepare.NoErrors, Global.ShowErrorTitle, Global.HideErrorTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+
+                @if (Model.LocalValidationErrors.Count() == 0 && Model.RemoteValidationErrors.Count() == 0)
+                {
+                    @Html.ActionLink(Global.ButtonContinueText, MVC.Message.ActionNames.HowToSubmit, MVC.Message.Name, null, new { @class = "blue-button" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

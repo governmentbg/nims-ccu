@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EvalSession_AdminAdmissResult_MissingProjects" xml:space="preserve">
+    <value>Липсват резултати за публикуване.</value>
+  </data>
+  <data name="EvalSession_AdminAdmissResult_StatusDraftExists" xml:space="preserve">
+    <value>Вече има резултат със статус '{0}' от вид '{1}'.</value>
+  </data>
+  <data name="EvalSession_AdminAdmissResult_StatusIsntDraft" xml:space="preserve">
+    <value>Можете да публикувате резултат само ако статуса му е 'Чернова'.</value>
+  </data>
+  <data name="EvalSession_CanApplyArrangedStanding_BudgetChanged" xml:space="preserve">
+    <value>Допустимият бюджет за класирането по тази процедура е променен</value>
+  </data>
+  <data name="EvalSession_CanChangeStatusToActive_AtLeastOneAdministratorAndUser" xml:space="preserve">
+    <value>Оценителната сесия трябва да има поне един администратор на сесия, поне един оценител и поне едно проектно предложение, за да бъде активирана.</value>
+  </data>
+  <data name="EvalSession_CanChangeStatusToEnded_AllProjectsShouldBeClassifiedDeletedOrWithdrawn" xml:space="preserve">
+    <value>Всички проектни предложения в сесията трябва да бъдат или класирани или анулирани или оттеглени.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionDistribution_NoActiveProcedureEvalTableType" xml:space="preserve">
+    <value>Няма активна оценителна таблица от този тип в процедурата</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_AtLeastOneFinishedEvalSessionSheetIsRequired" xml:space="preserve">
+    <value>Трябва да има поне един оценителен лист със статус 'Приключен' от този тип на етап за това проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_HasDraftEvalSessionSheet" xml:space="preserve">
+    <value>Съществува/т оценителен/и лист/а със статус 'Чернова' от този тип на етап за това проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_HasPausedSheets" xml:space="preserve">
+    <value>Към проектното предложение има оценителен лист със статус "Прекъснат" от този тип</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_NonDeletedEvaluationExists" xml:space="preserve">
+    <value>Съществува неанулирана обобщена оценка от този тип за това проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_ProjectIsDeleted" xml:space="preserve">
+    <value>Проектното предложение е анулирано от сесията</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionEvaluation_ProjectIsWithdrawn" xml:space="preserve">
+    <value>Проектното предложение е оттеглено</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionProjectStanding_ActiveStandingExists" xml:space="preserve">
+    <value>Съществува активно класиране по това проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionProjectStanding_ProjectDoesNotHaveActualVersion" xml:space="preserve">
+    <value>Проектното предложение няма текуща версия</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionProjectStanding_ProjectDoesNotHaveNonDeletedEvaluation" xml:space="preserve">
+    <value>Проектното предложение няма неанулирана обобщена оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionProjectStanding_ProjectDoesNotHavePreliminaryStanding" xml:space="preserve">
+    <value>Проектното предложение няма предварително класиране</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionProjectStanding_ProjectHasCommunicationInProgress" xml:space="preserve">
+    <value>Съществуват неприключили съобщения(комуникация) по това проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionSheet_DuplicatedEvalSessionSheet" xml:space="preserve">
+    <value>Вече съществува оценителен лист или продължение на оценителен лист със същите потребител, проектно предложение, тип на етап и статус различен от 'Анулиран'.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionSheet_NonDeletedEvaluationForThisEvalTypeExists" xml:space="preserve">
+    <value>Съществува неанулирана обобщена оценка за проектното предложение от този тип на етап.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionSheet_ProjectIsWithdrawn" xml:space="preserve">
+    <value>Проектното предложение е оттеглено.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionSheet_ProjectNotClassifiedAsApproved" xml:space="preserve">
+    <value>Проектното предложение не е класирано със статус 'Одобрено' в Предварително класиране.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionSheet_UserIsNotActivated" xml:space="preserve">
+    <value>Потребителят не е активиран</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_ComplexPointsInconsistency" xml:space="preserve">
+    <value>Всички обобщени оценки за всички проектни предложения за един тип на етап трябва да имат точки или да нямат точки</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_NoActiveEvals" xml:space="preserve">
+    <value>Няма неанулирана обобщена оценка за нито едно проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_NoProjectsInStanding" xml:space="preserve">
+    <value>Няма проектни предложения, които могат да бъдат класирани</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_ProjectHasCommunicationInProgress" xml:space="preserve">
+    <value>Съществуват неприключили съобщения(комуникация) по някое проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_ProjectWithActiveStandingExists" xml:space="preserve">
+    <value>Съществува активно класиране по някое проектно предложение</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomePreliminaryPassedProjectsHaveNoComplexEval" xml:space="preserve">
+    <value>Някои проектни предложения, преминали предварителна оценка, нямат неанулирана обобщена комплексна оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomePreliminaryPassedProjectsHaveNoOASD" xml:space="preserve">
+    <value>Някои проектни предложения, преминали предварителна оценка, нямат неанулирана обобщена оценка на административното съответствие и допустимостта</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomePreliminaryPassedProjectsHaveOASDButHaveNoTFO" xml:space="preserve">
+    <value>Някои проектни предложения, преминали предварителна оценка, имат преминала обобщена оценка на административното съответствие и допустимостта, но нямат неанулирана обобщена техническа и финансова оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomePreliminaryPassedProjectsHaveTFOButHaveNoOASD" xml:space="preserve">
+    <value>Някои проектни предложения, преминали предварителна оценка, имат преминала обобщена техническа и финансова оценка, но нямат преминала обобщена оценка на административното съответствие и допустимостта</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveNoActualVersion" xml:space="preserve">
+    <value>Някои проектни предложения нямат текуща версия</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveNoComplexEval" xml:space="preserve">
+    <value>Някои проектни предложения нямат неанулирана обобщена комплексна оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveNoOASD" xml:space="preserve">
+    <value>Някои проектни предложения нямат неанулирана обобщена оценка на административното съответствие и допустимостта</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveNoPreliminaryEval" xml:space="preserve">
+    <value>Някои проектни предложения нямат неанулирана обобщена предварителна оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveOASDButHaveNoTFO" xml:space="preserve">
+    <value>Някои проектни предложения имат преминала обобщена оценка на административното съответствие и допустимостта, но нямат неанулирана обобщена техническа и финансова оценка</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_SomeProjectsHaveTFOButHaveNoOASD" xml:space="preserve">
+    <value>Някои проектни предложения имат преминала обобщена техническа и финансова оценка, но нямат преминала обобщена оценка на административното съответствие и допустимостта</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStanding_TwoStepPointsInconsistency" xml:space="preserve">
+    <value>Всички обобщени оценки за всички проектни предложения за един тип на етап трябва да имат точки или да нямат точки</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStandpoint_ProjectIsDeleted" xml:space="preserve">
+    <value>Проектното предложение е анулирано.</value>
+  </data>
+  <data name="EvalSession_CanCreateEvalSessionStandpoint_ProjectIsWithdrawn" xml:space="preserve">
+    <value>Проектното предложение е оттеглено.</value>
+  </data>
+  <data name="EvalSession_ValidateEvalSessionDistributionProject_ActiveEvaluationOfThisTypeExists" xml:space="preserve">
+    <value>Съществува активна обобщена оценка за проектното предложение от този тип на оценка</value>
+  </data>
+  <data name="EvalSession_ValidateEvalSessionDistributionProject_DuplicatedEvalSessionSheet" xml:space="preserve">
+    <value>Вече има създаден/и оценителен/и лист/а от този тип на етап за това проектно предложение</value>
+  </data>
+  <data name="EvalSession_ValidateEvalSessionDistributionProject_ProjectHasNoOASD" xml:space="preserve">
+    <value>Проектното предложение няма преминала обобщена оценка на административното съответствие и допустимостта</value>
+  </data>
+  <data name="EvalSession_ValidateEvalSessionDistributionProject_ProjectNotApprovedInPreliminaryStanding" xml:space="preserve">
+    <value>Проектното предложение не е одобрено в предварително класиране</value>
+  </data>
+  <data name="ProcedureBudgetComponent_Validate_MissingKidCodes" xml:space="preserve">
+    <value>За бюджетен компонент "{0}" не е указана класификация КИД</value>
+  </data>
+  <data name="ProcedureBudgetComponent_Validate_MissingSizeTypes" xml:space="preserve">
+    <value>За бюджетен компонент "{0}" не е указана класификация МСП</value>
+  </data>
+</root>

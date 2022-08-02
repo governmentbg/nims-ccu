@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptDisclaimer" xml:space="preserve">
+    <value>За да продължите, трябва да се съгласите с вида и начина на комуникация и редакция на проектно предложение по време на етап „Оценка на проектно предложение“.</value>
+  </data>
+  <data name="Appliciant" xml:space="preserve">
+    <value>ПРОФИЛА НА КАНДИДАТА!</value>
+  </data>
+  <data name="ChooseFromEnded" xml:space="preserve">
+    <value>ИЗБЕРИ ОТ ПРИКЛЮЧЕНИ</value>
+  </data>
+  <data name="ChooseProjectProposal" xml:space="preserve">
+    <value>Изберете проектно предложение за подаване</value>
+  </data>
+  <data name="CurrentEmail" xml:space="preserve">
+    <value>В момента сте в профила на потребител, асоцииран с имейл:</value>
+  </data>
+  <data name="EmailAgreement" xml:space="preserve">
+    <value>Съгласен съм по време на етап „Оценка на проектно предложение“ комуникацията и редакцията на забелязани неточности да се извършват електронно чрез този профил, асоцииран с имейл адрес:</value>
+  </data>
+  <data name="InThisPage" xml:space="preserve">
+    <value>В тази страница може да подадете проектно предложение електронно и да подпишете електронния формуляр за кандидатстване с електронен подпис.</value>
+  </data>
+  <data name="IsAppliciant" xml:space="preserve">
+    <value>Ако това не е профилът на кандидата, излезте от системата и влезте през</value>
+  </data>
+  <data name="LoadFromExternalFile" xml:space="preserve">
+    <value>ЗАРЕДИ ОТ ВЪНШЕН ФАЙЛ</value>
+  </data>
+  <data name="Nbsp" xml:space="preserve">
+    <value>&amp;nbsp;</value>
+  </data>
+  <data name="ProjectProposal" xml:space="preserve">
+    <value>Подаване на проектно предложение</value>
+  </data>
+  <data name="ProposeFromFile" xml:space="preserve">
+    <value>предложение от файл</value>
+  </data>
+  <data name="ShortProjectProposal" xml:space="preserve">
+    <value>подаване на проектно</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Стъпка</value>
+  </data>
+  <data name="SubmissionProjectProposal" xml:space="preserve">
+    <value> Всяко подаване на проектно предложение се извършва през системата. Подаването се извършва единствено и само от профила на кандидата. При необходимост, през този профил впоследствие ще се извършват редакции от кандидата за отстраняване на забелязани неточности по време на етапа „Оценка на проектно предложение“.</value>
+  </data>
+  <data name="SystemProposal" xml:space="preserve">
+    <value>предложение от СИСТЕМАТА</value>
+  </data>
+  <data name="UnderEachGuideline" xml:space="preserve">
+    <value>Съгласно всяка една от насоките за кандидатстване, различните процедури имат различни възможности за подаване: само електронно, само на хартия или според избора на кандидата по един от двата начина. Системата автоматично ще Ви насочи и предостави избор за вида подаване.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
+</root>

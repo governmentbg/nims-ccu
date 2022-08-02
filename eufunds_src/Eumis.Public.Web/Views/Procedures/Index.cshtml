@@ -1,0 +1,159 @@
+﻿@model Eumis.Public.Web.Models.Procedures.ProceduresSearchVM
+@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Domain.Entities.Umis.Procedures
+
+@using PagedList
+@using PagedList.Mvc;
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Procedures_Index_Title)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.Procedures_Index_Title</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            <section data-section="2" class="clearfix" style="display: block;">
+
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label>@Texts.Procedures_Index_Settlement:</label><br>
+                    @Html.TextBoxFor(m => m.SettlementId, new { id = "settlement-ddl", @class = "form-control" })
+                </div>
+
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label>@Texts.Procedures_Index_CompanyType:</label><br>
+                    @Html.TextBoxFor(m => m.CompanyTypeId, new { id = "company-type-ddl", @class = "form-control" })
+                </div>
+
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label>@Texts.Procedures_Index_CompanyLegalType:</label><br>
+                    @Html.TextBoxFor(m => m.CompanyLegalTypeId, new { id = "company-legal-type-ddl", @class = "form-control" })
+                </div>
+
+                @Html.Hidden("ShowRes", true)
+                <script>
+                    $(document).ready(function () {
+                        createSelect2('#settlement-ddl', '/@Language/@OpId/@PrId/Procedures/GetSettlement', '/@Language/@OpId/@PrId/Procedures/GetSettlements');
+                        createSelect2('#company-type-ddl', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyType', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyTypes');
+                        createSelect2('#company-legal-type-ddl', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyLegalType', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyLegalTypes', '#company-type-ddl');
+                    });
+                </script>
+
+                <div class="form-submit col-lg-3 col-sm-12">
+                    <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                </div>
+
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix">
+                    <h2>@Texts.Procedures_Index_Procedures</h2>
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="chart-info" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th width="120px">@Texts.Procedures_Index_Status</th>
+                                <th width="200px">@Texts.Procedures_Index_ProgrammeName</th>
+                                <th width="200px">@Texts.Procedures_Index_ProcedureName</th>
+                                <th width="120px">@Texts.Procedures_Index_ProcedureEndDate</th>
+                                <th width="150px">@Texts.Procedures_Index_ProcedureBudgetTotal</th>
+                                <th width="250px">@Texts.Procedures_Index_EligibleCandidates</th>
+                                <th width="450px">@Texts.Procedures_Index_EligibleActivities</th>
+                                <th width="450px">@Texts.Procedures_Index_EligibleCosts</th>
+                                <th width="100px">@Texts.Procedures_Index_MaxPercentCoFinancing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var procedure in Model.SearchResults)
+                            {
+                                <tr>
+                                    @if (@procedure.Status == ProcedureStatus.Active)
+                                    {
+                                        <td>@Texts.Procedures_Index_Status_Opened</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Texts.Procedures_Index_Status_NotAnnounced</td>
+                                    }
+
+                                    <td>@Html.DisplayFor(e => procedure.ProgrammeTransName)</td>
+                                    @if (@procedure.Status == ProcedureStatus.Active)
+                                    {
+                                        <td>
+                                            <a href="@procedure.GetUrl()" target="_blank">@procedure.ProcedureTransName</a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>@procedure.ProcedureTransName</td>
+                                    }
+                                    <td>@Html.DisplayFor(e => procedure.EndingDate)</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => procedure.BudgetTotal)</td>
+                                    <td>@procedure.Candidates</td>
+                                    <td>@procedure.EligibleActivities</td>
+                                    <td>@procedure.EligibleCosts</td>
+                                    <td class="sum-field">@Html.DisplayFor(e => procedure.MaxPercentCoFinancing)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.Procedures.ActionNames.Index, MVC.Procedures.Name
+                            , new
+                            {
+                                settlementId = Request.QueryString["settlementId"],
+                                companyType = Request.QueryString["companyType"],
+                                companyLegalType = Request.QueryString["companyLegalType"],
+                                showRes = true,
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+
+                <h2>@Texts.Global_Note:</h2>
+                <div class="note">
+                    @Texts.Procedures_Index_FooterNote<br />
+                    @Texts.Global_NoteUnderlined<br />
+                    @Texts.Global_NoteBGN
+                </div>
+
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Procedures_Index_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

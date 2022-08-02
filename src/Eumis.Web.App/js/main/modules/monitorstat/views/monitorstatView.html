@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="survey.year" ng-readonly="true" l10n-text="monitorstat_viewMonitorstat_year"
+          class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="survey.code" ng-readonly="true" l10n-text="monitorstat_viewMonitorstat_code"
+          class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="date" ng-model="survey.createDate" ng-readonly="true"
+          l10n-text="monitorstat_viewMonitorstat_createDate" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="survey.name" ng-readonly="true" l10n-text="monitorstat_viewMonitorstat_name"
+          class="col-sm-12 col-md-6"></sc-field>
+      </div>
+      <div class="row">
+        <sc-datatable items="reports">
+          <sc-column data="code" title="monitorstat_viewMonitorstat_reportCode">
+          </sc-column>
+          <sc-column data="name" title="monitorstat_viewMonitorstat_reportName">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+  </div>
+</div>

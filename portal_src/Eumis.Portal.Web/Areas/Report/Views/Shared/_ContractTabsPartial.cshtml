@@ -1,0 +1,22 @@
+﻿@model Eumis.Portal.Web.Areas.Report.ContractTabs
+
+<ul class="nav nav-tabs">
+    <li class="@(Model == Eumis.Portal.Web.Areas.Report.ContractTabs.BFPContract ? "active" : "")">@Html.ActionLink("Договор", MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }, new { title = "Версии на договора" })</li>
+
+    @if (Constants.IsReportActive)
+    {
+        <li class="@(Model == Eumis.Portal.Web.Areas.Report.ContractTabs.Packages ? "active" : "")">@Html.ActionLink("Отчетни документи", MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }, new { title = "Пакет отчетни документи" })</li>
+    }
+    <li class="@(Model == Eumis.Portal.Web.Areas.Report.ContractTabs.Communication ? "active" : "")">@Html.ActionLink("Кореспонденция", MVC.Report.Communication.ActionNames.Index, MVC.Report.Communication.Name, new { area = MVC.Report.Name, type = R_09987.CommunicationTypeNomenclature.Administrative }, new { title = "Кореспонденция" })</li>
+
+    @if (CurrentUser.UserType == ReportUserType.Parent)
+    {
+        <li class="@(Model == Eumis.Portal.Web.Areas.Report.ContractTabs.AccessCode ? "active" : "")">@Html.ActionLink("Управление на потребители", MVC.Report.AccessCode.ActionNames.Index, MVC.Report.AccessCode.Name, new { area = MVC.Report.Name }, new { title = "Управление на потребители" })</li>
+    }
+
+</ul>
+
+<script>
+    $('.nav-tabs:last').tabdrop({text: 'Още...'});
+</script>
+

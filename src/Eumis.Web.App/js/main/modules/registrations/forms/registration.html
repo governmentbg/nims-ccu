@@ -1,0 +1,9 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+
+  <div class="row">
+    <sc-field type="text" ng-model="model.email" ng-readonly="true" ng-pattern="emailRegex" ng-disabled="!isNew" l10n-text="registrations_registrationDataForm_email" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.firstName" ng-readonly="true" l10n-text="registrations_registrationDataForm_firstName" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.lastName" ng-readonly="true" l10n-text="registrations_registrationDataForm_lastName" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.phone" ng-readonly="true" l10n-text="registrations_registrationDataForm_phone" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

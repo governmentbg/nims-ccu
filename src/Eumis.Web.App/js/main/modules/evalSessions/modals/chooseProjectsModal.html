@@ -1,0 +1,66 @@
+<ng-form name="chooseProjectsForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_chooseProjectsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="evalSessions_chooseProjectsModal_continue" class="btn btn-primary btn-xs"
+          icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_chooseProjectsModal_cancel" class="btn btn-default btn-xs"
+          icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div>
+        <div class="well well-sm">
+          <div class="row">
+            <sc-field type="date" ng-model="filters.fromDate" l10n-text="evalSessions_chooseProjectsModal_fromDate" class="col-sm-2"></sc-field>
+            <sc-field type="date" ng-model="filters.toDate" l10n-text="evalSessions_chooseProjectsModal_toDate" class="col-sm-2"></sc-field>
+            <sc-field type="nomenclature" ng-model="filters.companySizeTypeId" alias="'companySizeTypes'" mode="id" l10n-text="evalSessions_chooseProjectsModal_companySizeType"
+              class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" ng-model="filters.companyKidCodeId" alias="'kidCodes'" mode="id" l10n-text="evalSessions_chooseProjectsModal_companyKidCode"
+              class="col-sm-8 col-md-7"></sc-field>
+            <sc-field type="nomenclature" ng-model="filters.projectKidCodeId" alias="'kidCodes'" mode="id" l10n-text="evalSessions_chooseProjectsModal_projectKidCode"
+              class="col-sm-8 col-md-7"></sc-field>
+            <div class="labeless col-md-3 col-sm-2">
+              <sc-button name="seachBtn" btn-click="search()" text="evalSessions_chooseProjectsModal_search" class="btn btn-default btn-sm pull-right"
+                icon="glyphicon-search">
+              </sc-button>
+            </div>
+          </div>
+        </div>
+
+        <sc-button name="chooseAllBtn" ng-show="hasChoosenAll" btn-click="chooseAll()" text="evalSessions_chooseProjectsModal_all"
+          class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="removeAllBtn" ng-show="!hasChoosenAll" btn-click="removeAll()" text="evalSessions_chooseProjectsModal_all"
+          class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+        </sc-button>
+
+        <sc-datatable items="projects" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="chooseProject(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="removeProject(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="regNumber" title="evalSessions_chooseProjectsModal_regNumber">
+          </sc-column>
+          <sc-column title="evalSessions_chooseProjectsModal_name" has-content="true" data="name">
+            <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+          </sc-column>
+          <sc-column data="company" title="evalSessions_chooseProjectsModal_company">
+          </sc-column>
+          <sc-column data="companySizeType" title="evalSessions_chooseProjectsModal_companySizeType">
+          </sc-column>
+          <sc-column data="regDate" title="evalSessions_chooseProjectsModal_regDate" type="datetime">
+          </sc-column>
+          <sc-column data="registrationStatus" title="evalSessions_chooseProjectsModal_registrationStatus">
+          </sc-column>
+          <sc-column data="projectType" title="evalSessions_chooseProjectsModal_projectType">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,14 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.description" ng-maxlength="200" ng-required="true" validations="{maxlength: 'guidances_guidanceDataForm_descriptionMaxlength'}" l10n-text="guidances_guidanceDataForm_description" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'guidanceModules'" mode="id" ng-model="model.module" ng-required="true" l10n-text="guidances_guidanceDataForm_module" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="file" name="file" ng-model="model.file" url-template="GuidanceFile" url-params="{ id: model.guidanceId }" ng-required="true"
+      l10n-text="guidances_guidanceDataForm_file" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="guidances_guidanceDataForm_createDate" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-disabled="true" l10n-text="guidances_guidanceDataForm_createdByUser" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+</ng-form>

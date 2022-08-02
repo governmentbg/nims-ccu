@@ -1,0 +1,87 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10004.Company
+
+@{
+    string bulgaria = Eumis.Documents.Constants.BulgariaId;
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new Newtonsoft.Json.Converters.IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+    var resourcesObject = new
+    {
+        Search = Company.Search,
+        PleaseWait = Global.PleaseWait,
+        DataFilled = Company.DataFilled,
+        NoResult = Company.NoResult,
+        ValidationError = Company.ValidationError,
+
+        Uin = Company.Uin,
+        UinType = Company.UinType,
+        Name = string.Format("{0} {1}", Company.Name, SymbolsCount.Symbols200),
+        NameEN = string.Format("{0} {1}", Company.NameEN, SymbolsCount.Symbols200),
+        NameENTooltip = Company.NameENTooltip,
+        CompanyType = Company.CompanyType,
+        CompanyLegalType = Company.CompanyLegalType,
+        IsPrivateLegal = Company.IsPrivateLegal,
+        IsCountryLegal = Company.IsCountryLegal,
+        CompanySizeType = Company.CompanySizeType,
+        KidCodeOrganization = Company.KidCodeOrganization,
+        KidCodeProject = Company.KidCodeProject,
+        Seat = Company.Seat,
+        Management = Company.Management,
+        Correspondence = Company.Correspondence,
+        Email = Company.Email,
+        EmailTooltip = Company.EmailTooltip,
+        Phone1 = Company.Phone1,
+        Phone2 = Company.Phone2,
+        Fax = Company.Fax,
+        CompanyRepresentativePerson = string.Format("{0} {1}", Company.CompanyRepresentativePerson, SymbolsCount.Symbols100),
+        CompanyContactPerson = string.Format("{0} {1}", Company.CompanyContactPerson, SymbolsCount.Symbols100),
+        CompanyContactPersonPhone = Company.CompanyContactPersonPhone,
+        CompanyContactPersonEmail = Company.CompanyContactPersonEmail,
+        Country = Address.Country,
+        Settlement = Address.Settlement,
+        PostCode = Address.PostCode,
+        Street = string.Format("{0} {1}", Address.Street, SymbolsCount.Symbols300),
+        FullAddress = Address.FullAddress,
+        Copy = Address.Copy,
+        Captcha = Global.Captcha,
+        SymbolsCount = Global.SymbolsCount
+    };
+
+    var jsonResourcesObject = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObject);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        candidate: @(Html.Raw(jsonModel)),
+        resourcesObject: @(Html.Raw(jsonResourcesObject)),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerCandidate@(guid)'), ['moduleCandidate']);
+    });
+
+</script>
+@{
+    var disableSearch = false;
+    var isPrivateDraft = ViewContext.RouteData.Values["action"].ToString().ToLower().Contains("draft");
+
+    if (!isPrivateDraft)
+    {
+        disableSearch = CurrentUser.IsPrivate || (Eumis.Portal.Web.Helpers.AppContext.Current != null && Eumis.Portal.Web.Helpers.AppContext.Current.Document is R_10020.Message);
+    }
+}
+
+<div id="containerCandidate@(guid)" class="table-wrapper" ng-controller="controllerCandidate" ng-init="init('_eumis_options', 'i@(guid)')">
+    <div class="history-table">
+        <eumis-company partner="candidate"
+                       path="@(Html.GetNameFor(m => m))"
+                       bg-code="@bulgaria"
+                       physical-gid="@Eumis.Documents.Constants.CompanyLegalTypePhysicalGid"
+                       resources="resourcesObject"
+                       candidate
+                       @(disableSearch ? "disableSearch" : "")>
+        </eumis-company>
+    </div>
+</div>

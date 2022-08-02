@@ -1,0 +1,37 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10019.Project
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsElectronicForm</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Project.ActionNames.Print, MVC.Project.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+
+                @if (Model.LocalValidationErrors.Count() == 0 && Model.RemoteValidationErrors.Count() == 0)
+                {
+                    @Html.ActionLink(Global.ButtonContinueText, MVC.Submit.ActionNames.HowToSubmit, MVC.Submit.Name, null, new { @class = "blue-button" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

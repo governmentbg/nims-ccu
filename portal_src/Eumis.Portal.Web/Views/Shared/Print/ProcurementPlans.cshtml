@@ -1,0 +1,11 @@
+﻿@model R_10041.ProcurementPlans
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ProcurementPlanCollection != null && Model.ProcurementPlanCollection.Count > 0)
+        {
+            @Html.Partial(MVC.Shared.Views.Print.ProcurementPlanCollection, Model.ProcurementPlanCollection.ToList() ?? new List<R_10048.ProcurementPlan>())
+        }
+    </div>
+}

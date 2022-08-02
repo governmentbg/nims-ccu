@@ -1,0 +1,128 @@
+﻿<div class="form-group col-md-12">
+    <div class="clearfix">
+        <table class="chart-info dynamic-rows table-bordered col-md-12 col-lg-12">
+            <tbody>
+                <tr>
+                    <td colspan="8">
+                        {{ resources.NutsLevel}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8">
+                        <span ng-repeat="nut in nuts">
+                            <input type="radio" ng-click="nutClick(nut)" ng-checked="selectedNut.id === nut.id" value="{{ nut.id }}" id="{{ nut.id }}" name="nutslevel" />
+                            <label for="{{ nut.id }}">{{ nut.DisplayName }}</label>
+                            <input type="hidden" value="{{selectedNut.id}}" name="{{ path }}.NutsLevel.id" />
+                            <input type="hidden" value="{{selectedNut.Name}}" name="{{ path }}.NutsLevel.Name" />
+                            <input type="hidden" value="{{selectedNut.NameEN}}" name="{{ path }}.NutsLevel.NameEN" />
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8">
+                        <label ng-hide="selectedNut.id != countryCode">{{ resources.Country }}</label>
+                        <label ng-hide="selectedNut.id != protectedZoneCode">{{ resources.ProtectedZone }}</label>
+                        <label ng-hide="selectedNut.id != nuts1Code">{{ resources.Nuts1 }}</label>
+                        <label ng-hide="selectedNut.id != nuts2Code">{{ resources.Nuts2 }}</label>
+                        <label ng-hide="selectedNut.id != districtCode">{{ resources.District }}</label>
+                        <label ng-hide="selectedNut.id != municipalityCode">{{ resources.Municipality }}</label>
+                        <label ng-hide="selectedNut.id != settlementCode">{{ resources.Settlement }}</label>
+                    </td>
+                </tr>
+                <tr ng-repeat="item in items">
+                    <td ng-if="selectedNut.id == countryCode">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsCountryValid}" sc-alias="GetCountries" ng-model="item.Country">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsCountryValid}" sc-disabled="selectedNut.id != countryCode" type="hidden" value="{{item.Country.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != countryCode" type="hidden" value="{{item.Country.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.Name" />
+                        <input sc-disabled="selectedNut.id != countryCode" type="hidden" value="{{item.Country.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != countryCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.FullPath" value="{{ item.Country.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != countryCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.FullPathName" value="{{ item.Country.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != countryCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Country.FullPathNameEN" value="{{ item.Country.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == protectedZoneCode">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsProtectedZoneValid}" sc-alias="GetProtectedZones" ng-model="item.ProtectedZone">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsProtectedZoneValid}" sc-disabled="selectedNut.id != protectedZoneCode" type="hidden" value="{{item.ProtectedZone.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != protectedZoneCode" type="hidden" value="{{item.ProtectedZone.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.Name" />
+                        <input sc-disabled="selectedNut.id != protectedZoneCode" type="hidden" value="{{item.ProtectedZone.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != protectedZoneCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.FullPath" value="{{ item.ProtectedZone.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != protectedZoneCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.FullPathName" value="{{ item.ProtectedZone.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != protectedZoneCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].ProtectedZone.FullPathNameEN" value="{{ item.ProtectedZone.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == nuts1Code">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsNuts1Valid}" sc-alias="GetNuts1s" ng-model="item.Nuts1">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsNuts1Valid}" sc-disabled="selectedNut.id != nuts1Code" type="hidden" value="{{item.Nuts1.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != nuts1Code" type="hidden" value="{{item.Nuts1.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.Name" />
+                        <input sc-disabled="selectedNut.id != nuts1Code" type="hidden" value="{{item.Nuts1.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts1Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.FullPath" value="{{ item.Nuts1.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts1Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.FullPathName" value="{{ item.Nuts1.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts1Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts1.FullPathNameEN" value="{{ item.Nuts1.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == nuts2Code">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsNuts2Valid}" sc-alias="GetNuts2s" ng-model="item.Nuts2">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsNuts2Valid}" sc-disabled="selectedNut.id != nuts2Code" type="hidden" value="{{item.Nuts2.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != nuts2Code" type="hidden" value="{{item.Nuts2.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.Name" />
+                        <input sc-disabled="selectedNut.id != nuts2Code" type="hidden" value="{{item.Nuts2.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts2Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.FullPath" value="{{ item.Nuts2.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts2Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.FullPathName" value="{{ item.Nuts2.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != nuts2Code" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Nuts2.FullPathNameEN" value="{{ item.Nuts2.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == districtCode">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsDistrictValid}" sc-alias="GetDistricts" ng-model="item.District">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsDistrictValid}" sc-disabled="selectedNut.id != districtCode" type="hidden" value="{{item.District.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != districtCode" type="hidden" value="{{item.District.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.Name" />
+                        <input sc-disabled="selectedNut.id != districtCode" type="hidden" value="{{item.District.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != districtCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.FullPath" value="{{ item.District.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != districtCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.FullPathName" value="{{ item.District.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != districtCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].District.FullPathNameEN" value="{{ item.District.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == municipalityCode">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsMunicipalityValid}" sc-alias="GetMunicipalities" ng-model="item.Municipality">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsMunicipalityValid}" sc-disabled="selectedNut.id != municipalityCode" type="hidden" value="{{item.Municipality.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != municipalityCode" type="hidden" value="{{item.Municipality.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.Name" />
+                        <input sc-disabled="selectedNut.id != municipalityCode" type="hidden" value="{{item.Municipality.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != municipalityCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.FullPath" value="{{ item.Municipality.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != municipalityCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.FullPathName" value="{{ item.Municipality.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != municipalityCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Municipality.FullPathNameEN" value="{{ item.Municipality.FullPathNameEN }}" />
+                    </td>
+                    <td ng-if="selectedNut.id == settlementCode">
+                        <sc-nomenclature ng-class="{'input-validation-error': !item.IsSettlementValid}" sc-alias="GetSettlements" ng-model="item.Settlement">
+                        </sc-nomenclature>
+                        <input ng-class="{'input-validation-error': !item.IsSettlementValid}" sc-disabled="selectedNut.id != settlementCode" type="hidden" value="{{item.Settlement.Code}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.Code" class="validation-error-key" />
+                        <input sc-disabled="selectedNut.id != settlementCode" type="hidden" value="{{item.Settlement.Name}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.Name" />
+                        <input sc-disabled="selectedNut.id != settlementCode" type="hidden" value="{{item.Settlement.NameEN}}" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.NameEN" />
+
+                        <input type="hidden" sc-disabled="selectedNut.id != settlementCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.FullPath" value="{{ item.Settlement.FullPath }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != settlementCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.FullPathName" value="{{ item.Settlement.FullPathName }}" />
+                        <input type="hidden" sc-disabled="selectedNut.id != settlementCode" name="{{ path }}.NutsAddressContentCollection[{{$index}}].Settlement.FullPathNameEN" value="{{ item.Settlement.FullPathNameEN }}" />
+                    </td>
+                    <td>
+                        <a ng-if="!isPartialReadOnly" style="margin-left: 10px;" class="delete-btn" confirm-click="delItem(item)">{{ resources.DeleteButton }}</a>
+                    </td>
+                    <td>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == protectedZoneCode">{{ item.ProtectedZone.displayFullPathName }}</span>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == nuts1Code">{{ item.Nuts1.displayFullPathName }}</span>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == nuts2Code">{{ item.Nuts2.displayFullPathName }}</span>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == districtCode">{{ item.District.displayFullPathName }}</span>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == municipalityCode">{{ item.Municipality.displayFullPathName }}</span>
+                        <span style="margin: 10px 0 0 5px;" class="filled-value" ng-if="selectedNut.id == settlementCode">{{ item.Settlement.displayFullPathName }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="!isPartialReadOnly" class="clearfix">
+        <a style="margin-left: 0px;" class="add-new-btn" data-ng-click="addItem()">{{ resources.AddButton }}</a>
+    </div>
+</div>

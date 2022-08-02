@@ -1,0 +1,41 @@
+<ng-form name="permissionRequestModalForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div ng-if="!isReadonly" style="display: inline-block;">
+        <strong ng-if="!user.hasPermissionRequest" class="heading" l10n-text="permissionRequestModal_newTitle"></strong>
+        <strong ng-if="user.hasPermissionRequest" class="heading" l10n-text="permissionRequestModal_editTitle"></strong>
+      </div>
+      <strong ng-if="isReadonly" class="heading" l10n-text="permissionRequestModal_viewTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" ng-if="!isReadonly" text="permissionRequestModal_save" class="btn btn-primary btn-xs"
+          icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" ng-if="!isReadonly" text="permissionRequestModal_cancel" class="btn btn-default btn-xs"
+          icon="glyphicon-ban-circle">
+        </sc-button>
+        <sc-button name="okBtn" btn-click="cancel()" ng-if="isReadonly" text="permissionRequestModal_ok" class="btn btn-primary btn-xs"
+          icon="glyphicon-ok">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" style="overflow-x: scroll">
+      <div class="row">
+        <sc-field type="text" ng-model="user.statusName" ng-required="true" ng-disabled="true" l10n-text="permissionRequestModal_status"
+          class="col-sm-3 col-md-2"></sc-field>
+      </div>
+      <div class="row" ng-if="user.rejectionMessage">
+        <sc-field type="textarea" rows="3" ng-model="user.rejectionMessage" ng-readonly="true" l10n-text="permissionRequestModal_rejectionMessage"
+          class="col-sm-7 col-md-5"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="user.username" ng-readonly="true" l10n-text="permissionRequestModal_username" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="userInfo.userOrganizationName" ng-readonly="true" l10n-text="permissionRequestModal_userOrganization"
+          class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="userInfo.userTypeName" ng-readonly="true" l10n-text="permissionRequestModal_userType" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <eumis-permissions name="permissionForm" ng-model="permissionRequest.permissions" sc-form-readonly="{{isReadonly}}"></eumis-permissions>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,221 @@
+﻿@using Eumis.Documents.Enums
+@using Eumis.Portal.Web.Helpers
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+@model Eumis.Portal.Web.Models.SpendingPlan.EditVM
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" });
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.SpendingPlan = @(Html.Raw(jsonModel));
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerSpendingPlan'), ['moduleSpendingPlan']);
+            }, 100);
+        });
+    </script>
+    <div class="spendingPlan" id="containerSpendingPlan" ng-controller="controllerMainSpendingPlan">
+        @{ int sectionNumber = 1;}
+        <h2 data-section="@sectionNumber" class="section-heading opened" activation-name="spendingPlan" broadcast-name="spendingPlanActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @SpendingPlan.SpendingPlanHeading
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix" style="display:block;">
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                <table class="chart-info dynamic-rows bfp-budget-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width:250px; width:250px;">@SpendingPlan.ExpenseName</th>
+                            <th style="min-width:100px; width:100px;">@SpendingPlan.TotalAmount</th>
+                            <th style="width:80px;">@SpendingPlan.TotalCurrentDocument</th>
+                            <th style="width:40px; max-width:40px; word-wrap:break-word;">@SpendingPlan.ThreeMonths</th>
+                            @for (int i = Model.StartYear; i <= Model.EndYear; i++)
+                            {
+                                <th style="width:80px;">@i</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.SpendingBudget.SpendingBudgetLevel1Collection.Count; i++)
+                        {
+                            var item = Model.SpendingBudget.SpendingBudgetLevel1Collection[i];
+                            <tr class="level3">
+                                <td rowspan="4">@Eumis.Common.Helpers.DataUtils.Romanize(item.OrderNum) @item.Name</td>
+                                <td rowspan="4">@Html.DisplayFor(m => item.TotalAmount)</td>
+                                <td rowspan="4">
+                                    <input money type="text" class="form-control sum-field" ng-class="{'input-validation-error': !items[@(i)].IsTotalCalculatedAmountValid}" readonly ng-model="items[@(i)].TotalCalculatedAmount"
+                                           name="@Html.GetNameFor(m=>m.SpendingBudget.SpendingBudgetLevel1Collection[i].TotalCalculatedAmount)" />
+                                </td>
+                                @*QUARTER = 1 !!!*@
+                                <td>@Eumis.Common.Helpers.DataUtils.Romanize(1)</td>
+
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 1)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 1))
+                                        {
+                                            <input money type="text" class="form-control sum-field" ng-class="{'input-validation-error': !items[@(i)].QuarterlyDistributionCollection[@(j)].IsQ1AmountValid}" ng-model="items[@(i)].QuarterlyDistributionCollection[@(j)].Q1Amount"
+                                                   name="@Html.GetNameFor(m=>m.SpendingBudget.SpendingBudgetLevel1Collection[i].QuarterlyDistributionCollection[j].Q1Amount)" />
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 2 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(2)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 2)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 2))
+                                        {
+                                            <input money type="text" class="form-control sum-field" ng-class="{'input-validation-error': !items[@(i)].QuarterlyDistributionCollection[@(j)].IsQ2AmountValid}" ng-model="items[@(i)].QuarterlyDistributionCollection[@(j)].Q2Amount"
+                                                   name="@Html.GetNameFor(m => m.SpendingBudget.SpendingBudgetLevel1Collection[i].QuarterlyDistributionCollection[j].Q2Amount)" />
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 3 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(3)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 3)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 3))
+                                        {
+                                            <input money type="text" class="form-control sum-field" ng-class="{'input-validation-error': !items[@(i)].QuarterlyDistributionCollection[@(j)].IsQ3AmountValid}" ng-model="items[@(i)].QuarterlyDistributionCollection[@(j)].Q3Amount"
+                                                   name="@Html.GetNameFor(m => m.SpendingBudget.SpendingBudgetLevel1Collection[i].QuarterlyDistributionCollection[j].Q3Amount)" />
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                            <tr class="level3">
+                                @*QUARTER = 4 !!!*@
+
+                                <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(4)</td>
+
+                                @for (int j = 0; j < item.QuarterlyDistributionCollection.Count; j++)
+                                {
+                                    int year = Int32.Parse(item.QuarterlyDistributionCollection[j].Year);
+
+                                    <td style="border-left: 1px solid #E6E6E6;">
+                                        @if (!(year == Model.StartYear && Model.StartQuarter > 4)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 4))
+                                        {
+                                            <input money type="text" class="form-control sum-field" ng-class="{'input-validation-error': !items[@(i)].QuarterlyDistributionCollection[@(j)].IsQ4AmountValid}" ng-model="items[@(i)].QuarterlyDistributionCollection[@(j)].Q4Amount"
+                                                   name="@Html.GetNameFor(m=>m.SpendingBudget.SpendingBudgetLevel1Collection[i].QuarterlyDistributionCollection[j].Q4Amount)" />
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+
+                        <tr class="level1">
+                            <td rowspan="4">@SpendingPlan.Total</td>
+                            <td rowspan="4">@Html.DisplayFor(m => m.SpendingBudget.TotalAmount)</td>
+                            <td rowspan="4">
+                                <input money type="text" class="form-control sum-field bold" readonly ng-model="budget.TotalCalculatedAmount"
+                                       name="@Html.GetNameFor(m=>m.SpendingBudget.TotalCalculatedAmount)" />
+                            </td>
+                            @*QUARTER = 1 !!!*@
+                            <td>@Eumis.Common.Helpers.DataUtils.Romanize(1)</td>
+
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 1)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 1))
+                                    {
+                                        <input money type="text" class="form-control sum-field bold" readonly ng-model="budget.QuarterlyDistributionCollection[@(j)].Q1Amount"
+                                               name="@Html.GetNameFor(m=>m.SpendingBudget.QuarterlyDistributionCollection[j].Q1Amount)" />
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 2 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(2)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 2)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 2))
+                                    {
+                                        <input money type="text" class="form-control sum-field bold" readonly ng-model="budget.QuarterlyDistributionCollection[@(j)].Q2Amount"
+                                               name="@Html.GetNameFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q2Amount)" />
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 3 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(3)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 3)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 3))
+                                    {
+                                        <input money type="text" class="form-control sum-field bold" readonly ng-model="budget.QuarterlyDistributionCollection[@(j)].Q3Amount"
+                                               name="@Html.GetNameFor(m => m.SpendingBudget.QuarterlyDistributionCollection[j].Q3Amount)" />
+                                    }
+                                </td>
+                            }
+                        </tr>
+                        <tr class="level1">
+                            @*QUARTER = 4 !!!*@
+
+                            <td style="border-left: 1px solid #E6E6E6; padding-left: 2px;">@Eumis.Common.Helpers.DataUtils.Romanize(4)</td>
+
+                            @for (int j = 0; j < Model.SpendingBudget.QuarterlyDistributionCollection.Count; j++)
+                            {
+                                int year = Int32.Parse(Model.SpendingBudget.QuarterlyDistributionCollection[j].Year);
+
+                                <td style="border-left: 1px solid #E6E6E6;">
+                                    @if (!(year == Model.StartYear && Model.StartQuarter > 4)
+                                        && !(year == Model.EndYear && Model.EndQuarter < 4))
+                                    {
+                                        <input money type="text" class="form-control sum-field bold" readonly ng-model="budget.QuarterlyDistributionCollection[@(j)].Q4Amount"
+                                               name="@Html.GetNameFor(m=>m.SpendingBudget.QuarterlyDistributionCollection[j].Q4Amount)" />
+                                    }
+                                </td>
+                            }
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+}

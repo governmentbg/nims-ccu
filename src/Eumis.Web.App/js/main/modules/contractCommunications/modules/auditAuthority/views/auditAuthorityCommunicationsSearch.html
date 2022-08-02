@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newCommunicationBtn" btn-click="newContractCommunication()" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" text="auditAuthorityCommunications_search_new"
+      ng-disabled="!$canDo('ContractActions.CreateAuditAuthorityCommunication', contractId)"></sc-button>
+
+    <sc-datatable items="contractCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.auditAuthorityCommunications.view.communication.edit', params: { ind: item.contractCommunicationXmlId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('AuditAuthorityCommunicationActions.View', item.contractCommunicationXmlId)"></sc-button>
+      </sc-column>
+      <sc-column data="status" title="auditAuthorityCommunications_search_status"></sc-column>
+      <sc-column data="source" title="auditAuthorityCommunications_search_source"></sc-column>
+      <sc-column data="regNumber" title="auditAuthorityCommunications_search_regNumber"></sc-column>
+      <sc-column data="subject" title="auditAuthorityCommunications_search_subject"></sc-column>
+      <sc-column data="sendDate" title="auditAuthorityCommunications_search_sendDate" type="datetime"></sc-column>
+      <sc-column data="readDate" title="auditAuthorityCommunications_search_readDate" type="datetime"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

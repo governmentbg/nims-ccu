@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10034" 
+	xmlns="http://ereg.egov.bg/segment/R-10034" 
+	
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:bpdeb="http://ereg.egov.bg/segment/R-10033"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10033" />
+	
+	<xsd:complexType name="BFPContractProgrammeExpenseBudget">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Ред от бюджета на договор на второ ниво</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="OrderNum" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ProgrammePriorityCode" type="xsd:string" minOccurs="0" />
+      <xsd:element name="AidMode" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="BFPContractProgrammeDetailsExpenseBudget" type="bpdeb:BFPContractProgrammeDetailsExpenseBudget" minOccurs="0" maxOccurs="unbounded" />
+
+      <xsd:element name="EuPercent" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="EUAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="NationalAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="GrandAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="SelfAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TotalAmount" type="xsd:decimal" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="gid" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

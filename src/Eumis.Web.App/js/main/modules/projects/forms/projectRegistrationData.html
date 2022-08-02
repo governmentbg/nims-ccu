@@ -1,0 +1,41 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" ng-readonly="hasXml || form.$readonly" l10n-text="projects_projectDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.nameAlt" ng-readonly="hasXml || form.$readonly" l10n-text="projects_projectDataForm_nameAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="model.procedureId" ng-readonly="true" l10n-text="projects_projectDataForm_procedureId" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" ng-readonly="true" l10n-text="projects_projectDataForm_companyName" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyNameAlt" l10n-text="projects_projectDataForm_companyNameAlt" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" ng-readonly="true" l10n-text="projects_projectDataForm_companyUinType" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" ng-readonly="true" l10n-text="projects_projectDataForm_companyUin" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'projectTypes'" mode="id" ng-model="model.projectTypeId" ng-readonly="true" l10n-text="projects_projectDataForm_projectTypeId" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'registrationStatuses'" mode="id" ng-model="model.registrationStatus" ng-required="true" l10n-text="projects_projectDataForm_registrationStatus" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.regNumber" ng-readonly="true" l10n-text="projects_projectDataForm_regNumber" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.regDate" ng-required="true" l10n-text="projects_projectDataForm_regDate" ng-readonly="model.regNumber" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="time" ng-model="model.regTime" ng-required="true" l10n-text="projects_projectDataForm_regTime" ng-readonly="model.regNumber" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'projectRecieveTypes'" mode="id" ng-model="model.recieveType" ng-required="true" l10n-text="projects_projectDataForm_recieveType" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.recieveDate" ng-required="true" l10n-text="projects_projectDataForm_recieveDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="date" ng-model="model.submitDate" ng-required="true" l10n-text="projects_projectDataForm_submitDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.storagePlace" l10n-text="projects_projectDataForm_storagePlace" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="int" ng-model="model.originals" l10n-text="projects_projectDataForm_originals" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="int" ng-model="model.copies" l10n-text="projects_projectDataForm_copies" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="projects_projectDataForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+</ng-form>

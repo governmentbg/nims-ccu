@@ -1,0 +1,15 @@
+<ng-form name="editContractReportsContractForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportChecks_viewContract_title"></strong>
+    </div>
+
+    <div class="panel-body">
+      <h5 class="table-header table-header-first" l10n-text="contractReportChecks_viewContract_contractData"></h5>
+      <eumis-contract-data name="contractDataForm" ng-model="contract"></eumis-contract-data>
+
+      <h5 class="table-header" l10n-text="contractReportChecks_viewContract_beneficiary"></h5>
+      <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="contract"></eumis-contract-beneficiary>
+    </div>
+  </div>
+</ng-form>

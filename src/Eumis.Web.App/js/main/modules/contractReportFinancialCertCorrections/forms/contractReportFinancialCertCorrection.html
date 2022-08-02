@@ -1,0 +1,37 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header form-header-first" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_reportFinancialCertCorrection"></h5>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportFinancialCertCorrectionStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" ng-model="model.file" ng-required="true" url-template="ContractReportFinancialCertCorrectionFile" url-params="{ id: model.contractReportFinancialCertCorrectionId }" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_file" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.certCorrectionDate" ng-required="true" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_correctionDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-show="model.checkedDate">
+    <sc-field type="date" ng-model="model.checkedDate"  ng-readonly="true" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_checkedByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_notes" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_reportFinancial"></h5>
+  <eumis-contract-report-financial name="contractReportFinancialForm" ng-model="model.contractReportFinancial"></eumis-contract-report-financial>
+  <div class="row">
+    <eumis-structured-document document="contractReportFinancial" gid="model.contractReportFinancial.xmlGid"
+      text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_document" view-mode class="col-sm-4 col-md-3">
+    </eumis-structured-document>
+  </div>
+
+  <div ng-if="model.contractReportPayment">
+    <h5 class="form-header" l10n-text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_reportPayment"></h5>
+    <eumis-contract-report-payment name="contractReportPaymentForm" ng-model="model.contractReportPayment"></eumis-contract-report-payment>
+    <div class="row">
+      <eumis-structured-document document="contractReportPayment" gid="model.contractReportPayment.xmlGid"
+        text="contractReportFinancialCertCorrections_contractReportFinancialCertCorrectionForm_document" view-mode class="col-sm-4 col-md-3">
+      </eumis-structured-document>
+    </div>
+  </div>
+</ng-form>
+

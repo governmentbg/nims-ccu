@@ -1,0 +1,17 @@
+<ng-form name="editContractCommunicationForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractCommunications_editCommunication_title"></strong>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-communication name="contractCommunicationForm" ng-model="contractCommunication"></eumis-contract-communication>
+      <div class="row">
+        <eumis-structured-document text="contractCommunications_editCommunication_communication" document="contractCommunication" gid="contractCommunication.xmlGid"
+          view-mode
+          class="col-sm-4 col-md-3" doc-updated="communicationUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

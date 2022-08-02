@@ -1,0 +1,70 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractBasicDataVO
+
+@{
+    Layout = MVC.Project.Views._ProjectLayout;
+}
+
+<div class="project-info-box">
+    <div class="head blue">
+        <h2>@Texts.Project_Details_Identification</h2>
+    </div>
+    <div class="content">
+        <div class="list-item">
+            <label>@Texts.Project_Details_Procedure</label>
+            <a href="@Model.ProcedureInfoUrl">@Model.ProcedureCode @Model.ProcedureTransName</a>
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_EUMISNumber</label>
+            @Model.RegNumber
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_ProjectName</label>
+            @Model.TransName
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_Beneficiary</label>
+            @Html.ActionLink(Model.TransCompanyFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(Model.CompanyUin), uinType = Model.CompanyUinType, isHistoric = Model.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Beneficiary }, null)
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_FinancingSource</label>
+            @if (Model.Funds != null && Model.Funds.Count() > 0)
+            {
+                <text>@String.Join(", ", Model.Funds) ==> </text>
+            }
+            @Html.ActionLink(Model.TransProgrammeName, MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() { { RouteConfig.OPABB, Model.ProgrammeId } }, null)
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_ContractDate</label>
+            @Html.DisplayFor(m => m.ContractDate)
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_StartDate</label>
+            @Html.DisplayFor(m => m.StartDate)
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_EndDate</label>
+            @Html.DisplayFor(m => m.CompletionDate)
+        </div>
+        <div class="list-item">
+            <label>@Texts.Project_Details_BFPContractStatus</label>
+            @Model.StatusDescription
+        </div>
+        @if (Model.NutsFullPathNames != null && Model.NutsFullPathNames.Count() > 0)
+        {
+            <strong>@Texts.Project_Details_ExecutionPlace</strong>
+            <ul>
+                @foreach (var location in Model.TransNutsFullPathNames)
+                {
+                    <li>@location</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="list-item">
+                <label>@Texts.Project_Details_ExecutionPlace</label>
+                @Texts.Project_Details_None
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-button name="newPaymentCheckBtn" btn-click="newCheck()" text="contractReportChecks_contractReportPaymentChecks_add" class="btn btn-sm btn-primary" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)" ng-if="contractReportStatus === 'unchecked'"></sc-button>
+
+    <sc-datatable items="contractReportPaymentChecks" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.paymentChecks.edit', params: { ind: item.contractReportPaymentCheckId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="paymentVersionNum" title="contractReportChecks_contractReportPaymentChecks_paymentVersionNum" type="number"></sc-column>
+      <sc-column data="paymentVersionSubNum" title="contractReportChecks_contractReportPaymentChecks_paymentVersionSubNum" type="number"></sc-column>
+      <sc-column data="orderNum" title="contractReportChecks_contractReportPaymentChecks_orderNum" type="number"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportPaymentChecks_status"></sc-column>
+      <sc-column data="checkedByUser" title="contractReportChecks_contractReportPaymentChecks_checkedByUser"></sc-column>
+      <sc-column data="createDate" title="contractReportChecks_contractReportPaymentChecks_createDate" type="date"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

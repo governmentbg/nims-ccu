@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="ContractContractor" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="MAPreliminaryControl" xml:space="preserve">
+    <value>The procedure has gone through vetting by MA</value>
+  </data>
+  <data name="NoticeDate" xml:space="preserve">
+    <value>Scheduled date announced</value>
+  </data>
+  <data name="PPANumber" xml:space="preserve">
+    <value>Unique number of register of PPA procedures conducted by the PPA</value>
+  </data>
+  <data name="PPAPreliminaryControl" xml:space="preserve">
+    <value>The procedure has gone through vetting by PPA</value>
+  </data>
+  <data name="InternetAddress" xml:space="preserve">
+    <value>Internet address</value>
+  </data>
+  <data name="BFPContractPlan" xml:space="preserve">
+    <value>Contract data</value>
+  </data>
+  <data name="ProcurementData" xml:space="preserve">
+    <value>Procurement data</value>
+  </data>
+  <data name="DifferentiatedPosition" xml:space="preserve">
+    <value>Differentiated position</value>
+  </data>
+  <data name="DifferentiatedPositionName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DifferentiatedPositionComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="DifferentiatedPositionsHeader" xml:space="preserve">
+    <value>Differentiated positions</value>
+  </data>
+  <data name="IsAnnounced" xml:space="preserve">
+    <value>Procedure is announced</value>
+  </data>
+  <data name="IsTerminated" xml:space="preserve">
+    <value>Procedure is terminated</value>
+  </data>
+  <data name="RankedOffersCount" xml:space="preserve">
+    <value>Number ranked Offers</value>
+  </data>
+  <data name="SubmittedOffersCount" xml:space="preserve">
+    <value>Number of tenders</value>
+  </data>
+  <data name="ExpectedAmount" xml:space="preserve">
+    <value>Estimated value according notice</value>
+  </data>
+  <data name="AttachedDocuments" xml:space="preserve">
+    <value>Attached documents</value>
+  </data>
+  <data name="PublicAttachedDocuments" xml:space="preserve">
+    <value>Public attached documents</value>
+  </data>
+  <data name="OffersDeadlineDate" xml:space="preserve">
+    <value>Final date for submission of tenders</value>
+  </data>
+  <data name="DifferentiatedPositionNameForbiddenDelete" xml:space="preserve">
+    <value>The differentiated position can't be deleted, because there is an offer releted to it</value>
+  </data>
+  <data name="ForbiddenDelete" xml:space="preserve">
+    <value>Procurement plan can't be deleted, because it's already announced</value>
+  </data>
+  <data name="ForbiddenDeletePublicDocument" xml:space="preserve">
+    <value>The public document can't be deleted, procurement is already announced</value>
+  </data>
+  <data name="AdditionalAttachedDocuments" xml:space="preserve">
+    <value>Explanations</value>
+  </data>
+  <data name="ForbiddenDeleteHasCheckSheets" xml:space="preserve">
+    <value>Procurement plan can't be deleted, because it has attached check sheets</value>
+  </data>
+</root>

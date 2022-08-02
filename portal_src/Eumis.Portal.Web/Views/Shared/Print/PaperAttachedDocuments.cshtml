@@ -1,0 +1,31 @@
+﻿@model R_10019.PaperAttachedDocuments
+
+@if (Model != null)
+{
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">@PaperAttachedDocument.Type</th>
+                    <th style="width: 65%;" colspan="2">@PaperAttachedDocument.Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.PaperAttachedDocumentCollection != null && Model.PaperAttachedDocumentCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.PaperAttachedDocumentCollection.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.PaperAttachedDocumentCollection[i].Type ?? new R_10000.PrivateNomenclature())
+                            </td>
+                            <td colspan="2">
+                                @Model.PaperAttachedDocumentCollection[i].Description
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

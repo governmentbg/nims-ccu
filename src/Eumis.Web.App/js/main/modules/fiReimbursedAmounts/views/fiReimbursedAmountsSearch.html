@@ -1,0 +1,37 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'reimbursedAmountContracts'" mode="id" ng-model="filters.contractId" l10n-text="fiReimbursedAmounts_amountsSearch_contract" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'fiReimbursementTypes'" mode="id" ng-model="filters.type" l10n-text="fiReimbursedAmounts_amountsSearch_type" class="col-sm-5"></sc-field>
+        <div class="labeless col-sm-3">
+          <sc-button name="seachBtn" btn-click="search()" text="fiReimbursedAmounts_amountsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="fiReimbursedAmounts_amountsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.fiReimbursedAmounts.newStep1' }"
+      ng-disabled="!$canDo('FIReimbursedAmountListActions.Create')" style="margin-right: 5px;"></sc-button>
+
+    <sc-datatable items="reimbursedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.fiReimbursedAmounts.view.basicData', params: { id: item.amountId }}"
+          ng-disabled="!$canDo('FIReimbursedAmountActions.View', item.amountId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="fiReimbursedAmounts_amountsSearch_programme">
+      </sc-column>
+      <sc-column data="contractRegNumber" title="fiReimbursedAmounts_amountsSearch_contractRegNumber">
+      </sc-column>
+      <sc-column data="statusDescr" title="fiReimbursedAmounts_amountsSearch_status">
+      </sc-column>
+      <sc-column data="regNumber" title="fiReimbursedAmounts_amountsSearch_regNumber">
+      </sc-column>
+      <sc-column data="type" title="fiReimbursedAmounts_amountsSearch_type">
+      </sc-column>
+      <sc-column data="reimbursement" title="fiReimbursedAmounts_amountsSearch_reimbursement">
+      </sc-column>
+      <sc-column data="reimbursementDate" title="fiReimbursedAmounts_amountsSearch_reimbursementDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home)
+}, Texts.Global_Glossary)
+
+<div class="container page-title">
+    <h1>@Texts.Global_GlossaryTitle</h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix">
+        <div class="col-xs-12">
+            @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+            {
+                <h2>СЪКРАЩЕНИЯ</h2>
+                <table class="glossary-table">
+                    <tr><td style="width: 35%;">АД</td><td>Акционерно дружество</td></tr>
+                    <tr><td>АМС</td><td>Администрация на Министерски съвет</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>БФП</td><td>Безвъзмездна финансова помощ</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>ЕАД</td><td>Еднолично акционерно дружество</td></tr>
+                    <tr><td>ЕООД</td><td>Еднолично дружество с ограничена отговорност</td></tr>
+                    <tr><td>ЕС</td><td>Европейски съюз</td></tr>
+                    <tr><td>ЕСФ</td><td>Европейски социален фонд</td></tr>
+                    <tr><td>ЕТ</td><td>Едноличен търговец</td></tr>
+                    <tr><td>ЕФРР</td><td>Европейски фонд за регионално развитие</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>ИМЗ</td><td>Инвестиции за младежка заетост</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>КД</td><td>Командитно дружество</td></tr>
+                    <tr><td>КДА</td><td>Командитно дружество с акции</td></tr>
+                    <tr><td>КФ</td><td>Koхезионен фонд</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>НФ</td><td>Национално финансиране</td></tr>
+                    <tr><td>ООД</td><td>Дружество с ограничена отговорност</td></tr>
+                    <tr><td>ОПДУ</td><td>Оперативна програма "Добро управление"</td></tr>
+                    <tr><td>ОПИК</td><td>Оперативна програма "Иновации и конкурентоспособност"</td></tr>
+                    <tr><td>ОПНОИР</td><td>Оперативна програма "Наука и образование за интелигентен растеж"</td></tr>
+                    <tr><td>ОПОС</td><td>Оперативна програма "Околна среда"</td></tr>
+                    <tr><td>ОПРР</td><td>Оперативна програма "Региони в растеж"</td></tr>
+                    <tr><td>ОПРЧР</td><td>Оперативна програма "Развитие на човешките ресурси"</td></tr>
+                    <tr><td>ОПТТИ</td><td>Оперативна програма "Транспорт и транспортна инфраструктура"</td></tr>
+                    <tr><td>ОПХ</td><td>Оперативна програма "Храни"</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>РИС</td><td>Реално изплатени средства</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>СД</td><td>Събирателно дружество</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>ФЕПНЛ</td><td>Фонда за европейско подпомагане на най-нуждаещите се лица</td></tr>
+                </table>
+
+                <h2>ОСНОВНИ ПОНЯТИЯ</h2>
+                <table class="glossary-table">
+                    <tr>
+                        <td style="font-weight:bold;">Бенефициент</td>
+                        <td>Публична или частна организация, които отговарят за започването или за започването и изпълнението на операции; в контекста на схемите за държавни помощи – организация, която получава помощта; и в контекста на финансовите инструменти – организацията, която прилага финансовия инструмент или фонда на фондове, ако е приложимо.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Партньор</td>
+                        <td>Физическо и юридическо лице и техни обединения, които участват в техническото и/или финансово изпълнение на проекта или на предварително заявени във формуляра за кандидатстване дейности от проекта.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Приоритетна ос</td>
+                        <td>Една от целите на стратегията в оперативна програма, включваща група операции, които са свързани и имат специфични измерими цели.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Проект</td>
+                        <td>Одобрено от управляващ орган проектно предложение, за което е сключен Договор за предоставяне на финансова подкрепа</td>
+                    </tr>
+
+                </table>
+            }
+            else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+            {
+                <h2>ABBREVIATIONS</h2>
+                <table class="glossary-table">
+                    <tr><td style="width: 35%;">AAP</td><td>Actual amounts paid</td></tr>
+                    <tr><td>ACM</td><td>Administration of the Council of Ministers</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>CF</td><td>Cohesion fund</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>ERDF</td><td>European Regional Development Fund</td></tr>
+                    <tr><td>ESF</td><td>European Social Fund</td></tr>
+                    <tr><td>EU</td><td>European Union</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>FEAD</td><td>Fund for European Aid to the Most Deprived</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>GP (SD)</td><td>General partnership</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>JSC (AD)</td><td>Joint stock company</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>LLC (OOD)</td><td>Limited liability company</td></tr>
+                    <tr><td>LP (KD)</td><td>Limited partnership</td></tr>
+                    <tr><td>LPSC (KDA)</td><td>Limited partnership with a share capital</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>NF</td><td>National financing</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>OPE</td><td>Operational programme "Environment"</td></tr>
+                    <tr><td>OPF</td><td>Operational programme „Foods“</td></tr>
+                    <tr><td>OPGG</td><td>Operational programme "Good governance"</td></tr>
+                    <tr><td>OPHRD</td><td>Operational programme "Human resources development"</td></tr>
+                    <tr><td>OPIC</td><td>Operational programme "Innovations and competitiveness"</td></tr>
+                    <tr><td>OPRG</td><td>Operational programme "Regions in growth"</td></tr>
+                    <tr><td>OPSESG</td><td>Operational programme "Science and education for smart growth"</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>OPTTI</td><td>Operational programme "Transport and transport infrastructure"</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>SCF</td><td>Structural and Cohesion funds</td></tr>
+                    <tr><td>SJC</td><td>Supreme judicial court</td></tr>
+                    <tr><td>SMJSC (EAD)</td><td>Single-member joint stock company</td></tr>
+                    <tr><td>SMLLC (EOOD)</td><td>Single-member limited liability company</td></tr>
+                    <tr><td>SP (ET)</td><td>Sole proprietor</td></tr>
+                    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr><td>YEI</td><td>Youth employment initiative</td></tr>
+                </table>
+
+                <h2>DEFINITIONS</h2>
+                <table class="glossary-table">
+                    <tr>
+                        <td style="font-weight:bold;">Beneficiary</td>
+                        <td>A public or private body responsible for initiating or both initiating and implementing the project; in the context of State aid schemes - the body which receives the aid; and in the context of financial instruments - the body that implements the financial instrument or the fund of funds as appropriate.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Partner</td>
+                        <td>A natural person or legal entity and their associations, which take part in the technical and/ or financial implementation of the project or project activities predefined in the application form.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Priority axis</td>
+                        <td>One of the purposes of the strategy in the operational programme, including operations that are interrelated and have specific measurable targets.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Project</td>
+                        <td>Approved by the Managing Authority project proposal, for which a Contract is concluded for awarding financial support</td>
+                    </tr>
+
+                </table>
+            }
+        </div>
+    </div>
+</div>

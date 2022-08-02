@@ -1,0 +1,66 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string portalReportUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalReportUrl");
+  string contractRegNumber = (string)Model["contractRegNumber"];
+  string contractName = (string)Model["contractName"];
+  string contractCompanyName = (string)Model["contractCompanyName"];
+  string contractCompanyUin = (string)Model["contractCompanyUin"];
+  string contractCommunicationRegNumber = (string)Model["contractCommunicationRegNumber"];
+  string contractCommunicationType = (string)Model["contractCommunicationType"];
+  string contractCommunicationSource = (string)Model["contractCommunicationSource"];
+  string procedureCode = (string)Model["procedureCode"];
+  string procedureName = (string)Model["procedureName"];
+  string programmeCode = (string)Model["programmeCode"];
+  string programmeName = (string)Model["programmeName"];
+  string email = (string)Model["email"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Имате получено съобщение във връзка с договор по схема за кандидатстване: @procedureCode - @procedureName, Основна организация @programmeCode - @programmeName, с бенефициент @contractCompanyName (@contractCompanyUin), наименование: <strong>@contractName</strong> и регистрационен номер: <strong>@contractRegNumber</strong>.</p>
+
+<p style="margin-bottom: 15px;">Регистрационен номер на съобщението: <strong>@contractCommunicationRegNumber</strong></p>
+
+
+@if (contractCommunicationSource == "administrativeAuthority")
+{
+  if(contractCommunicationType == "administrative")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в менюто „Кореспонденция“ в системата на адрес <a href="@(portalReportUrl)">@portalReportUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>, където имате възможност и за отговор.</p>
+  }
+
+  if(contractCommunicationType == "audit")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в менюто „Комуникация одитен орган“ в системата на адрес <a href="@(portalReportUrl)">@portalReportUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>, където имате възможност и за отговор.</p>
+  }
+
+  if(contractCommunicationType == "cert")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в менюто „Комуникация сертифициращ орган“ в системата на адрес <a href="@(portalReportUrl)">@portalReportUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>, където имате възможност и за отговор.</p>
+  }
+}
+
+@if (contractCommunicationSource == "beneficiary")
+{
+  if(contractCommunicationType == "administrative")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в раздел „Комуникация“ на менюто „Договори“ в системата, където имате възможност и за отговор.</p>
+  }
+
+  if(contractCommunicationType == "audit")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в раздел „Комуникация одитен орган“ на менюто „Проверки“ в системата, където имате възможност и за отговор.</p>
+  }
+
+  if(contractCommunicationType == "cert")
+  {
+    <p style="margin-bottom: 15px;">Съобщението може да намерите в раздел „Комуникация сертифициращ орган“ на менюто „Сертификация“ в системата, където имате възможност и за отговор.</p>
+  }
+}
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br/>

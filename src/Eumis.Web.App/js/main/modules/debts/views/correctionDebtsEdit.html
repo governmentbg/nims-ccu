@@ -1,0 +1,32 @@
+<ng-form name="editCorrectionDebtForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="correctionDebts_editCorrectionDebt_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="delBtn" btn-click="deactivateDebt()" text="correctionDebts_editCorrectionDebt_deactivate" class="btn btn-danger btn-xs" ng-if="correctionDebt.status === 'entered'"
+          ng-show="!editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebt.correctionDebtId)">
+        </sc-button>
+        <sc-button name="delBtn" btn-click="delDebt()" text="correctionDebts_editCorrectionDebt_del" class="btn btn-danger btn-xs" ng-if="correctionDebt.status === 'new'"
+          ng-show="!editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebt.correctionDebtId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="correctionDebts_editCorrectionDebt_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-if="correctionDebt.status !== 'removed'"
+          ng-show="!editMode" ng-disabled="!$canDo('CorrectionDebtActions.Edit', correctionDebt.correctionDebtId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="correctionDebts_editCorrectionDebt_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="correctionDebts_editCorrectionDebt_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <h5 class="table-header table-header-first" l10n-text="correctionDebts_editCorrectionDebt_correctionDebt"></h5>
+      <eumis-correction-debt name="correctionDebtForm" ng-model="correctionDebt"></eumis-correction-debt>
+
+      <h5 class="table-header" l10n-text="correctionDebts_editCorrectionDebt_correctionData"></h5>
+      <eumis-flat-financial-correction-info name="flatFinancialCorrectionInfoForm" ng-model="correctionDebt.flatFinancialCorrectionInfo" sc-form-readonly="true"></eumis-flat-financial-correction-info>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,5 @@
+﻿@model Decimal?
+@if (Model.HasValue)
+{
+    <span class="no-wrap-white-space">@Eumis.Public.Common.Helpers.DataUtils.DecimalToStringDecimalPointSpace(Model.Value)</span>
+}

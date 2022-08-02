@@ -1,0 +1,83 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_contractReportsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_contractReportsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_contractReportsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.contractId" alias="'contracts'" mode="id" l10n-text="monitoring_contractReportsReport_contract" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_contractReportsReport_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.reportType" alias="'contractReportTypes'" mode="id" l10n-text="monitoring_contractReportsReport_reportType" class="col-sm-4"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.reportStatus" alias="'contractReportStatusesWithoutDraft'" mode="id" l10n-text="monitoring_contractReportsReport_reportStatus" class="col-sm-4"></sc-field>
+          <div class="labeless col-sm-2">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_contractReportsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+          icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_contractReportsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_programme"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_programmePriority"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_procedure"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_contractRegNumber"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_contractExecutionStatus"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_contractName"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_companyUin"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_companyName"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_regNumber"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_reportType"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_dateFrom"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_dateTo"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_reportStatus"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_submitDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_requestedAmount"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_reportedAmounts"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_verifiedAmounts"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_verifiedAdvancePaymentAmounts"></th>
+                <th class="text-center" l10n-text="monitoring_contractReportsReport_paidAmounts"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="contractReport in contractReports">
+                <td>{{contractReport.programme}}</td>
+                <td>{{contractReport.programmePriority}}</td>
+                <td>{{contractReport.procedure}}</td>
+                <td>{{contractReport.contractRegNumber}}</td>
+                <td>{{contractReport.contractExecutionStatus}}</td>
+                <td>{{contractReport.contractName}}</td>
+                <td>{{contractReport.companyUin}}</td>
+                <td>{{contractReport.companyName}}</td>
+                <td>{{contractReport.regNumber}}</td>
+                <td>{{contractReport.reportType}}</td>
+                <td>{{contractReport.dateFrom | date:'dd.MM.yyyy'}}</td>
+                <td>{{contractReport.dateTo | date:'dd.MM.yyyy'}}</td>
+                <td>{{contractReport.status}}</td>
+                <td>{{contractReport.submitDate | date:'dd.MM.yyyy'}}</td>
+                <td>{{contractReport.requestedAmount | money}}</td>
+                <td>{{contractReport.reportedTotalAmount | money}}</td>
+                <td>{{contractReport.verifiedTotalAmount | money}}</td>
+                <td>{{contractReport.verifiedTotalAdvancePaymentAmount | money}}</td>
+                <td>{{contractReport.paidTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="contractReports.length === 0">
+                <td colspan="19" l10n-text="monitoring_contractReportsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

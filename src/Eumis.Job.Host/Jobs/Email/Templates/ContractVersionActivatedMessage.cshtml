@@ -1,0 +1,24 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@{
+  string contractRegNumber = (string)Model["contractRegNumber"];
+  string contractName = (string)Model["contractName"];
+  string contractCompanyName = (string)Model["contractCompanyName"];
+  string contractCompanyUin = (string)Model["contractCompanyUin"];
+  string procedureCode = (string)Model["procedureCode"];
+  string procedureName = (string)Model["procedureName"];
+  string programmeCode = (string)Model["programmeCode"];
+  string programmeName = (string)Model["programmeName"];
+  bool isAnnex = (bool)Model["isAnnex"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Има @(isAnnex ? "изменение" : "промяна") по договор по схема за кандидатстване: @procedureCode - @procedureName, Основна организация @programmeCode - @programmeName, с бенефициент @contractCompanyName (@contractCompanyUin), наименование: <strong>@contractName</strong> и регистрационен номер: <strong>@contractRegNumber</strong>.</p>
+
+<p style="margin-bottom: 15px;">@(isAnnex ? "Изменението" : "Промяната") може да намерите в раздел „Договори“ на системата.</p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата.<br/>

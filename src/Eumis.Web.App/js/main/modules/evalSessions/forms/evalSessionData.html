@@ -1,0 +1,18 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="model.evalSessionId ? 'procedures' : 'evalSessionProcedures'" mode="id" ng-model="model.procedureId" ng-required="true" ng-disabled="model.evalSessionId" l10n-text="evalSessions_evalSessionDataForm_procedureId" class="col-sm-8 col-md-7"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionTypes'" mode="id" ng-model="model.evalSessionType" ng-required="true" ng-disabled="model.evalSessionId" l10n-text="evalSessions_evalSessionDataForm_evalSessionType" class="col-sm-5 col-md-5"></sc-field>
+    <sc-field type="nomenclature" alias="'evalSessionStatuses'" mode="id" ng-model="model.evalSessionStatus" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionDataForm_evalSessionStatus" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.sessionNum" ng-readonly="true" l10n-text="evalSessions_evalSessionDataForm_sessionNum" class="col-sm-5 col-md-5"></sc-field>
+    <sc-field type="date" ng-model="model.sessionDate" ng-readonly="true" l10n-text="evalSessions_evalSessionDataForm_sessionDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.orderNum" l10n-text="evalSessions_evalSessionDataForm_orderNum" class="col-sm-5 col-md-5" maxlength="50"></sc-field>
+    <sc-field type="date" ng-model="model.orderDate" l10n-text="evalSessions_evalSessionDataForm_orderDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+</ng-form>
+

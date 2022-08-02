@@ -1,0 +1,228 @@
+﻿@model R_10044.Indicators
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BFPContractIndicators.Name</th>
+                <th>@BFPContractIndicators.Type</th>
+                <th>@BFPContractIndicators.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.IndicatorCollection != null && Model.IndicatorCollection.Count > 0)
+            {
+                for (int i = 0; i < Model.IndicatorCollection.Count; i++)
+                {
+                    var bfpContractIndicator = Model.IndicatorCollection[i].BFPContractIndicator;
+
+                    if (bfpContractIndicator.SelectedIndicator != null)
+                    {
+                        <tr>
+                            <td style="word-break: break-all">
+                                <span class="filled-value">
+                                    @bfpContractIndicator.SelectedIndicator.Name
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TypeName)
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr class="history-table">
+                            <td colspan="3">
+                                <div class="history-table-wrapper clearfix">
+                                    @* ================= START BFP CONTRACT INDICATOR ================= *@
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-lg-12 col-md-12">
+                                            @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.Name, ProgrammeIndicators.Name)
+                                            @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.Name)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.TypeName, ProgrammeIndicators.Type)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TypeName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.TrendName, ProgrammeIndicators.Trend)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TrendName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.KindName, ProgrammeIndicators.Kind)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.KindName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.MeasureName, ProgrammeIndicators.Measure)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.MeasureName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.AggregatedReport, ProgrammeIndicators.AggregatedReport)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.AggregatedReport)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.AggregatedTarget, ProgrammeIndicators.AggregatedTarget)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.AggregatedTarget)
+                                    </div>
+
+                                    @if (bfpContractIndicator.SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.BaseMen, ProgrammeIndicators.BaseMen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.BaseMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.BaseWomen, ProgrammeIndicators.BaseWomen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.BaseWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.BaseTotal, ProgrammeIndicators.BaseTotal)
+                                        @Html.DisplayFor(m => bfpContractIndicator.BaseTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    @if (bfpContractIndicator.SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.TargetMen, ProgrammeIndicators.TargetMen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.TargetMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.TargetWomen, ProgrammeIndicators.TargetWomen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.TargetWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.TargetTotal, ProgrammeIndicators.TargetTotal)
+                                        @Html.DisplayFor(m => bfpContractIndicator.TargetTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        @Html.LabelFor(m => bfpContractIndicator.Description, ProgrammeIndicators.Description)
+                                        @Html.DisplayFor(m => bfpContractIndicator.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+
+                                    @* ================= END OF BFP CONTRACT INDICATOR ================= *@
+
+                                    @if (Model.IndicatorCollection[i].HasGenderDivision)
+                                    {
+                                        <div style="clear:both;"></div>
+                                        <h3>@TechnicalReportIndicator.LastReportAmount</h3>
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+
+                                        <h3>@TechnicalReportIndicator.PeriodAmount</h3>
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].PeriodAmountMen, TechnicalReportIndicator.Men)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].PeriodAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].PeriodAmountWomen, TechnicalReportIndicator.Women)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].PeriodAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].PeriodAmountTotal, TechnicalReportIndicator.Total)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].PeriodAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+
+                                        <h3>@TechnicalReportIndicator.CumulativeAmount</h3>
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].CumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].CumulativeAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].CumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].CumulativeAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].CumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].CumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+
+                                        <h3>@TechnicalReportIndicator.ResidueAmount</h3>
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].ResidueAmountMen, TechnicalReportIndicator.Men)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].ResidueAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].ResidueAmountWomen, TechnicalReportIndicator.Women)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].ResidueAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].ResidueAmountTotal, TechnicalReportIndicator.Total)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].ResidueAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div style="clear:both;"></div>
+
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.LastReportAmount)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix">
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].PeriodAmountTotal, TechnicalReportIndicator.PeriodAmount)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].PeriodAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].CumulativeAmountTotal, TechnicalReportIndicator.CumulativeAmount)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].CumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.IndicatorCollection[i].ResidueAmountTotal, TechnicalReportIndicator.ResidueAmount)
+                                                @Html.DisplayFor(m => m.IndicatorCollection[i].ResidueAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-md-12">
+                                        @Html.LabelFor(m => m.IndicatorCollection[i].Comment, TechnicalReportIndicator.Comment)
+                                        @Html.DisplayFor(m => m.IndicatorCollection[i].Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

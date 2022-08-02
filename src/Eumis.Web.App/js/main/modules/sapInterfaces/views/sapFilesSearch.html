@@ -1,0 +1,31 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'sapFileStatuses'" mode="id" ng-model="filters.status" l10n-text="sapFiles_filesSearch_status" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'sapFileTypes'" mode="id" ng-model="filters.type" l10n-text="sapFiles_filesSearch_type" class="col-sm-4"></sc-field>
+        <div class="labeless col-sm-8">
+          <sc-button name="seachBtn" btn-click="search()" text="sapFiles_filesSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" btn-sref="{ state: 'root.sapFiles.new' }" text="sapFiles_filesSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('SapFileListActions.Create')"></sc-button>
+
+    <sc-datatable items="sapFiles" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" btn-sref="{state: 'root.sapFiles.view.edit', params: { id: item.sapFileId}}" class="btn btn-xs btn-primary" icon="glyphicon-list-alt"
+          ng-disabled="!$canDo('SapFileActions.View', item.sapFileId)"></sc-button>
+      </sc-column>
+      <sc-column data="status" title="sapFiles_filesSearch_status">
+      </sc-column>
+      <sc-column data="type" title="sapFiles_filesSearch_type">
+      </sc-column>
+      <sc-column data="createdByUser" title="sapFiles_filesSearch_createdByUser">
+      </sc-column>
+      <sc-column data="createDate" title="sapFiles_filesSearch_createDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

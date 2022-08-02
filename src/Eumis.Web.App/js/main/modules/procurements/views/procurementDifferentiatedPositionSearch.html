@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="procurements_searchProcurementPositions_header"></h5>
+      <sc-button name="newProcurementPositionBtn" btn-sref="{ state: 'root.procurements.view.differentiatedPosition.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+        ng-disabled="!$canDo('ProgrammeListActions.Create')" ng-show="status === 'draft'">
+    </div>
+    <sc-datatable items="procurementPositions" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procurements.view.differentiatedPosition.edit', params: {ind: item.procurementDifferentiatedPositionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="procurements_searchProcurementPositions_name">
+      </sc-column>
+      <sc-column data="comment" title="procurements_searchProcurementPositions_comment">
+      </sc-column>
+      <sc-column data="companyName" title="procurements_searchProcurementPositions_companyName">
+      </sc-column>
+      <sc-column data="companyUinType" title="procurements_searchProcurementPositions_companyUinType">
+      </sc-column>
+      <sc-column data="companyUin" title="procurements_searchProcurementPositions_companyUin">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

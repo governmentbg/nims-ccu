@@ -1,0 +1,44 @@
+<ng-form name="chooseContractForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="notificationSetting_chooseNSContractsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="notificationSetting_chooseNSContractsModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="notificationSetting_chooseNSContractsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-button name="chooseAllBtn" ng-show="hasChoosenAll"  btn-click="chooseAll()" text="notificationSetting_chooseNSContractsModal_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="removeAllBtn" ng-show="!hasChoosenAll" btn-click="removeAll()" text="notificationSetting_chooseNSContractsModal_all"class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+        </sc-button>
+        <sc-datatable items="contracts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="procedureName" title="notificationSetting_chooseNSContractsModal_procedure">
+          </sc-column>
+          <sc-column data="regNumber" title="notificationSetting_chooseNSContractsModal_regNumber">
+          </sc-column>
+          <sc-column data="contractDate" title="notificationSetting_chooseNSContractsModal_contractDate" type="date">
+          </sc-column>
+          <sc-column data="name" title="notificationSetting_chooseNSContractsModal_name">
+          </sc-column>
+          <sc-column data="executionStatus" title="notificationSetting_chooseNSContractsModal_executionStatus">
+          </sc-column>
+          <sc-column data="company" title="notificationSetting_chooseNSContractsModal_company">
+          </sc-column>
+          <sc-column data="totalBfpAmount" title="notificationSetting_chooseNSContractsModal_totalBfpAmount" type="money">
+          </sc-column>
+          <sc-column data="totalSelfAmount" title="notificationSetting_chooseNSContractsModal_totalSelfAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

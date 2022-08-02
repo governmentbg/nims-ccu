@@ -1,0 +1,20 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="loadMonitorstatSurveyBtn" btn-sref="{ state: 'root.monitorstat.new' }"
+      text="monitorstat_searchMonitorstat_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-plus"
+      ng-disabled="!$canDo('MonitorstatListActions.Import')"></sc-button>
+    <sc-datatable items="surveys" filterable="true" pageable="true" sortable="true" dynamic-columns="true"
+      scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" btn-sref="{state: 'root.monitorstat.view', params: { id: item.monitorstatSurveyId}}"
+          class="btn btn-xs btn-primary" icon="glyphicon-list-alt"></sc-button>
+      </sc-column>
+      <sc-column data="year" title="monitorstat_searchMonitorstat_year">
+      </sc-column>
+      <sc-column data="createDate" title="monitorstat_searchMonitorstat_createDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="monitorstat_searchMonitorstat_surveyName">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div>
+
+  <label class="title">{{titleText}}</label>
+
+  <sc-tabs tab-list="{
+    'contractReports_tabs_contract': 'root.contractReports.view.contract',
+    'contractReports_tabs_report': 'root.contractReports.view.data',
+    'contractReports_tabs_documents': 'root.contractReports.view.documents'
+  }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

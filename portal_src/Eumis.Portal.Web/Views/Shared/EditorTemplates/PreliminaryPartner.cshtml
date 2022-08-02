@@ -1,0 +1,8 @@
+﻿@model R_10028.PreliminaryPartner
+
+@Html.HiddenFor(m => m.id)
+
+<div class="form-group col-md-12">
+    <label>@PreliminaryPartner.ArePartnersIncluded</label>
+    @Html.EditorFor(m=>m.ArePartnersIncluded, MVC.Shared.Views.EditorTemplates.BooleanRadio)
+</div>

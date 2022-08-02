@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10093" 
+    xmlns="http://ereg.egov.bg/segment/R-10093" 
+    
+    xmlns:pn="http://ereg.egov.bg/segment/R-10000"
+
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+      
+    <xsd:complexType name="Direction">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="bg">Направление</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DirectionItem" type="pn:PrivateNomenclature" minOccurs="0" />
+            <xsd:element name="SubDirection" type="pn:PrivateNomenclature" minOccurs="0" />
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="DirectionSection">
+        <xsd:sequence>
+            <xsd:element name="Direction" type="Direction" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string"/>
+        <xsd:attribute name="isLocked" type="xsd:boolean"/>
+    </xsd:complexType>
+</xsd:schema>

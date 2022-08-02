@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{875E9690-8157-4924-B623-64EA53A1FBEF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Database</RootNamespace>
+    <AssemblyName>Eumis.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateCI.sql" />
+    <Content Include="CreateProduction.sql" />
+    <Content Include="Create\CreatePartitionFunction.sql" />
+    <Content Include="Create\CreatePartitionScheme.sql" />
+    <Content Include="Create\CustomTypes\StringTableType.sql" />
+    <Content Include="Create\CustomTypes\IntTableType.sql" />
+    <Content Include="Create\InsertSystemData.sql" />
+    <Content Include="Create\InsertTestData.sql" />
+    <Content Include="Create\InsertProdUsers.sql" />
+    <Content Include="Create\Jobs\jobMarkDeletedBlobs.sql" />
+    <Content Include="Create\Jobs\jobDeleteBlobs.sql" />
+    <Content Include="Create\Procedures\spExistsBlobReference.sql" />
+    <Content Include="Create\Sequences\HistoricContractActivitySequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractProcurementPlanPositionSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractPartnerSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractLocationSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractContractedAmountSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractActuallyPaidAmountSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractProcurementPlanSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractRequestSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractReimbursedAmountSequence.sql" />
+    <Content Include="Create\Sequences\HistoricContractSequence.sql" />
+    <Content Include="Create\Tables\ActionLogs\ActionLogs.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportAppendices.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertRevalidationFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertRevalidationCorrections.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertificationDocuments.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertCorrections.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportContractReportCorrections.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportCertReports.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReports.sql" />
+    <Content Include="Create\Tables\AnnualAccountReports\AnnualAccountReportAuditDocuments.sql" />
+    <Content Include="Create\Tables\Audits\AuditProjects.sql" />
+    <Content Include="Create\Tables\CertAuthorityChecks\CertAuthorityCheckProjects.sql" />
+    <Content Include="Create\Tables\CertReports\CertReportCertificationDocuments.sql" />
+    <Content Include="Create\Tables\CheckSheets\CheckSheetActionLogs.sql" />
+    <Content Include="Create\Tables\CheckSheets\CheckSheetVersionXmls.sql" />
+    <Content Include="Create\Tables\CheckSheets\CheckSheets.sql" />
+    <Content Include="Create\Tables\CheckSheets\CheckSheetVersionXmlFiles.sql" />
+    <Content Include="Create\Tables\Companies\LocalActionGroupMunicipalities.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidationCertAuthorityFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidationCertAuthorityFinancialCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidationCertAuthorityCorrectionDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractGrantDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementPlanAdditionalDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertAuthorityFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertAuthorityFinancialCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertAuthorityCorrectionDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertAuthorityCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidationCertAuthorityCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicalCorrectionIndicators.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicalCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractExtensions.sql" />
+    <Content Include="Create\Tables\Contracts\ContractUsers.sql" />
+    <Content Include="Create\Tables\Declarations\DeclarationFiles.sql" />
+    <Content Include="Create\Tables\Declarations\Declarations.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionResultProjects.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionResults.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractRequests.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractActivities.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractLocations.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractPartners.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractProcurementPlans.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractProcurementPlanPositions.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractContractedAmounts.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractActuallyPaidAmounts.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContractReimbursedAmounts.sql" />
+    <Content Include="Create\Tables\HistoricContracts\HistoricContracts.sql" />
+    <Content Include="Create\Tables\Monitorstat\MonitorstatMapNodes.sql" />
+    <Content Include="Create\Tables\Monitorstat\MonitorstatSurveys.sql" />
+    <Content Include="Create\Tables\Monitorstat\MonitorstatReports.sql" />
+    <Content Include="Create\Tables\Nomenclatures\BulstatNomenclatures.sql" />
+    <Content Include="Create\Tables\Notifications\NotificationEntries.sql" />
+    <Content Include="Create\Tables\Notifications\NotificationSettings.sql" />
+    <Content Include="Create\Tables\Notifications\NotificationSettingSets.sql" />
+    <Content Include="Create\Tables\Notifications\UserNotifications.sql" />
+    <Content Include="Create\Tables\Notifications\NotificationEventPermissions.sql" />
+    <Content Include="Create\Tables\Notifications\NotificationEvents.sql" />
+    <Content Include="Create\Tables\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTables.sql" />
+    <Content Include="Create\Tables\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableCandidates.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeDeclarationItems.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeDeclarations.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeDirections.sql" />
+    <Content Include="Create\Tables\OperationalMap\SubDirections.sql" />
+    <Content Include="Create\Tables\OperationalMap\IndicatorItemTypes.sql" />
+    <Content Include="Create\Tables\OperationalMap\Directions.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeApplicationDocuments.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeGroups.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeCheckListVersionXmlFiles.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeCheckListVersionXmls.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeCheckLists.sql" />
+    <Content Include="Create\Tables\OperationalMap\ProgrammeProcedureManuals.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureDeclarations.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetKidCodes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetSizeTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetComponents.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureLocations.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureIndicativeAnnualWorkingProgrammeCompanies.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureIndicativeAnnualWorkingProgrammeCandidates.sql" />
+    <Content Include="Create\Tables\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureIndicativeAnnualWorkingProgrammes.sql" />
+    <Content Include="Create\Tables\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableTimeLimits.sql" />
+    <Content Include="Create\Tables\IndicativeAnnualWorkingProgrammes\IndicativeAnnualWorkingProgrammeTableProgrammes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureContractReportDocuments.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureMassCommunicationDocuments.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureMassCommunicationRecipients.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureMassCommunications.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureMonitorstatRequests.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureMonitorstatDocuments.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureDiscussions.sql" />
+    <Content Include="Create\Tables\Projects\ProjectCommunicationAnswers.sql" />
+    <Content Include="Create\Tables\Projects\ProjectMassManagingAuthorityCommunicationDocuments.sql" />
+    <Content Include="Create\Tables\Projects\ProjectMassManagingAuthorityCommunicationRecipients.sql" />
+    <Content Include="Create\Tables\Projects\ProjectMassManagingAuthorityCommunications.sql" />
+    <Content Include="Create\Tables\Projects\ProjectMonitorstatResponses.sql" />
+    <Content Include="Create\Tables\Projects\Projects.sql" />
+    <Content Include="Create\Tables\PublicDiscussions\PublicDiscussionComments.sql" />
+    <Content Include="Create\Tables\PublicDiscussions\PublicDiscussionGuidelines.sql" />
+    <Content Include="Create\Tables\PublicDiscussions\PublicDiscussions.sql" />
+    <Content Include="Create\Tables\SapInterfaces\SapDistributedLimits.sql" />
+    <Content Include="Create\Tables\Users\UserDeclarations.sql" />
+    <Content Include="Create\Tools\spAddDailyJob.sql" />
+    <Content Include="Create\Procedures\spDeleteBlobs.sql" />
+    <Content Include="Create\Procedures\spMarkDeletedBlobs.sql" />
+    <Content Include="Create\Sequences\ContractReportFinancialCSDBudgetItemSequence.sql" />
+    <Content Include="Create\Sequences\ContractReportFinancialCSDSequence.sql" />
+    <Content Include="Create\Sequences\ContractReportFinancialCSDFileSequence.sql" />
+    <Content Include="Create\Sequences\ActuallyPaidAmountSequence.sql" />
+    <Content Include="Create\Sequences\ReimbursedAmountSequence.sql" />
+    <Content Include="Create\Tables\Audits\Audits.sql" />
+    <Content Include="Create\Tables\Audits\AuditDocs.sql" />
+    <Content Include="Create\Tables\Audits\AuditAscertainments.sql" />
+    <Content Include="Create\Tables\Audits\AuditLevelItems.sql" />
+    <Content Include="Create\Tables\Audits\AuditAscertainmentItems.sql" />
+    <Content Include="Create\Tables\CertAuthorityChecks\CertAuthorityCheckAscertainments.sql" />
+    <Content Include="Create\Tables\CertAuthorityChecks\CertAuthorityChecks.sql" />
+    <Content Include="Create\Tables\CertAuthorityChecks\CertAuthorityCheckLevelItems.sql" />
+    <Content Include="Create\Tables\CertAuthorityChecks\CertAuthorityCheckDocuments.sql" />
+    <Content Include="Create\Tables\CertReports\CertReports.sql" />
+    <Content Include="Create\Tables\CertReports\CertReportDocuments.sql" />
+    <Content Include="Create\Tables\CertReports\CertReportAttachedCertReports.sql" />
+    <Content Include="Create\Tables\CertReports\CertReportSnapshotFiles.sql" />
+    <Content Include="Create\Tables\CertReports\CertReportSnapshots.sql" />
+    <Content Include="Create\Tables\Contracts\ContractVersionXmlAmounts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCorrectionDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractBudgetLevel3Amounts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractPartners.sql" />
+    <Content Include="Create\Tables\Contracts\ContractRegistrations.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancials.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportPayments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReports.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicalMembers.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicals.sql" />
+    <Content Include="Create\Tables\Contracts\ContractsContractRegistrations.sql" />
+    <Content Include="Create\Tables\Contracts\ContractCommunicationXmls.sql" />
+    <Content Include="Create\Tables\Contracts\ContractAccessCodes.sql" />
+    <Content Include="Create\Tables\Contracts\ContractCommunicationXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractVersionXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicalXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportTechnicalChecks.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractSpendingPlanXmls.sql" />
+    <Content Include="Create\Sequences\EvalSessionSheetSequence.sql" />
+    <Content Include="Create\Sequences\CompanySequence.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCSDBudgetItems.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCSDFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportPaymentXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractContractors.sql" />
+    <Content Include="Create\Tables\Contracts\ContractContracts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractSubcontracts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractActivities.sql" />
+    <Content Include="Create\Tables\Contracts\ContractContractActivities.sql" />
+    <Content Include="Create\Tables\Contracts\ContractActivityCompanies.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportAttachedFinancialCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementPlans.sql" />
+    <Content Include="Create\Tables\Contracts\ContractDifferentiatedPositions.sql" />
+    <Content Include="Create\Tables\Contracts\ContractIndicators.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportIndicators.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportAdvancePaymentAmounts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidations.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialRevalidationCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialRevalidations.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCertCorrectionCSDs.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCertCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportRevalidationDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportCertCorrectionDocuments.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicros.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosType1Items.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosMunicipalities.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosDistricts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicroChecks.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosSettlements.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosType2Items.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosType3Items.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportAdvanceNVPaymentAmounts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportPaymentCheckAmounts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportMicrosType4Items.sql" />
+    <Content Include="Create\Tables\Debts\ContractDebts.sql" />
+    <Content Include="Create\Tables\Debts\ContractDebtVersions.sql" />
+    <Content Include="Create\Tables\Debts\ContractDebtPayments.sql" />
+    <Content Include="Create\Tables\Debts\ContractDebtInterests.sql" />
+    <Content Include="Create\Tables\EuReimbursedAmounts\EuReimbursedAmountCertReports.sql" />
+    <Content Include="Create\Tables\EuReimbursedAmounts\EuReimbursedAmounts.sql" />
+    <Content Include="Create\Tables\Debts\CorrectionDebts.sql" />
+    <Content Include="Create\Tables\Debts\CorrectionDebtVersions.sql" />
+    <Content Include="Create\Tables\Contracts\ContractLocations.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementPlanPublicDocuments.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionProjectStandingRejectionReasons.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionReportProjectPartners.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStandpointXmlFiles.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionSheetXmlFiles.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialChecks.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportFinancialCorrections.sql" />
+    <Content Include="Create\Tables\Contracts\ContractReportPaymentChecks.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStandpointXmls.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStandpoints.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionProjectStandingEvaluations.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStandingProjects.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionProjectStandings.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStandings.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionEvaluationSheets.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionReportProjects.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionEvaluations.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionDistributionUsers.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionDistributionProjects.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionDocuments.sql" />
+    <Content Include="Create\Tables\Geography\ProtectedZones.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityFinancialCorrections.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityDocs.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\ActuallyPaidAmountDocuments.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\ActuallyPaidAmounts.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\CompensationDocumentDocs.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\CompensationDocuments.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\ReimbursedAmountPayments.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\Prognoses.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FIReimbursedAmounts.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FinancialCorrectionImposingReasons.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FinancialCorrectionVersionViolations.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FinancialCorrections.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FinancialCorrectionVersions.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FlatFinancialCorrectionLevelItems.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\FlatFinancialCorrections.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\OtherViolations.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityVersionInvolvedPersons.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityVersionDocs.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularitySanctionTypes.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularitySanctionCategories.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityTypes.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityCategories.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityFinancialStatuses.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularityVersions.sql" />
+    <Content Include="Create\Tables\Irregularities\Irregularities.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularitySignalInvolvedPersons.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularitySignalDocs.sql" />
+    <Content Include="Create\Tables\Irregularities\IrregularitySignals.sql" />
+    <Content Include="Create\Tables\MonitoringFinancialControl\ReimbursedAmounts.sql" />
+    <Content Include="Create\Tables\Guidances\Guidances.sql" />
+    <Content Include="Create\Tables\Messages\MessageRecipients.sql" />
+    <Content Include="Create\Tables\Messages\Messages.sql" />
+    <Content Include="Create\Tables\Messages\MessageFiles.sql" />
+    <Content Include="Create\Tables\News\NewsFiles.sql" />
+    <Content Include="Create\Tables\News\News.sql" />
+    <Content Include="Create\Tables\Nomenclatures\CheckBlankTopics.sql" />
+    <Content Include="Create\Tables\Nomenclatures\BasicInterestRates.sql" />
+    <Content Include="Create\Tables\Nomenclatures\Allowances.sql" />
+    <Content Include="Create\Tables\Nomenclatures\AllowanceRates.sql" />
+    <Content Include="Create\Tables\Nomenclatures\InterestRates.sql" />
+    <Content Include="Create\Tables\Nomenclatures\InterestSchemes.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeIndicatorReportedAmounts.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeFinanceSources.sql" />
+    <Content Include="Create\Tables\OperationalMap\InvestmentPriorities.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureEvalTableXmlFiles.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureVersions.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureQuestions.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureEvalTables.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureEvalTableXmls.sql" />
+    <Content Include="Create\Tables\Projects\ProjectVersionXmlFiles.sql" />
+    <Content Include="Create\Tables\Projects\ProjectCommunicationMessageFiles.sql" />
+    <Content Include="Create\Tables\Projects\ProjectCommunicationFileSignatures.sql" />
+    <Content Include="Create\Tables\Projects\ProjectCommunicationFiles.sql" />
+    <Content Include="Create\Tables\Projects\ProjectFiles.sql" />
+    <Content Include="Create\Tables\Projects\ProjectFileSignatures.sql" />
+    <Content Include="Create\Tables\Registrations\RegOfferXmlFiles.sql" />
+    <Content Include="Create\Tables\Registrations\RegOfferXmls.sql" />
+    <Content Include="Create\Tables\Registrations\RegProjectXmlFiles.sql" />
+    <Content Include="Create\Tables\SapInterfaces\SapSchemas.sql" />
+    <Content Include="Create\Tables\SapInterfaces\SapPaidAmounts.sql" />
+    <Content Include="Create\Tables\SapInterfaces\SapFiles.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckAscertainmentItems.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckItems.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckPlanItems.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckRecommendationAscertainments.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckRecommendations.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckTargets.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckPlanTargets.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckDocs.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckAscertainments.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotChecks.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckPlanDocs.sql" />
+    <Content Include="Create\Tables\SpotChecks\SpotCheckPlans.sql" />
+    <Content Include="Create\Tables\System\UpdateScripts.sql" />
+    <Content Include="Create\Tables\Users\UserOrganizations.sql" />
+    <Content Include="Create\Tables\Users\RegDataRequests.sql" />
+    <Content Include="Create\Tables\Users\PermissionRequests.sql" />
+    <Content Include="Create\Tables\Users\RequestPackages.sql" />
+    <Content Include="Create\Tables\Users\RequestPackageUsers.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionDistributions.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionSheets.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionSheetXmls.sql" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Create\Views\UniqueProcedureBudgetSizeTypeKidCodeIndexed.sql" />
+    <Content Include="Indexes\IX_EvalSessionSheetXmls_EvalSessionSheetId.sql" />
+    <Content Include="Indexes\IX_ProjectCommunications_EvalSessionId.sql" />
+    <Content Include="Insert\ExcelConfig\Indicators.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\Institutions.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\InvestmentPriorities.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\MapNodeBudgets.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\MapNodeIndicators.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\MapNodeInstitutions.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\MapNodeRelations.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\ExcelConfig\MapNodes.sql">
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </Content>
+    <Content Include="Insert\Nomenclatures\BulstatNomenclatures.sql" />
+    <Content Include="Insert\Notifications\NotificationEventPermissions.sql" />
+    <Content Include="Insert\Notifications\NotificationEvents.sql" />
+    <Content Include="ManualReports\20171201_user_eval_session_view_actions.sql" />
+    <EmbeddedResource Include="ManualUpdates\20220719_insert_OrganizationType.sql" />
+    <Content Include="ManualUpdates\20200313_grant_canMonitorCheckSheet_permission .sql" />
+    <Content Include="ManualUpdates\20200310_change_verification_date.sql" />
+    <Content Include="ManualUpdates\20200310_reversing_contractReportCorrections_sign.sql" />
+    <Content Include="ManualUpdates\20191227_change_procedure_financeSource.sql" />
+    <Content Include="ManualUpdates\20191114_reversing_contractReportCorrections_sign.sql" />
+    <Content Include="ManualUpdates\20191108_update_IsIntroducedByLAG_of_old_Procedures.sql" />
+    <Content Include="ManualUpdates\20191028_reversing_contractReportCorrections_sign.sql" />
+    <Content Include="ManualUpdates\20191003_reversing_contractReportCorrections_sign.sql" />
+    <Content Include="ManualUpdates\20190806_reversing_contractReportCorrections_sign.sql" />
+    <Content Include="ManualUpdates\20190611_set_CSDBudgetItem_status_to_draft.sql" />
+    <Content Include="ManualUpdates\20190521_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20190521_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20190125_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20190125_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20190123_change_contractIndicators_contractReportIndicators.sql" />
+    <Content Include="ManualUpdates\20190116_change_certReport_status.sql" />
+    <EmbeddedResource Include="ManualUpdates\20180919_change_contractReport_indicators.sql" />
+    <Content Include="ManualUpdates\20190115_deleteProjectsFromEvalSessions.sql" />
+    <Content Include="ManualUpdates\20181102_update_contract_contactype.sql" />
+    <Content Include="ManualUpdates\20181101_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20181101_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20181009_change_contractReport_indicators.sql" />
+    <Content Include="ManualUpdates\20181009_change_flat_corrections_status.sql" />
+    <Content Include="ManualUpdates\20180719_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180719_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180530_set_certReport_status_to_unchecked.sql" />
+    <Content Include="ManualUpdates\20180530_update_sap_schema.sql" />
+    <Content Include="ManualUpdates\20180425_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180423_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180314_update_contractReportFinancial_extracted_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180314_delete_contractReportFinancial_financeInstrumentsData.sql" />
+    <Content Include="ManualUpdates\20180207_change_contractReportPayment_type.sql" />
+    <Content Include="ManualUpdates\20180124_set_certReport_status_to_unchecked.sql" />
+    <Content Include="ManualUpdates\20171213_change_certReportNumbers.sql" />
+    <Content Include="ManualUpdates\20171212_change_certReportNumber.sql" />
+    <Content Include="ManualUpdates\20171013_set_certReportNumber.sql" />
+    <Content Include="ManualUpdates\20180423_change_contractReportFinancial_costSupportingDocument_budgetItem.sql" />
+    <EmbeddedResource Include="ManualUpdates\20171019_change_contractReport_indicators.sql" />
+    <Content Include="ManualUpdates\20171113_remove_duplicated_contractReportPayment.sql" />
+    <Content Include="ManualUpdates\20171211_change_actuallyPaidAmount_contractReportPayment.sql" />
+    <Content Include="ManualUpdates\20171205_change_contractReportPayment_type.sql" />
+    <Content Include="ManualUpdates\20171113_change_contractReportPayment_status.sql" />
+    <Content Include="Indexes\IX_ContractReportFinancialCSDBudgetItems_ContractReportFinancialCSDId.sql" />
+    <Content Include="Indexes\IX_ContractReportFinancialCSDFiles_ContractReportFinancialCSDId.sql" />
+    <Content Include="ManualUpdates\20170801_negate_correction_sign.sql" />
+    <Content Include="ManualUpdates\20170801_set_certReport_status_to_unchecked - Copy.sql" />
+    <Content Include="ManualUpdates\20170823_negate_correction_sign.sql" />
+    <Content Include="ManualUpdates\20170823_update_contractreport_financialreport_csds.sql" />
+    <Content Include="ManualUpdates\20170824_update_municipality_name.sql" />
+    <Content Include="ManualUpdates\20171004_change_contractReportFinancial_costSupportingDocument_budgetItem.sql" />
+    <Content Include="ManualUpdates\20170918_set_certReport_status_to_unchecked.sql" />
+    <Content Include="ManualUpdates\20170908_set_certReport_status_to_unchecked.sql" />
+    <EmbeddedResource Include="ManualUpdates\20161202.sql" />
+    <EmbeddedResource Include="ManualUpdates\20161130.sql" />
+    <EmbeddedResource Include="ManualUpdates\20161103.sql" />
+    <EmbeddedResource Include="ManualUpdates\20161020.sql" />
+    <EmbeddedResource Include="ManualUpdates\20160830.sql" />
+    <EmbeddedResource Include="ManualUpdates\20160419.sql" />
+    <EmbeddedResource Include="ManualUpdates\20160404.sql" />
+    <EmbeddedResource Include="ManualUpdates\20160122.sql" />
+    <EmbeddedResource Include="ManualUpdates\20151123.sql" />
+    <EmbeddedResource Include="ManualUpdates\20151120.sql" />
+    <EmbeddedResource Include="ManualUpdates\20151119.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateAll.sql" />
+    <Content Include="Create\Create.sql" />
+    <Content Include="Create\CreateDB.sql" />
+    <Content Include="Create\Diagrams\Companies.sql" />
+    <Content Include="Create\Diagrams\Contracts.sql" />
+    <Content Include="Create\Diagrams\Evals.sql" />
+    <Content Include="Create\Diagrams\Projects.sql" />
+    <Content Include="Create\Diagrams\Procedures.sql" />
+    <Content Include="Create\Diagrams\Institutions.sql" />
+    <Content Include="Create\Diagrams\Nuts.sql" />
+    <Content Include="Create\Sequences\BlobContentSequence.sql" />
+    <Content Include="Create\Tables\Companies\CompanySizeTypes.sql" />
+    <Content Include="Create\Tables\Emails\Emails.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetValidationRules.sql" />
+    <Content Include="Create\Tables\Registrations\RegProjectXmls.sql" />
+    <Content Include="Create\Tables\Registrations\Registrations.sql" />
+    <Content Include="Create\Tables\Companies\KidCodes.sql" />
+    <Content Include="Create\Tables\Contracts\Contracts.sql" />
+    <Content Include="Create\Tables\Contracts\ContractProcurementXmls.sql" />
+    <Content Include="Create\Tables\Contracts\ContractVersionXmls.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionReports.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionDecisions.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionCorrespondence.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionUsers.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessions.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionStatuses.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionTypes.sql" />
+    <Content Include="Create\Tables\EvalSessions\EvalSessionProjects.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeDocuments.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeRelations.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeIndicators.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeInstitutions.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeInterventionCategories.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodeBudgets.sql" />
+    <Content Include="Create\Tables\OperationalMap\MapNodes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetLevel3.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetLevel2.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureBudgetLevel1.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureProgrammes.sql" />
+    <Content Include="Create\Tables\Projects\ProjectCommunications.sql" />
+    <Content Include="Create\Tables\Projects\ProjectVersionXmls.sql" />
+    <Content Include="Create\Tables\System\Counters.sql" />
+    <Content Include="Create\Tables\Users\UserTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureDocuments.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureNumbers.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureApplicationGuidelines.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureReportingDocs.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureApplicationDocs.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureReportingDocTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureSpecificBeneficiaries.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureInvestmentPriorities.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureSpecificTargets.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureShares.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureSpecFields.sql" />
+    <Content Include="Create\Tables\Procedures\ExpenseBudgetItems.sql" />
+    <Content Include="Create\Tables\Procedures\ExpenseTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ExpenseSubTypes.sql" />
+    <Content Include="Create\Tables\Geography\Settlements.sql" />
+    <Content Include="Create\Tables\Geography\Municipalities.sql" />
+    <Content Include="Create\Tables\Geography\Districts.sql" />
+    <Content Include="Create\Tables\Geography\Nuts2s.sql" />
+    <Content Include="Create\Tables\Geography\Nuts1s.sql" />
+    <Content Include="Create\Tables\Geography\Countries.sql" />
+    <Content Include="Create\Diagrams\Programmes.sql" />
+    <Content Include="Create\Tables\Institutions\InstitutionPersons.sql" />
+    <Content Include="Create\Tables\Institutions\InstitutionTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureTimeLimits.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureTypes.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureInterventionCategories.sql" />
+    <Content Include="Create\Tables\Procedures\ProcedureIndicators.sql" />
+    <Content Include="Create\Tables\OperationalMap\BudgetPeriods.sql" />
+    <Content Include="Create\Tables\Institutions\Institutions.sql" />
+    <Content Include="Create\Tables\Procedures\Procedures.sql" />
+    <Content Include="Create\Tables\OperationalMap\Measures.sql" />
+    <Content Include="Create\Tables\OperationalMap\InterventionCategories.sql" />
+    <Content Include="Create\Tables\OperationalMap\Indicators.sql" />
+    <Content Include="Create\Tables\Companies\Companies.sql" />
+    <Content Include="Create\Tables\Companies\CompanyTypes.sql" />
+    <Content Include="Create\Tables\Companies\CompanyLegalTypes.sql" />
+    <Content Include="Create\Tables\Companies\CompanyPersons.sql" />
+    <Content Include="Create\Tables\Projects\ErrandLegalActs.sql" />
+    <Content Include="Create\Tables\Projects\ProjectIndividualIndicators.sql" />
+    <Content Include="Create\Tables\Projects\ProjectSpecFields.sql" />
+    <Content Include="Create\Tables\Projects\ErrandTypes.sql" />
+    <Content Include="Create\Tables\Projects\ErrandAreas.sql" />
+    <Content Include="Create\Tables\Projects\ProjectErrands.sql" />
+    <Content Include="Create\Tables\Projects\ProjectTeams.sql" />
+    <Content Include="Create\Tables\Projects\TeamPositions.sql" />
+    <Content Include="Create\Tables\Projects\ProjectIndicators.sql" />
+    <Content Include="Create\Tables\Projects\ProjectPayPlans.sql" />
+    <Content Include="Create\Tables\Projects\ProjectActivities.sql" />
+    <Content Include="Create\Tables\Projects\ProjectShareDetailExpenseBudgets.sql" />
+    <Content Include="Create\Tables\Projects\ProjectInterventionCategories.sql" />
+    <Content Include="Create\Tables\Projects\ProjectPartners.sql" />
+    <Content Include="Create\Tables\Projects\ProjectTypes.sql" />
+    <Content Include="Create\Tables\Projects\ProjectMonitorstatRequests.sql" />
+    <Content Include="Create\Tables\Remuneration\RemunerationBasicRateValues.sql" />
+    <Content Include="Create\Tables\Remuneration\RemunerationAllowanceValues.sql" />
+    <Content Include="Create\Tables\Remuneration\RemunerationAllowances.sql" />
+    <Content Include="Create\Tables\Remuneration\RemunerationBasicRates.sql" />
+    <Content Include="Create\Tables\Remuneration\RemunerationSchemes.sql" />
+    <Content Include="Create\Tables\System\Blobs.sql" />
+    <Content Include="Create\Tables\System\BlobContentLocations.sql" />
+    <Content Include="Create\Tables\System\GParams.sql" />
+    <Content Include="Create\Tables\Users\PermissionTemplates.sql" />
+    <Content Include="Create\Tables\Users\UserPermissions.sql" />
+    <Content Include="Create\Tables\Users\Users.sql" />
+    <Content Include="Create\Tools\SchemaAlterScript.sql" />
+    <Content Include="Create\Tools\DocumentationScript.sql" />
+    <Content Include="Create\Tools\spDesc.sql" />
+    <Content Include="Create\Tools\sp_generate_inserts.sql" />
+    <Content Include="Create\Tools\Tool_ScriptDiagram2008.sql" />
+    <Content Include="Create\Views\MonitoringMapNodeIndicator.sql" />
+    <Content Include="Create\Views\UniqueContractEmailAccessCodeIndexed.sql" />
+    <Content Include="Create\Views\UniqueEvalSessionProjectIndexed.sql" />
+    <Content Include="Insert\Companies\CompanySizeTypes.sql" />
+    <Content Include="Insert\Companies\CompanyLegalTypes.sql" />
+    <Content Include="Insert\Companies\CompanyTypes.sql" />
+    <Content Include="Insert\Companies\TestCompanies.sql" />
+    <Content Include="Insert\Companies\KidCodes.sql" />
+    <Content Include="Insert\Contracts\Contracts.sql" />
+    <Content Include="Insert\Contracts\ContractReportMicrosDistricts.sql" />
+    <Content Include="Insert\Contracts\ContractReportMicrosMunicipalities.sql" />
+    <Content Include="Insert\Contracts\ContractReportMicrosSettlements.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionProjectStandingRejectionReasons.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionProjectStandings.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionEvaluations.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionSheets.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionProjects.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessionUsers.sql" />
+    <Content Include="Insert\EvalSessions\EvalSessions.sql" />
+    <Content Include="Insert\MonitoringFinancialControl\FinancialCorrectionImposingReasons.sql" />
+    <Content Include="Insert\MonitoringFinancialControl\OtherViolations.sql" />
+    <Content Include="Insert\Irregularities\IrregularitySanctionTypes.sql" />
+    <Content Include="Insert\Irregularities\IrregularitySanctionCategories.sql" />
+    <Content Include="Insert\Irregularities\IrregularityTypes.sql" />
+    <Content Include="Insert\Irregularities\IrregularityCategories.sql" />
+    <Content Include="Insert\Irregularities\IrregularityFinancialStatuses.sql" />
+    <Content Include="Insert\OperationalMap\MapNodeFinanceSources.sql" />
+    <Content Include="Insert\Procedures\EvalTables.sql" />
+    <Content Include="Insert\ExcelConfig\ExcelConfig.xml" />
+    <Content Include="Insert\Geography\ProtectedZones.sql" />
+    <Content Include="Insert\Procedures\TestGipsyProcedure.sql" />
+    <Content Include="Insert\Projects\ErrandTypes.sql" />
+    <Content Include="Insert\Projects\ErrandAreas.sql" />
+    <Content Include="Insert\Registrations\TestRegistrations.sql" />
+    <Content Include="Insert\Geography\Settlements.sql" />
+    <Content Include="Insert\Geography\Municipalities.sql" />
+    <Content Include="Insert\Geography\Districts.sql" />
+    <Content Include="Insert\Geography\Nuts2s.sql" />
+    <Content Include="Insert\Geography\Countries.sql" />
+    <Content Include="Insert\Geography\Nuts1s.sql" />
+    <Content Include="Insert\OperationalMap\BudgetPeriods.sql" />
+    <Content Include="Insert\OperationalMap\MapNodeBudgets.sql" />
+    <Content Include="Insert\OperationalMap\MapNodeInstitutions.sql" />
+    <Content Include="Insert\OperationalMap\InterventionCategories.sql" />
+    <Content Include="Insert\OperationalMap\Measures.sql" />
+    <Content Include="Insert\Institutions\InstitutionTypes.sql" />
+    <Content Include="Insert\Institutions\Institutions.sql" />
+    <Content Include="Insert\Procedures\TestBigProcedure.sql" />
+    <Content Include="Insert\Procedures\ProcedureTypes.sql" />
+    <Content Include="Insert\Procedures\ExpenseSubTypes.sql" />
+    <Content Include="Insert\Procedures\ExpenseTypes.sql" />
+    <Content Include="Insert\Procedures\TestYouthEmploymentProcedure.sql" />
+    <Content Include="Insert\Projects\TestProjects.sql" />
+    <Content Include="Insert\Projects\ProjectTypes.sql" />
+    <Content Include="Insert\Projects\ErrandLegalActs.sql" />
+    <Content Include="Insert\SapInterfaces\SapSchemas.sql" />
+    <Content Include="Insert\System\TestBlobs.sql" />
+    <Content Include="Insert\System\TestBlobContentLocations.sql" />
+    <Content Include="Insert\System\UpdateScripts.sql" />
+    <Content Include="Insert\Users\TestUserPermissions.sql" />
+    <Content Include="Insert\Users\TestUsers.sql" />
+    <Content Include="Insert\Users\PermissionTemplates.sql" />
+    <Content Include="Insert\Users\UserOrganizations.sql" />
+    <Content Include="Insert\Users\ProdUserPermissions.sql" />
+    <Content Include="Insert\Users\ProdUsers.sql" />
+    <Content Include="Insert\Users\UserTypes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CreateAll.bat" />
+    <None Include="CreateAll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateAll1.log</LastGenOutput>
+    </None>
+    <None Include="CreateAll1.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateAll.tt</DependentUpon>
+    </None>
+    <None Include="Insert\ExcelConfig\ExcelConfig.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExcelConfig.tt</DependentUpon>
+    </None>
+    <None Include="Insert\ExcelConfig\ExcelConfig.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExcelConfig.log</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

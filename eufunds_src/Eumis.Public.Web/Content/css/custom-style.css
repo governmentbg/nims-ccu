@@ -1,0 +1,316 @@
+﻿h3 {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+a.history-btn, a.delete-btn {
+    cursor: pointer;
+}
+
+pre {
+    padding: 0px;
+    margin: 0px;
+    color: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    border: none;
+    border-radius: 0px;
+    white-space: pre-line;
+    font-family: "Roboto", sans-serif;
+}
+
+.text-right {
+    text-align: right;
+}
+
+a.submit {
+    font-size: 17px;
+    font-weight: 700;
+    color: #FFFFFF;
+    width: 150px;
+    text-align: center;
+    line-height: 45px;
+    background: #005eae;
+    border: none;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none !important;
+}
+
+    a.submit:hover {
+        background: #0773cf;
+    }
+
+:focus {
+    outline: 0; /*removes the dotted border (IE FIX)*/
+}
+
+.select2-container.input-validation-error > ul.select2-choices {
+    border: 2px solid #af1717;
+}
+
+.vertical-middle-table th, .vertical-middle-table td {
+    vertical-align: middle;
+}
+
+.vertical-middle-table .filled-value {
+    margin: 5px 0px;
+}
+
+tr.level3 td span.preview {
+    display: block;
+}
+
+tr.level3 td span.filled-value {
+    display: inline-block;
+}
+
+.table-wrapper span.input-group-addon {
+    font-size: 13px;
+    padding: 4px 3px;
+}
+
+.table-wrapper .input-group input.form-control {
+    margin: 0px;
+}
+
+.table-wrapper .input-group {
+    margin: 5px 0px;
+}
+
+.vertical-middle-table a.delete-btn {
+    margin-top: 0px;
+}
+
+.criteria-table th {
+    background-color: #F2F2F2 !important;
+}
+
+table.fixed-table {
+    table-layout: fixed;
+}
+
+table.fixedfixed-table td {
+    overflow: hidden;
+}
+
+.bootstrap-switch-form-group {
+    padding-top: 28px;
+}
+
+    .bootstrap-switch-form-group .bootstrap-switch {
+        float: left;
+    }
+
+input.sum-field::-ms-clear {
+    display: none;
+}
+
+.browsers-not-supported {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.no-wrap-white-space {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.required-span {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+a.draft-link {
+    display: block;
+    padding: 4px 0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+    a.draft-link img {
+        height: 26px;
+    }
+
+.table-wrapper .budget-table span.input-group-addon {
+    padding: 2px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.footer-top {
+    max-width: 100% !important;
+    font-weight: bold;
+}
+
+.load-preview a.blue-button {
+    padding: 0 10px;
+    text-align: center;
+}
+
+    .load-preview a.blue-button span {
+        margin: 5px;
+    }
+
+.about-system-page h2 {
+    font-weight: 700;
+}
+
+.about-system-ticks ul li {
+    font-weight: bold;
+}
+
+tr.level3 .select2-container .select2-choice abbr {
+    top: 4px;
+}
+
+header label.sandbox {
+    font-size: 19px;
+}
+
+header ul.clock {
+    float: none;
+    height: 10px;
+    min-width: 70px;
+}
+
+table.glossary-table {
+    border-collapse: collapse;
+}
+
+    table.glossary-table td {
+        padding: 5px;
+        border: 1px solid #E6E6E6;
+    }
+
+.signature-wrapper {
+    margin-bottom: 10px;
+}
+
+input.blue-button {
+    font-size: 17px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 45px;
+    display: inline-block;
+    background: #005eae;
+    border: none;
+    padding: 0px 20px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    min-width: 150px;
+    display: inline-block;
+    margin: 5px auto;
+}
+
+    input.blue-button:hover {
+        text-decoration: none;
+        background: #0773cf;
+    }
+
+.separated-p p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+    .separated-p p:first-child {
+        margin-top: 0;
+    }
+
+    .separated-p p:last-child {
+        margin-bottom: 0;
+    }
+
+.budget-table td span.codes-span {
+    display: inline-block;
+    overflow: hidden;
+}
+
+    .budget-table td span.codes-span select {
+        display: inline-block;
+        width: 130px;
+    }
+
+.budget-table td select.form-control {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    height: auto;
+}
+
+tr td.perc div.input-group input {
+    width: 50px !important;
+    min-width: 50px !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+    color: #333;
+    cursor: default;
+    font-size: 13px;
+    font-weight: 400;
+}
+/* LOADER */
+.loader {
+    z-index: 1050;
+}
+
+.mapWidth {
+    margin-left: 50px;
+    margin-top: -10px;
+}
+
+.select2-container-disabled.select2-allowclear.select2-container .select2-choice .select2-chosen {
+    background-color: #eeeeee;
+}
+
+.txt-align-center {
+    text-align: center;
+}
+
+table.treetable {
+    min-width: 250px;
+}
+
+    table.treetable a.map-redirect {
+        cursor: pointer;
+        margin-left: 10px;
+        float: right;
+        font-style: italic;
+        display: none;
+    }
+
+    table.treetable tr.selected a.map-redirect {
+        color: #FFF;
+    }
+
+    table.treetable tr:not(.selected) td:hover {
+        background-color: #e9e9e9;
+    }
+
+    table.treetable td:hover a.map-redirect {
+        display: inline-block;
+    }
+
+.chart-pie {
+    margin: 10px 0px 0px 0px;
+    height: 500px;
+    min-width: 500px;
+}
+
+.paging {
+    margin-top: 20px;
+}
+
+ul.pagination {
+    margin: 0;
+}

@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7EBD385-9601-44C7-9C67-109A836E3145}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Database.Updater</RootNamespace>
+    <AssemblyName>DbUpdater</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectConfigFileName>App.config</ProjectConfigFileName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Eumis.Database.Updater.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DbUp, Version=0.0.0.40695, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>..\packages\dbup.3.2.1\lib\NET35\DbUp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomEmbeddedScriptProvider.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="App.Ciela.CI.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.David.CI.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.Debug.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.EGP06.DRC.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.EGP06.Test.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.EGP06.Prod.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="App.EGP06.Learn.config">
+      <DependentUpon>App.config</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\001.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\002.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\003.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\004.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\005.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\006.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\007.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\008.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\010.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\009.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\013.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\012.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\011.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\014.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\015.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\016.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\017.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\018.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\019.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\020.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\021.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\022.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\023.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\024.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\025.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\026.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\027.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\028.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\029.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\030.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\031.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\032.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\033.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\034.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\035.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\036.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\037.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\038.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\039.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\040.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\041.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\042.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\043.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\044.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\045.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\046.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\047.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\048.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\049.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\050.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\051.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\052.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\053.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\054.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\055.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\056.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\061.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\057.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\058.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\059.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\060.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\062.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\063.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\064.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\066.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\067.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\065.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\068.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\069.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\070.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\071.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\072.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\073.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\074.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\075.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\111.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\076.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\077.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\078.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\079.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\080.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\081.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\082.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\083.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\084.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\085.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\086.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\087.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\088.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\089.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\090.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\091.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\092.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\093.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\094.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\095.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\096.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\097.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\098.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\099.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\100.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\101.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\102.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\103.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\104.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\105.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\106.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\107.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\108.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\109.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\110.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\112.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\113.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\114.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\115.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\117.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\116.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\124.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\118.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\119.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\120.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\121.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\122.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\123.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\125.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\126.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\127.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\128.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\129.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\130.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\131.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\132.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\133.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\134.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\135.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\136.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\137.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\138.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\139.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\140.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\141.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\142.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\143.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\144.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\145.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\146.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\147.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\148.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\149.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\150.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\151.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\152.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\153.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\154.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\155.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\156.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\157.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\158.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\159.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\160.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\161.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\162.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\163.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\164.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\165.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\166.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\167.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\168.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\169.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\170.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\171.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\172.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\173.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\174.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\175.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\176.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\177.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\178.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\179.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\180.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\181.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\182.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\183.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\184.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\185.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\186.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\187.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\188.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\189.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\190.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\191.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\192.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\193.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\194.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\195.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\196.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\197.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\200.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\198.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\199.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\201.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\202.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\203.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\204.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\209.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\210.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\205.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\206.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\207.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\208.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\211.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\212.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\213.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\214.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\215.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\216.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\217.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\218.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\219.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\220.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\221.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\222.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\223.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\224.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\225.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\226.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\246.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\244.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\243.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\241.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\242.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\240.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\239.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\237.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\236.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\238.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\233.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\235.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\232.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\234.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\229.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\230.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\228.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\227.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\231.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\266.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\265.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\264.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\261.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\263.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\262.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\260.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\257.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\259.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\256.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\254.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\255.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\252.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\248.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\249.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\247.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\245.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\250.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\251.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\253.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\258.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\267.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\268.sql" />
+    <EmbeddedResource Include="UpdateScripts\ArchievedScripts\269.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\285.sql" />
+    <EmbeddedResource Include="UpdateScripts\286.sql" />
+    <EmbeddedResource Include="UpdateScripts\282.sql" />
+    <EmbeddedResource Include="UpdateScripts\279.sql" />
+    <EmbeddedResource Include="UpdateScripts\278.sql" />
+    <EmbeddedResource Include="UpdateScripts\283.sql" />
+    <EmbeddedResource Include="UpdateScripts\276.sql" />
+    <EmbeddedResource Include="UpdateScripts\277.sql" />
+    <EmbeddedResource Include="UpdateScripts\275.sql" />
+    <EmbeddedResource Include="UpdateScripts\274.sql" />
+    <EmbeddedResource Include="UpdateScripts\270.sql" />
+    <EmbeddedResource Include="UpdateScripts\271.sql" />
+    <EmbeddedResource Include="UpdateScripts\272.sql" />
+    <EmbeddedResource Include="UpdateScripts\273.sql" />
+    <EmbeddedResource Include="UpdateScripts\280.sql" />
+    <EmbeddedResource Include="UpdateScripts\284.sql" />
+    <EmbeddedResource Include="UpdateScripts\281.sql" />
+    <EmbeddedResource Include="UpdateScripts\288.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\289.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\291.sql" />
+    <EmbeddedResource Include="UpdateScripts\290.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\287.sql" />
+    <EmbeddedResource Include="UpdateScripts\292.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\293.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\295.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\296.sql" />
+    <EmbeddedResource Include="UpdateScripts\294.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\297.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\299.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\900.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\901.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\902.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\903.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\904.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\905.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\906.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\907.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\908.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\909.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\910.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\911.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\912.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\913.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\914.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\915.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\917.sql" />
+    <EmbeddedResource Include="UpdateScripts\916.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\918.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\919.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateScripts\920.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Target Name="AfterBuild">
+    <TransformXml Source="@(AppConfigWithTargetPath)" Transform="$(ProjectConfigTransformFileName)" Destination="@(AppConfigWithTargetPath->'$(OutDir)%(TargetPath)')" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+</Project>

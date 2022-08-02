@@ -1,0 +1,35 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using Eumis.Documents.Contracts
+
+@model ContractProjectCommunicationSentPVO
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Communication, MVC.Registered.Name), ProjectCommunication.CommunicationBreadcrumb),
+    new BreadcrumbItem(Url.Action(MVC.ProjectCommunication.ActionNames.Index, MVC.ProjectCommunication.Name, new { registeredGid = Model.registeredGid }), ProjectCommunication.ProjectRegNumberShort + Model.projectRegNumber)
+}
+, ProjectCommunication.SentBreadcrumb)
+
+<div class="container">
+    <div class="page-content submission-type clearfix">
+
+        <div class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p" style="text-align: justify">
+                    <p>
+                        @Html.Raw(string.Format(
+                       ProjectCommunication.QuestionSent,
+                       Model.subject.description,
+                       Model.displayProjectName,
+                       Model.procedureCode,
+                       Model.displayProcedureName,
+                       Model.communicationRegNumber))
+                    </p>
+                    <p>@Html.Raw(ProjectCommunication.CommunicationLocation)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

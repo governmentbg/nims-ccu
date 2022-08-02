@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/DaeuReports/SearchByIdentifierRequest" targetNamespace="http://egov.bg/RegiX/DaeuReports/SearchByIdentifierRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:simpleType name="IdentifierType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Bulstat"/>
+      <xs:enumeration value="EGN"/>
+      <xs:enumeration value="LNCh"/>
+      <xs:enumeration value="EIK"/>
+      <xs:enumeration value="SystemNo"/>
+      <xs:enumeration value="BulstatCL"/>
+      <!-- Foreign person with a Bulstat number -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="SearchByIdentifierRequestType">
+		<xs:annotation>
+			<xs:documentation>Справка за извършвани търсения по идентификатор и период</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+      <xs:element name="IdentifierType" type="IdentifierType">
+        <xs:annotation>
+          <xs:documentation>Тип идентификатор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+			<xs:element name="DateFrom" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>От дата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTo" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>До дата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SearchByIdentifierRequest" type="SearchByIdentifierRequestType">
+		<xs:annotation>
+			<xs:documentation>Справка за извършвани търсения по идентификатор и период - заявка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

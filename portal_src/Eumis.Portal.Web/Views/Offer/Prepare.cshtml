@@ -1,0 +1,94 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Offer.EditVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Drafts, MVC.Offers.Name), Offers.DraftOffers),
+}, Global.Offer)
+
+<div class="container page-title">
+    <h1>@Global.Offer</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Offer.ActionNames.Prepare,
+    MVC.Offer.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_OFFER, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Offer.ActionNames.Prepare,
+                MVC.Offer.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_OFFER,
+                formMethod: FormMethod.Post)
+            @Global.Offer
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle, activeErrors: true)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.OfferEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                            new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                            {
+                                ControllerName = MVC.Offer.Name,
+                                SecondActionName = Constants.SaveDraftActionName,
+                                FORM_ID = Constants.PARTIAL_SAVE_OFFER
+                            })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Offer.ActionNames.Prepare,
+                        MVC.Offer.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" },
+                        formId: Constants.PARTIAL_SAVE_OFFER,
+                        formMethod: FormMethod.Post) @Global.ValidateButton
+                        @Html.EndActionLinkPrePostButton()
+                    </div>
+
+                    <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('#@(Constants.PARTIAL_SAVE_OFFER)').submit(function (event) {
+                    PARTIAL_SAVE_SECTIONS(function () {
+                        $.submitPage('@(Url.Action(MVC.Offer.ActionNames.Prepare, MVC.Offer.Name, new { currentStep = Model.CurrentStep }))',
+                            'post', '@(Constants.PARTIAL_SAVE_OFFER)', undefined, undefined, undefined, true);
+                    }, this);
+                    return false;
+                });
+            </script>
+    }
+</div>

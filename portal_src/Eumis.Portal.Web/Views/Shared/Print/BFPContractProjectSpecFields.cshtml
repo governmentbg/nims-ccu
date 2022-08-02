@@ -1,0 +1,13 @@
+﻿@model R_10040.BFPContractProjectSpecFields
+
+@if (Model != null && Model.ProjectSpecFieldCollection != null && Model.ProjectSpecFieldCollection.Count > 0)
+{
+    for (int i = 0; i < Model.ProjectSpecFieldCollection.Count; i++)
+    {
+        <div class="paragraph-margin0">
+            <p><strong>@Model.ProjectSpecFieldCollection[i].Title</strong></p>
+            <p>(<em>@Model.ProjectSpecFieldCollection[i].Description</em>)</p>
+            <p>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectSpecFieldCollection[i].Value ?? string.Empty)</p>
+        </div>
+    }
+}

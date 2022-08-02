@@ -1,0 +1,40 @@
+@using Newtonsoft.Json.Linq
+@using System.Configuration
+@using Eumis.Common.Config
+
+@model Newtonsoft.Json.Linq.JObject
+
+@{
+  string systemUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:SystemUrl");
+  string username = (string)Model["username"];
+  string code = (string)Model["code"];
+  string email = (string)Model["email"];
+  string newLink = string.Format("{0}/newpassword?user={1}&code={2}", systemUrl, username, code);
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Здравейте, <br/>
+В СУНИ беше активиран потребителски профил: <strong style="color: #444444;">@username</strong>, асоцииран с имейл адрес: <strong style="color: #444444;">@email</strong>.</p>
+
+<p style="margin-bottom: 15px;">Данните за Вашия потребителски профил са: </p>
+
+<p style="margin-bottom: 15px;">
+Три имена: @(Model["fullname"]) <br/>
+E-mail: @(Model["email"]) <br/>
+Телефон: @(Model["phone"]) <br/>
+Адрес: @(Model["address"]) <br/>
+Длъжност: @(Model["position"])
+</p>
+
+@{var permissionsHtml = Eumis.Job.Host.Jobs.Email.RazorEngineRenderer.RenderTemplate("UserPermissions.cshtml", (JObject)Model["permissions"]);}
+
+@Raw(permissionsHtml)
+
+<p style="margin-bottom: 15px;">Натиснете тази хипервръзка, за да въведете своята парола: <br/>
+<a href="@(newLink)">@(newLink)</a></p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br/>

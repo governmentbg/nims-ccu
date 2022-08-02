@@ -1,0 +1,32 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div ng-if="!isProgrammeIntroduced">
+    <div class="row">
+      <sc-field type="text" ng-model="model.name" ng-required="true" l10n-text="procedures_procedureAppDocumentForm_name" class="col-sm-5 col-md-5" ng-maxlength="500"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isRequired" ng-required="true" l10n-text="procedures_procedureAppDocumentForm_isRequired" class="col-sm-2 col-md-2"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isSignatureRequired" ng-required="true" l10n-text="procedures_procedureAppDocumentForm_isSignatureRequired" class="col-sm-3 col-md-3"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="textarea" rows="2" ng-disabled="model.programmeApplicationDocumentId" ng-model="model.extension" ng-pattern="/^[,;\s]*(\.[a-zA-Z0-9]{1,8})(\s*[,;\s]\s*\.[a-zA-Z0-9]{1,8}[,;\s]*)*$/" ng-maxlength="100" l10n-text="procedures_procedureAppDocumentForm_extension" class="col-sm-5 col-md-5"></sc-field>
+    </div>
+  </div>
+
+  <div ng-if="isProgrammeIntroduced">
+    <div class="row">
+      <sc-field type="nomenclature" alias="'programmeApplicationDocuments'" mode="id" ng-model="model.programmeApplicationDocumentId" ng-required="true" params="{ procedureId: model.procedureId }"
+                nom-obj="model.document" ng-disabled="model.status === 'inactive'" ng-change="setDocumentAttributes(model.document)" l10n-text="procedures_procedureAppDocumentForm_name" class="col-sm-5 col-md-5"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isRequired" ng-required="true" l10n-text="procedures_procedureAppDocumentForm_isRequired" class="col-sm-2 col-md-2"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-readonly="model.programmeApplicationDocumentId" ng-model="model.isSignatureRequired" ng-required="true" l10n-text="procedures_procedureAppDocumentForm_isSignatureRequired" class="col-sm-3 col-md-3"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="textarea" rows="2" ng-disabled="model.programmeApplicationDocumentId" ng-model="model.extension" ng-pattern="/^[,;\s]*(\.[a-zA-Z0-9]{1,8})(\s*[,;\s]\s*\.[a-zA-Z0-9]{1,8}[,;\s]*)*$/" ng-maxlength="100" l10n-text="procedures_procedureAppDocumentForm_extension" class="col-sm-5 col-md-5"></sc-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="procedures_procedureAppDocumentForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

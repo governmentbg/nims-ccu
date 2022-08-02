@@ -1,0 +1,121 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.Indicators
+@using Eumis.Public.Common.Json
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model IndicatorsSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.Indicators_Index_IndicatorsInfo)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.Indicators_Index_IndicatorsInfo</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.Operations_Index_ProgramName</label>
+                        @Html.DropDownListFor(m => m.ProgrammeId, Model.Programs, Texts.Global_Placeholder, new { @class = "select2" })
+                    </div>
+                    <div class="form-submit col-lg-3 col-sm-12">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+                </div>
+            </section>
+        </form>
+        
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix">
+                    <h2>@Texts.Indicators_Index_IndicatorsInfo</h2>
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.Global_OperationalProgram</th>
+                                <th>@Texts.Indicators_Index_Indicator</th>
+                                <th>@Texts.Indicators_Index_Category</th>
+                                <th>@Texts.Indicators_Index_Type</th>
+                                <th>@Texts.Indicators_Index_Trend</th>
+                                <th>@Texts.Indicators_Index_MeasureUnit</th>
+                                <th>@Texts.Indicators_Index_TargetValue</th>
+                                <th>@Texts.Indicators_Index_CumulativeTargetValue</th>
+                                <th>@Texts.Indicators_Index_AchievedValue</th>
+                                <th>@Texts.Indicators_Index_CumulativeAchievedValue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var indicator in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@indicator.TransProgrammeShortName</td>
+                                    <td>@indicator.TransName</td>
+                                    <td>@indicator.IndicatorType.GetEnumDescription()</td>
+                                    <td>@indicator.IndicatorKind.GetEnumDescription()</td>
+                                    <td>@indicator.IndicatorTrend.GetEnumDescription()</td>
+                                    <td>@indicator.TransMeasuerName</td>
+                                    <td class="sum-field">@Html.DisplayFor(i => indicator.TargetTotalValue)</td>
+                                    <td>@indicator.AggregatedTarget.GetEnumDescription()</td>
+                                    <td class="sum-field">@Html.DisplayFor(i => indicator.ApprovedPeriodAmountTotal)</td>
+                                    <td>@indicator.AggregatedReport.GetEnumDescription()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.Indicators.ActionNames.Index, MVC.Indicators.Name
+                            , new
+                            {
+                                programmeId = Request.QueryString["programmeId"],
+                                showRes = true,
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+
+                <h2>@Texts.Global_Note:</h2>
+                <div class="note">
+                    @Texts.Global_NoteBGN
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

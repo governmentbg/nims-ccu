@@ -1,0 +1,22 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractCommonVO
+
+@{
+    var contractIdEncrypted = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(Model.ContractId);
+}
+
+<div class="heading-with-export clearfix">
+    <div class="data-export">
+        <a class="ico-print" target="_blank" href="@(Url.Action(MVC.Project.PrintProject(contractIdEncrypted, Model.IsHistoric)))">Print</a>
+    </div>
+</div>
+<ul class="nav nav-tabs">
+    <li class="@(ActionName == MVC.Project.ActionNames.BasicData ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.BasicData(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_BasicData</a></li>
+    <li class="@(ActionName == MVC.Project.ActionNames.Activities ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.Activities(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_ProjectActivities</a></li>
+    <li class="@(ActionName == MVC.Project.ActionNames.Procurements ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.Procurements(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_Procurements</a></li>
+    <li class="@(ActionName == MVC.Project.ActionNames.Participants ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.Participants(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_ParticipatingOrganizations</a></li>
+    <li class="@(ActionName == MVC.Project.ActionNames.FinancialInformation ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.FinancialInformation(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_FinancialInformation</a></li>
+    <li class="@(ActionName == MVC.Project.ActionNames.Indicators ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.Indicators(contractIdEncrypted, Model.IsHistoric))" class="wait">@Texts.Project_Details_Indicators</a></li>
+</ul>
+<script>
+    $('.nav-tabs:last').tabdrop({ text: '@(Texts.Global_More)...' });
+</script>

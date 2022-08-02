@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10031" 
+	xmlns="http://ereg.egov.bg/segment/R-10031" 
+	
+	xmlns:pbd="http://ereg.egov.bg/segment/R-09997"
+            
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:na="http://ereg.egov.bg/segment/R-09999"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09997" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-09999" />
+	
+	<xsd:complexType name="BFPContractBasicData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Основни данни за договор</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ProgrammeBasicData" type="pbd:ProgrammeBasicData" minOccurs="0" />
+			<xsd:element name="Procedure" type="pun:PublicNomenclature" minOccurs="0" />
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="NameEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Description" type="xsd:string" minOccurs="0" />
+      <xsd:element name="DescriptionEN" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Purpose" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Duration" type="xsd:integer" minOccurs="0" />
+
+      <xsd:element name="CompletionStatus" type="prn:PrivateNomenclature" minOccurs="0" />
+
+      <xsd:element name="StartDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="StartCondition" type="xsd:string" minOccurs="0" />
+      <xsd:element name="TemporarySuspensionDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="TemporarySuspensionReason" type="xsd:string" minOccurs="0" />
+      <xsd:element name="CompletionDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="TerminationDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="TerminationReason" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="RegistrationNumber" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Version" type="xsd:string" minOccurs="0" />
+      <xsd:element name="SubVersion" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="ContractDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="OtherRegistration" type="xsd:string" minOccurs="0" />
+      <xsd:element name="StoragePlace" type="xsd:string" minOccurs="0" />
+      
+      <xsd:element name="NutsAddress" type="na:NutsAddress" minOccurs="0" />
+      <xsd:element name="IsVatEligible" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="AmountType" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="ProductKind" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="IsJointActionPlan" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="IsUsesFinancialInstruments" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="IsIncludesSupportFromIYE" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="IsSubjectToStateAidRegime" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="IsAssignedDeMinimisAid" type="xsd:boolean" minOccurs="0" />
+      <xsd:element name="IsIncludesPublicPrivatePartnership" type="xsd:boolean" minOccurs="0" />
+
+      <xsd:element name="BeneficiaryRegistrationVAT" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="BankAccount" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="ProcedureIdentifier" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ProcedureApplicationFormType" type="en:EnumNomenclature" minOccurs="0" />
+    
+      <xsd:element name="VesselIdentifier" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

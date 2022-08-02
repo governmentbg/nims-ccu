@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-link-button ng-href="{{accessCodesExportUrl}}" target="_blank" sc-access-token icon="fa-file-excel-o fa-lg fa-fw"
+                    text="contractAccessCodes_contractAccessCodesSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contractAccessCodes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" btn-sref="{ state: 'root.contractAccessCodes.view', params: {id: item.contractAccessCodeId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="email" title="contractAccessCodes_contractAccessCodesSearch_email">
+      </sc-column>
+      <sc-column data="code" title="contractAccessCodes_contractAccessCodesSearch_code" visible="{{showCodes}}">
+      </sc-column>
+      <sc-column data="firstName" title="contractAccessCodes_contractAccessCodesSearch_firstName">
+      </sc-column>
+      <sc-column data="lastName" title="contractAccessCodes_contractAccessCodesSearch_lastName">
+      </sc-column>
+      <sc-column data="isActive" title="contractAccessCodes_contractAccessCodesSearch_isActive" type="boolean">
+      </sc-column>
+      <sc-column data="contractRegNumber" title="contractAccessCodes_contractAccessCodesSearch_contractRegNumber">
+      </sc-column>
+      <sc-column data="createDate" title="contractAccessCodes_contractAccessCodesSearch_createDate" type="datetime">
+      </sc-column>
+      <sc-column data="modifyDate" title="contractAccessCodes_contractAccessCodesSearch_modifyDate" type="datetime">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

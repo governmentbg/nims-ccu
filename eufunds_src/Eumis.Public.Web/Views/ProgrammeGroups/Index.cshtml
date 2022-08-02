@@ -1,0 +1,134 @@
+﻿@using Eumis.Public.Web.Models.ProgrammeGroup
+@using Eumis.Public.Web.InfrastructureClasses
+
+@model ProgrammeGroupIndexModel
+
+@section scripts{
+    @Scripts.Render(BundleConfig.Highcharts)
+}
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home)
+}, Model.ProgrammeGroupName)
+
+<div class="container">
+
+    @Html.Partial(MVC.Shared.Views._GroupTitle, new ViewDataDictionary { { "groupTitle", Model.ProgrammeGroupName } })
+
+    @if (Model != null)
+    {
+        <div class="tab-content">
+            <div class="heading-with-export clearfix">
+                <h2>@Texts.ProgrammeGroups_Index_Execution</h2>
+                @Html.Partial(MVC.Shared.Views._ExportIcons)
+            </div>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">@Texts.Global_OperationalProgram</th>
+                            <th colspan="3">@Texts.Global_BudgetProgram</th>
+                            <th colspan="2">@Texts.ProgrammeGroups_Index_Projects</th>
+                            <th colspan="4">@Texts.Global_Contracted **</th>
+                            <th colspan="4">@Texts.Global_Payed</th>
+                        </tr>
+                        <tr>
+                            <th>@Texts.Global_Total</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                            <th>@Texts.Global_FinancingNF</th>
+                            <th>@Texts.ProgrammeGroups_Index_ProjectsCount</th>
+                            <th>@Texts.ProgrammeGroups_Index_ContractsCount</th>
+                            <th>@Texts.Global_Total</th>
+                            <th>@Texts.ProgrammeGroups_Index_BFP</th>
+                            <th>% *</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                            <th>@Texts.ProgrammeGroups_Index_BFP</th>
+                            <th>% *</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ProgrammeBudgets.Count > 0)
+                        {
+                            foreach (var programmeBudget in Model.ProgrammeBudgets)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() { { RouteConfig.OPABB, programmeBudget.Id } })" title="">@programmeBudget.TransName</a>
+                                    </td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.BudgetTotal)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.BudgetEU)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.BudgetNational)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ProjectsCount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ContractsCount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ContractTotal)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ContractBFP)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ContractPercent)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.ContractEU)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.PaidBFP)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.PaidPercent)</td>
+                                    <td class="sum-field">@Html.DisplayFor(m => programmeBudget.PaidEU)</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td><span class="totals">@Texts.Global_Total.ToUpper():</span></td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.BudgetTotalSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.BudgetEUSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.BudgetNationalSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ProjectsCountSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ContractsCountSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ContractTotalSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ContractBFPSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ContractSumPercent)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.ContractEUSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.PaidBFPSum)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.PaidSumPercent)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => m.GrandTotals.PaidEUSum)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>@Texts.Global_Note:</h2>
+            <div class="note">
+                * - @Texts.ProgrammeGroups_Index_ProgramBudgetPercent<br />
+                ** - @Texts.ProgrammeGroups_Index_NoteContracted<br />
+                @Texts.Global_NoteBudget<br />
+                @Texts.Global_NoteBGN
+            </div>
+
+            @if (Model.ProgrammeBudgets.Sum(b => b.BudgetTotal) > 0)
+            {
+                <div class="chart-wrapper">
+                    <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                    @Html.Pie(Url, Model.BudgetPie, new { @class = "chart-pie" })
+                </div>
+            }
+           
+            <div class="chart-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                @Html.Chart(Url, Model.ProgrammeFinanceSourceAmountsChart, new { @class = "chart" })
+            </div>
+
+            @if (Model.ProgrammeBudgets.Sum(b => b.BudgetEU) > 0)
+            {
+                <div class="chart-wrapper">
+                    <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                    @Html.Pie(Url, Model.FinanceSourcePie, new { @class = "chart-pie" })
+                </div>
+            }
+
+            <div class="chart-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                @Html.Chart(Url, Model.BudgetChart, new { @class = "chart" })
+            </div>
+
+            <div class="chart-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                @Html.Chart(Url, Model.ProgrammesExecutionChart, new { @class = "chart" })
+            </div>
+        </div>
+    }
+</div>

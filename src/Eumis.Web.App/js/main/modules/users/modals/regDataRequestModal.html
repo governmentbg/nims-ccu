@@ -1,0 +1,54 @@
+<ng-form name="regDataRequestModalForm" sc-validate="{}" sc-form-readonly="isReadonly">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div ng-if="!isReadonly" style="display: inline-block;">
+        <strong ng-if="!user.hasRegDataRequest" class="heading" l10n-text="regDataRequestModal_newTitle"></strong>
+        <strong ng-if="user.hasRegDataRequest" class="heading" l10n-text="regDataRequestModal_editTitle"></strong>
+      </div>
+      <strong ng-if="isReadonly" class="heading" l10n-text="regDataRequestModal_viewTitle"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" ng-if="!isReadonly" text="regDataRequestModal_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" ng-if="!isReadonly" text="regDataRequestModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+        <sc-button name="okBtn" btn-click="cancel()" ng-if="isReadonly" text="regDataRequestModal_ok" class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="user.statusName" ng-required="true" ng-disabled="true" l10n-text="regDataRequestModal_status" class="col-sm-3 col-md-2"></sc-field>
+      </div>
+      <div class="row" ng-if="user.rejectionMessage">
+        <sc-field type="textarea" rows="3" ng-model="user.rejectionMessage" ng-readonly="true" l10n-text="regDataRequestModal_rejectionMessage" class="col-sm-7 col-md-5"></sc-field>
+      </div>      
+      <div class="row">
+        <sc-field type="text" ng-model="user.username" ng-readonly="true" l10n-text="regDataRequestModal_username" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="nomenclature" alias="'userOrganizations'" mode="id" ng-model="regDataRequest.userOrganizationId" ng-disabled="!isSuperUser" ng-required="true" l10n-text="regDataRequestModal_organization" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="nomenclature" alias="'userTypes'" mode="id" ng-model="regDataRequest.userTypeId" ng-disabled="!regDataRequest.userOrganizationId || !isSuperUser" ng-required="true" params="{userOrganizationId: regDataRequest.userOrganizationId}" l10n-text="regDataRequestModal_userType" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="regDataRequest.fullname" ng-required="true" ng-maxlength="200" validations="{maxlength: 'default'}" l10n-text="regDataRequestModal_fullname" class="col-sm-8 col-md-6"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="regDataRequest.uin" ng-required="true" l10n-text="regDataRequestModal_uin" class="col-sm-4 col-md-3"
+          sc-validate="{ validValue: uinValid }" sc-validate-async="{ unique: isUniqueUin }"
+          validations="{ validValue: 'errorTexts_notValidPersonalUin', unique: 'errorTexts_notUniquePersonalUin' }"
+        >
+        </sc-field>
+        <sc-field type="text" ng-model="regDataRequest.position" ng-maxlength="300" validations="{maxlength: 'default'}" l10n-text="regDataRequestModal_position" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="regDataRequest.email" ng-required="true" ng-pattern="emailRegex" ng-maxlength="100" validations="{maxlength: 'default'}" l10n-text="regDataRequestModal_email" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="text" ng-model="regDataRequest.phone" ng-maxlength="100" validations="{maxlength: 'default'}" l10n-text="regDataRequestModal_phone" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="regDataRequest.address" ng-maxlength="300" validations="{maxlength: 'default'}" l10n-text="regDataRequestModal_address" class="col-sm-8 col-md-6"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10069" 
+	xmlns="http://ereg.egov.bg/segment/R-10069" 
+     
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+                   
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+
+	<xsd:complexType name="SubcontractorMember">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Партньор или член на обединението</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Type" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="Contractor" type="prn:PrivateNomenclature" minOccurs="0" />
+
+      <xsd:element name="ContractDate" type="xsd:date" minOccurs="0" />
+      <xsd:element name="ContractNumber" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ContractAmount" type="xsd:decimal" minOccurs="0" />
+    </xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,16 @@
+﻿<ng-form name="newProcedureMonitorsatRequestForm" sc-validate="{}" >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_newProcedureMonitorstatRequest_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_newProcedureMonitorstatRequest_save" class="btn btn-primary btn-xs" icon="glyphicon-edit">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_newProcedureMonitorstatRequest_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <eumis-procedure-monitorstat-request name="procedureMonitorstatRequestForm" ng-model="request"></eumis-procedure-monitorstat-request>
+    </div>
+  </div>
+</ng-form>

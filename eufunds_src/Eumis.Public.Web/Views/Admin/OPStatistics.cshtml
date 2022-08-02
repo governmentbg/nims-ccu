@@ -1,0 +1,232 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.Admin
+
+@model OPStatisticsSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.Index, MVC.Admin.Name), Texts.Global_AdministrativeEnquiries)
+}, Texts.Admin_OPStatistics)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.Admin_OPStatistics</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            @Html.ValidationSummary()
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>@Texts.Global_OperationalProgram</label>
+                        @Html.DropDownListFor(m => m.ProgrammeId, Model.Programs, Texts.Global_Placeholder, new { @class = "select2" })
+                    </div>
+                    <div class="form-submit col-lg-3 col-sm-12">
+                        <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResult != null)
+            {
+                var firstDivClass = "col-lg-6 col-md-8 col-sm-8";
+                var secondDivClass = "col-lg-6 col-md-4 col-sm-4 text-right";
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="project-info-box" style="margin-top:50px;">
+                            <div class="head green">
+                                <h2>@Texts.Admin_OPStatistics</h2>
+                            </div>
+                            <div class="content">
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Html.ActionLink(Texts.Admin_OPStatistics_ProceduresCount, MVC.Admin.ActionNames.ProgrammeProjectsCount, MVC.Admin.Name, new { programmeId = Request.QueryString["programmeId"] }, null)
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ProceduresCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_SubmittedProposalsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.SubmittedProposalsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ProposalsTotalAmount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ProposalsTotalAmount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ProposalsBFPAmount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ProposalsBFPAmount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ProposalsSelfAmount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ProposalsSelfAmount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ApprovedProposalsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ApprovedProposalsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ReserveProposalsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ReserveProposalsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_RejectedProposalsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.RejectedProposalsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_EvalSessionsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.EvalSessionsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ActiveContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ActiveContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_PausedContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.PausedContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_MonitoredContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.MonitoredContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_CanceledContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.CanceledContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_EndedContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.EndedContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_ConcludedContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.ConcludedContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_SuspendedContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.SuspendedContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-item">
+                                    <div class="row">
+                                        <div class="@firstDivClass">
+                                            @Texts.Admin_OPStatistics_TotalContractsCount
+                                        </div>
+                                        <div class="@secondDivClass" style="font-weight:bold;">
+                                            @Html.DisplayFor(m => m.SearchResult.TotalContractsCount)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

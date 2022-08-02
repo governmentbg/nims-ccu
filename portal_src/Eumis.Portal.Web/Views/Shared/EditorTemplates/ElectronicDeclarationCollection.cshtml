@@ -1,0 +1,94 @@
+﻿@model R_10019.ElectronicDeclarationCollection
+@using Eumis.Common.Helpers
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<script type="text/javascript">
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+    };
+    $(document).ready(function () {
+        angular.bootstrap($('#containerElectronicDeclarations@(guid)'), ['moduleElectronicDeclarations']);
+    });
+</script>
+
+<div class="table-wrapper" id="containerElectronicDeclarations@(guid)" ng-controller="controllerElectronicDeclarations" ng-init="init('_eumis_options', 'i@(guid)')" style="overflow-x: hidden;">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th style="width:15%;">@ElectronicDeclaration.Name</th>
+                <th style="width:55%;">@ElectronicDeclaration.Content</th>
+                <th style="width:5%;">@ElectronicDeclaration.IsRequired</th>
+                <th style="width:25%;">@ElectronicDeclaration.Approval</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr ng-class="{'deactivated': !item.IsActive}">
+                <td>
+                    <div style="display:block;width:100%">
+                        <span class="filled-value">
+                            {{item.Name}}
+                            <img ng-show="!item.IsActive" class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@ElectronicDeclaration.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                        </span>
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" value="{{ item.Name }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Gid" value="{{ item.Gid }}" />
+                    </div>
+                </td>
+                <td>
+                    <div style="display:block;width:100%">
+                        <span class="filled-value"><pre>{{item.Content}}</pre></span>
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Content" value="{{ item.Content }}" />
+                    </div>
+                </td>
+                <td>
+                    <span class="filled-value">
+                        {{item.IsRequired ? "@Global.Yes" : "@Global.No"}}
+                    </span>
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].IsRequired" value="{{ item.IsRequired }}" />
+                </td>
+                <td>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.CheckBox)" ng-class="{'input-validation-error': !item.IsFieldValueValid}">
+                        <input id="@(Html.GetNameFor(m => m))[{{ $index }}].Gid" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueCheckBox" type="checkbox" ng-model="item.FieldValueCheckBox" value="{{item.FieldValueCheckBox}}" ng-class="{'input-validation-error': !item.IsFieldValueValid}" class="write-cbx validation-error-key" />
+                        <label for="@(Html.GetNameFor(m => m))[{{ $index }}].Gid">@ElectronicDeclaration.ApprovalShort</label>
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Numeric)">
+                        <input ng-class="{'input-validation-error': !item.IsFieldValueValid}" ng-model="item.FieldValueNumeric" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueNumeric" type="text" class="form-control sum-field" />
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Text)">
+                        <label style="font-size: 13px;">@SymbolsCount.Symbols500</label>
+                        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsFieldValueValid}" auto-grow ng-model="item.FieldValueText" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueText" rows="2" style="color: #333; height: 60px; max-width: 400px;"></textarea>
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Currency)">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input money null-default-value="true" type="text" ng-class="{'input-validation-error': !item.IsFieldValueValid}" ng-model="item.FieldValueCurrency" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueCurrency" class="form-control sum-field" />
+                            </div>
+                            <label for="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueCurrency" style="margin: 12px 0px 0px -10px;">лв.</label>
+                        </div>
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Nomenclature)">
+                        <input type="hidden" ng-class="{'input-validation-error': !item.IsFieldValueValid}" ng-model="item.FieldValueNomenclature" ui-select2="getDeclarationItems(item)" />
+                        <input type="hidden" ng-class="{'input-validation-error': !item.IsFieldValueValid}" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueNomenclature.gid" value="{{ item.FieldValueNomenclature.gid }}" class="validation-error-key" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueNomenclature.content" value="{{ item.FieldValueNomenclature.content }}" />
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Date)">
+                        <input ng-class="{'input-validation-error': !item.IsFieldValueValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.FieldValueDate" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValueDate" class="form-control" onpaste="return false" />
+                    </div>
+                    <div ng-if="item.FieldType === @((int)R_10098.FieldType.Period)">
+                        @ElectronicDeclaration.FromDate
+                        <input ng-class="{'input-validation-error': !item.IsFieldValueValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.FieldValuePeriod.DateFrom" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValuePeriod.DateFrom" class="form-control" onpaste="return false" />
+                        @ElectronicDeclaration.ToDate
+                        <input ng-class="{'input-validation-error': !item.IsFieldValueValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.FieldValuePeriod.DateTo" name="@(Html.GetNameFor(m => m))[{{ $index }}].FieldValuePeriod.DateTo" class="form-control" onpaste="return false" />
+                    </div>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+</div>

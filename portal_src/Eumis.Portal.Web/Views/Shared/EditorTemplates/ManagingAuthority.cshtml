@@ -1,0 +1,98 @@
+﻿@model R_10004.Company
+
+<div class="table-wrapper">
+    <div class="history-table">
+        <eumis-company-search company="BFPContract.ManagingAuthority"
+                       path="@(Html.GetNameFor(m => m))"
+                       bg-code="@Eumis.Documents.Constants.BulgariaId"
+                       resources="CompanyInfo.resourcesObjectCompany">
+        </eumis-company-search>
+
+        <div class="clearfix">
+            <div class="form-group col-lg-12 col-md-12">
+                <label>@Company.Name @SymbolsCount.Symbols200</label>
+                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="BFPContract.ManagingAuthority.Name" name="@(Html.GetNameFor(m => m)).Name" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <label>
+                    @Company.NameEN @SymbolsCount.Symbols200
+                    <img class="info-icon" info-icon src="/Content/img/icons/info.png" data-placement="right" data-toggle="popover" data-content="@Company.NameENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+                </label>
+                <textarea sc-disabled="BFPContract.ManagingAuthority.CompanyLegalType.id == '@Eumis.Documents.Constants.CompanyLegalTypePhysicalGid'" symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsNameEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="BFPContract.ManagingAuthority.NameEN" name="@(Html.GetNameFor(m => m)).NameEN" class="form-control"></textarea>
+            </div>
+
+            <div class="clearfix">
+                <div class="form-group col-lg-4 col-md-6 bootstrap-switch-form-group">
+                    <input type="radio" ng-value="false" id="@(Html.GetNameFor(m => m)).country" name="@(Html.GetNameFor(m => m)).IsPrivateLegal" ng-model="BFPContract.ManagingAuthority.IsPrivateLegal" />
+                    <label for="@(Html.GetNameFor(m => m)).country">@Company.IsCountryLegal</label>
+
+                    <input type="radio" ng-value="true" id="@(Html.GetNameFor(m => m)).private" name="@(Html.GetNameFor(m => m)).IsPrivateLegal" ng-model="BFPContract.ManagingAuthority.IsPrivateLegal" />
+                    <label for="@(Html.GetNameFor(m => m)).private">@Company.IsPrivateLegal</label>
+                </div>
+            </div>
+        </div>
+
+        <h3>@Company.Seat</h3>
+
+        <eumis-address path="@(Html.GetNameFor(m => m)).Seat"
+                       bg-code="@Eumis.Documents.Constants.BulgariaId"
+                       ng-model="BFPContract.ManagingAuthority.Seat"
+                       resources="CompanyInfo.resourcesObjectCompany"
+                       show-management="true">
+        </eumis-address>
+
+        <div class="form-group col-lg-12">
+            <label ng-click="copyAddress(BFPContract.ManagingAuthority)" style="cursor:pointer; margin-bottom: 10px;"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> @Address.Copy</label>
+        </div>
+
+        <h3>@Company.Correspondence</h3>
+
+        <eumis-address path="@(Html.GetNameFor(m => m)).Correspondence"
+                       bg-code="@Eumis.Documents.Constants.BulgariaId"
+                       ng-model="BFPContract.ManagingAuthority.Correspondence"
+                       resources="CompanyInfo.resourcesObjectCompany"
+                       show-management="false">
+        </eumis-address>
+
+        <div class="clearfix">
+            <div class="form-group col-lg-4 col-md-6">
+                <label>
+                    @Company.Email
+                    <img ng-if="BFPContract.ManagingAuthority.isCandidate" class="info-icon" info-icon src="/Content/img/icons/info.png" data-placement="right" data-toggle="popover" data-content="@Company.EmailTooltip}}" data-trigger="hover" alt="" data-original-title="" title="">
+                </label>
+                <input ng-if="BFPContract.ManagingAuthority.isCandidate" ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsEmailValid}" ng-model="BFPContract.ManagingAuthority.Email" type="text" name="@(Html.GetNameFor(m => m)).Email" class="form-control" readonly />
+                <input ng-if="!BFPContract.ManagingAuthority.isCandidate" ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsEmailValid}" ng-model="BFPContract.ManagingAuthority.Email" type="text" name="@(Html.GetNameFor(m => m)).Email" class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.Phone1</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsPhone1Valid}" ng-model="BFPContract.ManagingAuthority.Phone1" type="text" name="@(Html.GetNameFor(m => m)).Phone1" class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.Phone2</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsPhone2Valid}" ng-model="BFPContract.ManagingAuthority.Phone2" type="text" name="@(Html.GetNameFor(m => m)).Phone2" class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.Fax</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsFaxValid}" ng-model="BFPContract.ManagingAuthority.Fax" type="text" name="@(Html.GetNameFor(m => m)).Fax" class="form-control" />
+            </div>
+            <div class="form-group col-lg-8 col-md-12">
+                <label>@Company.CompanyRepresentativePerson @SymbolsCount.Symbols100</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsCompanyRepresentativePersonValid}" ng-model="BFPContract.ManagingAuthority.CompanyRepresentativePerson" type="text" name="@(Html.GetNameFor(m => m)).CompanyRepresentativePerson" class="form-control" />
+            </div>
+
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.CompanyContactPerson @SymbolsCount.Symbols100</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsCompanyContactPersonValid}" ng-model="BFPContract.ManagingAuthority.CompanyContactPerson" type="text" name="@(Html.GetNameFor(m => m)).CompanyContactPerson" class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.CompanyContactPersonPhone</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsCompanyContactPersonPhoneValid}" ng-model="BFPContract.ManagingAuthority.CompanyContactPersonPhone" type="text" name="@(Html.GetNameFor(m => m)).CompanyContactPersonPhone" class="form-control" />
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label>@Company.CompanyContactPersonEmail</label>
+                <input ng-class="{'input-validation-error': !BFPContract.ManagingAuthority.IsCompanyContactPersonEmailValid}" ng-model="BFPContract.ManagingAuthority.CompanyContactPersonEmail" type="text" name="@(Html.GetNameFor(m => m)).CompanyContactPersonEmail" class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>

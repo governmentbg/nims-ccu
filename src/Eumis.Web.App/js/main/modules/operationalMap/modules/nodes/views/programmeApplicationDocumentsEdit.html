@@ -1,0 +1,53 @@
+﻿<ng-form name="editProgrammeApplicationDocumentForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmes_editProgrammeApplicationDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="programmes_editProgrammeApplicationDocument_activate" class="btn btn-success btn-xs" ng-show="!editMode && !document.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.programmeId)">
+        </sc-button>
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="programmes_editProgrammeApplicationDocument_deactivate" class="btn btn-danger btn-xs" ng-show="!editMode && document.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.programmeId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="programmes_editProgrammeApplicationDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && document.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.programmeId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteDocument()" text="programmes_editProgrammeApplicationDocument_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && document.isActive"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.programmeId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_editProgrammeApplicationDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_editProgrammeApplicationDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !document.isActive}">
+      <eumis-programme-application-document name="programmeApplicationDocumentForm" ng-model="document" sc-form-params="{}"></eumis-programme-application-document>
+
+      <div class="row" ng-if="document.isAttached">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <div>
+            <h5 class="table-header table-header-first pull-left" l10n-text="programmes_editProgrammeApplicationDocument_relatedProcedures"></h5>
+          </div>
+          <sc-datatable items="relatedProcedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="viewBtn" btn-sref="{ state: 'root.procedures.view.allDocs.search', params: { id: item.procedureId } }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+            </sc-column>
+            <sc-column data="procedureCode" title="programmes_editProgrammeApplicationDocument_procedureCode">
+            </sc-column>
+            <sc-column data="procedureName" title="programmes_editProgrammeApplicationDocument_procedureName">
+            </sc-column>
+            <sc-column data="status" title="programmes_editProgrammeApplicationDocument_procedureStatus">
+            </sc-column>
+            <sc-column data="activationDate" title="programmes_editProgrammeApplicationDocument_procedureActivationDate" type="date">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

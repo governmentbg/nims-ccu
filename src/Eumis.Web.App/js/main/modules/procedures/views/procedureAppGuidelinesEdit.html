@@ -1,0 +1,29 @@
+﻿<ng-form name="editProcedureAppGuidelinesForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureAppGuideline_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcedureAppGuideline_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appGuideline.procedureId)"></sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteAppGuideline()" text="procedures_editProcedureAppGuideline_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appGuideline.procedureId)"></sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcedureAppGuideline_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcedureAppGuideline_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="appGuideline.name" l10n-text="procedures_editProcedureAppGuideline_name" ng-required="true" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="file" ng-model="appGuideline.file" l10n-text="procedures_editProcedureAppGuideline_file" ng-required="true" class="col-sm-4 col-md-3"
+          url-template="ProcedureFile" url-params="{ id: procedureId }"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="textarea" rows="3" ng-model="appGuideline.description" l10n-text="procedures_editProcedureAppGuideline_description" class="col-sm-8 col-md-6"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

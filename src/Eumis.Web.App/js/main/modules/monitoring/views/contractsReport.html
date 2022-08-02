@@ -1,0 +1,162 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_contractsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_contractsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_contractsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_contractsReport_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_contractsReport_toDate" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-3">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_contractsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+
+        <div class="row">
+          <sc-field type="nomenclature" alias="'nutsLevels'" mode="id" ng-model="filters.nutsLevel" ng-change="changedNutsLevel()" l10n-text="monitoring_contractsReport_nutsLevel" class="col-sm-3 col-md-3"></sc-field>
+          <sc-field type="nomenclature" alias="'currencies'" mode="id" ng-model="filters.currency" l10n-text="monitoring_contractsReport_currency" class="col-sm-3 col-md-2"></sc-field>
+        </div>
+        <div ng-show="filters.nutsLevel">
+          <div class="row">
+            <sc-field type="nomenclature" alias="'countries'" mode="id" ng-model="filters.countryId" ng-show="filters.nutsLevel === 'country'" l10n-text="monitoring_contractsReport_countryId" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'nuts1'" mode="id" ng-model="filters.nuts1Id" ng-show="filters.nutsLevel === 'regionNUTS1'" nom-obj="nuts1Obj" l10n-text="monitoring_contractsReport_nuts1Id" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'nuts2'" mode="id" ng-model="filters.nuts2Id" ng-show="filters.nutsLevel === 'regionNUTS2'" nom-obj="nuts2Obj" l10n-text="monitoring_contractsReport_nuts2Id" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'districts'" mode="id" ng-model="filters.districtId" ng-show="filters.nutsLevel === 'district'" nom-obj="districtObj" l10n-text="monitoring_contractsReport_districtId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'municipalities'" mode="id" ng-model="filters.municipalityId" ng-show="filters.nutsLevel === 'municipality'" nom-obj="municipalityObj" l10n-text="monitoring_contractsReport_municipalityId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'settlements'" mode="id" ng-model="filters.settlementId" ng-show="filters.nutsLevel === 'settlement'" nom-obj="settlementObj" l10n-text="monitoring_contractsReport_settlementId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'protectedZones'" mode="id" ng-model="filters.protectedZoneId" ng-show="filters.nutsLevel === 'protectedZone'" nom-obj="protectedZoneObj" l10n-text="monitoring_contractsReport_protectedZoneId" class="col-sm-4 col-md-3"></sc-field>
+            <div style="padding-top: 24px;">
+              <span ng-show="filters.nutsLevel === 'regionNUTS1' && filters.nuts1Id">{{nuts1Obj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'regionNUTS2' && filters.nuts2Id">{{nuts2Obj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'district' && filters.districtId">{{districtObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'municipality' && filters.municipalityId">{{municipalityObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'settlement' && filters.settlementId">{{settlementObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'protectedZone' && filters.protectedZoneId">{{protectedZoneObj.fullPathName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+          icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_contractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div ng-show="resultIsClipped">
+          <sc-info class="warning" icon="glyphicon glyphicon-warning-sign" text="monitoring_contractsReport_clippedResults">
+          <sc-info>
+        </div>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="4" class="text-center" l10n-text="monitoring_contractsReport_contract"></th>
+                <th colspan="9" class="text-center" l10n-text="monitoring_contractsReport_company"></th>
+                <th colspan="11" class="text-center" l10n-text="monitoring_contractsReport_contract"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_initialContractedAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_actualContractedAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_reportedAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_approvedAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_unapprovedAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_unapprovedByCorrectionAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_paidAdvanceAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_paidIntermediateAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_paidFinalAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_reimbursedPrincipalAmounts"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_contractsReport_reimbursedInterestAmounts"></th>
+              </tr>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_contractsReport_programme"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_procedure"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_regNumber"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_name"></th>
+
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyUin"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyName"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyType"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyLegalType"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyKidCode"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyAddress"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyCorrespondenceAddress"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companyEmail"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_companySizeType"></th>
+
+                <th class="text-center" l10n-text="monitoring_contractsReport_projectDuration"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_projectKidCode"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_initialContractDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_actualContractDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_initialStartDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_initialCompletionDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_actualStartDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_actualCompletionDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_contractTerminationDate"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_contractExecutionStatus"></th>
+                <th class="text-center" l10n-text="monitoring_contractsReport_nutsLevel"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat-start="contract in contracts">
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.programme}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.procedure}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.regNumber}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.name}}</td>
+
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyUin}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyName}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyType}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyLegalType}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyKidCode}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyAddress}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyCorrespondenceAddress}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companyEmail}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.companySizeType}}</td>
+
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.projectDuration}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.projectKidCode}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.initialContractDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.actualContractDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.initialStartDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.initialCompletionDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.actualStartDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.actualCompletionDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.contractTerminationDate | date:'dd.MM.yyyy'}}</td>
+                <td rowspan="{{contract.contractAmounts.length === 0 ? 1 : contract.contractAmounts.length}}">{{contract.contractExecutionStatus}}</td>
+
+                <td>{{contract.contractAmounts.length === 0 ? null : contract.contractAmounts[0].contractBudgetLevel3AmountNutsFullPathName}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].initialContractedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].actualContractedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].reportedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].approvedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].unapprovedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.contractAmounts.length === 0 ? 0 : contract.contractAmounts[0].correctedTotalAmount | money}}</td>
+
+                <td rowspan="{{contract.contractAmounts.length}}" style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.paidAdvanceTotalAmount | money}}</td>
+                <td rowspan="{{contract.contractAmounts.length}}" style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.paidIntermediateTotalAmount | money}}</td>
+                <td rowspan="{{contract.contractAmounts.length}}" style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.paidFinalTotalAmount | money}}</td>
+                <td rowspan="{{contract.contractAmounts.length}}" style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.reimbursedPrincipalTotalAmount | money}}</td>
+                <td rowspan="{{contract.contractAmounts.length}}" style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contract.reimbursedInterestTotalAmount | money}}</td>
+              </tr>
+
+              <tr ng-repeat-end ng-repeat="contractAmount in contract.contractAmounts" ng-hide="$first">
+                <td>{{contractAmount.contractBudgetLevel3AmountNutsFullPathName}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.initialContractedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.actualContractedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.reportedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.approvedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.unapprovedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{contractAmount.correctedTotalAmount | money}}</td>
+              </tr>
+
+              <tr ng-if="contracts.length === 0">
+                <td colspan="50" l10n-text="monitoring_contractsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

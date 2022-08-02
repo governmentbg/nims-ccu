@@ -1,0 +1,80 @@
+﻿@model R_10044.TechnicalReport
+@using Eumis.Portal.Web.Helplers.Extensions;
+ 
+@if (Model != null)
+{
+    int sectionNumber = 0;
+
+    if (Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.BasicData))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.BasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            <div class="table-wrapper">
+                <div class="history-table">
+                    @Html.DisplayFor(m => m.BasicData)
+                </div>
+            </div>
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Activities))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Activities
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Activities)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Indicators))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Indicators
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Indicators)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(Eumis.Documents.Enums.ApplicationSectionType.Team))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @TechnicalReport.Team
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            <div style="display: inline-block; margin-top: 10px;" ng-show="isDefault">
+                <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/Excel/ExportTeamMembers" title="" target="_blank" class="download-as-file">
+                    @TechnicalReportTeamMember.Export
+                </a>
+            </div>
+            @Html.DisplayFor(m => m.Team)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @TechnicalReport.AttachedDocuments
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.AttachedDocuments.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.AttachedDocumentsDescriptionOnly)
+    </section>
+
+
+    @*@Html.DisplayFor(m => m.Signature)*@
+}

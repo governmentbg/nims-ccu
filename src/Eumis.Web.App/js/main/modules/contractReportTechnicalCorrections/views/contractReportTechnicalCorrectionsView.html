@@ -1,0 +1,17 @@
+<div>
+
+  <label class="title">{{titleText}}</label>
+
+  <sc-tabs tab-list="{
+    'contractReportTechnicalCorrections_tabs_contract': 'root.contractReportTechnicalCorrections.view.contract',
+    'contractReportTechnicalCorrections_tabs_report': 'root.contractReportTechnicalCorrections.view.report',
+    'contractReportTechnicalCorrections_tabs_data': 'root.contractReportTechnicalCorrections.view.data',
+    'contractReportTechnicalCorrections_tabs_indicators': 'root.contractReportTechnicalCorrections.view.indicators',
+    'contractReportTechnicalCorrections_tabs_correctedIndicators': 'root.contractReportTechnicalCorrections.view.correctedIndicators'
+  }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

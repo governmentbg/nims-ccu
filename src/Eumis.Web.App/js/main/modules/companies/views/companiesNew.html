@@ -1,0 +1,21 @@
+<div class="tab-content">
+  <ng-form name="newCompanyForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="companies_newForm_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="companies_newForm_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="companies_newForm_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-company-data name="companyForm" ng-model="company" sc-form-params="{ isNew: true }"></eumis-company-data>
+      </div>
+    </div>
+  </ng-form>
+</div>

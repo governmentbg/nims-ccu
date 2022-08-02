@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@Texts.Global_EumisShort</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="environment" content="@Environment.MachineName.Substring(Environment.MachineName.Length - 3)">
+    <meta name="version" content="@Eumis.Public.Web.Configuration.ProductVersion">
+
+    @if (EnvironmentManager.Current.Type != EnvironmentType.Production)
+    {
+        <meta name="robots" content="noindex">
+        <meta name="googlebot" content="noindex">
+    }
+
+    <noscript><meta http-equiv="refresh" content="0; url=@(Url.Content("/Error/NoScript.html"))" /></noscript>
+
+    <!-- Not supported browser -->
+    @Html.Partial(MVC.Shared.Views._NotSupportedBrowser)
+
+    @Styles.Render(BundleConfig.PubCss)
+    @Scripts.Render(BundleConfig.PubJs)
+    @Scripts.Render(BundleConfig.BgMapJs)
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400italic,700italic,300,500,700,300italic,400&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" href="@(Url.Content(Links.Content.img.icons.favicon_ico))" type="image/x-icon" />
+</head>
+<body>
+    <!-- LOADER -->
+    @Html.Partial(MVC.Shared.Views._LoaderPartial)
+
+    <!-- HEADER -->
+    @Html.Partial(MVC.Shared.Views._Header)
+
+    <!-- BODY -->
+    @RenderBody()
+
+    <!-- FOOTER -->
+    @Html.Partial(MVC.Shared.Views._Footer)
+
+    <!-- Javascript Resources -->
+    @Html.Partial(MVC.Shared.Views._JsResources)
+
+    @Scripts.Render(BundleConfig.PubActionJs)
+    @RenderSection(ScriptSectionName, required: false)
+
+    @Html.Partial(MVC.Shared.Views._GoogleAnalytics)
+</body>
+</html>

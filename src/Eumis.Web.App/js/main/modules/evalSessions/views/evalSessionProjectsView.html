@@ -1,0 +1,266 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="evalSessions_viewEvalSessionProject_title"></strong>
+
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancelProject()" text="evalSessions_viewEvalSessionProject_cancelProject"
+        class="btn btn-danger btn-xs" ng-show="!evalSessionProject.isDeleted"
+        ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !sessionIsActive"></sc-button>
+
+      <sc-button name="restoreBtn" btn-click="restoreProject()"
+        text="evalSessions_viewEvalSessionProject_restoreProject" class="btn btn-success btn-xs"
+        ng-show="evalSessionProject.isDeleted"
+        ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !sessionIsActive"></sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <h5 class="table-header table-header-first" l10n-text="evalSessions_viewEvalSessionProject_regData"></h5>
+    <ng-form name="editProjectRegistrationDataForm" sc-form-readonly="true">
+      <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration">
+      </eumis-project-registration-data>
+    </ng-form>
+
+    <div class="row">
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="evalSessionProject.isDeleted"
+        ng-readonly="true" l10n-text="evalSessions_viewEvalSessionProject_isDeleted" class="col-sm-2 col-md-2">
+      </sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="textarea" rows="3" ng-model="evalSessionProject.isDeletedNote" ng-readonly="true"
+        l10n-text="evalSessions_viewEvalSessionProject_isDeletedNote" class="col-sm-12 col-md-8"></sc-field>
+    </div>
+
+    <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_history"></h5>
+    <sc-button name="newBtn" btn-click="newProjectVersion()" ng-if="projectVersions.length !== 0 && sessionIsActive"
+      style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+      ng-disabled="!$canDo('ProjectActions.CreateVersion', projectId)"></sc-button>
+    <sc-button name="createBtn" btn-click="projectVersionFromRegData()"
+      ng-if="projectVersions.length === 0 && sessionIsActive" style="position:relative; right: -5px; top: 15px;"
+      class="btn btn-xs btn-primary" icon="glyphicon-plus" text="evalSessions_viewEvalSessionProject_createFromRegData">
+    </sc-button>
+    <sc-datatable items="projectVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false"
+      has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn"
+          btn-sref="{ state: 'root.evalSessions.view.projects.view.versions.edit', params: {vid: item.projectVersionId} }"
+          class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ProjectVersionActions.View', item.projectVersionId)"></sc-button>
+      </sc-column>
+      <sc-column data="status" title="evalSessions_viewEvalSessionProject_projectStatus">
+      </sc-column>
+      <sc-column data="createNote" title="evalSessions_viewEvalSessionProject_createNote">
+      </sc-column>
+      <sc-column data="createDate" title="evalSessions_viewEvalSessionProject_createDate" type="date">
+      </sc-column>
+      <sc-column data="modifyDate" title="evalSessions_viewEvalSessionProject_modifyDate" type="date">
+      </sc-column>
+      <sc-column sortable="false" title="evalSessions_viewEvalSessionProject_file" has-content="true">
+        <a target="_blank" ng-href="{{item.projectFile.url}}" sc-access-token ng-show="item.projectFile"
+          title="{{item.projectFile.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+      <sc-column sortable="false" title="evalSessions_viewEvalSessionProject_signatures" has-content="true">
+        <a ng-repeat="pfs in item.projectFileSignatures" target="_blank" ng-href="{{pfs.url}}" sc-access-token
+          ng-show="item.projectFile" title="{{pfs.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+
+    <div ng-if="projectRegistration.hasRegistration">
+      <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_communication"></h5>
+      <sc-button name="newCommunicationBtn" btn-click="newCommunication()" ng-if="sessionIsActive"
+        style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+        ng-disabled="!$canDo('ProjectActions.CreateCommunication', projectId)"></sc-button>
+      <sc-datatable items="currentSessionCommunications" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false"
+        row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.evalSessions.view.projects.view.communications.edit', params: {mid: item.communicationId} }"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ProjectCommunicationActions.View', item.communicationId)"></sc-button>
+        </sc-column>
+        <sc-column data="questionDate" title="evalSessions_viewEvalSessionProject_questionDate" type="date">
+        </sc-column>
+        <sc-column data="regNumber" title="evalSessions_viewEvalSessionProject_regNumber">
+        </sc-column>
+        <sc-column data="status" title="evalSessions_viewEvalSessionProject_communicationStatus">
+        </sc-column>
+        <sc-column data="questionEndingDate" title="evalSessions_viewEvalSessionProject_questionEndingDate" type="date">
+        </sc-column>
+        <sc-column data="answerDate" title="evalSessions_viewEvalSessionProject_answerDate" type="date">
+        </sc-column>
+      </sc-datatable>
+    </div>
+
+    <div ng-if="projectRegistration.hasRegistration && otherCommunications.length !== 0">
+      <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_otherCommunication"></h5>
+      <sc-datatable items="otherCommunications" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false"
+        row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.evalSessions.view.projects.view.communications.edit', params: {mid: item.communicationId} }"
+            class="btn btn-xs btn-primary" icon="glyphicon-list-alt"
+            ng-disabled="!$canDo('ProjectCommunicationActions.View', item.communicationId)"></sc-button>
+        </sc-column>
+        <sc-column data="questionDate" title="evalSessions_viewEvalSessionProject_questionDate" type="date">
+        </sc-column>
+        <sc-column data="regNumber" title="evalSessions_viewEvalSessionProject_regNumber">
+        </sc-column>
+        <sc-column data="status" title="evalSessions_viewEvalSessionProject_communicationStatus">
+        </sc-column>
+        <sc-column data="questionEndingDate" title="evalSessions_viewEvalSessionProject_questionEndingDate" type="date">
+        </sc-column>
+        <sc-column data="answerDate" title="evalSessions_viewEvalSessionProject_answerDate" type="date">
+        </sc-column>
+        <sc-column data="sessionNum" title="evalSessions_viewEvalSessionProject_communicationSessionNum">
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_viewEvalSessionProject_file" has-content="true">
+          <a target="_blank" ng-href="{{item.projectCommunicationFile.url}}" sc-access-token
+            ng-show="item.projectCommunicationFile" title="{{item.projectCommunicationFile.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+        <sc-column sortable="false" title="evalSessions_viewEvalSessionProject_signatures" has-content="true">
+          <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}"
+            sc-access-token ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+    </div>
+
+    <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_evaluations"></h5>
+    <sc-button name="newASDEvaluationBtn" btn-click="createEvaluation('adminAdmiss')"
+      ng-if="sessionIsActive && evalSessionInfo.actions.isAdminAdmiss"
+      text="evalSessions_viewEvalSessionProject_adminAdmiss" style="position:relative; right: -5px; top: 15px;"
+      class="btn btn-xs btn-primary" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)">
+    </sc-button>
+    <sc-button name="newTFOEvaluationBtn" btn-click="createEvaluation('techFinance')"
+      ng-if="sessionIsActive && evalSessionInfo.actions.isTechFinance"
+      text="evalSessions_viewEvalSessionProject_techFinance" style="position:relative; right: -5px; top: 15px;"
+      class="btn btn-xs btn-primary" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)">
+    </sc-button>
+    <sc-button name="newComplexEvaluationBtn" btn-click="createEvaluation('complex')"
+      ng-if="sessionIsActive && evalSessionInfo.actions.isComplex" text="evalSessions_viewEvalSessionProject_complex"
+      style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)"></sc-button>
+    <sc-button name="newPreliminaryEvaluationBtn" btn-click="createEvaluation('preliminary')"
+      ng-if="sessionIsActive && evalSessionInfo.actions.isPreliminary"
+      text="evalSessions_viewEvalSessionProject_preliminary" style="position:relative; right: -5px; top: 15px;"
+      class="btn btn-xs btn-primary" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)">
+    </sc-button>
+    <sc-datatable items="projectEvaulations" filterable="false" pageable="false" sortable="false"
+      dynamic-columns="false" has-info-text="false" scrollable="false"
+      row-class="{'deactivated-table-row' : item.isDeleted === true}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn"
+          btn-sref="{ state: 'root.evalSessions.view.projects.evaluations.edit', params: {ind: item.evalSessionEvaluationId} }"
+          class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+      </sc-column>
+      <sc-column data="evalTableTypeName" title="evalSessions_viewEvalSessionProject_type">
+      </sc-column>
+      <sc-column data="calculationType" title="evalSessions_viewEvalSessionProject_calculationType">
+      </sc-column>
+      <sc-column data="evalIsPassed" title="evalSessions_viewEvalSessionProject_pass" type="boolean">
+      </sc-column>
+      <sc-column data="evalPoints" title="evalSessions_viewEvalSessionProject_result" type="number">
+      </sc-column>
+      <sc-column data="evalNote" title="evalSessions_viewEvalSessionProject_note">
+      </sc-column>
+      <sc-column data="createDate" title="evalSessions_viewEvalSessionProject_createDate" type="datetime">
+      </sc-column>
+      <sc-column data="isDeleted" title="evalSessions_viewEvalSessionProject_isDeleted" type="boolean">
+      </sc-column>
+      <sc-column data="isDeletedNote" title="evalSessions_viewEvalSessionProject_isDeletedNote">
+      </sc-column>
+    </sc-datatable>
+
+    <h5 class="table-header pull-left" l10n-text="evalSessions_viewEvalSessionProject_standings"></h5>
+    <sc-button name="newPreliminaryStandingBtn" btn-click="createStanding(true)"
+      ng-if="sessionIsActive && evalSessionInfo.actions.isPreliminary"
+      text="evalSessions_viewEvalSessionProject_newPreliminaryStanding"
+      style="position:relative; right: -5px; top: 15px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)"></sc-button>
+    <sc-button name="newStandingBtn" btn-click="createStanding(false)" ng-if="sessionIsActive"
+      text="evalSessions_viewEvalSessionProject_newStanding" style="position:relative; right: -5px; top: 15px;"
+      class="btn btn-xs btn-primary" icon="glyphicon-plus"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)"></sc-button>
+    <sc-datatable items="projectStandings" filterable="false" pageable="false" sortable="false" dynamic-columns="false"
+      has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.isDeleted === true}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn"
+          btn-sref="{ state: 'root.evalSessions.view.projects.view.standings.edit', params: {sid: item.evalSessionProjectStandingId} }"
+          class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+      </sc-column>
+      <sc-column data="isPreliminary" title="evalSessions_viewEvalSessionProject_isPreliminary" type="boolean">
+      </sc-column>
+      <sc-column data="orderNum" title="evalSessions_viewEvalSessionProject_orderNum">
+      </sc-column>
+      <sc-column data="status" title="evalSessions_viewEvalSessionProject_status">
+      </sc-column>
+      <sc-column data="grandAmount" title="evalSessions_viewEvalSessionProject_grandAmount" type="money">
+      </sc-column>
+      <sc-column data="type" title="evalSessions_viewEvalSessionProject_standingType">
+      </sc-column>
+      <sc-column data="notes" title="evalSessions_viewEvalSessionProject_notes">
+      </sc-column>
+      <sc-column data="createDate" title="evalSessions_viewEvalSessionProject_createDate" type="datetime">
+      </sc-column>
+      <sc-column data="isDeleted" title="evalSessions_viewEvalSessionProject_isDeleted" type="boolean">
+      </sc-column>
+      <sc-column data="isDeletedNote" title="evalSessions_viewEvalSessionProject_isDeletedNote">
+      </sc-column>
+    </sc-datatable>
+
+    <div ng-if="procedureHasMonitorstatInquiries">
+      <h5 class="table-header" l10n-text="evalSessions_viewEvalSessionProject_monitorstatRequests"></h5>
+      <sc-button name="newMonitorstatRequestBtn" btn-sref="{ state: 'root.evalSessions.view.projects.view.monitorstat.new'}" class="btn btn-xs btn-primary pull-left" icon="glyphicon-plus" text="evalSessions_viewEvalSessionProject_newMonitorstatRequest"
+        ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)" style="margin-bottom: 2px;"></sc-button>
+      <sc-button name="autoMonitorstatRequestsBtn" ng-click="createAutomaticMonitorstatRequests()"
+        class="btn btn-xs btn-primary pull-left" icon="glyphicon-plus"
+        text="evalSessions_viewEvalSessionProject_newMonitorstatMassRequest"
+        ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"
+        style="margin-left: 3px; margin-bottom: 2px;"></sc-button>
+      <sc-datatable items="monitorstatRequests" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.evalSessions.view.projects.view.monitorstat.edit', params: {rid: item.projectMonitorstatRequestId}}"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+          <sc-button ng-disabled="item.status !== 'draft' && item.status !== 'failed'" name="removeBtn"
+            ng-click="removeMonitorstatRequestItem(item)" class="btn btn-xs btn-danger" icon="glyphicon-remove">
+          </sc-button>
+        </sc-column>
+        <sc-column data="statusDescr" title="evalSessions_viewEvalSessionProject_monitorstatStatus">
+        </sc-column>
+        <sc-column data="companyUin" title="evalSessions_viewEvalSessionProject_companyUin">
+        </sc-column>
+        <sc-column data="modifyDate" title="evalSessions_viewEvalSessionProject_monitorstatModifyDate" type="datetime">
+        </sc-column>
+        <sc-column title="evalSessions_viewEvalSessionProject_monitorstatDeclaration" sortable="false"
+          has-content="true">
+          <a target="_blank" ng-href="{{item.fileUrl}}" sc-access-token>
+            <span class="glyphicon glyphicon-file">{{item.declaration}}</span>
+          </a>
+        </sc-column>
+        <sc-column data="user" title="evalSessions_viewEvalSessionProject_monitorstatUser">
+        </sc-column>
+        <sc-column title="evalSessions_viewEvalSessionProject_receivedFiles" has-content="true" data="responses">
+          <div ng-repeat='file in item.responses'>
+            <a target="_blank" ng-href="{{file.fileUrl}}" sc-access-token>
+              <span class="glyphicon glyphicon-file">{{file.fileName}}</span>
+            </a>
+          </div>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</div>

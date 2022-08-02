@@ -1,0 +1,14 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractReportChecks_contractReportChecksFinancialForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractReportFinancialCheckStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportChecks_contractReportChecksFinancialForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.approval" alias="'contractReportFinancialCheckApprovals'" mode="id" l10n-text="contractReportChecks_contractReportChecksFinancialForm_approval" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="file" ng-model="model.file" url-template="ContractReportCheckFile" url-params="{ id: model.contractReportId }" l10n-text="contractReportChecks_contractReportChecksFinancialForm_file" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.checkedDate" l10n-text="contractReportChecks_contractReportChecksFinancialForm_checkedDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportChecks_contractReportChecksFinancialForm_checkedByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

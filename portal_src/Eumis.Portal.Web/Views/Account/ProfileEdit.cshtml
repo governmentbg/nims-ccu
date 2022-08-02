@@ -1,0 +1,61 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Account.ProfileVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+            , ProfileEdit.Profile)
+
+<div class="container page-title">
+    <h1>@ProfileEdit.Profile</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+
+    @if (TempData["SuccessProfileUpdate"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>
+                    <strong>@Global.SuccessProfileUpdate</strong>
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label><span class="required-span">*</span> @ProfileEdit.FirstName</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label><span class="required-span">*</span> @ProfileEdit.LastName</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label>@ProfileEdit.Telephone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
+                @Html.HiddenFor(m => m.Email)
+                @Html.HiddenFor(m => m.Version)
+                <div class="clearfix"></div>
+
+                <div class="col-lg-12 col-sm-12">
+                    <input type="submit" class="submit m-right-0 wait" value="@Global.ButtonContinueText">
+                </div>
+            </section>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("input").popover({
+                        placement: "top",
+                        trigger: "focus"
+                    });
+                });
+            </script>
+        </form>
+    </div>
+</div>

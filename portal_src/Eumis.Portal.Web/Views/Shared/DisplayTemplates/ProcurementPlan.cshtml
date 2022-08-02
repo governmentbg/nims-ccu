@@ -1,0 +1,117 @@
+﻿@model R_10048.ProcurementPlan
+
+@if (Model != null)
+{
+    var bfpContractPlan = Model.BFPContractPlan;
+
+    <tr>
+        <td style="word-break: break-all">
+            @Html.DisplayFor(m => bfpContractPlan.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </td>
+        <td>
+            @Html.DisplayFor(m => bfpContractPlan.ErrandArea)
+        </td>
+        <td>
+            @Html.DisplayFor(m => bfpContractPlan.ErrandLegalAct)
+        </td>
+        <td style="width: 130px;">
+            <a title="" class="history-btn">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+            </a>
+        </td>
+    </tr>
+    <tr class="history-table">
+        <td colspan="4">
+            <div class="history-table-wrapper clearfix">
+
+                <div class="clearfix">
+                    @Html.DisplayFor(m => bfpContractPlan)
+                </div>
+
+                <div class="clearfix">
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.PPANumber, ProcurementPlan.PPANumber)
+                        @Html.DisplayFor(m => m.PPANumber)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.ExpectedAmount, ProcurementPlan.ExpectedAmount)
+                        @Html.DisplayFor(m => m.ExpectedAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.OffersDeadlineDate, ProcurementPlan.OffersDeadlineDate)
+                        @Html.DisplayFor(m => m.OffersDeadlineDate)
+                    </div>
+                </div>
+                  <div class="clearfix">
+                    <div class="form-group col-md-4">
+                      @Html.LabelFor(m => m.NoticeDate, ProcurementPlan.NoticeDate)
+                      @Html.DisplayFor(m => m.NoticeDate)
+                    </div>
+
+                    @if (Model.BFPContractPlan.ErrandLegalAct.Id == Eumis.Documents.Constants.ProcurementPlansErrandLegalActPmsGid)
+                    {
+                      <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.IsAnnounced, ProcurementPlan.IsAnnounced)
+                        @Html.DisplayFor(m => m.IsAnnounced)
+                      </div>
+                      <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.IsTerminated, ProcurementPlan.IsTerminated)
+                        @Html.DisplayFor(m => m.IsTerminated)
+                      </div>
+                    }
+                  </div>
+
+                <h3 class="margin-bottom-h3">@ProcurementPlan.DifferentiatedPositionsHeader</h3>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-12">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width:40%;">@ProcurementPlan.DifferentiatedPositionName</th>
+                                    <th style="width:60%;">@ProcurementPlan.ContractContractor</th>
+                                    <th>@Global.Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var position in Model.DifferentiatedPositionCollection)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => position.Name)
+                                        </td>
+                                        <td>
+                                            @if (position.ContractContractor != null)
+                                            {
+                                                @Html.DisplayFor(m => position.ContractContractor.Name)
+                                            }
+                                        </td>
+                                        <td style="width: 130px;">
+                                            <a title="" class="history-btn">
+                                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-table">
+                                        <td colspan="4">
+                                            @Html.DisplayFor(m => position)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h3 class="margin-bottom-h3">@ProcurementPlan.AttachedDocuments</h3>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-12">
+                        @Html.DisplayFor(m => Model.AttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.AttachedDocumentsDescriptionOnly)
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+}

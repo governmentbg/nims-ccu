@@ -1,0 +1,71 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_irregularties_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_irregularties_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_irregularties_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_irregularties_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_irregularties_toDate" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-3">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_irregularties_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiaryName"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiaryUin"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiaryType"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiaryLegalType"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiarySeatAddress"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_beneficiaryCorrespondenceAddress"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_contractRegNum"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_project"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_irregularitySignal"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_irregularitySignalRegDate"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_status"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_irregularityRegNum"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_irregularityRegDate"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_irregularityValue"></th>
+                <th class="text-center" l10n-text="monitoring_irregularties_financialCorrections"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="irregularity in irregularities">
+                <td>{{irregularity.beneficiaryName}}</td>
+                <td>{{irregularity.beneficiaryUin}}</td>
+                <td>{{irregularity.beneficiaryType}}</td>
+                <td>{{irregularity.beneficiaryLegalType}}</td>
+                <td>{{irregularity.beneficiarySeatAddress}}</td>
+                <td>{{irregularity.beneficiaryCorrespondenceAddress}}</td>
+                <td>{{irregularity.contractRegNum}}</td>
+                <td>{{irregularity.project}}</td>
+                <td>{{irregularity.irregularitySignal}}</td>
+                <td>{{irregularity.irregularitySignalRegDate | date:'dd.MM.yyyy'}}</td>
+                <td>{{irregularity.status}}</td>
+                <td>{{irregularity.irregularityRegNum}}</td>
+                <td>{{irregularity.irregularityRegDate | date:'dd.MM.yyyy'}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{irregularity.irregularityValue | money}}</td>
+                <td>{{irregularity.financialCorrections}}</td>
+              </tr>
+              <tr ng-if="irregularities.length === 0">
+                <td colspan="15" class="text-center" l10n-text="monitoring_irregularties_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-link-button ng-href="{{registrationsExportUrl}}" target="_blank" sc-access-token icon="fa-file-excel-o fa-lg fa-fw"
+                    text="registrations_searchForm_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="regs" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.registrations.view', params: {id: item.registrationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('RegistrationActions.View', item.registrationId)"></sc-button>
+      </sc-column>
+      <sc-column data="email" title="registrations_searchForm_email">
+      </sc-column>
+      <sc-column data="firstName" title="registrations_searchForm_firstName">
+      </sc-column>
+      <sc-column data="lastName" title="registrations_searchForm_lastName">
+      </sc-column>
+      <sc-column data="phone" title="registrations_searchForm_phone">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

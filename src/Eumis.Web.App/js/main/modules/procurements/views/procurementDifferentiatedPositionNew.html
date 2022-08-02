@@ -1,0 +1,18 @@
+<ng-form name="newProcurementPositionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procurements_newProcurementPosition_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procurements_newProcurementPosition_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procurements_newProcurementPosition_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-differentiated-position name="differentiatedPositionForm" ng-model="differentiatedPosition"></eumis-differentiated-position>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,275 @@
+﻿@using Eumis.Public.Common.Crypto
+@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.Company
+
+@model CompanyDetailsVM
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+
+    if (Model != null)
+    {
+        if (Model.Type == CompanyEnumType.Beneficiary)
+        {
+            breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Beneficiary.ActionNames.Index, MVC.Beneficiary.Name), Texts.Global_Beneficiaries));
+        }
+
+        if (Model.Type == CompanyEnumType.Partner)
+        {
+            breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Partner.ActionNames.Index, MVC.Partner.Name), Texts.Global_Partners));
+        }
+
+        if (Model.Type == CompanyEnumType.Contractor)
+        {
+            breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Contractor.ActionNames.Index, MVC.Contractor.Name), Texts.Global_Contractors));
+        }
+
+        if (Model.Type == CompanyEnumType.Subcontractor)
+        {
+            breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Subcontractor.ActionNames.Index, MVC.Subcontractor.Name), Texts.Global_Subcontractors));
+        }
+
+        if (Model.Type == CompanyEnumType.Member)
+        {
+            breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Member.ActionNames.Index, MVC.Member.Name), Texts.Global_Members));
+        }
+    }
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Company_Index_CompanyInformation)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.Company_Index_CompanyInformation</h1>
+    </div>
+
+    <div class="page-content">
+
+        <div class="heading-with-export clearfix">
+            <h2>@Texts.Company_Index_Identification</h2>
+            @Html.Partial(MVC.Shared.Views._ExportIcons)
+        </div>
+        <div class="table-wrapper">
+            <table class="chart-info">
+                <thead>
+                    <tr>
+                        <th style="width:40%;">@Texts.Company_Index_Name</th>
+                        <th style="width:60%;">@Texts.Company_Index_Seat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Name</td>
+                        <td>@Model.Seat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        @* ********** BENEFICIARY PROJECTS ********** *@
+        @if ((Model.Projects.BeneficaryContractsCount.HasValue && Model.Projects.BeneficaryContractsCount.Value == 0) ||
+            (Model.Type == CompanyEnumType.Beneficiary && (Model.Projects.BeneficaryProjects == null || Model.Projects.BeneficaryProjects.Count == 0)))
+        {
+            <h2>@Texts.Company_Index_NoBeneficiaryParticipation</h2>
+        }
+        else if (Model.Projects.BeneficaryContractsCount.HasValue)
+        {
+            <h2>@Html.ActionLink($"{Texts.Company_Index_BeneficiaryProjectsList} ({Model.Projects.BeneficaryContractsCount.Value})", MVC.Company.ActionNames.Index, Model.GetRouteValues(CompanyEnumType.Beneficiary))</h2>
+        }
+        else
+        {
+            <h2>@Texts.Company_Index_BeneficiaryProjectsList</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Company_Index_ProjectName</th>
+                            <th>@Texts.Company_Index_Start</th>
+                            <th>@Texts.Company_Index_TotalAmount</th>
+                            <th>@Texts.Company_Index_BFP</th>
+                            <th>@Texts.Project_Search_FinancinBeneficiary</th>
+                            <th>@Texts.Global_Payed</th>
+                            <th>@Texts.Company_Index_Duration</th>
+                            <th>@Texts.Company_Index_BFPContractStatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model.Projects.BeneficaryProjects)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(contract.TransName, MVC.Project.BasicData(ConfigurationBasedStringEncrypter.Encrypt(contract.ContractId), contract.IsHistoric), new { @class = "wait" })</td>
+                                <td>@Html.DisplayFor(m => contract.StartDate)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractedTotalAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractedBFPAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractedSelfAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.PaidTotalAmount)</td>
+                                <td class="sum-field">@contract.MonthsDuration</td>
+                                <td>@contract.StatusDescription</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @* ********** PARTNER PROJECTS ********** *@
+        @if ((Model.Projects.PartnerContractsCount.HasValue && Model.Projects.PartnerContractsCount.Value == 0) ||
+            (Model.Type == CompanyEnumType.Partner && (Model.Projects.PartnerProjects == null || Model.Projects.PartnerProjects.Count == 0)))
+        {
+            <h2>@Texts.Company_Index_NoPartnerParticipation</h2>
+        }
+        else if (Model.Projects.PartnerContractsCount.HasValue)
+        {
+            <h2>@Html.ActionLink($"{Texts.Company_Index_PartnerProjectsList} ({Model.Projects.PartnerContractsCount.Value})", MVC.Company.ActionNames.Index, Model.GetRouteValues(CompanyEnumType.Partner))</h2>
+        }
+        else
+        {
+            <h2>@Texts.Company_Index_PartnerProjectsList</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Company_Index_ProjectName</th>
+                            <th>@Texts.Company_Index_Start</th>
+                            <th>@Texts.Company_Index_Duration</th>
+                            <th>@Texts.Company_Index_BFPContractStatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model.Projects.PartnerProjects)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(contract.TransName, MVC.Project.BasicData(ConfigurationBasedStringEncrypter.Encrypt(contract.ContractId), contract.IsHistoric), new { @class = "wait" })</td>
+                                <td>@Html.DisplayFor(m => contract.StartDate)</td>
+                                <td class="sum-field">@contract.MonthsDuration</td>
+                                <td>@contract.StatusDescription</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @* ********** CONTRACTOR PROJECTS ********** *@
+        @if ((Model.Projects.ContractorContractsCount.HasValue && Model.Projects.ContractorContractsCount.Value == 0) ||
+            (Model.Type == CompanyEnumType.Contractor && (Model.Projects.ContractorProjects == null || Model.Projects.ContractorProjects.Count == 0)))
+        {
+            <h2>@Texts.Company_Index_NoContractorParticipation</h2>
+        }
+        else if (Model.Projects.ContractorContractsCount.HasValue)
+        {
+            <h2>@Html.ActionLink($"{Texts.Company_Index_ContractorProjectsList} ({Model.Projects.ContractorContractsCount.Value})", MVC.Company.ActionNames.Index, Model.GetRouteValues(CompanyEnumType.Contractor))</h2>
+        }
+        else
+        {
+            <h2>@Texts.Company_Index_ContractorProjectsList</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Company_Index_ProjectName</th>
+                            <th>@Texts.Company_Index_EumisNumber</th>
+                            <th>@Texts.Company_Index_ContractCount</th>
+                            <th>@Texts.Company_Index_ContractAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model.Projects.ContractorProjects)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(contract.TransName, MVC.Project.BasicData(ConfigurationBasedStringEncrypter.Encrypt(contract.ContractId), contract.IsHistoric), new { @class = "wait" })</td>
+                                <td>@contract.RegNumber</td>
+                                <td>@contract.ContractCount</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractAmount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @* ********** SUBCONTRACTOR PROJECTS ********** *@
+        @if ((Model.Projects.SubcontractorContractsCount.HasValue && Model.Projects.SubcontractorContractsCount.Value == 0) ||
+            (Model.Type == CompanyEnumType.Subcontractor && (Model.Projects.SubcontractorProjects == null || Model.Projects.SubcontractorProjects.Count == 0)))
+        {
+            <h2>@Texts.Company_Index_NoSubcontractorParticipation</h2>
+        }
+        else if (Model.Projects.SubcontractorContractsCount.HasValue)
+        {
+            <h2>@Html.ActionLink($"{Texts.Company_Index_SubcontractorProjectsList} ({Model.Projects.SubcontractorContractsCount.Value})", MVC.Company.ActionNames.Index, Model.GetRouteValues(CompanyEnumType.Subcontractor))</h2>
+        }
+        else
+        {
+            <h2>@Texts.Company_Index_SubcontractorProjectsList</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Company_Index_ProjectName</th>
+                            <th>@Texts.Company_Index_EumisNumber</th>
+                            <th>@Texts.Company_Index_ContractCount</th>
+                            <th>@Texts.Company_Index_ContractAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model.Projects.SubcontractorProjects)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(contract.TransName, MVC.Project.BasicData(ConfigurationBasedStringEncrypter.Encrypt(contract.ContractId), contract.IsHistoric), new { @class = "wait" })</td>
+                                <td>@contract.RegNumber</td>
+                                <td>@contract.ContractCount</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractAmount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @* ********** MEMBER PROJECTS ********** *@
+        @if ((Model.Projects.MemberContractsCount.HasValue && Model.Projects.MemberContractsCount.Value == 0) ||
+            (Model.Type == CompanyEnumType.Member && (Model.Projects.MemberProjects == null || Model.Projects.MemberProjects.Count == 0)))
+        {
+            <h2>@Texts.Company_Index_NoMemberParticipation</h2>
+        }
+        else if (Model.Projects.MemberContractsCount.HasValue)
+        {
+            <h2>@Html.ActionLink($"{Texts.Company_Index_MemberProjectsList} ({Model.Projects.MemberContractsCount.Value})", MVC.Company.ActionNames.Index, Model.GetRouteValues(CompanyEnumType.Member))</h2>
+        }
+        else
+        {
+            <h2>@Texts.Company_Index_MemberProjectsList</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Company_Index_ProjectName</th>
+                            <th>@Texts.Company_Index_EumisNumber</th>
+                            <th>@Texts.Company_Index_ContractCount</th>
+                            <th>@Texts.Company_Index_ContractAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contract in Model.Projects.MemberProjects)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(contract.TransName, MVC.Project.BasicData(ConfigurationBasedStringEncrypter.Encrypt(contract.ContractId), contract.IsHistoric), new { @class = "wait" })</td>
+                                <td>@contract.RegNumber</td>
+                                <td>@contract.ContractCount</td>
+                                <td class="sum-field">@Html.DisplayFor(m => contract.ContractAmount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+
+        <h2>@Texts.Global_Note:</h2>
+        <div class="note">
+            @Texts.Global_NoteUnderlined<br />
+            @Texts.Global_NoteBGN
+        </div>
+    </div>
+</div>

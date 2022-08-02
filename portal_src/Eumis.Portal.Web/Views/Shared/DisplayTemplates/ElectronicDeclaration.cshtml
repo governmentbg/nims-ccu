@@ -1,0 +1,54 @@
+﻿@model R_10098.ElectronicDeclaration
+
+@if (Model != null)
+{
+    <tr class="@(!Model.IsActive ? "deactivated" : string.Empty)">
+        <td>
+            <span class="filled-value">
+                @if (Model.Name != null)
+                {
+                    <text>@Model.Name</text>
+                }
+
+                @if (!Model.IsActive)
+                {
+                    <img class="info-icon" src = "@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@ElectronicDeclaration.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                }
+            </span>
+        </td>
+        <td>
+            <span class="filled-value">
+                @if (Model.Content != null)
+                {
+                    <pre>@Model.Content</pre>
+                }
+            </span>
+        </td>
+        <td>
+            <span class="filled-value">
+                <text>@(Model.IsRequired ? Global.Yes : Global.No)</text>
+            </span>
+        </td>
+        <td>
+            <span class="filled-value">
+                @if (Model.FieldType == R_10098.FieldType.CheckBox)
+                {
+                    <text>@(Model.FieldValue == "True" ? Global.Yes : Global.No)</text>
+                }
+                else if (Model.FieldType == R_10098.FieldType.Period && !string.IsNullOrWhiteSpace(Model.FieldValue))
+                {
+                    var dates = Model.FieldValue.Split('$').ToList();
+                    var fromDate = dates.FirstOrDefault();
+                    var toDate = dates.LastOrDefault();
+
+                    @ElectronicDeclaration.FromDate @fromDate <br />
+                    @ElectronicDeclaration.ToDate @toDate
+                }
+                else
+                {
+                    @Html.DisplayFor(m => m.FieldValue, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                }
+            </span>
+        </td>
+    </tr>
+}

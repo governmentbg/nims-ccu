@@ -1,0 +1,23 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@model Eumis.Public.Web.InfrastructureClasses.TabType
+
+@{
+    var rvd = new RouteValueDictionary { { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId } };
+
+    var projectRVD = new RouteValueDictionary { { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId }, {"showRes", true} };
+}
+
+@if (HasTabs) 
+{ 
+    <ul class="nav nav-tabs">
+        <li class="@(Model == TabType.OPProfile ? "active" : string.Empty)"><a href="@Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, rvd)" class="wait">@Texts.Global_FinancialExecution</a></li>
+        <li class="@(Model == TabType.PriorityLines ? "active" : string.Empty)"><a href="@Url.Action(MVC.PriorityLines.ActionNames.Index, MVC.PriorityLines.Name, rvd)" class="wait">@Texts.Shared_Tabs_PriorityAxes</a></li>
+        <li class="@(Model == TabType.PlanningRegions ? "active" : string.Empty)"><a href="@Url.Action(MVC.PlanningRegions.ActionNames.Index, MVC.PlanningRegions.Name, rvd)" class="wait">@Texts.Shared_Tabs_Location</a></li>
+        <li class="@(Model == TabType.Project ? "active" : string.Empty)"><a href="@Url.Action(MVC.Project.ActionNames.Search, MVC.Project.Name, projectRVD)" class="wait">@Texts.Shared_Tabs_Projects</a></li>
+    </ul>
+
+
+    <script>
+			$('.nav-tabs:last').tabdrop({text: '@(Texts.Global_More)...'});
+    </script>
+}

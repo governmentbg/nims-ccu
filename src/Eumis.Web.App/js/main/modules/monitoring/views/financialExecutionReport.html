@@ -1,0 +1,286 @@
+﻿<ng-form name="financialExecutionForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'financialExecutionTables'" mode="id" ng-model="filters.table" ng-required="true" l10n-text="monitoring_financialExecutionReport_table" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="nomenclature" alias="'programmes'" mode="id" ng-model="filters.programmeId" ng-required="true" l10n-text="monitoring_financialExecutionReport_programme" class="col-sm-7 col-md-6"></sc-field>
+          <sc-field type="nomenclature" alias="'programmePriorities'" mode="id" ng-model="filters.programmePriorityId" params="{ programmeId: filters.programmeId }"
+            ng-show="filters.table === 'table1' || filters.table === 'table2' || filters.table === 'table8' || filters.table === 'table9' || filters.table === 'tableIMZ'" l10n-text="monitoring_financialExecutionReport_programmePriority" class="col-sm-9 col-md-7"></sc-field>
+          <sc-field type="nomenclature" alias="'years'" mode="id" ng-model="filters.year" ng-required="filters.table === 'table3'"
+            ng-show="filters.table === 'table3'" l10n-text="monitoring_financialExecutionReport_year" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="date" ng-model="filters.date" ng-required="true" l10n-text="monitoring_financialExecutionReport_date" class="col-sm-3 col-md-2" ng-if="filters.table !== 'table3'"></sc-field>
+          <div class="labeless col-sm-2 col-md-4 pull-right">
+            <sc-button name="searchBtn" btn-click="search()" text="monitoring_financialExecutionReport_search" class="btn btn-primary btn-sm pull-right" icon="glyphicon-search">
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <div class="row" ng-show="selectedTable === 'table1'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table1"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_financialExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_regionCategory"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_budgetBfpAmount"></th>
+                    <th colspan="6" class="text-center" l10n-text="monitoring_financialExecutionReport_data"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractedTotalAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractedPercent"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractedBfpAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_reportedTotalAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_reportedPercent"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractsCount"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.budgetBfpAmount | money}}</td>
+                    <td>{{item.contractedTotalAmount | money}}</td>
+                    <td>{{item.contractedPercent + '%'}}</td>
+                    <td>{{item.contractedBfpAmount | money}}</td>
+                    <td>{{item.reportedTotalAmount | money}}</td>
+                    <td>{{item.reportedPercent + '%'}}</td>
+                    <td>{{item.contractsCount}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="10" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table2'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table2"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:-14px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_financialExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_regionCategory"></th>
+                    <th colspan="8" class="text-center" l10n-text="monitoring_financialExecutionReport_interventionCategories"></th>
+                    <th colspan="4" class="text-center" l10n-text="monitoring_financialExecutionReport_financeData"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_interventionField"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_formOfFinance"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_territorialDimension"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_territorialDeliveryMechanism"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_thematicObjective"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_esfSecondaryTheme"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_economicDimension"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_nutsName"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractedTotalAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractedBfpAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_reportedTotalAmount"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_contractsCount"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.programmePriority}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.interventionField}}</td>
+                    <td>{{item.formOfFinance}}</td>
+                    <td>{{item.territorialDimension}}</td>
+                    <td>{{item.territorialDeliveryMechanism}}</td>
+                    <td>{{item.thematicObjective}}</td>
+                    <td>{{item.esfSecondaryTheme}}</td>
+                    <td>{{item.economicDimension}}</td>
+                    <td>{{item.nutsName}}</td>
+                    <td>{{item.contractTotalAmount | money}}</td>
+                    <td>{{item.contractBfpAmount | money}}</td>
+                    <td>{{item.reportedTotalAmount | money}}</td>
+                    <td>{{item.contractsCount}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="15" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table3'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table3"></h5>
+              <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_financialExecutionReport_export" class="btn btn-default btn-xs pull-right">
+              </sc-link-button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_regionCategory"></th>
+                    <th colspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_currYearEuAmounts"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_nextYearEuAmounts"></th>
+                  </tr>
+                  <tr>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_januaryToOctober"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_novemberToDecember"></th>
+                    <th class="text-center" l10n-text="monitoring_financialExecutionReport_januaryToDecember"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in report">
+                    <td>{{item.programme}}</td>
+                    <td>{{item.regionCategory}}</td>
+                    <td>{{item.currYearGroup1PaymentsEuAmount | money}}</td>
+                    <td>{{item.currYearGroup2PaymentsEuAmount | money}}</td>
+                    <td>{{item.nextYearPaymentsEuAmount | money}}</td>
+                  </tr>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="6" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table8'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table8"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_crossAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_budgetBfpPercent"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_reportedCrossAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_budgetTotalPercent"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="6" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table9'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table9"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_operationsAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_budgetTotalPercent"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_reportedOperationsAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_budgetTotalPercent"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="6" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'table10'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_table10"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_esfAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_esfAmountPercent"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_esfReportedAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_esfAmountPercent"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="5" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" ng-show="selectedTable === 'tableIMZ'">
+          <div class="col-sm-12">
+            <div style="padding-top: 20px;">
+              <h5 class="table-header" style="display: inline-block;" l10n-text="monitoring_financialExecutionReport_tableIMZ"></h5>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-with-vertically-centered-headers">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programme"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_programmePriority"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_imzAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_imzOperationsAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_contractedImzAmount"></th>
+                    <th rowspan="2" class="text-center" l10n-text="monitoring_financialExecutionReport_imzSelfAmount"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="report.length === 0">
+                    <td colspan="6" class="text-center" l10n-text="monitoring_financialExecutionReport_noResults"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,15 @@
+<div class="bg_breadcrumbs">
+  <div class="container">
+    <div class="breadcrumbs clearfix">
+      <a sc-sref="{state: homeState}"><img src="img/icons/home.gif" alt="" /></a>
+
+      <img ng-repeat-start="breadcrumbState in breadcrumbStates" src="img/icons/breadcrumb-sep.gif" alt="">
+      <div ng-repeat-end ng-class="{'active': $last}">
+        <sc-button name="stateLink" ng-show="!$last" btn-sref="{state: breadcrumbState.state}" text="{{breadcrumbState.title}}"></sc-button>
+        <span ng-show="$last">{{breadcrumbState.title}}</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+

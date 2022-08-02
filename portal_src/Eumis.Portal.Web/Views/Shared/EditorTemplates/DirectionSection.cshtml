@@ -1,0 +1,66 @@
+﻿@model R_10093.DirectionSection
+
+@{ var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model); }
+
+<script type="text/javascript">
+
+    window._eumis_options.directionSection =  @(Html.Raw(jsonModel));
+
+    if (!window._eumis_options.BFPContract) {
+        $(document).ready(function () {
+            angular.bootstrap($('#containerDirectionSection'), ['moduleDirections']);
+        });
+    }
+
+</script>
+
+<div class="table-wrapper" id="containerDirectionSection" ng-controller="controllerDirections">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))">
+                <th>@Direction.DirectionName</th>
+                <th style="width: 130px;">@BFPContractIndicators.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr>
+                <td>
+                    <div class="form-group col-md-6">
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].IsDeactivated"
+                               ng-value="{{item.IsDeactivated}}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].gid" value="{{ item.gid }}" />
+
+                        <input ng-class="{'input-validation-error': !item.IsDirectionValid}" type="hidden" ng-model="item.DirectionItem"
+                               ui-select2="{ allowClear: true, placeholder: ' ', query: loadDirectionNomenclature }" ng-change="clearSubDirection(item)" />
+
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].DirectionItem.Id"
+                               value="{{ item.DirectionItem.id }}" class="validation-error-key" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].DirectionItem.Name"
+                               value="{{ item.DirectionItem.Name }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].DirectionItem.NameEN"
+                               value="{{ item.Direction.NameEN }}" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="hidden" ng-model="item.SubDirection"
+                               ui-select2="loadSubDirectionNomenclature(item)" />
+
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].SubDirection.Id"
+                               value="{{ item.SubDirection.id }}" class="validation-error-key" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].SubDirection.Name"
+                               value="{{ item.SubDirection.Name }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.DirectionCollection))[{{ $index }}].SubDirection.NameEN"
+                               value="{{ item.SubDirection.NameEN }}" />
+                    </div>
+                </td>
+                <td style="width: 130px;">
+                    <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    <input type="hidden" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" />
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+</div>

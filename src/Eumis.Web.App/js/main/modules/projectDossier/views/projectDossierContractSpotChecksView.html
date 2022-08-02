@@ -1,0 +1,87 @@
+﻿<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewSpotChecks_title"></strong>
+  </div>
+  
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showInternalEnvironmentSpotChecks=!showInternalEnvironmentSpotChecks">
+        <span l10n-text="projectDossier_viewSpotChecks_internalЕnvironmentSpotChecks"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showInternalEnvironmentSpotChecks, 'glyphicon-chevron-right': !showInternalEnvironmentSpotChecks}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showInternalEnvironmentSpotChecks" ng-href="{{internalEnvironmentSpotChecksExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showInternalEnvironmentSpotChecks" items="internalEnvironmentSpotChecks" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.contractStatus === 'canceled'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.spotChecks.view.basicData', params: { id: item.spotCheckId }}"
+              ng-disabled="!$canDo('SpotCheckActions.View', item.spotCheckId)"></sc-button>
+          </sc-column>
+          <sc-column data="programmeName" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckProgrammeName">
+          </sc-column>
+          <sc-column data="contractRegNum" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckContractRegNum">
+          </sc-column>
+          <sc-column data="regNumber" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckRegNumber">
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckStatus">
+          </sc-column>
+          <sc-column data="dateFrom" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckDateFrom" type="date">
+          </sc-column>
+          <sc-column data="dateTo" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckDateTo" type="date">
+          </sc-column>
+          <sc-column data="type" title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckType">
+          </sc-column>
+          <sc-column title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckAscertainments" has-content="true">
+            <div ng-repeat='ascertainment in item.ascertainments'>
+              <a target="_blank" ui-sref="root.spotChecks.view.ascertainments.edit({ id: item.spotCheckId, ind:ascertainment.id })">
+                {{ascertainment.orderNum}}
+              </a>
+            </div>
+          </sc-column>
+          <sc-column title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckRecommendations" has-content="true">
+            <div ng-repeat='recommendation in item.recommendations track by recommendations.id'>
+              <a target="_blank" ui-sref="root.spotChecks.view.recommendations.edit({ id: item.spotCheckId, ind:recommendation.id })">
+                {{recommendation.orderNum}}
+              </a>
+            </div>
+          </sc-column>
+          <sc-column title="projectDossier_viewSpotChecks_internalЕnvironmentSpotCheckRecommendationExecutionStatuses" has-content="true">
+            <div ng-repeat='recommendationExecutionStatus in item.recommendationExecutionStatuses track by recommendationExecutionStatus.id'>
+              {{recommendationExecutionStatus.executionStatus == null ? '---' : recommendationExecutionStatus.executionStatus}}
+            </div>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showTechnicalReportSpotChecks=!showTechnicalReportSpotChecks">
+        <span l10n-text="projectDossier_viewSpotChecks_technicalReportSpotChecks"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showTechnicalReportSpotChecks, 'glyphicon-chevron-right': !showTechnicalReportSpotChecks}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showTechnicalReportSpotChecks" ng-href="{{technicalReportSpotChecksExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewSpotChecks_technicalReportSpotCheckExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showTechnicalReportSpotChecks" items="technicalReportSpotChecks" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column data="versionNum" title="projectDossier_viewSpotChecks_technicalReportSpotCheckVersionNum" type="number">
+          </sc-column>
+          <sc-column data="number" title="projectDossier_viewSpotChecks_technicalReportSpotCheckNumber">
+          </sc-column>
+          <sc-column data="checkSubject" title="projectDossier_viewSpotChecks_technicalReportSpotCheckSubject">
+          </sc-column>
+          <sc-column data="startDate" title="projectDossier_viewSpotChecks_technicalReportSpotCheckStartDate" type="date">
+          </sc-column>
+          <sc-column data="endDate" title="projectDossier_viewSpotChecks_technicalReportSpotCheckEndDate" type="date">
+          </sc-column>
+          <sc-column sortable="false" title="projectDossier_viewSpotChecks_technicalReportSpotCheckPreview" has-content="true">
+            <a target="_blank" ng-href="{{item.viewXmlUrl}}" sc-access-token>
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

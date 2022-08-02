@@ -1,0 +1,18 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'sapFileStatuses'" ng-model="model.status" mode="id" ng-readonly="true" l10n-text="sapFiles_sapFileData_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="sapFiles_sapFileData_createDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'sapFileTypes'" ng-required="true" ng-model="model.type" l10n-text="sapFiles_sapFileData_type" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-readonly="true" l10n-text="sapFiles_sapFileData_createdByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" name="file" ng-model="model.file" url-template="SapFileBlobFile" url-params="{ id: model.sapFileId }" ng-required="true"
+      l10n-text="sapFiles_sapFileData_file" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.sapDate"ng-readonly="true" l10n-text="sapFiles_sapFileData_sapDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.sapUser" ng-readonly="true" l10n-text="sapFiles_sapFileData_sapUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

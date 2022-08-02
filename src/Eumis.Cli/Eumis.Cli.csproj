@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <Configurations>Debug;Release;EGP06.Learn;EGP06.DRC;David.CI</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="Migrations\ContractReportMicroType2Rebuild\ContractReportMicrosType2Items_Staging.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\ContractReportMicroType2Rebuild\ContractReportMicrosType2Items_Staging.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="BouncyCastle" Version="1.8.1" />
+    <PackageReference Include="Colorful.Console" Version="1.2.9" />
+    <PackageReference Include="EntityFramework" Version="6.1.3" />
+    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NLog" Version="3.1.0" />
+    <PackageReference Include="ShellProgressBar" Version="4.2.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.ApplicationServices\Eumis.ApplicationServices.csproj" />
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj" />
+    <ProjectReference Include="..\Eumis.Data\Eumis.Data.csproj" />
+    <ProjectReference Include="..\Eumis.Domain\Eumis.Domain.csproj" />
+    <ProjectReference Include="..\Eumis.Log\Eumis.Log.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Security" />
+  </ItemGroup>
+
+</Project>

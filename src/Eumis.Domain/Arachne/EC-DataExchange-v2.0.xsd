@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:mstns="http://ecexchange.vadis.com/EC-DataExchange-v1.xsd" xmlns="http://ecexchange.vadis.com" elementFormDefault="qualified" targetNamespace="http://ecexchange.vadis.com" id="EC-DataExchange-v2" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
+  <!-- Global document structure -->
+  <xs:element name="ECDataExchangeXmlFormat">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Source" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Author" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="OperationalProgramId" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="ManagingAuthorityId" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="MemberState" type="iso3166-2" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Currency" type="currency" minOccurs="1" maxOccurs="1" />
+        <!-- project list -->
+        <xs:element name="Projects" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+              <xs:element name="Project" type="project" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Contracts -->
+        <xs:element name="Contracts" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Contract" type="contract" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Subcontracts -->
+        <xs:element name="SubContracts" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubContract" type="subcontract" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Entities -->
+        <xs:element name="Entities">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Entity" type="entity" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Related people -->
+        <xs:element name="RelatedPeople" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Person" type="person" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Expenses -->
+        <xs:element name="Expenses" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Expense" type="expense" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="contract">
+	<xs:sequence>
+	  <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1" />
+	  <xs:element name="ProjectId" type="xs:string" minOccurs="1" maxOccurs="1"  />
+	  <xs:element name="ContractorId" type="xs:string" minOccurs="1" maxOccurs="1" />
+	  <xs:element name="ContractType" type="contractType" minOccurs="0" maxOccurs="1" />
+	  <xs:element name="Modified" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="true" />
+	  <xs:element name="SignatureDate" type="xs:date"  minOccurs="0" maxOccurs="1" />
+	  <xs:element name="InitialEndDate" type="xs:date"  minOccurs="0" maxOccurs="1" />
+	  <xs:element name="FinalEndDate" type="xs:date"  minOccurs="0" maxOccurs="1" />
+	  <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1" />
+	  <xs:element name="Description" type="xs:string"  minOccurs="0" maxOccurs="1" />
+	  <xs:element name="Amount" type="amount"  minOccurs="1" maxOccurs="1" />
+	  <xs:element name="Addenda" minOccurs="0" maxOccurs="1">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="Amount" type="amount" minOccurs="0" maxOccurs="1" nillable="true"/>
+			<xs:element name="Count" type="xs:integer" minOccurs="0" maxOccurs="1" />
+		  </xs:sequence>
+		</xs:complexType>
+	  </xs:element>
+  <!-- Service providers list -->
+    <!-- AR-792 - Service providers become entities - replacing names with IDs -->
+  <xs:element name="ServiceProviders" minOccurs="0" maxOccurs="1">
+	<xs:complexType>
+	  <xs:sequence minOccurs="0">
+		<xs:element name="Provider" minOccurs="0" maxOccurs="unbounded" nillable="false">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+	  </xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <!-- Key experts list -->
+  <xs:element name="KeyExperts" minOccurs="0" maxOccurs="1">
+	<xs:complexType>
+	  <xs:sequence>
+		<!-- AD-127 Remove the change flag from the xsd -->
+		<xs:element name="Expert" minOccurs="0" maxOccurs="unbounded">
+		  <xs:complexType>
+			<xs:sequence>
+			  <!-- ARACHNEDEV-647 First and last name for key experts -->
+			  <xs:element name="FirstName" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+			  <xs:element name="LastName" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+			  <xs:element name="BirthDate" type="xs:date" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		  </xs:complexType>
+		</xs:element>
+	  </xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <!-- Consortium members -->
+  <xs:element name="ConsortiumMembers" minOccurs="0" maxOccurs="1">
+	<xs:complexType>
+	  <xs:sequence>
+		<xs:element name="ConsortiumMember" minOccurs="0" maxOccurs="unbounded">
+		  <xs:complexType>
+			<xs:sequence>
+			  <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+		  </xs:complexType>
+		</xs:element>
+	  </xs:sequence>
+	</xs:complexType>
+  </xs:element>
+	 <xs:element name="Procurement" minOccurs="0" maxOccurs="1">
+		<xs:complexType>
+		  <xs:sequence>
+			<xs:element name="ProcurementType" type="procurementType" minOccurs="0" maxOccurs="1" />
+			<!-- AR-242 - removed default 0 values, added nillable for all fields -->
+			<xs:element name="ValidTenders" type="xs:int" minOccurs="0" nillable="true" />
+			<xs:element name="ExcludedTenders" type="xs:int" minOccurs="0" nillable="true" />
+			<xs:element name="TotalTenders" type="xs:int" minOccurs="0" nillable="true" />
+			<xs:element name="PublicationDate" type="xs:date" minOccurs="0" />
+		  </xs:sequence>
+		</xs:complexType>
+	  </xs:element>
+	</xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subcontract">
+	<xs:sequence>
+	  <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1" />
+	  <xs:element name="Amount" type="amount" minOccurs="0" maxOccurs="1" nillable="true" />
+	  <xs:element name="ContractId" type="xs:string" minOccurs="1" maxOccurs="1" />
+	  <xs:element name="SubContractorId" type="xs:string" minOccurs="1" maxOccurs="1" />
+	</xs:sequence>
+  </xs:complexType>
+  <!-- Expense element -->
+  <xs:complexType name="expense">
+    <xs:all>
+      <!-- AR-242 expense ID as string with max. length as 20 chars -->
+      <xs:element name="Id" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ProjectId" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ContractorId" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Type" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+		  <!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="1" />
+            <xs:enumeration value="2" />
+            <xs:enumeration value="3" />
+            <xs:enumeration value="9" />
+            <xs:enumeration value="4" />
+            <xs:enumeration value="5" />
+            <xs:enumeration value="6" />
+            <xs:enumeration value="7" />
+            <xs:enumeration value="8" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="InvoiceDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="PaymentDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Amount" type="amount" />
+      <xs:element name="Description" type="xs:string" minOccurs="0" />
+    </xs:all>
+  </xs:complexType>
+  <!-- Person -->
+  <xs:complexType name="person">
+    <xs:all>
+      <xs:element name="FirstName" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+      <xs:element name="LastName" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BirthDate" type="xs:date" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Roles" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Role" minOccurs="1" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="ProjectId" type="xs:string" minOccurs="1" maxOccurs="1" />
+                  <xs:element name="Function" type="xs:string" minOccurs="0" maxOccurs="1" />
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <!-- Type for project elements -->
+  <xs:complexType name="project">
+    <!-- Project content -->
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Status" minOccurs="1" maxOccurs="1" default="1">
+        <xs:simpleType>
+		  <!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="1" />
+            <xs:enumeration value="2" />
+            <xs:enumeration value="3" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Name" minOccurs="1" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="300" />
+          </xs:restriction>
+        </xs:simpleType>
+	  </xs:element>
+      <xs:element name="Beneficiary" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="EntityId" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="ApplicationPersonnel" type="xs:integer" minOccurs="0" maxOccurs="1" />
+            <xs:element name="ApplicationTurnover" type="amount"  minOccurs="0" maxOccurs="1" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StartDate" type="xs:date" minOccurs="0" maxOccurs="1" />
+      <xs:element name="EndDate" type="xs:date" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ECFinancialAssistance" type="amount" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OtherContributions" type="amount" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Income" type="amount" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TotalCost" type="amount" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ThematicObjective" type="thematicObjective" minOccurs="0" maxOccurs="1" />
+      <!-- Partners list -->
+      <xs:element name="Partners" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Partner" minOccurs="0" maxOccurs="unbounded" nillable="false">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Id" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Block" type="block" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Blocks -->
+  <xs:complexType name="block">
+    <xs:sequence>
+      <xs:element name="Dg" type="dglist" />
+      <xs:element name="ProjectType" type="typelist" />
+      <xs:choice>
+        <xs:group ref="dgempl_esf" />
+        <xs:group ref="dgregio_sme" />
+        <xs:group ref="dgregio_road" />
+        <xs:group ref="dgregio_rail" />
+        <xs:group ref="dgregio_solidwaste" />
+        <xs:group ref="dgregio_waterwastesupply" />
+        <xs:group ref="dgregio_energyefficiency_urban" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="dgregio_sme">
+    <xs:sequence>
+      <xs:element name="AdditionalPersonnelAsAgreed" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AdditionalTurnoverAsAgreed" type="amount" minOccurs="0" maxOccurs="1" nillable="true"/>
+      <xs:element name="AdditionalPersonnelAfterProject" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="AdditionalTurnoverAfterProject" type="amount" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="dgregio_road">
+    <xs:sequence>
+      <xs:element name="RoadType" type="roadType"  minOccurs="1" maxOccurs="1"/>
+	  <!-- CR v1.5.0.7 - Annex 7 - Project Cost vs km road constructed -->
+      <xs:element name="ConstructionType" type="roadConstructionType" minOccurs="0" maxOccurs="1" default="0" />
+      <xs:element name="Length" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LandCost" type="amount" minOccurs="0" maxOccurs="1" nillable="true" />
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="dgregio_rail">
+    <xs:sequence>
+		<xs:element name="RailType" type="railType"  minOccurs="1" maxOccurs="1"/>
+		<xs:element name="Length" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+		<xs:element name="LandCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="dgregio_solidwaste">
+    <xs:sequence>
+      <xs:element name="SolidWasteType" type="solidWasteType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="AdditionalWasteTreatmentCapacity" type="xs:double" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ActualAdditionalWasteTreatmentCapacity" type="xs:double" minOccurs="0" maxOccurs="1" />
+      <xs:element name="LandCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+     </xs:sequence>
+  </xs:group>
+
+  <xs:group name="dgregio_waterwastesupply">
+    <xs:sequence>
+      <xs:element name="WasteWaterTreatmentCompCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+      <xs:element name="SewageNetworkCompCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+      <xs:element name="WaterSupplyPlantCompCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+      <xs:element name="WaterSupplyNetworkCompCost" type="amount"  minOccurs="0" maxOccurs="1" nillable="true" />
+      <xs:element name="PopEqToBeServedByWasteWaterTreatment" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="PopToBeServedByWaterSupplyNetwork" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LengthOfTheSewageNetworkToBeRenovatedConstructed" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="LengthOfTheWaterSupplyNetworkToBeRenovatedConstructed" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="PopEqServedByWasteWaterTreatment" type="xs:int"  minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="LandCost" type="amount" minOccurs="0" maxOccurs="1" nillable="true" />
+    </xs:sequence>
+  </xs:group>
+
+  <xs:group name="dgregio_energyefficiency_urban">
+    <xs:sequence>
+      <xs:element name="EnergyDecrease" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="UrbanDevelopment" type="xs:int" minOccurs="0" maxOccurs="1" />
+	  <xs:element name="LandCostUrban" type="amount" minOccurs="0" maxOccurs="1" nillable="true" />
+    </xs:sequence>
+  </xs:group>
+
+
+  <xs:group name="dgempl_esf">
+    <xs:sequence>
+      <xs:element name="PeopleToTrain" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TrainingHours" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="TrainedPeople" type="xs:int" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ProvidedTrainingHours" type="xs:int" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:group>
+
+  <!-- Entity type -->
+  <xs:complexType name="entity">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Name" minOccurs="1" maxOccurs="1" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200" />
+          </xs:restriction>
+        </xs:simpleType>
+	  </xs:element>
+      <xs:element name="VAT" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+		<xs:element name="Type" type="entityType" minOccurs="0" maxOccurs="1" default="0"/>
+		<xs:element name="CorrProcurementProcedure" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+		<xs:element name="Turnover" type="amount" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Address" type="address" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Type for address information -->
+  <xs:complexType name="address">
+    <xs:all>
+      <xs:element name="Street">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ExtraInfo" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Number">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="10" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ZipCode">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="16" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="City">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="150" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Country" type="iso3166-2" />
+    </xs:all>
+  </xs:complexType>
+  <!-- all types for amounts -->
+  <xs:simpleType name="amount">
+	 <xs:restriction base="xs:decimal">
+	   <xs:fractionDigits value="2" />
+	 </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ISO 4217 Currency codes -->
+  <xs:simpleType name="currency">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BGN" />
+      <xs:enumeration value="CZK" />
+      <xs:enumeration value="DKK" />
+      <xs:enumeration value="EUR" />
+      <xs:enumeration value="GBP" />
+      <xs:enumeration value="HRK" />
+      <xs:enumeration value="HUF" />
+      <xs:enumeration value="PLN" />
+      <xs:enumeration value="RON" />
+      <xs:enumeration value="SEK" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ISO 3166-2 country codes -->
+  <xs:simpleType name="iso3166-2">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AD" />
+      <xs:enumeration value="AE" />
+      <xs:enumeration value="AF" />
+      <xs:enumeration value="AG" />
+      <xs:enumeration value="AI" />
+      <xs:enumeration value="AL" />
+      <xs:enumeration value="AM" />
+      <xs:enumeration value="AN" />
+      <xs:enumeration value="AO" />
+      <xs:enumeration value="AR" />
+      <xs:enumeration value="AT" />
+      <xs:enumeration value="AU" />
+      <xs:enumeration value="AW" />
+      <xs:enumeration value="AZ" />
+      <xs:enumeration value="BA" />
+      <xs:enumeration value="BB" />
+      <xs:enumeration value="BD" />
+      <xs:enumeration value="BE" />
+      <xs:enumeration value="BF" />
+      <xs:enumeration value="BG" />
+      <xs:enumeration value="BH" />
+      <xs:enumeration value="BI" />
+      <xs:enumeration value="BJ" />
+      <xs:enumeration value="BM" />
+      <xs:enumeration value="BN" />
+      <xs:enumeration value="BO" />
+      <xs:enumeration value="BR" />
+      <xs:enumeration value="BS" />
+      <xs:enumeration value="BT" />
+      <xs:enumeration value="BW" />
+      <xs:enumeration value="BY" />
+      <xs:enumeration value="BZ" />
+      <xs:enumeration value="CA" />
+      <xs:enumeration value="CD" />
+      <xs:enumeration value="CE" />
+      <xs:enumeration value="CF" />
+      <xs:enumeration value="CG" />
+      <xs:enumeration value="CH" />
+      <xs:enumeration value="CI" />
+      <xs:enumeration value="CL" />
+      <xs:enumeration value="CM" />
+      <xs:enumeration value="CN" />
+      <xs:enumeration value="CO" />
+      <xs:enumeration value="CR" />
+      <xs:enumeration value="CU" />
+      <xs:enumeration value="CV" />
+      <xs:enumeration value="CY" />
+      <xs:enumeration value="CZ" />
+      <xs:enumeration value="DE" />
+      <xs:enumeration value="DJ" />
+      <xs:enumeration value="DK" />
+      <xs:enumeration value="DM" />
+      <xs:enumeration value="DO" />
+      <xs:enumeration value="DZ" />
+      <xs:enumeration value="EC" />
+      <xs:enumeration value="EE" />
+      <xs:enumeration value="EG" />
+      <xs:enumeration value="ER" />
+      <xs:enumeration value="ES" />
+      <xs:enumeration value="ET" />
+      <xs:enumeration value="FI" />
+      <xs:enumeration value="FJ" />
+      <xs:enumeration value="FM" />
+      <xs:enumeration value="FR" />
+      <xs:enumeration value="GA" />
+      <xs:enumeration value="GB" />
+      <xs:enumeration value="GD" />
+      <xs:enumeration value="GE" />
+      <xs:enumeration value="GH" />
+      <xs:enumeration value="GI" />
+      <xs:enumeration value="GM" />
+      <xs:enumeration value="GN" />
+      <xs:enumeration value="GP" />
+      <xs:enumeration value="GQ" />
+      <xs:enumeration value="GR" />
+      <xs:enumeration value="GT" />
+      <xs:enumeration value="GW" />
+      <xs:enumeration value="GY" />
+      <xs:enumeration value="HK" />
+      <xs:enumeration value="HN" />
+      <xs:enumeration value="HR" />
+      <xs:enumeration value="HT" />
+      <xs:enumeration value="HU" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="IE" />
+      <xs:enumeration value="II" />
+      <xs:enumeration value="IL" />
+      <xs:enumeration value="IN" />
+      <xs:enumeration value="IQ" />
+      <xs:enumeration value="IR" />
+      <xs:enumeration value="IS" />
+      <xs:enumeration value="IT" />
+      <xs:enumeration value="JM" />
+      <xs:enumeration value="JO" />
+      <xs:enumeration value="JP" />
+      <xs:enumeration value="KE" />
+      <xs:enumeration value="KG" />
+      <xs:enumeration value="KH" />
+      <xs:enumeration value="KI" />
+      <xs:enumeration value="KM" />
+      <xs:enumeration value="KN" />
+      <xs:enumeration value="KP" />
+      <xs:enumeration value="KR" />
+      <xs:enumeration value="KW" />
+      <xs:enumeration value="KY" />
+      <xs:enumeration value="KZ" />
+      <xs:enumeration value="LA" />
+      <xs:enumeration value="LB" />
+      <xs:enumeration value="LC" />
+      <xs:enumeration value="LI" />
+      <xs:enumeration value="LK" />
+      <xs:enumeration value="LR" />
+      <xs:enumeration value="LS" />
+      <xs:enumeration value="LT" />
+      <xs:enumeration value="LU" />
+      <xs:enumeration value="LV" />
+      <xs:enumeration value="LY" />
+      <xs:enumeration value="MA" />
+      <xs:enumeration value="MC" />
+      <xs:enumeration value="MD" />
+      <xs:enumeration value="ME" />
+      <xs:enumeration value="MG" />
+      <xs:enumeration value="MH" />
+      <xs:enumeration value="MK" />
+      <xs:enumeration value="ML" />
+      <xs:enumeration value="MM" />
+      <xs:enumeration value="MN" />
+      <xs:enumeration value="MO" />
+      <xs:enumeration value="MQ" />
+      <xs:enumeration value="MR" />
+      <xs:enumeration value="MT" />
+      <xs:enumeration value="MU" />
+      <xs:enumeration value="MV" />
+      <xs:enumeration value="MW" />
+      <xs:enumeration value="MX" />
+      <xs:enumeration value="MY" />
+      <xs:enumeration value="MZ" />
+      <xs:enumeration value="NA" />
+      <xs:enumeration value="NC" />
+      <xs:enumeration value="NE" />
+      <xs:enumeration value="NG" />
+      <xs:enumeration value="NI" />
+      <xs:enumeration value="NL" />
+      <xs:enumeration value="NO" />
+      <xs:enumeration value="NP" />
+      <xs:enumeration value="NR" />
+      <xs:enumeration value="NZ" />
+      <xs:enumeration value="OM" />
+      <xs:enumeration value="PA" />
+      <xs:enumeration value="PE" />
+      <xs:enumeration value="PF" />
+      <xs:enumeration value="PG" />
+      <xs:enumeration value="PH" />
+      <xs:enumeration value="PK" />
+      <xs:enumeration value="PL" />
+      <xs:enumeration value="PR" />
+      <xs:enumeration value="PS" />
+      <xs:enumeration value="PT" />
+      <xs:enumeration value="PY" />
+      <xs:enumeration value="QA" />
+      <xs:enumeration value="RE" />
+      <xs:enumeration value="RO" />
+      <xs:enumeration value="RS" />
+      <xs:enumeration value="RU" />
+      <xs:enumeration value="RW" />
+      <xs:enumeration value="SA" />
+      <xs:enumeration value="SB" />
+      <xs:enumeration value="SC" />
+      <xs:enumeration value="SD" />
+      <xs:enumeration value="SE" />
+      <xs:enumeration value="SG" />
+      <xs:enumeration value="SI" />
+      <xs:enumeration value="SK" />
+      <xs:enumeration value="SL" />
+      <xs:enumeration value="SM" />
+      <xs:enumeration value="SN" />
+      <xs:enumeration value="SO" />
+      <xs:enumeration value="SR" />
+      <xs:enumeration value="ST" />
+      <xs:enumeration value="SV" />
+      <xs:enumeration value="SY" />
+      <xs:enumeration value="SZ" />
+      <xs:enumeration value="TD" />
+      <xs:enumeration value="TG" />
+      <xs:enumeration value="TH" />
+      <xs:enumeration value="TJ" />
+      <xs:enumeration value="TM" />
+      <xs:enumeration value="TN" />
+      <xs:enumeration value="TO" />
+      <xs:enumeration value="TR" />
+      <xs:enumeration value="TT" />
+      <xs:enumeration value="TV" />
+      <xs:enumeration value="TW" />
+      <xs:enumeration value="TZ" />
+      <xs:enumeration value="UA" />
+      <xs:enumeration value="UG" />
+      <xs:enumeration value="US" />
+      <xs:enumeration value="UY" />
+      <xs:enumeration value="UZ" />
+      <xs:enumeration value="VC" />
+      <xs:enumeration value="VE" />
+      <xs:enumeration value="VG" />
+      <xs:enumeration value="VI" />
+      <xs:enumeration value="VN" />
+      <xs:enumeration value="VU" />
+      <xs:enumeration value="WS" />
+      <xs:enumeration value="WW" />
+      <xs:enumeration value="YE" />
+      <xs:enumeration value="YY" />
+      <xs:enumeration value="ZA" />
+      <xs:enumeration value="ZM" />
+      <xs:enumeration value="ZW" />
+      <xs:enumeration value="ZZ" />
+      <xs:enumeration value="GL" />
+      <xs:enumeration value="TC" />
+      <xs:enumeration value="AS" />
+      <xs:enumeration value="CC" />
+      <xs:enumeration value="CK" />
+      <xs:enumeration value="FK" />
+      <xs:enumeration value="FO" />
+      <xs:enumeration value="GF" />
+      <xs:enumeration value="GG" />
+      <xs:enumeration value="GU" />
+      <xs:enumeration value="JE" />
+      <xs:enumeration value="NU" />
+      <xs:enumeration value="PW" />
+      <xs:enumeration value="XX" />
+      <xs:enumeration value="YT" />
+      <xs:enumeration value="BU" />
+      <xs:enumeration value="MS" />
+      <xs:enumeration value="PO" />
+      <xs:enumeration value="CS" />
+      <xs:enumeration value="IM" />
+      <xs:enumeration value="YU" />
+      <xs:enumeration value="PM" />
+      <xs:enumeration value="CX" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- DG List -->
+  <xs:simpleType name="dglist">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DG_EMPL" />
+      <xs:enumeration value="DG_REGIO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Project types list -->
+  <xs:simpleType name="typelist">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="4" />
+      <xs:enumeration value="5" />
+      <xs:enumeration value="6" />
+      <xs:enumeration value="7" />
+      <xs:enumeration value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="roadType">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="roadConstructionType">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="railType">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="solidWasteType">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <xs:enumeration value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="empty-string">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="procurementType">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="3" />
+      <!-- AR-232 added CompetitiveDialog and DirectAward -->      
+      <xs:enumeration value="4" />
+      <xs:enumeration value="5" />
+      <xs:enumeration value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="entityType" >
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+	<!-- AR-238 Enrich the entity type list -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+	  <xs:enumeration value="3" />
+	  <xs:enumeration value="4" />
+	  <xs:enumeration value="5" />
+	  <xs:enumeration value="6" />
+	  <xs:enumeration value="7" />
+	  <xs:enumeration value="8" />
+	  <xs:enumeration value="9" />
+	  <xs:enumeration value="10" />
+	  <xs:enumeration value="11" />
+	  <xs:enumeration value="12" />
+	  <xs:enumeration value="13" />
+	  <xs:enumeration value="14" />
+	  <xs:enumeration value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="contractType" >
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="1" />
+      <xs:enumeration value="2" />
+      <xs:enumeration value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="thematicObjective">
+	<!-- AR-233 Transform 'English' labels (enumerations) into general codifications -->
+	<xs:restriction base="xs:int">
+		<xs:enumeration value="1" />
+		<xs:enumeration value="2" />
+		<xs:enumeration value="3" />
+		<xs:enumeration value="4" />
+		<xs:enumeration value="5" />
+		<xs:enumeration value="6" />
+		<xs:enumeration value="7" />
+		<xs:enumeration value="8" />
+		<xs:enumeration value="9" />
+		<xs:enumeration value="10" />
+		<xs:enumeration value="11" />
+		<xs:enumeration value="12" />
+		<xs:enumeration value="0" />
+	</xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

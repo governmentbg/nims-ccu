@@ -1,0 +1,54 @@
+{
+    "eumis-ctrl-search": {
+        "prefix": "eumis-ctrl-search",
+        "scope": "javascript",
+        "body": [
+            "function  ${TM_FILENAME/([a-z].*)\\Ctrl.js$/${1:/capitalize}/}Ctrl(\\$scope, \\$stateParams, ${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/$1/}) {",
+            "  \\$scope.${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/$1/} = ${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/$1/};",
+            "}",
+            "",
+            " ${TM_FILENAME/([a-z].*)\\Ctrl.js$/${1:/capitalize}/}Ctrl.\\$inject = ['\\$scope', '\\$stateParams', '${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/$1/}'];",
+            "",
+            " ${TM_FILENAME/([a-z].*)\\Ctrl.js$/${1:/capitalize}/}Ctrl.\\$resolve = {",
+            "  ${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/$1/}: [",
+            "    '${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/${1:/capitalize}/}',",
+            "    function(${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/${1:/capitalize}/}) {",
+            "      return ${TM_FILENAME/([a-z].*).*(New|Edit|Search|View)Ctrl.js$/${1:/capitalize}/}.query().\\$promise;",
+            "    }",
+            "  ]",
+            "};",
+            "",
+            "export {  ${TM_FILENAME/([a-z].*)\\Ctrl.js$/${1:/capitalize}/}Ctrl };"
+        ],
+        "description": ""
+      },
+    "eumis-form-search": {
+        "prefix": "eumis-form-search",
+        "scope": "html",
+        "body": [
+            "<div class=\"panel panel-default\">",
+            "  <div class=\"panel-body\">",
+            "    <sc-button name=\"new${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/${1:/capitalize}/}Btn\" btn-sref=\"{ state: 'root.${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/$1/}.new' }\" text=\"${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1/}_${TM_FILENAME/([A-Z].*)\\.html$/$1/}_newBtn\" class=\"btn btn-sm btn-primary pull-left\" icon=\"glyphicon-floppy-disk\"",
+            "      ng-disabled=\"!\\$canDo('${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/${1:/capitalize}/}$2ListActions.Create')\"></sc-button>",
+            "",
+            "    <sc-datatable items=\"${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/$1/}\" filterable=\"true\" pageable=\"true\" sortable=\"true\" dynamic-columns=\"true\">",
+            "      <sc-column sortable=\"false\" class=\"buttons-cell\" has-content=\"true\">",
+            "        <sc-button name=\"editBtn\" btn-sref=\"{ state: 'root.${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/$1/}.view.edit', params: {id: item.$1} }\" class=\"btn btn-xs btn-primary\" icon=\"glyphicon-pencil\"",
+            "          ng-disabled=\"\\$canDo('${TM_FILENAME/([a-z].*).*(New|Edit|Search|View).html$/${1:/capitalize}/}$2Actions.View', item.$1)\"></sc-button>",
+            "      </sc-column>",
+            "      <sc-column data=\"orderNum\" title=\"${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1/}_${TM_FILENAME/([A-Z].*)\\.html$/$1/}_orderNum\" type=\"number\">",
+            "      </sc-column>",
+            "      <sc-column data=\"statusDesc\" title=\"${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1/}_${TM_FILENAME/([A-Z].*)\\.html$/$1/}_status\">",
+            "      </sc-column>",
+            "      <sc-column data=\"regDate\" title=\"${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1/}_${TM_FILENAME/([A-Z].*)\\.html$/$1/}_regDate\" type=\"date\">",
+            "      </sc-column>",
+            "      <sc-column data=\"totalAmount\" title=\"${TM_DIRECTORY/.*\\\\(.*)\\\\(.*)$/$1/}_${TM_FILENAME/([A-Z].*)\\.html$/$1/}_totalAmount\" type=\"money\">",
+            "      </sc-column>",
+            "    </sc-datatable>",
+            "  </div>",
+            "</div>",
+            ""
+        ],
+        "description": "Create eumis web form 'Search'"
+    }
+}

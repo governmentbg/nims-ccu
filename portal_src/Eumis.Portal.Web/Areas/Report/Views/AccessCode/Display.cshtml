@@ -1,0 +1,185 @@
+﻿@model Eumis.Portal.Web.Areas.Report.Models.AccessCode.AccessCodeDisplayVM
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.AccessCode.ActionNames.Index, MVC.Report.AccessCode.Name, new { area = MVC.Report.Name }), "Управление на потребители")
+}, "Информация за потребител")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<div class="container warnings" style="@(Model.IsSuccess ? "" : "padding:30px; margin-top:0px;")">
+    @if (Model.IsSuccess)
+    {
+        <img class="icon" src="/content/img/icons/success.gif" alt="" />
+        <p><strong>Успешно създаден код за достъп!</strong></p>
+        <p>&nbsp;</p>
+    }
+
+    <style type="text/css">
+      .access-code-table {
+          font-size: 16px;
+      }
+
+          .access-code-table.meta td {
+              padding-top: 3px;
+              padding-bottom: 3px;
+              border: 0;
+          }
+
+          .access-code-table tr td:first-child, .access-code-table tr th:first-child {
+              text-align: right;
+              padding-right: 10px;
+              width: 50%;
+          }
+
+          .access-code-table tr td:last-child, .access-code-table tr th:last-child {
+              text-align: left;
+              padding-left: 10px;
+              width: 50%;
+          }
+    </style>
+
+    <div style="display: inline-block;@(Model.IsSuccess ? "margin-top:30px;" : "")">
+        <table class="access-code-table meta">
+            <tr>
+                <td><strong>Код за достъп</strong></td>
+                <td><strong class="access-code">@Model.User.code</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Име</strong></td>
+                <td>@Model.User.firstName @Model.User.lastName</td>
+            </tr>
+            <tr>
+                <td><strong>ЕГН/Чуждестранно лице</strong></td>
+                <td>@Model.User.identifier</td>
+            </tr>
+            <tr>
+                <td><strong>Позиция</strong></td>
+                <td>@Model.User.position</td>
+            </tr>
+            <tr>
+                <td><strong>Потребителско име (имейл адрес)</strong></td>
+                <td><a href="mailto:@(Model.User.email)">@Model.User.email</a></td>
+            </tr>
+            <tr>
+                <td><strong>Статус на кода за достъп</strong></td>
+                <td>@(Model.User.isActive ? "Активен" : "Неактивен")</td>
+            </tr>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+
+    <p><strong>Права за достъп:</strong></p>
+    <div class="table-wrapper" style="display: inline-block;">
+        <table class="chart-info medium-table checkbox-table access-code-table">
+            <thead>
+                <tr>
+                    <th>Документ</th>
+                    <th>Разрешени права</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Договор
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadContracts ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Процедури за избор на изпълнител и сключени договори
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadProcurements ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWriteProcurements ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        План за разходване на средствата
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadSpendingPlan ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWriteSpendingPlan ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Кореспонденция
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadCommunication ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Технически отчет
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadTechnicalPlan ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWriteTechnicalPlan ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Финансов отчет
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadFinancialPlan ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWriteFinancialPlan ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Искане за плащане
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadPaymentRequest ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWritePaymentRequest ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Микроданни
+                    </td>
+                    <td>
+                        <div class="nowrap">
+                            Четене: <strong>@(Model.User.permissions.canReadMicrodata ? "Да" : "Не")</strong><br />
+                            Писане: <strong>@(Model.User.permissions.canWriteMicrodata ? "Да" : "Не")</strong>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <p>
+        <strong>
+            @Html.ActionLink("Назад към списъка с кодове за достъп", MVC.Report.AccessCode.ActionNames.Index, MVC.Report.AccessCode.Name, new { area = MVC.Report.Name }, null)
+        </strong>
+    </p>
+
+</div>

@@ -1,0 +1,105 @@
+﻿@model R_10026.EvalSheet
+
+@if (Model != null)
+{
+    if(!String.IsNullOrWhiteSpace(Model.ProjectName)
+        || !String.IsNullOrWhiteSpace(Model.ProjectRegNumber)
+        || !String.IsNullOrWhiteSpace(Model.AssessorName)
+        || !String.IsNullOrWhiteSpace(Model.ProcedureName)
+        || !String.IsNullOrWhiteSpace(Model.CompanyName)
+        || !String.IsNullOrWhiteSpace(Model.EvalTableTypeText))
+    { 
+        <table>
+            <tbody>
+
+                @if (!String.IsNullOrWhiteSpace(Model.ProjectName))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.ProjectName</td>
+                        <td>@Model.ProjectName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.ProjectRegNumber))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.ProjectRegNumber</td>
+                        <td>@Model.ProjectRegNumber</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.AssessorName))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.AssessorName</td>
+                        <td>@Model.AssessorName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.ProcedureName))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.ProcedureName</td>
+                        <td>@Model.ProcedureName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.CompanyName))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.CompanyName</td>
+                        <td>@Model.CompanyName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.EvalTableTypeText))
+                {
+                    <tr>
+                        <td width="35%">@EvalSheet.EvalTableTypeText</td>
+                        <td>@Model.EvalTableTypeText</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+
+    <h3>@EvalTable.EvaluationCriterias</h3>
+    <section style="display:block;">
+        @if (Model.EvalSheetGroupCollection != null)
+        {
+            if (Model.EvalSheetGroupCollection.Type == R_09993.EvalTypeNomenclature.Rejection)
+            {
+                @Html.Partial(MVC.Private.Shared.Views.Print.EvalSheetGroupCollectionRejection, Model.EvalSheetGroupCollection ?? new R_10026.EvalSheetGroupCollection())
+            }
+            else if (Model.EvalSheetGroupCollection.Type == R_09993.EvalTypeNomenclature.Weight)
+            {
+                @Html.Partial(MVC.Private.Shared.Views.Print.EvalSheetGroupCollectionWeight, Model.EvalSheetGroupCollection ?? new R_10026.EvalSheetGroupCollection())
+            }
+        }
+    </section>
+
+    if (Model.EvalTableAttachedDocumentCollection != null && Model.EvalTableAttachedDocumentCollection.Count > 0)
+    {
+        <h3>@EvalSheet.EvalTableAttachedDocumentCollection</h3>
+        <section style="display:block;">
+            @Html.Partial(MVC.Private.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.EvalTableAttachedDocumentCollection ?? new R_10026.AttachedDocumentCollection())
+        </section>
+    }
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <h3>@EvalSheet.AttachedDocumentCollection</h3>
+        <section style="display:block;">
+            @Html.Partial(MVC.Private.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.AttachedDocumentCollection ?? new R_10026.AttachedDocumentCollection())
+        </section>
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.Note))
+    {
+        <h3>@EvalSheet.Note</h3>
+        <section style="display:block;">
+            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Note)
+        </section>
+    }
+}

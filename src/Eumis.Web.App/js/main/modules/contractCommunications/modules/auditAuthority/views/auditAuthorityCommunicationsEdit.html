@@ -1,0 +1,24 @@
+<ng-form name="editContractCommunicationForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="auditAuthorityCommunications_editCommunication_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="deleteBtn" btn-click="del()" ng-show="contractCommunication.status === 'draft'" text="auditAuthorityCommunications_editCommunication_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('AuditAuthorityCommunicationActions.Delete', communicationId)"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-communication name="contractCommunicationForm" ng-model="contractCommunication"></eumis-contract-communication>
+
+      <div class="row">
+        <eumis-structured-document text="auditAuthorityCommunications_editCommunication_communication" document="contractCommunication" gid="contractCommunication.xmlGid"
+          readonly="contractCommunication.status !== 'draft' || !$canDo('AuditAuthorityCommunicationActions.Edit', communicationId)"
+          class="col-sm-4 col-md-3" doc-updated="communicationUpdated">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

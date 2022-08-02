@@ -1,0 +1,42 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'fiReimbursementTypes'" ng-model="model.type" mode="id" ng-required="true" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_type" class="col-sm-8 col-md-6"></sc-field>
+    <sc-field type="date" ng-model="model.reimbursementDate" ng-required="true" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_reimbursementDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'reimbursements'" ng-model="model.reimbursement" mode="id" ng-required="true" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_reimbursements" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="model.programmePriorityId" mode="id" ng-required="true" params="{contractId: model.contractId}" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_programmePriority" class="col-sm-6"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_principalBfp"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.principalBfpEuAmount" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpEuAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.principalBfpBgAmount" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpBgAmount" class="col-sm-4 col-md-3"></sc-field>
+    
+    <sc-field-group class="col-sm-4 col-md-3" text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpTotalAmount" field-name="principalBfpTotalAmount">
+      <sc-money ng-model="model.principalBfpTotalAmount" name="principalBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('principal')" ng-disabled="form.$readonly || !model.programmePriorityId" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+  </div>
+
+  <h5 class="table-header" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_interesBfp"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.interestBfpEuAmount" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpEuAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.interestBfpBgAmount" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpBgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="fiReimbursedAmounts_fiReimbursedAmountForm_bfpTotalAmount" field-name="interestBfpTotalAmount">
+      <sc-money ng-model="model.interestBfpTotalAmount" name="interestBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('interest')" ng-disabled="form.$readonly || !model.programmePriorityId" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.comment" rows="2" l10n-text="fiReimbursedAmounts_fiReimbursedAmountForm_comment" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

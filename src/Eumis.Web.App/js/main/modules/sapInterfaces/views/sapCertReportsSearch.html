@@ -1,0 +1,39 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'certReports'" mode="id" ng-model="filters.certReportId" l10n-text="sapCertReports_search_certNum" class="col-sm-6"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="sapCertReports_search_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="displayResult">
+      <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                      icon="fa-file-excel-o fa-lg fa-fw" text="sapCertReports_search_excelExport" class="pull-left btn btn-default btn-sm">
+      </sc-link-button>
+      <sc-link-button ng-href="{{exportTsvUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                      icon="fa-file-text-o fa-lg fa-fw" text="sapCertReports_search_tsvExport" class="pull-left btn btn-default btn-sm">
+      </sc-link-button>
+      <sc-datatable items="sapCertReports" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+        <sc-column data="contractRegNum" title="sapCertReports_search_contractNum">
+        </sc-column>
+        <sc-column data="paymentVersionNum" title="sapCertReports_search_paymentNum">
+        </sc-column>
+        <sc-column data="programmePriorityCode" title="sapCertReports_search_programmePriorityCode">
+        </sc-column>
+        <sc-column data="fund" title="sapCertReports_search_financeFund">
+        </sc-column>
+        <sc-column data="totalAmount" title="sapCertReports_search_totalAmount" type="money">
+        </sc-column>
+        <sc-column data="date" title="sapCertReports_search_certDate" type="date">
+        </sc-column>
+        <sc-column data="period" title="sapCertReports_search_finYear">
+        </sc-column>
+        <sc-column data="certReportNumber" title="sapCertReports_search_certNum">
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</div>

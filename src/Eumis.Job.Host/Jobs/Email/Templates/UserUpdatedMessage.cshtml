@@ -1,0 +1,22 @@
+﻿@using Newtonsoft.Json.Linq
+@model Newtonsoft.Json.Linq.JObject
+
+Здравейте, <br/>
+Регистрацията Ви в СУНИ беше актуализирана успешно. <br/>
+Данните за Вашия потребителски профил са: <br/> <br/>
+
+<p>
+Потребителско име: @(Model["username"]) <br/>
+Три имена: @(Model["fullname"]) <br/>
+E-mail: @(Model["email"]) <br/>
+Телефон: @(Model["phone"]) <br/>
+Адрес: @(Model["address"]) <br/>
+Длъжност: @(Model["position"]) <br/> <br/>
+</p>
+
+@{var permissionsHtml = Eumis.Job.Host.Jobs.Email.RazorEngineRenderer.RenderTemplate("UserPermissions.cshtml", (JObject)Model["permissions"]);}
+
+@Raw(permissionsHtml)
+
+Поздрави, <br/>
+Екипът на СУНИ <br/>

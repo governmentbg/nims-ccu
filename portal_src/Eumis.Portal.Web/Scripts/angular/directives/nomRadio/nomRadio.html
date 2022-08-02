@@ -1,0 +1,8 @@
+﻿<span ng-repeat="item in nomItems">
+    <input ng-model="model[modelId]" type="radio" name="{{path}}" id="{{item[nomId]}}{{editorId}}" value="{{item[nomId]}}" ng-click="assignName(item)" sc-disabled="disabled"/>
+    <label for="{{item[nomId]}}{{editorId}}">{{item[nomName]}}</label>
+</span>
+
+<input ng-model="model[modelName]" type="hidden" name="{{path}}.{{modelName}}" value="{{model[modelName]}}">
+<input ng-model="model[modelId]" type="hidden" name="{{path}}.{{modelId}}" value="{{model[modelId]}}">
+

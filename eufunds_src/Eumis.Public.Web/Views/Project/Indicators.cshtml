@@ -1,0 +1,49 @@
+﻿@model Eumis.Public.Data.Contracts.ViewObjects.ContractIndicatorsVO
+
+@{
+    Layout = MVC.Project.Views._ProjectLayout;
+}
+
+<div class="project-info-box">
+    <div class="head">
+        <h2>@Texts.Project_Details_Indicators</h2>
+    </div>
+    <div class="content">
+        @if (Model.Indicators != null && Model.Indicators.Count() > 0)
+        {
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>@Texts.Project_Details_Indicator</th>
+                            <th>@Texts.Project_Details_Indicator_Unit</th>
+                            <th>@Texts.Project_Details_Indicator_BaseTotalValue</th>
+                            <th>@Texts.Project_Details_Indicator_TargetAmount</th>
+                            <th>@Texts.Project_Details_Indicator_CumulativeAmount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Indicators.Count(); i++)
+                        {
+                            var indicator = Model.Indicators.ElementAt(i);
+                            <tr>
+                                <td>@(i + 1). @indicator.TransName</td>
+                                <td>@indicator.TransMeasureName</td>
+                                <td class="sum-field">@Html.DisplayFor(m => indicator.BaseTotalValue)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => indicator.TargetAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => indicator.CumulativeAmountTotal)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="list-item">
+                <label>@Texts.Project_Details_None</label>
+            </div>
+        }
+    </div>
+</div>

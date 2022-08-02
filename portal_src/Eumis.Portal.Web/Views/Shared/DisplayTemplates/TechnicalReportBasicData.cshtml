@@ -1,0 +1,38 @@
+﻿@model R_10052.TechnicalReportBasicData
+
+@if (Model != null)
+{
+    @Html.Partial("DisplayTemplates/" + MVC.Shared.Views.DisplayTemplates.TechnicalReportBasicDataReadonlyPart, Model)
+
+    <div class="clearfix">
+        <div class="form-group col-md-4">
+            <label>@TechnicalReportBasicData.StartDate</label>
+            @Html.DisplayFor(m => m.StartDate)
+        </div>
+        <div class="form-group col-md-4">
+            <label>@TechnicalReportBasicData.EndDate</label>
+            @Html.DisplayFor(m => m.EndDate)
+        </div>
+    </div>
+
+    <h3>@TechnicalReportBasicData.Preparer</h3>
+
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            <label>@TechnicalReportBasicData.PreparerName</label>
+            @Html.DisplayFor(m => m.PreparerName)
+        </div>
+        <div class="form-group col-md-6">
+            <label>@TechnicalReportBasicData.PreparerPosition</label>
+            @Html.DisplayFor(m => m.PreparerPosition)
+        </div>
+        <div class="form-group col-md-3">
+            <label>@TechnicalReportBasicData.PreparerPhone</label>
+            @Html.DisplayFor(m => m.PreparerPhone)
+        </div>
+        <div class="form-group col-md-3">
+            <label>@TechnicalReportBasicData.PreparerEmail</label>
+            @Html.DisplayFor(m => m.PreparerEmail)
+        </div>
+    </div>
+}

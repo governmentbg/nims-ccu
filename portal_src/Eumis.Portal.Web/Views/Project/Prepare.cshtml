@@ -1,0 +1,105 @@
+﻿@using Eumis.Portal.Web.Helpers
+@using Eumis.Portal.Web.Models
+@model Eumis.Portal.Web.Models.Project.EditVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Draft.ActionNames.Index, MVC.Draft.Name), Global.BreadcrumbsDrafts),
+}
+, Global.BreadcrumbsApplicationForm)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsApplicationForm</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Project.ActionNames.Prepare,
+        MVC.Project.Name,
+        new { currentStep = Model.CurrentStep },
+        FormMethod.Post,
+        new { id = Constants.PARTIAL_SAVE_PROJECT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Project.ActionNames.Prepare,
+                MVC.Project.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_PROJECT,
+                formMethod: FormMethod.Post)
+            @Global.Proposal
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(Model.RemoteValidationWarnings, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.ProjectEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    <div id="action_links">
+                        @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                            new DownloadDraftXmlVM
+                            {
+                                LinkName = Global.SaveProjectDraft,
+                                SuccessMessage = Global.SaveProjectDraftSuccess,
+                                ControllerName = MVC.Project.Name,
+                                SecondActionName = "SaveDraft",
+                                PostActionName = MVC.Project.ActionNames.Save,
+                                HasXmlUpdate = true,
+                                FORM_ID = Constants.PARTIAL_SAVE_PROJECT
+                            })
+
+                        @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Project.ActionNames.Prepare,
+                        MVC.Project.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" }, formId: Constants.PARTIAL_SAVE_PROJECT, formMethod: FormMethod.Post)
+                        @Global.ValidateButton
+                        @Html.EndActionLinkPrePostButton()
+
+                        @if (Model.EndingDate.HasValue)
+                        {
+                            <span class="deadline">@Global.Deadline: <span class="required-span">@(string.Format("{0:dd.MM.yyyy г. HH:mm ч.}", Model.EndingDate))</span></span>
+                        }
+                    </div>
+                </div>
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_PROJECT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Project.ActionNames.Prepare, MVC.Project.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_PROJECT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+        </script>
+    }
+</div>

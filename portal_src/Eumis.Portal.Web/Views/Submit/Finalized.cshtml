@@ -1,0 +1,97 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<Eumis.Documents.Contracts.RegProjectXmlPVO>
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container page-title">
+    <h1>@Finalized.SelectCompletedForm</h1>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>@Draft.Finalized</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="table-wrapper">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <table class="chart-info dynamic-rows" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 100px">@Draft.ModifiedDate</th>
+                                <th style="width: 100px">@Draft.ProcedureEndingDate</th>
+                                <th>@Html.Raw(Draft.ProgrammeProcedure)</th>
+                                <th style="width: 180px">@Draft.CompanyName</th>
+                                <th style="width: 190px">@Draft.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var draft in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(draft.modifyDate)
+                                    </td>
+                                    <td>
+                                        @if (draft.procedureEndingDate != DateTime.MinValue)
+                                        {
+                                            if (draft.procedureEndingDate >= DateTime.Now)
+                                            {
+                                                <span class="required-span">@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(draft.procedureEndingDate)</span>
+                                            }
+                                            else
+                                            {
+                                                <text>@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(draft.procedureEndingDate)</text>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!String.IsNullOrWhiteSpace(draft.displayProjectName))
+                                        {
+                                            <p style="font-weight: bold;">@draft.displayProjectName</p>
+                                        }
+
+                                        @if (!String.IsNullOrWhiteSpace(draft.displayProgrammeName))
+                                        {
+                                            <text>@draft.displayProgrammeName, <br /></text>
+                                        }
+
+                                        @draft.procedureCode -
+                                        @draft.displayProcedureName
+                                    </td>
+                                    <td>
+                                        @draft.displayCompanyName
+                                    </td>
+                                    <td>
+                                        <div class="inline-actions">
+                                            <a class="blue-button small wait" href="@(Url.Action(MVC.Submit.ActionNames.Preview, MVC.Submit.Name, new { gid = draft.gid }))" title="">@Draft.PassProposal</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="info-block">
+                        <p>@Draft.NoFinalizedFound</p>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model,
+                page => Url.Action((String)ViewContext.RouteData.Values["action"],
+                (String)ViewContext.RouteData.Values["controller"],
+                new
+                {
+                    page = page
+                }),
+                Constants.PagedListRenderOptions)
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+<ng-form name="editProgrammeDataForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmes_editProgrammeData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="changeStatusToDraft()" text="programmes_editProgrammeData_draft" class="btn btn-success btn-xs"
+          ng-if="programme.status !== 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programme.programmeId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="changeStatusToEntered()" text="programmes_editProgrammeData_enter" class="btn btn-success btn-xs"
+          ng-if="programme.status === 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programme.programmeId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="programmes_editProgrammeData_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-if="programme.status !== 'canceled'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Edit', programme.programmeId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="programmes_editProgrammeData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="programme.status === 'draft'" ng-show="!editMode" ng-disabled="!$canDo('ProgrammeActions.Delete', programme.programmeId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_editProgrammeData_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_editProgrammeData_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-programme-data name="programmeDataForm" ng-model="programme" sc-form-params="{ isNew: false }"></eumis-programme-data>
+    </div>
+  </div>
+</ng-form>

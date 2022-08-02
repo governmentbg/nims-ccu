@@ -1,0 +1,21 @@
+﻿@model R_10067.FinanceSourceReportAmounts
+
+@if (Model == null)
+{
+    <td></td>
+    <td></td>
+    <td></td>
+}
+else
+{
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.GrandAmount)
+    </td>
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.SelfAmount)
+    </td>
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalAmount)
+    </td>
+}
+</tr>

@@ -1,0 +1,27 @@
+﻿@model R_10023.EvalTable
+
+@if (Model != null)
+{
+    <h3>@EvalTable.EvaluationCriterias</h3>
+    <section style="display:block;">
+        @if (Model.EvalTableGroupCollection != null)
+        {
+            if (Model.EvalTableGroupCollection.Type == R_09993.EvalTypeNomenclature.Rejection)
+            {
+               @Html.Partial(MVC.Private.Shared.Views.Print.EvalTableGroupCollectionRejection, Model.EvalTableGroupCollection ?? new R_10023.EvalTableGroupCollection())
+            }
+            else if (Model.EvalTableGroupCollection.Type == R_09993.EvalTypeNomenclature.Weight)
+            {
+                @Html.Partial(MVC.Private.Shared.Views.Print.EvalTableGroupCollectionWeight, Model.EvalTableGroupCollection ?? new R_10023.EvalTableGroupCollection())
+            }
+        }
+    </section>
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <h3>@EvalTable.AttachedDocumentCollection</h3>
+        <section style="display:block;">
+            @Html.Partial(MVC.Private.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.AttachedDocumentCollection ?? new R_10023.AttachedDocumentCollection())
+        </section>
+    }
+}

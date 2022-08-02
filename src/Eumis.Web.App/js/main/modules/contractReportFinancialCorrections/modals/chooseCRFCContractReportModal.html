@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="contractReportFinancialCorrections_chooseContractReportModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportFinancialCorrections_chooseContractReportModal_cancel"
+        class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'contractReportProcedures'" mode="id" ng-model="filters.procedureId" l10n-text="contractReportFinancialCorrections_chooseContractReportModal_procedure" class="col-sm-5 col-md-5"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="text" ng-model="filters.contractRegNum" l10n-text="contractReportFinancialCorrections_chooseContractReportModal_contractNumber" class="col-sm-5 col-md-5"></sc-field>
+        <sc-field type="text" ng-model="filters.contractReportNum" l10n-text="contractReportFinancialCorrections_chooseContractReportModal_contractReportNum" class="col-sm-4 col-md-3"></sc-field>
+        <div class="labeless col-sm-3 col-md-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportFinancialCorrections_chooseContractReportModal_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="contractReports" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseBtn" btn-click="choose(item)" text="contractReportFinancialCorrections_chooseContractReportModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+      </sc-column>
+      <sc-column data="contractRegNum" title="contractReportFinancialCorrections_chooseContractReportModal_contractRegNum"></sc-column>
+      <sc-column data="contractName" title="contractReportFinancialCorrections_chooseContractReportModal_contractName" has-content="true">
+        <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="procedureName" title="contractReportFinancialCorrections_chooseContractReportModal_procedureName" has-content="true">
+        <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="status" title="contractReportFinancialCorrections_chooseContractReportModal_status"></sc-column>
+      <sc-column data="orderNum" title="contractReportFinancialCorrections_chooseContractReportModal_orderNum" type="number"></sc-column>
+      <sc-column data="reportType" title="contractReportFinancialCorrections_chooseContractReportModal_reportType"></sc-column>
+      <sc-column data="source" title="contractReportFinancialCorrections_chooseContractReportModal_source"></sc-column>
+      <sc-column data="regDate" title="contractReportFinancialCorrections_chooseContractReportModal_regDate" type="date"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

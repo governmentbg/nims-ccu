@@ -1,0 +1,42 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@model R_10020.Message
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Communication, MVC.Registered.Name), ProjectCommunication.CommunicationBreadcrumb),
+    new BreadcrumbItem(Url.Action(MVC.ProjectCommunication.ActionNames.Index, MVC.ProjectCommunication.Name, new { registeredGid = Model.RegisteredGid }), ProjectCommunicationAnswer.ProjectRegNumber + Model.ProjectRegNumber)
+}
+, ProjectCommunicationAnswer.AnswerBreadcrumb)
+
+<div class="container page-title">
+    <h1>@ProjectCommunicationAnswer.AnswerBreadcrumb</h1>
+</div>
+
+<div class="container">
+    <form>
+        <div class="form-toggle">
+            <img src="@Links.Content.img.icons.eco_tree_png" data-placement="right" data-toggle="popover" data-content="@Global.EcoNotification" data-trigger="hover" class="info-icon" style="padding-top:5px;height: 33px; margin-right:5px; margin-left:-5px;" />
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(ProjectCommunicationAnswer.Answer, MVC.ProjectCommunicationAnswer.ActionNames.Prepare, MVC.ProjectCommunicationAnswer.Name, null, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.ProjectCommunicationAnswer.ActionNames.Display, MVC.ProjectCommunicationAnswer.Name, null, new { @class = "tab active" })
+
+            @Html.ActionLink(Global.Print, MVC.ProjectCommunicationAnswer.ActionNames.Print, MVC.ProjectCommunicationAnswer.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <div class="form-with-sections">
+            @Html.DisplayFor(m => m, MVC.Shared.Views.DisplayTemplates.ProjectCommunicationAnswer)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.ProjectCommunicationAnswer.ActionNames.Prepare, MVC.ProjectCommunicationAnswer.Name, null, new { @class = "blue-button small back left" })
+
+                @Html.ActionLink(ProjectCommunicationAnswer.Send, MVC.ProjectCommunicationAnswer.ActionNames.Submit, MVC.ProjectCommunicationAnswer.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </div>
+    </div>
+</div>

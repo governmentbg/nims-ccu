@@ -1,0 +1,51 @@
+﻿@model Eumis.Portal.Web.Models.Draft.DeclarationVM
+@using Eumis.Portal.Web.Models.Draft
+
+<table width="100%" cellpadding="0" cellspacing="0" style="font-size: 12px; font-family:Verdana;">
+    <tr>
+        <td align="left" style="border-bottom: 1px solid #000000; font-size: 8px;">
+            <img style="height: 80px;" src="@Links.Content.img.logo_big_jpg" alt="" />
+        </td>
+        <td align="right" style="border-bottom: 1px solid #000000; font-size: 8px;">
+            <img style="height: 80px;" src="@Links.Content.img.eu_big_jpg" alt="" />
+        </td>
+    </tr>
+
+    <tr><td colspan="2"><br /><br /><br /><br /><br /></td></tr>
+    <tr><td colspan="2" align="center" style="font-size: 36px;">Д Е К Л А Р А Ц И Я</td></tr>
+    <tr><td colspan="2" style="font-size: 10px;">&nbsp;</td></tr>
+    <tr><td colspan="2" align="center">за подаване на проектно предложение без електронен подпис</td></tr>
+    <tr><td colspan="2" align="center"><br /><br /><br /><br /><br /></td></tr>
+    <tr><td colspan="2">Долуподписаният/ата: ..........................................................................................................., </td></tr>
+    <tr><td colspan="2" style="font-size: 11px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(име, презиме, фамилия) </td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2">ЕГН: .................................., с документ за самоличност №......................................................,</td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2">изд. на .......................... от .................................................................................................., </td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2">в качеството ми на ................................................................................................................, </td></tr>
+    <tr><td colspan="2" style="font-size: 11px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(длъжност)  </td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2">представляващ <strong>@Model.CandidateName,</strong></td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2">с ЕИК: <strong>@Model.CandidateEIK </strong></td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2" style="text-align: justify;">Декларирам, че информацията в подаденото от мен проектно предложение по процедура <strong>@Model.ProcedureCode</strong>, съдържащо се във файл с име: „<strong>@(Model.FileName).isun</strong>“ и код на файла, автоматично генериран от информационната система СУНИ: <strong>@Model.ProjectCode</strong>, е вярна.</td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2" style="text-align: justify;">Съгласен съм по време на етап оценка, комуникацията с нас и отстраняването на неточности по проектното предложение да бъде извършено през профила асоцииран с имейл адрес: <a style="color: #000000;" href="mailto:@(Model.Email)" title="@Model.Email"><strong>@Model.Email</strong></a>.<br/></td></tr>
+    <tr><td colspan="2" align="center"><br /></td></tr>
+    <tr><td colspan="2"><strong>Известна ми е наказателната отговорност по чл. 313 от Наказателния кодекс за деклариране на неверни обстоятелства.</strong></td></tr>
+    <tr><td colspan="2" align="center"><br /><br /><br /></td></tr>
+    <tr>
+        <td align="left">Дата на деклариране: _______________</td>
+        <td align="right">Декларатор: _______________</td>
+    </tr>
+    <tr>
+        <td align="left"></td>
+        <td style="font-size: 11px;" align="right">/подпис/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+    <tr><td colspan="2" align="center"><br /><br /><br /></td></tr>
+    <tr>
+        <td colspan="2" style="font-size: 10px; line-height: 14px; border-top: 1px solid #000; text-align: justify;">Декларацията се подава в оригинал, собственоръчно попълнена и подписана. Подписва се от представляващия организацията или от упълномощено от него лице (при упълномощаване се представя и нотариално заверено пълномощно). В случаите, когато тя се представлява заедно от няколко физически лица, Декларацията се попълва и подписва от всяко едно от тях или от упълномощения представител. За бюджетните организации – подписва се от ръководителя на бюджетното предприятие по смисъла на § 1, т. 1 от Допълнителните разпоредби на Закона за счетоводството или от упълномощено от него лице.<br /></td>
+    </tr>
+</table>

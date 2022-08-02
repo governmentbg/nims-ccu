@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionProjects'" mode="id" ng-model="filters.project" params="{evalSessionId: evalSessionId, notDeletedOnly: false}" l10n-text="evalSessions_evalSessionStandpointsSearch_project" class="col-sm-4 col-md-4"></sc-field>
+        <sc-field type="nomenclature" alias="'evalSessionStandpointStatuses'" mode="id" multiple="multiple" ng-model="filters.statuses" l10n-text="evalSessions_evalSessionStandpointsSearch_statuses" class="col-sm-4 col-md-4"></sc-field>
+        <div class="labeless col-md-4 col-sm-2 pull-right">
+          <sc-button name="seachBtn" btn-click="search()" text="evalSessions_evalSessionStandpointsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="evalSessionStandpoints" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.my.view.standpoints.edit', params: { ind: item.evalSessionStandpointId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('MyEvalSessionStandpointActions.Edit', item.evalSessionStandpointId)"></sc-button>
+      </sc-column>
+      <sc-column title="evalSessions_evalSessionStandpointsSearch_project" has-content="true" data="projectRegNumber + ' ' + projectName">
+        <span title="{{item.projectName}}">{{item.projectRegNumber}} - {{item.projectName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="note" title="evalSessions_evalSessionStandpointsSearch_note" has-content="true">
+        <span title="{{item.note}}">{{item.note | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="user" title="evalSessions_evalSessionStandpointsSearch_user"></sc-column>
+      <sc-column data="statusName" title="evalSessions_evalSessionStandpointsSearch_status"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

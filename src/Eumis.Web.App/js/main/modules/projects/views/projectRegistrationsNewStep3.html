@@ -1,0 +1,20 @@
+<div class="tab-content">
+  <ng-form name="projectRegistrationsNewStep3Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="projects_projectRegistationNewStep3_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="projects_projectRegistationNewStep3_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="projects_projectRegistationNewStep3_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration" sc-form-params="{ hasXml: hasRegProjectXml }"></eumis-project-registration-data>
+      </div>
+    </div>
+  </ng-form>
+</div>

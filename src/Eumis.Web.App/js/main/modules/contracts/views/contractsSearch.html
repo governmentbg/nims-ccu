@@ -1,0 +1,43 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'programmePriorities'" mode="id" ng-model="filters.programmePriorityId" l10n-text="contracts_contractsSearch_programmePriority" class="col-sm-5"></sc-field>
+        <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="filters.procedureId" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="contracts_contractsSearch_procedure" class="col-sm-5"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contracts_contractsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="contracts_contractsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.contracts.newStep1' }"
+      ng-disabled="!$canDo('ContractListActions.Create')"></sc-button>
+    <sc-button name="newServiceContractBtn" text="contracts_contractsSearch_newServiceContract" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.contracts.serviceContracts.newStep1' }"
+      ng-disabled="!$canDo('ContractListActions.Create')"></sc-button>
+    <sc-link-button ng-href="{{contractsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+      icon="fa-file-excel-o fa-lg fa-fw" text="contracts_contractsSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contracts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.contractStatus === 'canceled'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contracts.editNew', params: { id: item.contractId }}"
+          ng-disabled="!$canDo('ContractActions.View', item.contractId)" ng-show="item.contractStatus === 'draft'"></sc-button>
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contracts.view.data', params: { id: item.contractId }}"
+          ng-disabled="!$canDo('ContractActions.View', item.contractId)" ng-show="item.contractStatus !== 'draft'"></sc-button>
+      </sc-column>
+      <sc-column data="procedureName" title="contracts_contractsSearch_procedure">
+      </sc-column>
+      <sc-column data="regNumber" title="contracts_contractsSearch_regNumber">
+      </sc-column>
+      <sc-column data="contractDate" title="contracts_contractsSearch_contractDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="contracts_contractsSearch_name">
+      </sc-column>
+      <sc-column data="executionStatus" title="contracts_contractsSearch_executionStatus">
+      </sc-column>
+      <sc-column data="company" title="contracts_contractsSearch_company">
+      </sc-column>
+      <sc-column data="totalBfpAmount" title="contracts_contractsSearch_totalBfpAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

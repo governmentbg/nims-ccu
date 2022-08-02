@@ -1,0 +1,32 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'euReimbursedAmountStatuses'" mode="id" ng-model="filters.status" l10n-text="euReimbursedAmounts_amountsSearch_status" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-9">
+          <sc-button name="seachBtn" btn-click="search()" text="euReimbursedAmounts_amountsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="euReimbursedAmounts_amountsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.euReimbursedAmounts.new' }"
+      ng-disabled="!$canDo('EuReimbursedAmountListActions.Create')" style="margin-right: 5px;"></sc-button>
+
+    <sc-datatable items="euReimbursedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'removed'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.euReimbursedAmounts.view.amount', params: { id: item.euReimbursedAmountId }}"
+          ng-disabled="!$canDo('EuReimbursedAmountActions.View', item.euReimbursedAmountId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="euReimbursedAmounts_amountsSearch_programme">
+      </sc-column>
+      <sc-column data="statusDescr" title="euReimbursedAmounts_amountsSearch_status">
+      </sc-column>
+      <sc-column data="paymentType" title="euReimbursedAmounts_amountsSearch_paymentType">
+      </sc-column>
+      <sc-column data="date" title="euReimbursedAmounts_amountsSearch_date" type="date">
+      </sc-column>
+      <sc-column data="euTranche" title="euReimbursedAmounts_amountsSearch_euTranche" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

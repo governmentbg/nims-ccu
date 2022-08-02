@@ -1,0 +1,26 @@
+﻿@model R_10019.ContractTeams
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ContractTeam.Name</th>
+                    <th>@ContractTeam.Position</th>
+                    <th>@ContractTeam.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ContractTeamCollection != null && Model.ContractTeamCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.ContractTeamCollection.Count; i++)
+                    {
+                        @Html.DisplayFor(m => m.ContractTeamCollection[i])
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,18 @@
+﻿<ng-form name="newProcedureDocumentForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_newProcedureDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_newProcedureDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_newProcedureDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-document name="documentForm" ng-model="document" sc-form-params="{ urlTemplate: 'ProcedureFile', urlParamsId: document.procedureId}"></eumis-document>
+    </div>
+  </div>
+</ng-form>

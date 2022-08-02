@@ -1,0 +1,129 @@
+﻿@model R_10023.EvalTableGroupCollection
+
+@if (Model != null && Model.Count > 0)
+{
+    bool isRejection = Model.Type == R_09993.EvalTypeNomenclature.Rejection;
+    bool isWeight = Model.Type == R_09993.EvalTypeNomenclature.Weight;
+
+    <div class="table-wrapper">
+        <table class="chart-info dynamic-rows fixed-table" width="100%" id="eval-table">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <thead>
+                    <tr>
+                        <th style="width:40px; text-align: center;">@(Eumis.Common.Helpers.DataUtils.Romanize(i + 1)).</th>
+                        <th class="group-header">@EvalTable.Group</th>
+                        @if (isRejection)
+                        {
+                            <th style="width:200px; border-left: 1px solid transparent;"></th>
+                        }
+
+                        @if (isWeight)
+                        {
+                            <th style="width:200px;">@EvalTable.Limit</th>
+                        }
+                        <th style="border-left: 1px solid transparent;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-size: 15px;"></td>
+                        <td colspan="@(isWeight ? 1 : 2)">
+                            @Html.DisplayFor(m => m[i].Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                        </td>
+                        @if (isWeight)
+                        {
+                            <td>
+                                @Html.DisplayFor(m => m[i].Limit, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                            </td>
+                        }
+                        <td></td>
+                    </tr>
+                    @if (Model[i].EvalTableCriteriaCollection != null && Model[i].EvalTableCriteriaCollection.Count > 0)
+                    {
+                        <tr>
+                            <td></td>
+                            <td colspan="3" style="border-left: 1px solid #8f8f8f; padding: 0px;">
+                                <div class="history-table-wrapper clearfix">
+                                    <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:40px;"></th>
+                                                <th class="criteria-header">@EvalTable.Criteria</th>
+                                                @if (isRejection)
+                                                {
+                                                    <th style="width:200px;">@EvalTable.Rejection</th>
+                                                }
+                                                @if (isWeight)
+                                                {
+                                                    <th style="width:200px;">@EvalTable.Weight <br /> @Model[i].WeightTotal</th>
+                                                }
+                                                <th style="border-left: 1px solid transparent;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int j = 0; j < Model[i].EvalTableCriteriaCollection.Count; j++)
+                                            {
+                                                <tr class="auto-calc-percent">
+                                                    <td class="text-right">@(j + 1).</td>
+                                                    <td>
+                                                        <pre>@Model[i].EvalTableCriteriaCollection[j].Name</pre>
+                                                    </td>
+                                                    @if (isRejection)
+                                                    {
+                                                        <td>
+                                                            @if (Model[i].EvalTableCriteriaCollection[j].IsRejection)
+                                                            {
+                                                                <text>@Global.Yes</text>
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>@Global.No</text>
+                                                            }
+                                                        </td>
+                                                    }
+                                                    @if (isWeight)
+                                                    {
+                                                        <td>
+                                                            @Html.DisplayFor(m => m[i].EvalTableCriteriaCollection[j].Weight)
+                                                        </td>
+                                                    }
+                                                    <td></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            }
+        </table>
+
+        @if (isWeight)
+        {
+            <div class="clearfix" style="margin-top:20px;">
+                <div class="form-group col-md-1 pull-right">
+                    <span class="filled-value">@Html.DisplayFor(m => m.Limit)</span>
+                </div>
+                <div class="form-group col-md-2 pull-right text-right">
+                    <span class="filled-value">@EvalTable.Limit:</span>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="form-group col-md-1 pull-right">
+                    <span class="filled-value">@Html.DisplayFor(m => m.WeightTotal)</span>
+                </div>
+                <div class="form-group col-md-2 pull-right text-right">
+                    <span class="filled-value">@EvalTable.WeightTotal:</span>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>@EvalTable.MissingData</p>
+}
+

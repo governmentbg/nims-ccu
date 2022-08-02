@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newcorrectionDebtBtn" btn-sref="{ state: 'root.correctionDebts.newStep1' }" text="correctionDebts_searchCorrectionDebt_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('CorrectionDebtListActions.Create')"></sc-button>
+
+    <sc-datatable items="correctionDebts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.correctionDebts.view.edit', params: {id: item.correctionDebtId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('CorrectionDebtActions.View', item.correctionDebtId)"></sc-button>
+      </sc-column>
+      <sc-column data="correctionRegNumber" title="correctionDebts_searchCorrectionDebt_correctionRegNumber">
+      </sc-column>
+      <sc-column data="regNumber" title="correctionDebts_searchCorrectionDebt_regNumber">
+      </sc-column>
+      <sc-column data="regDate" title="correctionDebts_searchCorrectionDebt_regDate" type="date">
+      </sc-column>
+      <sc-column data="modifyDate" title="correctionDebts_searchCorrectionDebt_modifyDate" type="date">
+      </sc-column>
+      <sc-column data="debtTotalAmount" title="correctionDebts_searchCorrectionDebt_debtTotalAmount" type="money">
+      </sc-column>
+      <sc-column data="certTotalAmount" title="correctionDebts_searchCorrectionDebt_certTotalAmount" type="money">
+      </sc-column>
+      <sc-column data="reimbursedTotalAmount" title="correctionDebts_searchCorrectionDebt_reimbursedTotalAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

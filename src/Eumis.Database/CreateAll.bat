@@ -1,0 +1,1 @@
+@sqlcmd -b -S. -v dbName="Eumis" -i"CreateAll.sql"

@@ -1,0 +1,373 @@
+﻿@model R_10044.TechnicalReportIndicatorCollection
+
+<div class="table-wrapper" ng-controller="controllerIndicators">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BFPContractIndicators.Name</th>
+                <th>@BFPContractIndicators.Type</th>
+                <th>@BFPContractIndicators.Actions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var bfpContractIndicator = Model[i].BFPContractIndicator;
+
+                    if (bfpContractIndicator.SelectedIndicator != null)
+                    {
+                        <tr>
+                            <td style="word-break: break-all">
+                                <span class="filled-value">
+                                    @bfpContractIndicator.SelectedIndicator.Name
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TypeName)
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                                </a>
+                            </td>
+                            <td style="width: 130px;">
+                                <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-normal bootstrap-switch-readonly" style="width: 180px; margin-top:10px;">
+                                    <div class="bootstrap-switch-container">
+                                        <span ng-if="!items[@(i)].BFPContractIndicator.IsLocked" class="bootstrap-switch-handle-on bootstrap-switch-success" style="width: 90px;">@Global.Unlocked</span>
+                                        <span ng-if="items[@(i)].BFPContractIndicator.IsLocked" class="bootstrap-switch-handle-off bootstrap-switch-danger" style="width: 90px; margin-left: 90px;">@Global.Locked</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="history-table">
+                            <td colspan="4">
+                                <div class="history-table-wrapper clearfix">
+                                    @* ================= START BFP CONTRACT INDICATOR ================= *@
+
+                                    <div class="clearfix">
+                                        <div class="form-group col-lg-12 col-md-12">
+                                            @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.Name, ProgrammeIndicators.Name)
+                                            @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.Name)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.TypeName, ProgrammeIndicators.Type)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TypeName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.TrendName, ProgrammeIndicators.Trend)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.TrendName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.KindName, ProgrammeIndicators.Kind)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.KindName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.MeasureName, ProgrammeIndicators.Measure)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.MeasureName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.AggregatedReport, ProgrammeIndicators.AggregatedReport)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.AggregatedReport)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.SelectedIndicator.AggregatedTarget, ProgrammeIndicators.AggregatedTarget)
+                                        @Html.DisplayFor(m => bfpContractIndicator.SelectedIndicator.AggregatedTarget)
+                                    </div>
+
+                                    @if (bfpContractIndicator.SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.BaseMen, ProgrammeIndicators.BaseMen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.BaseMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.BaseWomen, ProgrammeIndicators.BaseWomen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.BaseWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.BaseTotal, ProgrammeIndicators.BaseTotal)
+                                        @Html.DisplayFor(m => bfpContractIndicator.BaseTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    @if (bfpContractIndicator.SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.TargetMen, ProgrammeIndicators.TargetMen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.TargetMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => bfpContractIndicator.TargetWomen, ProgrammeIndicators.TargetWomen)
+                                            @Html.DisplayFor(m => bfpContractIndicator.TargetWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => bfpContractIndicator.TargetTotal, ProgrammeIndicators.TargetTotal)
+                                        @Html.DisplayFor(m => bfpContractIndicator.TargetTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    @*<div class="form-group col-lg-12 col-md-12">
+                                            @Html.LabelFor(m => bfpContractIndicator.Description, ProgrammeIndicators.Description)
+                                            @Html.DisplayFor(m => bfpContractIndicator.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>*@
+
+                                    @* ================= END OF BFP CONTRACT INDICATOR ================= *@
+
+                                    @if (!bfpContractIndicator.IsLocked)
+                                    {
+                                        <div class="form-group col-md-12">
+                                            <label>@ProgrammeIndicators.Description @SymbolsCount.Symbols1000</label>
+                                            <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].BFPContractIndicator.IsDescriptionValid}" auto-grow ng-model="items[@(i)].BFPContractIndicator.Description" name="@(Html.GetNameFor(m => m[i].BFPContractIndicator.Description))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                        </div>
+
+                                        <div ng-if="items[@(i)].HasGenderDivision">
+                                            <div style="clear:both"></div>
+
+                                            <h3>@TechnicalReportIndicator.LastReportAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <h3>@TechnicalReportIndicator.PeriodAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountMen, TechnicalReportIndicator.Men)
+                                                    <input sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsPeriodAmountMenValid}" money max-value="999999999" ng-model="items[@(i)].PeriodAmountMen" name="@(Html.GetNameFor(m => m[i].PeriodAmountMen))" class="form-control sum-field" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountWomen, TechnicalReportIndicator.Women)
+                                                    <input sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsPeriodAmountWomenValid}" money max-value="999999999" ng-model="items[@(i)].PeriodAmountWomen" name="@(Html.GetNameFor(m => m[i].PeriodAmountWomen))" class="form-control sum-field" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountTotal, TechnicalReportIndicator.Total)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsPeriodAmountTotalValid}" money max-value="999999999" ng-model="items[@(i)].PeriodAmountTotal" name="@(Html.GetNameFor(m => m[i].PeriodAmountTotal))" class="form-control sum-field"
+                                                           value="{{items[@(i)].PeriodAmountTotal = (((1 * items[@(i)].PeriodAmountMen) || 0) + ((1 * items[@(i)].PeriodAmountWomen) || 0)).toFixed(2)}}" />
+                                                </div>
+                                            </div>
+
+
+                                            <h3>@TechnicalReportIndicator.CumulativeAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsCumulativeAmountMenValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].CumulativeAmountMen" name="@(Html.GetNameFor(m => m[i].CumulativeAmountMen))"
+                                                           class="form-control sum-field" value="{{items[@(i)].CumulativeAmountMen = (((1 * items[@(i)].PeriodAmountMen) || 0) + (items[@(i)].IsAggregatedReport ? 0 : ((1 * items[@(i)].LastReportCumulativeAmountMen) || 0)) ).toFixed(2)}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsCumulativeAmountWomenValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].CumulativeAmountWomen" name="@(Html.GetNameFor(m => m[i].CumulativeAmountWomen))"
+                                                           class="form-control sum-field" value="{{items[@(i)].CumulativeAmountWomen = (((1 * items[@(i)].PeriodAmountWomen) || 0) + (items[@(i)].IsAggregatedReport ? 0 : ((1 * items[@(i)].LastReportCumulativeAmountWomen) || 0)) ).toFixed(2)}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsCumulativeAmountTotalValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].CumulativeAmountTotal" name="@(Html.GetNameFor(m => m[i].CumulativeAmountTotal))"
+                                                           class="form-control sum-field" value="{{items[@(i)].CumulativeAmountTotal = (((1 * items[@(i)].PeriodAmountTotal) || 0) + (items[@(i)].IsAggregatedReport ? 0 : ((1 * items[@(i)].LastReportCumulativeAmountTotal) || 0)) ).toFixed(2)}}" />
+                                                </div>
+                                            </div>
+
+
+                                            <h3>@TechnicalReportIndicator.ResidueAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountMen, TechnicalReportIndicator.Men)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsResidueAmountMenValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].ResidueAmountMen" name="@(Html.GetNameFor(m => m[i].ResidueAmountMen))"
+                                                           class="form-control sum-field"
+                                                           value="{{items[@(i)].ResidueAmountMen = (((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.BaseMen : items[@(i)].BFPContractIndicator.TargetMen)) || 0) - ((1 * items[@(i)].CumulativeAmountMen) || 0) - (items[@(i)].IsAggregatedTarget ? ((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.TargetMen : items[@(i)].BFPContractIndicator.BaseMen)) || 0) : 0)).toFixed(2)}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountWomen, TechnicalReportIndicator.Women)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsResidueAmountWomenValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].ResidueAmountWomen" name="@(Html.GetNameFor(m => m[i].ResidueAmountWomen))"
+                                                           class="form-control sum-field"
+                                                           value="{{items[@(i)].ResidueAmountWomen = (((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.BaseWomen : items[@(i)].BFPContractIndicator.TargetWomen)) || 0) - ((1 * items[@(i)].CumulativeAmountWomen) || 0) - (items[@(i)].IsAggregatedTarget ? ((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.TargetWomen : items[@(i)].BFPContractIndicator.BaseWomen)) || 0) : 0)).toFixed(2)}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountTotal, TechnicalReportIndicator.Total)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsResidueAmountTotalValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].ResidueAmountTotal" name="@(Html.GetNameFor(m => m[i].ResidueAmountTotal))"
+                                                           class="form-control sum-field"
+                                                           value="{{items[@(i)].ResidueAmountTotal = (((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.BaseTotal : items[@(i)].BFPContractIndicator.TargetTotal)) || 0) - ((1 * items[@(i)].CumulativeAmountTotal) || 0) - (items[@(i)].IsAggregatedTarget ? ((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.TargetTotal : items[@(i)].BFPContractIndicator.BaseTotal)) || 0) : 0)).toFixed(2)}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="!items[@(i)].HasGenderDivision">
+                                            <div style="clear:both"></div>
+
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.LastReportAmount)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountTotal, TechnicalReportIndicator.PeriodAmount)
+                                                    <input sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsPeriodAmountTotalValid}" money max-value="999999999" ng-model="items[@(i)].PeriodAmountTotal" name="@(Html.GetNameFor(m => m[i].PeriodAmountTotal))" class="form-control sum-field" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountTotal, TechnicalReportIndicator.CumulativeAmount)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsCumulativeAmountTotalValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].CumulativeAmountTotal" name="@(Html.GetNameFor(m => m[i].CumulativeAmountTotal))"
+                                                           class="form-control sum-field" value="{{items[@(i)].CumulativeAmountTotal = (((1 * items[@(i)].PeriodAmountTotal) || 0) + (items[@(i)].IsAggregatedReport ? 0 : ((1 * items[@(i)].LastReportCumulativeAmountTotal) || 0)) ).toFixed(2)}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountTotal, TechnicalReportIndicator.ResidueAmount)
+                                                    <input readonly sc-validation-popover type="text" ng-class="{'input-validation-error': !items[@(i)].IsResidueAmountTotalValid}"
+                                                           money max-value="999999999" ng-model="items[@(i)].ResidueAmountTotal" name="@(Html.GetNameFor(m => m[i].ResidueAmountTotal))"
+                                                           class="form-control sum-field"
+                                                           value="{{items[@(i)].ResidueAmountTotal = (((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.BaseTotal : items[@(i)].BFPContractIndicator.TargetTotal)) || 0) - ((1 * items[@(i)].CumulativeAmountTotal) || 0) - (items[@(i)].IsAggregatedTarget ? ((1 * (items[@(i)].IsTrendReduction ? items[@(i)].BFPContractIndicator.TargetTotal : items[@(i)].BFPContractIndicator.BaseTotal)) || 0) : 0)).toFixed(2)}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            @Html.LabelFor(m => m[i].Comment, TechnicalReportIndicator.Comment)
+                                            <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].IsCommentValid}" auto-grow ng-model="items[@(i)].Comment" name="@(Html.GetNameFor(m => m[i].Comment))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group col-lg-12 col-md-12">
+                                            @Html.LabelFor(m => bfpContractIndicator.Description, ProgrammeIndicators.Description)
+                                            @Html.DisplayFor(m => bfpContractIndicator.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+
+                                        if (Model[i].HasGenderDivision)
+                                        {
+                                            <div style="clear:both;"></div>
+                                            <h3>@TechnicalReportIndicator.LastReportAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <h3>@TechnicalReportIndicator.PeriodAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountMen, TechnicalReportIndicator.Men)
+                                                    @Html.DisplayFor(m => m[i].PeriodAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountWomen, TechnicalReportIndicator.Women)
+                                                    @Html.DisplayFor(m => m[i].PeriodAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountTotal, TechnicalReportIndicator.Total)
+                                                    @Html.DisplayFor(m => m[i].PeriodAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <h3>@TechnicalReportIndicator.CumulativeAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountMen, TechnicalReportIndicator.Men)
+                                                    @Html.DisplayFor(m => m[i].CumulativeAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountWomen, TechnicalReportIndicator.Women)
+                                                    @Html.DisplayFor(m => m[i].CumulativeAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountTotal, TechnicalReportIndicator.Total)
+                                                    @Html.DisplayFor(m => m[i].CumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <h3>@TechnicalReportIndicator.ResidueAmount</h3>
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountMen, TechnicalReportIndicator.Men)
+                                                    @Html.DisplayFor(m => m[i].ResidueAmountMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountWomen, TechnicalReportIndicator.Women)
+                                                    @Html.DisplayFor(m => m[i].ResidueAmountWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountTotal, TechnicalReportIndicator.Total)
+                                                    @Html.DisplayFor(m => m[i].ResidueAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="clear:both;"></div>
+
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].LastReportCumulativeAmountTotal, TechnicalReportIndicator.LastReportAmount)
+                                                    @Html.DisplayFor(m => m[i].LastReportCumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix">
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].PeriodAmountTotal, TechnicalReportIndicator.PeriodAmount)
+                                                    @Html.DisplayFor(m => m[i].PeriodAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].CumulativeAmountTotal, TechnicalReportIndicator.CumulativeAmount)
+                                                    @Html.DisplayFor(m => m[i].CumulativeAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    @Html.LabelFor(m => m[i].ResidueAmountTotal, TechnicalReportIndicator.ResidueAmount)
+                                                    @Html.DisplayFor(m => m[i].ResidueAmountTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="form-group col-md-12">
+                                            @Html.LabelFor(m => m[i].Comment, TechnicalReportIndicator.Comment)
+                                            @Html.DisplayFor(m => m[i].Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

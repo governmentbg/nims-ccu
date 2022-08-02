@@ -1,0 +1,131 @@
+{
+    "defaultConfiguration": "EGP06.Prod",
+    "machines": {
+        "egp31-app1pi": [
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../src/Eumis.Job.Host/Eumis.Job.Host.csproj",
+                    "packageName": "eumis_job",
+                    "recycle": true,
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "NimsJob"
+                    }
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "build",
+                    "deployDir": "../../deploy_scripts/DbUpdater/",
+                    "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../src/Eumis.Blob.Host/Eumis.Blob.Host.csproj",
+                    "packageName": "eumis_blob",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "NimsBlob"
+                    }
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "build",
+                    "deployDir": "../../deploy_scripts/DbUpdater/",
+                    "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../src/Eumis.Integration.Host/Eumis.Integration.Host.csproj",
+                    "packageName": "NimsIntegration",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Test": "NimsIntegration"
+                    }
+                }
+            },
+            {
+                "npm": {
+                    "location": "../src/Eumis.Web.App",
+                    "confTask": {
+                        "EGP06.Prod": "build-prod"
+                    }
+                },
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../src/Eumis.Web.Host/Eumis.Web.Host.csproj",
+                    "packageName": "eumis",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "Nims"
+                    }
+                }
+            }
+        ],
+        "egp31-app1pe": [
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../portal_src/Eumis.Portal.Web/Eumis.Portal.Web.csproj",
+                    "packageName": "eumis_portal",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "NimsPortal"
+                    }
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../src/Eumis.PortalIntegration.Host/Eumis.PortalIntegration.Host.csproj",
+                    "packageName": "eumis_portal_integration",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "NimsPortalIntegration"
+                    }
+                }
+            }
+        ],
+        "egp31-gatep": [
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../integrations_src/Eumis.IntegrationRegiX.Host/Eumis.IntegrationRegiX.Host.csproj",
+                    "packageName": "eumis_regix",
+                    "takeOffline": false,
+                    "confIisAppName": {
+                        "EGP06.Prod": "nims-regix"
+                    }
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../integrations_src/Eumis.IntegrationMonitorstat.Host/Eumis.IntegrationMonitorstat.Host.csproj",
+                    "packageName": "eumis_monitorstat",
+                    "takeOffline": false,
+                    "confIisAppName": {
+                        "EGP06.Prod": "nims-monitorstat"
+                    }
+                }
+            },
+            {
+                "msbuild": {
+                    "task": "package",
+                    "projFile": "../integrations_src/Monitorstat.IntegrationEumis.Host/Monitorstat.IntegrationEumis.Host.csproj",
+                    "packageName": "Monitorstat_IntegrationEumis",
+                    "takeOffline": true,
+                    "confIisAppName": {
+                        "EGP06.Prod": "monitorstat-nims"
+                    }
+                }
+            }
+        ]
+    }
+}

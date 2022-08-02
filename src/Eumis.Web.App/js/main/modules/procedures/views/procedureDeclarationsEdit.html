@@ -1,0 +1,26 @@
+﻿﻿<ng-form name="editProcedureDeclarationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureDeclaration_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editProcedureDeclaration_activate" class="btn btn-success btn-xs" ng-show="status === 'inactive' && !isProcedureReadonly"
+                   ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editProcedureDeclaration_deactivate" class="btn btn-danger btn-xs" ng-show="status === 'active' && !isProcedureReadonly"
+                   ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        <sc-button name="deleteBtn" btn-click="delete()" text="procedures_editProcedureDeclaration_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="status === 'notActivated' && !isProcedureReadonly"
+                   ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcedureDeclaration_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="status === 'notActivated' && !isProcedureReadonly && !editMode"
+                   ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcedureDeclaration_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcedureDeclaration_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : status === 'inactive'}">
+      <eumis-procedure-declaration name="procedureDeclarationForm" ng-model="procedureDeclaration"></eumis-procedure-declaration>
+    </div>
+  </div>
+</ng-form>

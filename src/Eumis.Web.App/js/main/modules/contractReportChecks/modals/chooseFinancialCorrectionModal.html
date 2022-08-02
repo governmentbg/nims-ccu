@@ -1,0 +1,32 @@
+<ng-form name="form.chooseFinancialCorrectionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractReportChecks_modals_chooseFinancialCorrectionModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportChecks_modals_chooseFinancialCorrectionModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <sc-datatable items="corrections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="chooseBtn" btn-click="choose(item)" text="contractReportChecks_modals_chooseFinancialCorrectionModal_choose" class="btn btn-xs btn-primary" icon="glyphicon-plus"></sc-button>
+        </sc-column>
+        
+        <sc-column data="contractRegNum" title="contractReportChecks_modals_chooseFinancialCorrectionModal_contractRegNum"></sc-column>
+        <sc-column data="contractName" title="contractReportChecks_modals_chooseFinancialCorrectionModal_contractName" has-content="true">
+          <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="procedureName" title="contractReportChecks_modals_chooseFinancialCorrectionModal_procedureName" has-content="true">
+          <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+        </sc-column>
+        <sc-column data="reportOrderNum" title="contractReportChecks_modals_chooseFinancialCorrectionModal_reportOrderNum" type="number"></sc-column>
+        <sc-column data="status" title="contractReportChecks_modals_chooseFinancialCorrectionModal_status"></sc-column>
+        <sc-column data="orderNum" title="contractReportChecks_modals_chooseFinancialCorrectionModal_orderNum" type="number"></sc-column>
+        <sc-column data="createDate" title="contractReportChecks_modals_chooseFinancialCorrectionModal_createDate" type="date"></sc-column>
+        <sc-column data="notes" title="contractReportChecks_modals_chooseFinancialCorrectionModal_notes"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

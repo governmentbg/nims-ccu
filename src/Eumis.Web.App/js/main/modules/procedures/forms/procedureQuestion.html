@@ -1,0 +1,11 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="file" name="file" ng-model="model.file" url-template="ProcedureFile" url-params="{ id: model.procedureId }" ng-required="true"
+      l10n-text="procedures_procedureQuestionForm_file" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="procedures_procedureQuestionForm_createDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-disabled="true" l10n-text="procedures_procedureQuestionForm_createdByUser" class="col-sm-4 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'activeStatuses'" mode="id" ng-readonly="true" ng-model="model.status" l10n-text="procedures_procedureQuestionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

@@ -1,0 +1,30 @@
+<div class="tab-content">
+  <ng-form name="reimbursedAmountsNewForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="reimbursedAmounts_new_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="reimbursedAmounts_new_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="reimbursedAmounts_new_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'reimbursedAmountContracts'" mode="id" ng-model="newReimbursedAmount.contractId" l10n-text="reimbursedAmounts_new_contract" class="col-sm-6 col-md-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'reimbursedAmountContractDebts'" mode="id" ng-required="true" nom-obj="contractInfo" ng-change="debtChanged()" params="{ contractId: newReimbursedAmount.contractId }" ng-model="newReimbursedAmount.contractDebtId" l10n-text="reimbursedAmounts_new_contractDebt" class="col-sm-6 col-md-5"></sc-field>
+          <sc-field type="date" ng-model="newReimbursedAmount.reimbursementDate" ng-required="true" l10n-text="reimbursedAmounts_new_reimbursementDate" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'reimbursementTypes'" mode="id" ng-required="true" ng-model="newReimbursedAmount.type" l10n-text="reimbursedAmounts_new_type" class="col-sm-6 col-md-5"></sc-field>
+          <sc-field type="nomenclature" alias="'reimbursements'" mode="id" ng-required="true" ng-model="newReimbursedAmount.reimbursement" l10n-text="reimbursedAmounts_new_reimbursement" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

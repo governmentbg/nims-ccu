@@ -1,0 +1,82 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home)
+}, Texts.Global_AboutSystem)
+
+@if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+{
+    <div class="container page-title">
+        <h1>За системата</h1>
+    </div>
+
+    <div class="container">
+        <div class="page-content clearfix text-justify about-system-page">
+            <div class="col-xs-12">
+                <h2>ИСУН 2020</h2>
+                <p>Информационната система за управление и наблюдение на средствата от ЕС в България (ИСУН 2020) е предназначена да събира и обработва данни за следните оперативни програми, изпълнявани в България в периода 2014-2020 година:</p>
+                <div class="about-system-ticks clearfix">
+                    <div class="col-lg-6 col-lg-offset-1 col-md-8">
+                        <ul>
+                            <li>Транспорт и транспортна инфраструктура</li>
+                            <li>Околна среда</li>
+                            <li>Региони в растеж</li>
+                            <li>Иновации и конкурентоспособност</li>
+                            <li>Наука и образование за интелигентен растеж</li>
+                            <li>Развитие на човешките ресурси</li>
+                            <li>Добро управление</li>
+                            <li>Храни</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+                        <img src="@Links.Content.img.isun_lg_gif" alt="" />
+                    </div>
+                </div>
+                <p>Системата се състои от няколко основни модула. В момента се намирате в Публичния модул, от където имате възможност да видите напредъка и резултатите от изпълнението на оперативните програми през периода 2014-2020 година. Другите модули са предназначени за работа на кандидатите, бенефициентите, звената за управление и наблюдение на програмите, одитните и сертифициращи органи. С тяхна помощ се откриват нови процедури, кандидатства се, оценяват се проектни предложения, сключват се договори, отчитат се и се наблюдават резултатите.</p>
+                <p>Основната цел на системата е всички данни по изпълнение на Оперативните програми, още от тяхното възникване, да се събират и обработват електронно. По този начин се осигурява възможност за тяхното ефективно управление, отчитане и проверки, както и обмен на информация с институциите на Европейския съюз. Гарантира се проследимост по всяка една програма, процедура, договор за предоставяне на финансова помощи. Може да се наблюдава изпълнението по различни критерии и индикатори.</p>
+                <p>Системата е изцяло уеб базирана и за да работите с нея, е необходимо единствено браузър, също така е оптимизирана и за работа с мобилни устройства.</p>
+                <p>Ще се радваме, ако тя е удобна за работа, изчерпателна по отношение на съдържание, лесно и бързо може да намерите търсената информация и успява да Ви спести време и усилия.</p>
+                <p>Системата е разработена по проект: „0115-ЦКЗ-2.1 „Информационна система за управление и наблюдение на средствата от ЕС в периода 2014-2020 г. - ИСУН 2020” (BG161PO002-2.1.01-0007) ”, финансиран по Оперативна програма „Техническа помощ”, съфинансирана от Европейския съюз чрез Европейския фонд за регионално развитие.</p>
+            </div>
+        </div>
+        <p>© 2015 Министерски Съвет на Република България</p>
+    </div>
+}
+else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+{
+    <div class="container page-title">
+        <h1>About UMIS 2020</h1>
+    </div>
+
+    <div class="container">
+        <div class="page-content clearfix text-justify about-system-page">
+            <div class="col-xs-12">
+                <h2>UMIS 2020</h2>
+                <p>The Unified Management Information System for the EU structural instruments in Bulgaria (UMIS 2020) is designed to collect and process data for the following operational programmes, executed in Bulgaria for the period 2014-2020:</p>
+                <div class="about-system-ticks clearfix">
+                    <div class="col-lg-6 col-lg-offset-1 col-md-8">
+                        <ul>
+                            <li>Transport and Transport infrastructure</li>
+                            <li>Environment</li>
+                            <li>Regions in Growth</li>
+                            <li>Innovation and Competitiveness</li>
+                            <li>Science and Education for Smart Growth</li>
+                            <li>Human Resources Development</li>
+                            <li>Good Governance</li>
+                            <li>Foods</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 col-md-4 hidden-sm hidden-xs">
+                        <img src="@Links.Content.img.isun_lg_gif" alt="" />
+                    </div>
+                </div>
+                <p>The system consists of several major modules. Right now you are in the Public module, which gives you the possibility to check the progress and results of the operational programmes execution for the period 2014 - 2020. The other modules are designed for the use of candidates, beneficiaries, programmes managing and monitoring units, audit and certifying authorities. Some of the functionalities of the other modules include - opening new calls, filling out application forms, evaluating project proposals, creating contracts, reporting and monitoring results.</p>
+                <p>The main purpose of UMIS2020 is to collect and process electronically all data regarding the execution of the operational programmes from the moment it is entered in the system, thus ensuring the data is effectively managed, accurately reported and verified. The system provides means to exchange information with European Union institutions; guarantees programmes, procedures, projects and contracts traceability; provides the opportunity for monitoring the performance by different criteria and indicators.</p>
+                <p>UMIS2020 is entirely web based and you need only a browser and internet connection in order to use it. The system is designed to run on mobile devices as well.</p>
+                <p>We will be happy if UMIS2020 is user-friendly, sufficiently informative and comprehensive, so you can quickly and easily find the relevant information and save time and effort.</p>
+                <p>The project is financed by the Operational Programme "Technical Assistance" and co-financed by the European Union through the European Regional Development Fund in implementing the project № 0115-CCU-2.1 "Information system for management and monitoring of EU funds in 2014-2020 - UMIS 2020" (BG161PO002-2.1.01-0007-C0001).</p>
+            </div>
+        </div>
+        <p>© 2015 Council of ministers of the Republic of Bulgaria</p>
+    </div>
+}

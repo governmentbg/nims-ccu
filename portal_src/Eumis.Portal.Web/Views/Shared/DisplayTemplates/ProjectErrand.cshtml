@@ -1,0 +1,66 @@
+﻿@model R_10016.ProjectErrand
+
+@if (Model != null)
+{
+    <tr>
+        <td style="word-break: break-all">
+            @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.ErrandArea)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.ErrandLegalAct)
+        </td>
+        <td style="width: 130px;">
+            <a title="" class="history-btn">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+            </a>
+        </td>
+    </tr>
+    <tr class="history-table">
+        <td colspan="4">
+            <div class="history-table-wrapper clearfix">
+                <div class="form-group col-lg-12 col-md-12">
+                    @Html.LabelFor(m => m.Name, ProjectErrand.Name)
+                    @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.ErrandArea, ProjectErrand.ErrandArea)
+                    @Html.DisplayFor(m => m.ErrandArea)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.ErrandLegalAct, ProjectErrand.ErrandLegalAct)
+                    @Html.DisplayFor(m => m.ErrandLegalAct)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.ErrandType, ProjectErrand.ErrandType)
+                    @Html.DisplayFor(m => m.ErrandType)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.Amount, ProjectErrand.Amount)
+                    @Html.DisplayFor(m => m.Amount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.PlanDate, ProjectErrand.PlanDate)
+                    @Html.DisplayFor(m => m.PlanDate)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.IsCentralProcurement, ProjectErrand.CentralProcurement)
+                    @Html.DisplayFor(m => m.IsCentralProcurement)
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    @Html.LabelFor(m => m.Description, ProjectErrand.Description)
+                    @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </div>
+            </div>
+        </td>
+    </tr>
+}

@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.csd" l10n-text="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_csd" class="col-sm-6"></sc-field>
+        <sc-field type="text" ng-model="filters.company" l10n-text="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_company" class="col-sm-4"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="contractReportFinancialCorrectionCSDs" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialCorrections.view.correctedCsds.edit', params: { ind: item.contractReportFinancialCorrectionCSDId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportFinancialCorrectionActions.View', contractReportFinancialCorrectionId)"></sc-button>
+      </sc-column>
+      <sc-column data="csd" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_csd"></sc-column>
+      <sc-column data="budgetDetailName" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_budgetDetail"></sc-column>
+      <sc-column data="contractActivityName" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_contractActivity"></sc-column>
+
+      <sc-column data="status" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_status"></sc-column>
+      <sc-column data="costSupportingDocumentApproved" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_approval" type="boolean"></sc-column>
+      <sc-column data="sign" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_sign"></sc-column>
+
+      <sc-column data="approvedTotalAmount" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_totalAmount"
+        col-group="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_approvedAmount" type="money"></sc-column>
+        
+      <sc-column data="correctedApprovedTotalAmount" title="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_totalAmount"
+        col-group="contractReportFinancialCorrections_contractReportFinancialCorrectionsCorrectedCSDsSearch_correctedApprovedAmount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

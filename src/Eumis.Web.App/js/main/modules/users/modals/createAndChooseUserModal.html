@@ -1,0 +1,18 @@
+<ng-form name="createAndChooseUserForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="createAndChooseUserModal_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="createAndChoose()" text="createAndChooseUserModal_createAndChoose" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="createAndChooseUserModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-user-data name="userForm" ng-model="newUser" sc-form-params="{ isNew: true, hasPredefinedOrganization: newUser.userOrganizationId }"></eumis-user-data>
+    </div>
+  </div>
+</ng-form>

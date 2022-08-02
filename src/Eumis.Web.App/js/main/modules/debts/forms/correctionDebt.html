@@ -1,0 +1,15 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.regNumber" ng-readonly="true" l10n-text="correctionDebts_correctionDebtForm_regNumber" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.regDate" ng-required="true" l10n-text="correctionDebts_correctionDebtForm_regDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.comment" l10n-text="correctionDebts_correctionDebtForm_comment" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'boolean'" ng-readonly="true" ng-model="model.isDeleted" l10n-text="correctionDebts_correctionDebtForm_isDeleted" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.deleteNote">
+    <sc-field type="textarea" rows="3" ng-model="model.deleteNote" ng-readonly="true" l10n-text="correctionDebts_correctionDebtForm_deleteNote" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

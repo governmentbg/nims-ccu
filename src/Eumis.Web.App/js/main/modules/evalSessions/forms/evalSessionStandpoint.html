@@ -1,0 +1,23 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionAssistantAssessors'" mode="id" ng-model="model.evalSessionUserId" params="{evalSessionId: model.evalSessionId}" ng-required="true" l10n-text="evalSessions_evalSessionStandpointForm_userId" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-if="!viewProjectState" alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{evalSessionId: model.evalSessionId}" ng-required="true" l10n-text="evalSessions_evalSessionStandpointForm_projectId" class="col-sm-7 col-md-6"></sc-field>
+    <sc-field-group ng-if="viewProjectState" class="col-sm-7 col-md-6" text="evalSessions_evalSessionStandpointForm_projectId" field-name="projectId">
+      <sc-nomenclature alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{ evalSessionId: model.evalSessionId }" ng-disabled="true" name="projectId"></sc-nomenclature>
+      <sc-button name="viewProjectBtn" btn-sref="viewProjectState" class="btn btn-default btn-sm" icon="glyphicon-eye-open"></sc-button>
+    </sc-field-group>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.note" l10n-text="evalSessions_evalSessionStandpointForm_note" ng-required="true" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionStandpointForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'evalSessionStandpointStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionStandpointForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.statusDate" ng-readonly="true" l10n-text="evalSessions_evalSessionStandpointForm_statusDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.deleteNote">
+    <sc-field type="textarea" rows="3" ng-model="model.deleteNote" ng-readonly="true" l10n-text="evalSessions_evalSessionStandpointForm_deleteNote" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

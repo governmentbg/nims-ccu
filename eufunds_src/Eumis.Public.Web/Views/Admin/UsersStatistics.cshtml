@@ -1,0 +1,84 @@
+﻿@model IPagedList<Eumis.Public.Data.UmisVOs.UserStatisticsVO>
+
+@using PagedList
+@using PagedList.Mvc
+
+@using Eumis.Public.Web.InfrastructureClasses
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() {
+        new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+        new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.Index, MVC.Admin.Name), Texts.Global_AdministrativeEnquiries),
+        new BreadcrumbItem(Url.Action(MVC.Admin.ActionNames.UsersCount, MVC.Admin.Name), Texts.Admin_UsersCount)
+    };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Admin_UsersStatistics)
+
+<div class="container">
+    <div class="page-title">
+        <h1>@Texts.Admin_UsersStatistics</h1>
+    </div>
+    <div class="page-content">
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="heading-with-export clearfix">
+                <h2></h2>
+                @Html.Partial(MVC.Shared.Views._ExportIcons)
+            </div>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Admin_UsersStatistics_Number</th>
+                            <th>@Texts.Admin_UsersStatistics_Fullname</th>
+                            <th>@Texts.Admin_UsersStatistics_Username</th>
+                            <th>@Texts.Admin_UsersStatistics_DraftProjectsCount</th>
+                            <th>@Texts.Admin_UsersStatistics_DraftOperationalProgrammes</th>
+                            <th>@Texts.Admin_UsersStatistics_RegisteredProjectsCount</th>
+                            <th>@Texts.Admin_UsersStatistics_RegisteredOperationalProgrammes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.UserId</td>
+                                <td>@user.FirstName @user.LastName</td>
+                                <td>@user.Username</td>
+                                <td>@user.DraftProjectsCount</td>
+                                <td>@user.GetDraftOperationalProgrammes()</td>
+                                <td>@user.RegisteredProjectsCount</td>
+                                <td>@user.GetRegisteredOperationalProgrammes()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @if (Model != null && Model.PageCount > 1)
+                {
+                    <div class="paging clearfix">
+                        <span>@Texts.Global_Page (@Model.PageNumber/@Model.PageCount):</span>
+                        @Html.PagedListPager(Model,
+                        page => Url.Action(MVC.Admin.ActionNames.UsersStatistics, MVC.Admin.Name
+                            , new
+                            {
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+        }
+    </div>
+</div>

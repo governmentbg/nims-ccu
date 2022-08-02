@@ -1,0 +1,206 @@
+﻿@model R_10019.AttachedDocumentCollection
+
+@using Eumis.Common.Config;
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+
+    var jsonSettings = WebApiConfig.JsonSerializerDateTimeFormatSettings;
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, jsonSettings);
+
+    var resourcesObject = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObject = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObject);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        url: '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))',
+        resourcesObject: @(Html.Raw(jsonResourcesObject)),
+        hasUniqueIds: @(Model.HasUniqueIds.ToString().ToLower()),
+        hasValidCount: @(Model.HasValidCount.ToString().ToLower()),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerAttachedDocuments@(guid)'), ['moduleAttachedDocuments']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerAttachedDocuments@(guid)" ng-controller="controllerAttachedDocuments" ng-init="init('_eumis_options', 'i@(guid)')">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr ng-class="{'input-validation-error': !hasUniqueIds}" name="@(Html.GetNameFor(m => m)).HasUniqueIds">
+                <th>@AttachedDocument.Type</th>
+                <th>@AttachedDocument.Date</th>
+                <th>@AttachedDocument.Description</th>
+                <th>@AttachedDocument.FileName</th>
+                <th colspan="2">@AttachedDocument.Signature</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+            <tr ng-if="!item.IsDeactivated">
+                <td style="width:30%;">
+                    <div style="display:block;width:100%">
+                        <div ng-if="!item.IsLocked">
+                            <sc-nomenclature ng-class="{'input-validation-error': !item.IsTypeValid}" sc-alias="GetAttachedDocumentTypes" ng-model="item.Type">
+                            </sc-nomenclature>
+                            <input ng-class="{'input-validation-error': !item.IsTypeValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.id"
+                                   value="{{ item.Type.id }}" class="validation-error-key" />
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name"
+                                   value="{{ item.Type.Name }}" />
+                        </div>
+                        <div ng-if="item.IsLocked">
+                            <span class="filled-value">{{item.Type.Name}}</span>
+
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Id" value="{{ item.Type.id }}" />
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name" value="{{ item.Type.Name }}" />
+                        </div>
+                    </div>
+                </td>
+                <td style="min-width: 80px;">
+                    {{ item.ActivationDate }}
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].ActivationDate" value="{{ item.ActivationDate }}" />
+                </td>
+                <td style="width:40%;">
+                    <textarea ng-if="!item.IsLocked" rows="1" style="height:29px;" auto-grow ng-class="{'input-validation-error': !item.IsDescriptionValid}" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control"></textarea>
+                    <div ng-if="item.IsLocked">
+                        <span class="filled-value">{{item.Description}}</span>
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" value="{{ item.Description }}" />
+                    </div>
+                </td>
+                <td style="min-width:190px;">
+                    <sc-file path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent"
+                             resources="resourcesObject"
+                             url="{{ url }}"
+                             ng-model="item.AttachedDocumentContent"
+                             ng-if="!item.IsLocked">
+                    </sc-file>
+                    <div ng-if="item.IsLocked">
+                        <div class="files" ng-if="item.AttachedDocumentContent && item.AttachedDocumentContent.FileName && item.AttachedDocumentContent.BlobContentId">
+                            <p>{{item.AttachedDocumentContent.FileName}}</p>
+                            <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{item.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                        </div>
+
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.FileName"
+                               value="{{ item.AttachedDocumentContent.FileName }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.BlobContentId"
+                               value="{{ item.AttachedDocumentContent.BlobContentId }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.Hash"
+                               value="{{ item.AttachedDocumentContent.Hash }}" />
+                        <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.Size"
+                               value="{{ item.AttachedDocumentContent.Size }}" />
+                    </div>
+                </td>
+                <td style="min-width:240px;">
+                    <div ng-repeat="signature in item.SignatureContentCollection" class="signature-wrapper" ng-if="item.Type.isSignatureRequired">
+                        <div style="max-width:200px; float:left;position:relative;">
+                            <sc-file path="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$parent.$index }}].SignatureContentCollection[{{ $index }}]"
+                                     resources="resourcesObject"
+                                     url="{{ url }}"
+                                     ng-model="signature"
+                                     ng-if="!item.IsLocked">
+                            </sc-file>
+                            <div ng-if="item.IsLocked">
+                                <div class="files" ng-if="signature && signature.FileName && signature.BlobContentId">
+                                    <p>{{signature.FileName}}</p>
+                                    <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{signature.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].FileName"
+                                           value="{{ signature.FileName }}" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].BlobContentId"
+                                           value="{{ signature.BlobContentId }}" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].Hash"
+                                           value="{{ signature.Hash }}" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].Size"
+                                           value="{{ signature.Size }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div style="max-width:30px; float:right;">
+                            <a ng-if="!item.IsLocked" class="delete-btn" confirm-click="delSignature(item, signature)" ng-show="item.SignatureContentCollection.length > 1"></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <a ng-if="!item.IsLocked" class="add-new-btn" style="margin-left:0;" ng-click="addSignature(item)" ng-show="$index == item.SignatureContentCollection.length-1"></a>
+                    </div>
+                </td>
+                <td style="min-width:102px;">
+                    <a ng-if="!item.IsLocked" class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-if="item.IsDeactivated" class="deactivated">
+                <td style="width:30%;">
+                    <span class="filled-value">
+                        {{item.Type.Name}}
+                        <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" sc-placement="top" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                    </span>
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Id"
+                           value="{{ item.Type.id }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Type.Name"
+                           value="{{ item.Type.Name }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].IsDeactivated"
+                           value="True" />
+                </td>
+                <td style="min-width: 80px;">
+                    {{item.ActivationDate}}
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].ActivationDate" value="{{ item.ActivationDate }}" />
+                </td>
+                <td style="width:40%;">
+                    <span class="filled-value">{{item.Description}}</span>
+
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description"
+                           value="{{ item.Description }}" />
+                </td>
+                <td>
+                    <div class="files" ng-if="item.AttachedDocumentContent && item.AttachedDocumentContent.FileName && item.AttachedDocumentContent.BlobContentId">
+                        <p>{{item.AttachedDocumentContent.FileName}}</p>
+                        <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{item.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                    </div>
+
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.FileName"
+                           value="{{ item.AttachedDocumentContent.FileName }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.BlobContentId"
+                           value="{{ item.AttachedDocumentContent.BlobContentId }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.Hash"
+                           value="{{ item.AttachedDocumentContent.Hash }}" />
+                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent.Size"
+                           value="{{ item.AttachedDocumentContent.Size }}" />
+                </td>
+                <td>
+                    <div ng-repeat="signature in item.SignatureContentCollection">
+                        <div class="files" ng-if="signature && signature.FileName && signature.BlobContentId">
+                            <p>{{signature.FileName}}</p>
+                            <a href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{signature.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].FileName"
+                                   value="{{ signature.FileName }}" />
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].BlobContentId"
+                                   value="{{ signature.BlobContentId }}" />
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].Hash"
+                                   value="{{ signature.Hash }}" />
+                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ $parent.$parent.$index }}].SignatureContentCollection[{{ $index }}].Size"
+                                   value="{{ signature.Size }}" />
+                        </div>
+                    </div>
+                </td>
+                <td style="min-width:102px;">
+                    <a ng-if="!item.IsLocked" class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr ng-repeat-end style="display:none;"></tr>
+        </tbody>
+    </table>
+    <a ng-class="{'input-validation-error': !hasValidCount}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItemWithDate()" ng-show="items.length < maxDocuments">@Global.AddButton</a>
+    <p class="required-span" ng-show="items.length >= maxDocuments">@String.Format(AttachedDocument.MaxDocumentsReached, Eumis.Documents.Constants.AttachedDocumentsMaxCount)</p>
+</div>

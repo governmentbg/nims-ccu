@@ -1,0 +1,335 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.OPProfile
+@model OPProfileIndexModel
+
+@section scripts{
+    @Scripts.Render(BundleConfig.Highcharts)
+}
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_OPERATIONAL_PROGRAMS_ID, Texts.Global_OperationalPrograms),
+    new BreadcrumbItem(Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() {  { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId } }), GetOP.TransName),
+}, Texts.Global_FinancialExecution)
+
+<div class="container">
+
+    @Html.Partial(MVC.Shared.Views._Title)
+    @Html.Partial(MVC.Shared.Views._Tabs, TabType.OPProfile)
+
+    <div class="tab-content">
+        <p><strong>@Texts.Global_Budget:</strong> @Html.DisplayFor(m => m.BudgetTotal)</p>
+
+        <div class="heading-with-export clearfix">
+            <h2>@Texts.OPProfile_Index_BudgetFonds</h2>
+            @Html.Partial(MVC.Shared.Views._ExportIcons)
+        </div>
+
+        @if (Model.FundsChart != null)
+        {
+            <div class="chart-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                @Html.Chart(Url, Model.FundsChart, new { @class = "chart" })
+            </div>
+        }
+
+        @if (Model.ItemsBySource != null && Model.ItemsBySource.Count > 0)
+        {
+            <h2>@string.Format(@Texts.OPProfile_Index_BudgetByFunds, GetOP.TransName)</h2>
+
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.OPProfile_Index_Period</th>
+                            @{ string[] palette = new string[] { "paletteColor1", "paletteColor2", "paletteColor3", "paletteColor4", "paletteColor5", "paletteColor6", "paletteColor7", "paletteColor8", "paletteColor9" };
+                                int paletteCounter = 0;
+                                Func<string> getPalette = () => { string res = palette[paletteCounter % palette.Length]; paletteCounter++; return res; }; }
+
+                            @if (Model.ShowERDF)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_EuropeanRegionalDevelopmentFund
+                                </th>
+                            }
+                            @if (Model.ShowCF)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_CohesionFund
+                                </th>
+                            }
+                            @if (Model.ShowESF)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_EuropeanSocialFund
+                                </th>
+                            }
+                            @if (Model.ShowYEI)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_YouthEmploymentInitiative
+                                </th>
+                            }
+                            @if (Model.ShowFEAD)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_FundForEuropeanAidToTheMostDeprived
+                                </th>
+                            }
+                            @if (Model.ShowEFMDR)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_EMFF
+                                </th>
+                            }
+                            @if (Model.ShowEZFRSR)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_EAFRD
+                                </th>
+                            }
+                            @if (Model.ShowFVS)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_ISF
+                                </th>
+                            }
+                            @if (Model.ShowFUMI)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_AMIF
+                                </th>
+                            }
+                            @if (Model.ShowOther)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_Other
+                                </th>
+                            }
+                            @if (Model.ShowEEAFM)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_EEAFM
+                                </th>
+                            }
+                            @if (Model.ShowNFM)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.Enum_FinanceSource_NFM
+                                </th>
+                            }
+                            @if (Model.ShowNF)
+                            {
+                                <th>
+                                    <span class="legend @getPalette()"> </span> @Texts.OPProfile_Index_NF
+                                </th>
+                            }
+                            <th>@Texts.Global_Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ItemsBySource)
+                        {
+                            <tr>
+                                <td>@item.Year</td>
+                                @if (Model.ShowERDF)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.EuropeanRegionalDevelopmentFund)</td>
+                                }
+                                @if (Model.ShowCF)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.CohesionFund)</td>
+                                }
+                                @if (Model.ShowESF)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.EuropeanSocialFund)</td>
+                                }
+                                @if (Model.ShowYEI)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.YouthEmploymentInitiative)</td>
+                                }
+                                @if (Model.ShowFEAD)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.FundForEuropeanAidToTheMostDeprived)</td>
+                                }
+                                @if (Model.ShowEFMDR)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.EFMDR)</td>
+                                }
+                                @if (Model.ShowEZFRSR)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.EZFRSR)</td>
+                                }
+                                @if (Model.ShowFVS)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.FVS)</td>
+                                }
+                                @if (Model.ShowFUMI)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.FUMI)</td>
+                                }
+                                @if (Model.ShowOther)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.Other)</td>
+                                }
+                                @if (Model.ShowEEAFM)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.EEAFM)</td>
+                                }
+                                @if (Model.ShowNFM)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.NFM)</td>
+                                }
+                                @if (Model.ShowNF)
+                                {
+                                    <td class="sum-field">@Html.DisplayFor(m => item.BgAmount)</td>
+                                }
+                                <td class="sum-field">@Html.DisplayFor(m => item.YearTotal)</td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td><strong>@Texts.Global_Total</strong></td>
+                            @if (Model.ShowERDF)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.EuropeanRegionalDevelopmentFundTotal)</strong></td>
+                            }
+                            @if (Model.ShowCF)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.CohesionFundTotal)</strong></td>
+                            }
+                            @if (Model.ShowESF)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.EuropeanSocialFundTotal)</strong></td>
+                            }
+                            @if (Model.ShowYEI)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.YouthEmploymentInitiativeTotal)</strong></td>
+                            }
+                            @if (Model.ShowFEAD)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.FundForEuropeanAidToTheMostDeprivedTotal)</strong></td>
+                            }
+                            @if (Model.ShowEFMDR)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.EFMDRTotal)</strong></td>
+                            }
+                            @if (Model.ShowEZFRSR)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.EZFRSRTotal)</strong></td>
+                            }
+                            @if (Model.ShowFVS)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.FVSTotal)</strong></td>
+                            }
+                            @if (Model.ShowFUMI)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.FUMITotal)</strong></td>
+                            }
+                            @if (Model.ShowOther)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.OtherTotal)</strong></td>
+                            }
+                            @if (Model.ShowEEAFM)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.EEAFMTotal)</strong></td>
+                            }
+                            @if (Model.ShowNFM)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.NFMTotal)</strong></td>
+                            }
+                            @if (Model.ShowNF)
+                            {
+                                <td class="sum-field"><strong>@Html.DisplayFor(m => m.BgAmountTotal)</strong></td>
+                            }
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.Total)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        @if (Model.ExecutionsChart != null)
+        {
+            <div class="chart-wrapper">
+                <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+
+                @Html.Chart(Url, Model.ExecutionsChart, new { @class = "chart" })
+            </div>
+        }
+
+        @if (Model.ItemsWithContractedAndPayed != null && Model.ItemsWithContractedAndPayed.Count > 0)
+        {
+            <h2>@Texts.OPProfile_Index_Execution @GetOP.TransName @Texts.OPProfile_Index_ByYears</h2>
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">@Texts.OPProfile_Index_Year</th>
+                            <th colspan="3"><span class="legend paletteColor1"> </span>@Texts.Global_Budget *</th>
+                            <th colspan="3"><span class="legend paletteColor2"> </span>@Texts.Global_Contracted **</th>
+                            <th colspan="3"><span class="legend paletteColor3"> </span>@Texts.Global_Payed ***</th>
+                        </tr>
+                        <tr>
+                            <th>@Texts.Global_Total</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                            <th>@Texts.Global_FinancingNF</th>
+                            <th>@Texts.OPProfile_Index_TotalGrants</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                            <th>@Texts.Global_PercentExecution****</th>
+                            <th>@Texts.Global_Total</th>
+                            <th>@Texts.Global_FinancingEU</th>
+                            <th>@Texts.Global_PercentExecution****</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ItemsWithContractedAndPayed)
+                        {
+                            <tr>
+                                <td>@item.Year</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.Budget)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.BudgetEuAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.BudgetBgAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.Contracted)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.ContractedEuAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.ContractedPercentExec)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.Payed)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.PayedEuAmount)</td>
+                                <td class="sum-field">@Html.DisplayFor(m => item.PayedPercentExec)</td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td><strong>@Texts.Global_Total</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.BudgetTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.BudgetEuAmountTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.BudgetBgAmountTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.ContractedTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.ContractedEuAmountTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.ContractedPercentExecTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.PayedTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.PayedEuAmountTotal)</strong></td>
+                            <td class="sum-field"><strong>@Html.DisplayFor(m => m.PayedPercentExecTotal)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <div class="chart-wrapper">
+            <img class="horizontal-scroll" src="~/Content/img/icons/horizontal-scroll.png" alt="" />
+            @Html.Chart(Url, Model.BudgetChart, new { @class = "chart" })
+        </div>
+
+        <h2>@Texts.Global_Note:</h2>
+        <div class="note">
+            * - @Texts.OPProfile_Index_NoteBudget. @Texts.Global_NoteBudget.<br />
+            ** - @Texts.OPProfile_Index_NoteContracted<br />
+            *** - @Texts.OPProfile_Index_NotePayed<br />
+            **** - @Texts.Global_NotePercent<br />
+            @Texts.Global_NoteBGN
+        </div>
+    </div>
+</div>

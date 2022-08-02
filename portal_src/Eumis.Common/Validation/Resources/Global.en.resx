@@ -1,0 +1,1957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AmountType" xml:space="preserve">
+    <value>Type of project</value>
+  </data>
+  <data name="AttachedDocuments" xml:space="preserve">
+    <value>Attached documents</value>
+  </data>
+  <data name="SectionBeneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country/EU</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Execution period, months</value>
+  </data>
+  <data name="PIN" xml:space="preserve">
+    <value>PIN</value>
+  </data>
+  <data name="IsAssignedDeMinimisAid" xml:space="preserve">
+    <value>The project is assigned to de minimis aid</value>
+  </data>
+  <data name="IsIncludesPublicPrivatePartnership" xml:space="preserve">
+    <value>The project includes a public-private partnership</value>
+  </data>
+  <data name="IsIncludesSupportFromIYE" xml:space="preserve">
+    <value>The project includes support from the Initiative for Youth Employment</value>
+  </data>
+  <data name="IsJointActionPlan" xml:space="preserve">
+    <value>The project is a joint action plan</value>
+  </data>
+  <data name="IsSubjectToStateAidRegime" xml:space="preserve">
+    <value>The project is subject to State aid regime</value>
+  </data>
+  <data name="IsUsesFinancialInstruments" xml:space="preserve">
+    <value>The project uses financial instruments</value>
+  </data>
+  <data name="IsVatEligible" xml:space="preserve">
+    <value>VAT is an eligible cost of the project</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location (Place of the project)</value>
+  </data>
+  <data name="SectionManagingAuthority" xml:space="preserve">
+    <value>Managing authority</value>
+  </data>
+  <data name="Municipality" xml:space="preserve">
+    <value>Municipality</value>
+  </data>
+  <data name="Nuts1" xml:space="preserve">
+    <value>Region Nuts 1</value>
+  </data>
+  <data name="Nuts2" xml:space="preserve">
+    <value>Region Nuts 2</value>
+  </data>
+  <data name="ProjectBasicDataName" xml:space="preserve">
+    <value>Name of the project proposal</value>
+  </data>
+  <data name="ProjectDescription" xml:space="preserve">
+    <value>Brief description of the project proposal</value>
+  </data>
+  <data name="ProjectPurpose" xml:space="preserve">
+    <value>Objective/s of the project proposal</value>
+  </data>
+  <data name="PublicAttachedDocuments" xml:space="preserve">
+    <value>Public attached documents</value>
+  </data>
+  <data name="SectionBasicData" xml:space="preserve">
+    <value>Basic data</value>
+  </data>
+  <data name="SectionDifferentiatedPositions" xml:space="preserve">
+    <value>Differentiated positions</value>
+  </data>
+  <data name="Settlement" xml:space="preserve">
+    <value>Settlement</value>
+  </data>
+  <data name="ShortTemplateAircraftRequirements" xml:space="preserve">
+    <value>Please specify what requirements for performing flights should the aircraft satisfy.</value>
+  </data>
+  <data name="ShortTemplateAlphanumericCyrillic" xml:space="preserve">
+    <value>The field can only contain digits and cyrillic letters.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateAtLeastOneOfSet" xml:space="preserve">
+    <value>At least one of the fields „{0}”, „{1}” must be filled.</value>
+  </data>
+  <data name="ShortTemplateCancellationBothEmpty" xml:space="preserve">
+    <value>Specify type of cancellation.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateCancellationBothFilled" xml:space="preserve">
+    <value>You can specify only one type of cancellation.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateDateEarlier" xml:space="preserve">
+    <value>The field must contain a date that precedes the one in the field „{0}”.</value>
+  </data>
+  <data name="ShortTemplateDigits" xml:space="preserve">
+    <value>The field can only contain digits.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateDigitsExact" xml:space="preserve">
+    <value>The field must contain exactly {0} digits.</value>
+  </data>
+  <data name="ShortTemplateDigitsMax" xml:space="preserve">
+    <value>The field can not contain more than {0} digits.</value>
+  </data>
+  <data name="ShortTemplateDiscrepancies" xml:space="preserve">
+    <value>Specify the gap for the points marked with „NO”.</value>
+  </data>
+  <data name="ShortTemplateDuplicatedValue" xml:space="preserve">
+    <value>Content of the field is not unique.</value>
+  </data>
+  <data name="ShortTemplateEnginesCount" xml:space="preserve">
+    <value>There is a discrepancy between the number of entered engines and the typed data for the engines.</value>
+  </data>
+  <data name="ShortTemplateEngineUsed" xml:space="preserve">
+    <value>Specify whether the engine is used or new.</value>
+  </data>
+  <data name="ShortTemplateExactDigits" xml:space="preserve">
+    <value>The field must be an integer and contain exactly {0} digits.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateExactOneCheckbox" xml:space="preserve">
+    <value>Mark with X when the document will be presented.</value>
+  </data>
+  <data name="ShortTemplateImportCountryRequirements" xml:space="preserve">
+    <value>Specify the additional terms and conditions of the importing country that can not be satisfied.</value>
+  </data>
+  <data name="ShortTemplateInteger" xml:space="preserve">
+    <value>The field must contain an integer.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateIntegerGreater" xml:space="preserve">
+    <value>The field must contain and integer bigger than {0}.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateInvalid" xml:space="preserve">
+    <value>Invalid value.</value>
+  </data>
+  <data name="ShortTemplateISOStandard" xml:space="preserve">
+    <value>The field does not contain a valid value according to the ISO 3166-1 standard.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateLeaseType" xml:space="preserve">
+    <value>Specify the type of lease.</value>
+  </data>
+  <data name="ShortTemplateManagementAddress" xml:space="preserve">
+    <value>The data for management address must be filled.</value>
+  </data>
+  <data name="ShortTemplateManagingMembers" xml:space="preserve">
+    <value>At least {0} managing members must be specified.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateManagingMembersInfo" xml:space="preserve">
+    <value>Organizational form in 2.2 must be filled and at least {0} managing members for organizational form Association or at least {1} managing members for organizational form Foundation.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ShortTemplateModuleEmpty" xml:space="preserve">
+    <value>Specify passed module of education.</value>
+  </data>
+  <data name="ShortTemplateModuleTooMany" xml:space="preserve">
+    <value>You can specify module only for initial or only for periodical education.</value>
+  </data>
+  <data name="ShortTemplateNotSpecified" xml:space="preserve">
+    <value>Please, specify.</value>
+  </data>
+  <data name="ShortTemplateNumberRange" xml:space="preserve">
+    <value>The field must contain a number with a minimum value of {0} and a maximum value of {1}.</value>
+  </data>
+  <data name="ShortTemplatePacketData" xml:space="preserve">
+    <value>The field can contain only valid values from the field „{0}” from data package „{1}”.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplatePositiveNumber" xml:space="preserve">
+    <value>The value in the field must be a positive number.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplatePropellersCount" xml:space="preserve">
+    <value>There is a discrepancy between the number of entered propellers and the typed data for the propellers.</value>
+  </data>
+  <data name="ShortTemplatePropellerUsed" xml:space="preserve">
+    <value>Specify whether the propeller is used or new.</value>
+  </data>
+  <data name="ShortTemplateRequired" xml:space="preserve">
+    <value>The field is required.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateRequiredSection" xml:space="preserve">
+    <value>The section is required.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateRequiredSection2" xml:space="preserve">
+    <value>The data in the section must be filled.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbols" xml:space="preserve">
+    <value>The field can only contain cyrillic letters, digits and the symbols space, ‘ (apostrophe), – (dash) , comma, . (dot), ? (question mark), ! (exclamation mark), : (colon), % (percentage), ( (left parenthesis), ) (right parenthesis), ” (quotes)</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsCyrillicSpaceApostropheDash" xml:space="preserve">
+    <value>The field can only contain cyrillic letters and the symbols space, ‘ (apostrophe) and – (dash).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsExact" xml:space="preserve">
+    <value>The field must contain exactly {0} symbols.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsMax" xml:space="preserve">
+    <value>The field can not contain more than {0} symbols.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsMiddle" xml:space="preserve">
+    <value>The field can only contain  cyrillic letters, latin letters, digits and the symbols space, ‘ (apostrophe), – (dash) , comma, . (dot), ” (quotes).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsNames" xml:space="preserve">
+    <value>The field can only contain latin letters and the symbols space, ‘ (apostrophe) и – (dash).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsPhoneNumber" xml:space="preserve">
+    <value>The field can only contain cyrillic letters, latin letters, digits and the symbols space, , – (dash), comma, . (dot), + (plus),; (semi-colon), ( (left parenthesis), ) (right parenthesis) , * (star).</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateSymbolsShort" xml:space="preserve">
+    <value>The field can only contain latin letters, digits and  the symbols \"/\", \"-\", \"+\", \".\".</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTransferredDocument" xml:space="preserve">
+    <value>At least one transferred document must be included.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTwoDigitsOrLetter" xml:space="preserve">
+    <value>The field can maximum contain two digits and one latin letter.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateTypeCheck" xml:space="preserve">
+    <value>Specify type of the check.</value>
+  </data>
+  <data name="ShortTemplateTypeCheckTooMany" xml:space="preserve">
+    <value>You can specifiy only one type of check.</value>
+  </data>
+  <data name="ShortTemplateValidMail" xml:space="preserve">
+    <value>The field must contain a valid E-mail address.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ShortTemplateValidValues" xml:space="preserve">
+    <value>The field can only contain valid values from „{0}”.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ViewTemplateAirCarrierLicenseDateMessage" xml:space="preserve">
+    <value>Please indicate the date on which you plan to enter into force the operating license of an air carrier in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateAircraftRequirements" xml:space="preserve">
+    <value>Please specify what requirements for performing flights should the aircraft satisfy in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateAlphanumericCyrillic" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain digits and cyrillic letters.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfSet" xml:space="preserve">
+    <value>At least one of the fields „{0}”, „{1}” of section „{2}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfSet2" xml:space="preserve">
+    <value>At least one of the fields „{0}”, „{1}”, „{2}” of section „{3}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfType" xml:space="preserve">
+    <value>At least one element of type „{0}” in section „{1}” must be contained.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOfTypeLines" xml:space="preserve">
+    <value>At least one element of type „{0}” on line „{1}” in section „{2}” must be contained.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneOnLines" xml:space="preserve">
+    <value>At least one of the fields „{0}”, „{1}” on line „{2}” in section „{3}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateCancellationBothEmpty" xml:space="preserve">
+    <value>Specify type of the check in section „{0}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateCancellationBothFilled" xml:space="preserve">
+    <value>You can specify only one type of cancellation in section „{0}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateCourseDateEarlier" xml:space="preserve">
+    <value>The field „{0}” for the selected course „{1}” in section „{2}” must contain a date which precedes the date in the field „{3}”.</value>
+  </data>
+  <data name="ViewTemplateCourses" xml:space="preserve">
+    <value>The field „{0}” of the chosen course „{1}” in section „{2}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateDateEarlier" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain a date that precedes the one in the field „{2}”.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ViewTemplateDateEarlierLines" xml:space="preserve">
+    <value>The field „{0}” on line „{1}” of section „{2}” must contain a date that precedes the one in the field „{3}”.</value>
+  </data>
+  <data name="ViewTemplateDateLaterThanCurrent" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain a date that follows current date.</value>
+  </data>
+  <data name="ViewTemplateDetails" xml:space="preserve">
+    <value>Please describe the details in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDigits" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain digits.</value>
+  </data>
+  <data name="ViewTemplateDigitsExact" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain exactly {2} digits.</value>
+  </data>
+  <data name="ViewTemplateDigitsMax" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can not contain more than {2} digits.</value>
+  </data>
+  <data name="ViewTemplateDiscrepancies" xml:space="preserve">
+    <value>Specify the gap for the points marked with „NO” in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDuplicatedValue" xml:space="preserve">
+    <value>{0} {1} entered {2} times in section „{3}”</value>
+  </data>
+  <data name="ViewTemplateExactDigits" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must be an integer and contain exactly {2} digits.</value>
+  </data>
+  <data name="ViewTemplateExactOneCheckbox" xml:space="preserve">
+    <value>Mark with X when the document „{0}” of section „{1}” will be presented.</value>
+  </data>
+  <data name="ViewTemplateImportCountryRequirements" xml:space="preserve">
+    <value>Specify the additional terms and conditions of the importing country that can not be satisfied in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateInteger" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain an integer.</value>
+  </data>
+  <data name="ViewTemplateIntegerGreater" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain and integer bigger than {2}.</value>
+  </data>
+  <data name="ViewTemplateIntegerLines" xml:space="preserve">
+    <value>The field „{0}” on line „{1}”  of section „{2}” must contain an integer.</value>
+  </data>
+  <data name="ViewTemplateInvalid" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” contains an invalid value.</value>
+  </data>
+  <data name="ViewTemplateISOStandard" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” does not contain a valid value according to the ISO 3166-1 standard.</value>
+  </data>
+  <data name="ViewTemplateLines" xml:space="preserve">
+    <value>The field „{0}” on line „{1}” in section „{2}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateManagementAddress" xml:space="preserve">
+    <value>The data for management address must be filled in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateMatchFields" xml:space="preserve">
+    <value>The content of the field in section „{0}” must be the same as that of the field „{1}” in section „{2}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateMatchFieldsShort" xml:space="preserve">
+    <value>The content of the field must be the same as that of the field „{0}” in section „{1}”.</value>
+    <comment>Ngo</comment>
+  </data>
+  <data name="ViewTemplateModuleEmpty" xml:space="preserve">
+    <value>Specify passed module of education in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateModuleTooMany" xml:space="preserve">
+    <value>You can specify module only for initial or only for periodical education in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateNotSpecified" xml:space="preserve">
+    <value>It is not specified whether {0} in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNotUsedContract" xml:space="preserve">
+    <value>Contract № {0} is not related to any differentiated positions in procurement plans.</value>
+  </data>
+  <data name="ViewTemplateNumberRange" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain a number with a minimum value of {2} and a maximum value of {3}.</value>
+  </data>
+  <data name="ViewTemplatePacketData" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can contain only valid values from the field „{2}” from data package „{3}”.</value>
+  </data>
+  <data name="ViewTemplatePositiveNumber" xml:space="preserve">
+    <value>The value in the field „{0}” of section „{1}” must be a positive number.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ViewTemplatePositiveNumberLines" xml:space="preserve">
+    <value>The value in the field „{0}” on line „{1}” in section „{2}” must be a positive number.</value>
+  </data>
+  <data name="ViewTemplatePropellersCount" xml:space="preserve">
+    <value>There is a discrepancy between the number of entered propellers and the typed data for the propellers in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplatePropellerUsed" xml:space="preserve">
+    <value>Specify whether the propeller is used or new in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQualificationSubclass" xml:space="preserve">
+    <value>Please, specifiy qualification subclass in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQualificationSubclassDegree" xml:space="preserve">
+    <value>Please, specifiy the degree of the qualification subclass in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateQuestion" xml:space="preserve">
+    <value>You haven't answered the question „{0}” in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateRequired" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” is required.</value>
+  </data>
+  <data name="ViewTemplateRequiredWithSubsection" xml:space="preserve">
+    <value>The field „{0}” of section „{1}”\„{2}” is required.</value>
+  </data>
+  <data name="ViewTemplateRequiredSection" xml:space="preserve">
+    <value>The data in section „{0}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateRequiredSubcontractorInContractors" xml:space="preserve">
+    <value>Selected item „{0}” on row {1} from table "{2}" must also be presented in section "{3}".</value>
+  </data>
+  <data name="ViewTemplateRequiredTwoFields" xml:space="preserve">
+    <value>The fields „{0}”, „{1}” of section „{2}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateSectionPositiveNumber" xml:space="preserve">
+    <value>The value in section „{0}” must be a positive number.</value>
+  </data>
+  <data name="ViewTemplateSelectedCourse" xml:space="preserve">
+    <value>The field „{0}” for the selected course „{1}” in section „{2}” must be filled.</value>
+  </data>
+  <data name="ViewTemplateSelectedCoursePositiveNumber" xml:space="preserve">
+    <value>The value in the field „{0}” for the selected course  {1} in section „{2}” must be a positive number.</value>
+  </data>
+  <data name="ViewTemplateSymbols" xml:space="preserve">
+    <value>Field „{0}” of section „{1}” can only contain cyrillic letters, digits and the symbols space, ‘ (apostrophe), – (dash) , comma, . (dot), ? (question mark), ! (exclamation mark), : (colon), % (percentage), ( (left parenthesis), ) (right parenthesis), ” (quotes).</value>
+  </data>
+  <data name="ViewTemplateSymbolsCyrillicSpaceApostropheDash" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain cyrillic letters and the symbols space, ‘ (apostrophe) and – (dash).</value>
+  </data>
+  <data name="ViewTemplateSymbolsExact" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain exactly {2} symbols.</value>
+  </data>
+  <data name="ViewTemplateSymbolsMax" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can not contain more than {2} symbols.</value>
+  </data>
+  <data name="ViewTemplateSymbolsMiddle" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain  cyrillic letters, latin letters, digits and the symbols space, ‘ (apostrophe), – (dash) , comma, . (dot), ” (quotes).</value>
+  </data>
+  <data name="ViewTemplateSymbolsNames" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain latin letters and the symbols space, ‘ (apostrophe) и – (dash).</value>
+  </data>
+  <data name="ViewTemplateSymbolsPhoneNumber" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain cyrillic letters, latin letters, digits and the symbols space, , – (dash), comma, . (dot), + (plus),; (semi-colon), ( (left parenthesis), ) (right parenthesis) , * (star).</value>
+  </data>
+  <data name="ViewTemplateSymbolsShort" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain latin letters, digits and  the symbols \"/\", \"-\", \"+\", \".\".</value>
+  </data>
+  <data name="ViewTemplateTwoDigitsOrLetter" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can maximum contain two digits and one latin letter.</value>
+  </data>
+  <data name="ViewTemplateTypeCheck" xml:space="preserve">
+    <value>Specify type of the check in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateTypeCheckTooMany" xml:space="preserve">
+    <value>You can specifiy only one type of check in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateValidMail" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” must contain a valid E-mail address.</value>
+  </data>
+  <data name="ViewTemplateValidValues" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain valid values from „{2}”.</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address (str., num., fl., app.)</value>
+  </data>
+  <data name="AntiSpam" xml:space="preserve">
+    <value>Anti-spam</value>
+  </data>
+  <data name="Bulstat" xml:space="preserve">
+    <value>UIC/BULSTAT</value>
+  </data>
+  <data name="CompanyContactPerson" xml:space="preserve">
+    <value>Contact person</value>
+  </data>
+  <data name="CompanyContactPersonEmail" xml:space="preserve">
+    <value>E-mail of contact person</value>
+  </data>
+  <data name="CompanyContactPersonPhone" xml:space="preserve">
+    <value>Tel. of contact person</value>
+  </data>
+  <data name="CompanyLegalType" xml:space="preserve">
+    <value>Organization kind</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="CompanyRepresentativePerson" xml:space="preserve">
+    <value>Name of person representing the organization</value>
+  </data>
+  <data name="CompanySize" xml:space="preserve">
+    <value>Category/status of development</value>
+  </data>
+  <data name="CompanyType" xml:space="preserve">
+    <value>Type of organization</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Е-mail</value>
+  </data>
+  <data name="Phone1" xml:space="preserve">
+    <value>Phone number 1</value>
+  </data>
+  <data name="PostCode" xml:space="preserve">
+    <value>Post code</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street (num., fl., app.)</value>
+  </data>
+  <data name="Activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Organization responsible for the implementation of the action</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Duration2" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="ExecutionMethod" xml:space="preserve">
+    <value>Method of execution</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="StartMonth" xml:space="preserve">
+    <value>Month to start work</value>
+  </data>
+  <data name="SectionImplementationPlan" xml:space="preserve">
+    <value>Implementation Plan / Project Activities</value>
+  </data>
+  <data name="Base" xml:space="preserve">
+    <value>Base total</value>
+  </data>
+  <data name="IndicatorName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="InformationSource" xml:space="preserve">
+    <value>Source of information</value>
+  </data>
+  <data name="SectionIndicators" xml:space="preserve">
+    <value>Indicators</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Target total</value>
+  </data>
+  <data name="SectionFinancialInformation" xml:space="preserve">
+    <value>Financial information - sources of funding</value>
+  </data>
+  <data name="ShortTemplateNonNegativeNumber" xml:space="preserve">
+    <value>The value in the field must be a non-negative number.</value>
+    <comment>new</comment>
+  </data>
+  <data name="ViewTemplateNonNegativeNumber" xml:space="preserve">
+    <value>The value in the field „{0}” of section „{1}” must be a non-negative number.</value>
+    <comment>new</comment>
+  </data>
+  <data name="EconomicDimension" xml:space="preserve">
+    <value>7. Business</value>
+  </data>
+  <data name="ESFSecondaryTheme" xml:space="preserve">
+    <value>6. ESF secondary theme</value>
+  </data>
+  <data name="FormOfFinance" xml:space="preserve">
+    <value>2. Form of funding</value>
+  </data>
+  <data name="InterventionField" xml:space="preserve">
+    <value>1. Intervention field</value>
+  </data>
+  <data name="TerritorialDeliveryMechanism" xml:space="preserve">
+    <value>4. Territorial enforcement mechanisms</value>
+  </data>
+  <data name="TerritorialDimension" xml:space="preserve">
+    <value>3. Тype of territory</value>
+  </data>
+  <data name="ThematicObjective" xml:space="preserve">
+    <value>5. Thematic objective (ERDF and Cohesion fund)</value>
+  </data>
+  <data name="ApplicableLegalAct" xml:space="preserve">
+    <value>Applicable legal act</value>
+  </data>
+  <data name="ContractObject" xml:space="preserve">
+    <value>Object of the contract</value>
+  </data>
+  <data name="FaxNumber" xml:space="preserve">
+    <value>Fax number</value>
+  </data>
+  <data name="NameByDocument" xml:space="preserve">
+    <value>Name on identity document</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="ProcedureSubject" xml:space="preserve">
+    <value>Subject to due process</value>
+  </data>
+  <data name="ProcedureType" xml:space="preserve">
+    <value>Type of procedure</value>
+  </data>
+  <data name="ProjectPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Responsibilities" xml:space="preserve">
+    <value>Qualification and responsibilities</value>
+  </data>
+  <data name="ScheduledDate" xml:space="preserve">
+    <value>Scheduled date announced</value>
+  </data>
+  <data name="SectionOutsourcingPlan" xml:space="preserve">
+    <value>Plan for outsourcing</value>
+  </data>
+  <data name="SectionTeam" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="SectionAdditionalInformation" xml:space="preserve">
+    <value>Additional information necessary to assess the project proposal</value>
+  </data>
+  <data name="SectionAttachedDocuments" xml:space="preserve">
+    <value>Attachments electronically signed documents</value>
+  </data>
+  <data name="Sustainability" xml:space="preserve">
+    <value>Устойчивост на резултатите (максимум 1 страници)</value>
+  </data>
+  <data name="SystemName" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="BFP" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="ExpenseDescription" xml:space="preserve">
+    <value>Description of specific expenditure</value>
+  </data>
+  <data name="SectionBudget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="SectionPaperAttachedDocuments" xml:space="preserve">
+    <value>Attached paper documents</value>
+  </data>
+  <data name="SF" xml:space="preserve">
+    <value>Self</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Value / Amount</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneRow" xml:space="preserve">
+    <value>At least one element must be added in section „{0}”.</value>
+  </data>
+  <data name="SectionFinancialInformationCodes" xml:space="preserve">
+    <value>Financial information - codes dimensions</value>
+  </data>
+  <data name="IneligibleCosts" xml:space="preserve">
+    <value>Ineligible costs necessary for the implementation of the project (where applicable)</value>
+  </data>
+  <data name="RatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Ratio Grants to Total eligible costs</value>
+  </data>
+  <data name="RequestedFundingAmount" xml:space="preserve">
+    <value>Requested funding (Grant)</value>
+  </data>
+  <data name="ShortTemplateMatchEligibleCosts" xml:space="preserve">
+    <value>The value in the field does not match the sum of the eligible costs in section „{0}”.</value>
+  </data>
+  <data name="ShortTemplateMatchIneligibleCosts" xml:space="preserve">
+    <value>The value in the field does not match the sum of the ineligible costs in section „{0}”.</value>
+  </data>
+  <data name="ShortTemplateSectionSumsMatch" xml:space="preserve">
+    <value>The value in the field does not match the sum of the values in the fields „{0}” in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateSumBFP_SF" xml:space="preserve">
+    <value>The value in the field does not equal the sum of the values in the fields „{0}” and „{1}”.</value>
+  </data>
+  <data name="TotalCoFinancingAmount" xml:space="preserve">
+    <value>Total financing</value>
+  </data>
+  <data name="TotalEligibleCosts" xml:space="preserve">
+    <value>Total eligible costs</value>
+  </data>
+  <data name="TotalProjectCost" xml:space="preserve">
+    <value>Total cost of the project proposal</value>
+  </data>
+  <data name="ViewTemplateMatchEligibleCosts" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” does not match the sum of the eligible costs in section „{2}”.</value>
+  </data>
+  <data name="ViewTemplateMatchIneligibleCosts" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” does not match the sum of the ineligible costs in section „{2}”.</value>
+  </data>
+  <data name="ViewTemplateSectionSumsMatch" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” does not match the sum of the values in the fields „{2}” in section „{3}”.</value>
+  </data>
+  <data name="ViewTemplateSumBFP_SF" xml:space="preserve">
+    <value>The value in the field „{0}” does not equal the sum of the values in the fields „{1}” and „{2}” in section „{3}”.</value>
+  </data>
+  <data name="ShortTemplateRatio" xml:space="preserve">
+    <value>The value in the field does not match the sums ratio in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateRatio" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” does not match the sums ratio in section „{2}”.</value>
+  </data>
+  <data name="ShortTemplateTotalProjectCost" xml:space="preserve">
+    <value>The value in the field does not match the sum of the eligible and ineligible costs.</value>
+  </data>
+  <data name="ViewTemplateTotalProjectCost" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” does not match the sum of the eligible and ineligible costs.</value>
+  </data>
+  <data name="Criteria" xml:space="preserve">
+    <value>Criteria</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>Threshold for passing</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="MinimumLimit" xml:space="preserve">
+    <value>Minimum limit</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="SectionCriterias" xml:space="preserve">
+    <value>Evaluation criterias</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="SectionInstructions" xml:space="preserve">
+    <value>Evaluation instructions</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+    <comment>Eval table</comment>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Leads to rejection</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneCriteria" xml:space="preserve">
+    <value>At least one criteria must be added in section „{0}”.</value>
+  </data>
+  <data name="ShortTemplateFieldMatchSum" xml:space="preserve">
+    <value>The value in the field does not match the sum of the values in the fields „{0}”.</value>
+  </data>
+  <data name="ViewTemplateFieldMatchSum" xml:space="preserve">
+    <value>The value in the field „{0}”does not match the sum of the values in the fields „{1}” in section „{2}”.</value>
+  </data>
+  <data name="ShortTemplateAtLeastOneRow" xml:space="preserve">
+    <value>At least one element must be added.</value>
+  </data>
+  <data name="ShortTemplateMatchGroupTotalOnly" xml:space="preserve">
+    <value>The value in the field does not match the sum of the products of weight and evaluatioon for each criteria.</value>
+  </data>
+  <data name="ShortTemplateMatchTotalGroups" xml:space="preserve">
+    <value>The value in the field does not match the total of the sums of each group.</value>
+  </data>
+  <data name="ViewTemplateMatchGroupTotalOnly" xml:space="preserve">
+    <value>The value in the field „{0}” does not match the sum of the products of weight and evaluatioon for each criteria in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateMatchTotalGroups" xml:space="preserve">
+    <value>The value in the field „{0}” does not match the total of the sums of each group in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateEvaluation" xml:space="preserve">
+    <value>The total evaluation is invalid.</value>
+  </data>
+  <data name="ViewTemplateEvaluation" xml:space="preserve">
+    <value>The total evaluation is invalid in section „{0}”.</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="ShortTemplateIntegerMax" xml:space="preserve">
+    <value>The field cannot contain an integer bigger than {0}.</value>
+  </data>
+  <data name="ViewTemplateIntegerMax" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” cannot contain an integer bigger than {2}.</value>
+  </data>
+  <data name="ShortTemplateFieldsSumMax" xml:space="preserve">
+    <value>The sum of the values in the fields „{0}” and „{1}” cannot be greater than {2}.</value>
+  </data>
+  <data name="ViewTemplateFieldsSumMax" xml:space="preserve">
+    <value>The sum of the values in the fields „{0}” and „{1}” cannot be greater than {2} in section „{3}”.</value>
+  </data>
+  <data name="ShortTemplateDocumentExtension" xml:space="preserve">
+    <value>The document has invalid extension. Valid extensions - {0}.</value>
+  </data>
+  <data name="ViewTemplateDocumentExtension" xml:space="preserve">
+    <value>The document in section „{0}” has invalid extension. Valid extensions - {1}.</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Standpoint</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject of standpoint</value>
+  </data>
+  <data name="Subcontractor" xml:space="preserve">
+    <value>Subcontractor</value>
+  </data>
+  <data name="ViewTemplateRequiredNoSection" xml:space="preserve">
+    <value>The field „{0}” is required.</value>
+  </data>
+  <data name="ShortTemplateLocation" xml:space="preserve">
+    <value>The selected value for location does not reflect the required location by the procedure.</value>
+  </data>
+  <data name="ViewTemplateLocation" xml:space="preserve">
+    <value>The selected value for location does not reflect the required location by the procedure in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateMissingLocation" xml:space="preserve">
+    <value>Full location is missing.</value>
+  </data>
+  <data name="ViewTemplateMissingLocation2" xml:space="preserve">
+    <value>Missing location.</value>
+  </data>
+  <data name="ViewTemplateMissingLocation21" xml:space="preserve">
+    <value>The location is invalid in section „{0}”.</value>
+  </data>
+  <data name="FinancialContribution" xml:space="preserve">
+    <value>Financial contribution</value>
+  </data>
+  <data name="SectionCandidate" xml:space="preserve">
+    <value>Candidate data</value>
+  </data>
+  <data name="ShortTemplateDuration" xml:space="preserve">
+    <value>The period exceeds the value indicated in the field „{0}” of section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateDuration" xml:space="preserve">
+    <value>The period referred to in the section „{0}” exceeds the value indicated in the field „{1}” of section „{2}”.</value>
+  </data>
+  <data name="ShortTemplateIndicatorsUnique" xml:space="preserve">
+    <value>All specified indicators must have unique names.</value>
+  </data>
+  <data name="ViewTemplateIndicatorsUnique" xml:space="preserve">
+    <value>All indicators specified in section „{0}” must have unique names.</value>
+  </data>
+  <data name="SectionPartners" xml:space="preserve">
+    <value>Partners data</value>
+  </data>
+  <data name="ShortTemplateDocumentsUnique" xml:space="preserve">
+    <value>All added documents must be unique by type.</value>
+  </data>
+  <data name="ViewTemplateContractActivities" xml:space="preserve">
+    <value>Information about programme contract activities is missing.</value>
+  </data>
+  <data name="ViewTemplateDimensionsBudgetContract" xml:space="preserve">
+    <value>Financial information and budget are missing.</value>
+  </data>
+  <data name="ViewTemplateDocumentInvalid" xml:space="preserve">
+    <value>Invalid document in section „{0}”. </value>
+  </data>
+  <data name="ViewTemplateDocumentsUnique" xml:space="preserve">
+    <value>All added documents must be unique by type in „{0}”.  </value>
+  </data>
+  <data name="ViewTemplateIndicators" xml:space="preserve">
+    <value>Information about indicators is missing.</value>
+  </data>
+  <data name="ViewTemplateMissingSection" xml:space="preserve">
+    <value>Section „{0}” is missing.</value>
+  </data>
+  <data name="ViewTemplateRequiredCount" xml:space="preserve">
+    <value>A mismatch exists between the original count of required documents and their current count in „{0}”.</value>
+  </data>
+  <data name="ShortTemplateLocationUnique" xml:space="preserve">
+    <value>All specified locations must be unique.</value>
+  </data>
+  <data name="ViewTemplateLocationUnique" xml:space="preserve">
+    <value>All specified locations must be unique in „{0}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredDocument" xml:space="preserve">
+    <value>The document „{0}” must be attached in section „{1}".</value>
+  </data>
+  <data name="ViewTemplateRequiredDocuments" xml:space="preserve">
+    <value>The document „{0}” must be attached in section „{1}”or „{2}”.</value>
+  </data>
+  <data name="ViewTemplateRequiredDocumentsWithSubsection" xml:space="preserve">
+    <value>The document „{0}” must be attached in section „{1}”\„{2}”.</value>
+  </data>
+  <data name="ProjectBasicDataNameEn" xml:space="preserve">
+    <value>Name of project proposal in English</value>
+  </data>
+  <data name="ProjectDescriptionEn" xml:space="preserve">
+    <value>Brief description of the project proposal in English</value>
+  </data>
+  <data name="CompanyNameEn" xml:space="preserve">
+    <value>Full name in English</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax number</value>
+  </data>
+  <data name="Phone2" xml:space="preserve">
+    <value>Phone number 2</value>
+  </data>
+  <data name="ShortTemplateSymbolsNames2" xml:space="preserve">
+    <value>The field can only contain latin letters and symbols.</value>
+  </data>
+  <data name="ViewTemplateSymbolsNames2" xml:space="preserve">
+    <value>The field „{0}” of section „{1}” can only contain latin letters and symbols.</value>
+  </data>
+  <data name="AdditionalDescription" xml:space="preserve">
+    <value>Additional description</value>
+  </data>
+  <data name="ProtectedZone" xml:space="preserve">
+    <value>Protected zone</value>
+  </data>
+  <data name="ActivityDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ProjectErrandDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ShortTemplateMaxContractActivities" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} activities for the project.</value>
+  </data>
+  <data name="ViewTemplateMaxContractActivities" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} activities for the project in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxContractTeams" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} team members.</value>
+  </data>
+  <data name="ShortTemplateMaxProjectErrands" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} procedures.</value>
+  </data>
+  <data name="ViewTemplateMaxContractTeams" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} team members in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateMaxProjectErrands" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} procedures in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxPaperDocuments" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} elements.</value>
+  </data>
+  <data name="ViewTemplateMaxPaperDocuments" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} elements in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxAttachedDocuments" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} attached electronically signed documents.</value>
+  </data>
+  <data name="ViewTemplateMaxAttachedDocuments" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} attached electronically signed documents in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateMaxPartners" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} partners.</value>
+  </data>
+  <data name="ViewTemplateMaxPartners" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} partners in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentExtension" xml:space="preserve">
+    <value>The document „{0}” in section „{1}” has invalid extension. Valid extensions - {2}.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentExtensionWithSubsection" xml:space="preserve">
+    <value>The document „{0}” in section „{1}”\„{2}” has invalid extension. Valid extensions - {3}.</value>
+  </data>
+  <data name="ViewTemplateBudgetLevel3Current" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} elements for a cost item in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateBudgetLevel3Total" xml:space="preserve">
+    <value>You reached the maximum allowed total of {0} elements for the budget in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateDocumentSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the document.</value>
+  </data>
+  <data name="ShortTemplateDocumentTotalSize" xml:space="preserve">
+    <value>The document „{0}” and its digital signature exceed the maximum size of {1} MB.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the document „{0}” in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedDocumentTotalSize" xml:space="preserve">
+    <value>The document „{0}” and its digital signature exceed the maximum size of {1} MB in section „{2}”.</value>
+  </data>
+  <data name="ShortTemplateSignatureSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the signature of the document.</value>
+  </data>
+  <data name="ViewTemplateDocumentSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the document in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateDocumentTotalSize" xml:space="preserve">
+    <value>The document and its digital signature exceed the maximum size of {0} MB in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateNamedSignatureSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the signature of the document „{0}” in section „{1}”.</value>
+  </data>
+  <data name="ViewTemplateSignatureSizeNoInfo" xml:space="preserve">
+    <value>There is no information about the size of the signature of the document in section „{0}”.</value>
+  </data>
+  <data name="AggregatedReport" xml:space="preserve">
+    <value>Aggregated report</value>
+  </data>
+  <data name="AggregatedTarget" xml:space="preserve">
+    <value>Aggregated target</value>
+  </data>
+  <data name="BaseMen" xml:space="preserve">
+    <value>Base men</value>
+  </data>
+  <data name="BaseWomen" xml:space="preserve">
+    <value>Base women</value>
+  </data>
+  <data name="MeasureName" xml:space="preserve">
+    <value>Measure</value>
+  </data>
+  <data name="TypeName" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="ShortTemplateInvalidIndicator" xml:space="preserve">
+    <value>Invalid indicator.</value>
+  </data>
+  <data name="ShortTemplateWeightEvaluation" xml:space="preserve">
+    <value>The value of the evaluation must be lower or equal to the value of the weight.</value>
+  </data>
+  <data name="TargetMen" xml:space="preserve">
+    <value>Target men</value>
+  </data>
+  <data name="TargetWomen" xml:space="preserve">
+    <value>Target women</value>
+  </data>
+  <data name="TrendName" xml:space="preserve">
+    <value>Trend</value>
+  </data>
+  <data name="KindName" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="ViewTemplateInvalidIndicator" xml:space="preserve">
+    <value>Invalid indicator in section „{0}”.</value>
+  </data>
+  <data name="ViewTemplateWeightEvaluation" xml:space="preserve">
+    <value>The value of the evaluation must be lower or equal to the value of the weight in section „{0}”.</value>
+  </data>
+  <data name="CoFinancingBudgetAmount" xml:space="preserve">
+    <value>Involves co-financing by the beneficiary / partners</value>
+  </data>
+  <data name="ContentAttachedDocumentCollection" xml:space="preserve">
+    <value>Attached documents to message</value>
+  </data>
+  <data name="MessageContent" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="ReplyAttachedDocumentCollection" xml:space="preserve">
+    <value>Attached documents to the answer</value>
+  </data>
+  <data name="ViewTemplateSymbolsMaxWithoutSection" xml:space="preserve">
+    <value>The field „{0}” can not contain more than {1} symbols.</value>
+  </data>
+  <data name="ViewTemplateInvalidValue" xml:space="preserve">
+    <value>The selected value {0} of „{1}” in „{2}” section is invalid.</value>
+  </data>
+  <data name="ViewTemplateInvalidValues" xml:space="preserve">
+    <value>The selected values {0} of „{1}” in „{2}” section are invalid.</value>
+  </data>
+  <data name="ViewTemplateBiggerEqualNumber" xml:space="preserve">
+    <value>The field „{0}” must have smaller or equal value than the field „{1}”.</value>
+  </data>
+  <data name="ContentCommunication" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="SectionAttachedDocumentsUnsigned" xml:space="preserve">
+    <value>Attached documents</value>
+  </data>
+  <data name="SubjectCommunication" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ViewTemplateTotalCoFinancingAmount" xml:space="preserve">
+    <value>The sum of the values in the fields "{0}" and "{1}" in section "{2}" must be equal to the value in the field "{3}" in the same section.</value>
+  </data>
+  <data name="CoFinancingBudgetAmountField" xml:space="preserve">
+    <value>Co-financing by the beneficiary / partners (Budget funds)Co-financing by the beneficiary / partners (agents that are not financed enterprises)</value>
+  </data>
+  <data name="CoFinancingNonBudgetAmountField" xml:space="preserve">
+    <value>Co-financing by the beneficiary / partners (agents that are not financed enterprises)</value>
+  </data>
+  <data name="EU_DS" xml:space="preserve">
+    <value>ЕU/CV</value>
+  </data>
+  <data name="EU_IP" xml:space="preserve">
+    <value>EU/Mod</value>
+  </data>
+  <data name="EU_AS" xml:space="preserve">
+    <value>EU/CS</value>
+  </data>
+  <data name="NF_DS" xml:space="preserve">
+    <value>NF/CV</value>
+  </data>
+  <data name="NF_IP" xml:space="preserve">
+    <value>NF/Mod</value>
+  </data>
+  <data name="NF_AS" xml:space="preserve">
+    <value>NF/CS</value>
+  </data>
+  <data name="Total_DS" xml:space="preserve">
+    <value>Total/CV</value>
+  </data>
+  <data name="Total_IP" xml:space="preserve">
+    <value>Total/Mod</value>
+  </data>
+  <data name="Total_AS" xml:space="preserve">
+    <value>Total/CS</value>
+  </data>
+  <data name="SF_DS" xml:space="preserve">
+    <value>Self/CV</value>
+  </data>
+  <data name="SF_IP" xml:space="preserve">
+    <value>Self/Mod</value>
+  </data>
+  <data name="SF_AS" xml:space="preserve">
+    <value>Self/CS</value>
+  </data>
+  <data name="TotalAmountDS" xml:space="preserve">
+    <value>Value/Amount/CV</value>
+  </data>
+  <data name="TotalAmountIP" xml:space="preserve">
+    <value>Value/Amount/Mod</value>
+  </data>
+  <data name="TotalAmountAS" xml:space="preserve">
+    <value>Value/Amount/CS</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Date of contract</value>
+  </data>
+  <data name="CompletionStatus" xml:space="preserve">
+    <value>Status of implementation of the contract / order for CCD</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Object of the contract</value>
+  </data>
+  <data name="MAPreliminaryControl" xml:space="preserve">
+    <value>The procedure has gone through vetting by MA</value>
+  </data>
+  <data name="PPAPreliminaryControl" xml:space="preserve">
+    <value>The procedure has gone through vetting by PPA</value>
+  </data>
+  <data name="PPANumber" xml:space="preserve">
+    <value>Unique number of register of PPA procedures conducted by the PPA</value>
+  </data>
+  <data name="ExpectedAmount" xml:space="preserve">
+    <value>Estimated value according notice</value>
+  </data>
+  <data name="NoticeDate" xml:space="preserve">
+    <value>Scheduled date announced</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="ShortTemplateMaxProcurementPlans" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} procurement plans.</value>
+  </data>
+  <data name="ViewTemplateMaxProcurementPlans" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} procurement plans in section „{1}”.</value>
+  </data>
+  <data name="SectionProcurementPlans" xml:space="preserve">
+    <value>Procurement plan</value>
+  </data>
+  <data name="ShortTemplateMaxContractors" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} contractors.</value>
+  </data>
+  <data name="ViewTemplateMaxContractors" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} contractors in section „{1}”.</value>
+  </data>
+  <data name="SectionContractors" xml:space="preserve">
+    <value>List of contractors</value>
+  </data>
+  <data name="ShortTemplateMaxContractContractors" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} agreements with cotractors.</value>
+  </data>
+  <data name="ViewTemplateMaxContractContractors" xml:space="preserve">
+    <value>You reached the maximum allowed number of {0} agreements with cotractors in section „{1}”.</value>
+  </data>
+  <data name="SectionAgreementsWithContractors" xml:space="preserve">
+    <value>Agreements with cotractors</value>
+  </data>
+  <data name="ContractorName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="ContractorNameEn" xml:space="preserve">
+    <value>Full name in English</value>
+  </data>
+  <data name="ContractorAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ParticipantName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="ParticipantNameEn" xml:space="preserve">
+    <value>Full name in English</value>
+  </data>
+  <data name="SignDate" xml:space="preserve">
+    <value>Date of contract</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Contract Number</value>
+  </data>
+  <data name="EUAmount" xml:space="preserve">
+    <value>CCD: EU Funding</value>
+  </data>
+  <data name="NationalAmount" xml:space="preserve">
+    <value>CCD: National funding</value>
+  </data>
+  <data name="SelfAmount" xml:space="preserve">
+    <value>Own contribution</value>
+  </data>
+  <data name="ContractTotalAmount" xml:space="preserve">
+    <value>Total value</value>
+  </data>
+  <data name="BudgetDifference" xml:space="preserve">
+    <value>Unlike the approved budget</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date for execution</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Final date for execution</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Performer</value>
+  </data>
+  <data name="ContractActivity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="BudgetDetail" xml:space="preserve">
+    <value>Budget line</value>
+  </data>
+  <data name="ViewTemplateStartEndDates" xml:space="preserve">
+    <value>The date in the field „{0}”, must be before the date in the field „{1}” in section „{2}”.</value>
+  </data>
+  <data name="ContractContractorDependancy" xml:space="preserve">
+    <value>The contractor with a number „{0}” is no longer active and can not referenced in section „{1}”.</value>
+  </data>
+  <data name="ContractPlanDependency" xml:space="preserve">
+    <value>The contract with contractor „{0}” is no longer active and can not referenced in section „{1}”.</value>
+  </data>
+  <data name="ShortTemplateUniquePairsRequired" xml:space="preserve">
+    <value>The table must contain unique records for each row.</value>
+  </data>
+  <data name="ViewTemplateUniquePairsRequired" xml:space="preserve">
+    <value>Table „List of activities on budget lines” in section „{0}” must contain unique records for each row.</value>
+  </data>
+  <data name="ShortTemplateContractActivityCanceled" xml:space="preserve">
+    <value>The activity is no longer active and could not be chosen.</value>
+  </data>
+  <data name="ViewTemplateContractActivityCanceled" xml:space="preserve">
+    <value>The activity „{0}” in the list of activities on budget lines in section „{1}” is no longer active and could not be chosen.</value>
+  </data>
+  <data name="ShortTemplateBudgetDetailCanceled" xml:space="preserve">
+    <value>Тhe budget line is no longer active and could not be chosen.</value>
+  </data>
+  <data name="ViewTemplateBudgetDetailCanceled" xml:space="preserve">
+    <value>Тhe budget line „{0}” in the list of activities on budget lines in section „{1}” is no longer active and could not be chosen.</value>
+  </data>
+  <data name="BFPContractBasicDataName" xml:space="preserve">
+    <value>Name of the project</value>
+  </data>
+  <data name="BFPContractBasicDataNameEn" xml:space="preserve">
+    <value>Name of project in English</value>
+  </data>
+  <data name="BFPContractBasicDataDescription" xml:space="preserve">
+    <value>Brief description of the project</value>
+  </data>
+  <data name="BFPContractBasicDataDescriptionEn" xml:space="preserve">
+    <value>Brief description of the project in English</value>
+  </data>
+  <data name="BFPContractBasicDataPurpose" xml:space="preserve">
+    <value>Objective/s of the project</value>
+  </data>
+  <data name="BFPContractBasicDataBankAccount" xml:space="preserve">
+    <value>Bank account</value>
+  </data>
+  <data name="BFPContractContractRequestedFundingAmount" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="BFPContractContractTotalProjectCost" xml:space="preserve">
+    <value>Total cost of the project</value>
+  </data>
+  <data name="SignedContracts" xml:space="preserve">
+    <value>Electronically signed contract</value>
+  </data>
+  <data name="SectionDeclaration" xml:space="preserve">
+    <value>Declaration</value>
+  </data>
+  <data name="PaymentStartDate" xml:space="preserve">
+    <value>Starting date</value>
+  </data>
+  <data name="PaymentEndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="PaymentTotalAmount" xml:space="preserve">
+    <value>Total amount of funds requested for payment</value>
+  </data>
+  <data name="AdditionalIncome" xml:space="preserve">
+    <value>Value of the funds requested for payment without additional net revenue</value>
+  </data>
+  <data name="TotalAmountWithoutIncome" xml:space="preserve">
+    <value>Type of payment request</value>
+  </data>
+  <data name="OtherRegistration" xml:space="preserve">
+    <value>Another registration</value>
+  </data>
+  <data name="BeneficiaryRegistrationVAT" xml:space="preserve">
+    <value>Registration beneficiary VAT</value>
+  </data>
+  <data name="BankAccount" xml:space="preserve">
+    <value>Bank account</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Middle name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="TextPt25" xml:space="preserve">
+    <value>Text under section. 25</value>
+  </data>
+  <data name="TextPt3" xml:space="preserve">
+    <value>Text under section. 3</value>
+  </data>
+  <data name="SectionGeneralInformation" xml:space="preserve">
+    <value>General information</value>
+  </data>
+  <data name="TechReportStartDate" xml:space="preserve">
+    <value>Starting date</value>
+  </data>
+  <data name="TechReportEndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="PreparerEmail" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="PreparerName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PreparerPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PreparerPosition" xml:space="preserve">
+    <value>Office</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report Type</value>
+  </data>
+  <data name="SectionActivities" xml:space="preserve">
+    <value>Implementation activity</value>
+  </data>
+  <data name="ActivityActualEndDate" xml:space="preserve">
+    <value>Current end date</value>
+  </data>
+  <data name="ActivityActualStartDate" xml:space="preserve">
+    <value>Actual starting date</value>
+  </data>
+  <data name="ActivityCumulativeResult" xml:space="preserve">
+    <value>Cumulative performance</value>
+  </data>
+  <data name="ActivityDelayReason" xml:space="preserve">
+    <value>Reasons for delay, delay or failure</value>
+  </data>
+  <data name="ActivityExecutionDescription" xml:space="preserve">
+    <value>Description of the implementation of the reporting period</value>
+  </data>
+  <data name="ActivityMonthsDuration" xml:space="preserve">
+    <value>Actual duration in months</value>
+  </data>
+  <data name="ActivityPeriodResult" xml:space="preserve">
+    <value>Results achieved for the reporting period</value>
+  </data>
+  <data name="ActivityStartMonth" xml:space="preserve">
+    <value>Month to start work</value>
+  </data>
+  <data name="ActivityStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="IndicatorComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="IndicatorCumulativeAmount" xml:space="preserve">
+    <value>Reported cumulative value</value>
+  </data>
+  <data name="IndicatorPeriodAmount" xml:space="preserve">
+    <value>Reported value for the reporting period</value>
+  </data>
+  <data name="IndicatorResidueAmount" xml:space="preserve">
+    <value>Residue / Deviation from the set in the Treaty</value>
+  </data>
+  <data name="SectionBeneficiarySiteInspections" xml:space="preserve">
+    <value>Spot checks by the beneficiary</value>
+  </data>
+  <data name="BSICheckSubject" xml:space="preserve">
+    <value>Check artist / subject</value>
+  </data>
+  <data name="BSIComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="BSIEndDate" xml:space="preserve">
+    <value>Final date for execution</value>
+  </data>
+  <data name="BSIKeyRecommendations" xml:space="preserve">
+    <value>Key findings / recommendations</value>
+  </data>
+  <data name="BSINumber" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="BSIRange" xml:space="preserve">
+    <value>Coverage</value>
+  </data>
+  <data name="BSIRecommendationsFulfilled" xml:space="preserve">
+    <value>Are fulfilled recommendations</value>
+  </data>
+  <data name="BSIStartDate" xml:space="preserve">
+    <value>Start date for execution</value>
+  </data>
+  <data name="SectionAudits" xml:space="preserve">
+    <value>Audits</value>
+  </data>
+  <data name="AuditeeType" xml:space="preserve">
+    <value>Type the auditee</value>
+  </data>
+  <data name="AuditComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="AuditFinalReportDate" xml:space="preserve">
+    <value>Date of final report</value>
+  </data>
+  <data name="AuditFinalReportNumber" xml:space="preserve">
+    <value>Number of final report</value>
+  </data>
+  <data name="AuditInspectionEndDate" xml:space="preserve">
+    <value>End date of inspection</value>
+  </data>
+  <data name="AuditInspectionStartDate" xml:space="preserve">
+    <value>Launch Date of inspection</value>
+  </data>
+  <data name="AuditInstitution" xml:space="preserve">
+    <value>Institution spot checks / audits / inspections</value>
+  </data>
+  <data name="AuditKeyFindings" xml:space="preserve">
+    <value>Key findings</value>
+  </data>
+  <data name="AuditKind" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="AuditPreviousReportDate" xml:space="preserve">
+    <value>Date previous report</value>
+  </data>
+  <data name="AuditPreviousReportNumber" xml:space="preserve">
+    <value>Number previous report</value>
+  </data>
+  <data name="AuditRange" xml:space="preserve">
+    <value>Coverage</value>
+  </data>
+  <data name="AuditRecommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="AuditRecommendationsFulfilled" xml:space="preserve">
+    <value>Are fulfilled recommendations</value>
+  </data>
+  <data name="AuditType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="TeamMemberActivity" xml:space="preserve">
+    <value>Work done</value>
+  </data>
+  <data name="TeamMemberCommitmentType" xml:space="preserve">
+    <value>Type of commitment</value>
+  </data>
+  <data name="TeamMemberDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TeamMemberHours" xml:space="preserve">
+    <value>Working hours</value>
+  </data>
+  <data name="TeamMemberName" xml:space="preserve">
+    <value>Name on ID</value>
+  </data>
+  <data name="TeamMemberPosition" xml:space="preserve">
+    <value>Position Project</value>
+  </data>
+  <data name="TeamMemberResult" xml:space="preserve">
+    <value>Specific results</value>
+  </data>
+  <data name="SectionInventoryDocuments" xml:space="preserve">
+    <value>Inventory documents</value>
+  </data>
+  <data name="CostSupportingDocuments" xml:space="preserve">
+    <value>Inventory - documents</value>
+  </data>
+  <data name="CostSupportType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="CostSupportDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CostSupportNumber" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="CostSupportDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="CostSupportPaymentDate" xml:space="preserve">
+    <value>Payment date</value>
+  </data>
+  <data name="CostSupportContractContractor" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="CostSupportGrandAmount" xml:space="preserve">
+    <value>CCD</value>
+  </data>
+  <data name="CostSupportSelfAmount" xml:space="preserve">
+    <value>Own financing</value>
+  </data>
+  <data name="CostSupportCrossFinancing" xml:space="preserve">
+    <value>Cross-financing</value>
+  </data>
+  <data name="CostSupportTotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="CostSupportUnitDefinition" xml:space="preserve">
+    <value>Definition of the unit, according to standard tables</value>
+  </data>
+  <data name="CostSupportProducedUnitsCount" xml:space="preserve">
+    <value>Produced units count</value>
+  </data>
+  <data name="CostSupportUnitCost" xml:space="preserve">
+    <value>Unit cost</value>
+  </data>
+  <data name="BFPStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="BFPCompletionDate" xml:space="preserve">
+    <value>Date of completion</value>
+  </data>
+  <data name="FinanceReportAmount" xml:space="preserve">
+    <value>Total amount of funds requested for payment</value>
+  </data>
+  <data name="FinanceReportAmountWithoutIncome" xml:space="preserve">
+    <value>Value of the funds requested for payment without additional net revenue</value>
+  </data>
+  <data name="InternetAddress" xml:space="preserve">
+    <value>Internet address</value>
+  </data>
+  <data name="PredictiveAmount" xml:space="preserve">
+    <value>Predictive amount</value>
+  </data>
+  <data name="ProcedureObject" xml:space="preserve">
+    <value>Procedure object</value>
+  </data>
+  <data name="AmountFinancedProject" xml:space="preserve">
+    <value>Contract amount financed project (if the VAT is recovered, the amount is exclusive of VAT, unless the amount is VAT)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CurrentAnnexTotalAmount" xml:space="preserve">
+    <value>Total value of the current annex</value>
+  </data>
+  <data name="NumberAnnexes" xml:space="preserve">
+    <value>Number of annexes to the contract</value>
+  </data>
+  <data name="RepresentativeIDNumber" xml:space="preserve">
+    <value>ID number</value>
+  </data>
+  <data name="RepresentativeNames" xml:space="preserve">
+    <value>Names</value>
+  </data>
+  <data name="SubcontractorMemberContractAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="SubcontractorMemberContractDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="SubcontractorMemberContractNumber" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="SubcontractorMemberName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DifferentiatedPositionName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SubmittedOffersCount" xml:space="preserve">
+    <value>Number of tenders</value>
+  </data>
+  <data name="RankedOffersCount" xml:space="preserve">
+    <value>Number ranked Offers</value>
+  </data>
+  <data name="DifferentiatedPositionComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ContractContractor" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="SectionSpendingPlan" xml:space="preserve">
+    <value>Plan spending (CCD)</value>
+  </data>
+  <data name="ShortTemplateEqualValues" xml:space="preserve">
+    <value>The value in the field „{0}” must be equal to the value in the field „{1}”</value>
+  </data>
+  <data name="ViewTemplateEqualValue" xml:space="preserve">
+    <value>The value for „{0}” in the field „{1}” in section „{2}” must be equal to the value in the field „{3}” in the same section</value>
+  </data>
+  <data name="ShortTemplateQuaterSum" xml:space="preserve">
+    <value>The value in the field must be equal to the sum of the values in all fields of quarters distribution</value>
+  </data>
+  <data name="ViewTemplateQuaterSum" xml:space="preserve">
+    <value>The value for „{0}” in the field „{1}” in section „{2}” must be equal to the sum of the values in all fields of quarters distribution</value>
+  </data>
+  <data name="SpendingPlanTotalAmount" xml:space="preserve">
+    <value>Total value of the grant-funded project costs</value>
+  </data>
+  <data name="SpendingPlanTotalCurrentDocument" xml:space="preserve">
+    <value>Total for current document</value>
+  </data>
+  <data name="ShortTemplateDifference" xml:space="preserve">
+    <value>The value in the field must be equal to the difference between the values in the fields „{0}” and „{1}”</value>
+  </data>
+  <data name="ViewTemplateDifference" xml:space="preserve">
+    <value>The value in the field„{0}” in section „{1}” must be equal to the difference between the values in the fields „{2}” and „{3}” in the same section</value>
+  </data>
+  <data name="SubcontractorMembersTable" xml:space="preserve">
+    <value>Subcontractors or members of the union</value>
+  </data>
+  <data name="ViewTemplateRequiredRowTableSection" xml:space="preserve">
+    <value>Field "{0}" in order "{1}" in table "{2}" in "{3}" must be filled.</value>
+  </data>
+  <data name="SectionPackageDocuments" xml:space="preserve">
+    <value>Package documents</value>
+  </data>
+  <data name="TechnicalReportTeamMemberUin" xml:space="preserve">
+    <value>PIN / foreign person</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
+  <data name="OffersDeadlineDate" xml:space="preserve">
+    <value>Final date for submission of tenders</value>
+  </data>
+  <data name="ContractAmountWithoutVAT" xml:space="preserve">
+    <value>Contract amount financed the project without VAT</value>
+  </data>
+  <data name="TotalAmountExcludingVAT" xml:space="preserve">
+    <value>Total amount of the contract excluding VAT</value>
+  </data>
+  <data name="TotalFundedValue" xml:space="preserve">
+    <value>Total value of the contract funded project</value>
+  </data>
+  <data name="VATAmountIfEligible" xml:space="preserve">
+    <value>Amount of VAT under a contract financed project, if eligible</value>
+  </data>
+  <data name="ViewTemplateSmallerEqualNumberLong" xml:space="preserve">
+    <value>The value in the field „{0}” in section „{1}” must be smaller or equal to the value in the field „{2}” in the same section.</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="SectionIncomes" xml:space="preserve">
+    <value>Incomes</value>
+  </data>
+  <data name="IncomeType" xml:space="preserve">
+    <value>Income type</value>
+  </data>
+  <data name="IncomeAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesDescription" xml:space="preserve">
+    <value>Brief description of the project proposal / information</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesDescriptionEN" xml:space="preserve">
+    <value>Brief description of the project proposal / information in English</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsAssignedDeMinimisAid" xml:space="preserve">
+    <value>Project / information subject to the system of minimum benefits</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsIncludesPublicPrivatePartnership" xml:space="preserve">
+    <value>Project / information include public-private partnership</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsIncludesSupportFromIYE" xml:space="preserve">
+    <value>Project / information includes support from the Youth Employment Initiative</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsJointActionPlan" xml:space="preserve">
+    <value>Project / information is a joint action plan</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsSubjectToStateAidRegime" xml:space="preserve">
+    <value>Project / information is subject to State aid regime</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesIsUsesFinancialInstruments" xml:space="preserve">
+    <value>Project / information using financial instruments / CCD</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesName" xml:space="preserve">
+    <value>Name of project proposal / information</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesNameEN" xml:space="preserve">
+    <value>Name of project proposal / information in English</value>
+  </data>
+  <data name="ProjectBasicDataFinancialIntermediariesPurpose" xml:space="preserve">
+    <value>Objective / s of the project proposal / information</value>
+  </data>
+  <data name="FinancialIntermediariesBFP" xml:space="preserve">
+    <value>FI</value>
+  </data>
+  <data name="FinancialIntermediariesExpectedRevenue" xml:space="preserve">
+    <value>Expected revenues from the project / product</value>
+  </data>
+  <data name="FinancialIntermediariesIneligibleCosts" xml:space="preserve">
+    <value>Ineligible costs necessary for the implementation of the project / product (where applicable)</value>
+  </data>
+  <data name="FinancialIntermediariesRatioRequestedFundingTotalEligibleCosts" xml:space="preserve">
+    <value>Financial Instrument ratio to total eligible costs</value>
+  </data>
+  <data name="FinancialIntermediariesRequestedFundingAmount" xml:space="preserve">
+    <value>Funding requested (financial instruments)</value>
+  </data>
+  <data name="FinancialIntermediariesTotalProjectCost" xml:space="preserve">
+    <value>Total value of the project proposal / information</value>
+  </data>
+  <data name="ExpectedLeverageLoanAmount" xml:space="preserve">
+    <value>Expected leverage loan / guarantee / equity and quasi-equity investments / other financial product</value>
+  </data>
+  <data name="ProductKind" xml:space="preserve">
+    <value>Product kind</value>
+  </data>
+  <data name="FinancialIntermediariesSectionAdditionalInformation" xml:space="preserve">
+    <value>Additional information necessary to assess the project proposal/ information</value>
+  </data>
+  <data name="BFPIsVatEligible" xml:space="preserve">
+    <value>VAT is an eligible cost of the project</value>
+  </data>
+  <data name="BFPAmountType" xml:space="preserve">
+    <value>Type of project</value>
+  </data>
+  <data name="SectionImplementationPlanBFP" xml:space="preserve">
+    <value>Implementation Plan / Project Activities</value>
+  </data>
+  <data name="BFPIneligibleCosts" xml:space="preserve">
+    <value>Ineligible costs necessary for the implementation of the project (where applicable)</value>
+  </data>
+  <data name="SectionFinanceInstrumentsReport" xml:space="preserve">
+    <value>Report on the Financial Instrument</value>
+  </data>
+  <data name="ViewTemplateDocumentExtensionWithSubsection" xml:space="preserve">
+    <value>The document in section „{0}”\„{1}” has invalid extension. Valid extensions - {2}.</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="ShortBudgetItemsDuplicated" xml:space="preserve">
+    <value>In section „Inventory - documents” is located unallowable duplication.</value>
+  </data>
+  <data name="BudgetItemsDuplicated" xml:space="preserve">
+    <value>In section „Inventory - documents” is located unallowable duplication of Number: „{0}”, Date: „{1}”, CSD Publisher: „{2}”, Budget detail: „{3}”, Activity: „{4}” and Total amount: {5}.</value>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Payment Type</value>
+  </data>
+  <data name="ContractReportHasAdvanceVerificationPayment" xml:space="preserve">
+    <value>There is a Payment request with type 'Advance payment, subject to verification in accordance with Art. 131 of Regulation EU 1303/2013'" +
+" for this contract in another contract report with status 'Accepted'."</value>
+  </data>
+  <data name="ShortTemplateDocumentUploadNotAllowed" xml:space="preserve">
+    <value>Cannot upload a new file in the section</value>
+  </data>
+  <data name="ViewTemplateDocumentUploadNotAllowed" xml:space="preserve">
+    <value>Cannot upload a new file in section „{0}” in case errand legal act of type „{0}” is selected.</value>
+  </data>
+  <data name="SectionQuestions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneQuestion" xml:space="preserve">
+    <value>At least one question must be added to a group.</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneGroup" xml:space="preserve">
+    <value>At least one group must be added in section „{0}”.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="ViewTemplateAtLeastOneUser" xml:space="preserve">
+    <value>At least one user must be added in section „{0}”.</value>
+  </data>
+  <data name="AdvancePaymentWithSelfAmountNotAllowed" xml:space="preserve">
+    <value>Advance payment, subject to verification in accordance with Art. 131 of Regulation EU 1303/2013 with self amount costs is not allowed in section „{0}”.</value>
+  </data>
+  <data name="CostSupportingDocumentCommonError" xml:space="preserve">
+    <value>For Cost Supporting Document with number: {0} and Date: {1} and Publisher: {2} there are errors: </value>
+  </data>
+  <data name="ShortViewTemplateNoApplicableQuestionsAdded" xml:space="preserve">
+    <value>No applicable questions added by user.</value>
+  </data>
+  <data name="ViewTemplateNoApplicableQuestionsAdded" xml:space="preserve">
+    <value>No applicable questions added by user with role „{0}”.</value>
+  </data>
+  <data name="ViewCheckSheetQuestionNotAnswered" xml:space="preserve">
+    <value>Question {0}.{1} is not answered.</value>
+  </data>
+  <data name="SectionDirection" xml:space="preserve">
+    <value>Directions</value>
+  </data>
+  <data name="ShortTemplateMaxContractDirections" xml:space="preserve">
+    <value>You have reached the max allowed number of {0} for directions </value>
+  </data>
+  <data name="ViewTemplateMaxContractDirections" xml:space="preserve">
+    <value>You have reached the max allowed number of {0} for section "{1}".</value>
+  </data>
+  <data name="DirectionName" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="ShortTemplateQuestionEndingDateInvalid" xml:space="preserve">
+    <value>Invalid response deadline.</value>
+  </data>
+  <data name="ViewTemplateQuestionEndingDateInvalid" xml:space="preserve">
+    <value>The deadline for answering the question must be greater than the current date.</value>
+  </data>
+  <data name="ViewTemplateDirectionsMissmatch" xml:space="preserve">
+    <value>Field "Direction" in section "Budget" contains wrong value</value>
+  </data>
+  <data name="DeclarationApproval" xml:space="preserve">
+    <value>I confirm the declared information</value>
+  </data>
+  <data name="SectionProjectDeclarations" xml:space="preserve">
+    <value>E-Declarations</value>
+  </data>
+  <data name="DeclarationApprovalDateFrom" xml:space="preserve">
+    <value>I confirm the declared information / Date from</value>
+  </data>
+  <data name="DeclarationApprovalDateTo" xml:space="preserve">
+    <value>I confirm the declared information / Date to</value>
+  </data>
+</root>

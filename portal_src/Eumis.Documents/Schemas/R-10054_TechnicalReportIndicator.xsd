@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10054"
+	xmlns="http://ereg.egov.bg/segment/R-10054"
+            
+	xmlns:bci="http://ereg.egov.bg/segment/R-10038"
+            
+	xmlns:pbd="http://ereg.egov.bg/segment/R-09997"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10038" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09997" />
+  
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="TechnicalReportIndicator">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Индикатор на технически отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="BFPContractIndicator" type="bci:BFPContractIndicator" minOccurs="0" />
+      
+      <xsd:element name="PeriodAmountMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="PeriodAmountWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="PeriodAmountTotal" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="CumulativeAmountMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="CumulativeAmountWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="CumulativeAmountTotal" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="ResidueAmountMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="ResidueAmountWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="ResidueAmountTotal" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="Comment" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="LastReportCumulativeAmountMen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="LastReportCumulativeAmountWomen" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="LastReportCumulativeAmountTotal" type="xsd:decimal" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

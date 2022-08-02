@@ -1,0 +1,16 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.status" alias="'contractCommunicationStatuses'" mode="id" ng-disabled="true" l10n-text="contractCommunications_communicationForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.source" alias="'contractCommunicationSources'" mode="id" l10n-text="contractCommunications_communicationForm_source" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="contractCommunications_communicationForm_regNumber" ng-readonly="true" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.subject" l10n-text="contractCommunications_communicationForm_subject" ng-readonly="true" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.sendDate" l10n-text="contractCommunications_communicationForm_sendDate" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.readDate" l10n-text="contractCommunications_communicationForm_readDate" ng-readonly="true" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

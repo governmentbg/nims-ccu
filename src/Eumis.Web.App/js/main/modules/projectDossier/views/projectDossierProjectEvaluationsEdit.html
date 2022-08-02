@@ -1,0 +1,16 @@
+<ng-form name="evalSessionEvaluationEditForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projectDossier_evalSessionEvaluationEdit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="projectDossier_evalSessionEvaluationEdit_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-evaluation name="evalSessionEvaluationForm" ng-model="evalSessionEvaluation" sc-form-readonly="true"></eumis-eval-session-evaluation>
+    </div>
+  </div>
+</ng-form>

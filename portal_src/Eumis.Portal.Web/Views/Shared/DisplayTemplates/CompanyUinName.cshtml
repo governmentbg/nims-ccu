@@ -1,0 +1,13 @@
+﻿@model R_10004.Company
+
+@if (Model != null)
+{
+    <span class="filled-value">
+        @if (Model.UinType != null && !String.IsNullOrWhiteSpace(Model.UinType.Name))
+        {
+            <text>@Model.UinType.Name: </text>
+        }
+        @Model.Uin
+        @Model.Name
+    </span>
+}

@@ -1,0 +1,74 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_beneficiaryProjectsContractsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_beneficiaryProjectsContractsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_beneficiaryProjectsContractsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_beneficiaryProjectsContractsReport_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_beneficiaryProjectsContractsReport_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" alias="'currencies'" mode="id" ng-model="filters.currency" l10n-text="monitoring_beneficiaryProjectsContractsReport_currency" class="col-sm-3 col-md-2"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'companyTypes'" mode="id" ng-model="filters.companyTypeId" nom-obj="companyType" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyType" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="nomenclature" alias="'companyLegalTypes'" mode="id" ng-model="filters.companyLegalTypeId" ng-disabled="!filters.companyTypeId" nom-obj="companyLegalType" params="{companyTypeId: filters.companyTypeId}" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyLegalType" class="col-sm-4 col-md-4"></sc-field>
+          <div class="labeless col-sm-4">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_beneficiaryProjectsContractsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyName"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyUin"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyType"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_companyLegalType"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_projectsCount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_projectsTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_contractsCount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_contractsTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_actuallyPaidTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_irregularitySignalsCount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_irregularitySignalsActiveCount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_irregularitiesCount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_financialCorrectionTotalAmount"></th>
+                <th class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_correctionsTotalAmount"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="beneficiaryProjectsContract in beneficiaryProjectsContracts">
+                <td>{{beneficiaryProjectsContract.companyName}}</td>
+                <td>{{beneficiaryProjectsContract.companyUin}}</td>
+                <td>{{beneficiaryProjectsContract.companyType}}</td>
+                <td>{{beneficiaryProjectsContract.companyLegalType}}</td>
+                <td>{{beneficiaryProjectsContract.projectsCount}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{beneficiaryProjectsContract.projectsTotalAmount | money}}</td>
+                <td>{{beneficiaryProjectsContract.contractsCount}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{beneficiaryProjectsContract.contractsTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{beneficiaryProjectsContract.actuallyPaidTotalAmount | money}}</td>
+                <td>{{beneficiaryProjectsContract.irregularitySignalsCount}}</td>
+                <td>{{beneficiaryProjectsContract.irregularitySignalsActiveCount}}</td>
+                <td>{{beneficiaryProjectsContract.irregularitiesCount}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{beneficiaryProjectsContract.financialCorrectionTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{beneficiaryProjectsContract.correctionsTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="beneficiaryProjectsContracts.length === 0">
+                <td colspan="14" class="text-center" l10n-text="monitoring_beneficiaryProjectsContractsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

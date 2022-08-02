@@ -1,0 +1,27 @@
+﻿<div>
+    <input type="hidden" name="{{ path }}.FileName" value="{{ model.FileName }}" />
+    <input type="hidden" name="{{ path }}.Size" value="{{ model.Size }}" />
+    <input type="hidden" name="{{ path }}.Hash" value="{{ model.Hash }}" />
+
+    <div ng-show="showUploader" ng-class="{'input-validation-error': !model.IsDocumentValid}">
+        <input type="hidden" name="{{ path }}.BlobContentId" class="validation-error-key" value="{{ model.BlobContentId }}" />
+
+        <span class="fileinput-button">
+            <span>{{ resources.ButtonChooseFile }}</span>
+            <input type="file" ui-jq="fileupload" ui-options="options" value="{{ progress }}" />
+        </span>
+
+        <div class="progress" ng-hide="progress == 0">
+            <div class="progress-bar progress-bar-success" ng-style="{ width: progress + '%'}">{{ progress }}%</div>
+        </div>
+    </div>
+
+    <span ng-show="fileError" class="error">{{ resources.ErrorTryAgain }}</span>
+    <span ng-show="fileExceedsMaximumSize" class="error">{{ resources.ErrorFileIsTooLarge }}</span>
+
+    <div class="files" ng-show="!showUploader">
+        <p>{{ model.FileName }}</p>
+        <a ng-if="showLinks" target="_blank" href="/api/{{routeSession}}/file/download/{{ model.BlobContentId }}{{ model.UploaderAccessToken ? ('?uploaderAccessToken=' + model.UploaderAccessToken) : '' }}" class="download-file file-btn">{{resources.ButtonDownloadText}}</a>
+        <a ng-if="showLinks" style="cursor:pointer;" class="delete-file file-btn" confirm-click="delete()">{{resources.DeleteButton}}</a>
+    </div>
+</div>

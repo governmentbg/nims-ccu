@@ -1,0 +1,124 @@
+﻿@model R_10062.FinanceBudget
+
+@if (Model != null && Model.FinanceBudgetLevel1Collection != null)
+{
+    <div class="auto-fill-table">
+        <a href="/api/@(ViewContext.RouteData.Values["session"])/excel/downloadFinanceBudget" target="_blank" class="draft-link">
+            <img src="@Links.Content.img.icons.save_as_draft_gif" alt=""> @Draft.SaveAsFile
+        </a>
+    </div>
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info bfp-budget-table">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width:40px; max-width: 40px;"></th>
+                    <th rowspan="2" style="width:300px;">@FinanceBudget.ExpenseName</th>
+
+                    <th rowspan="2" colspan="2" style="width:160px; max-width:160px;">@FinanceBudget.GrandAmount</th>
+                    <th rowspan="2" style="width:110px; max-width:110px;">@FinanceBudget.SelfAmount</th>
+                    <th rowspan="2" style="width:110px; max-width:110px;">@FinanceBudget.TotalAmount</th>
+
+                    <th colspan="2">@FinanceBudget.DifferenceGrandHeader</th>
+                    <th colspan="2">@FinanceBudget.DifferenceTotalHeader</th>
+                </tr>
+                <tr style="border-top: 1px solid #8f8f8f;">
+                    <th style="border-left: 1px solid #8f8f8f; width:110px; max-width:110px;">@FinanceBudget.DifferenceGrand</th>
+                    <th style="width:70px; max-width:70px;">@FinanceBudget.DifferenceGrandPercentage</th>
+                    <th style="width:110px; max-width:110px;">@FinanceBudget.DifferenceTotal</th>
+                    <th style="width:70px; max-width:70px;">@FinanceBudget.DifferenceTotalPercentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.FinanceBudgetLevel1Collection.Count; i++)
+                {
+                    var level1 = Model.FinanceBudgetLevel1Collection[i];
+                    @Html.DisplayFor(m => level1)
+
+                    if (level1.FinanceBudgetLevel2Collection != null)
+                    {
+                        for (int j = 0; j < level1.FinanceBudgetLevel2Collection.Count; j++)
+                        {
+                            var level2 = level1.FinanceBudgetLevel2Collection[j];
+                            level2.Level1OrderNum = level1.OrderNum;
+                           
+
+                            if (level2.FinanceBudgetLevel3Collection != null)
+                            {
+                                for (int k = 0; k < level2.FinanceBudgetLevel3Collection.Count; k++)
+                                {
+                                    var level3 = level2.FinanceBudgetLevel3Collection[k];
+                                    level3.Level1OrderNum = level1.OrderNum;
+                                    level3.Level2OrderNum = level2.OrderNum;
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+
+                <tr class="level1 auto-calc-percent">
+                    <td colspan="2" rowspan="3">
+                        @FinanceBudget.TotalBudget
+                    </td>
+                    <td style="width:60px; min-width: 60px;">
+                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="top" data-toggle="popover" data-content="@FinanceBudget.BFPContractAmount" data-trigger="hover">
+                        @FinanceBudget.BFPContractAmountShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.BFPContractAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.BFPContractAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.BFPContractAmounts.TotalAmount)
+                    </td>
+
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.DifferenceGrand)
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @(Model.Amounts.DifferenceGrandPercentage + "%")
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.DifferenceTotal)
+                    </td>
+                    <td rowspan="3" style="vertical-align: middle;" class="text-right">
+                        @(Model.Amounts.DifferenceTotalPercentage + "%")
+                    </td>
+                </tr>
+                <tr class="level1">
+                    <td style="width:60px; min-width: 60px;">
+                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="top" data-toggle="popover" data-content="@FinanceBudget.CurrentReportAmount" data-trigger="hover">
+                        @FinanceBudget.CurrentReportAmountShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CurrentReportAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CurrentReportAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CurrentReportAmounts.TotalAmount)
+                    </td>
+                </tr>
+                <tr class="level1">
+                    <td style="width:60px; min-width: 60px;">
+                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="top" data-toggle="popover" data-content="@FinanceBudget.Cumulative" data-trigger="hover">
+                        @FinanceBudget.CumulativeShort
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.GrandAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.SelfAmount)
+                    </td>
+                    <td style="vertical-align: middle;" class="text-right">
+                        @Html.DisplayFor(m => m.Amounts.CumulativeAmounts.TotalAmount)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

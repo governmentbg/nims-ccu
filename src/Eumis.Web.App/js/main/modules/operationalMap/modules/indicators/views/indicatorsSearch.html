@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-link-button ng-href="api/indicators/excelExport" target="_blank" sc-access-token style="margin-left: 3px;"
+                    icon="fa-file-excel-o fa-lg fa-fw" text="indicators_searchForm_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+    <sc-datatable items="indicators" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.indicators.edit', params: {id: item.indicatorId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('IndicatorActions.View', item.indicatorId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="indicators_searchForm_programme">
+      </sc-column>
+      <sc-column data="measureName" title="indicators_searchForm_measure">
+      </sc-column>
+      <sc-column data="code" title="indicators_searchForm_code">
+      </sc-column>
+      <sc-column title="indicators_searchForm_name" has-content="true" data="name">
+        <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="type" title="indicators_searchForm_type">
+      </sc-column>
+      <sc-column data="kind" title="indicators_searchForm_kind">
+      </sc-column>
+      <sc-column data="trend" title="indicators_searchForm_trend">
+      </sc-column>
+      <sc-column data="aggregatedReport" title="indicators_searchForm_aggregatedReport">
+      </sc-column>
+      <sc-column data="aggregatedTarget" title="indicators_searchForm_aggregatedTarget">
+      </sc-column>
+      <sc-column data="hasGenderDivision" type="boolean" title="indicators_searchForm_hasGenderDivision">
+      </sc-column>
+      <sc-column data="hasQualitativeTarget" type="boolean" title="indicators_searchForm_hasQualitativeTarget">
+      </sc-column>
+      <sc-column data="hasSF" type="boolean" title="indicators_searchForm_hasSF">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

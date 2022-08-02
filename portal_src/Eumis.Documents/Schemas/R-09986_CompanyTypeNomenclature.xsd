@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/nomenclature/R-09986" xmlns="http://ereg.egov.bg/nomenclature/R-09986" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:simpleType name="CompanyTypeNomenclature">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Номенклатура на видовете организация</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Beneficiary" />
+      <xsd:enumeration value="Partner" />
+      <xsd:enumeration value="Contractor" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

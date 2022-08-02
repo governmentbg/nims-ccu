@@ -1,0 +1,43 @@
+<ng-form name="editContractReportPaymentCheckForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReportChecks_editContractReportChecksPayment_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activeBtn" btn-click="changePaymentCheckStatus('active')" text="contractReportChecks_editContractReportChecksPayment_active" class="btn btn-default btn-xs"
+          ng-show="contractReportPaymentCheck.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="archivedBtn" btn-click="changePaymentCheckStatus('archived')" text="contractReportChecks_editContractReportChecksPayment_archived" class="btn btn-default btn-xs"
+          ng-show="contractReportPaymentCheck.status === 'active' && !editMode && contractReportStatus === 'unchecked'" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportChecks_editContractReportChecksPayment_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractReportPaymentCheck.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportChecks_editContractReportChecksPayment_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-show="contractReportPaymentCheck.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportCheckActions.EditFinancial', contractReportId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportChecks_editContractReportChecksPayment_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" 
+          ng-show="editMode"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportChecks_editContractReportChecksPayment_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"
+          ng-show="editMode"></sc-button>
+
+        <sc-button name="backBtn" btn-click="back()" text="contractReportChecks_editContractReportChecksPayment_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left"
+          ng-show="!editMode"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <h5 class="form-header form-header-first" l10n-text="contractReportChecks_editContractReportChecksPayment_reportPayment"></h5>
+      <eumis-contract-report-payment name="contractReportPaymentForm" ng-model="contractReportPaymentCheck.contractReportPayment"></eumis-contract-report-payment>
+      <div class="row">
+        <eumis-structured-document document="contractReportPayment" gid="contractReportPaymentCheck.contractReportPayment.xmlGid"
+          text="contractReportChecks_editContractReportChecksPayment_document" view-mode class="col-sm-4 col-md-3">
+        </eumis-structured-document>
+      </div>
+
+      <h5 class="form-header" l10n-text="contractReportChecks_editContractReportChecksPayment_reportPaymentCheck"></h5>
+      <eumis-contract-report-payment-check name="contractReportPaymentCheckForm" ng-model="contractReportPaymentCheck"></eumis-contract-report-payment-check>
+    </div>
+  </div>
+</ng-form>

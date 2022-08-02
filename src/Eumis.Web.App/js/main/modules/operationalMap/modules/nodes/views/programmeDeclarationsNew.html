@@ -1,0 +1,18 @@
+﻿<ng-form name="newProgrammeDeclarationForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmes_newProgrammeDeclaration_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_newProgrammeDeclaration_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_newProgrammeDeclaration_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-programme-declaration name="programmeDeclarationForm" ng-model="declaration" sc-form-params="{ isNew: true }"></eumis-programme-declaration>
+    </div>
+  </div>
+</ng-form>

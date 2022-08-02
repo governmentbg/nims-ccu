@@ -1,0 +1,98 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Standpoint.EditVM
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsStandpoint</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.Standpoint.ActionNames.Prepare,
+    MVC.Private.Standpoint.Name,
+    new { currentStep = Model.CurrentStep, area = MVC.Private.Name },
+    FormMethod.Post,
+    new { id = "main_form", role = "form", @class = "form-with-sections" }))
+    {
+        <ul class="nav nav-tabs">
+            @*@Html.BeginActionLinkButton(
+                null,
+                null,
+                MVC.Private.Standpoint.ActionNames.Prepare,
+                MVC.Private.Standpoint.Name,
+                routeValues:
+                    new
+                    {
+                        area = MVC.Private.Name,
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: "main_form",
+                formMethod: FormMethod.Post)
+            @Global.BreadcrumbsStandpoint
+            @Html.EndActionLinkButton()*@
+            <a href="#" class="tab active">@Global.BreadcrumbsStandpoint</a>
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @if (Model != null)
+            {
+                if (!Model.IsSubjectValid)
+                {
+                    ViewContext.ViewData.ModelState.AddModelError("Subject", "");                    
+                }
+                else
+                {
+                    ViewContext.ViewData.ModelState.Remove("Subject");
+                }
+
+                if (!Model.IsContentValid)
+                {
+                    ViewContext.ViewData.ModelState.AddModelError("Content", "");
+                }
+                else
+                {
+                    ViewContext.ViewData.ModelState.Remove("Content");
+                }
+                                                                      
+                <section class="clearfix" style="display:block;">
+                    <div class="form-group col-md-12">
+                        <label>@Standpoint.Subject</label>
+                        @Html.EditorFor(m=>m.Subject, MVC.Shared.Views.EditorTemplates.TextArea2)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>@Standpoint.Content</label>
+                        @Html.EditorFor(m => m.Content, MVC.Shared.Views.EditorTemplates.TextArea3)
+                    </div>
+                </section>
+                
+                <div class="section-separator"> </div>
+                
+                <h2>@Standpoint.AttachedDocumentCollection</h2>
+                <section class="clearfix" style="display:block;">
+                    @Html.EditorFor(m => m.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.UndefinedAttachedDocumentCollection)
+                </section>
+            }
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.Standpoint.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.Standpoint.ActionNames.Save,
+                            HasXmlUpdate = true
+                        })
+                </div>
+
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+        </div>
+    }
+</div>

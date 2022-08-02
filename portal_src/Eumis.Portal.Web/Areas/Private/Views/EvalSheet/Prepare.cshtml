@@ -1,0 +1,157 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.EvalSheet.EditVM
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsEvalSheet</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.EvalSheet.ActionNames.Prepare,
+    MVC.Private.EvalSheet.Name,
+    new { currentStep = Model.CurrentStep, area = MVC.Private.Name },
+    FormMethod.Post,
+    new { id = "main_form", role = "form", @class = "form-with-sections" }))
+    {
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkButton(
+                null,
+                null,
+                MVC.Private.EvalSheet.ActionNames.Prepare,
+                MVC.Private.EvalSheet.Name,
+                routeValues:
+                    new
+                    {
+                        area = MVC.Private.Name,
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: "main_form",
+                formMethod: FormMethod.Post)
+            @Global.BreadcrumbsEvalSheet
+            @Html.EndActionLinkButton()
+
+            @*@Html.BeginActionLinkButton(
+                    null,
+                    null,
+                    MVC.Private.EvalSheet.ActionNames.Prepare,
+                    MVC.Private.EvalSheet.Name,
+                    routeValues:
+                        new
+                        {
+                            area = MVC.Private.Name,
+                            step = AppStep.Display,
+                            currentStep = AppStep.Prepare,
+                        },
+                    htmlAttributes: new { @class = "tab wait" },
+                    formId: "main_form",
+                    formMethod: FormMethod.Post)
+                @Global.ButtonPreviewText
+                @Html.EndActionLinkButton()*@
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @if (Model != null)
+            {
+                if (!String.IsNullOrWhiteSpace(Model.ProjectName))
+                {
+                    <div class="form-group col-md-12">
+                        <label>@EvalSheet.ProjectName</label>
+                        @Html.DisplayFor(m=>m.ProjectName)
+                    </div>
+                }
+
+                if (!String.IsNullOrWhiteSpace(Model.ProjectRegNumber))
+                {
+                    <div class="form-group col-md-6">
+                        <label>@EvalSheet.ProjectRegNumber</label>
+                        @Html.DisplayFor(m => m.ProjectRegNumber)
+                    </div>
+                }
+
+                if (!String.IsNullOrWhiteSpace(Model.AssessorName))
+                {
+                    <div class="form-group col-md-6">
+                        <label>@EvalSheet.AssessorName</label>
+                        @Html.DisplayFor(m => m.AssessorName)
+                    </div>
+                }
+
+                if (!String.IsNullOrWhiteSpace(Model.ProcedureName))
+                {
+                    <div class="form-group col-md-12">
+                        <label>@EvalSheet.ProcedureName</label>
+                        @Html.DisplayFor(m => m.ProcedureName)
+                    </div>
+                }
+
+                if (!String.IsNullOrWhiteSpace(Model.CompanyName))
+                {
+                    <div class="form-group col-md-12">
+                        <label>@EvalSheet.CompanyName</label>
+                        @Html.DisplayFor(m => m.CompanyName)
+                    </div>
+                }
+
+                if (!String.IsNullOrWhiteSpace(Model.EvalTableTypeText))
+                {
+                    <div class="form-group col-md-12">
+                        <label>@EvalSheet.EvalTableTypeText</label>
+                        @Html.DisplayFor(m => m.EvalTableTypeText)
+                    </div>
+                }
+
+                <div class="clearfix"></div>
+
+                <h2>@EvalTable.EvaluationCriterias</h2>
+                <section class="clearfix" style="display:block;">
+                    @Html.EditorFor(m => m.EvalSheetGroupsWrapper)
+                </section>
+
+                if (Model.EvalTableAttachedDocumentCollection != null && Model.EvalTableAttachedDocumentCollection.Count > 0)
+                {
+                    <div class="section-separator"> </div>
+                    <h2>@EvalSheet.EvalTableAttachedDocumentCollection</h2>
+                    <section class="clearfix" style="display:block;">
+                        @Html.DisplayFor(m => m.EvalTableAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+                    </section>
+                }
+
+                <div class="section-separator"> </div>
+                <h2>@EvalSheet.AttachedDocumentCollection</h2>
+                <section class="clearfix" style="display:block;">
+                    @Html.EditorFor(m => m.AttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.UndefinedAttachedDocumentCollection)
+                </section>
+
+                <div class="section-separator"> </div>
+                <h2>@EvalSheet.Note</h2>
+                <section class="clearfix row" style="display:block;">
+                    <div class="form-group col-md-12">
+                        @Html.EditorFor(m => m.Note, MVC.Shared.Views.EditorTemplates.TextArea2)
+                    </div>
+                </section>
+            }
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.EvalSheet.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.EvalSheet.ActionNames.Save,
+                            HasXmlUpdate = true
+                        })
+                </div>
+
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+        </div>
+    }
+</div>

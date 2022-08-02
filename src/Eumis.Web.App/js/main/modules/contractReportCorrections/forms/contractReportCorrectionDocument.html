@@ -1,0 +1,7 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.description" ng-required="true" l10n-text="contractReportCorrections_documentForm_description" class="col-sm-7 col-md-6"></sc-field>
+    <sc-field type="file" name="file" ng-model="model.file" url-template="ContractReportCorrectionFile" url-params="{ id: model.contractReportCorrectionId }" ng-required="true"
+      l10n-text="contractReportCorrections_documentForm_file" class="col-sm-5 col-md-4"></sc-field>
+  </div>
+</ng-form>

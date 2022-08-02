@@ -1,0 +1,58 @@
+﻿@model Eumis.Portal.Web.Models.Account.RegisterVM
+
+@using Eumis.Common.ReCaptcha
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Account.ActionNames.Login, MVC.Account.Name), Global.BreadcrumbsLogin)
+}
+            , Global.BreadcrumbsRegistration)
+
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsRegistration</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            <h2 class="m-top-0">
+                @Register.NewUserData
+            </h2>
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label><span class="required-span">*</span> @Register.FirstName</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", data_content = Register.NameNotification })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label><span class="required-span">*</span> @Register.LastName</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", data_content = Register.NameNotification })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label><span class="required-span">*</span> @Register.Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", data_content = Register.EmailNotification })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">
+                    <label>@Register.Phone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", data_content = Register.PhoneNotification })
+                </div>
+                <div class="form-group col-lg-4 col-sm-6">                
+                    @Html.ReCaptcha(Constants.ReCaptchaSiteKey)
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <input type="submit" class="submit m-right-0 wait" value="@Global.ButtonContinueText">
+                </div>
+            </section>
+        </form>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("input").popover({
+                    placement: "top",
+                    trigger: "focus"
+                });
+            });
+        </script>
+    </div>
+</div>

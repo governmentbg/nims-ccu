@@ -1,0 +1,26 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'contractProgrammes'" params="{ procedureId: model.procedureId }" ng-model="model.programmeId" mode="id" ng-required="true" l10n-text="contracts_contractServiceDataForm_programme" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'contractTypes'" ng-model="model.contractType" mode="id" ng-required="true" ng-disabled="true" l10n-text="contracts_contractServiceDataForm_contractType" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'contractRegistrationTypes'" ng-model="model.registrationType" mode="id" ng-required="true" l10n-text="contracts_contractServiceDataForm_registrationType" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" ng-readonly="form.$readonly" l10n-text="contracts_contractServiceDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.nameAlt" ng-readonly="form.$readonly" l10n-text="contracts_contractServiceDataForm_nameAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedures'" mode="id" ng-model="model.procedureId" ng-readonly="true" l10n-text="contracts_contractServiceDataForm_procedureId" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyName" ng-readonly="true" l10n-text="contracts_contractServiceDataForm_companyName" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" ng-readonly="true" l10n-text="contracts_contractServiceDataForm_companyUinType" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.companyUin" ng-readonly="true" l10n-text="contracts_contractServiceDataForm_companyUin" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="contracts_contractServiceDataForm_notes" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+</ng-form>

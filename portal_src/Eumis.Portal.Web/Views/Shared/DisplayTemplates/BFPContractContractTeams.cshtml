@@ -1,0 +1,77 @@
+﻿@model R_10040.BFPContractContractTeams
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ContractTeam.Name</th>
+                    <th>@ContractTeam.Position</th>
+                    <th>@ContractTeam.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.BFPContractContractTeamCollection != null && Model.BFPContractContractTeamCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.BFPContractContractTeamCollection.Count; i++)
+                    {
+                        <tr>
+                            <td style="word-break: break-all">
+                                @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Name)
+                            </td>
+                            <td style="word-break: break-all">
+                                @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Position)
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="history-table">
+                            <td colspan="3">
+                                <div class="history-table-wrapper clearfix">
+                                    <div class="clearfix">
+                                        <div class="form-group col-lg-6 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Name, BFPContractContractTeam.Name)
+                                            @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+
+                                        <div class="form-group col-lg-6 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Position, BFPContractContractTeam.Position)
+                                            @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Position, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Responsibilities, BFPContractContractTeam.Responsibilities)
+                                        @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Responsibilities, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Phone, BFPContractContractTeam.Phone)
+                                        @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Phone)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Email, BFPContractContractTeam.Email)
+                                        @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Email)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractContractTeamCollection[i].Fax, BFPContractContractTeam.Fax)
+                                        @Html.DisplayFor(m => m.BFPContractContractTeamCollection[i].Fax)
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿@model R_10042.Communication
+
+@{
+    string breadcrumbString = R_10042.Communication.GetDocumentHeaderText(Model.type);
+}
+
+<div class="container">
+    <h2>@breadcrumbString</h2>
+    <ul class="nav nav-tabs"></ul>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            @Html.Partial(MVC.Shared.Views.Print.Communication, Model)
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.when(0)
+            .then(function () {
+                setTimeout(function () {
+                    print();
+                }, 100);
+            });
+    });
+</script>

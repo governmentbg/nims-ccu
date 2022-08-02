@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10079" 
+	xmlns="http://ereg.egov.bg/segment/R-10079" 
+	
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:dp="http://ereg.egov.bg/segment/R-10071"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10071" />
+	
+	<xsd:complexType name="OfferBasicData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Основни данни за оферта</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="BeneficiaryUinType" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="BeneficiaryUin" type="xsd:string" minOccurs="0" />
+      
+      <xsd:element name="PlanName" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="PlanErrandArea" type="pun:PublicNomenclature" minOccurs="0" />
+      <xsd:element name="PlanErrandLegalAct" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="PlanErrandType" type="pun:PublicNomenclature" minOccurs="0" />
+
+      <xsd:element name="PlanExpectedAmount" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="PlanDescription" type="xsd:string" minOccurs="0" />
+
+      <xsd:element name="DifferentiatedPosition" type="dp:DifferentiatedPosition" minOccurs="0" />
+    
+      <xsd:element name="BeneficiaryRegistrationVAT" type="en:EnumNomenclature" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

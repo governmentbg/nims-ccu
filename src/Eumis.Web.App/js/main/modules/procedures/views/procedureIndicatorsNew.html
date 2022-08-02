@@ -1,0 +1,20 @@
+<ng-form name="newForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="procedures_newProcedureIndicator_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_newProcedureIndicator_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_newProcedureIndicator_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-indicator-data name="indicatorForm" ng-model="procedureIndicator.indicator" sc-form-params="{ procedureId: procedureIndicator.procedureId }"></eumis-indicator-data>
+
+      <eumis-procedure-indicator name="procedureIndicatorForm" ng-model="procedureIndicator"></eumis-procedure-indicator>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Maps]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Type] TINYINT NOT NULL, 
+    [Name] NVARCHAR(50) NOT NULL, 
+	[NameAlt] NVARCHAR(50) NOT NULL,
+	[NameAltEnglish] NVARCHAR(50) NOT NULL,  
+	[NutsLevel] INT NOT NULL,
+	[RegionId] INT NULL
+)

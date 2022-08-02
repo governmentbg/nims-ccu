@@ -1,0 +1,31 @@
+<ng-form name="editEvalSessionSheetForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionSheet_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="continueBtn" btn-click="continueSheet()" text="evalSessions_editEvalSessionSheet_continueSheet" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionSheet.status === 'paused' && !evalSessionSheet.continuedEvalSessionSheetId">
+        </sc-button>
+
+        <sc-button name="viewContinued" btn-sref="{ state: 'root.evalSessions.view.sheets.edit', params: { ind: evalSessionSheet.continuedEvalSessionSheetId } }" text="evalSessions_editEvalSessionSheet_viewContinueSheet" class="btn btn-success btn-xs"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId)" ng-if="evalSessionSheet.status === 'paused' && evalSessionSheet.continuedEvalSessionSheetId">
+        </sc-button>
+
+        <sc-button name="canceledBtn" btn-click="cancelSheet()" text="evalSessions_editEvalSessionSheet_canceled" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionSheet.status !== 'canceled' && !evalSessionSheet.continuedEvalSessionSheetId">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-sheet name="evalSessionSheetForm" ng-model="evalSessionSheet" sc-form-params="{ canViewDistribution: true }" sc-form-readonly="true"></eumis-eval-session-sheet>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionSheet_template" document="evalSessionSheet" gid="evalSessionSheet.xmlGid"
+          view-mode class="col-sm-4 col-md-3">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

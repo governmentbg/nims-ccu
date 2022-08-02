@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewPhysicalExecution_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showActivities=!showActivities">
+        <span l10n-text="projectDossier_viewPhysicalExecution_activities"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showActivities, 'glyphicon-chevron-right': !showActivities}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showActivities" ng-href="{{activitiesExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewPhysicalExecution_activityExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showActivities" items="activities" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column data="contractRegNum" title="projectDossier_viewPhysicalExecution_activityContractRegNum">
+          </sc-column>
+          <sc-column data="activityName" title="projectDossier_viewPhysicalExecution_activityName">
+          </sc-column>
+          <sc-column data="statusDesc" title="projectDossier_viewPhysicalExecution_activityStatusDesc">
+          </sc-column>
+          <sc-column data="startDate" title="projectDossier_viewPhysicalExecution_activityStartDate" type="date">
+          </sc-column>
+          <sc-column data="endDate" title="projectDossier_viewPhysicalExecution_activityEndDate" type="date">
+          </sc-column>
+          <sc-column data="amount" title="projectDossier_viewPhysicalExecution_activityAmount" type="money">
+          </sc-column>
+          <sc-column data="totalAmount" title="projectDossier_viewPhysicalExecution_activityTotalAmount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier last-section">
+      <div class="panel-heading" ng-click="showIndicators=!showIndicators" style="cursor:pointer;">
+        <span l10n-text="projectDossier_viewPhysicalExecution_indicators"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showIndicators, 'glyphicon-chevron-right': !showIndicators}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showIndicators" ng-href="{{indicatorsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewPhysicalExecution_indicatorExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showIndicators" items="indicators" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+          <sc-column data="contractRegNum" title="projectDossier_viewPhysicalExecution_indicatorContractRegNum">
+          </sc-column>
+          <sc-column data="indicatorName" title="projectDossier_viewPhysicalExecution_indicatorName">
+          </sc-column>
+          <sc-column data="measureName" title="projectDossier_viewPhysicalExecution_indicatorMeasureName">
+          </sc-column>
+          <sc-column data="baseTotal" title="projectDossier_viewPhysicalExecution_indicatorBaseTotal" type="number">
+          </sc-column>
+          <sc-column data="targetTotal" title="projectDossier_viewPhysicalExecution_indicatorTargetTotal" type="number">
+          </sc-column>
+          <sc-column data="cumulativeAmount" title="projectDossier_viewPhysicalExecution_indicatorCumulativeAmount" type="number">
+          </sc-column>
+          <sc-column data="approvedCumulativeAmount" title="projectDossier_viewPhysicalExecution_indicatorApprovedCumulativeAmount" type="number">
+          </sc-column>
+          <sc-column data="correctedApprovedCumulativeAmountTotal" title="projectDossier_viewPhysicalExecution_indicatorCorrectedApprovedCumulativeAmountTotal" type="number">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.email" l10n-text="contracts_contractAccessCodesForm_email" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-if="showAccessCode" ng-model="model.code" l10n-text="contracts_contractAccessCodesForm_code" class="col-sm-2 col-md-1"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isActive" mode="id" l10n-text="contracts_contractAccessCodesForm_isActive" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.firstName" l10n-text="contracts_contractAccessCodesForm_firstName" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.lastName" l10n-text="contracts_contractAccessCodesForm_lastName" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.position" l10n-text="contracts_contractAccessCodesForm_position" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.identifier" l10n-text="contracts_contractAccessCodesForm_identifier" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" l10n-text="contracts_contractAccessCodesForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" l10n-text="contracts_contractAccessCodesForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-sm-12">
+    <h5 class="table-header table-header-first" l10n-text="contracts_contractAccessCodesForm_permissions"></h5>
+      <table class="table table-striped table-bordered" style="width: 48.7%;">
+        <thead>
+          <tr>
+            <th></th>
+            <th l10n-text="contracts_contractAccessCodesForm_read" style="text-align: center;"></th>
+            <th l10n-text="contracts_contractAccessCodesForm_write" style="text-align: center;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_contracts"></td>
+            <td>{{model.permissions.canReadContracts ? yesText : noText}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_communication"></td>
+            <td>{{model.permissions.canReadCommunication ? yesText : noText}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_procurements"></td>
+            <td>{{model.permissions.canReadProcurements ? yesText : noText}}</td>
+            <td>{{model.permissions.canWriteProcurements ? yesText : noText}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_spendingPlans"></td>
+            <td>{{model.permissions.canReadSpendingPlan ? yesText : noText}}</td>
+            <td>{{model.permissions.canWriteSpendingPlan ? yesText : noText}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_technicalPlan"></td>
+            <td>{{model.permissions.canReadTechnicalPlan ? yesText : noText}}</td>
+            <td>{{model.permissions.canWriteTechnicalPlan ? yesText : noText}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_financialPlan"></td>
+            <td>{{model.permissions.canReadFinancialPlan ? yesText : noText}}</td>
+            <td>{{model.permissions.canWriteFinancialPlan ? yesText : noText}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_paymentRequest"></td>
+            <td>{{model.permissions.canReadPaymentRequest ? yesText : noText}}</td>
+            <td>{{model.permissions.canWritePaymentRequest ? yesText : noText}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_contractAccessCodesForm_microdata"></td>
+            <td>{{model.permissions.canReadMicrodata ? yesText : noText}}</td>
+            <td>{{model.permissions.canWriteMicrodata ? yesText : noText}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-form>

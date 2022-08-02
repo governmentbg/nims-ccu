@@ -1,0 +1,55 @@
+﻿@model R_10019.ProjectErrands
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ProjectErrandCollection != null && Model.ProjectErrandCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.ProjectErrandCollection.Count; i++)
+            {
+                <table class="project-errands">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="word-break: break-all">
+                                <strong>@ProjectErrand.Name</strong>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectErrandCollection[i].Name ?? string.Empty)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 35%;"><strong>@ProjectErrand.ErrandArea</strong></td>
+                            <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ProjectErrandCollection[i].ErrandArea ?? new R_10000.PrivateNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProjectErrand.ErrandLegalAct</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ProjectErrandCollection[i].ErrandLegalAct ?? new R_10000.PrivateNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProjectErrand.ErrandType</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ProjectErrandCollection[i].ErrandType ?? new R_10000.PrivateNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProjectErrand.Amount</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ProjectErrandCollection[i].Amount)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProjectErrand.PlanDate</strong></td>
+                            <td>
+                                @if (Model.ProjectErrandCollection[i].PlanDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ProjectErrandCollection[i].PlanDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <strong>@ProjectErrand.Description</strong>
+                                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectErrandCollection[i].Description ?? string.Empty)
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

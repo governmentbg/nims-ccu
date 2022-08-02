@@ -1,0 +1,19 @@
+﻿@model R_10051.BFPContractSAPData
+
+<div class="container">
+    <form>
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Private.BFPContract.ActionNames.PrintSAP, MVC.Private.BFPContract.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            <h2 class="section-heading">
+                @BFPContract.SAPData
+            </h2>
+            <section class="clearfix">
+                @Html.DisplayFor(m => m)
+            </section>
+        </form>
+    </div>
+</div>

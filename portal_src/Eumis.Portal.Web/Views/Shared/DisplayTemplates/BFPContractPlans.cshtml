@@ -1,0 +1,55 @@
+﻿@model R_10040.BFPContractPlans
+
+@if (Model != null)
+{
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ProjectErrand.Name</th>
+                    <th>@ProjectErrand.ErrandArea</th>
+                    <th>@ProjectErrand.ErrandLegalAct</th>
+                    <th>@ProjectErrand.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.BFPContractPlanCollection != null && Model.BFPContractPlanCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.BFPContractPlanCollection.Count; i++)
+                    {
+                        <tr>
+                            <td style="word-break: break-all">
+                                @Html.DisplayFor(m => m.BFPContractPlanCollection[i].Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                            </td>
+                            <td>
+                                <span class="filled-value">
+                                    @if (Model.BFPContractPlanCollection[i].ErrandArea != null)
+                                    {
+                                        <text>@Model.BFPContractPlanCollection[i].ErrandArea.Name</text>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.BFPContractPlanCollection[i].ErrandLegalAct)
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="history-table">
+                            <td colspan="4">
+                                <div class="history-table-wrapper clearfix">
+                                    @Html.DisplayFor(m => m.BFPContractPlanCollection[i])
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}

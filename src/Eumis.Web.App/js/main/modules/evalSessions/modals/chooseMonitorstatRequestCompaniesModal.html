@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="evalSessions_chooseMonitorstatRequestCompaniesModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="sendBtn" btn-click="send()" text="evalSessions_chooseMonitorstatRequestCompaniesModal_send" class="btn btn-primary btn-xs" icon="glyphicon-ok">
+      </sc-button>
+      <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_chooseMonitorstatRequestCompaniesModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div>
+      <sc-button name="chooseAllBtn" ng-show="hasChosenAll" btn-click="chooseAll()" text="evalSessions_chooseMonitorstatRequestCompaniesModal_all" class="btn btn-primary btn-sm pull-left" icon="glyphicon-ok">
+      </sc-button>
+      <sc-button name="removeAllBtn" ng-show="!hasChosenAll" btn-click="removeAll()" text="evalSessions_chooseMonitorstatRequestCompaniesModal_all" class="btn btn-primary btn-sm pull-left" icon="glyphicon-remove">
+      </sc-button>
+      <sc-datatable items="companies" filterable="true" pageable="true" sortable="true" dynamic-columns="true" table-control="tableControl">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+          <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+        </sc-column>
+        <sc-column data="companyName" title="evalSessions_chooseMonitorstatRequestCompaniesModal_companyName">
+        </sc-column>
+        <sc-column data="uin" title="evalSessions_chooseMonitorstatRequestCompaniesModal_companyUin">
+        </sc-column>
+        <sc-column sortable="false" width="30%" data="procedureMonitorstatRequestId" title="evalSessions_chooseMonitorstatRequestCompaniesModal_procedureMonitorstatRequest" has-content="true">
+          <sc-nomenclature alias="'procedureMonitorstatRequests'" mode="id" ng-model="item.procedureMonitorstatRequestId" params="{ identifier: projectId }" ng-readonly="!item.isChosen"></sc-nomenclature>
+        </sc-column>
+        <sc-column sortable="false" width="30%" data="projectVersionXmlFileId" title="evalSessions_chooseMonitorstatRequestCompaniesModal_declaration" has-content="true">
+          <sc-nomenclature alias="'projectVersionFiles'" mode="id" ng-model="item.projectVersionXmlFileId" params="{ projectVersionXmlId: projectVersionXmlId }" ng-readonly="!item.isChosen"></sc-nomenclature>
+        </sc-column>
+        <sc-column sortable="false" width="30%" data="projectVersionXmlFileId" title="evalSessions_chooseMonitorstatRequestCompaniesModal_eDeclaration" has-content="true">
+          <sc-nomenclature alias="'nsiDeclarations'" mode="id" ng-model="item.programmeDeclarationId" params="{ providedId: projectVersionXmlId }" ng-readonly="!item.isChosen"></sc-nomenclature>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+
+  <div class="modal-body message-modal-body" ng-show="errors.length > 0">
+    <div>
+      <h5 l10n-text="common_modals_validationErrorsModal_hasErrors"></h5>
+      <pre ng-repeat="err in errors">{{'- ' + err}}</pre>
+    </div>
+  </div>
+
+</div>

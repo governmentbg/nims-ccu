@@ -1,0 +1,59 @@
+﻿@model R_10045.PaymentRequest
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }), "Пакет отчетни документи")
+}, "Преглед")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader, @Global.PaymentRequest № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.PaymentRequest, MVC.Report.PaymentRequest.ActionNames.Prepare, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Report.PaymentRequest.ActionNames.Display, MVC.Report.PaymentRequest.Name, new { area = MVC.Report.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Report.PaymentRequest.ActionNames.Print, MVC.Report.PaymentRequest.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Report.PaymentRequest.ActionNames.Prepare, MVC.Report.PaymentRequest.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Report.PaymentRequest.ActionNames.Prepare, MVC.Report.PaymentRequest.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Report.PaymentRequest.ActionNames.Prepare, MVC.Report.PaymentRequest.Name, null, new { @class = "blue-button small back left" })
+                @if (Model.CanEnterErrors == null || Model.CanEnterErrors.Count == 0)
+                {
+                    @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Report.PaymentRequest.ActionNames.Submit, MVC.Report.PaymentRequest.Name, null, new { @class = "blue-button wait" })
+                }
+            </div>
+
+            @if (Model.CanEnterErrors != null && Model.CanEnterErrors.Count > 0)
+            {
+                <div class="validation-summary-errors" style="margin-top:20px;">
+                    <ul>
+                        @foreach (var error in Model.CanEnterErrors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

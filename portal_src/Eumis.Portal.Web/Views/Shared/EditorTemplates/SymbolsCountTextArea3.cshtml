@@ -1,0 +1,4 @@
+﻿@model String
+
+<span style="top: -15px; right: 15px; display: block; position: absolute;"><span symbols-target="@Html.GetNameFor(m=>m)"></span></span>
+@Html.TextAreaFor(m => m, new { @class = "form-control symbols-count", rows = "3", @style = "height:85px;" })

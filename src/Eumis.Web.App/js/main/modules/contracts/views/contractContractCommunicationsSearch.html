@@ -1,0 +1,22 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newCommunicationBtn" btn-click="newContractCommunication()" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" text="contracts_communications_search_new"
+               ng-disabled="!$canDo('ContractActions.CreateAdminAuthorityCommunication', contractId)"></sc-button>
+
+    <sc-link-button ng-href="{{contractCommunicationsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                    icon="fa-file-excel-o fa-lg fa-fw" text="contracts_communications_search_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contractCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.communications.edit', params: { ind: item.contractCommunicationXmlId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ContractCommunicationActions.View', item.contractCommunicationXmlId)"></sc-button>
+      </sc-column>
+      <sc-column data="status" title="contracts_communications_search_status"></sc-column>
+      <sc-column data="source" title="contracts_communications_search_source"></sc-column>
+      <sc-column data="regNumber" title="contracts_communications_search_regNumber"></sc-column>
+      <sc-column data="subject" title="contracts_communications_search_subject"></sc-column>
+      <sc-column data="sendDate" title="contracts_communications_search_sendDate" type="datetime"></sc-column>
+      <sc-column data="readDate" title="contracts_communications_search_readDate" type="datetime"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.csd" l10n-text="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_csd" class="col-sm-6"></sc-field>
+        <sc-field type="text" ng-model="filters.company" l10n-text="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_company" class="col-sm-4"></sc-field>
+        <div class="labeless col-sm-2">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-datatable items="contractReportFinancialRevalidationCSDs" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportFinancialRevalidations.view.revalidatedCsds.edit', params: { ind: item.contractReportFinancialRevalidationCSDId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportFinancialRevalidationActions.View', contractReportFinancialRevalidationId)"></sc-button>
+      </sc-column>
+      <sc-column data="csd" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_csd"></sc-column>
+      <sc-column data="budgetDetailName" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_budgetDetail"></sc-column>
+      <sc-column data="contractActivityName" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_contractActivity"></sc-column>
+
+      <sc-column data="status" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_status"></sc-column>
+      <sc-column data="costSupportingDocumentApproved" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_approval" type="boolean"></sc-column>
+      <sc-column data="sign" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_sign"></sc-column>
+
+      <sc-column data="approvedEuAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_euAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_approvedAmount" type="money"></sc-column>
+      <sc-column data="approvedBgAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_bgAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_approvedAmount" type="money"></sc-column>
+      <sc-column data="approvedSelfAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_selfAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_approvedAmount" type="money"></sc-column>
+      <sc-column data="approvedTotalAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_totalAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_approvedAmount" type="money"></sc-column>
+
+      <sc-column data="revalidatedEuAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_euAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_revalidatedAmount" type="money"></sc-column>
+      <sc-column data="revalidatedBgAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_bgAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_revalidatedAmount" type="money"></sc-column>
+      <sc-column data="revalidatedSelfAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_selfAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_revalidatedAmount" type="money"></sc-column>
+      <sc-column data="revalidatedTotalAmount" title="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_totalAmount"
+        col-group="contractReportFinancialRevalidations_contractReportFinancialRevalidationsCorrectedCSDsSearch_revalidatedAmount" type="money"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

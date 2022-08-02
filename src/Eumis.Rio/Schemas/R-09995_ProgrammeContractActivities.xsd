@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-09995" 
+	xmlns="http://ereg.egov.bg/segment/R-09995" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	xmlns:ca="http://ereg.egov.bg/segment/R-10011"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10011" />
+	
+	<xsd:complexType name="ProgrammeContractActivities">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">План по програма за изпълнение на Дейности на договор за БФП</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="ContractActivity" type="ca:ContractActivity" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+    
+    <xsd:attribute name="programmeCode" type="xsd:string"/>
+    <xsd:attribute name="programmeName" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>

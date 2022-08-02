@@ -1,0 +1,89 @@
+﻿@model R_10044.Team
+@using Eumis.Common.Helpers
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@TechnicalReportTeamMember.Name</th>
+                <th>@TechnicalReportTeamMember.Position</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.TeamMemberCollection != null)
+            {
+                foreach (var item in Model.TeamMemberCollection)
+                {
+                    <tr>
+                        <td style="word-break: break-all">
+                            @item.Name
+                        </td>
+                        <td style="word-break: break-all">
+                            @item.Position
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="3">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="clearfix">
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label>@TechnicalReportTeamMember.Name</label>
+                                        @Html.DisplayFor(m => item.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label>@TechnicalReportTeamMember.Position</label>
+                                        @Html.DisplayFor(m => item.Position, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportTeamMember.UinType</label>
+                                        @Html.DisplayFor(m => item.UinType)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportTeamMember.Uin</label>
+                                        @Html.DisplayFor(m => item.Uin)
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportTeamMember.CommitmentType</label>
+                                        @Html.DisplayFor(m => item.CommitmentType)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportTeamMember.Date</label>
+                                        @Html.DisplayFor(m => item.Date)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@TechnicalReportTeamMember.Hours</label>
+                                        @Html.DisplayFor(m => item.Hours, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@TechnicalReportTeamMember.Activity</label>
+                                    @Html.DisplayFor(m => item.Activity, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@TechnicalReportTeamMember.Result</label>
+                                    @Html.DisplayFor(m => item.Result, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

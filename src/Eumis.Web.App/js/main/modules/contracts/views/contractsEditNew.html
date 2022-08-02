@@ -1,0 +1,44 @@
+<div>
+  <label class="title">{{contract.name}}</label>
+
+  <sc-tabs tab-list="{'contracts_tabs_edit': 'root.contracts.editNew'}"></sc-tabs>
+
+  <div class="tab-content">
+    <ng-form name="editEvalSessionForm" sc-validate="{}" sc-form-readonly="true">
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <strong class="heading" l10n-text="contracts_editContract_title"></strong>
+
+          <div class="pull-right">
+            <sc-button name="draftBtn" ng-show="canSetToDraft" btn-click="setToDraft()" text="contracts_editContract_draft" class="btn btn-success btn-xs"
+              ng-disabled="!$canDo('ContractActions.ChangeStatusToDraft', contract.contractId)">
+            </sc-button>
+            <sc-button name="checkBtn" ng-show="canCheck" btn-click="check()" text="contracts_editContract_check" class="btn btn-primary btn-xs"
+              ng-disabled="!$canDo('ContractActions.MarkAsChecked', contract.contractId)">
+            </sc-button>
+            <sc-button name="deleteBtn" btn-click="del()" text="contracts_editContract_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="canDelete"
+              ng-disabled="!$canDo('ContractActions.Edit', contract.contractId)">
+            </sc-button>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <h5 class="table-header table-header-first" l10n-text="contracts_editContract_contractData"></h5>
+          <eumis-contract-data name="contractDataForm" ng-model="contract"></eumis-contract-data>
+
+          <div class="row">
+            <eumis-structured-document text="contracts_editContract_contractTemplate" document="contractVersion" gid="contract.version.gid"
+                                       readonly="contract.version.status !== 'draft' || !$canDo('ContractVersionActions.Edit', contract.version.versionId)"
+                                       class="col-sm-4 col-md-3" doc-updated="docUpdated">
+            </eumis-structured-document>
+            <sc-field type="nomenclature" alias="'contractVersionStatuses'" mode="id" ng-model="contract.version.status" ng-readonly="true" l10n-text="contracts_editContract_contractStatus" class="col-sm-4 col-md-3"></sc-field>
+          </div>
+
+          <h5 class="table-header" l10n-text="contracts_editContract_beneficiary"></h5>
+          <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="contract"></eumis-contract-beneficiary>
+
+        </div>
+      </div>
+    </ng-form>
+  </div>
+</div>

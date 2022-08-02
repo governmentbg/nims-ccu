@@ -1,0 +1,55 @@
+﻿@model R_10052.TechnicalReportBasicData
+
+@if (Model != null)
+{
+    if (Model.Procedure != null)
+    {
+        <div class="form-group col-md-9">
+            @Html.LabelFor(m => m.Procedure.Name, TechnicalReportBasicData.ProcedureName)
+            @Html.DisplayFor(m => m.Procedure.Name)
+        </div>
+        <div class="form-group col-md-3">
+            @Html.LabelFor(m => m.Procedure.Code, TechnicalReportBasicData.ProcedureCode)
+            @Html.DisplayFor(m => m.Procedure.Code)
+        </div>
+    }
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.ProjectName, TechnicalReportBasicData.ProjectName)
+        @Html.DisplayFor(m => m.ProjectName)
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-12">
+            <label>@TechnicalReportBasicData.Beneficiary</label>
+            @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.CompanyUinName)
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.PartnerCollection, TechnicalReportBasicData.PartnerNames)
+        @if (Model.PartnerCollection != null)
+        {
+            foreach (var partner in Model.PartnerCollection)
+            {
+                @Html.DisplayFor(m => partner, MVC.Shared.Views.DisplayTemplates.CompanyUinName)
+            }
+        }
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-12">
+            <label>@TechnicalReportBasicData.ExecutionPeriod</label>
+            <span class="filled-value">
+                @if (Model.ExecutionPeriodStartDate.HasValue)
+                {
+                    <text>@TechnicalReportBasicData.ExecutionPeriodStartDate @Model.ExecutionPeriodStartDate.Value.ToString("dd.MM.yyyy")</text>
+                }
+                @if (Model.ExecutionPeriodEndDate.HasValue)
+                {
+                    <text>@TechnicalReportBasicData.ExecutionPeriodEndDate @Model.ExecutionPeriodEndDate.Value.ToString("dd.MM.yyyy")</text>
+                }
+            </span>
+        </div>
+    </div>
+}

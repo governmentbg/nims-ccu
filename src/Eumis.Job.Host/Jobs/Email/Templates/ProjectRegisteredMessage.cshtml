@@ -1,0 +1,30 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+  string portalUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Job.Host:PortalUrl");
+  string procCode = (string)Model["procCode"];
+  string procName = (string)Model["procName"];
+  string programmeName = (string)Model["programmeName"];
+  string companyName = (string)Model["companyName"];
+  string projectName = (string)Model["projectName"];
+  string projectRegNumber = (string)Model["projectRegNumber"];
+  string email = (string)Model["email"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">Вашето проектно предложение по схема за кандидатстване: @procCode - @procName, Основна организация @programmeName, с кандидат @companyName и наименование: <strong>@projectName</strong>, беше прието успешно от системата.</p>
+
+<p style="margin-bottom: 15px;">Входящ регистрационен номер: <strong>@projectRegNumber</strong></p>
+
+<p style="margin-bottom: 15px;">Проектното Ви предложение се съхранява в раздел „Подадени“ на менюто „Проектни предложения“ в системата на адрес <a href="@(portalUrl)">@portalUrl</a> и профила, асоцииран с имейл адрес <strong>@email</strong>.</p>
+
+<p style="margin-bottom: 15px;color: red;">Ако по време на етап "Оценка на проектни предложения" към Вас възникне въпрос от оценителната комисия, своевременно ще бъдете уведомен чрез настоящия имейл адрес и профила, асоцииран с него. Всички въпроси може да намерите в меню "Проектни предложения", от където ще имате възможност и за отговор.</p>
+
+<p style="margin-bottom: 15px;"><strong>Внимание</strong>: <span style="color: red;">Всички въпроси имат зададен от оценителната комисия срок за отговор, поради което е необходимо периодично да проверявате имейл адреса си и профила, асоцииран с него. След този срок въпросите ще бъдат затворени и системата няма да Ви позволи да извършвате каквито и да било действия освен „Преглед“.</span></p>
+
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">Поздрави, <br/>
+Екипът на СУНИ</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br/>

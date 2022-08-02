@@ -1,0 +1,31 @@
+﻿@model R_10080.Offer
+
+@if (Model != null)
+{
+    int sectionNumber = 1;
+    <h3>
+        @sectionNumber. @Offer.BasicData
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.OfferBasicData, Model.BasicData ?? new R_10079.OfferBasicData())
+    </section>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @Offer.Candidate
+    </h3>
+    <section>
+        @Html.Partial(MVC.Shared.Views.Print.OfferCompany, Model.Candidate ?? new R_10004.Company())
+    </section>
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @Offer.PackageDocuments
+    </h3>
+    if (Model.AttachedDocuments != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.OfferAttachedDocuments, Model.AttachedDocuments ?? new R_10080.OfferAttachedDocuments())
+        </section>
+    }
+}

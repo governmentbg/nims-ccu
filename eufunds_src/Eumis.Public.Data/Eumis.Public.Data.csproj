@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{907D99C1-4B7E-4BD0-AA5C-FC51AAAAAC52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Public.Data</RootNamespace>
+    <AssemblyName>Eumis.Public.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.eufunds.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.Attributed, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.Attributed.3.3.0\lib\net40\Autofac.Extras.Attributed.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mef, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mef.3.0.3\lib\net40\Autofac.Integration.Mef.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calendar\Repositories\CalendarsRepository.cs" />
+    <Compile Include="Calendar\Repositories\ICalendarsRepository.cs" />
+    <Compile Include="Calendar\ViewObjects\EventSummaryVO.cs" />
+    <Compile Include="Calendar\ViewObjects\EventVO.cs" />
+    <Compile Include="Companies\ViewObjects\CompanyProjectsVO.cs" />
+    <Compile Include="Companies\ViewObjects\PartnerProjectsVO.cs" />
+    <Compile Include="Companies\ViewObjects\ProjectDetailsVO.cs" />
+    <Compile Include="ContractContracts\Repositories\ContractContractsRepository.cs" />
+    <Compile Include="ContractContracts\Repositories\IContractContractsRepository.cs" />
+    <Compile Include="ContractContracts\ViewObjects\ContractContractVO.cs" />
+    <Compile Include="Contracts\Repositories\ContractsRepository.cs" />
+    <Compile Include="Contracts\Repositories\IContractsRepository.cs" />
+    <Compile Include="Core\AggregateRepository.cs" />
+    <Compile Include="Core\DataException.cs" />
+    <Compile Include="Core\DataObjectNotFoundException.cs" />
+    <Compile Include="Core\DataUpdateConcurrencyException.cs" />
+    <Compile Include="Core\IAggregateRepository.cs" />
+    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\LoggingDbCommandInterceptor.cs" />
+    <Compile Include="Core\LoggingDbContext.cs" />
+    <Compile Include="Core\Nomenclatures\EntityCodeNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EntityCodeNomVO.cs" />
+    <Compile Include="Core\Nomenclatures\EntityNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\EntityNomVO.cs" />
+    <Compile Include="Core\Nomenclatures\IEntityCodeNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\IEntityNomsRepository.cs" />
+    <Compile Include="Core\Nomenclatures\IEntitySuggestionsRepository.cs" />
+    <Compile Include="Core\Repository.cs" />
+    <Compile Include="Core\UnitOfWork.cs" />
+    <Compile Include="DataModule.cs" />
+    <Compile Include="ExecutedContracts\Repositories\ExecutedContractsRepository.cs" />
+    <Compile Include="ExecutedContracts\Repositories\IExecutedContractsRepository.cs" />
+    <Compile Include="Linq\EnumerableExtensions.cs" />
+    <Compile Include="Linq\ExpressionExpander.cs" />
+    <Compile Include="Linq\ExpressionExpanderExtensions.cs" />
+    <Compile Include="Linq\ExpressionExtensions.cs" />
+    <Compile Include="Linq\ExpressionHelper.cs" />
+    <Compile Include="Linq\ExpressionParameterRebinder.cs" />
+    <Compile Include="Linq\PredicateBuilder.cs" />
+    <Compile Include="Linq\QueryableExtensions.cs" />
+    <Compile Include="ProgrammeGroups\Repositories\IProgrammeGroupsRepository.cs" />
+    <Compile Include="ProgrammeGroups\Repositories\ProgrammeGroupsRepository.cs" />
+    <Compile Include="Procedures\Repositories\IProceduresRepository.cs" />
+    <Compile Include="Procedures\Repositories\ProceduresRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Companies\Repositories\CompaniesRepository.cs" />
+    <Compile Include="Companies\Repositories\ICompaniesRepository.cs" />
+    <Compile Include="Repositories\IInfrastructureRepository.cs" />
+    <Compile Include="Repositories\IMapsRepository.cs" />
+    <Compile Include="Repositories\INomenclatureRepository.cs" />
+    <Compile Include="Repositories\IUmisRepository.cs" />
+    <Compile Include="UmisVOs\ActuallyPaidAmountsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractActivitiesVO.cs" />
+    <Compile Include="UmisVOs\IndicativeAnnualWorkingProgrammeTableVO.cs" />
+    <Compile Include="UmisVOs\IndicativeAnnualWorkingProgrammeVO.cs" />
+    <Compile Include="UmisVOs\ContractActivityVO.cs" />
+    <Compile Include="UmisVOs\ContractBeneficiaryWithoutFinancialCorrectionsVO.cs" />
+    <Compile Include="UmisVOs\ContractDifferentiatedPositionVO.cs" />
+    <Compile Include="UmisVOs\ContractedFundsByAidModeVO.cs" />
+    <Compile Include="UmisVOs\ContractedFundsByYearAndSourceWrapperVO.cs" />
+    <Compile Include="UmisVOs\EvalSessionPreliminaryProjectVO.cs" />
+    <Compile Include="UmisVOs\EvalSessionResultProjectVO.cs" />
+    <Compile Include="UmisVOs\EvalSessionResultVO.cs" />
+    <Compile Include="UmisVOs\EvalSessionStandingProjectVO.cs" />
+    <Compile Include="ProgrammeGroups\ViewObjects\FinanceSourceBudgetTotalsVO.cs" />
+    <Compile Include="ExecutedContracts\ViewObjects\ExecutedContractVO.cs" />
+    <Compile Include="UmisVOs\FinancialCorrectionVO.cs" />
+    <Compile Include="UmisVOs\OpenDataVO.cs" />
+    <Compile Include="UmisVOs\OperationalProgramGroupVO.cs" />
+    <Compile Include="UmisVOs\OperationalProgramsVO.cs" />
+    <Compile Include="UmisVOs\OperationalProgramTotalsVO.cs" />
+    <Compile Include="UmisVOs\Operations508ReportVO.cs" />
+    <Compile Include="UmisVOs\OPStatisticsVO.cs" />
+    <Compile Include="UmisVOs\PPByProcedureChildVO.cs" />
+    <Compile Include="UmisVOs\PPFundsWithProcedureFundsVO.cs" />
+    <Compile Include="Procedures\ViewObjects\ProcedureVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeBudgetBySourceChildVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeBudgetWithContractedAndPayedChildVO.cs" />
+    <Compile Include="ProgrammeGroups\ViewObjects\ProgrammeBudgetTotalsVO.cs" />
+    <Compile Include="ProgrammeGroups\ViewObjects\ProgrammeFinanceSourceBudgetsVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeGroupsVO.cs" />
+    <Compile Include="UmisVOs\PaidAmountsByYearVO.cs" />
+    <Compile Include="UmisVOs\ProgrammesProceduresStatisticsVO.cs" />
+    <Compile Include="UmisVOs\EvalSessionAdminAdmissProjectVO.cs" />
+    <Compile Include="UmisVOs\ProgrammePrioritiesSummarizedDataVO.cs" />
+    <Compile Include="UmisVOs\ProjectPageVO.cs" />
+    <Compile Include="UmisVOs\ProjectsSummarizedDataVO.cs" />
+    <Compile Include="UmisVOs\ProjectProposalWrapperVO.cs" />
+    <Compile Include="UmisVOs\ProjectStatisticsVO.cs" />
+    <Compile Include="UmisVOs\ProjectStatisticsWrapperVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractCommonVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractFinancialInformationVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractIndicatorsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractParticipantsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractProcurementsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\PrintVO.cs" />
+    <Compile Include="UmisVOs\UserStatisticsVO.cs" />
+    <Compile Include="UmisVOs\UsersCountVO.cs" />
+    <Compile Include="UmisVOs\ContractedFundsByYearAndSourceVO.cs" />
+    <Compile Include="UmisVOs\ProjectProposalVO.cs" />
+    <Compile Include="UmisVOs\OfferVO.cs" />
+    <Compile Include="UmisVOs\ContractIndicatorVO.cs" />
+    <Compile Include="UmisVOs\StatisticIndicatorVO.cs" />
+    <Compile Include="UmisVOs\StatisticContractVO.cs" />
+    <Compile Include="UmisVOs\RegionVO.cs" />
+    <Compile Include="UmisVOs\CompanyVO.cs" />
+    <Compile Include="UmisVOs\ContractBeneficiaryVO.cs" />
+    <Compile Include="UmisVOs\ContractSubcontractorVO.cs" />
+    <Compile Include="UmisVOs\ContractContractorVO.cs" />
+    <Compile Include="UmisVOs\ContractPartnerVO.cs" />
+    <Compile Include="UmisVOs\ContractDetailsVO.cs" />
+    <Compile Include="UmisVOs\ContractVO.cs" />
+    <Compile Include="UmisVOs\PageVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeBudgetBySourceVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeBudgetDetailedVO.cs" />
+    <Compile Include="UmisVOs\ProgrammeBudgetWithContractedAndPayedVO.cs" />
+    <Compile Include="Repositories\InfrastructureRepository.cs" />
+    <Compile Include="Repositories\MapsRepository.cs" />
+    <Compile Include="Repositories\UmisRepository.cs" />
+    <Compile Include="Repositories\NomenclatureRepository.cs" />
+    <Compile Include="UmisVOs\Select2VO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Public.Common\Eumis.Public.Common.csproj">
+      <Project>{37af0238-0356-4b8d-97fa-7d6fef00c48d}</Project>
+      <Name>Eumis.Public.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Domain\Eumis.Public.Domain.csproj">
+      <Project>{4adbf91a-047e-46ad-b14c-d09ccb9055db}</Project>
+      <Name>Eumis.Public.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Public.Resources\Eumis.Public.Resources.csproj">
+      <Project>{F5D0CB10-74C0-4A84-8EE5-BD8278C1A68A}</Project>
+      <Name>Eumis.Public.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.4\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.4\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

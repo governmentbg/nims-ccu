@@ -1,0 +1,88 @@
+<ng-form name="editNotificationSetting" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="users_notificationSettings_view_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="cancel()" text="regDataRequestModal_ok"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-notification-setting name="notificationSettingForm" ng-model="userNotificationSetting"></eumis-notification-setting>
+    </div>
+  </div>
+</ng-form>
+
+<div class="panel panel-default" ng-if="userNotificationSetting.scope === 'programme'">
+  <div class="panel-body">
+    <h5 class="table-header table-header-first pull-left" l10n-text="users_notificationSettings_programmes"></h5>
+    <sc-datatable items="attachedProgrammes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedProgrammes_name">
+      </sc-column>
+      <sc-column data="code" title="notificationSetting_notificationSettingAttachedProgrammes_code">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>
+
+<div class="panel panel-default" ng-if="userNotificationSetting.scope === 'programmePriority'">
+  <div class="panel-body">
+    <h5 class="table-header table-header-first pull-left" l10n-text="users_notificationSettings_programmePriorities"></h5>
+    <sc-datatable items="attachedProgrammePriorities" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedpPriorities_name">
+      </sc-column>
+      <sc-column data="code" title="notificationSetting_notificationSettingAttachedpPriorities_code">
+      </sc-column>
+      <sc-column data="programmeName" title="notificationSetting_notificationSettingAttachedpPriorities_programmeName">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>
+
+<div class="panel panel-default" ng-if="userNotificationSetting.scope === 'procedure'">
+  <div class="panel-body">
+    <h5 class="table-header table-header-first pull-left" l10n-text="users_notificationSettings_procedures"></h5>
+    <sc-datatable items="attachedProcedures" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column data="code" title="notificationSetting_notificationSettingAttachedProcedures_code">
+      </sc-column>
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedProcedures_name" width="30%">
+      </sc-column>
+      <sc-column data="programmeNames" title="notificationSetting_notificationSettingAttachedProcedures_programme" width="20%" has-content="true">
+        {{item.programmeNames | join:', '}}
+      </sc-column>
+      <sc-column data="activationDate" title="notificationSetting_notificationSettingAttachedProcedures_activationDate" type="date" width="9%">
+      </sc-column>
+      <sc-column data="status" title="notificationSetting_notificationSettingAttachedProcedures_status">
+      </sc-column>
+      <sc-column data="euAmount" title="notificationSetting_notificationSettingAttachedProcedures_euAmount" type="money">
+      </sc-column>
+      <sc-column data="bgAmount" title="notificationSetting_notificationSettingAttachedProcedures_bgAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>
+
+<div class="panel panel-default" ng-if="userNotificationSetting.scope === 'contract'">
+  <div class="panel-body">
+    <h5 class="table-header table-header-first pull-left" l10n-text="users_notificationSettings_contracts"></h5>
+    <sc-datatable items="attachedContracts" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column data="procedureName" title="notificationSetting_notificationSettingAttachedContracts_procedure">
+      </sc-column>
+      <sc-column data="regNumber" title="notificationSetting_notificationSettingAttachedContracts_regNumber">
+      </sc-column>
+      <sc-column data="contractDate" title="notificationSetting_notificationSettingAttachedContracts_contractDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedContracts_name">
+      </sc-column>
+      <sc-column data="executionStatus" title="notificationSetting_notificationSettingAttachedContracts_executionStatus">
+      </sc-column>
+      <sc-column data="company" title="notificationSetting_notificationSettingAttachedContracts_company">
+      </sc-column>
+      <sc-column data="totalBfpAmount" title="notificationSetting_notificationSettingAttachedContracts_totalBfpAmount" type="money">
+      </sc-column>
+      <sc-column data="totalSelfAmount" title="notificationSetting_notificationSettingAttachedContracts_totalSelfAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

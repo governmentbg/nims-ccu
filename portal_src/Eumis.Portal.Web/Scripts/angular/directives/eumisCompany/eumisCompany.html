@@ -1,0 +1,139 @@
+﻿<div class="clearfix">
+    <div class="form-group col-md-3">
+        <label>{{resources.UinType}}</label>
+        <sc-nomenclature ng-readonly="partner.disableSearch" ng-class="{'input-validation-error': !partner.IsUinTypeValid}" sc-alias="GetUinTypes" ng-model="partner.UinType">
+        </sc-nomenclature>
+        <input ng-class="{'input-validation-error': !partner.IsUinTypeValid}" value="{{ partner.UinType.id }}" name="{{path}}.UinType.id" type="hidden" class="validation-error-key" />
+        <input value="{{ partner.UinType.Name }}" name="{{path}}.UinType.Name" type="hidden" />
+        <input value="{{ partner.UinType.NameEN }}" name="{{path}}.UinType.NameEN" type="hidden" />
+    </div>
+    <div class="form-group col-md-2">
+        <label>{{resources.Uin}}</label>
+        <input ng-readonly="partner.disableSearch" ng-class="{'input-validation-error': !partner.IsUinValid}" ng-model="partner.Uin" name="{{path}}.Uin" type="text" class="form-control">
+    </div>
+    <!--<div class="form-group col-md-4" ng-if="!partner.disableSearch">
+        <div style="height:30px; width:100%"></div>
+
+        <a href="" class="search-bulstat-btn" ng-click='searchCompany()' ng-show="partner.isSearch">{{resources.Search}}</a>
+
+        <div ng-show="partner.isPleaseWait">
+            <img src="/Content/img/loader_h26.gif" alt="" />
+            {{resources.PleaseWait}}
+        </div>
+        <div ng-show="partner.isOK">
+            <img src="/Content/img/icons/success.png" class="success" alt="" style="display:inline-block;" />
+            <span>{{resources.DataFilled}}</span>
+        </div>
+        <div ng-show="partner.isNoResult">
+            <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+            <span>{{resources.NoResult}}</span>
+        </div>
+        <div ng-show="partner.isValidationError">
+            <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+            <span>{{resources.ValidationError}}</span>
+        </div>
+    </div>-->
+</div>
+
+<div class="clearfix">
+    <div class="form-group col-lg-12 col-md-12">
+        <label>{{resources.Name}}</label>
+        <textarea symbols-count count-text="{{ resources.SymbolsCount }}" ng-class="{'input-validation-error': !partner.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="partner.Name" name="{{path}}.Name" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group col-lg-12 col-md-12">
+        <label>
+            {{resources.NameEN}}
+        </label>
+        <textarea symbols-count count-text="{{ resources.SymbolsCount }}" ng-class="{'input-validation-error': !partner.IsNameEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="partner.NameEN" name="{{path}}.NameEN" class="form-control"></textarea>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-lg-4 col-md-6">
+            <label>{{resources.CompanyType}}</label>
+            <sc-nomenclature ng-class="{'input-validation-error': !partner.IsCompanyTypeValid}" sc-alias="GetCompanyTypes" ng-model="partner.CompanyType">
+            </sc-nomenclature>
+            <input ng-class="{'input-validation-error': !partner.IsCompanyTypeValid}" value="{{ partner.CompanyType.id }}" name="{{path}}.CompanyType.id" type="hidden" class="validation-error-key" />
+            <input value="{{ partner.CompanyType.Name }}" name="{{path}}.CompanyType.Name" type="hidden" />
+            <input value="{{ partner.CompanyType.NameEN }}" name="{{path}}.CompanyType.NameEN" type="hidden" />
+        </div>
+
+        <div class="form-group col-lg-4 col-md-6">
+            <label>{{resources.CompanyLegalType}}</label>
+            <sc-nomenclature ng-class="{'input-validation-error': !partner.IsCompanyLegalTypeValid}" sc-alias="GetCompanyLegalTypes" sc-parent-id="partner.CompanyType.id" ng-model="partner.CompanyLegalType">
+            </sc-nomenclature>
+            <input ng-class="{'input-validation-error': !partner.IsCompanyLegalTypeValid}" value="{{ partner.CompanyLegalType.id }}" name="{{path}}.CompanyLegalType.id" type="hidden" class="validation-error-key" />
+            <input value="{{ partner.CompanyLegalType.Name }}" name="{{path}}.CompanyLegalType.Name" type="hidden" />
+            <input value="{{ partner.CompanyLegalType.NameEN }}" name="{{path}}.CompanyLegalType.NameEN" type="hidden" />
+        </div>
+    </div>
+    <div ng-if="!partner.isCandidate">
+        <div class="clearfix"></div>
+        <div class="form-group col-lg-3 col-md-6">
+            <label>{{resources.FinancialContribution}}</label>
+            <input ng-model="partner.FinancialContribution" type="text" name="{{path}}.FinancialContribution" class="form-control sum-field" money />
+        </div>
+    </div>
+</div>
+
+<h3>{{resources.Seat}}</h3>
+
+<eumis-address path="{{path}}.Seat"
+               bg-code="{{bgCode}}"
+               ng-model="partner.Seat"
+               resources="resources"
+               show-management="true">
+</eumis-address>
+
+<div class="form-group col-lg-12">
+    <label ng-click="copySeatAddress()" style="cursor:pointer; margin-bottom: 10px;"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> {{resources.Copy}}</label>
+</div>
+
+<h3>{{resources.Correspondence}}</h3>
+
+<eumis-address path="{{path}}.Correspondence"
+               bg-code="{{bgCode}}"
+               ng-model="partner.Correspondence"
+               resources="resources"
+               show-management="false">
+</eumis-address>
+
+<div class="clearfix">
+    <div class="form-group col-lg-4 col-md-6">
+        <label>
+            {{resources.Email}}
+            <img ng-if="partner.isCandidate" class="info-icon" info-icon src="/Content/img/icons/info.png" data-placement="right" data-toggle="popover" data-content="{{resources.EmailTooltip}}" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <input ng-if="partner.isCandidate" ng-class="{'input-validation-error': !partner.IsEmailValid}" ng-model="partner.Email" type="text" name="{{path}}.Email" class="form-control" readonly />
+        <input ng-if="!partner.isCandidate" ng-class="{'input-validation-error': !partner.IsEmailValid}" ng-model="partner.Email" type="text" name="{{path}}.Email" class="form-control" />
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.Phone1}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsPhone1Valid}" ng-model="partner.Phone1" type="text" name="{{path}}.Phone1" class="form-control" />
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.Phone2}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsPhone2Valid}" ng-model="partner.Phone2" type="text" name="{{path}}.Phone2" class="form-control" />
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.Fax}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsFaxValid}" ng-model="partner.Fax" type="text" name="{{path}}.Fax" class="form-control" />
+    </div>
+    <div class="form-group col-lg-8 col-md-12">
+        <label>{{resources.CompanyRepresentativePerson}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsCompanyRepresentativePersonValid}" ng-model="partner.CompanyRepresentativePerson" type="text" name="{{path}}.CompanyRepresentativePerson" class="form-control" />
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.CompanyContactPerson}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsCompanyContactPersonValid}" ng-model="partner.CompanyContactPerson" type="text" name="{{path}}.CompanyContactPerson" class="form-control" />
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.CompanyContactPersonPhone}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsCompanyContactPersonPhoneValid}" ng-model="partner.CompanyContactPersonPhone" type="text" name="{{path}}.CompanyContactPersonPhone" class="form-control" />
+    </div>
+    <div class="form-group col-lg-4 col-md-6">
+        <label>{{resources.CompanyContactPersonEmail}}</label>
+        <input ng-class="{'input-validation-error': !partner.IsCompanyContactPersonEmailValid}" ng-model="partner.CompanyContactPersonEmail" type="text" name="{{path}}.CompanyContactPersonEmail" class="form-control" />
+    </div>
+</div>

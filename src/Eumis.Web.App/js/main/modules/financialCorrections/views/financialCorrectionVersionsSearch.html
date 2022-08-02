@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newAmendmentBtn" btn-click="newAmendment()" text="financialCorrections_searchFlatFinancialCorrectionVersions_newAmendment" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('FinancialCorrectionActions.Edit', financialCorrectionId) || financialCorrectionIsDeleted"></sc-button>
+
+      <sc-datatable items="financialCorrectionVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-sref="{ state: 'root.financialCorrections.view.versions.edit', params: {ind: item.financialCorrectionVersionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('FinancialCorrectionActions.View', item.financialCorrectionId)"></sc-button>
+        </sc-column>
+        <sc-column data="orderNum" title="financialCorrections_searchFlatFinancialCorrectionVersions_orderNum" type="number" has-content="true">
+          {{ financialCorrectionOrderNum + '.' + item.orderNum}}
+        </sc-column>
+        <sc-column data="status" title="financialCorrections_searchFlatFinancialCorrectionVersions_status">
+        </sc-column>
+        <sc-column data="correctionBearer" title="financialCorrections_searchFlatFinancialCorrectionVersions_correctionBearer">
+        </sc-column>
+        <sc-column data="percent" title="financialCorrections_searchFlatFinancialCorrectionVersions_percent" type="money">
+        </sc-column>
+        <sc-column data="totalAmount" title="financialCorrections_searchFlatFinancialCorrectionVersions_totalAmount" type="money">
+        </sc-column>
+        <sc-column data="amendmentReason" title="financialCorrections_searchFlatFinancialCorrectionVersions_amendmentReason">
+        </sc-column>
+      </sc-datatable>
+  </div>
+</div>

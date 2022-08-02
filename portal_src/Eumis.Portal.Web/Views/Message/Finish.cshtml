@@ -1,0 +1,21 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+    <div class="page-content submission-type clearfix">
+
+        <form class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p" style="text-align: justify">
+                    <p>
+                        @MessageFinish.ProcedureAnswer @(string.Format("{0} - {1}", SubmissionState.Current.PrecedureCode, SubmissionState.Current.PrecedureName)),
+                        @MessageFinish.OperationalProgramme „@(SubmissionState.Current.ProgrammeName)“@MessageFinish.Named <b>„@SubmissionState.Current.ProjectName“</b> @MessageFinish.ToCommunication <b>@SubmissionState.Current.RegistrationNumber / @(string.Format("{0:dd.MM.yyyy}", SubmissionState.Current.RegistrationDate))</b> @MessageFinish.AcceptedBySystem
+                    </p>
+
+                    <p>@Html.Raw(MessageFinish.SaveAnswer)</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

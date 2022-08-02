@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button ng-show="!isProcedureReadonly" name="newProcedureSpecFieldBtn" btn-sref="{ state: 'root.procedures.view.procedureSpecFields.new' }" text="procedures_procedureSpecField_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+
+    <sc-datatable items="procedureSpecFields" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : !item.isActive}" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.procedureSpecFields.edit', params: { ind: item.procedureSpecFieldId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="title" title="procedures_procedureSpecField_search_title"></sc-column>
+      <sc-column data="description" title="procedures_procedureSpecField_search_description""></sc-column>
+      <sc-column data="isRequired" title="procedures_procedureSpecField_search_isRequired" type="boolean"></sc-column>
+      <sc-column data="activeStatus" title="procedures_procedureSpecField_search_status">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

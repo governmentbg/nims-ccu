@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_InvalidFileFormat" xml:space="preserve">
+    <value>Невалиден формат на файла.</value>
+  </data>
+  <data name="Common_Parsers_FileNotMatchingTemplateError" xml:space="preserve">
+    <value>Избраният файл не отговаря на шаблона.</value>
+  </data>
+  <data name="EvalSessionProjectParser_FileNotMatchingTemplateError" xml:space="preserve">
+    <value>The selected file does not match the template.</value>
+  </data>
+  <data name="EvalSessionPublishedHandler_ResultType_ASD" xml:space="preserve">
+    <value>извършена проверка за административно съответствие и допустимост</value>
+  </data>
+  <data name="EvalSessionPublishedHandler_ResultType_Preliminary" xml:space="preserve">
+    <value>предварително класиране</value>
+  </data>
+  <data name="EvalSessionPublishedHandler_ResultType_Standing" xml:space="preserve">
+    <value>класиране</value>
+  </data>
+  <data name="EvalSessionReportService_CanCreate_MissingPartnerData" xml:space="preserve">
+    <value>Missing data for partner/partners in PP with number {0}. Required fields 'UIN(BULSTAT/UIC + Number)', 'Full name', 'Organization type', 'Organization kind', 'Names of the person representing the organization' and the following from 'Mailing address' -&gt; 'Country', 'Location', 'ZIP code', Str. (residential complex, residential area, №, building, Entr., Floor, apt.)' or 'Address'(when country is different from Bulgaria)</value>
+  </data>
+  <data name="EvalSessionReportService_CanCreate_SessionInactive" xml:space="preserve">
+    <value>Can not create new report when evaluation session is not active.</value>
+  </data>
+  <data name="EvalSessionReportService_CanDelete_CannotDeleteReport" xml:space="preserve">
+    <value>You can not cancel the report.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_CommunicationInProgress" xml:space="preserve">
+    <value>A new version of the PP with registration number: {0} can not be created when there is an active correspondence with the candidate.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_DuplicatedDraftStatus" xml:space="preserve">
+    <value>Project proposal with registration number: {0} already has a version with status draft.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_MissingLastVersionStatus" xml:space="preserve">
+    <value>Missing automatically generated first version of PP with number: {0}.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_NotIncluded" xml:space="preserve">
+    <value>Project proposal with number: {0} is not included in this evaluation session.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_ProjectIsCanceled" xml:space="preserve">
+    <value>Project proposal with number: {0} has been canceled in the evaluation session.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_ProjectIsWithdrawn" xml:space="preserve">
+    <value>Project proposal with registration number: {0} has been withdrawn.</value>
+  </data>
+  <data name="EvalSessionService_CanCreateAutomaticProjectVersion_RegNumberNotValid1" xml:space="preserve">
+    <value>No project proposal with number: {0} was found.</value>
+  </data>
+  <data name="EvalSessionService_CanCreate_SessionActive" xml:space="preserve">
+    <value>A new version of the PP can not be created when there is an active correspondence with the candidate.</value>
+  </data>
+  <data name="EvalSessionService_CreateAutomaticProjectVersion_Note" xml:space="preserve">
+    <value>Automatically created by {0} on {1}.</value>
+  </data>
+  <data name="EvalSessionService_ParseProjectsExcelFile_NotIncluded" xml:space="preserve">
+    <value>Project proposal with number: {0} is not included in this evaluation session.</value>
+  </data>
+  <data name="EvalSessionService_ParseProjectsExcelFile_ProjectNotFound" xml:space="preserve">
+    <value>No project proposal with number: {0} was found.</value>
+  </data>
+  <data name="MonitorstatService_AutomaticProjectMonitorstatRequest_MonitorstatRequestsSent" xml:space="preserve">
+    <value>За следните проектни предложения бяха изпратени успешно заявки към Мониторстат:{0}{1}</value>
+  </data>
+  <data name="MonitorstatService_AutomaticProjectMonitorstatRequest_ProjectDoesNotContainDeclaration" xml:space="preserve">
+    <value>Проектно предложение с номер: {0}, не съдържа приета декларация: {1}.</value>
+  </data>
+  <data name="MonitorstatService_AutomaticProjectMonitorstatRequest_ProjectDoesNotContainDocument" xml:space="preserve">
+    <value>Проектно предложение с номер: {0}, не съдържа документ: {1}.</value>
+  </data>
+  <data name="MonitorstatService_AutomaticProjectMonitorstatRequest_ProjectHasLastNonActualVersion" xml:space="preserve">
+    <value>Не съществува активна версия на ПП с номер: {0}</value>
+  </data>
+  <data name="MonitorstatService_AutomaticProjectMonitorstatRequest_UnexpectedError" xml:space="preserve">
+    <value>Възникна непредвидена грешка при изпращане на заявка към Мониторстат за ПП с номер: {0}.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanCreate_DoesNotHaveAssociatedRegistration" xml:space="preserve">
+    <value>Can not create new communication with candidate not associated with a profile in the system.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanCreate_EvalSessionNotActive" xml:space="preserve">
+    <value>Can not create new communication with candidate, when the evaluation session is not active.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanCreate_HasCommunicationInProgress" xml:space="preserve">
+    <value>Can not create new communication with candidate, with already active communication.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanCreate_ProjectHasDraftVersion" xml:space="preserve">
+    <value>Can not create new communication with candidate, when current version of the project proposal is in status Draft.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanCreate_ProjectHasLastNonActualVersion" xml:space="preserve">
+    <value>Can not create new communication with candidate, when there is no active version of PP.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanRegisterEvalSessionProjectAnswer_NoAnswerWithThisCode" xml:space="preserve">
+    <value>No answer with this code.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanRegisterEvalSessionProjectAnswer_QuestionTimedOut" xml:space="preserve">
+    <value>Response timed out.</value>
+  </data>
+  <data name="ProjectCommunicationService_CanRegisterEvalSessionProjectAnswer_SessionInactive" xml:space="preserve">
+    <value>Can not register answer to a question in inactive session.</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationService_CanCreate_DoesNotHaveAssociatedRegistration" xml:space="preserve">
+    <value>Не може да се създаде новa комуникация с кандидата, който не е асоцииран с профил в системата.</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationService_ParseRecipientsExcelFile_ProjectNotFound" xml:space="preserve">
+    <value>Не беше намерено проектно предложение с номер: {0}.</value>
+  </data>
+  <data name="ProjectRegistrationService_CreatedByRegistration" xml:space="preserve">
+    <value>Automatically created after registration</value>
+  </data>
+  <data name="ProjectVersionXmlService_CanCreate_CommunicationInProgress" xml:space="preserve">
+    <value>A new version of the PP can not be created when there is an active correspondence with the candidate.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CanCreate_DuplicatedDraftStatus" xml:space="preserve">
+    <value>There is already a version to the project proposal with status draft.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CanCreate_MissingLastVersionStatus" xml:space="preserve">
+    <value>The first version of the project proposal must be automatically generated from the registration data.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CanCreate_SessionActive" xml:space="preserve">
+    <value>A new version of PP can not be created when the evaluation session is not active.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CreateProjectServiceVersion" xml:space="preserve">
+    <value>Automatically created service version.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CreateProjectVersion" xml:space="preserve">
+    <value>Automatic creation of first version.</value>
+  </data>
+  <data name="ProjectVersionXmlService_CreateProjectVersionFromCommunication" xml:space="preserve">
+    <value>Automatically created from communication with reg. Number</value>
+  </data>
+</root>

@@ -1,0 +1,82 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div ng-if="model.type === 'paymentRevalidated'">
+    <h5 class="form-header form-header-first" l10n-text="contractReportRevalidations_contractReportRevalidationForm_reportPayment"></h5>
+    <eumis-contract-report-payment name="contractReportPaymentForm" ng-model="model.contractReportPaymentCheck.contractReportPayment"></eumis-contract-report-payment>
+    <div class="row">
+      <eumis-structured-document document="contractReportPayment" gid="model.contractReportPaymentCheck.contractReportPayment.xmlGid"
+        text="contractReportRevalidations_contractReportRevalidationForm_document" view-mode class="col-sm-4 col-md-3">
+      </eumis-structured-document>
+    </div>
+
+    <h5 class="form-header" l10n-text="contractReportRevalidations_contractReportRevalidationForm_reportPaymentCheck"></h5>
+    <eumis-contract-report-payment-check name="contractReportPaymentCheckForm" ng-model="model.contractReportPaymentCheck" sc-form-readonly="true"></eumis-contract-report-payment-check>
+  </div>
+  
+  <h5 class="form-header" ng-if="model.type === 'paymentRevalidated'" l10n-text="contractReportRevalidations_contractReportRevalidationForm_revalidation"></h5>
+  <div class="row">
+    <sc-field type="date" ng-model="model.date" ng-required="true" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_date" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'signs'" ng-model="model.sign" mode="id" ng-readonly="true" ng-required="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_sign" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.description" rows="2" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.reason" rows="2" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_reason" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="money" ng-model="model.revalidatedEuAmount" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_euAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.revalidatedBgAmount" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_bgAmount" class="col-sm-3 col-md-2"></sc-field>
+
+    <sc-field-group class="col-sm-3 col-md-2" text="contractReportRevalidations_contractReportRevalidationForm_bfpTotalAmount" field-name="revalidatedBfpTotalAmount">
+      <sc-money ng-model="model.revalidatedBfpTotalAmount" name="revalidatedBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('revalidated')" ng-disabled="form.$readonly || !approvedEdit" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+    <sc-field type="money" ng-model="model.revalidatedSelfAmount" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_selfAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.revalidatedTotalAmount" ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.revalidatedCrossAmount" ng-readonly="form.$readonly || !approvedEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_crossAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+
+  <h5 class="form-header" l10n-text="contractReportRevalidations_contractReportRevalidationForm_certRevalidation"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.certStatus" alias="'contractReportFinancialCorrectionCSDCertStatuses'" mode="id" ng-disabled="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_certStatus" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.certCheckedByUser" ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_certCheckedByUser" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.certCheckedDate" ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_certCheckedDate" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportRevalidations_contractReportRevalidationForm_uncertifiedRevalidated"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.uncertifiedRevalidatedEuAmount"       l10n-text="contractReportRevalidations_contractReportRevalidationForm_euAmount"       ng-readonly="form.$readonly || !certEdit" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.uncertifiedRevalidatedBgAmount"       l10n-text="contractReportRevalidations_contractReportRevalidationForm_bgAmount"       ng-readonly="form.$readonly || !certEdit" class="col-sm-3 col-md-2"></sc-field>
+
+    <sc-field-group class="col-sm-3 col-md-2" text="contractReportRevalidations_contractReportRevalidationForm_bfpTotalAmount" field-name="uncertifiedRevalidatedBfpTotalAmount">
+      <sc-money ng-model="model.uncertifiedRevalidatedBfpTotalAmount" name="uncertifiedRevalidatedBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('cert')" ng-disabled="form.$readonly || !certEdit" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+    <sc-field type="money" ng-model="model.uncertifiedRevalidatedSelfAmount"     l10n-text="contractReportRevalidations_contractReportRevalidationForm_selfAmount"  ng-readonly="form.$readonly || !certEdit" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.uncertifiedRevalidatedTotalAmount"    l10n-text="contractReportRevalidations_contractReportRevalidationForm_totalAmount" ng-readonly="true"              class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.uncertifiedRevalidatedCrossAmount" ng-readonly="form.$readonly || !certEdit" l10n-text="contractReportRevalidations_contractReportRevalidationForm_crossAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="contractReportRevalidations_contractReportRevalidationForm_certifiedRevalidated"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedRevalidatedEuAmount"       ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_euAmount"        class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedRevalidatedBgAmount"       ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_bgAmount"        class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedRevalidatedBfpTotalAmount" ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_bfpTotalAmount"  class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedRevalidatedSelfAmount"     ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_selfAmount"      class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedRevalidatedTotalAmount"    ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_totalAmount"     class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedRevalidatedCrossAmount" ng-readonly="true" l10n-text="contractReportRevalidations_contractReportRevalidationForm_crossAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+</ng-form>

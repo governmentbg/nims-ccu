@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10044"
+	xmlns="http://ereg.egov.bg/segment/R-10044"
+            
+	xmlns:trbd="http://ereg.egov.bg/segment/R-10052"
+	xmlns:tra="http://ereg.egov.bg/segment/R-10053"
+	xmlns:tri="http://ereg.egov.bg/segment/R-10054"
+	xmlns:trtm="http://ereg.egov.bg/segment/R-10057"
+	xmlns:ad="http://ereg.egov.bg/segment/R-10018"
+	
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10052" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10053" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10054" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10057" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10018" />
+
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="TechnicalReport">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Технически отчет</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="BasicData" type="trbd:TechnicalReportBasicData" minOccurs="0" />
+
+      <xsd:element name="Activities" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Activity" type="tra:TechnicalReportActivity" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Indicators" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Indicator" type="tri:TechnicalReportIndicator" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="Team" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="TeamMember" type="trtm:TechnicalReportTeamMember" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <xsd:element name="AttachedDocuments" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="AttachedDocument" type="ad:AttachedDocument" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+    <xsd:attribute name="packageGid" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+
+    <xsd:attribute name="contractNumber" type="xsd:string"/>
+    <xsd:attribute name="docNumber" type="xsd:string"/>
+    <xsd:attribute name="docSubNumber" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

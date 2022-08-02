@@ -1,0 +1,5 @@
+﻿GO
+
+ALTER TABLE [Procedures] ADD [IsIntroducedByLAG] BIT NOT NULL DEFAULT(0);
+
+GO

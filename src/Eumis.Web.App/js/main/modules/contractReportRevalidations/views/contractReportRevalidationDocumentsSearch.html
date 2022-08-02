@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="contractReportRevalidations_docsSearch_docs"></h5>
+          <sc-button name="newBtn" ng-show="status === 'draft'" btn-sref="{ state: 'root.contractReportRevalidations.view.docs.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+                     ng-disabled="!$canDo('ContractReportRevalidationActions.Edit', contractReportRevalidationId)"></sc-button>
+        </div>
+        <sc-datatable items="documents" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportRevalidations.view.docs.edit', params: {ind: item.documentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="description" title="contractReportRevalidations_docsSearch_description">
+          </sc-column>
+          <sc-column sortable="false" title="contractReportRevalidations_docsSearch_file" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

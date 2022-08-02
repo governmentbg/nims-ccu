@@ -1,0 +1,48 @@
+﻿@model R_10029.PreliminaryContract
+
+@if (Model != null)
+{
+
+    <div class="table-wrapper">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%" style="min-width: 400px;">
+            <thead>
+                <tr>
+                    <th>@PreliminaryContract.Name</th>
+                    <th style="min-width: 150px;">@PreliminaryContract.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @PreliminaryContract.RequestedFundingAmount
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.RequestedFundingAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.CoFinancingBudgetAmount
+                    </td>
+                    <td class="text-right">
+                        @Html.DisplayFor(m => m.CoFinancingBudgetAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong>@PreliminaryContract.Total</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @PreliminaryContract.IsIncomeExpected
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.IsIncomeExpected)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

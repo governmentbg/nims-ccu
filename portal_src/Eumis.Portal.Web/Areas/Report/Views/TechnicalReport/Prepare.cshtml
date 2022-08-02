@@ -1,0 +1,107 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.TechnicalReport.EditVM
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }), "Пакет отчетни документи")
+}, "Редакция")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader, @Global.TechnicalReport № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Report.TechnicalReport.ActionNames.Prepare,
+    MVC.Report.TechnicalReport.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_TECHNICAL_REPORT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Report.TechnicalReport.ActionNames.Prepare,
+                MVC.Report.TechnicalReport.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_TECHNICAL_REPORT,
+                formMethod: FormMethod.Post)
+            @Global.TechnicalReport
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.TechnicalReportEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    
+                    <a href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Download, MVC.Report.TechnicalReport.Name))" title="">
+                        <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                        <span>@TechnicalReport.DownloadFile</span>
+                    </a>
+
+                    <a href="@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Upload, MVC.Report.TechnicalReport.Name))" title="">
+                      <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.upload_as_file_gif))" width="30">
+                      <span>@TechnicalReport.UploadFile</span>
+                    </a>
+                    
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Report.TechnicalReport.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Report.TechnicalReport.ActionNames.Save,
+                            HasXmlUpdate = true,
+                            FORM_ID = Constants.PARTIAL_SAVE_TECHNICAL_REPORT
+                        })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Report.TechnicalReport.ActionNames.Prepare,
+                        MVC.Report.TechnicalReport.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" },
+                        formId: Constants.PARTIAL_SAVE_TECHNICAL_REPORT,
+                        formMethod: FormMethod.Post) @Global.ValidateButton
+                        @Html.EndActionLinkPrePostButton()
+                    </div>
+
+                    <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+                </div>
+            </div>
+            <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_TECHNICAL_REPORT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Report.TechnicalReport.ActionNames.Prepare, MVC.Report.TechnicalReport.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_TECHNICAL_REPORT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+            </script>
+    }
+</div>

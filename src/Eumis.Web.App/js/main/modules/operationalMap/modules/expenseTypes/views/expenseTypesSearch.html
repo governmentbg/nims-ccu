@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newExpenseTypeBtn" btn-sref="{ state: 'root.map.expenseTypes.new' }" text="expenseTypes_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ExpenseTypeListActions.Create')"></sc-button>
+
+    <sc-datatable items="expenseTypes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.expenseTypes.edit', params: {id: item.expenseTypeId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ExpenseTypeActions.View', item.expenseTypeId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="expenseTypes_searchForm_name">
+      </sc-column>
+      <sc-column data="nameAlt" title="expenseTypes_searchForm_nameAlt">
+      </sc-column>
+      <sc-column data="isActive" title="expenseTypes_searchForm_isActive" type="boolean">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

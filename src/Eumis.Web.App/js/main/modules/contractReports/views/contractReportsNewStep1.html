@@ -1,0 +1,30 @@
+<div class="tab-content">
+  <ng-form name="contractsNewStep1Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contractReports_newContractReportStep1_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="next()" text="contractReports_newContractReportStep1_next" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contractReports_newContractReportStep1_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'contractReportProcedures'" mode="id" ng-model="model.procedureId" l10n-text="contractReports_newContractReportStep1_procedureId" class="col-sm-5 col-md-5"></sc-field>
+          <sc-field type="text" ng-model="model.contractNumber" ng-required="true" l10n-text="contractReports_newContractReportStep1_contractNumber" class="col-sm-5 col-md-4"
+            sc-validate-async="{ numValid: isValidContractNum }"
+            sc-revalidate-on="['model.procedureId']"
+            validations="{ numValid: 'contractReports_newContractReportStep1_contractNumberInvalid' }"
+          >
+          </sc-field>
+          <sc-button name="chooseContractBtn" btn-click="chooseContract()" text="contractReports_newContractReportStep1_chooseContract" class="btn btn-primary btn-sm" icon="glyphicon-search" style="margin-top: 19px;">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

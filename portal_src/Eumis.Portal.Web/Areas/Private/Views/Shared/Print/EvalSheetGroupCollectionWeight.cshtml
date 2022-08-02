@@ -1,0 +1,91 @@
+﻿@model R_10026.EvalSheetGroupCollection
+
+@if (Model != null)
+{
+    <div>
+        <table class="evaluation">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <thead>
+                    <tr>
+                        <th style="width:5%;">@(Eumis.Common.Helpers.DataUtils.Romanize(i + 1)).</th>
+                        <th style="width:30%;" colspan="2">@EvalTable.Group</th>
+                        <th style="width:10%;">@EvalTable.Limit</th>
+                        <th style="width:10%;">@EvalSheet.Total</th>
+                        <th style="width:45%;"></th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <strong>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model[i].Name ?? string.Empty)</strong>
+                    </td>
+                    <td class="text-right">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].Limit)</td>
+                    <td class="text-right">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].Total)</td>
+                    <td></td>                 
+                </tr>
+                if (Model[i].EvalSheetCriteriaCollection != null && Model[i].EvalSheetCriteriaCollection.Count > 0)
+                {
+                    <tr style="font-weight: bold;" class="column-headings">
+                        <td style="width:5%; border-bottom: none;"></td>
+                        <td style="width:5%;"></td>
+                        <td style="width:25%;">@EvalTable.Criteria</td>
+                        <td style="width:10%;">@EvalTable.Weight <br/> (@Model[i].WeightTotal)</td>
+                        <td style="width:10%;">@EvalSheet.Evaluation</td>
+                        <td style="width:45%;">@EvalSheet.Notes</td>
+                    </tr>
+
+                    for (int j = 0; j < Model[i].EvalSheetCriteriaCollection.Count; j++)
+                    {
+                        <tr>
+                            @if (j > 0)
+                            {
+                                <td style="border-bottom: none; border-top: none;"></td>
+                            }
+                            else
+                            {
+                                <td style="border-bottom: none;"></td>
+                            }
+
+                            <td class="text-right">@(j + 1).</td>
+                            <td>
+                                <pre>@Model[i].EvalSheetCriteriaCollection[j].EvalTableCriteria.Name</pre>
+                            </td>
+                            <td class="text-right">
+                                @Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].EvalSheetCriteriaCollection[j].EvalTableCriteria.Weight)
+                            </td>
+                            <td class="text-right">
+                                @Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].EvalSheetCriteriaCollection[j].Evaluation)
+                            </td>
+                            <td><pre>@Model[i].EvalSheetCriteriaCollection[j].Note</pre></td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+
+        <div style="margin-top: 20px;">
+            <p class="result-info">@(Model.IsSuccess ? Global.Pass : Global.NotPass)</p>
+            @if (Model.IsManual)
+            {
+                <text>(@EvalSheet.IsManualChecked)</text>
+            }
+        </div>
+
+        <div style="margin-top: 20px;">
+            <strong>@EvalTable.Limit:</strong> @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Limit)
+        </div>
+
+        <p><strong>@EvalSheet.Total:</strong> @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Total)</p>
+        <p><strong>@EvalTable.WeightTotal:</strong> @Model.WeightTotal</p>
+
+        @if (Model.IsManual)
+        {
+            <div class="comment-section">
+                <strong>@EvalSheet.ReasonManual</strong>
+                @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ReasonManual ?? string.Empty)
+            </div>
+        }
+    </div>
+}
+

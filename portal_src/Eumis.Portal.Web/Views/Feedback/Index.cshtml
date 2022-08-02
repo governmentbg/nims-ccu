@@ -1,0 +1,116 @@
+﻿@model Eumis.Portal.Web.Models.Feedback.FeedbackVM
+@using Eumis.Common.ReCaptcha
+@using Eumis.Portal.Web.Helpers
+@using Eumis.Portal.Web.Views.Shared.App_LocalResources
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+                , Feedback.FeedbackPageTitle)
+
+<div class="container page-title">
+    <h1>@Feedback.FeedbackPageTitle</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+
+    @if (TempData["SuccessFeedbackSend"] != null)
+    {
+        <div class="validation-summary-errors validation-success">
+            <ul>
+                <li>
+                    @Feedback.FeedbackSuccessNotification
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="page-content">
+        @using (Html.BeginForm(MVC.Feedback.ActionNames.Index,
+                MVC.Feedback.Name,
+                new { area = string.Empty },
+                FormMethod.Post,
+                new { @class = "form-with-sections", role = "form" }))
+        {
+            if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+            {
+              <div class="info-block" style="border-color: red;">
+                  <p>За по-голяма оперативност, моля да изпращате Вашите въпроси, свързани с техническото функциониране на СУНИ директно и на e-mail: <img src="@(Url.Content(Links.Content.img.support_mail_PNG))" title="mail" /></p>
+              </div>
+            }
+            else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+            {
+              <div class="info-block" style="border-color: red;">
+                <p>For better operational efficiency, please send your questions regarding technical functioning of NIMS directly and by e-mail: <img src="@(Url.Content(Links.Content.img.support_mail_PNG))" title="mail" /></p>
+              </div>
+            }
+
+            <div class="info-block">
+                @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+                {
+                    <p>В тази страница имате възможност да изпратите съобщения, запитвания за възникнали проблеми, предложения или въпроси, които се отнасят до СУНИ. Моля, преди да се обърнете към нас с въпрос или проблем, да потърсите решението му в раздел "@Html.ActionLink("Помощ", MVC.Help.ActionNames.Index, MVC.Help.Name)".</p>
+                    <p>Моля да имате предвид, че настоящата електронна форма е предвидена <b>само за технически въпроси, свързани с функционирането на СУНИ</b>.</p>
+
+                    <p style="margin-top:30px;">Моля, при описание на съобщението да използвате кирилица.</p>
+                }
+                else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+                {
+                    <p>On this page you are provided with the option to request solutions to encountered problems, send messages, suggestions or questions, which are related to the NIMS. Before contacting us regarding a question or a problem, please look up section "@Html.ActionLink("Help", MVC.Help.ActionNames.Index, MVC.Help.Name)".</p>
+                    <p>Please note that this electronic form is provided <b>only for technical issues related to the functioning of NIMS </b>.</p>
+                }
+            </div>
+
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label><span class="required-span">*</span> @Feedback.Type</label>
+                        @Html.DropDownListFor(m => m.Type,
+                            new List<SelectListItem>()
+                            {
+                                new SelectListItem { Value = string.Empty, Text = Feedback.SubjectOptionPleaseSelect },
+                                new SelectListItem { Value = "1", Text = Feedback.SubjectOptionQuestion },
+                                new SelectListItem { Value = "2", Text = Feedback.SubjectOptionSuggestion },
+                                new SelectListItem { Value = "3", Text = Feedback.SubjectOptionTechnicalProblem },
+                                new SelectListItem { Value = "4", Text = Feedback.AbuseReport }
+                            }, new { @class = "form-control select2" })
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label>@Feedback.Name</label>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label><span class="required-span">*</span> @Feedback.Mail</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <script>
+                    $(function () {
+                        changeCount($("#feedback-description")[0], "#feedback-count");
+                    })
+                </script>
+                <div class="clearfix">
+                    <div class="form-group col-md-7">
+                        <label><span class="required-span">*</span> @Feedback.DescriptionLength</label>
+                        <span style="top: 10px; right: 15px; display: block; position: absolute;"><span id="feedback-count" style="color:red;"></span></span>
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = "4", id = "feedback-description", onkeyup = "changeCount(this, '#feedback-count')" })
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-4">
+                        @Html.ReCaptcha(Constants.ReCaptchaSiteKey)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="@(Feedback.SubmitButton)" class="submit wait" style="margin: 20px 0 0 0; float: right" />
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+</div>

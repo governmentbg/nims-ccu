@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommentDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="CommentMessage" xml:space="preserve">
+    <value>Коментар/предложение</value>
+  </data>
+  <data name="CommentSender" xml:space="preserve">
+    <value>Подател</value>
+  </data>
+  <data name="CommentsNotFound" xml:space="preserve">
+    <value>Няма подадени коментари и препоръки</value>
+  </data>
+  <data name="CommentStandpoint" xml:space="preserve">
+    <value>Становище на УО/МИГ</value>
+  </data>
+  <data name="CommentsUnderProcess" xml:space="preserve">
+    <value>Подадените коментари и препоръки са в процес на обработка</value>
+  </data>
+  <data name="DiscussionAnswer" xml:space="preserve">
+    <value>Отговор</value>
+  </data>
+  <data name="DiscussionDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DiscussionDeadlineExpired" xml:space="preserve">
+    <value>Срокът за подаване на искане за разяснение е изтекъл.</value>
+  </data>
+  <data name="DiscussionQuestion" xml:space="preserve">
+    <value>Въпрос</value>
+  </data>
+  <data name="DiscussionSender" xml:space="preserve">
+    <value>Подател</value>
+  </data>
+  <data name="EndingDate" xml:space="preserve">
+    <value>Краен срок:</value>
+  </data>
+  <data name="EndingDateNoteTitle" xml:space="preserve">
+    <value>Допълнителна информация относно крайния срок</value>
+  </data>
+  <data name="FirstPublicationDate" xml:space="preserve">
+    <value>Дата на публикуване на проекта за обществено обсъждане</value>
+  </data>
+  <data name="InternetAddress" xml:space="preserve">
+    <value>Интернет адрес</value>
+  </data>
+  <data name="ListingDate" xml:space="preserve">
+    <value>Индикативна дата на обявяване на процедурата</value>
+  </data>
+  <data name="ModifyDate" xml:space="preserve">
+    <value>Дата на актуализация</value>
+  </data>
+  <data name="NewQuestion" xml:space="preserve">
+    <value>Искане за разяснение</value>
+  </data>
+  <data name="NoDiscussionsFound" xml:space="preserve">
+    <value>Няма намерени въпроси/отговори към тази процедура.</value>
+  </data>
+  <data name="ProcedureDiscussionNotAuthenticatedPrefix" xml:space="preserve">
+    <value>В тази страница имате възможност да разгледате всички публикувани разяснения по процедурата за кандидатстване.
+                            Ако не сте достъпили системата чрез потребителски профил, не можете да подавате искане за разяснение.
+                            За да създадете и подадете такова е необходимо да влезете в системата или да създадете потребителски профил от менюто "</value>
+  </data>
+  <data name="ProcedureDiscussionNotAuthenticatedSuffix" xml:space="preserve">
+    <value>".</value>
+  </data>
+  <data name="PublicDiscussionEndDate" xml:space="preserve">
+    <value>Крайната дата за подаване на предложения и възражения</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Дата на публикуване:</value>
+  </data>
+  <data name="QA" xml:space="preserve">
+    <value>Въпроси и отговори</value>
+  </data>
+  <data name="TextFilter" xml:space="preserve">
+    <value>Текст за търсене:</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Документи по схемата за кандидатстване</value>
+  </data>
+</root>

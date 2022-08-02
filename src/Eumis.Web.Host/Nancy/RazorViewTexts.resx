@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrowserNotSupported_Umis2020" xml:space="preserve">
+    <value>СУНИ</value>
+  </data>
+  <data name="BrowserNotSupported_UmisTitle" xml:space="preserve">
+    <value>Информационна Система за Управление и Наблюдение на Структурните Инструменти на ЕС в България</value>
+  </data>
+  <data name="BrowserNotSupported_WarningIfThisBrowserIsNotSupport" xml:space="preserve">
+    <value>Системата не поддържа този браузър. За достъп, моля изтеглете по-нов:</value>
+  </data>
+  <data name="Declaration_Accept" xml:space="preserve">
+    <value>Приемам</value>
+  </data>
+  <data name="Declaration_Continue" xml:space="preserve">
+    <value>Продължи</value>
+  </data>
+  <data name="GDPRDeclaration_Accept" xml:space="preserve">
+    <value>Приемам</value>
+  </data>
+  <data name="GDPRDeclaration_Continue" xml:space="preserve">
+    <value>Продължи</value>
+  </data>
+  <data name="Index_PleaseWait" xml:space="preserve">
+    <value>Моля, изчакайте...</value>
+  </data>
+  <data name="Index_UmisTitle" xml:space="preserve">
+    <value>Информационна Система за Управление и Наблюдение на Структурните Инструменти на ЕС в България</value>
+  </data>
+  <data name="Index_WarningIfJavaScriptIsDisabled" xml:space="preserve">
+    <value>Този сайт не може да функционира правилно, ако сте спрели изпълнението на JavaScript!</value>
+  </data>
+  <data name="Layout_EuFundsFooter" xml:space="preserve">
+    <value>Проектът се финансира от Оперативна програма „Добро управление”, съфинансирана от Европейския съюз чрез Европейския социален фонд. В изпълнение на проект BG05SFOP001-4.005-0005 „Повишаване на ефективността и ефикасността на ЦКЗ 2019-2021 г.“</value>
+  </data>
+  <data name="Layout_UmisTitle" xml:space="preserve">
+    <value>Информационна Система за Управление и Наблюдение на Структурните Инструменти на ЕС в България</value>
+  </data>
+  <data name="Layout_WarningIfJavaScriptIsDisabled" xml:space="preserve">
+    <value>Този сайт не може да функционира правилно, ако сте спрели изпълнението на JavaScript!</value>
+  </data>
+  <data name="Login_AccountIsLocked" xml:space="preserve">
+    <value>Този акаунт е заключен.</value>
+  </data>
+  <data name="Login_CannotLoginWithThisAccount" xml:space="preserve">
+    <value>Не можете да влезете с този акаунт.</value>
+  </data>
+  <data name="Login_Enter" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Login_ForgottenPassword" xml:space="preserve">
+    <value>Забравена парола?</value>
+  </data>
+  <data name="Login_InvalidUsernameOrPassword" xml:space="preserve">
+    <value>Невалидно потребителско име или парола.</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Паролата</value>
+  </data>
+  <data name="Login_PleaseContactAdministrator" xml:space="preserve">
+    <value>Моля свържете се с администратор.</value>
+  </data>
+  <data name="Login_SystemLogin" xml:space="preserve">
+    <value>Вход в системата</value>
+  </data>
+  <data name="Login_Umis2020" xml:space="preserve">
+    <value>СУНИ</value>
+  </data>
+  <data name="Login_Username" xml:space="preserve">
+    <value>Потребителско име</value>
+  </data>
+  <data name="NewPassword_Change" xml:space="preserve">
+    <value>Смени</value>
+  </data>
+  <data name="NewPassword_Enter" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="NewPassword_NewUserPassword" xml:space="preserve">
+    <value>Нова парола за потребител {0}</value>
+  </data>
+  <data name="NewPassword_OpenHyperlinkFromReceivedMailAgain" xml:space="preserve">
+    <value>Моля отворете хипервръзката от получения e-mail отново.</value>
+  </data>
+  <data name="NewPassword_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="NewPassword_PasswordsDoNotMatch" xml:space="preserve">
+    <value>Паролите не съвпадат</value>
+  </data>
+  <data name="NewPassword_RepeatPassword" xml:space="preserve">
+    <value>Повторете паролата</value>
+  </data>
+  <data name="NewPassword_SuccessfullyEnteredUserPassword" xml:space="preserve">
+    <value>Успешно въведохте парола за потребител {0}</value>
+  </data>
+  <data name="NewPassword_Umis2020" xml:space="preserve">
+    <value>СУНИ</value>
+  </data>
+  <data name="NewPassword_YouDidNotFillPasswordFields" xml:space="preserve">
+    <value>Не сте попълнили полетата за парола</value>
+  </data>
+  <data name="RecoverPassword_Change" xml:space="preserve">
+    <value>Смени</value>
+  </data>
+  <data name="RecoverPassword_ChangePassword" xml:space="preserve">
+    <value>Смяна на парола</value>
+  </data>
+  <data name="RecoverPassword_ChangeUserPassword" xml:space="preserve">
+    <value>Смяна на парола за потребител {0}</value>
+  </data>
+  <data name="RecoverPassword_EmailForChangePasswordIsSendToUser" xml:space="preserve">
+    <value>Изпратен е имейл към потребител {0} с инструкции за смяна на паролата</value>
+  </data>
+  <data name="RecoverPassword_Enter" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="RecoverPassword_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="RecoverPassword_PasswordsDoNotMatch" xml:space="preserve">
+    <value>Паролите не съвпадат</value>
+  </data>
+  <data name="RecoverPassword_RepeatPassword" xml:space="preserve">
+    <value>Повторете паролата</value>
+  </data>
+  <data name="RecoverPassword_SendEmailToChangeYourPassword" xml:space="preserve">
+    <value>Заяви смяна на парола</value>
+  </data>
+  <data name="RecoverPassword_SuccessfullyChangedUserPassword" xml:space="preserve">
+    <value>Успешно сменихте паролата за потребител {0}</value>
+  </data>
+  <data name="RecoverPassword_Umis2020" xml:space="preserve">
+    <value>СУНИ</value>
+  </data>
+  <data name="RecoverPassword_Username" xml:space="preserve">
+    <value>Потребителско име</value>
+  </data>
+  <data name="RecoverPassword_YouDidNotFillPasswordFields" xml:space="preserve">
+    <value>Не сте попълнили полетата за парола</value>
+  </data>
+  <data name="RecoverPassword_YouDidNotFillUsernameField" xml:space="preserve">
+    <value>Не сте попълнили полето за потребителско име</value>
+  </data>
+</root>

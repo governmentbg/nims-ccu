@@ -1,0 +1,299 @@
+﻿@model R_10040.BFPContractDirectionsBudgetContract
+
+    <div ng-controller="controllerBFPContractDirectonBudgetContract" ng-init="init(@(Model.SectionNumber))">
+
+        @************************* DIRECTIONS **********************************@
+        @{ int sectionIndex = Model.SectionNumber; }
+        @if (Model.IsDirectionSectionSelected)
+        {
+            sectionIndex++;
+            <h2 data-section="@sectionIndex" class="section-heading">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" />
+                @sectionIndex. @Project.Directions
+            </h2>
+            <section data-section="@sectionIndex" class="clearfix">
+                <div class="table-wrapper">
+                    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                    <table class="chart-info" width="100%">
+                        <thead>
+                            <tr ng-class="{'input-validation-error': !DirectionSection.IsValid}" name="@(Html.GetNameFor(m => m))">
+                                <th>@Direction.DirectionName</th>
+                                <th style="width: 130px;">@BFPContractIndicators.Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-6">
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].IsDeactivated"
+                                               ng-value="{{item.IsDeactivated}}" />
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].id" value="{{ item.id }}" />
+
+                                        <input ng-class="{'input-validation-error': !item.IsDirectionValid}" type="hidden" ng-model="item.DirectionItem"
+                                               ui-select2="{ allowClear: true, placeholder: ' ', query: loadDirectionNomenclature }" ng-change="clearSubDirection(item)" />
+
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].DirectionItem.Id"
+                                               value="{{ item.DirectionItem.id }}" class="validation-error-key" />
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].DirectionItem.Name"
+                                               value="{{ item.DirectionItem.Name }}" />
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].DirectionItem.NameEN"
+                                               value="{{ item.DirectionItem.NameEN }}" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="hidden" ng-model="item.SubDirection"
+                                               ui-select2="loadSubDirectionNomenclature(item)" ng-change="removeObsoleteDirection()" />
+
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].SubDirection.Id"
+                                               value="{{ item.SubDirection.id }}" class="validation-error-key" />
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].SubDirection.Name"
+                                               value="{{ item.SubDirection.Name }}" />
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.Directions)).DirectionCollection[{{ $index }}].SubDirection.NameEN"
+                                               value="{{ item.SubDirection.NameEN }}" />
+                                    </div>
+                                </td>
+                                <td style="width: 130px;">
+                                    <a class="delete-btn" confirm-click="delDirection(item)">@Global.DeleteButton</a>
+                                    <input type="hidden" value="True" name="@(Html.GetNameFor(m => m))[{{$index}}].isActive" />
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end style="display:none;"></tr>
+                        </tbody>
+                    </table>
+                    <a ng-class="{'input-validation-error': !DirectionSection.IsValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addDirection()">@Global.AddButton</a>
+                </div>
+            </section>
+            <div class="section-separator"> </div>
+        }
+
+        @************************* BUDGET **********************************@
+        @{sectionIndex++;}
+        <h2 data-section="@sectionIndex" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" />
+            @sectionIndex. @BFPContract.Budget
+        </h2>
+        <section data-section="@sectionIndex" class="clearfix">
+            <div ng-if="triple.BFPContractBudget.IsActive" class="table-wrapper">
+                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                <table class="chart-info dynamic-rows budget-table">
+                    <thead>
+                        <tr>
+                            <th class="index"></th>
+                            <th style="min-width: 350px">@ProgrammeBudget.ExpenseName</th>
+                            <th style="min-width: 100px" ng-if="hasMoreThanOneNutsAddress">@ProgrammeBudget.Nuts</th>
+                            @if (Model.IsDirectionSectionSelected)
+                            {
+                                <th style="min-width: 350px">@ProgrammeBudget.Direction</th>
+                            }
+                            <th colspan="2">
+                                <text>@ProgrammeBudget.GrandAmount</text>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat-start="(index1, level1) in triple.BFPContractBudget.BFPContractProgrammeBudgetCollection" style="display:none;"></tr>
+                        <tr class="level1 auto-calc-percent" ng-if="!level1.IsDeactivated">
+                            <td colspan="{{hasMoreThanOneNutsAddress?4:3}}">
+                                {{ romanize(level1.OrderNum) + '. ' + level1.Name}}
+                            </td>
+                            <td class="perc">
+                                @*<div class="input-group">
+                                    <input type="text" ng-model="level1.grandPercentage" value="{{level1.grandPercentage = level1.GrandAmount && level1.SelfAmount && (level1.GrandAmount > 0 || level1.SelfAmount > 0) ? (((100 * level1.GrandAmount) || 0)/(((1 * level1.GrandAmount) || 0) + ((1 * level1.SelfAmount) || 0))).toFixed(2) : ''}}" class="form-control sum-field bold" readonly />
+                                    <span class="input-group-addon bold">%</span>
+                                </div>*@
+                            </td>
+                            <td class="total"><input money type="text" class="form-control sum-field bold" readonly ng-model="level1.GrandAmount" /></td>
+                        </tr>
+                        <tr class="level1 auto-calc-percent deactivated" ng-if="level1.IsDeactivated">
+                            <td colspan="{{hasMoreThanOneNutsAddress?4:3}}">
+                                {{ romanize(level1.OrderNum) + '. ' + level1.Name}}
+                                <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover">
+                            </td>
+                            <td>
+                                <p class="text-right">{{level1.grandPercentage = level1.GrandAmount && level1.SelfAmount && (level1.GrandAmount > 0 || level1.SelfAmount > 0) ? (((100 * level1.GrandAmount) || 0)/(((1 * level1.GrandAmount) || 0) + ((1 * level1.SelfAmount) || 0))).toFixed(2) : ''}}%</p>
+                            </td>
+                            <td><p class="text-right">{{level1.GrandAmount}}</p></td>
+                            <td>
+                                <p class="text-right">{{level1.grandPercentage ? (100 - level1.grandPercentage).toFixed(2) : ''}}%</p>
+                            </td>
+                        </tr>
+                        <tr ng-repeat-start="(index2, level2) in triple.BFPContractBudget.BFPContractProgrammeBudgetCollection[index1].BFPContractProgrammeExpenseBudgetCollection" style="display:none;"></tr>
+                        <tr class="level2" ng-if="!level1.IsDeactivated && !level2.IsDeactivated">
+                            <td colspan="{{hasMoreThanOneNutsAddress?4:3}}">
+                                {{level2.OrderNum + '. ' + level2.Name}}
+                                <span ng-if="level2.AidMode">
+                                    @ProgrammeBudget.AidMode: {{level2.AidMode.text}}
+                                </span>
+                            </td>
+                            <td class="perc">
+                                @*<div class="input-group">
+                                    <input type="text" money min-value="0" max-value="100" ng-model="level2.grandPercentage" class="form-control sum-field" ng-readonly="!level2.isTotalSumActive" />
+                                    <span class="input-group-addon">%</span>
+                                </div>*@
+                            </td>
+                            <td><input money type="text" class="form-control sum-field" readonly ng-model="level2.GrandAmount" /></td>
+                        </tr>
+                        <tr class="level2 deactivated" ng-if="level1.IsDeactivated || level2.IsDeactivated">
+                            <td colspan="{{hasMoreThanOneNutsAddress?4:3}}">
+                                {{level2.OrderNum + '. ' + level2.DisplayName}}
+                                <span ng-if="level2.AidMode">
+                                    @ProgrammeBudget.AidMode: {{level2.AidMode.text}}
+                                </span>
+
+                                <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover">
+                            </td>
+                            <td><p class="text-right">{{level2.grandPercentage}}%</p></td>
+                            <td><p class="text-right">{{level2.GrandAmount}}</p></td>
+                            <td><p class="text-right">{{level2.grandPercentage ? (100 - level2.grandPercentage).toFixed(2) : ''}}%</p></td>
+                        </tr>
+                        <tr ng-repeat-start="(index3, level3) in triple.BFPContractBudget.BFPContractProgrammeBudgetCollection[index1].BFPContractProgrammeExpenseBudgetCollection[index2].BFPContractProgrammeDetailsExpenseBudgetCollection" style="display:none;"></tr>
+                        <tr class="level3" style="vertical-align: top" ng-if="!level1.IsDeactivated && !level2.IsDeactivated">
+                            <td>
+                                {{level2.OrderNum + '.' + ($index + 1) + '. ' }}
+                                <input type="hidden" value="{{ level3.gid }}" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}gid" />
+                            </td>
+                            <td>
+                                <textarea sc-validation-popover rows="1" style="height:24px;" ng-class="{'input-validation-error': !level3.IsNameValid}" auto-grow ng-model="level3.Name" name="@(Html.GetNameFor(m => m.BFPContractBudget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].Name" class="form-control autogrow-short"></textarea>
+                            </td>
+                            <td ng-if="hasMoreThanOneNutsAddress">
+                                <span class="codes-span" >
+                                    <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@NutsAddress.NutsLevel" data-trigger="hover"> 08. :
+                                    <select sc-validation-popover ng-model="level3.Nuts" ng-class="{'input-validation-error': !level3.IsNutsValid}" class="form-control"
+                                            ng-options="{'id':item.id,'text':item.text,'Code':item.Code,'Name':item.Name,'FullPath':item.FullPath,'FullPathName':item.FullPathName} as item.text for item in SelectedNutsAddresses track by item.id">
+                                        <option ng-repeat="item in SelectedNutsAddresses" value="{{ item.id }}">{{ item.text }}</option>
+                                    </select>
+
+                                    <input type="hidden" class="validation-error-key" value="{{ level3.Nuts.Code }}" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Nuts.Code" />
+                                    <input type="hidden" value="{{ level3.Nuts.Name }}" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Nuts.Name" />
+                                    <input type="hidden" value="{{ level3.Nuts.FullPath }}" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Nuts.FullPath" />
+                                    <input type="hidden" value="{{ level3.Nuts.FullPathName }}" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Nuts.FullPathName" />
+                                </span>
+                            </td>
+                            <td>
+                                @if (Model.IsDirectionSectionSelected)
+                                {
+                                    <input ng-class="{'input-validation-error': !level3.IsDirectionValid}" type="hidden" ng-model="level3.Direction"
+                                           ui-select2="{ allowClear: true, placeholder: ' ', query: loadSelectedDirections }" ng-change="onChangeDirection(level3.Direction)" />
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Direction.DirectionItem.Id"
+                                           ng-model="level3.Direction.DirectionItem.Id" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}.Direction.DirectionItem.Name"
+                                           ng-model="level3.Direction.DirectionItem.Name" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Direction.DirectionItem.NameEN"
+                                           ng-model="level3.Direction.DirectionItem.NameEN" />
+                                }
+                            </td>
+                            <td colspan="2">
+                                <input sc-validation-popover ng-class="{'input-validation-error': !level3.IsGrandAmountValid}" type="text" money max-value="999999999" ng-model="level3.GrandAmount" ng-readonly="level2.isTotalSumActive" name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}GrandAmount" class="form-control sum-field" />
+                            </td>
+                            <td>
+                                <a confirm-click="delItem($parent.$parent.$parent.$index,$parent.$parent.$index,$index)" class="delete-btn" data-toggle="confirmation"></a>
+                            </td>
+                        </tr>
+                        <tr class="level3 deactivated" style="vertical-align: top" ng-if="level1.IsDeactivated || level2.IsDeactivated">
+                            <td>
+                                {{level2.OrderNum + '.' + ($index + 1) + '. ' }}
+
+                                <input type="hidden" value="{{level3.gid}}"
+                                name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}gid" />
+                            </td>
+                            <td>
+                                {{level3.Name}}
+
+                                <input type="hidden" value="{{level3.Name}}"
+                                name="@(Html.GetNameFor(m => m.BFPContractBudget)){{getName(index1,index2,index3)}}Name" />
+                            </td>
+                            <td>
+                                <span ng-if="hasMoreThanOneNutsAddress">
+                                    <span class="filled-value"><img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@NutsAddress.NutsLevel" data-trigger="hover"> {{level3.NutsAddressName}}</span>
+
+                                    @*<input type="hidden" value="{{ level3.Nuts.Code }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].Nuts.Code" />
+                                    <input type="hidden" value="{{ level3.Nuts.Name }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].Nuts.Name" />
+                                    <input type="hidden" value="{{ level3.Nuts.FullPath }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].Nuts.FullPath" />
+                                    <input type="hidden" value="{{ level3.Nuts.FullPathName }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].Nuts.FullPathName" />*@
+                                </span>
+                            </td>
+                            <td colspan="2">
+                                <p class="text-right">{{ level3.GrandAmount }}</p>
+
+                                @*<input type="hidden" value="{{ level3.GrandAmount }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].GrandAmount" />*@
+                            </td>
+                            <td colspan="2">
+                                <p class="text-right">{{ level3.SelfAmount }}</p>
+
+                                @*<input type="hidden" value="{{ level3.SelfAmount }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].SelfAmount" />*@
+                            </td>
+                            <td>
+                                <p class="text-right">{{ level3.TotalAmount }}</p>
+
+                                @*<input type="hidden" value="{{ level3.TotalAmount }}" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].TotalAmount" />*@
+                            </td>
+                            <td>
+                                @*<input type="hidden" name="@(Html.GetNameFor(m => m.Budget)).ProgrammeBudgetCollection[{{ $parent.$parent.$parent.$index }}].ProgrammeExpenseBudgetCollection[{{ $parent.$parent.$index }}].ProgrammeDetailsExpenseBudgetCollection[{{$index}}].OrderNum" value="{{ ($index + 1) }}" />*@
+                                <a confirm-click="delItem($parent.$parent.$parent.$index,$parent.$parent.$index,$index)" class="delete-btn" data-toggle="confirmation"></a>
+                            </td>
+                        </tr>
+                        <tr ng-repeat-end style="display:none"></tr>
+                        <tr class="level3">
+                            <td colspan="13">
+                                <a ng-click="addItem(index1, index2)" ng-show="setCountValidity(level2)" class="add-new-btn">@Global.AddButton</a>
+                                <p class="required-span" ng-show="level2.showTotalError">@String.Format(ProgrammeBudget.MaxLevel3TotalReached, Eumis.Documents.Constants.BudgetMaxLevel3ItemsTotal)</p>
+                                <p class="required-span" ng-show="!level2.showTotalError && level2.showCurrentError">@String.Format(ProgrammeBudget.MaxLevel3CurrentReached, Eumis.Documents.Constants.BudgetMaxLevel3Items)</p>
+                            </td>
+                        </tr>
+                        <tr ng-repeat-end style="display:none"></tr>
+                        <tr ng-repeat-end style="display:none"></tr>
+
+                        <tr class="level1 auto-calc-percent">
+                            <td colspan="{{hasMoreThanOneNutsAddress?4:3}}" class="text-right">
+                                @ProgrammeBudget.Total:
+
+                            </td>
+                            <td class="perc">
+                                @*<div class="input-group">
+                                    <input type="text" ng-model="triple.BFPContractBudget.grandPercentage" value="{{triple.BFPContractBudget.grandPercentage = triple.BFPContractBudget.GrandAmount && triple.BFPContractBudget.SelfAmount && (triple.BFPContractBudget.GrandAmount > 0 || triple.BFPContractBudget.SelfAmount > 0) ? (((100 * triple.BFPContractBudget.GrandAmount) || 0)/(((1 * triple.BFPContractBudget.GrandAmount) || 0) + ((1 * triple.BFPContractBudget.SelfAmount) || 0))).toFixed(2) : ''}}" class="form-control sum-field bold" readonly />
+                                    <span class="input-group-addon bold">%</span>
+                                </div>*@
+                            </td>
+                            <td class="total"><input money type="text" class="form-control sum-field bold" readonly ng-model="triple.BFPContractBudget.GrandAmount" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-show="!triple.BFPContractBudget.IsActive">
+                <label id="loading">@Global.Loading</label>
+            </div>
+        </section>
+        <div class="section-separator"> </div>
+        @*******************  CONTRACT  ************************@
+
+        @{sectionIndex++;}
+        <h2 data-section="@sectionIndex" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" />
+            @sectionIndex. @BFPContract.Contract
+        </h2>
+        <section data-section="@sectionIndex" class="clearfix">
+            <div class="table-wrapper">
+                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                <table class="chart-info" width="100%" style="min-width: 400px;">
+                    <thead>
+                        <tr>
+                            <th>@Contract.Name</th>
+                            <th style="min-width: 150px;">@Contract.Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>@BFPContractContract.TotalProjectCost</strong>
+                            </td>
+                            <td>
+                                <input money ng-class="{'input-validation-error': !triple.Contract.IsTotalProjectCostValid}" ng-model="triple.Contract.TotalProjectCost" name="@(Html.GetNameFor(m => m.Contract)).TotalProjectCost" type="text" class="form-control sum-field" readonly="readonly" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="section-separator"> </div>
+    </div>

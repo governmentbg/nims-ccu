@@ -1,0 +1,183 @@
+﻿@using Eumis.Portal.Web.Helpers;
+
+@model Eumis.Documents.Contracts.ContractDifferentiatedPositionPVO
+@{
+    bool isArchived = (Model.AnnouncedDate.HasValue && Model.OffersDeadlineDate < DateTime.Now.Date) || Model.TerminatedDate.HasValue;
+    string pageTitle = isArchived ? Offers.ArchivedProcurement : Offers.PreviewProcurement;
+}
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers),
+ isArchived ?
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Archived, MVC.Offers.Name), Offers.Archive):
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Offers.AnnouncementsOffers)
+
+}, pageTitle)
+
+<div class="container page-title">
+    <h1>@pageTitle</h1>
+</div>
+
+@if (!Request.IsAuthenticated)
+{
+    <div class="container">
+        <div class="info-block">
+            <p>@Offers.OfferDetailsNotAuthenticated</p>
+        </div>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="container">
+        <div class="page-content">
+            <section class="clearfix" style="display:block;">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>@Offers.CompanyName</label>
+                        @Html.DisplayFor(m => m.CompanyName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>@Offers.CompanyUinType</label>
+                        @Html.DisplayFor(m => m.CompanyUinType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>@Offers.CompanyUin</label>
+                        @Html.DisplayFor(m => m.CompanyUin)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>@Offers.ProcurementSubject</label>
+                        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.ErrandArea</label>
+                        @Html.DisplayFor(m => m.ErrandArea)
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.ErrandLegalAct</label>
+                        @Html.DisplayFor(m => m.ErrandLegalAct)
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.ErrandType</label>
+                        @Html.DisplayFor(m => m.ErrandType)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.ExpectedAmount</label>
+                        @Html.DisplayFor(m => m.ExpectedAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.NoticeDate</label>
+                        @Html.DisplayFor(m => m.NoticeDate)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <label>@Offers.OffersDeadlineDate</label>
+                        @Html.DisplayFor(m => m.OffersDeadlineDate)
+                    </div>
+                    <div class="form-group col-xs-8">
+                        <label>@Offers.Description</label>
+                        @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-8">
+                        <label>@Offers.DifferentiatedPosition</label>
+                        @Html.DisplayFor(m => m.DpName)
+                    </div>
+                    <div class="form-group col-xs-2">
+                        <label>@Offers.IsAnnounced</label>
+                        @Html.DisplayFor(m => m.AnnouncedDate.HasValue)
+                    </div>
+                    <div class="form-group col-xs-2">
+                        <label>@Offers.IsTerminated</label>
+                        @Html.DisplayFor(m => m.TerminatedDate.HasValue)
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                    <table class="chart-info dynamic-rows file-upload" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:60%;">@AttachedDocument.Description</th>
+                                <th style="width:40%;">@AttachedDocument.FileName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.PublicDocuments != null && Model.PublicDocuments.Count > 0)
+                            {
+                                for (int i = 0; i < Model.PublicDocuments.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => Model.PublicDocuments[i].Description)
+                                        </td>
+                                        <td>
+                                            <div class="files">
+                                                @if (!string.IsNullOrWhiteSpace(Model.PublicDocuments[i].Name))
+                                                {
+                                                    <p>@Model.PublicDocuments[i].Name</p>
+                                                    <a target="_blank" href="@(Url.Action(MVC.Offers.DetailsDownload(Model.DpGid.Value, Model.PublicDocuments[i].Key)))" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model.AdditionalDocuments != null && Model.AdditionalDocuments.Count > 0)
+                {
+                <h4>@ProcurementPlan.AdditionalAttachedDocuments</h4>
+                <div class="table-wrapper">
+                    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                    <table class="chart-info dynamic-rows file-upload" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:60%;">@AttachedDocument.Description</th>
+                                <th style="width:40%;">@AttachedDocument.FileName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @for (int i = 0; i < Model.AdditionalDocuments.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => Model.AdditionalDocuments[i].Description)
+                                        </td>
+                                        <td>
+                                            <div class="files">
+                                                @if (!string.IsNullOrWhiteSpace(Model.AdditionalDocuments[i].Name))
+                                                {
+                                                    <p>@Model.AdditionalDocuments[i].Name</p>
+                                                    <a target="_blank" href="@(Url.Action(MVC.Offers.AddtitionalDocumentDownload(Model.DpGid.Value, Model.AdditionalDocuments[i].Key)))" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                        </tbody>
+                    </table>
+                </div>
+                }
+            </section>
+        </div>
+        @if (!isArchived && Request.IsAuthenticated)
+        {
+          <div class="form-submit">
+            <a class="blue-button" href="@(Url.Action(MVC.Offer.ActionNames.New, MVC.Offer.Name, new { id = Model.DpGid }))">@Offers.SubmmitOffer</a>
+          </div>
+        }
+    </div>
+}

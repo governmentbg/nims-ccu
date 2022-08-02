@@ -1,0 +1,194 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="projectDossier_viewProject_title"></strong>
+  </div>
+
+  <div class="well-sm panel-body">
+    <div class="panel panel-default project-dossier first-section">
+      <div class="panel-heading" ng-click="showProjectRegistrationData=!showProjectRegistrationData">
+        <span l10n-text="projectDossier_viewProject_regData"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectRegistrationData, 'glyphicon-chevron-right': !showProjectRegistrationData}"></i>
+      </div>
+      <div class="panel-body">
+        <ng-form ng-show="showProjectRegistrationData" name="editProjectRegistrationDataForm" sc-form-readonly="true">
+          <eumis-project-registration-data name="projectRegistrationDataForm" ng-model="projectRegistration"></eumis-project-registration-data>
+        </ng-form>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showProjectEvalSessionProjects=!showProjectEvalSessionProjects">
+        <span l10n-text="projectDossier_viewProject_cancelations"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectEvalSessionProjects, 'glyphicon-chevron-right': !showProjectEvalSessionProjects}"></i>
+      </div>
+      <div class="panel-body">
+        <div ng-show="showProjectEvalSessionProjects" ng-repeat="evalSessionProject in projectEvalSessionProjects">
+          <div class="row">
+            <sc-field type="text" ng-model="evalSessionProject.evalSessionNum" ng-readonly="true" l10n-text="projectDossier_viewProject_evalSessionNum" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="evalSessionProject.isDeleted" ng-readonly="true" l10n-text="projectDossier_viewProject_isDeleted" class="col-sm-2 col-md-2"></sc-field>
+          </div>
+          <div class="row">
+            <sc-field type="textarea" rows="3" ng-model="evalSessionProject.isDeletedNote" ng-readonly="true" l10n-text="projectDossier_viewProject_isDeletedNote" class="col-sm-12 col-md-8"></sc-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default project-dossier">
+      <div class="panel-heading" ng-click="showProjectVersions=!showProjectVersions">
+        <span l10n-text="projectDossier_viewProject_history"></span>
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectVersions, 'glyphicon-chevron-right': !showProjectVersions}"></i>
+      </div>
+      <div class="panel-body">
+        <sc-link-button ng-show="showProjectVersions" ng-href="{{projectVersionsExportUrl}}" target="_blank" sc-access-token
+          icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewProject_historyExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+        <sc-datatable ng-show="showProjectVersions" items="projectVersions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.projectDossier.view.project.versions.edit', params: {vid: item.projectVersionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+          </sc-column>
+          <sc-column data="status" title="projectDossier_viewProject_projectStatus">
+          </sc-column>
+          <sc-column data="createNote" title="projectDossier_viewProject_createNote">
+          </sc-column>
+          <sc-column data="createDate" title="projectDossier_viewProject_createDate" type="date">
+          </sc-column>
+          <sc-column data="modifyDate" title="projectDossier_viewProject_modifyDate" type="date">
+          </sc-column>
+          <sc-column sortable="false" title="projectDossier_viewProject_file" has-content="true">
+            <a target="_blank" ng-href="{{item.projectFile.url}}" sc-access-token ng-show="item.projectFile" title="{{item.projectFile.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+          <sc-column sortable="false" title="projectDossier_viewProject_signatures" has-content="true">
+            <a ng-repeat="pfs in item.projectFileSignatures" target="_blank" ng-href="{{pfs.url}}" sc-access-token
+              ng-show="item.projectFile" title="{{pfs.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div ng-if="projectRegistration.hasRegistration">
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showProjectCommunications=!showProjectCommunications">
+          <span l10n-text="projectDossier_viewProject_communication"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectCommunications, 'glyphicon-chevron-right': !showProjectCommunications}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showProjectCommunications" ng-href="{{projectCommunicationsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewProject_communicationExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showProjectCommunications" items="projectCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.statusId === 'canceled'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.projectDossier.view.project.communications.edit', params: {mid: item.communicationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="sessionNum" title="projectDossier_viewProject_communicationSessionNum">
+            </sc-column>
+            <sc-column data="questionDate" title="projectDossier_viewProject_questionDate" type="date">
+            </sc-column>
+            <sc-column data="regNumber" title="projectDossier_viewProject_regNumber">
+            </sc-column>
+            <sc-column data="status" title="projectDossier_viewProject_communicationStatus">
+            </sc-column>
+            <sc-column data="questionEndingDate" title="projectDossier_viewProject_questionEndingDate" type="date">
+            </sc-column>
+            <sc-column data="answerDate" title="projectDossier_viewProject_answerDate" type="date">
+            </sc-column>
+            <sc-column sortable="false" title="projectDossier_viewProject_file" has-content="true">
+              <a target="_blank" ng-href="{{item.projectCommunicationFile.url}}" sc-access-token ng-show="item.projectCommunicationFile" title="{{item.projectCommunicationFile.name}}">
+                <span class="glyphicon glyphicon-file"></span>
+              </a>
+            </sc-column>
+            <sc-column sortable="false" title="projectDossier_viewProject_signatures" has-content="true">
+              <a ng-repeat="pcfs in item.projectCommunicationFileSignatures" target="_blank" ng-href="{{pcfs.url}}" sc-access-token
+                ng-show="item.projectCommunicationFile" title="{{pcfs.name}}">
+                <span class="glyphicon glyphicon-file"></span>
+              </a>
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="projectRegistration.hasRegistration">
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showProjectEvaulations=!showProjectEvaulations">
+          <span l10n-text="projectDossier_viewProject_evaluations"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectEvaulations, 'glyphicon-chevron-right': !showProjectEvaulations}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showProjectEvaulations" ng-href="{{projectEvaulationsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewProject_evaluationExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showProjectEvaulations" items="projectEvaulations" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.isDeleted === true}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.projectDossier.view.project.evaluations.edit', params: {eid: item.evalSessionEvaluationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="evalSessionNum" title="projectDossier_viewProject_evalSessionNum">
+            </sc-column>
+            <sc-column data="evalTableTypeName" title="projectDossier_viewProject_type">
+            </sc-column>
+            <sc-column data="calculationType" title="projectDossier_viewProject_calculationType">
+            </sc-column>
+            <sc-column data="evalIsPassed" title="projectDossier_viewProject_pass" type="boolean">
+            </sc-column>
+            <sc-column data="evalPoints" title="projectDossier_viewProject_result" type="number">
+            </sc-column>
+            <sc-column data="evalNote" title="projectDossier_viewProject_note">
+            </sc-column>
+            <sc-column data="createDate" title="projectDossier_viewProject_createDate" type="datetime">
+            </sc-column>
+            <sc-column data="isDeleted" title="projectDossier_viewProject_isDeleted" type="boolean">
+            </sc-column>
+            <sc-column data="isDeletedNote" title="projectDossier_viewProject_isDeletedNote">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="projectRegistration.hasRegistration">
+      <div class="panel panel-default project-dossier last-section">
+        <div class="panel-heading" ng-click="showProjectStandings=!showProjectStandings" style="cursor:pointer;">
+          <span l10n-text="projectDossier_viewProject_standings"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showProjectStandings, 'glyphicon-chevron-right': !showProjectStandings}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showProjectStandings" ng-href="{{projectStandingsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewProject_standingExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showProjectStandings" items="projectStandings" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.isDeleted === true}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.projectDossier.view.project.standings.edit', params: {sid: item.evalSessionProjectStandingId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="evalSessionNum" title="projectDossier_viewProject_evalSessionNum">
+            </sc-column>
+            <sc-column data="isPreliminary" title="projectDossier_viewProject_isPreliminary" type="boolean">
+            </sc-column>
+            <sc-column data="orderNum" title="projectDossier_viewProject_orderNum">
+            </sc-column>
+            <sc-column data="status" title="projectDossier_viewProject_status">
+            </sc-column>
+            <sc-column data="grandAmount" title="projectDossier_viewProject_grandAmount" type="money">
+            </sc-column>
+            <sc-column data="type" title="projectDossier_viewProject_standingType">
+            </sc-column>
+            <sc-column data="notes" title="projectDossier_viewProject_notes">
+            </sc-column>
+            <sc-column data="createDate" title="projectDossier_viewProject_createDate" type="datetime">
+            </sc-column>
+            <sc-column data="isDeleted" title="projectDossier_viewProject_isDeleted" type="boolean">
+            </sc-column>
+            <sc-column data="isDeletedNote" title="projectDossier_viewProject_isDeletedNote">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+  </div>
+</div>

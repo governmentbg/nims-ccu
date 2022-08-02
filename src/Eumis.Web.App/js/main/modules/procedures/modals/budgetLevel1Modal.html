@@ -1,0 +1,23 @@
+<ng-form name="level1Form" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_modals_budgetLevel1Modal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_modals_budgetLevel1Modal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_modals_budgetLevel1Modal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+          <sc-field type="nomenclature" alias="'expenseTypes'" ng-model="newBudgetLevel1.expenseTypeId" mode="id"
+            params="{ procedureId: newBudgetLevel1.procedureId, programmeId: newBudgetLevel1.programmeId}"
+            ng-required="true" l10n-text="procedures_modals_budgetLevel1Modal_expenseType" class="col-sm-12"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

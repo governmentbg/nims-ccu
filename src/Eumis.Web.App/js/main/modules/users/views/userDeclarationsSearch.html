@@ -1,0 +1,20 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-datatable items="userDeclarations" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button ng-if="item.declarationId != null" name="viewButton" btn-sref="{ state: 'root.map.declarations.edit', params: {id: item.declarationId} }" class="btn-primary btn btn-xs " icon="glyphicon-eye-open"></sc-button>
+        <sc-link-button ng-href="{{gdprUrl}}" ng-if="item.declarationId === null" name="viewButton" class="btn-primary btn btn-xs " icon="glyphicon-eye-open"></sc-link-button>
+      </sc-column>
+      <sc-column data="name" title="users_declarations_searchForm_name">
+      </sc-column>
+      <sc-column data="status" title="users_declarations_searchForm_status">
+      </sc-column>
+      <sc-column data="activationDate" title="users_declarations_searchForm_activationDate" type="date">
+      </sc-column>
+      <sc-column data="isAccepted" title="users_declarations_searchForm_isAccepted" type="boolean">
+      </sc-column>
+      <sc-column data="acceptDate" title="users_declarations_searchForm_acceptionDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

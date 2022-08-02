@@ -1,0 +1,12 @@
+<div>
+  <label class="title">{{infoText}}</label>
+  <sc-tabs tab-list="{
+      'euReimbursedAmounts_viewAmount_view': 'root.euReimbursedAmounts.view.amount',
+      'euReimbursedAmounts_viewAmount_certReports': 'root.euReimbursedAmounts.view.certReports'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

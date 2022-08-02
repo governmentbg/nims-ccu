@@ -1,0 +1,104 @@
+﻿@model R_10005.InterventionCategoryDimensions
+
+@{bool isModelNull = Model == null;}
+
+<table class="intervention-category">
+    <thead>
+        <tr>
+            <th>@InterventionCategoryDimensions.Dimension</th>
+            <th>@InterventionCategoryDimensions.Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width: 35%;">@InterventionCategoryDimensions.InterventionField</td>
+            <td style="width: 65%;">
+                @if (!isModelNull && Model.InterventionFieldCollection != null && Model.InterventionFieldCollection.Count > 0)
+                {
+                    foreach (var field in Model.InterventionFieldCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, field ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.FormOfFinance</td>
+            <td>
+                @if (!isModelNull && Model.FormOfFinanceCollection != null && Model.FormOfFinanceCollection.Count > 0)
+                {
+                    foreach (var item in Model.FormOfFinanceCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.TerritorialDimension</td>
+            <td>
+                @if (!isModelNull && Model.TerritorialDimensionCollection != null && Model.TerritorialDimensionCollection.Count > 0)
+                {
+                    foreach (var item in Model.TerritorialDimensionCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.TerritorialDeliveryMechanism</td>
+            <td>
+                @if (!isModelNull && Model.TerritorialDeliveryMechanismCollection != null && Model.TerritorialDeliveryMechanismCollection.Count > 0)
+                {
+                    foreach (var item in Model.TerritorialDeliveryMechanismCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.ThematicObjective</td>
+            <td>
+                @if (!isModelNull && Model.ThematicObjectiveCollection != null && Model.ThematicObjectiveCollection.Count > 0)
+                {
+                    foreach (var item in Model.ThematicObjectiveCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.ESFSecondaryTheme</td>
+            <td>
+                @if (!isModelNull && Model.ESFSecondaryThemeCollection != null && Model.ESFSecondaryThemeCollection.Count > 0)
+                {
+                    foreach (var item in Model.ESFSecondaryThemeCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@InterventionCategoryDimensions.EconomicDimension</td>
+            <td>
+                @if (!isModelNull && Model.EconomicDimensionCollection != null && Model.EconomicDimensionCollection.Count > 0)
+                {
+                    foreach (var item in Model.EconomicDimensionCollection)
+                    {
+                        <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, item ?? new R_10001.PublicNomenclature())</p>
+                    }
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

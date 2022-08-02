@@ -1,0 +1,26 @@
+<ng-form name="editContractReportCorrectionDataForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportCorrections_basicData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="setToDraft()" text="contractReportCorrections_basicData_draft" class="btn btn-success btn-xs"
+          ng-if="contractReportCorrectionData.status === 'entered'" ng-disabled="!$canDo('ContractReportCorrectionActions.Edit', contractReportCorrectionData.contractReportCorrectionId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="enter()" text="contractReportCorrections_basicData_enter" class="btn btn-primary btn-xs"
+          ng-if="contractReportCorrectionData.status === 'draft'" ng-disabled="!$canDo('ContractReportCorrectionActions.Edit', contractReportCorrectionData.contractReportCorrectionId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportCorrections_basicData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="contractReportCorrectionData.status === 'draft' && !contractReportCorrectionData.isActivated" ng-disabled="!$canDo('ContractReportCorrectionActions.Edit', contractReportCorrectionData.contractReportCorrectionId)">
+        </sc-button>
+        <sc-button name="removeBtn" btn-click="remove()" text="contractReportCorrections_basicData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="contractReportCorrectionData.status === 'draft' && contractReportCorrectionData.isActivated" ng-disabled="!$canDo('ContractReportCorrectionActions.Edit', contractReportCorrectionData.contractReportCorrectionId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-report-correction-basic-data name="contractReportCorrectionDataForm" ng-model="contractReportCorrectionData" sc-form-readonly="true"></eumis-contract-report-correction-basic-data>
+    </div>
+  </div>
+</ng-form>

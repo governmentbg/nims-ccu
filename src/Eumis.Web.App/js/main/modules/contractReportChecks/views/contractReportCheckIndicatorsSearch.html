@@ -1,0 +1,30 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-link-button ng-href="{{contractReportIndicatorsExportUrl}}" target="_blank" sc-access-token
+      icon="fa-file-excel-o fa-lg fa-fw" text="contractReportChecks_contractReportIndicatorsSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contractReportIndicators" filterable="true" pageable="true" sortable="true" dynamic-columns="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.indicators.edit', params: { ind: item.contractReportIndicatorId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="indicatorName" title="contractReportChecks_contractReportIndicatorsSearch_indicatorName"></sc-column>
+      <sc-column data="status" title="contractReportChecks_contractReportIndicatorsSearch_status"></sc-column>
+      <sc-column data="approval" title="contractReportChecks_contractReportIndicatorsSearch_approval"></sc-column>
+
+      <sc-column data="periodAmount" title="contractReportChecks_contractReportIndicatorsSearch_periodAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_indicatorAmount"></sc-column>
+      <sc-column data="cumulativeAmount" title="contractReportChecks_contractReportIndicatorsSearch_cumulativeAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_indicatorAmount"></sc-column>
+      <sc-column data="residueAmount" title="contractReportChecks_contractReportIndicatorsSearch_residueAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_indicatorAmount"></sc-column>
+
+      <sc-column data="approvedPeriodAmount" title="contractReportChecks_contractReportIndicatorsSearch_approvedPeriodAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_approvedAmount"></sc-column>
+      <sc-column data="approvedCumulativeAmount" title="contractReportChecks_contractReportIndicatorsSearch_approvedCumulativeAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_approvedAmount"></sc-column>
+      <sc-column data="approvedResidueAmount" title="contractReportChecks_contractReportIndicatorsSearch_approvedResidueAmount" type="money"
+        col-group="contractReportChecks_contractReportIndicatorsSearch_approvedAmount"></sc-column>
+    </sc-datatable>
+  </div>

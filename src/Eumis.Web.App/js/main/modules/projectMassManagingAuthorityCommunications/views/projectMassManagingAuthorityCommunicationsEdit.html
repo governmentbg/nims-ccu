@@ -1,0 +1,25 @@
+<ng-form name="editProjectMassMACommunicationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_edit" class="btn btn-primary btn-xs" icon="glyphicon-pencil" ng-show="!editMode && isDraftCommunication"
+          ng-disabled="!$canDo('ProjectMassManagingAuthorityCommunicationActions.Edit', communicationId)">
+        </sc-button>
+        <sc-button name="saveBtn" ng-show="editMode" btn-click="save()" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="sendBtn" ng-if="isDraftCommunication" ng-show="!editMode" btn-click="send()" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_send" class="btn btn-success btn-xs" icon="glyphicon-share"
+          ng-disabled="!$canDo('ProjectMassManagingAuthorityCommunicationActions.Edit', communicationId)">
+        </sc-button>
+        <sc-button name="deleteBtn" ng-if="isDraftCommunication" ng-show="!editMode" btn-click="delete()" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ProjectMassManagingAuthorityCommunicationActions.Edit', communicationId)">
+        </sc-button>
+        <sc-button name="cancelBtn" ng-show="editMode" btn-click="cancel()" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <eumis-project-mass-managing-authority-communication name="projectMassMACommunicationForm" ng-model="projectMassManagingAuthorityCommunication"></eumis-project-mass-managing-authority-communication>
+    </div>
+  </div>
+</ng-form>

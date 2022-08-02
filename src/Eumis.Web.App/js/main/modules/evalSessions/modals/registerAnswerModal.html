@@ -1,0 +1,28 @@
+﻿<ng-form name="registerAnswerForm" sc-validate="{}">
+  <div class="modal-header">
+    <strong class="heading" l10n-text="evalSessions_registerAnswerModal_title"></strong>
+  </div>
+  <div class="modal-body message-modal-body">
+    <div class="row">
+      <sc-field type="text" ng-model="model.hash" ng-required="true" l10n-text="evalSessions_registerAnswerModal_hash" class="col-sm-8"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="text" ng-model="model.regNumber" ng-readonly="true" l10n-text="evalSessions_registerAnswerModal_regNumber" class="col-sm-8"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="date" ng-model="model.regDate" ng-required="true" l10n-text="evalSessions_registerAnswerModal_regDate" class="col-sm-4"></sc-field>
+    </div>
+    <div class="row" ng-show="errors.length">
+      <h5 l10n-text="evalSessions_registerAnswerModal_hasErrors"></h5>
+      <h5 ng-repeat="err in errors" style="padding-left: 10px; color: red;">
+        {{'- ' + err}}
+      </h5>
+    </div>
+  </div>
+  <div class="modal-footer message-modal-footer">
+    <sc-button name="registerBtn" btn-click="register()" text="evalSessions_registerAnswerModal_register" class="btn btn-primary btn-sm" icon="glyphicon-ok">
+    </sc-button>
+    <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_registerAnswerModal_cancel" class="btn btn-default btn-sm" icon="glyphicon-ban-circle">
+    </sc-button>
+  </div>
+</ng-form>

@@ -1,0 +1,26 @@
+<ng-form name="editEvalSessionUserForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionUser_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="evalSessions_editEvalSessionUser_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="canEdit"
+                   ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionUser.evalSessionId)"></sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteUser()" text="evalSessions_editEvalSessionUser_deleteUser" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="canDelete"
+                   ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionUser.evalSessionId)"></sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_editEvalSessionUser_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_editEvalSessionUser_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+        <sc-button name="activateBtn" btn-click="activate()" text="evalSessions_editEvalSessionUser_activate" class="btn btn-primary btn-xs" icon="glyphicon-ok-circle" ng-show="canActivate"
+                   ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionUser.evalSessionId)"></sc-button>
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="evalSessions_editEvalSessionUser_deactivate" class="btn btn-danger btn-xs" icon="glyphicon-ban-circle" ng-show="canDeactivate"
+                   ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionUser.evalSessionId)"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-user  name="evalSessionUserForm" ng-model="evalSessionUser"></eumis-eval-session-user>
+    </div>
+  </div>
+</ng-form>

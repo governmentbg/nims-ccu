@@ -1,0 +1,31 @@
+<ng-form name="form.chooseProgrammePrioritiesForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="flatFinancialCorrections_chooseProgrammePriorityItemsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="flatFinancialCorrections_chooseProgrammePriorityItemsModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="flatFinancialCorrections_chooseProgrammePriorityItemsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div>
+        <sc-datatable items="programmePriorities" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+            <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="flatFinancialCorrections_chooseProgrammePriorityItemsModal_code">
+          </sc-column>
+          <sc-column data="name" title="flatFinancialCorrections_chooseProgrammePriorityItemsModal_name" has-content="true">
+            <span title="{{item.name}}">{{item.name | trim : 100}}</span>
+          </sc-column>
+          <sc-column data="programmeName" title="flatFinancialCorrections_chooseProgrammePriorityItemsModal_programme">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</ng-form>

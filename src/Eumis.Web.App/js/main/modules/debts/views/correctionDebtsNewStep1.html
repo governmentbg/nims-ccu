@@ -1,0 +1,22 @@
+<div class="tab-content">
+  <ng-form name="correctionDebtsNewStep1Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="correctionDebts_newCorrectionDebtStep1_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="nextBtn" btn-click="next()" text="correctionDebts_newCorrectionDebtStep1_next" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="correctionDebts_newCorrectionDebtStep1_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'flatFinancialCorrections'" ng-required="true" mode="id" ng-model="model.flatFinancialCorrectionId" l10n-text="correctionDebts_newCorrectionDebtStep1_correction" class="col-sm-5 col-md-5"></sc-field>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

@@ -1,0 +1,22 @@
+﻿@model R_10045.PaymentRequest
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>Договор № @Model.contractNumber, @Global.PaymentRequest № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Private.PaymentRequest.ActionNames.Print, MVC.Private.PaymentRequest.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.DisplayFor(m => m)
+
+        </form>
+    </div>
+</div>

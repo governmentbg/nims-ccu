@@ -1,0 +1,55 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'contractReportCorrectionTypes'" ng-model="model.type" mode="id" l10n-text="contractReportCorrections_basicDataForm_type" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'contractReportCorrectionStatuses'" ng-model="model.status" mode="id" l10n-text="contractReportCorrections_basicDataForm_status" class="col-sm-3 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.regNumber" l10n-text="contractReportCorrections_basicDataForm_regNumber" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-show="model.checkedDate">
+    <sc-field type="text" ng-model="model.checkedByUser" ng-readonly="true" l10n-text="contractReportCorrections_basicDataForm_checkedByUser" class="col-sm-5 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.checkedDate" ng-readonly="true" l10n-text="contractReportCorrections_basicDataForm_checkedDate" class="col-sm-3 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.deleteNote" ng-show="model.status === 'deleted'" rows="2" l10n-text="contractReportCorrections_basicDataForm_deleteNote" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-model="model.programmeId" mode="id" l10n-text="contractReportCorrections_basicDataForm_programme" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.programmePriorityId">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="model.programmePriorityId" mode="id" l10n-text="contractReportCorrections_basicDataForm_programmePriority" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.procedureId">
+    <sc-field type="nomenclature" alias="'procedures'" ng-model="model.procedureId" mode="id" l10n-text="contractReportCorrections_basicDataForm_procedure" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+
+  <div ng-if="model.contractId">
+    <h5 class="table-header" l10n-text="contractReportCorrections_basicDataForm_contract"></h5>
+    <div class="row">
+      <sc-field type="text" ng-model="model.contractRegNumber" l10n-text="contractReportCorrections_basicDataForm_contractRegNumber" class="col-sm-6 col-md-5"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="textarea" ng-model="model.contractName" rows="2" l10n-text="contractReportCorrections_basicDataForm_contractName" class="col-sm-12 col-md-10"></sc-field>
+    </div>
+
+    <h5 class="table-header" l10n-text="contractReportCorrections_basicDataForm_beneficiary"></h5>
+    <div class="row">
+      <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" l10n-text="contractReportCorrections_basicDataForm_uinType" class="col-sm-6 col-md-5"></sc-field>
+      <sc-field type="text" ng-model="model.companyUin" l10n-text="contractReportCorrections_basicDataForm_uin" class="col-sm-6 col-md-5"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="text" ng-model="model.companyName" l10n-text="contractReportCorrections_basicDataForm_name" class="col-sm-12 col-md-10"></sc-field>
+    </div>
+  </div>
+
+  <div ng-if="model.contractReportPaymentId">
+    <h5 class="table-header" l10n-text="contractReportCorrections_basicDataForm_contractReportPayment"></h5>
+    <div class="row">
+      <sc-field type="text" ng-model="model.paymentVersionNum" l10n-text="contractReportCorrections_basicDataForm_paymentVersionNum" class="col-sm-2 col-md-2"></sc-field>
+      <sc-field type="date" ng-model="model.paymentCheckedDate" l10n-text="contractReportCorrections_basicDataForm_paymentCheckedDate" class="col-sm-2 col-md-2"></sc-field>
+      <sc-field type="money" ng-model="model.requestedAmount" l10n-text="contractReportCorrections_basicDataForm_requestedAmount" class="col-sm-4 col-md-3"></sc-field>
+      <sc-field type="money" ng-model="model.paidBfpTotalAmount" l10n-text="contractReportCorrections_basicDataForm_paidBfpTotalAmount" class="col-sm-4 col-md-3"></sc-field>
+    </div>
+  </div>
+</ng-form>

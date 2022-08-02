@@ -1,0 +1,13 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'sources'" mode="id" ng-model="model.source" ng-readonly="true" l10n-text="contracts_procurementForm_source" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'contractProcurementStatuses'" mode="id" ng-model="model.status" ng-readonly="true" l10n-text="contracts_procurementForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="contracts_procurementForm_createDate" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-disabled="true" l10n-text="contracts_procurementForm_createdByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.createNote" ng-required="true" rows="3" l10n-text="contracts_procurementForm_createNote" class="col-sm-7 col-md-5"></sc-field>
+  </div>
+</ng-form>

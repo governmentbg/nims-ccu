@@ -1,0 +1,88 @@
+﻿@model R_10044.BeneficiarySiteInspections
+@using Eumis.Common.Helpers
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BeneficiarySiteInspection.Number</th>
+                <th>@BeneficiarySiteInspection.StartDate</th>
+                <th>@BeneficiarySiteInspection.EndDate</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.BeneficiarySiteInspectionCollection != null)
+            {
+                foreach (var item in Model.BeneficiarySiteInspectionCollection)
+                {
+                    <tr>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.Number)
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.StartDate)
+                        </td>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => item.EndDate)
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="4">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@BeneficiarySiteInspection.Number</label>
+                                        @Html.DisplayFor(m => item.Number)
+                                    </div>
+
+                                    <div class="form-group col-md-9">
+                                        <label>@BeneficiarySiteInspection.CheckSubject</label>
+                                        @Html.DisplayFor(m => item.CheckSubject)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@BeneficiarySiteInspection.Range</label>
+                                    @Html.DisplayFor(m => item.Range, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        <label>@BeneficiarySiteInspection.StartDate</label>
+                                        @Html.DisplayFor(m => item.StartDate)
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>@BeneficiarySiteInspection.EndDate</label>
+                                        @Html.DisplayFor(m => item.EndDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@BeneficiarySiteInspection.KeyRecommendations</label>
+                                    @Html.DisplayFor(m => item.KeyRecommendations, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@BeneficiarySiteInspection.RecommendationsFulfilled</label>
+                                    @Html.DisplayFor(m => item.RecommendationsFulfilled, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@BeneficiarySiteInspection.Comment</label>
+                                    @Html.DisplayFor(m => item.Comment, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

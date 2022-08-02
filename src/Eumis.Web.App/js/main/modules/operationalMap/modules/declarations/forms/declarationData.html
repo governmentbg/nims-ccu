@@ -1,0 +1,58 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row" ng-if="model.status !== 'draft'">
+    <sc-field type="date" ng-model="model.activationDate" l10n-text="declarations_declarationDataForm_activationDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-maxlength="200" ng-required="true" validations="{maxlength: 'declarations_declarationDataForm_nameMaxlength'}" l10n-text="declarations_declarationDataForm_name" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.nameAlt" ng-maxlength="200" ng-required="true" validations="{maxlength: 'declarations_declarationDataForm_nameMaxlength'}" l10n-text="declarations_declarationDataForm_nameAlt" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.content" rows="4" ng-required="true" l10n-text="declarations_declarationDataForm_content" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.contentAlt" rows="4" ng-required="true" l10n-text="declarations_declarationDataForm_contentAlt" class="col-sm-12 col-md-10"></sc-field>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-10">
+      <label style="display:inline-block;" class="pull-left" l10n-text="declarations_declarationDataForm_files"></label>
+      <sc-button btn-click="addFile()" class="btn btn-primary btn-xs pull-left" icon="glyphicon-plus" ng-disabled="form.$readonly" style="position:relative; right: -5px; top: -3px;"></sc-button>
+      <table class="table table-bordered" style="clear: both; margin-bottom: 7px; font-size: 12px;" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+        <th style="width: 1px;"></th>
+        <th sc-has-error="descr">
+          <label class="control-label" l10n-text="declarations_declarationDataForm_fileDescr"></label>
+          <sc-validation-error field-name="descr" validations="{maxlength: 'declarations_declarationDataForm_fileDescrMaxlength', required: 'default'}"></sc-validation-error>
+        </th>
+        <th sc-has-error="file" style="width: 25%">
+          <label class="control-label" l10n-text="declarations_declarationDataForm_file"></label>
+          <sc-validation-error field-name="file" validations="{required: 'default'}"></sc-validation-error>
+        </th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="file in model.files | filter: {status: '!removed'} track by $index">
+            <td>
+              <sc-button btn-click="removeFile(file, $index)" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-disabled="form.$readonly"></sc-button>
+            </td>
+            <td>
+              <sc-text name="descr" ng-model="file.description" ng-required="true" ng-maxlength="200" ng-readonly="form.$readonly"></sc-text>
+            </td>
+            <td>
+              <sc-file name="file" ng-model="file.file" ng-readonly="form.$readonly" url-template="DeclarationFile" url-params="{ id: model.declarationId }" ng-required="true"></sc-file>
+            </td>
+          </tr>
+          <tr ng-show="model.files.length === 0">
+            <td colspan="3" l10n-text="declarations_declarationDataForm_noFiles"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'declarationStatuses'" mode="id" ng-disabled="true" ng-model="model.status" l10n-text="declarations_declarationDataForm_status" class="col-sm-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="declarations_declarationDataForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-disabled="true" l10n-text="declarations_declarationDataForm_createdByUser" class="col-sm-5 col-md-4"></sc-field>
+  </div>
+</ng-form>

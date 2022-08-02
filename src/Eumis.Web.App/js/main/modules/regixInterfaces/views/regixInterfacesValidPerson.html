@@ -1,0 +1,22 @@
+<ng-form name="regixInterfacesValidPersonForm" sc-validate="{}" >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="regixInterfaces_regixInterfacesValidPerson_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" ng-disabled="!$canDo('RegixActions.View')" btn-click="check()" text="regixInterfaces_regixInterfacesValidPerson_check" class="btn btn-primary btn-xs" icon="glyphicon-edit">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="request.personalBulstat" ng-required="true" l10n-text="regixInterfaces_regixInterfacesValidPerson_personId" class="col-sm-6 col-md-6"></sc-field>
+      </div>
+      <div ng-if="hasResponse" class="row">
+        <sc-field type="text" ng-readonly="true" ng-model="model.firstName" l10n-text="regixInterfaces_regixInterfacesValidPerson_firstName" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="text" ng-readonly="true" ng-model="model.surName" l10n-text="regixInterfaces_regixInterfacesValidPerson_surName" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="text" ng-readonly="true" ng-model="model.familyName" l10n-text="regixInterfaces_regixInterfacesValidPerson_familyName" class="col-sm-6 col-md-6"></sc-field>
+        <sc-field type="date" ng-readonly="true" ng-model="model.birthDate" l10n-text="regixInterfaces_regixInterfacesValidPerson_birthDay" class="col-sm-6 col-md-6"></sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

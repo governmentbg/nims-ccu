@@ -1,0 +1,86 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Project.EditVM
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.Project.ActionNames.Prepare,
+    MVC.Private.Project.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_PROJECT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Private.Project.ActionNames.Prepare,
+                MVC.Private.Project.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_PROJECT,
+                formMethod: FormMethod.Post)
+            @Global.Proposal
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(Model.RemoteValidationWarnings, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.ProjectEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            LinkName = Global.SaveProjectDraft,
+                            SuccessMessage = Global.SaveProjectDraftSuccess,
+                            ControllerName = MVC.Private.Project.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.Project.ActionNames.Save,
+                            HasXmlUpdate = true,
+                            FORM_ID = Constants.PARTIAL_SAVE_PROJECT
+                        })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Private.Project.ActionNames.Prepare,
+                        MVC.Private.Project.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" }, 
+                        formId: Constants.PARTIAL_SAVE_PROJECT, 
+                        formMethod: FormMethod.Post) @Global.ValidateButton
+                    @Html.EndActionLinkPrePostButton()
+                </div>
+
+                <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_PROJECT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Private.Project.ActionNames.Prepare, MVC.Private.Project.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_PROJECT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+        </script>
+    }
+</div>

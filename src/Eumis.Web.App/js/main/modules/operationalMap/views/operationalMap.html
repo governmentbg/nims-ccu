@@ -1,0 +1,7 @@
+<div class="operational-map">
+  <abn-tree tree-data="programmes" icon-leaf="fa fa-tasks" expand-level="1" on-select= "onSelectHandler(branch)"></abn-tree>
+</div>
+<div class="height-wrapper-btn-sm">
+  <sc-button ng-disabled="!$canDo('ProgrammeActions.View', mapNodeId)" ng-hide="!currentNodeLevel" btn-click="view()" class="btn btn-sm btn-primary" text="operationalMap_view"></sc-button>
+  <sc-button ng-hide="!$canDo('ProgrammeListActions.Create')" btn-sref="{ state: 'root.map.programmes.new' }" class="btn btn-sm btn-primary" text="operationalMap_newProgramme"></sc-button>
+</div>

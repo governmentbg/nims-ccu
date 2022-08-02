@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row" style="padding-top: 14px;">
+      <div class="col-sm-12">
+        <sc-button name="newBtn" btn-sref="{ state: 'root.map.programmes.view.directions.new' }" text="programmes_directionsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+          ng-if="programmePriorityStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)" style="position:relative;"></sc-button>
+        <sc-datatable items="directions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="type">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.map.programmes.view.directions.edit', params: { ind: item.mapNodeDirectionId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="directionName" title="programmes_directionsSearch_direction">
+          </sc-column>
+          <sc-column data="subDirectionName" title="programmes_directionsSearch_subDirection">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

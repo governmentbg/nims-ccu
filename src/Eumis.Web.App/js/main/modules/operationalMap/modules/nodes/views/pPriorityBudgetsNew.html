@@ -1,0 +1,22 @@
+<ng-form name="newPPriorityBudgetForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmePriorities_newPPriorityBudget_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="programmePriorities_newPPriorityBudget_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmePriorities_newPPriorityBudget_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'budgetPeriods'" mode="id" ng-model="newBudget.budgetPeriodId" ng-required="true" params="{programmePriorityId: newBudget.programmePriorityId}" l10n-text="programmePriorities_newPPriorityBudget_budgetPeriod" class="col-sm-2"></sc-field>
+      </div>
+
+      <eumis-programme-priority-budget name="budgetForm" ng-model="newBudget" ></eumis-programme-priority-budget>
+    </div>
+  </div>
+</ng-form>

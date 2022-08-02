@@ -1,0 +1,60 @@
+﻿@model Eumis.Portal.Web.Models.Account.LoginVM
+
+@using Eumis.Common.ReCaptcha
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton)
+}
+        , Global.BreadcrumbsLogin)
+
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsLogin</h1>
+</div>
+
+<div class="container">
+    @Html.ValidationSummary()
+    <div class="page-content clearfix">
+        <form method="post">
+            <div class="col-lg-10 col-lg-offset-1 col-sm-12 col-sm-offset-0">
+                <div class="col-xs-12">
+                    <h2 class="m-top-10">
+                        @Login.EmailLogin
+                    </h2>
+                </div>
+                <div class="col-md-6 clearfix">
+                    <div class="info-block">
+                        <p>@Login.InfoP1</p>
+                        <p>@Login.InfoP2</p>
+                        <br />
+                        <p>@Login.InfoP3 @Html.ActionLink(Login.NewRegistration, MVC.Account.ActionNames.Register, MVC.Account.Name).</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 clearfix">
+                    <div class="form-group">
+                        <label><span class="required-span">*</span> @Login.Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @autofocus = "" })
+                    </div>
+                    <div class="form-group">
+                        <label><span class="required-span">*</span> @Login.Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ReCaptcha(Constants.ReCaptchaSiteKey)
+                    </div>
+                    <div class="row">
+                        <div class="form-group new-forg-pass col-xs-6">
+                            @Html.ActionLink(Login.NewRegistration, MVC.Account.ActionNames.Register, MVC.Account.Name)
+                            @Html.ActionLink(Login.ForgottenPassword, MVC.Account.ActionNames.ForgotPassword, MVC.Account.Name)
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="submit" class="submit m-top-10 wait pull-right" value="@Global.Login">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

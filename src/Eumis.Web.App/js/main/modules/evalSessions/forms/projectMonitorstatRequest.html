@@ -1,0 +1,31 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <h5 class="form-header" l10n-text="evalSessions_pojectMonitorstatRequest_title"></h5>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedureMonitorstatRequests'" mode="id" ng-model="model.procedureMonitorstatRequestId" params="{ identifier: model.projectId }" ng-required="true" l10n-text="evalSessions_pojectMonitorstatRequest_inqury" class="col-sm-12 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'projectVersionFiles'" mode="id" ng-model="model.projectVersionXmlFileId" params="{ projectVersionXmlId: model.projectVersionXmlId }" ng-required="!model.projectVersionXmlFileId && !model.programmeDeclarationId" l10n-text="evalSessions_pojectMonitorstatRequest_declaration" class="col-sm-12 col-md-6"></sc-field>
+    <div ng-if="model.projectVersionXmlFileBlobKey != null && !editMode" class="col-xs-1" style="margin-top: 20px;">
+      <a class="btn btn-primary btn-xs" target="_blank" ng-href="{{getUrl(model.projectVersionXmlFileBlobKey)}}"
+        sc-access-token>
+        <span class="glyphicon glyphicon-eye-open"></span>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'nsiDeclarations'" mode="id" ng-model="model.programmeDeclarationId" params="{ providedId: model.projectVersionXmlId }" ng-required="!model.projectVersionXmlFileId && !model.programmeDeclarationId" l10n-text="evalSessions_pojectMonitorstatRequest_eDeclaration" class="col-sm-12 col-md-6"></sc-field>
+    <div ng-if="model.declarationBlobKey != null && !editMode" class="col-xs-1" style="margin-top: 20px;">
+      <a class="btn btn-primary btn-xs" target="_blank" ng-href="{{getUrl(model.declarationBlobKey)}}" sc-access-token>
+        <span class="glyphicon glyphicon-eye-open"></span>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.companyUin" ng-required="true" ng-readonly="true" l10n-text="evalSessions_pojectMonitorstatRequest_companyUin" class="col-sm-6 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'uinTypes'" mode="id" ng-model="model.companyUinType" ng-required="true" ng-readonly="true" l10n-text="evalSessions_pojectMonitorstatRequest_companyUinType" class="col-sm-6 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.statusDescr" ng-disabled="true" l10n-text="evalSessions_pojectMonitorstatRequest_status" class="col-sm-6 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.foreignGid" ng-readonly="true" l10n-text="evalSessions_pojectMonitorstatRequest_foreignGid" class="col-sm-6 col-md-3"></sc-field>
+  </div>
+</ng-form>

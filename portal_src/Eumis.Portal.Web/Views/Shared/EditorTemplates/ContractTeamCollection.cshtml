@@ -1,0 +1,114 @@
+﻿@model R_10019.ContractTeamCollection
+
+@{
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+    
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        areItemsValid: @(Model.IsValid.ToString().ToLower()),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerContractTeamCollection@(guid)'), ['moduleContractTeamCollection']);
+    });
+
+</script>
+
+<h2 data-section="@Model.SectionNumber" class="section-heading" activation-name="@(guid)" broadcast-name="teamsActivation">
+    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+    @if (isMessageType)
+    {
+        <input type="checkbox" class="bootstrap-switch lock-unlock" readonly="readonly" />
+    }
+    @Model.SectionNumber. @Project.ContractTeamCollection
+    @if (Model.IsFinalRecipients)
+    {
+        <text>(@Global.NotRequiredSection)</text>
+    }
+    <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@String.Format(ContractTeam.MaxContractTeamsHint, Eumis.Documents.Constants.ContractTeamsMaxCount)" data-trigger="hover" alt="" data-original-title="" title="">
+</h2>
+<section data-section="@Model.SectionNumber" class="clearfix">
+    <div class="@(guid)" id="containerContractTeamCollection@(guid)" ng-controller="controllerContractTeamCollection" ng-init="init('_eumis_options', 'i@(guid)')">
+        <div ng-if="items.IsActive" class="table-wrapper">
+            <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+            <table class="chart-info" width="100%">
+                <thead>
+                    <tr>
+                        <th>@ContractTeam.Name</th>
+                        <th>@ContractTeam.Position</th>
+                        <th colspan="2">@ContractTeam.Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                    <tr>
+                        <td style="word-break: break-all">
+                            {{item.Name}}
+                        </td>
+                        <td style="word-break: break-all">
+                            {{item.Position}}
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                            </a>
+                        </td>
+                        <td style="width: 130px;">
+                            <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                        </td>
+                    </tr>
+                    <tr class="history-table">
+                        <td colspan="4">
+                            <div class="history-table-wrapper clearfix">
+                                <div class="clearfix">
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label>@ContractTeam.Name @SymbolsCount.Symbols100</label>
+                                        <textarea ng-class="{'input-validation-error': !item.IsNameValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Name" name="@(Html.GetNameFor(m => m))[{{ $index }}].Name" class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label>@ContractTeam.Position @SymbolsCount.Symbols200</label>
+                                        <textarea ng-class="{'input-validation-error': !item.IsPositionValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Position" name="@(Html.GetNameFor(m => m))[{{ $index }}].Position" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-12 col-md-12">
+                                    <label>@ContractTeam.Responsibilities @SymbolsCount.Symbols3000</label>
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsResponsibilitiesValid}" auto-grow rows="2" style="height: 60px;" ng-model="item.Responsibilities" name="@(Html.GetNameFor(m => m))[{{ $index }}].Responsibilities" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ContractTeam.Phone</label>
+                                    <input ng-class="{'input-validation-error': !item.IsPhoneValid}" type="text" ng-model="item.Phone" name="@(Html.GetNameFor(m => m))[{{ $index }}].Phone" class="form-control" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ContractTeam.Email</label>
+                                    <input ng-class="{'input-validation-error': !item.IsEmailValid}" type="text" ng-model="item.Email" name="@(Html.GetNameFor(m => m))[{{ $index }}].Email" class="form-control" />
+                                </div>
+
+                                <div class="form-group col-lg-4 col-md-6">
+                                    <label>@ContractTeam.Fax</label>
+                                    <input ng-class="{'input-validation-error': !item.IsFaxValid}" type="text" ng-model="item.Fax" name="@(Html.GetNameFor(m => m))[{{ $index }}].Fax" class="form-control" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end style="display:none;"></tr>
+                </tbody>
+            </table>
+            <a ng-class="{'input-validation-error': !areItemsValid}" sc-validation-popover name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()" ng-show="items.length < maxContractTeams">@Global.AddButton</a>
+            <p class="required-span" ng-show="items.length >= maxContractTeams">@String.Format(ContractTeam.MaxContractTeamsReached, Eumis.Documents.Constants.ContractTeamsMaxCount)</p>
+        </div>
+        <div ng-show="!items.IsActive">
+            <label id="loading">@Global.Loading</label>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,220 @@
+﻿@model R_10019.Project
+
+@using Eumis.Portal.Web.Helpers
+@using Eumis.Portal.Web.Helplers.Extensions
+@using Eumis.Documents.Enums
+
+@if (Model != null)
+{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    bool isMessageType = Eumis.Portal.Web.Helpers.AppContext.Current.Code.Equals(Eumis.Documents.DocumentMetadata.MessageMetadata.Code);
+
+    Model.PassFormTypeInfo();
+
+    <h2>@Project.PrintHeading</h2>
+
+    int sectionNumber = 0;
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.BasicData))
+    {
+        sectionNumber++;
+        <h3>
+            @sectionNumber. @Project.ProjectBasicData
+            @if (isMessageType && Model.ProjectBasicData != null)
+            {
+                <text> - @(Model.ProjectBasicData.isLocked ? Global.Locked : Global.Unlocked)</text>
+            }
+        </h3>
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.ProjectBasicData, Model.ProjectBasicData ?? new R_10002.ProjectBasicData())
+        </section>
+    }
+
+    sectionNumber++;
+
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Beneficary))
+    {
+        <h3>
+            @sectionNumber. @Project.Candidate
+            @if (isMessageType && Model.Candidate != null)
+            {
+                <text> - @(Model.Candidate.isLocked ? Global.Locked : Global.Unlocked)</text>
+            }
+        </h3>
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.CompanyCandidate, Model.Candidate ?? new R_10004.Company())
+
+            @if (Model.ProjectBasicData != null)
+            {
+                <table>
+                    <tr>
+                        <td style="width: 35%;">@ProjectBasicData.AdditionalDescription</td>
+                        <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectBasicData.AdditionalDescription ?? string.Empty)</td>
+                    </tr>
+                </table>
+            }
+        </section>
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Partners))
+    {
+        sectionNumber++;
+        <h3>
+            @sectionNumber. @Project.Partner
+            @if (isMessageType)
+            {
+                <text> - @(Model.Partners.isLocked ? Global.Locked : Global.Unlocked)</text>
+            }
+        </h3>
+
+        <section>
+            @if (Model.Partners.PartnerCollection != null)
+            {
+                foreach (var partner in Model.Partners.PartnerCollection)
+                {
+                    @Html.Partial(MVC.Shared.Views.Print.Company, partner ?? new R_10004.Company())
+                }
+            }
+        </section>
+    }
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Budget))
+    {
+        if (Model.DirectionsBudgetContractCollection != null && Model.DirectionsBudgetContractCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.DirectionsBudgetContractCollection.Count; i++)
+            {
+                Model.DirectionsBudgetContractCollection[i].SectionNumber = sectionNumber;
+                @Html.Partial(MVC.Shared.Views.Print.DimensionsBudgetContract, Model.DirectionsBudgetContractCollection[i] ?? new R_09998.DirectionsBudgetContract())
+                sectionNumber += 3;
+            }
+        }
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Activities))
+    {
+        if (Model.ProgrammeContractActivitiesCollection != null)
+        {
+            for (int i = 0; i < Model.ProgrammeContractActivitiesCollection.Count; i++)
+            {
+                sectionNumber++;
+                <h3>
+                    @sectionNumber. @Project.ContractActivity
+                    @if (Model.IsFinalRecipients)
+                    {
+                        <text>(@Global.NotRequiredSection)</text>
+                    }
+                    @Model.ProgrammeContractActivitiesCollection[i].ProgrammeNameFormatted
+                    @if (isMessageType)
+                    {
+                        <text> - @(Model.ProgrammeContractActivitiesCollection[i].isLocked ? Global.Locked : Global.Unlocked)</text>
+                    }
+                </h3>
+                <section>
+                    @Html.Partial(MVC.Shared.Views.Print.ProgrammeContractActivities, Model.ProgrammeContractActivitiesCollection[i] ?? new R_09995.ProgrammeContractActivities())
+                </section>
+            }
+        }
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Indicators))
+    {
+        if (Model.ProgrammeIndicatorsCollection != null)
+        {
+            for (int i = 0; i < Model.ProgrammeIndicatorsCollection.Count; i++)
+            {
+                sectionNumber++;
+                <h3>
+                    @sectionNumber. @Project.ProgrammeIndicators @Model.ProgrammeIndicatorsCollection[i].ProgrammeNameFormatted
+                    @if (isMessageType)
+                    {
+                        <text> - @(Model.ProgrammeIndicatorsCollection[i].isLocked ? Global.Locked : Global.Unlocked)</text>
+                    }
+                </h3>
+                <section>
+                    @Html.Partial(MVC.Shared.Views.Print.ProgrammeIndicators, Model.ProgrammeIndicatorsCollection[i] ?? new R_10014.ProgrammeIndicators())
+                </section>
+            }
+        }
+    }
+
+    if (Model.ApplicationSections.IsSectionSelected(ApplicationSectionType.Team))
+    {
+            sectionNumber++;
+            <h3>
+                @sectionNumber. @Project.ContractTeamCollection
+                @if (Model.IsFinalRecipients)
+                {
+                    <text>(@Global.NotRequiredSection)</text>
+                }
+                @if (isMessageType)
+                {
+                    <text> - @(Model.ContractTeams.isLocked ? Global.Locked : Global.Unlocked)</text>
+                }
+            </h3>
+            <section>
+                @Html.Partial(MVC.Shared.Views.Print.ContractTeams, Model.ContractTeams ?? new R_10019.ContractTeams())
+            </section>
+
+            sectionNumber++;
+            <h3>
+                @sectionNumber. @Project.ProjectErrandCollection
+                @if (Model.IsFinalRecipients)
+                {
+                    <text>(@Global.NotRequiredSection)</text>
+                }
+                @if (isMessageType)
+                {
+                    <text> - @(Model.ProjectErrands.isLocked ? Global.Locked : Global.Unlocked)</text>
+                }
+            </h3>
+            <section>
+                @Html.Partial(MVC.Shared.Views.Print.ProjectErrands, Model.ProjectErrands ?? new R_10019.ProjectErrands())
+            </section>
+        }
+
+
+        if (Model.HasProjectSpecFields)
+        {
+            sectionNumber++;
+            <h3>
+                @sectionNumber. @(areFinLabels ? Project.FinancialIntermediariesProjectSpecFieldCollection : Project.ProjectSpecFieldCollection)
+                @if (isMessageType)
+                {
+                    <text> - @(Model.ProjectSpecFields.isLocked ? Global.Locked : Global.Unlocked)</text>
+                }
+            </h3>
+            <section>
+                @Html.Partial(MVC.Shared.Views.Print.ProjectSpecFields, Model.ProjectSpecFields ?? new R_10019.ProjectSpecFields())
+            </section>
+        }
+
+        if (Model.HasElectronicDeclarations)
+        {
+        sectionNumber++;
+        <h3>
+            @sectionNumber. @Project.Declarations
+            @if (isMessageType)
+            {
+                <text> - @(Model.ElectronicDeclarations.isLocked ? Global.Locked : Global.Unlocked)</text>
+            }
+        </h3>
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.ElectronicDeclarations, Model.ElectronicDeclarations ?? new R_10019.ElectronicDeclarations())
+        </section>
+        }
+
+        if ((Model.HasAttachedDocuments || isMessageType)
+            && Model.RegistrationType != Eumis.Documents.Enums.RegistrationTypeNomenclature.Paper)
+        {
+            sectionNumber++;
+            <h3>
+                @sectionNumber. @Project.AttachedDocumentCollection
+                @if (isMessageType)
+                {
+                    <text> - @(Model.AttachedDocuments.isLocked ? Global.Locked : Global.Unlocked)</text>
+                }
+            </h3>
+            <section>
+                @Html.Partial(MVC.Shared.Views.Print.AttachedDocuments, Model.AttachedDocuments ?? new R_10019.AttachedDocuments())
+            </section>
+        }
+    }

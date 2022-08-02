@@ -1,0 +1,29 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'mapNodeStatuses'" ng-model="model.status" mode="id" ng-readonly="true" l10n-text="programmePriorities_programmePriorityDataForm_status" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.code" ng-required="true" ng-pattern="/^.*-[0-9]+$/" ng-readonly="!isNew" ng-maxlength="200" l10n-text="programmePriorities_programmePriorityDataForm_code" class="col-sm-4 col-md-3"
+      validations="{maxlength: 'programmePriorities_programmePriorityDataForm_codeMaxLength', pattern: 'programmePriorities_programmePriorityDataForm_codePattern'}"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorityTypes'" ng-model="model.companyData.programmePriorityType" mode="id" ng-required="true" l10n-text="programmePriorities_programmePriorityDataForm_type" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'programmePriorityCompanies'" params="{ programmePriorityType: model.companyData.programmePriorityType, higherOrderCompany: false } "
+      ng-model="model.companyData.companyId" mode="id" ng-required="true" l10n-text="programmePriorities_programmePriorityDataForm_company" class="col-sm-6 col-md-3"></sc-field>
+  </div>
+  <div class="row" ng-if="model.companyData.programmePriorityType === 'secondClass' || model.companyData.programmePriorityType === 'thirdClass'">
+    <sc-field ng-required="true" type="nomenclature" alias="'programmePriorityCompanies'" params="{ programmePriorityType: model.companyData.programmePriorityType, higherOrderCompany: true } "
+      ng-model="model.companyData.higherOrderCompanyId" mode="id"
+      l10n-text="programmePriorities_programmePriorityDataForm_higherOrder" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.name" ng-required="true" l10n-text="programmePriorities_programmePriorityDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.nameAlt" l10n-text="programmePriorities_programmePriorityDataForm_nameAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" l10n-text="programmePriorities_programmePriorityDataForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.descriptionAlt" l10n-text="programmePriorities_programmePriorityDataForm_descriptionAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+</ng-form>

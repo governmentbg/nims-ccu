@@ -1,0 +1,96 @@
+﻿@model R_10082.FinanceInstrumentsReport
+
+<div ng-controller="controllerFinanceInstrumentsReport">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%" style="min-width: 400px;">
+        <thead>
+            <tr>
+                <th>@FinanceInstrumentsReport.Name</th>
+                <th style="min-width: 150px;">@FinanceInstrumentsReport.Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.ExpectedLeverageLoanAmount</strong></p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsExpectedLeverageLoanAmountValid}" ng-model="model.ExpectedLeverageLoanAmount" name="@(Html.GetNameFor(m => m)).ExpectedLeverageLoanAmount" type="text" class="form-control sum-field" readonly /></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.ProgressLeverageYearProductAmount</strong></p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsProgressLeverageYearProductAmountValid}" ng-model="model.ProgressLeverageYearProductAmount" name="@(Html.GetNameFor(m => m)).ProgressLeverageYearProductAmount" type="text" class="form-control sum-field" /></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.InvestmentParticipationPreviousYearsAmount</strong></p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsInvestmentParticipationPreviousYearsAmountValid}" ng-model="model.InvestmentParticipationPreviousYearsAmount" name="@(Html.GetNameFor(m => m)).InvestmentParticipationPreviousYearsAmount" type="text" class="form-control sum-field" /></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.ContributionProgramActuallyPaidTotalAmount</strong></p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.PaymentsFinalRecipientsAmount</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.CommitmentsGuaranteeAmount</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.ExpenseManagementAmount</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.ManagementFeesAmount</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.CorrespondingPublicSpendingAmount</p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"></p><br />
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsPaymentsFinalRecipientsAmountValid}" ng-model="model.PaymentsFinalRecipientsAmount" name="@(Html.GetNameFor(m => m)).PaymentsFinalRecipientsAmount" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsCommitmentsGuaranteeAmountValid}" ng-model="model.CommitmentsGuaranteeAmount" name="@(Html.GetNameFor(m => m)).CommitmentsGuaranteeAmount" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsExpenseManagementAmountValid}" ng-model="model.ExpenseManagementAmount" name="@(Html.GetNameFor(m => m)).ExpenseManagementAmount" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsManagementFeesAmountValid}" ng-model="model.ManagementFeesAmount" name="@(Html.GetNameFor(m => m)).ManagementFeesAmount" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsCorrespondingPublicSpendingAmountValid}" ng-model="model.CorrespondingPublicSpendingAmount" name="@(Html.GetNameFor(m => m)).CorrespondingPublicSpendingAmount" type="text" class="form-control sum-field" /></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.OtherContributionsOutsideESI</strong></p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Public</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Private</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Total</p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"></p><br />
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESIPublicValid}" ng-model="model.OtherContributionsOutsideESIPublic" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESIPublic" type="text" class="form-control sum-field" readonly /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESIPrivateValid}" ng-model="model.OtherContributionsOutsideESIPrivate" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESIPrivate" type="text" class="form-control sum-field" readonly /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESITotalValid}" ng-model="model.OtherContributionsOutsideESITotal" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESITotal" type="text" class="form-control sum-field" readonly /></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.OtherContributionsOutsideESIMobilizedFinalRecipients</strong></p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Public</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Private</p>
+                    <p class="high-lines">- @FinanceInstrumentsReport.Total</p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"></p><br />
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESIMobilizedFinalRecipientsPublicValid}" ng-model="model.OtherContributionsOutsideESIMobilizedFinalRecipientsPublic" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESIMobilizedFinalRecipientsPublic" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESIMobilizedFinalRecipientsPrivateValid}" ng-model="model.OtherContributionsOutsideESIMobilizedFinalRecipientsPrivate" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESIMobilizedFinalRecipientsPrivate" type="text" class="form-control sum-field" /></p>
+                    <p class="high-lines">
+                        <input money ng-class="{'input-validation-error': !model.IsOtherContributionsOutsideESIMobilizedFinalRecipientsTotalValid}" ng-model="model.OtherContributionsOutsideESIMobilizedFinalRecipientsTotal" name="@(Html.GetNameFor(m => m)).OtherContributionsOutsideESIMobilizedFinalRecipientsTotal" type="text" class="form-control sum-field"
+                               readonly value="{{model.OtherContributionsOutsideESIMobilizedFinalRecipientsTotal = (((1 * model.OtherContributionsOutsideESIMobilizedFinalRecipientsPublic) || 0) + ((1 * model.OtherContributionsOutsideESIMobilizedFinalRecipientsPrivate) || 0)).toFixed(2) }}" />
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="high-lines"><strong>@FinanceInstrumentsReport.ReusableResourcesSizeAmount</strong></p>
+                </td>
+                <td class="text-right">
+                    <p class="high-lines"><input money ng-class="{'input-validation-error': !model.IsReusableResourcesSizeAmountValid}" ng-model="model.ReusableResourcesSizeAmount" name="@(Html.GetNameFor(m => m)).ReusableResourcesSizeAmount" type="text" class="form-control sum-field" /></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

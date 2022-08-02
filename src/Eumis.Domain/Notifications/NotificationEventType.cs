@@ -1,0 +1,35 @@
+﻿namespace Eumis.Domain.NonAggregates
+{
+    public enum NotificationEventType
+    {
+        IndicatorChanged = 1,
+        ProgrammeDataChanged = 2,
+        ProcedureStatusChangedToDraft = 3,
+        ProjectSubmitted = 4,
+        ContractProcurementActivated = 5,
+        ContractSpendingPlanActivated = 6,
+        ContractCommunicationReceived = 7,
+        ContractReportSentUnchecked = 8,
+        ContractReportPaymentToResent = 9,
+        ContractReportPaymentToReturned = 10,
+        ContractReportFinancialToReturned = 11,
+        ContractReportFinancialToResent = 12,
+        ContractReportTechnicalToReturned = 13,
+        ContractReportTechnicalToResent = 14,
+        ContractReportMicroDataToReturned = 15,
+        ContractReportMicroDataToResent = 16,
+        CertReportStatusToEnded = 17,
+        CertReportStatusToReturned = 18,
+        CertAuthorityCommunicationReceived = 19,
+        RequestPackageStatusToEntered = 20,
+        RequestPackageStatusToChecked = 21,
+        RequestPackageStatusToDraft = 22,
+        ProjectCandidateAnswerRegistered = 23,
+        EvalSheetDistributionTypeToContinued = 24,
+        AuditAuthorityCommunicationReceived = 25,
+        CheckSheetCompletion = 26,
+        ProcedureStatusChangedToActivated = 27,
+        CheckSheetReturn = 28,
+        ProjectManagingAuthorityCommunicationRecieved = 32,
+    }
+}

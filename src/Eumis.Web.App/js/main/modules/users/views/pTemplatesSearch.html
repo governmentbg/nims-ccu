@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newTemplateBtn" btn-sref="{ state: 'root.pTemplates.new' }" text="pTemplates_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('PermissionTemplateListActions.Create')"></sc-button>
+
+    <sc-datatable items="permissionTemplates" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editButton" btn-sref="{ state: 'root.pTemplates.edit', params: { id: item.permissionTemplateId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('PermissionTemplateActions.View', item.permissionTemplateId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="pTemplates_search_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

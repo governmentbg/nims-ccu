@@ -1,0 +1,28 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'interestSchemes'" mode="id" ng-change="schemeOrDateToChanged()" ng-model="model.interestSchemeId" ng-required="true" l10n-text="contractDebts_contractDebtInterestForm_interestSchemeId" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.dateFrom" ng-required="true" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_dateFrom" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.dateTo" ng-required="true" ng-change="schemeOrDateToChanged()" ng-disabled="model.hasContractDebtInterests" l10n-text="contractDebts_contractDebtInterestForm_dateTo" class="col-sm-4 col-md-3"></sc-field>
+
+    <div class="form-group col-sm-2 col-md-1" style="margin-top: 19px;">
+      <sc-button name="calcualteBtn" btn-click="calculate()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" text="contractDebts_contractDebtInterestForm_calcualte"></sc-button>
+    </div>
+    <div ng-show="model.error" style="margin-top: 25px;">
+      <span class="glyphicon glyphicon-exclamation-sign" style="color: red;"></span>
+      <span>{{model.error}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.euAmount" ng-required="true" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.bgAmount" ng-required="true" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.totalAmount" ng-required="true" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_totalAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" min="-9999999999999" ng-model="model.euInterestAmount" ng-required="true" l10n-text="contractDebts_contractDebtInterestForm_euInterestAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" min="-9999999999999" ng-model="model.bgInterestAmount" ng-required="true" l10n-text="contractDebts_contractDebtInterestForm_bgInterestAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" min="-9999999999999" ng-model="model.totalInterestAmount" ng-required="true" ng-readonly="true" l10n-text="contractDebts_contractDebtInterestForm_totalInterestAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

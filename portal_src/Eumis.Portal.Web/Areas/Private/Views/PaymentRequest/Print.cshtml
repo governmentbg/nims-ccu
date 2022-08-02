@@ -1,0 +1,22 @@
+﻿@model R_10045.PaymentRequest
+
+<div class="container">
+    <h2>@Global.PaymentRequest</h2>
+    <ul class="nav nav-tabs"></ul>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            @Html.Partial(MVC.Shared.Views.Print.PaymentRequest, Model)
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.when(0)
+            .then(function () {
+                setTimeout(function () {
+                    print();
+                }, 100);
+            });
+    });
+</script>

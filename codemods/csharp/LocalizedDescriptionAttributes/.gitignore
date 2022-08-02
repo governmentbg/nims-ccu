@@ -1,0 +1,16 @@
+bin/*
+bin/**/*
+
+obj/*
+obj/**/*
+
+packages/*
+packages/**/*
+
+*.tmp
+*.suo
+*.csproj.user
+*.dtproj.user
+*.DotSettings.user
+
+.vs/*

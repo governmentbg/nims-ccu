@@ -1,0 +1,47 @@
+<div>
+  <div class="well well-sm">
+    <div class="row">
+      <sc-field type="text" ng-model="filters.fullname" l10n-text="users_search_name" class="col-sm-4"></sc-field>
+      <sc-field type="nomenclature" alias="'userOrganizations'" mode="id" ng-model="filters.userOrganizationId" l10n-text="users_search_userOrganization" class="col-sm-2"></sc-field>
+      <sc-field type="text" ng-model="filters.username" l10n-text="users_search_username" class="col-sm-2"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="filters.active" l10n-text="users_search_active" class="col-sm-2"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="filters.deleted" l10n-text="users_search_deleted" class="col-sm-2"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="filters.locked" l10n-text="users_search_locked" class="col-sm-2"></sc-field>
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="filters.hasAcceptedGDPRDeclaration" l10n-text="users_search_hasAcceptedGDPRDeclaration" class="col-sm-2"></sc-field>
+      <div class="labeless col-sm-4">
+        <sc-button name="seachBtn" btn-click="search()" text="companies_searchForm_search"
+          class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+        </sc-button>
+      </div>
+    </div>
+  </div>
+
+  <sc-button name="newUserBtn" btn-sref="{ state: 'root.users.new' }" ng-disabled="!$canDo('UserListActions.ViewCreate')"
+    text="users_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-plus"></sc-button>
+
+  <sc-link-button ng-href="{{usersExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                  icon="fa-file-excel-o fa-lg fa-fw" text="users_search_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+  <sc-datatable items="users" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+    <sc-column sortable="false" class="buttons-cell" has-content="true">
+      <sc-button name="editButton" ng-disabled="!$canDo('UserActions.View', item.userId)" btn-sref="{ state: 'root.users.view.edit', params: { id: item.userId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+    </sc-column>
+    <sc-column data="username" title="users_search_username">
+    </sc-column>
+    <sc-column data="userOrganization" title="users_search_userOrganization">
+    </sc-column>
+    <sc-column data="userType" title="users_search_userType">
+    </sc-column>
+    <sc-column data="fullname" title="users_search_name">
+    </sc-column>
+    <sc-column data="email" title="users_search_email">
+    </sc-column>
+    <sc-column title="users_search_status" sortable="false" has-content="true">
+      {{(item.isActive ? activeText : inactiveText) + (item.isLocked ? ', ' + lockedText : '') + (item.isDeleted ? ', ' + deletedText : '')}}
+    </sc-column>
+    <sc-column title="users_search_hasAcceptedGDPRDeclaration" data="hasAcceptedGDPRDeclaration" type="boolean">
+    </sc-column>
+  </sc-datatable>
+</div>

@@ -1,0 +1,29 @@
+<div class="tab-content">
+  <ng-form name="contractsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contracts_contractsNewStep2_title"></strong>
+
+      <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="contracts_contractsNewStep2_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_contractsNewStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'contractProgrammes'" params="{ procedureId: procedureId }" ng-model="programmeId" mode="id" ng-required="true" l10n-text="contracts_contractsNewStep2_programme" class="col-sm-9 col-md-8"></sc-field>
+          <sc-field type="nomenclature" alias="'contractRegistrationTypes'" ng-model="registrationType" mode="id" ng-required="true" l10n-text="contracts_contractsNewStep2_registrationType" class="col-sm-3 col-md-2"></sc-field>
+        </div>
+
+        <div class="row" ng-show="contractType === 'agentAgreement' || contractType === 'endUserAgreement'">
+          <sc-field type="nomenclature" alias="'contracts'" ng-model="attachedContractId" mode="id" ng-required="contractType === 'agentAgreement' || contractType === 'endUserAgreement'" params="{ procedureId: procedureId }" l10n-text="contracts_contractsNewStep2_attachedContractId" class="col-sm-6 col-md-6"></sc-field>
+        </div>
+
+        <h5 class="form-header form-header-first" l10n-text="contracts_contractsNewStep2_project"></h5>
+        <eumis-contract-project name="projectDataForm" ng-model="project"></eumis-contract-project>
+      </div>
+    </div>
+  </ng-form>
+</div>

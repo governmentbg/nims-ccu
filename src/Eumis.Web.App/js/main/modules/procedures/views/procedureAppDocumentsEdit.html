@@ -1,0 +1,33 @@
+﻿<ng-form name="editProcedureAppDocumentsForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureAppDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="activateBtn" btn-click="activate()" text="procedures_editProcedureAppDocument_activate" class="btn btn-success btn-xs" ng-show="appDocument.isActivated && !appDocument.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appDocument.procedureId)"></sc-button>
+
+        <sc-button name="deactivateBtn" btn-click="deactivate()" text="procedures_editProcedureAppDocument_deactivate" class="btn btn-danger btn-xs" ng-show="appDocument.isActivated && appDocument.isActive && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appDocument.procedureId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcedureAppDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!appDocument.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appDocument.procedureId)"></sc-button>
+
+        <sc-button name="inactiveDocEditBtn" btn-click="edit()" text="procedures_editProcedureAppDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="appDocument.status === 'inactive' && appDocument.programmeApplicationDocumentId && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appDocument.procedureId)"></sc-button>
+
+        <sc-button name="deleteBtn" btn-click="deleteAppDocument()" text="procedures_editProcedureAppDocument_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!appDocument.isActivated && !editMode && !isProcedureReadonly"
+          ng-disabled="!$canDo('ProcedureActions.Edit', appDocument.procedureId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcedureAppDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcedureAppDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : !appDocument.isActive}">
+     <eumis-procedure-app-document name="procedureAppDocumentFOrm" ng-model="appDocument"  sc-form-params="{ isProgrammeIntroduced: appDocument.programmeApplicationDocumentId }"></eumis-procedure-app-document>
+    </div>
+  </div>
+</ng-form>

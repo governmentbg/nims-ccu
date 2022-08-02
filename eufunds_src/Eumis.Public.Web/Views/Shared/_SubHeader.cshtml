@@ -1,0 +1,69 @@
+﻿@{
+    string currentAction = ViewContext.RouteData.Values["action"].ToString();
+    string currentController = ViewContext.RouteData.Values["controller"].ToString();
+    Func<string, string, bool> isCurrent = (act, contr) => currentAction.ToLower() == act.ToLower() && currentController.ToLower() == contr.ToLower();
+}
+
+@if (isCurrent(MVC.Home.ActionNames.Index, MVC.Home.Name))
+{
+<div class="subheader">    
+    @*<div class="row">
+        <div class="desc">
+            <strong class="title hidden-sm">@Texts.Shared__SubHeader_Eumis</strong>
+            <strong class="period">@Texts.Shared__SubHeader_Period</strong>
+        </div>
+    </div>*@
+    <div class="container">
+        <div class="row m-top-30">
+           @using (Html.BeginForm("Index", "Procedures", FormMethod.Post, new {}))
+                {
+                    <div class="col-lg-8" style="margin-top:-30px;">
+                        <div class="link-box-subheader search trans">
+                            <div class="head blue-left">
+                                <img src="/Content/img/icons/search.png" alt="" style="width:61px;">
+                            </div>
+                            <h1 class="form-title">@Texts.Procedures_Index_HeaderTitle</h1>
+                            <div class="row m-top-30">
+                                <div class="form-group col-lg-6 col-sm-6">
+                                    <label class="bold label-title" style="font-size: 15px;">@Texts.Procedures_Index_Settlement</label>
+                                    <input class="form-control" id="settlement-ddl" name="SettlementId">
+                                </div>
+                                <div class="form-group col-lg-6 col-sm-6">
+                                    <label class="bold label-title" style="font-size: 15px;">@Texts.Procedures_Index_CompanyType</label>
+                                    <input class="form-control" id="company-type-ddl" name="CompanyTypeId">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6 col-sm-6">
+                                    <label class="bold label-title"  style="font-size: 15px;">@Texts.Procedures_Index_CompanyLegalType</label>
+                                    <input class="form-control" id="company-legal-type-ddl" name="CompanyLegalTypeId">
+                                </div>
+                                <div class="form-submit col-lg-6 col-sm-12">
+                                    <input type="submit" class="btn btn-rounded submit wait" name="submit" value="@Texts.Global_Search">
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    createSelect2('#settlement-ddl', '/@Language/@OpId/@PrId/Procedures/GetSettlement', '/@Language/@OpId/@PrId/Procedures/GetSettlements');
+                                    createSelect2('#company-type-ddl', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyType', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyTypes');
+                                    createSelect2('#company-legal-type-ddl', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyLegalType', '/@Language/@OpId/@PrId/Nomenclature/GetCompanyLegalTypes', '#company-type-ddl');
+                                });
+                            </script>
+                        </div>
+                    </div>
+                }
+            <div class="col-lg-4">
+                <div class="wrapper m-bottom-30">
+                    @Html.Partial(MVC.Shared.Views.Calendar)
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    
+}
+else
+{
+    <div class="narrow-subheader"> </div>
+}

@@ -1,0 +1,197 @@
+﻿@model R_10044.Indicators
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.IndicatorCollection != null && Model.IndicatorCollection.Count > 0)
+        {
+            <table class="indicators">
+                <tbody>
+                    @for (int i = 0; i < Model.IndicatorCollection.Count; i++)
+                    {
+                        <tr>
+                            <td style="width: 35%">@TechnicalReportIndicator.Name</td>
+                            <td style="width: 65%">
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.Name
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.Mode</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.TypeName
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.Trend</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.TrendName
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.Type</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.TypeName
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.Measure</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.MeasureName
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.AggregatedReport</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.AggregatedReport
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.AggregatedTarget</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    if (Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator != null)
+                                    {
+                                        @Model.IndicatorCollection[i].BFPContractIndicator.SelectedIndicator.AggregatedTarget
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.BaseTotal</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    @Model.IndicatorCollection[i].BFPContractIndicator.BaseTotal
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.TargetTotal</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    @Model.IndicatorCollection[i].BFPContractIndicator.TargetTotal
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportIndicator.InformationSource</td>
+                            <td>
+                                @if (Model.IndicatorCollection[i].BFPContractIndicator != null)
+                                {
+                                    @Model.IndicatorCollection[i].BFPContractIndicator.Description
+                                }
+                            </td>
+                        </tr>
+                        if (Model.IndicatorCollection[i].HasGenderDivision)
+                        {
+                            <tr>
+                                <td colspan="2"><strong>@TechnicalReportIndicator.PeriodAmount</strong></td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Men</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].PeriodAmountMen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Women</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].PeriodAmountWomen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Total</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].PeriodAmountTotal)</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><strong>@TechnicalReportIndicator.CumulativeAmount</strong></td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Men</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].CumulativeAmountMen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Women</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].CumulativeAmountWomen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Total</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].CumulativeAmountTotal)</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><strong>@TechnicalReportIndicator.ResidueAmount</strong></td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Men</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].ResidueAmountMen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Women</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].ResidueAmountWomen)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.Total</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].ResidueAmountTotal)</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@TechnicalReportIndicator.PeriodAmount</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].PeriodAmountTotal)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.CumulativeAmount</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].CumulativeAmountTotal)</td>
+                            </tr>
+                            <tr>
+                                <td>@TechnicalReportIndicator.ResidueAmount</td>
+                                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].ResidueAmountTotal)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>@TechnicalReportIndicator.Comment</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.IndicatorCollection[i].Comment ?? string.Empty)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+}

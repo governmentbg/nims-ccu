@@ -1,0 +1,54 @@
+﻿<header>
+    <!-- HEAD -->
+    <div class="container tbl">
+        <a class="logo" href="@Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name, new RouteValueDictionary { { RouteConfig.OPABB, 0 }, { RouteConfig.PRABB, 0 } })" title=""><img class="fluid" src="@Url.Content(Links.Content.img.gerb_jpg)" alt="" /></a>
+        <div class="title">
+            <div class="hidden-xs hidden-sm">
+                <strong>@Texts.Shared_Header_System</strong><br />@Texts.Shared_Header_Monitoring <br />@Texts.Shared_Header_Funds
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Texts.Global_EumisShort</strong>
+            </div>
+            @*@if (EnvironmentManager.Current.Type != EnvironmentType.Production)
+            {
+                <label class="sandbox">@EnvironmentManager.Current.Text()</label>
+            }*@
+        </div>
+        <div class="sep hidden-xs hidden-sm">
+            <div class="line"> </div>
+        </div>
+        <div class="isun hidden-xs hidden-sm">
+            <img class="fluid" src="@Url.Content(Links.Content.img.isun_gif)" alt="@Texts.Shared_Header_Motto" />
+        </div>
+        <div class="slogan hidden-xs hidden-sm">
+            @Texts.Shared_Header_MottoDirection<br /><strong>@Texts.Shared_Header_MottoPossibilities</strong>
+        </div>
+        <div class="sep">
+            <div class="line"> </div>
+        </div>
+        @{
+            Html.RenderAction(MVC.Home.ActionNames.SavedTrees, MVC.Home.Name); 
+        }
+        <div class="sep">
+            <div class="line"> </div>
+        </div>
+        <!-- LANG & LOGIN -->
+        @if (SystemLocalization.IsLangaugePage(ViewContext.RouteData))
+        {
+            if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+            {
+                <a href="@Html.LanguageUrl("en")" class="lang">
+                    English
+                </a>
+            }
+            else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+            {
+                <a href="@Html.LanguageUrl("bg")" class="lang">
+                    Български
+                </a>
+            }
+        }
+    </div>
+</header>
+
+@Html.Partial(MVC.Shared.Views._SubHeader)

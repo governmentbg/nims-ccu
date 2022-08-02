@@ -1,0 +1,138 @@
+﻿@model R_10031.BFPContractBasicData
+@using Eumis.Common.Helpers
+
+<div ng-controller="controllerBFPContractBasicData">
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.Name @SymbolsCount.Symbols400</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsNameValid}" auto-grow ng-model="model.Name" name="@(Html.GetNameFor(m => m.Name))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.Duration (1-@Model.MaxDuration)</label>
+        <input valid-number min-value="1" max-value="@Model.MaxDuration" ng-class="{'input-validation-error': !model.IsDurationValid}" type="text" ng-model="model.Duration" name="@(Html.GetNameFor(m => m.Duration))" class="form-control sum-field" />
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>
+            @BFPContractBasicData.NameEN @SymbolsCount.Symbols400
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@BFPContractBasicData.NameENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsNameEnValid}" auto-grow ng-model="model.NameEN" name="@(Html.GetNameFor(m => m.NameEN))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>
+            @BFPContractBasicData.Description @SymbolsCount.Symbols2000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@BFPContractBasicData.DescriptionTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsDescriptionValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Description" name="@(Html.GetNameFor(m => m.Description))" class="form-control"></textarea>
+    </div>
+    <div class="form-group col-md-12">
+        <label>
+            @BFPContractBasicData.DescriptionEN @SymbolsCount.Symbols2000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@BFPContractBasicData.DescriptionENTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsDescriptionEnValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.DescriptionEN" name="@(Html.GetNameFor(m => m.DescriptionEN))" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>
+            @BFPContractBasicData.Purpose @SymbolsCount.Symbols3000
+            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@BFPContractBasicData.PurposeTooltip" data-trigger="hover" alt="" data-original-title="" title="">
+        </label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsPurposeValid}" auto-grow rows="2" style="height: 60px;" ng-model="model.Purpose" name="@(Html.GetNameFor(m => m.Purpose))" class="form-control"></textarea>
+    </div>
+
+    <div class="clearfix">
+        <div class="form-group col-md-6">
+            <label>@BFPContractBasicData.CompletionStatus</label>
+            <sc-nomenclature ng-class="{'input-validation-error': !model.IsCompletionStatusValid}" sc-alias="GetCompletionStatuses" ng-model="model.CompletionStatus">
+            </sc-nomenclature>
+            <input ng-class="{'input-validation-error': !model.IsCompletionStatusValid}" type="hidden" value="{{ model.CompletionStatus.id }}" name="@(Html.GetNameFor(m => m.CompletionStatus)).id" class="validation-error-key" />
+            <input type="hidden" value="{{ model.CompletionStatus.Name }}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].CompletionStatus.Name" />
+        </div>
+    </div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.StartCondition</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsStartConditionValid}" auto-grow ng-model="model.StartCondition" name="@(Html.GetNameFor(m => m.StartCondition))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.StartDate</label>
+        <input ng-class="{'input-validation-error': !model.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.StartDate" name="@(Html.GetNameFor(m => m.StartDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.TemporarySuspensionReason</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsTemporarySuspensionReasonValid}" auto-grow ng-model="model.TemporarySuspensionReason" name="@(Html.GetNameFor(m => m.TemporarySuspensionReason))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.TemporarySuspensionDate</label>
+        <input ng-class="{'input-validation-error': !model.IsTemporarySuspensionDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.TemporarySuspensionDate" name="@(Html.GetNameFor(m => m.TemporarySuspensionDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.CompletionDate</label>
+        <input ng-class="{'input-validation-error': !model.IsCompletionDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.CompletionDate" name="@(Html.GetNameFor(m => m.CompletionDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-9">
+        <label>@BFPContractBasicData.TerminationReason</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsTerminationReasonValid}" auto-grow ng-model="model.TerminationReason" name="@(Html.GetNameFor(m => m.TerminationReason))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.TerminationDate</label>
+        <input ng-class="{'input-validation-error': !model.IsTerminationDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.TerminationDate" name="@(Html.GetNameFor(m => m.TerminationDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.RegistrationNumber</label>
+        <span class="filled-value">{{model.RegistrationNumber}}</span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.Version</label>
+        <span class="filled-value">{{model.Version}}</span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.SubVersion</label>
+        <span class="filled-value">{{model.SubVersion}}</span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>@BFPContractBasicData.ContractDate</label>
+        <input ng-class="{'input-validation-error': !model.IsContractDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="model.ContractDate" name="@(Html.GetNameFor(m => m.ContractDate))" class="form-control" onpaste="return false" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group col-md-6">
+        <label>@BFPContractBasicData.OtherRegistration</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsOtherRegistrationValid}" auto-grow ng-model="model.OtherRegistration" name="@(Html.GetNameFor(m => m.OtherRegistration))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>@BFPContractBasicData.StoragePlace</label>
+        <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !model.IsStoragePlaceValid}" auto-grow ng-model="model.StoragePlace" name="@(Html.GetNameFor(m => m.StoragePlace))" class="form-control" rows="2" style="height:60px;"></textarea>
+    </div>
+    <nuts-address-async ng-model="model.NutsAddress"
+                        nuts="nuts"
+                        global-key="globalKey"
+                        path="@Html.GetNameFor(m => m.NutsAddress)"
+                        resources="resourcesObjectNuts"
+                        is-partial-read-only="@Model.IsPartialReadOnly">
+    </nuts-address-async>
+</div>

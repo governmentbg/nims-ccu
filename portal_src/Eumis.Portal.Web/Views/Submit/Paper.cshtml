@@ -1,0 +1,55 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@Html.Partial(MVC.Submit.Views._BreadcrubSteps)
+
+<div class="container">
+    <div class="page-content submission-type clearfix">
+
+        <div class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p text-justify">
+                    <p><strong>@Paper.SubmitOnPaper</strong></p>
+
+                    <p>@Paper.ReadyToSubmit <b>@(string.Format("{0} - {1}", SubmissionState.Current.PrecedureCode, SubmissionState.Current.PrecedureName))</b>.</p>
+
+                    <p>@Paper.SubmitExplained</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>@Paper.DownloadDeclaration</h2>
+        <div class="col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1">
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Submit.ActionNames.SaveDeclaration, MVC.Submit.Name, new { hash = SubmissionState.Current.Hash }))" title="" class="download-paper">
+                    <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.subm_download_png))" alt="">
+                    <span>@Paper.Download</span>
+                    <strong>@Paper.Declaration</strong>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="@(Url.Action(MVC.Submit.ActionNames.SaveLabel, MVC.Submit.Name, new { hash = SubmissionState.Current.Hash }))" title="" class="download-paper">
+                    <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.subm_download_png))" alt="">
+                    <span>@Paper.Download</span>
+                    <strong>@Paper.Label</strong>
+                </a>
+            </div>
+        </div>
+
+        <div class="form-with-sections clearfix">
+            <div class="col-xs-12">
+                <div class="info-block font-17 separated-p text-justify">
+                    <p>@Paper.CompleteProjectProposal</p>
+
+                    <p>@Paper.ProjectProposalOnPaper<b>@Paper.ProjectProposal</b>, @Paper.Section <b>@Paper.ApplyOnPaper</b>. @Paper.DeclarationPrint</p>
+
+                    <p>@Paper.ProjectProposalRegistrationNumber<b>@Paper.Submitted</b> @Paper.Menu <b>@Paper.ProjectProposal</b>.</p>
+
+                    <p>@Paper.InCaseOfQuestion</p>
+                
+                    <p><span class="required-span">@Paper.Warning</span>@Paper.QuestionsTimeForResponse</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

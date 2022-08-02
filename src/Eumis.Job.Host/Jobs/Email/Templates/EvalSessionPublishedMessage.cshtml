@@ -1,0 +1,20 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+    string procCode = (string)Model["procCode"];
+    string procName = (string)Model["procName"];
+    string publicUrl = (string)Model["publicUrl"];
+    string resultType = (string)Model["resultType"];
+
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p style="margin-bottom: 15px;">В публичния модул, раздел "Справки" на адрес @publicUrl е публикуван списък с резултати от @resultType по схема за кандидатстване <strong>@procCode - @procName</strong>   
+<p style="margin-bottom: 2px; border-bottom: 1px solid black;">
+  Поздрави, <br />
+  Екипът на СУНИ
+</p>
+
+<p style="font-size: 13px; margin-top: 0px;">Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br />

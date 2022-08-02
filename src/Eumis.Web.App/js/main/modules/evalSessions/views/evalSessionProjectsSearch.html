@@ -1,0 +1,87 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="chooseProjectsBtn" btn-click="chooseProjects()" text="evalSessions_evalSessionProjects_choose" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionId) || !isSessionDraft"></sc-button>
+
+    <sc-button name="adminAdmissEvaluate" btn-click="evaluateProject('adminAdmiss')" text="evalSessions_evalSessionProjects_adminAdmiss" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isAdminAdmiss"></sc-button>
+
+    <sc-button name="techFinanceEvaluate" btn-click="evaluateProject('techFinance')" text="evalSessions_evalSessionProjects_techFinance" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isTechFinance"></sc-button>
+
+    <sc-button name="techFinanceEvaluate" btn-click="evaluateProject('complex')" text="evalSessions_evalSessionProjects_complex" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isComplex"></sc-button>
+
+    <sc-button name="preliminaryEvaluate" btn-click="evaluateProject('preliminary')" text="evalSessions_evalSessionProjects_preliminary" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionInfo.actions.isPreliminary"></sc-button>
+
+    <sc-button name="createAutomaticProjectVersionsBtn" btn-click="openModal('createAutomaticProjectVersionsModal')" text="evalSessions_evalSessionProjects_automaticProjectVersion" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive"></sc-button>
+
+    <sc-button name="automaticProjectMonitorstatRequestsBtn" btn-click="openModal('chooseProjectsForAutomaticMonitorstatRequestModal')" text="evalSessions_evalSessionProjects_automaticProjectMonitorstatRequests" style="margin-left: 3px;" class="btn btn-sm btn-primary pull-left"
+      ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive"></sc-button>
+
+    <sc-link-button ng-href="api/evalSessions/{{evalSessionId}}/projectsExcelExport" target="_blank" sc-access-token style="margin-left: 3px;"
+      ng-if="$canDo('EvalSessionActions.EditSessionData', evalSessionId)"
+      icon="fa-file-excel-o fa-lg fa-fw" text="evalSessions_evalSessionProjects_excelExport" class="btn btn-default btn-sm pull-left">
+    </sc-link-button>
+    <sc-datatable items="evalSessionProjects" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.isDeleted || item.projectRegistrationStatusName === 'withdrawn'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewProjectBtn" btn-sref="{state: 'root.evalSessions.view.projects.view', params: { ind: item.projectId }}" class="btn btn-xs btn-primary" icon="glyphicon-list-alt"
+          ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId) ||
+                       !$canDo('ProjectActions.View', item.projectId) ||
+                       !$canDo('ProjectActions.SearchCommunication', item.projectId) ||
+                       !$canDo('ProjectActions.SearchVersions', item.projectId)">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="deleteProject(item)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('EvalSessionActions.EditSession', evalSessionId) || !isSessionDraft"></sc-button>
+      </sc-column>
+      <sc-column data="projectRegNumber" title="evalSessions_evalSessionProjects_projectRegNumber">
+      </sc-column>
+      <sc-column title="evalSessions_evalSessionProjects_projectName" has-content="true" data="projectName">
+        <span title="{{item.projectName}}">{{item.projectName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="company" title="evalSessions_evalSessionProjects_company">
+      </sc-column>
+      <sc-column data="projectRegDate" title="evalSessions_evalSessionProjects_projectRegDate" type="datetime">
+      </sc-column>
+      <sc-column data="projectRegistrationStatus" title="evalSessions_evalSessionProjects_projectRegistrationStatus">
+      </sc-column>
+      <sc-column data="isDeleted" title="evalSessions_evalSessionProjects_isDeleted" type="boolean">
+      </sc-column>
+      <sc-column data="workStatus" title="evalSessions_evalSessionProjects_projectWorkStatus">
+      </sc-column>
+      <sc-column title="evalSessions_evalSessionProjects_eval" sortable="false" has-content="true">
+        <table class="table table-bordered" style="margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+          <thead>
+            <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_type"></th>
+            <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_pass"></th>
+            <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_points"></th>
+          </thead>
+          <tbody>
+            <tr ng-show="item.isPassedASD != null && item.isPassedASD != undefined">
+              <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_ASD"></td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedASD ? yesText : noText}}</td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsASD}}</td>
+            </tr>
+            <tr ng-show="item.isPassedTFO != null && item.isPassedTFO != undefined">
+              <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_TFO">{{tfoText}}</td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedTFO ? yesText : noText}}</td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsTFO}}</td>
+            </tr>
+            <tr ng-show="item.isPassedComplex != null && item.isPassedComplex != undefined">
+              <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_evalSessionProjects_Complex">{{tfoText}}</td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedComplex ? yesText : noText}}</td>
+              <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsComplex}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </sc-column>
+      <sc-column data="orderNum" title="evalSessions_evalSessionProjects_orderNum" type="number">
+      </sc-column>
+      <sc-column data="standingStatus" title="evalSessions_evalSessionProjects_standingStatus">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

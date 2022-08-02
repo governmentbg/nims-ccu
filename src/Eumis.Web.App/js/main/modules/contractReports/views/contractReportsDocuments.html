@@ -1,0 +1,113 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div ng-if="contractReportType === 'technical' || contractReportType === 'paymentTechnicalFinancial'">
+      <div>
+        <h5 class="table-header table-header-first pull-left"
+          l10n-text="contractReports_contractReportDocuments_reportTechnical"></h5>
+        <sc-button name="newTechnicalReportBtn" btn-click="newReport('technical')"
+          text="contractReports_contractReportDocuments_add" style="position:relative; right: -5px; top: -3px;"
+          class="btn btn-xs btn-primary" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)"
+          ng-if="contractReportStatus === 'draft' && !contractReportTechnicals.length && contractReportSource !== 'beneficiary'">
+        </sc-button>
+      </div>
+
+      <sc-datatable items="contractReportTechnicals" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.contractReports.view.documents.editTechnical', params: { ind: item.contractReportTechnicalId } }"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ContractReportActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))">
+          </sc-button>
+        </sc-column>
+        <sc-column data="versionSubNum" title="contractReports_contractReportDocuments_reportTechnical_orderNum"
+          type="number"></sc-column>
+        <sc-column data="status" title="contractReports_contractReportDocuments_reportTechnical_status"></sc-column>
+        <sc-column data="type" title="contractReports_contractReportDocuments_reportTechnical_type"></sc-column>
+        <sc-column data="createDate" title="contractReports_contractReportDocuments_reportTechnical_createDate"
+          type="date"></sc-column>
+        <sc-column data="regDate" title="contractReports_contractReportDocuments_reportTechnical_regDate" type="date">
+        </sc-column>
+        <sc-column data="dateFrom" title="contractReports_contractReportDocuments_reportTechnical_dateFrom" type="date">
+        </sc-column>
+        <sc-column data="dateTo" title="contractReports_contractReportDocuments_reportTechnical_dateTo" type="date">
+        </sc-column>
+        <sc-column data="statusNote" title="contractReports_contractReportDocuments_reportTechnical_dateTo"></sc-column>
+      </sc-datatable>
+
+      <div class="mutiple-tables-spacing"></div>
+    </div>
+    <div ng-if="contractReportType === 'financial' || contractReportType === 'paymentFinancial' || contractReportType === 'paymentTechnicalFinancial'">
+      <div>
+        <h5 class="table-header table-header-first pull-left"
+          l10n-text="contractReports_contractReportDocuments_reportFinancial"></h5>
+        <sc-button name="newFinancialReportBtn" btn-click="newReport('financial')"
+          text="contractReports_contractReportDocuments_add" style="position:relative; right: -5px; top: -3px;"
+          class="btn btn-xs btn-primary" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)"
+          ng-if="contractReportStatus === 'draft' && !contractReportFinancials.length && contractReportSource !== 'beneficiary'">
+        </sc-button>
+      </div>
+
+      <sc-datatable items="contractReportFinancials" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.contractReports.view.documents.editFinancial', params: { ind: item.contractReportFinancialId } }"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ContractReportActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))">
+          </sc-button>
+        </sc-column>
+        <sc-column data="versionSubNum" title="contractReports_contractReportDocuments_reportFinancial_orderNum"
+          type="number"></sc-column>
+        <sc-column data="status" title="contractReports_contractReportDocuments_reportFinancial_status"></sc-column>
+        <sc-column data="createDate" title="contractReports_contractReportDocuments_reportFinancial_createDate"
+          type="date"></sc-column>
+        <sc-column data="startDate" title="contractReports_contractReportDocuments_reportFinancial_startDate"
+          type="date"></sc-column>
+        <sc-column data="endDate" title="contractReports_contractReportDocuments_reportFinancial_endDate" type="date">
+        </sc-column>
+      </sc-datatable>
+
+      <div class="mutiple-tables-spacing"></div>
+    </div>
+    <div ng-if="contractReportType === 'advancePayment' || contractReportType === 'paymentFinancial' || contractReportType === 'paymentTechnicalFinancial'">
+      <div>
+        <h5 class="table-header table-header-first pull-left"
+          l10n-text="contractReports_contractReportDocuments_reportPayment"></h5>
+        <sc-button name="newBtn" btn-click="newReportPayment()" text="contractReports_contractReportDocuments_add"
+          style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+          ng-disabled="!$canDo('ContractReportActions.Edit', contractReportId)"
+          ng-if="contractReportStatus === 'draft' && !contractReportPayments.length && contractReportSource !== 'beneficiary'">
+        </sc-button>
+      </div>
+
+      <sc-datatable items="contractReportPayments" filterable="false" pageable="false" sortable="false"
+        dynamic-columns="false" has-info-text="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn"
+            btn-sref="{ state: 'root.contractReports.view.documents.editPayment', params: { ind: item.contractReportPaymentId } }"
+            class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ContractReportActions.View', item.contractReportId) || (contractReportSource === 'beneficiary' && (item.statusName === 'draft' || item.statusName === 'entered'))">
+          </sc-button>
+        </sc-column>
+        <sc-column data="versionSubNum" title="contractReports_contractReportDocuments_reportPayment_orderNum"
+          type="number"></sc-column>
+        <sc-column data="status" title="contractReports_contractReportDocuments_reportPayment_status"></sc-column>
+        <sc-column data="paymentType" title="contractReports_contractReportDocuments_reportPayment_paymentType">
+        </sc-column>
+        <sc-column data="createDate" title="contractReports_contractReportDocuments_reportPayment_createDate"
+          type="date"></sc-column>
+        <sc-column data="regDate" title="contractReports_contractReportDocuments_reportPayment_regDate" type="date">
+        </sc-column>
+        <sc-column data="dateFrom" title="contractReports_contractReportDocuments_reportPayment_dateFrom" type="date">
+        </sc-column>
+        <sc-column data="dateTo" title="contractReports_contractReportDocuments_reportPayment_dateTo" type="date">
+        </sc-column>
+        <sc-column data="requestedAmount" title="contractReports_contractReportDocuments_reportPayment_requestedAmount"
+          type="money"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</div>

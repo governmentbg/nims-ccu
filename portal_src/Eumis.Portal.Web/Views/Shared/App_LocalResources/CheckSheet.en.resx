@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddComment" xml:space="preserve">
+    <value>Add Comment</value>
+  </data>
+  <data name="AdditionalComments" xml:space="preserve">
+    <value>Comments / Conclusion / Opinion</value>
+  </data>
+  <data name="Applicable" xml:space="preserve">
+    <value>Applicable</value>
+  </data>
+  <data name="ApprovedAmount" xml:space="preserve">
+    <value>Верифицирани допустими разходи в настоящото
+ИП</value>
+  </data>
+  <data name="ApprovedPaymentAmount" xml:space="preserve">
+    <value>Одобрена за плащане сума</value>
+  </data>
+  <data name="AttachedDocumentCollection" xml:space="preserve">
+    <value>Attached documents</value>
+  </data>
+  <data name="BgAmount" xml:space="preserve">
+    <value>НФ</value>
+  </data>
+  <data name="CertReportNumber" xml:space="preserve">
+    <value>№ доклад по сертификация</value>
+  </data>
+  <data name="CheckListAttachedDocumentCollection" xml:space="preserve">
+    <value>Instructions for filling</value>
+  </data>
+  <data name="CheckSheetTitle" xml:space="preserve">
+    <value>Check sheet '{0}'</value>
+  </data>
+  <data name="CommentByUser_A" xml:space="preserve">
+    <value>Comment by</value>
+  </data>
+  <data name="CommentByUser_B" xml:space="preserve">
+    <value>to a question</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="ContractBfpTotalAmount" xml:space="preserve">
+    <value>Размер на БФП</value>
+  </data>
+  <data name="ContractCompletionDate" xml:space="preserve">
+    <value>Крайна дата на изпълнение на
+проекта</value>
+  </data>
+  <data name="ContractExecutionStatus" xml:space="preserve">
+    <value>Статус на договор</value>
+  </data>
+  <data name="ContractName" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Contractor" xml:space="preserve">
+    <value>Име на изпълнителя</value>
+  </data>
+  <data name="ContractProcurementName" xml:space="preserve">
+    <value>Процедура за избор на изпълнител</value>
+  </data>
+  <data name="ContractProcurementPlans" xml:space="preserve">
+    <value>Предмети на обществени поръчки, по които има отчетени разходи в настоящото искане за плащане</value>
+  </data>
+  <data name="ContractReportName" xml:space="preserve">
+    <value>Пакет отчетни документи</value>
+  </data>
+  <data name="ContractReportTotalAmount" xml:space="preserve">
+    <value>Сума на разходите по договора включени в ПОД</value>
+  </data>
+  <data name="ContractStartDate" xml:space="preserve">
+    <value>Начална дата на изпълнение на
+проекта</value>
+  </data>
+  <data name="ContractTotalAmount" xml:space="preserve">
+    <value>Обща стойност на договора, финансирана по проекта</value>
+  </data>
+  <data name="CorrectedApprovedAmount" xml:space="preserve">
+    <value>Недопустими разходи, верифицирани в предходно
+ИП</value>
+  </data>
+  <data name="EuAmount" xml:space="preserve">
+    <value>ЕС</value>
+  </data>
+  <data name="ExternalContractorContract" xml:space="preserve">
+    <value>Договор с външен изпълнител</value>
+  </data>
+  <data name="FinancialCorrectionImposingReason" xml:space="preserve">
+    <value>Основание за налагане</value>
+  </data>
+  <data name="FinancialCorrectionPercent" xml:space="preserve">
+    <value>Финансова корекция (%)</value>
+  </data>
+  <data name="GenerateButtonNote" xml:space="preserve">
+    <value>В настоящото искане за плащане няма отчетени разходи по обществени поръчки. При настъпило изменение използвайте бутон Генерирай.</value>
+  </data>
+  <data name="GenerateVerificationData" xml:space="preserve">
+    <value>Генерирай</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Скрий -</value>
+  </data>
+  <data name="MissingData" xml:space="preserve">
+    <value>There are no filled check list questions</value>
+  </data>
+  <data name="MissingDataPrint" xml:space="preserve">
+    <value>There is no filled data for printing</value>
+  </data>
+  <data name="ModalClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="NotApplicable" xml:space="preserve">
+    <value>Not Applicable</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="PauseConfirm" xml:space="preserve">
+    <value>Сигурни ли сте че искате да прекъснете контролният лист?</value>
+  </data>
+  <data name="PauseReason" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>Искане за плащане</value>
+  </data>
+  <data name="PaymentRequestAmount" xml:space="preserve">
+    <value>Поискана сума за плащане</value>
+  </data>
+  <data name="ProcedureName" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="ProgrammeName" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ProjectTotalAmount" xml:space="preserve">
+    <value>Стойност на проекта</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обнови</value>
+  </data>
+  <data name="ReportedAmount" xml:space="preserve">
+    <value>Отчетени разходи</value>
+  </data>
+  <data name="SelfAmount" xml:space="preserve">
+    <value>СФ</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Покажи +</value>
+  </data>
+  <data name="SpotCheckRegNumber" xml:space="preserve">
+    <value>Spot check number</value>
+  </data>
+  <data name="SummaryByUser" xml:space="preserve">
+    <value>Comments / Conclusion / Opinion by</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+  <data name="TotalUnapprovedAmount" xml:space="preserve">
+    <value>Общо неверифицирани разходи по настоящото ип</value>
+  </data>
+  <data name="UnapprovedAmount" xml:space="preserve">
+    <value>Неверифицирани разходи по причини различни от
+наложени финансови корекции</value>
+  </data>
+  <data name="UnapprovedByCorrectionAmount" xml:space="preserve">
+    <value>Неверифицирани разходи по финансови корекции</value>
+  </data>
+  <data name="Verification" xml:space="preserve">
+    <value>Верификация</value>
+  </data>
+</root>

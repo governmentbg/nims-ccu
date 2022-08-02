@@ -1,0 +1,29 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionStatuses'" ng-disabled="true" ng-model="model.status"  ng-required="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'monFinCtrlFinancialProgrammes'" ng-model="model.programmeId" ng-required="true" ng-readonly="model.flatFinancialCorrectionId" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_programmeId" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name"  ng-required="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_name" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionTypes'" ng-model="model.type" ng-required="true" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_type" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="file" ng-model="model.file" url-template="FlatFinancialCorrectionFile" url-params="{ id: model.flatFinancialCorrectionId }" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_file" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionLevels'" ng-model="model.level" ng-required="true" ng-disabled="model.flatFinancialCorrectionId" ng-change="levelChanged()" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_level" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'flatFinancialCorrectionContracts'" ng-if="model.level === 'contractContract'" ng-model="model.contractId" params="{programmeId: model.programmeId}" ng-required="true" ng-disabled="model.flatFinancialCorrectionId" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_contract" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.impositionDate" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_impositionDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.impositionNumber" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_impositionNumber" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" l10n-text="flatFinancialCorrections_flatFinancialCorrectionForm_description" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+</ng-form>

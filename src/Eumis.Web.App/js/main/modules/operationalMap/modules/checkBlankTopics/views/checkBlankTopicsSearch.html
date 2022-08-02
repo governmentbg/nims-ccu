@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newCheckBlankTopicBtn" btn-sref="{ state: 'root.map.checkBlankTopics.new' }" text="checkBlankTopics_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('CheckBlankTopicListActions.Create')"></sc-button>
+
+    <sc-datatable items="checkBlankTopics" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.checkBlankTopics.edit', params: {id: item.checkBlankTopicId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('CheckBlankTopicActions.View', item.checkBlankTopicId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="checkBlankTopics_searchForm_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

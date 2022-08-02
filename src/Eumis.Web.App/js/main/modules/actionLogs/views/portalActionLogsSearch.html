@@ -1,0 +1,31 @@
+<div>
+  <div class="well well-sm">
+    <div class="row">
+      <sc-field type="nomenclature" alias="'actionLogPortalGroups'" mode="id" ng-model="filters.actionId" l10n-text="actionLogs_portal_search_action" class="col-sm-6"></sc-field>
+      <sc-field type="text" ng-model="filters.email" l10n-text="actionLogs_portal_search_email" class="col-sm-2"></sc-field>
+      <sc-field type="date" ng-model="filters.logDate" l10n-text="actionLogs_portal_search_logDate" class="col-sm-2"></sc-field>
+      <sc-field type="int" ng-model="filters.aggregateRootId" l10n-text="actionLogs_portal_search_aggregateRootId" class="col-sm-2"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="text" ng-model="filters.remoteIpAddress" l10n-text="actionLogs_portal_search_remoteIpAddress" class="col-sm-2"></sc-field>
+      <div class="labeless col-sm-10">
+        <sc-button name="seachBtn" btn-click="search()" text="actionLogs_portal_search_search"
+          class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+        </sc-button>
+      </div>
+    </div>
+  </div>
+
+  <sc-datatable items="actionLogs" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+    <sc-column data="logDate" title="actionLogs_portal_search_logDate" type="datetime">
+    </sc-column>
+    <sc-column data="action" title="actionLogs_portal_search_action">
+    </sc-column>
+    <sc-column data="aggregateRootId" title="actionLogs_portal_search_aggregateRootId" sortable="false">
+    </sc-column>
+    <sc-column data="email" title="actionLogs_portal_search_email">
+    </sc-column>
+    <sc-column data="remoteIpAddress" title="actionLogs_portal_search_remoteIpAddress">
+    </sc-column>
+  </sc-datatable>
+</div>

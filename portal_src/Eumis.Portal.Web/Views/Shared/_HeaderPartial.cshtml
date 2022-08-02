@@ -1,0 +1,37 @@
+﻿<header>
+    <!-- HEAD -->
+    <div class="container tbl">
+        <a class="logo" href="@Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name)" title=""><img class="fluid" src="@Url.Content(Links.Content.img.gerb_jpg)" alt="" /></a>
+        <div class="title">
+            <div class="hidden-xs hidden-sm">
+                @Global.HeaderText2 <br />@Global.HeaderText3 @*<br />@Global.HeaderText4*@
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Global.Eumis</strong>
+            </div>
+            @if (Eumis.Portal.Web.Helpers.EumisEnvironmentManager.Current != Eumis.Portal.Web.Helpers.EumisEnvironment.Production)
+            {
+                <label class="sandbox">@Eumis.Portal.Web.Helpers.EumisEnvironmentManager.CurrentText</label>
+            }
+        </div>
+        <div class="hidden-xs hidden-sm">
+            <div class="line"> </div>
+        </div>
+        <div class="isun hidden-xs hidden-sm">
+            @*<img class="fluid" src="@Url.Content(Links.Content.img.isun_gif)" alt="@Global.Motto" />*@
+        </div>
+        <div class="slogan hidden-xs hidden-sm">
+            @*@Global.LogoMotto1<br /><strong>@Html.Raw(Global.LogoMotto2)</strong>*@
+        </div>
+        <div class="">
+            <div class="line"> </div>
+        </div>
+        <!-- LANG & LOGIN -->
+        @Html.Partial("_LoginPartial")
+    </div>
+    <!-- MENU -->
+    @Html.Partial("_MenuPartial")
+</header>
+
+<!-- NARROW SUBHEADER ELEMENT -->
+<div class="narrow-subheader"> </div>

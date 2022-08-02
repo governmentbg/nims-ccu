@@ -1,0 +1,31 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-required="true" l10n-text="procurements_procurementDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.shortName" ng-required="true" l10n-text="procurements_procurementDataForm_shortName" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature"  alias="'errandAreas'" mode="id" ng-model="model.errandAreaId" l10n-text="procurements_procurementDataForm_errandArea" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.ppaNumber" l10n-text="procurements_procurementDataForm_pPANumber" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'errandLegalActs'" ng-model="model.errandLegalActId"  mode="id" ng-change="clearErrandType()" l10n-text="procurements_procurementDataForm_errandLegalAct" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'errandTypes'" ng-model="model.errandTypeId" params="{ parentId: model.errandLegalActId }" mode="id" l10n-text="procurements_procurementDataForm_errandType" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" l10n-text="procurements_procurementDataForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money"  ng-model="model.prognosysAmount" l10n-text="procurements_procurementDataForm_prognosysAmount" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="money" ng-model="model.expectedAmount" l10n-text="procurements_procurementDataForm_expectedAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.planDate" l10n-text="procurements_procurementDataForm_planDate" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.internetAddress" l10n-text="procurements_procurementDataForm_internetAddress" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.offersDeadlineDate" l10n-text="procurements_procurementDataForm_offersDeadlineDate" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="date" ng-model="model.announcedDate" l10n-text="procurements_procurementDataForm_announcedDate" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+</ng-form>

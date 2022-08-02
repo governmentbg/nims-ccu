@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" l10n-text="projects_projectRegistrationsSearch_programmePriorityId" class="col-sm-5"></sc-field>
+        <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="projects_projectRegistrationsSearch_procedureId" class="col-sm-5"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="date" ng-model="filters.fromDate" l10n-text="projects_projectRegistrationsSearch_fromDate" class="col-sm-2"></sc-field>
+        <sc-field type="date" ng-model="filters.toDate" l10n-text="projects_projectRegistrationsSearch_toDate" class="col-sm-2"></sc-field>
+        <div class="labeless col-sm-8">
+          <sc-button name="seachBtn" btn-click="search()" text="projects_projectRegistrationsSearch_search"
+            class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-link-button ng-href="{{projectsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+      icon="fa-file-excel-o fa-lg fa-fw" text="projects_projectRegistrationsSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="projectRegistrations" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.projects.view.edit', params: { id: item.projectId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ProjectActions.View', item.projectId)"></sc-button>
+      </sc-column>
+      <sc-column title="projects_projectRegistrationsSearch_procedureName" has-content="true" data="procedureName">
+        <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="regNumber" title="projects_projectRegistrationsSearch_regNumber">
+      </sc-column>
+      <sc-column title="projects_projectRegistrationsSearch_name" has-content="true" data="name">
+        <span title="{{item.name}}">{{item.name | trim : 50}}</span>
+      </sc-column>
+      <sc-column title="projects_projectRegistrationsSearch_company" has-content="true" data="company">
+        <span title="{{item.company}}">{{item.companyName | trim : 50}} {{'(' + item.companyUinType + ': ' + item.companyUin + ')'}}</span>
+      </sc-column>
+      <sc-column data="regDate" title="projects_projectRegistrationsSearch_regDate" type="datetime">
+      </sc-column>
+      <sc-column data="registrationStatus" title="projects_projectRegistrationsSearch_registrationStatus">
+      </sc-column>
+      <sc-column data="projectType" title="projects_projectRegistrationsSearch_projectType">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

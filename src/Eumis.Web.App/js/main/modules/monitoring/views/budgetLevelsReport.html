@@ -1,0 +1,77 @@
+﻿<ng-form name="budgetLevelsReportForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_budgetLevelsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_budgetLevelsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_budgetLevelsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_budgetLevelsReport_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_budgetLevelsReport_toDate" class="col-sm-2"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'nutsLevels'" mode="id" ng-model="filters.nutsLevel" ng-change="changedNutsLevel()" l10n-text="monitoring_budgetLevelsReport_nutsLevel" class="col-sm-3 col-md-3"></sc-field>
+          <sc-field type="nomenclature" alias="'budgetLevels'" mode="id" ng-model="filters.budgetLevel" ng-required="true" l10n-text="monitoring_budgetLevelsReport_budgetLevels" class="col-sm-3 col-md-2"></sc-field>
+          <sc-field type="nomenclature" alias="'currencies'" mode="id" ng-model="filters.currency" l10n-text="monitoring_budgetLevelsReport_currency" class="col-sm-3 col-md-2"></sc-field>
+          <div class="labeless col-sm-3">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_budgetLevelsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+        <div ng-show="filters.nutsLevel">
+          <div class="row">
+            <sc-field type="nomenclature" alias="'countries'" mode="id" ng-model="filters.countryId" ng-show="filters.nutsLevel === 'country'" l10n-text="monitoring_budgetLevelsReport_countryId" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'nuts1'" mode="id" ng-model="filters.nuts1Id" ng-show="filters.nutsLevel === 'regionNUTS1'" nom-obj="nuts1Obj" l10n-text="monitoring_budgetLevelsReport_nuts1Id" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'nuts2'" mode="id" ng-model="filters.nuts2Id" ng-show="filters.nutsLevel === 'regionNUTS2'" nom-obj="nuts2Obj" l10n-text="monitoring_budgetLevelsReport_nuts2Id" class="col-sm-4 col-lg-3"></sc-field>
+            <sc-field type="nomenclature" alias="'districts'" mode="id" ng-model="filters.districtId" ng-show="filters.nutsLevel === 'district'" nom-obj="districtObj" l10n-text="monitoring_budgetLevelsReport_districtId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'municipalities'" mode="id" ng-model="filters.municipalityId" ng-show="filters.nutsLevel === 'municipality'" nom-obj="municipalityObj" l10n-text="monitoring_budgetLevelsReport_municipalityId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'settlements'" mode="id" ng-model="filters.settlementId" ng-show="filters.nutsLevel === 'settlement'" nom-obj="settlementObj" l10n-text="monitoring_budgetLevelsReport_settlementId" class="col-sm-4 col-md-3"></sc-field>
+            <sc-field type="nomenclature" alias="'protectedZones'" mode="id" ng-model="filters.protectedZoneId" ng-show="filters.nutsLevel === 'protectedZone'" nom-obj="protectedZoneObj" l10n-text="monitoring_budgetLevelsReport_protectedZoneId" class="col-sm-4 col-md-3"></sc-field>
+            <div style="padding-top: 24px;">
+              <span ng-show="filters.nutsLevel === 'regionNUTS1' && filters.nuts1Id">{{nuts1Obj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'regionNUTS2' && filters.nuts2Id">{{nuts2Obj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'district' && filters.districtId">{{districtObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'municipality' && filters.municipalityId">{{municipalityObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'settlement' && filters.settlementId">{{settlementObj.fullPathName}}</span>
+              <span ng-show="filters.nutsLevel === 'protectedZone' && filters.protectedZoneId">{{protectedZoneObj.fullPathName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_procedure"></th>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_budgetLevel1Name"></th>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_budgetLevel2Name"></th>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_contractedTotal"></th>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_reportedTotal"></th>
+                <th class="text-center" l10n-text="monitoring_budgetLevelsReport_approvedTotal"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="budgetLevel in budgetLevels">
+                <td>{{budgetLevel.procedureName}}</td>
+                <td>{{budgetLevel.budgetLevel1Name}}</td>
+                <td>{{budgetLevel.budgetLevel2Name}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{budgetLevel.contractedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{budgetLevel.reportedTotalAmount | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{budgetLevel.approvedTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="budgetLevels.length === 0">
+                <td colspan="6" class="text-center" l10n-text="monitoring_budgetLevelsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

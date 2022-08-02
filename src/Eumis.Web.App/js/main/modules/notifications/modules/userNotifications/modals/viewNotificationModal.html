@@ -1,0 +1,38 @@
+<ng-form name="viewNotificationForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="userNotifications_viewNotificationModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="cancelBtn" btn-click="cancel()" text="userNotifications_viewNotificationModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"></sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteNotification(notification.userNotificationId)" text="userNotifications_viewNotificationModal_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"></sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+          <strong class="heading" style="margin-left: 15px;">
+            {{infoText}}
+          </strong>
+        </div>
+        <div class="row">
+          <sc-field type="text" ng-model="notification.programmeCode" l10n-text="userNotifications_viewNotificationModal_programmeCode" class="col-sm-4 col-md-3" ng-if="notification.programmeCode"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="text" ng-model="notification.programmePriorityCode" l10n-text="userNotifications_viewNotificationModal_programmePriorityCode" ng-if="notification.programmePriorityCode" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="text" ng-model="notification.procedureCode" l10n-text="userNotifications_viewNotificationModal_procedureCode" ng-if="notification.procedureCode" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="text" ng-model="notification.contractCode" l10n-text="userNotifications_viewNotificationModal_contractCode" ng-if="notification.contractCode" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+        <div class="row">
+            <sc-field type="date" ng-model="notification.createDate" l10n-text="userNotifications_viewNotificationModal_createDate" class="col-sm-2 col-md-2"></sc-field>
+            <sc-field type="time" ng-model="notification.createTime" class="col-sm-2 col-md-2"></sc-field>
+        </div>
+        <a target="_blank" ui-sref="{{notification.dispatcherPath}}">
+          <span l10n-text="userNotifications_viewNotificationModal_reason"></span>
+        </a>
+    </div>
+  </div>
+</ng-form>

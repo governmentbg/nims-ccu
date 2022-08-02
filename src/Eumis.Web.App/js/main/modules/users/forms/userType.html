@@ -1,0 +1,17 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-required="true" ng-required="true" l10n-text="userTypes_userTypeForm_name" class="col-sm-4 col-md-4"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isSuperUser" ng-required="true" l10n-text="userTypes_userTypeForm_isSuperUser" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'userOrganizations'" mode="id" ng-model="model.userOrganizationId" ng-required="true" ng-disabled="!isNew" l10n-text="userTypes_userTypeForm_userOrganizationId" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field-group class="col-sm-5 col-md-5" text="userTypes_userTypeForm_permissionTemplateId" validations="{required: 'default'}" field-name="permissionTemplateId">
+      <sc-nomenclature alias="'permissionTemplates'" mode="id" ng-model="model.permissionTemplateId" name="permissionTemplateId" ng-required="true" ng-disabled="!isNew"></sc-nomenclature>
+      <sc-button btn-click="viewPermissionTemplate()" class="btn btn-primary btn-sm" text="userTypes_userTypeForm_viewPermissionTemplate" ng-disabled="!model.permissionTemplateId"></sc-button>
+    </sc-field-group>
+  </div>
+</ng-form>
+
+

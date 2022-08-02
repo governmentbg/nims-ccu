@@ -1,0 +1,44 @@
+<ng-form name="editProjectCommunicationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionProjectCommunication_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_editEvalSessionProjectCommunication_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-project-communication name="projectCommunicationForm" ng-model="projectCommunication"></eumis-project-communication>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionProjectCommunication_questionTemplate" document="projectCommunicationQuestion" gid="projectCommunication.xmlGid"
+                                   readonly="!$canDo('ProjectCommunicationActions.Edit', communicationId) || !isSessionActive || projectCommunication.status !== 'draftQuestion' || editMode || currentSessionId !== projectCommunication.evalSessionId"
+                                   class="col-sm-4 col-md-3" doc-updated="questionUpdated">
+        </eumis-structured-document>
+      </div>
+
+      <div class="row">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <div>
+            <h5 class="table-header table-header-first pull-left" l10n-text="evalSessions_editEvalSessionProjectCommunication_answers_title"></h5>
+          </div>
+          <sc-datatable items="projectCommunicationAnswers" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="true" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-click="viewProjectCommunicationAnswer(item)" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+            </sc-column>
+            <sc-column data="orderNum" title="evalSessions_editEvalSessionProjectCommunication_answers_orderNum" type="number">
+            </sc-column>
+            <sc-column data="statusDescr" title="evalSessions_editEvalSessionProjectCommunication_answers_status">
+            </sc-column>
+            <sc-column data="answerDate" title="evalSessions_editEvalSessionProjectCommunication_answers_answerDate" type="date">
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

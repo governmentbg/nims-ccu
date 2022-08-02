@@ -1,0 +1,249 @@
+﻿@model R_10031.BFPContractBasicData
+
+@if (Model != null)
+{
+    <table>
+        <tbody>
+            <tr>
+                <td style="width: 35%;" colspan="2">
+                    @BFPContractBasicData.Programme
+                </td>
+                <td style="width: 65%;" colspan="2">@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ProgrammeBasicData.Programme ?? new R_10001.PublicNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.ProgrammePriority</td>
+                <td colspan="2" class="programme-priority">
+                    @if (Model.ProgrammeBasicData.ProgrammePriorityCollection != null && Model.ProgrammeBasicData.ProgrammePriorityCollection.Count > 0)
+                    {
+                        for (int i = 0; i < Model.ProgrammeBasicData.ProgrammePriorityCollection.Count; i++)
+                        {
+                            <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ProgrammeBasicData.ProgrammePriorityCollection[i] ?? new R_10001.PublicNomenclature())</p>
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 35%;" colspan="2">@BFPContractBasicData.ProcedureName</td>
+                <td style="width: 65%;" colspan="2">
+                    @if (Model.Procedure != null)
+                    {
+                        @Model.Procedure.Name
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.ProcedureCode</td>
+                <td colspan="2">
+                    @if (Model.Procedure != null)
+                    {
+                        @Model.Procedure.Code
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.Name</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Name ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.Duration</td>
+                <td colspan="2">@Model.Duration</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.NameEN</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.NameEN ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.Description</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Description ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.DescriptionEN</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.DescriptionEN ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.Purpose</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Purpose ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.CompletionStatus</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.CompletionStatus ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.StartCondition</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.StartCondition ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.StartDate</td>
+                <td colspan="2">
+                    @if (Model.StartDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.StartDate)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.TemporarySuspensionReason</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TemporarySuspensionReason ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.TemporarySuspensionDate</td>
+                <td colspan="2">
+                    @if (Model.TemporarySuspensionDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.TemporarySuspensionDate)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.CompletionDate</td>
+                <td colspan="2">
+                    @if (Model.CompletionDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.CompletionDate)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.TerminationReason</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.TerminationReason ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.TerminationDate</td>
+                <td colspan="2">
+                    @if (Model.TerminationDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.TerminationDate)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.RegistrationNumber</td>
+                <td colspan="2">@Model.RegistrationNumber</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.Version</td>
+                <td colspan="2">@Model.Version</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.SubVersion</td>
+                <td colspan="2">@Model.SubVersion</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.ContractDate</td>
+                <td colspan="2">
+                    @if (Model.ContractDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.ContractDate)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.OtherRegistration</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.OtherRegistration ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.StoragePlace</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.StoragePlace ?? string.Empty)</td>
+            </tr>
+            @if (Model.NutsAddress != null)
+            {
+                if (Model.NutsAddress.NutsLevel != null)
+                {
+                    <tr>
+                        <td colspan="2">@NutsAddress.NutsLevel</td>
+                        <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.NutsAddress.NutsLevel ?? new R_10000.PrivateNomenclature())</td>
+                    </tr>
+                }
+
+                if (Model.NutsAddress.NutsLevel != null && !String.IsNullOrWhiteSpace(Model.NutsAddress.NutsLevel.Id)
+                    && Model.NutsAddress.NutsAddressContentCollection != null && Model.NutsAddress.NutsAddressContentCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.NutsAddress.NutsAddressContentCollection.Count; i++)
+                    {
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.CountryEU.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Country @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Country ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.ProtectedZone.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.ProtectedZone @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].ProtectedZone ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts1.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Nuts1 @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Nuts1 ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts2.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Nuts2 @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Nuts2 ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.District.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.District @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].District ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Municipality.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Municipality @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Municipality ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Settlement.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Settlement @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Settlement ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+
+            <tr>
+                <td colspan="2">@BFPContractBasicData.IsVatEligible</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.IsVatEligible ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.AmountType</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.AmountType ?? new R_10000.PrivateNomenclature())</td>
+            </tr>
+            <tr>
+                <td colspan="2">@BFPContractBasicData.ProductKind</td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.ProductKind ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@BFPContractBasicData.IsJointActionPlan</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsJointActionPlan)</td>
+                <td>@BFPContractBasicData.IsUsesFinancialInstruments</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsUsesFinancialInstruments)</td>
+            </tr>
+            <tr>
+                <td>@BFPContractBasicData.IsIncludesSupportFromIYE</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsIncludesSupportFromIYE)</td>
+                <td>@BFPContractBasicData.IsSubjectToStateAidRegime</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsSubjectToStateAidRegime)</td>
+            </tr>
+            <tr>
+                <td>@BFPContractBasicData.IsAssignedDeMinimisAid</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsAssignedDeMinimisAid)</td>
+                <td>@BFPContractBasicData.IsIncludesPublicPrivatePartnership</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Boolean, Model.IsIncludesPublicPrivatePartnership)</td>
+            </tr>
+        </tbody>
+    </table>
+}
+

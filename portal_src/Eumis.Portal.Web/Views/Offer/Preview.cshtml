@@ -1,0 +1,29 @@
+﻿@model R_10080.Offer
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Index, MVC.Offers.Name), Global.BreadcrumbsOffers),
+    new BreadcrumbItem(Url.Action(MVC.Offers.ActionNames.Submitted, MVC.Offers.Name), Offers.Communication)
+}, Global.Offer)
+
+<div class="container page-title">
+    <h1>@Global.Offer</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Offer.ActionNames.Print, MVC.Offer.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+        <form class="form-with-sections">
+            
+            @Html.DisplayFor(m => m)
+
+        </form>
+    </div>
+</div>

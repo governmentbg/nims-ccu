@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10043"
+	xmlns="http://ereg.egov.bg/segment/R-10043"
+            
+	xmlns:frbd="http://ereg.egov.bg/segment/R-10078"
+
+	xmlns:fb="http://ereg.egov.bg/segment/R-10062"
+	xmlns:csd="http://ereg.egov.bg/segment/R-10066"
+            
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10078" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10062" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10066" />
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+
+  <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd" />
+
+  <xsd:complexType name="FinanceReport">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="bg">Финансов отчет</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="BasicData" type="frbd:FinanceReportBasicData" minOccurs="0" />
+
+      <xsd:element name="FinanceBudget" type="fb:FinanceBudget" minOccurs="0" />
+
+      <xsd:element name="CostSupportingDocuments" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="CostSupportingDocument" type="csd:CostSupportingDocument" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+          <xsd:attribute name="id" type="xsd:string"/>
+          <xsd:attribute name="isLocked" type="xsd:boolean"/>
+        </xsd:complexType>
+      </xsd:element>
+      
+      <!--NOMENCLATURES-->
+
+      <xsd:element name="Beneficiary" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="PartnerItem" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="ContractorItem" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+      
+      <xsd:element name="ContractContractorData" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ContractorId" type="xsd:string" minOccurs="0" />
+            <xsd:element name="ContractContractorItem" type="prn:PrivateNomenclature" minOccurs="0" maxOccurs="unbounded" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ActivityBudgetDetailData" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ContractContractorId" type="xsd:string" minOccurs="0" />
+
+            <xsd:element name="ActivityBudgetDetailPair" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="BudgetDetail" type="prn:PrivateNomenclature" minOccurs="0" />
+                  <xsd:element name="ContractActivity" type="prn:PrivateNomenclature" minOccurs="0" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element ref="ds:Signature" minOccurs="0" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+
+    <xsd:attribute name="contractGid" type="xsd:string"/>
+    <xsd:attribute name="packageGid" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    
+    <xsd:attribute name="contractNumber" type="xsd:string"/>
+    <xsd:attribute name="docNumber" type="xsd:string"/>
+    <xsd:attribute name="docSubNumber" type="xsd:string"/>
+
+    <xsd:attribute name="createDate" type="xsd:dateTime"/>
+    <xsd:attribute name="modificationDate" type="xsd:dateTime"/>
+  </xsd:complexType>
+</xsd:schema>

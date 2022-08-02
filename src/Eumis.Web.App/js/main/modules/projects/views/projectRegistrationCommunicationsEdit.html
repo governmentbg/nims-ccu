@@ -1,0 +1,67 @@
+﻿<ng-form name="editProjectRegistrationCommunicationForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="projects_projectRegistrationCommunicationsEdit_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" ng-show="canEditCommunication && !editMode" text="projects_projectRegistrationCommunicationsEdit_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', projectCommunicationId)">
+        </sc-button>
+        <sc-button name="cancelCommunicationBtn" btn-click="cancelCommunication()" ng-show="canCancelCommunication && !editMode" text="projects_projectRegistrationCommunicationsEdit_cancelCommunication" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Cancel', projectCommunicationId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="projects_projectRegistrationCommunicationsEdit_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="projects_projectRegistrationCommunicationsEdit_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" ng-show="canDeleteCommunication && !editMode" text="projects_projectRegistrationCommunicationsEdit_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Delete', projectCommunicationId)">
+        </sc-button>
+
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : projectRegistrationCommunication.status === 'canceled' }">
+      <eumis-project-registration-communication-data name="projectRegistrationCommunicationForm" ng-model="projectRegistrationCommunication"></eumis-project-registration-communication-data>
+
+      <div class="row">
+        <eumis-structured-document text="projects_projectRegistrationCommunicationsEdit_questionTemplate" document="projectManagingAuthorityCommunicationQuestion" gid="projectRegistrationCommunication.xmlGid"
+                                   readonly="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', projectCommunicationId) || projectRegistrationCommunication.status !== 'draftQuestion' || editMode"
+                                   class="col-sm-4 col-md-3" doc-updated="docUpdated">
+        </eumis-structured-document>
+      </div>
+
+      <div class="row">
+        <div class="mutiple-tables-spacing"></div>
+
+        <div class="col-sm-12">
+          <div>
+            <h5 class="table-header table-header-first pull-left" l10n-text="projects_projectRegistrationCommunicationAnswersSearch_answers"></h5>
+            <sc-button name="newBtn" ng-if="projectRegistrationCommunication.source === 'beneficiary' && projectRegistrationCommunication.status === 'question'" btn-click="newAnswer()" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+              ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', projectCommunicationId)">
+            </sc-button>
+          </div>
+          <sc-datatable items="projectCommunicationAnswers" filterable="true" pageable="true" sortable="true" dynamic-columns="true" has-info-text="true" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.projects.view.communications.edit.answers.edit', params: { ind: item.projectCommunicationId, aid: item.projectCommunicationAnswerId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                         ng-disabled="!$canDo('ProjectManagingAuthorityCommunicationActions.Edit', projectCommunicationId)"></sc-button>
+            </sc-column>
+            <sc-column data="source" title="projects_projectRegistrationCommunicationAnswersSearch_source">
+            </sc-column>
+            <sc-column data="statusDescr" title="projects_projectRegistrationCommunicationAnswersSearch_status">
+            </sc-column>
+            <sc-column data="answerDate" title="projects_projectRegistrationCommunicationAnswersSearch_answerDate" type="date">
+            </sc-column>
+            <sc-column sortable="false" title="projects_projectRegistrationCommunicationAnswersSearch_preview" has-content="true">
+              <a target="_blank" ng-href="{{item.viewXmlUrl}}" sc-access-token>
+                <span class="glyphicon glyphicon-file"></span>
+              </a>
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-form>

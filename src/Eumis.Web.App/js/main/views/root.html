@@ -1,0 +1,87 @@
+﻿<div class="navigation bg_header">
+  <div class="container">
+    <header>
+      <a class="logo" l10n-text="navigation_title" sc-sref="{state: 'root.newsFeed'}"></a>
+      <span class="username" ng-click="viewUserProfile()">
+        <span class="glyphicon glyphicon-user"></span>
+        {{userFullname}}
+      </span>
+      <span class="messages" ng-click="viewMessages()">
+        <span class="glyphicon glyphicon-envelope"></span>
+        <span class="badge" ng-class="{'active': newMessagesNum > 0}">{{newMessagesNum}}</span>
+      </span>
+      <span class="notifications" ng-click="viewNotifications()">
+        <span class="glyphicon glyphicon-bell"></span>
+        <span class="badge" ng-class="{'active': newNotificationsNum > 0}">{{newNotificationsNum}}</span>
+      </span>
+      <a class="logout" sc-click="menuLogout()" l10n-text="navigation_logout"></a>
+      <span class="menu-toggle">
+        <img class="closed" src="img/icons/menu-closed.gif" alt="" />
+        <img class="opened" src="img/icons/menu-opened.png" alt="" />
+      </span>
+      <div class="menu-wrapper">
+        <div class="menu">
+
+          <ul class="lvl1">
+            <li ng-repeat="(id, fLevelItem) in navigationTree" sc-click="firstLevelHandler(id, fLevelItem)" ng-class="{'active' : id === fLvlSelectedItemId}" class="{{fLevelItem.class}}" l10n-text="{{fLevelItem.text}}"></li>
+          </ul>
+
+          <ul class="lvl2 shown">
+            <li ng-if="fLvlSelectedItemId !== null && fLvlSelectedItemId !== undefined" class="title {{fLvlSelectedItem.class}}" style="text-transform: uppercase;" l10n-text="{{fLvlSelectedItem.text}}"></li>
+            <div ng-repeat="(id, sLevelItem) in navigationTree[fLvlSelectedItemId].items" ng-if="!sLevelItem.visibilityProp || currentUser.userVisibility[sLevelItem.visibilityProp]">
+              <li ng-class="{'active' : id === sLvlSelectedItemId && !sLevelItem}" class="{{sLevelItem.class}}" ng-if="!sLevelItem.textOnly" style="height: auto;">
+                <a ng-if="sLevelItem.state" sc-click="secondLevelHandler(id, sLevelItem, $event)" sc-sref="{ state: sLevelItem.state, params: sLevelItem.params(), options: { inherit: false } }">
+                  <span l10n-text="{{sLevelItem.text}}"></span>
+                  <img ng-show="sLevelItem.$pending" class="loader" src="img/loader2.gif" alt="" />
+                </a>
+
+                <a ng-if="sLevelItem.link" ng-href="{{sLevelItem.href}}" target="_blank" sc-access-token>
+                  <span l10n-text="{{sLevelItem.text}}"></span>
+                </a>
+
+                <a ng-if="!sLevelItem.state && !sLevelItem.link" sc-click="secondLevelHandler(id, sLevelItem)">
+                  <span l10n-text="{{sLevelItem.text}}"></span>
+                </a>
+              </li>
+
+              <span l10n-text="{{sLevelItem.text}}" ng-if="sLevelItem.textOnly"></span>
+            </div>
+          </ul>
+
+          <ul class="lvl3 empty" ng-class="{'shown' : showTLevelEmptyElem}"></ul>
+
+          <ul class="lvl3" ng-class="{'shown' : !showTLevelEmptyElem}">
+            <li class="title" l10n-text="{{sLvlSelectedItem.text}}"></li>
+            <li ng-repeat="(id, tLevelItem) in getThirdLevelItems(fLvlSelectedItemId, sLvlSelectedItemId)" class="{{tLevelItem.class}}">
+              <a ng-if="tLevelItem.state" sc-click="thirdLevelHandler(tLevelItem, $event)" sc-sref="{ state: tLevelItem.state, params: tLevelItem.params(), options: { inherit: false } }">
+                <span l10n-text="{{tLevelItem.text}}"></span>
+                <img ng-show="tLevelItem.$pending" class="loader" src="img/loader.gif" alt="" />
+              </a>
+
+              <a ng-if="tLevelItem.link" ng-href="{{tLevelItem.href}}" target="_blank" sc-access-token>
+                <span l10n-text="{{tLevelItem.text}}"></span>
+              </a>
+
+              <a ng-if="!tLevelItem.state && !tLevelItem.link" sc-click="thirdLevelHandler(tLevelItem, $event)">
+                <span l10n-text="{{tLevelItem.text}}"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<sc-breadcrumb home-state="root.newsFeed"></sc-breadcrumb>
+
+<div class="container alert-container">
+  <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="removeAlert(alert)">
+    {{alert.message}}
+  </div>
+</div>
+
+<div>
+  <div ui-view class="container"></div>
+</div>
+

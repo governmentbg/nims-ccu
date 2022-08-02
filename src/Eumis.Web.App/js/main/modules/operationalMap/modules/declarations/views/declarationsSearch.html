@@ -1,0 +1,35 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="date" ng-model="filters.activationDate" l10n-text="declarations_searchForm_activationDate" class="col-sm-3"></sc-field>
+        <sc-field type="nomenclature" alias="'declarationStatuses'" mode="id" ng-model="filters.status" l10n-text="declarations_searchForm_status" class="col-sm-3"></sc-field>
+        <div class="labeless col-sm-6">
+          <sc-button name="seachBtn" btn-click="search()" text="declarations_searchForm_search"
+                     class="btn btn-default btn-sm pull-right" icon="glyphicon-search">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newDeclarationBtn" btn-sref="{ state: 'root.map.declarations.new' }" text="declarations_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+               ng-disabled="!$canDo('DeclarationListActions.Create')"></sc-button>
+
+    <sc-datatable items="declarations" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.declarations.edit', params: {id: item.declarationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('DeclarationActions.View', item.declarationId)"></sc-button>
+      </sc-column>
+      <sc-column data="createDate" title="declarations_searchForm_createDate" type="date">
+      </sc-column>
+      <sc-column data="status" title="declarations_searchForm_status">
+      </sc-column>
+      <sc-column data="activationDate" title="declarations_searchForm_activationDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="declarations_searchForm_name">
+      </sc-column>
+      <sc-column data="creator" title="declarations_searchForm_creator">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

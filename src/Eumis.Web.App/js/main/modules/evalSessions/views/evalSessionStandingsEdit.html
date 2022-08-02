@@ -1,0 +1,20 @@
+<ng-form name="editEvalSessionStandingForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionStanding_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="rearrangeBtn" btn-click="rearrangeStanding()" text="evalSessions_editEvalSessionStanding_rearrange" class="btn btn-primary btn-xs"
+          ng-show="evalSessionStanding.status === 'applied'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionStanding.evalSessionId) || !isSessionActive">
+        </sc-button>
+        <sc-button name="refusedBtn" btn-click="refuseStanding()" text="evalSessions_editEvalSessionStanding_refused" class="btn btn-danger btn-xs"
+          ng-show="evalSessionStanding.status !== 'refused'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionStanding.evalSessionId) || !isSessionActive">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-standing name="evalSessionStandingForm" ng-model="evalSessionStanding" sc-form-readonly="true"></eumis-eval-session-standing>
+    </div>
+  </div>
+</ng-form>

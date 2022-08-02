@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newUserTypeBtn" btn-sref="{ state: 'root.userTypes.new' }" text="userTypes_search_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('UserTypeListActions.Create')"></sc-button>
+
+    <sc-datatable items="userTypes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editButton" btn-sref="{ state: 'root.userTypes.edit', params: { id: item.userTypeId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('UserTypeActions.View', item.userTypeId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="userTypes_search_name">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

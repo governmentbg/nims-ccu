@@ -1,0 +1,17 @@
+﻿@model R_10019.ProjectSpecFields
+
+@if (Model != null && Model.ProjectSpecFieldCollection != null && Model.ProjectSpecFieldCollection.Count > 0)
+{
+    for (int i = 0; i < Model.ProjectSpecFieldCollection.Count; i++)
+    {
+        @*<tr>
+                <td style="width: 35%;">@Model.ProjectSpecFieldCollection[i].Title</td>
+                <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectSpecFieldCollection[i].Value ?? string.Empty)</td>
+            </tr>*@
+        <div class="paragraph-margin0">
+            <p><strong>@Model.ProjectSpecFieldCollection[i].DisplayTitle</strong></p>
+            <p>(<em>@Model.ProjectSpecFieldCollection[i].DisplayDescription</em>)</p>
+            <p>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ProjectSpecFieldCollection[i].Value ?? string.Empty)</p>
+        </div>
+    }
+}

@@ -1,0 +1,98 @@
+﻿table, th, td {
+    border: 1px solid #888888;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+
+    table th, table tr.column-headings td, td.marked-month {
+        background-color: #DDDDDD;
+    }
+
+tr.column-headings td {
+    text-align: center;
+}
+
+table td, th {
+    padding: 4px;
+    /*vertical-align: top;*/
+}
+
+table.evaluation pre, .comment-section pre {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+table.company:not(:last-child), table.contract-activity:not(:last-child), table.indicators:not(:last-child), table.project-errands:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+table.intervention-category td p, .paragraph-margin0 p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.programme-priority p {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+    .programme-priority p:last-child {
+        margin-bottom: 0;
+    }
+
+pre {
+    font-family: 'Times New Roman';
+    white-space: pre-line;
+}
+
+.indicators pre, .contract-teams pre, .project-errands pre, .contract-activity pre {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+p.result-info {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+p.high-lines {
+    margin: 16px 0px;
+}
+
+span.filled-value {
+    display: block;
+    margin: 0px 0px 5px 0px;
+}
+
+.margin10 {
+    margin-bottom: 10px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+tr.months-bold td {
+    font-weight: bold;
+}
+
+.note {
+    font-size: smaller;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}

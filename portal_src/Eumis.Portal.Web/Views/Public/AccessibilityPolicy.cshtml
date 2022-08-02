@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+@using Eumis.Portal.Web.Helpers
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Public.ActionNames.CurrentNews, MVC.Public.Name), Global.HomeButton)
+}
+    , Global.AccessibilityPolicy)
+
+<div class="container page-title">
+    <h1>@Global.AccessibilityPolicy</h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix text-justify">
+        <div class="col-xs-12">
+            <h2>@AccessibilityPolicy.Header1</h2>
+            <p>@AccessibilityPolicy.Paragraph11</p>
+            <p>@AccessibilityPolicy.Paragraph12</p>
+            <p>@AccessibilityPolicy.Paragraph13</p>
+
+            <h2>@AccessibilityPolicy.Header2</h2>
+            <p>@AccessibilityPolicy.Paragraph21</p>
+            <p>@AccessibilityPolicy.Paragraph22</p>
+
+            <h2>@AccessibilityPolicy.Header3</h2>
+            <p>@AccessibilityPolicy.Paragraph21</p>
+
+            <h2>@AccessibilityPolicy.Header4</h2>
+            <p>@AccessibilityPolicy.Paragraph41</p>
+        </div>
+    </div>
+</div>

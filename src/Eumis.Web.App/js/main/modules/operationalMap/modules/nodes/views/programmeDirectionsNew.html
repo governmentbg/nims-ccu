@@ -1,0 +1,17 @@
+<ng-form name="newProgrammeDirectionForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="programmes_newProgrammeDirection_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_newProgrammeDirection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_newProgrammeDirection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-programme-direction name="programmeDirectionForm" ng-model="programmeDirection"></eumis-programme-direction>
+    </div>
+  </div>
+</ng-form>

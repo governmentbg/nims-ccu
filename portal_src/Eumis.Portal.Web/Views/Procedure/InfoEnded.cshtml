@@ -1,0 +1,118 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Documents.Contracts.ContractProcedureInfo
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.Ended, MVC.Procedure.Name), Global.BreadcrumbsEndedProcedures)
+}
+, Model.displayName)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.EndedProcedure</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a>@ProcedureInfo.Title</a></li>
+        <li>@Html.ActionLink(ProcedureInfo.QA, MVC.Procedure.ActionNames.InfoEndedQA, MVC.Procedure.Name, new { id = Model.gid }, new { @class = "wait" })</li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active clearfix text-justify">
+            <div class="col-xs-12">
+                <div class="procedure-info">
+                    @{ var procedureName = Model.code + " - " + Model.displayName + " (" + Model.displayStatus + ")"; }
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink(procedureName, MVC.Project.ActionNames.New, MVC.Project.Name, new { id = Model.gid }, new { style = "color:black;font-weight:bold" })
+                    }
+                    else
+                    {
+                        <strong>@procedureName</strong>
+                    }
+
+                    @Html.Raw(Model.displayDescription)
+
+                    @if (!string.IsNullOrEmpty(Model.endingDateNotes))
+                    {
+                        <strong>@ProcedureInfo.EndingDateNoteTitle</strong>
+                        @Html.Raw(Model.endingDateNotes)
+                    }
+                </div>
+
+                @if (Model.endingDate.HasValue)
+                {
+                    <p><b>@ProcedureInfo.EndingDate</b> <span class="required-span">@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(Model.endingDate)</span></p>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.internetAddress))
+                {
+                    <p><b>@ProcedureInfo.InternetAddress:</b> <a href="@Model.internetAddress" target="_blank">@Model.internetAddress</a></p>
+                }
+
+                @if (Model.applicationGuidelines != null && Model.applicationGuidelines.Count != 0)
+                {
+                    <h2>@Global.ApplicantsDocuments</h2>
+                    <ul class="file-list">
+                        @foreach (var guideline in Model.applicationGuidelines)
+                        {
+                            var extenstion = guideline.filename.Split('.').Last();
+                            if (extenstion == "docx") { extenstion = "doc"; }
+                            if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                            {
+                                extenstion = string.Empty;
+                            }
+                            else
+                            {
+                                extenstion = "file-" + extenstion;
+                            }
+
+                            <li class="@(extenstion)">
+
+                                <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoDownload(Model.gid, guideline.blobKey)))">@guideline.name</a>
+
+                                @if (!string.IsNullOrEmpty(guideline.description))
+                                {
+                                    <img class="info-icon" src="@(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@(guideline.description)" data-trigger="hover">
+                                }
+
+                            </li>
+                        }
+
+                        @if (Model.qaBlobKey.HasValue)
+                        {
+                            var extenstion = Model.qaFileName.Split('.').Last();
+                            if (extenstion == "docx") { extenstion = "doc"; }
+                            if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                            {
+                                extenstion = string.Empty;
+                            }
+                            else
+                            {
+                                extenstion = "file-" + extenstion;
+                            }
+
+                            <li class="@(extenstion)">
+
+                                <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoDownload(Model.gid, Model.qaBlobKey.Value)))">
+                                    @ProcedureInfo.QA
+                                </a>
+
+                                @if (Model.qaModifyDate.HasValue)
+                                {
+                                    <span>(@ProcedureInfo.ModifyDate: @Eumis.Common.Helpers.Helper.DateTimeFormat(Model.qaModifyDate.Value))</span>
+                                }
+
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>

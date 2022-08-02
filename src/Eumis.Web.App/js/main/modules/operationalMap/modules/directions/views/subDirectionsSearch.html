@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="directions_searchSubDirectionForm_title"></strong>
+  </div>
+  <div class="panel-body">
+    <sc-button name="newBtn" btn-sref="{ state: 'root.map.directions.view.subDirections.new' }" text="directions_searchSubDirectionForm_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ProgrammeListActions.Create')" style="margin-bottom: 3px;"></sc-button>
+    <sc-datatable items="subDirections" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.directions.view.subDirections.edit', params: {id: item.directionId, ind:item.subDirectionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('ProgrammeListActions.Create')"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="directions_searchSubDirectionForm_name">
+      </sc-column>
+      <sc-column data="nameAlt" title="directions_searchSubDirectionForm_nameAlt">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

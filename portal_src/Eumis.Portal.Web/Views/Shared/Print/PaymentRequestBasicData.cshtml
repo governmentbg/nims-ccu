@@ -1,0 +1,62 @@
+﻿@model R_10049.PaymentRequestBasicData
+
+@if (Model != null)
+{
+    <table class="payment-request-basic-data">
+        <tbody>
+            <tr>
+                <td style="width:35%">@PaymentRequestBasicData.Type</td>
+                <td style="width:65%">@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.Type ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.StartDate</td>
+                <td>
+                    @if (Model.StartDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.StartDate.Value)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.EndDate</td>
+                <td>
+                    @if (Model.EndDate.HasValue)
+                    {
+                        @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.EndDate.Value)
+                    }
+                </td>
+            </tr>
+            @if (!Model.IsAdvanceType)
+            {
+                <tr>
+                    <td>@PaymentRequestBasicData.FinanceReportAmount</td>
+                    <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.FinanceReportAmount)</td>
+                </tr>
+            }
+            <tr>
+                <td>@PaymentRequestBasicData.AdditionalIncome</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.AdditionalIncome)</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.TotalAmount</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalAmount)</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.FinanceReportAmountWithoutIncome</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.FinanceReportAmountWithoutIncome)</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.OtherRegistration</td>
+                <td>@Model.OtherRegistration</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.BeneficiaryRegistrationVAT</td>
+                <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.BeneficiaryRegistrationVAT ?? new R_09991.EnumNomenclature())</td>
+            </tr>
+            <tr>
+                <td>@PaymentRequestBasicData.BankAccount</td>
+                <td>@Model.BankAccount</td>
+            </tr>
+        </tbody>
+    </table>
+}

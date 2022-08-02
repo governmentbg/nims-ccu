@@ -1,0 +1,64 @@
+﻿@model R_10023.EvalTableGroupCollection
+
+@if (Model != null)
+{
+    <div>
+        <table class="evaluation">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <thead>
+                    <tr>
+                        <th style="width:5%;">@(Eumis.Common.Helpers.DataUtils.Romanize(i + 1)).</th>
+                        <th style="width:75%" colspan="2">@EvalTable.Group</th>
+                        <th style="width:20%;">@EvalTable.Limit</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td style="font-size: 15px;"></td>
+                    <td colspan="2">
+                        <strong>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model[i].Name ?? string.Empty)</strong>
+                    </td>
+                    <td class="text-right">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].Limit)
+                    </td>
+                </tr>
+                if (Model[i].EvalTableCriteriaCollection != null && Model[i].EvalTableCriteriaCollection.Count > 0)
+                {
+                    <tr style="font-weight: bold;" class="column-headings">
+                        <th style="width:5%; border-bottom: none;"></th>
+                        <th style="width:5%;"></th>
+                        <th style="width:70%;">@EvalTable.Criteria</th>
+                        <th style="width:20%;">@EvalTable.Weight (@Model[i].WeightTotal)</th>
+                    </tr>
+
+                    for (int j = 0; j < Model[i].EvalTableCriteriaCollection.Count; j++)
+                    {
+                        <tr>
+                            @if (j > 0)
+                            {
+                                <td style="border-bottom: none; border-top: none;"></td>
+                            }
+                            else
+                            {
+                                <td style="border-bottom: none;"></td>
+                            }
+                            <td class="text-right">@(j + 1).</td>
+                            <td>
+                                <pre>@Model[i].EvalTableCriteriaCollection[j].Name</pre>
+                            </td>
+                            <td class="text-right">
+                                @Html.Partial(MVC.Shared.Views.Print.Decimal, Model[i].EvalTableCriteriaCollection[j].Weight)
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+
+        <div style="margin-top:20px; text-align: right;">
+            <span class="filled-value">@EvalTable.Limit: @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.Limit)</span>
+            <span class="filled-value">@EvalTable.WeightTotal: @Model.WeightTotal</span>
+        </div>
+    </div>
+}
+

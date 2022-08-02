@@ -1,0 +1,42 @@
+<ng-form name="expenseTypesReportForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'programmes'" mode="id" ng-model="filters.programmeId" l10n-text="monitoring_expenseTypes_programme" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_expenseTypes_toDate" class="col-sm-2"></sc-field>
+          <div class="labeless col-sm-5">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_expenseTypes_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_expenseTypes_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_expenseTypes_programme"></th>
+                <th class="text-center" l10n-text="monitoring_expenseTypes_expenseType"></th>
+                <th class="text-center" l10n-text="monitoring_expenseTypes_verifiedAmounts"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="result in results">
+                <td>{{result.programme}}</td>
+                <td>{{result.expenseType}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{result.approvedTotalAmount | money}}</td>
+              </tr>
+              <tr ng-if="results.length === 0">
+                <td colspan="4" class="text-center" l10n-text="monitoring_programmeSummary_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

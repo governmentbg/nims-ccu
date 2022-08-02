@@ -1,0 +1,174 @@
+﻿@model R_10006.Contract
+
+@if (Model != null)
+{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>@Contract.Name</th>
+                    <th style="min-width: 150px;">@Contract.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@(areFinLabels ? Contract.FinancialIntermediariesRequestedFundingAmount : Contract.RequestedFundingAmount)</strong></p>
+                        <p class="high-lines">@Contract.RequestedFundingPartOfCrossFinancingAmount</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.RequestedFundingAmount)</span>
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.RequestedFundingPartOfCrossFinancingAmount)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Contract.CoFinancingBudgetAmount</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CoFinancingBudgetAmount)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetEIBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetEBRDAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetWBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetOtherMFIAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BudgetOtherAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@Contract.CoFinancingNonBudgetAmount</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CoFinancingNonBudgetAmount)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.NonBudgetEIBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.NonBudgetEBRDAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.NonBudgetWBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.NonBudgetOtherMFIAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.NonBudgetOtherAmount)</span></p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <strong>@Contract.TotalCoFinancingAmount</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalCoFinancingAmount)</span>
+                    </td>
+                </tr>
+                @if (areFinLabels)
+                {
+                    <tr>
+                        <td>
+                            <strong>@Contract.ExpectedLeverageLoanAmount</strong>
+                        </td>
+                        <td style="text-align: right;">
+                            <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ExpectedLeverageLoanAmount)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="high-lines"><strong>@Contract.OtherContributionsOutsideESI</strong></p>
+                            <p class="high-lines">@Contract.OtherContributionsOutsideESIPublic</p>
+                            <p class="high-lines">@Contract.OtherContributionsOutsideESIPrivate</p>
+                            <p class="high-lines">@Contract.OtherContributionsOutsideESITotal</p>
+                        </td>
+                        <td class="text-right">
+                            <p class="high-lines"></p><br /><br />
+                            <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIPublic)</span></p>
+                            <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIPrivate)</span></p>
+                            <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESITotal)</span></p>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.TotalEligibleCosts</strong></p>
+                        <p class="high-lines">@Contract.TotalEligibleCostsPublicFunding</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalEligibleCosts)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalEligibleCostsPublicFunding)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@(areFinLabels ? Contract.FinancialIntermediariesRatioRequestedFundingTotalEligibleCosts : Contract.RatioRequestedFundingTotalEligibleCosts)</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Model.RatioRequestedFundingTotalEligibleCosts</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@(areFinLabels ? Contract.FinancialIntermediariesExpectedRevenue : Contract.ExpectedRevenue)</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ExpectedRevenue)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@(areFinLabels ? Contract.FinancialIntermediariesIneligibleCosts : Contract.IneligibleCosts)</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleCosts)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@Contract.FundingFrom</strong></p>
+                        <p class="high-lines">@Contract.EIBAmount</p>
+                        <p class="high-lines">@Contract.EBRDAmount</p>
+                        <p class="high-lines">@Contract.WBAmount</p>
+                        <p class="high-lines">@Contract.OtherMFIAmount</p>
+                        <p class="high-lines">@Contract.OtherAmount</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleEIBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleEBRDAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleWBAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleOtherMFIAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IneligibleOtherAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>@(areFinLabels ? Contract.FinancialIntermediariesTotalProjectCost : Contract.TotalProjectCost)</strong>
+                    </td>
+                    <td style="text-align: right;">
+                        <span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.TotalProjectCost)</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,22 @@
+﻿@model bool
+
+@{string editorId = Html.GetUniqueEditorId();}
+
+<div>
+    @if (Model)
+    {
+        @Html.RadioButtonFor(m => m, "true", new { id = "true" + editorId, @checked = "checked" })
+        <label for="true@(editorId)">@Global.Yes</label>
+
+        @Html.RadioButtonFor(m => m, "false", new { id = "false" + editorId })
+        <label for="false@(editorId)">@Global.No</label>
+    }
+    else
+    {
+        @Html.RadioButtonFor(m => m, "true", new { id = "true" + editorId })
+        <label for="true@(editorId)">@Global.Yes</label>
+
+        @Html.RadioButtonFor(m => m, "false", new { id = "false" + editorId, @checked = "checked" })
+        <label for="false@(editorId)">@Global.No</label>
+    }
+</div>

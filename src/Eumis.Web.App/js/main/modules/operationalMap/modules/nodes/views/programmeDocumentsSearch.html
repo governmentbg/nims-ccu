@@ -1,0 +1,90 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <br />
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_documentsSearch_newBtn"></h5>
+          <sc-button name="newBtn" btn-sref="{ state: 'root.map.programmes.view.documents.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+                     ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="documents" filterable="true" pageable="true" sortable="true" dynamic-columns="true" default-sort="type">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.map.programmes.view.documents.edit', params: {ind: item.mapNodeDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="programmes_documentsSearch_name">
+          </sc-column>
+          <sc-column data="description" title="programmes_documentsSearch_description">
+          </sc-column>
+          <sc-column sortable="false" title="programmes_documentsSearch_file" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_applicationDocumentsSearch_newBtn"></h5>
+          <sc-button name="newBtn" btn-sref="{ state: 'root.map.programmes.view.applicationDocuments.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+                     ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+
+        <br />
+        <a type="button" href="templates/applicationDocuments.xlsx" download="applicationDocuments.xlsx" class="btn btn-default btn-sm pull-left" style="margin-right: 5px;">
+          <span class="glyphicon glyphicon-download"></span>
+          {{downloadTemplate}}
+        </a>
+        <sc-button name="loadBtn" btn-sref="{ state: 'root.map.programmes.view.applicationDocuments.load' }" text="programmes_applicationDocumentsSearch_load" class="btn btn-default btn-sm pull-left" icon="glyphicon-upload">
+        </sc-button>
+        <sc-link-button ng-href="{{applicationDocumentsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="programmes_applicationDocumentsSearch_excelExport" class="btn btn-default btn-sm pull-left">
+        </sc-link-button>
+        <sc-datatable items="applicationDocuments" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : !item.isActive}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.map.programmes.view.applicationDocuments.edit', params: { ind: item.programmeApplicationDocumentId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="programmes_applicationDocumentsSearch_name" class="wrap min-width-300">
+          </sc-column>
+          <sc-column data="isActive" title="programmes_applicationDocumentsSearch_active" type="boolean">
+          </sc-column>
+          <sc-column data="extension" title="programmes_applicationDocumentsSearch_extension" class="wrap">
+          </sc-column>
+          <sc-column data="isSignatureRequired" title="programmes_applicationDocumentsSearch_isSignatureRequired" type="boolean">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_declarationsSearch_title"></h5>
+          <sc-button name="newBtn" btn-sref="{ state: 'root.map.programmes.view.declarations.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+                     ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+
+        <sc-datatable items="declarations" filterable="true" pageable="true" sortable="true" dynamic-columns="true" row-class="{'deactivated-table-row' : !item.isActive}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.map.programmes.view.declarations.edit', params: { ind: item.programmeDeclarationId } }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="orderNum" title="programmes_declarationsSearch_orderNum" width="20%">
+          </sc-column>
+          <sc-column data="name" title="programmes_declarationsSearch_name" width="30%">
+          </sc-column>
+          <sc-column data="nameAlt" title="programmes_declarationsSearch_nameAlt" width="30%">
+          </sc-column>
+          <sc-column data="isActive" title="programmes_declarationsSearch_active" type="boolean">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+  </div>
+</div>

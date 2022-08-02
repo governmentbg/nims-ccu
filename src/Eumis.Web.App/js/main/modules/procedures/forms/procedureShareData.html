@@ -1,0 +1,12 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmes'" ng-readonly="true" ng-model="model.programmeId" mode="id" ng-required="true" l10n-text="procedures_procedureShareForm_programme" class="col-sm-8 col-md-5"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-readonly="!isNew" ng-model="model.programmePriorityId" mode="id" params="{ programmeId: model.programmeId }" ng-required="true" l10n-text="procedures_procedureShareForm_programmePriority" class="col-sm-8 col-md-5"></sc-field>
+  </div>
+  
+  <h5 class="form-header" l10n-text="programmes_newProgrammeBudget_amountHeader" style="margin-top:10px;"></h5>
+  <eumis-operational-map-budget name="budgetForm" ng-model="model.budgetAmount"></eumis-operational-map-budget>
+
+</ng-form>

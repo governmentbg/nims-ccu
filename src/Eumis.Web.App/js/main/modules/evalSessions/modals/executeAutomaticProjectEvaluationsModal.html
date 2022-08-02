@@ -1,0 +1,36 @@
+<ng-form name="performAutomaticProjectEvaluationsForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_performAutomaticProjectEvaluationsModal_title"></strong>
+      <div class="pull-right">
+        <a type="button" href="templates/automatic_project_evaluation.xlsx" download="automatic_project_evaluation.xlsx" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-download"></span>
+          <span l10n-text="evalSessions_performAutomaticProjectEvaluationsModal_template"></span>
+        </a>
+        <sc-button name="okBtn" btn-click="ok()" ng-disabled="isReadonly" text="evalSessions_performAutomaticProjectEvaluationsModal_continue" class="btn btn-primary btn-xs" icon="glyphicon-ok" ng-show="errors.length === 0 && !successMessage">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" ng-disabled="isReadonly" text="evalSessions_performAutomaticProjectEvaluationsModal_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="errors.length === 0 && !successMessage">
+        </sc-button>
+        <sc-button name="closeBtn" btn-click="cancel()" text="evalSessions_performAutomaticProjectEvaluationsModal_close" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="errors.length > 0 || successMessage">
+        </sc-button>
+      </div>
+    </div>
+    <div class="panel-body" ng-show="errors.length === 0 && !successMessage">
+      <div class="row">
+        <sc-field type="file" name="file" ng-model="model.file" ng-readonly="isReadonly" ng-required="true" url-template="EvalSessionFile" l10n-text="evalSessions_performAutomaticProjectEvaluationsModal_file" class="col-sm-10 col-md-8"></sc-field>
+      </div>
+    </div>
+
+    <div class="modal-body message-modal-body" ng-show="errors.length > 0">
+      <div>
+        <h5 l10n-text="common_modals_validationErrorsModal_hasErrors"></h5>
+        <pre ng-repeat="err in errors track by $index">{{'- ' + err}}</pre>
+      </div>
+    </div>
+
+    <div class="modal-body message-modal-body" ng-show="successMessage">
+      <h5>{{successMessage}}</h5>
+    </div>
+
+  </div>
+</ng-form>

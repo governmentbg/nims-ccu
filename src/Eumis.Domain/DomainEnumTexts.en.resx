@@ -1,0 +1,3630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionLogType_Internal" xml:space="preserve">
+    <value>Internal system</value>
+  </data>
+  <data name="ActionLogType_Portal" xml:space="preserve">
+    <value>Portal</value>
+  </data>
+  <data name="ActionLogType_UnsuccessfulLogin" xml:space="preserve">
+    <value>Unsuccessful Login</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2014" xml:space="preserve">
+    <value>2014-2015</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2015" xml:space="preserve">
+    <value>2015-2016</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2016" xml:space="preserve">
+    <value>2016-2017</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2017" xml:space="preserve">
+    <value>2017-2018</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2018" xml:space="preserve">
+    <value>2018-2019</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2019" xml:space="preserve">
+    <value>2019-2020</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2020" xml:space="preserve">
+    <value>2020-2021</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2021" xml:space="preserve">
+    <value>2021-2022</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2022" xml:space="preserve">
+    <value>2022-2023</value>
+  </data>
+  <data name="AnnualAccountReportPeriod_Year2023" xml:space="preserve">
+    <value>2023-2024</value>
+  </data>
+  <data name="AnnualAccountReportStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="AnnualAccountReportStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="AnnualAccountReportStatus_Opened" xml:space="preserve">
+    <value>Отключен за изготвяне на финален ГСО</value>
+  </data>
+  <data name="AuditInstitution_CourtOfAuditors" xml:space="preserve">
+    <value>Сметна палата</value>
+  </data>
+  <data name="AuditInstitution_Internal" xml:space="preserve">
+    <value>Звено за вътрешен одит</value>
+  </data>
+  <data name="AuditInstitution_Adfi" xml:space="preserve">
+    <value>АДФИ</value>
+  </data>
+  <data name="AuditInstitution_OO" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="AuditInstitution_EK" xml:space="preserve">
+    <value>ЕК</value>
+  </data>
+  <data name="AuditInstitution_EuropeanCourtOfAuditors" xml:space="preserve">
+    <value>Европейска сметна палата</value>
+  </data>
+  <data name="AuditInstitution_Other" xml:space="preserve">
+    <value>Друга</value>
+  </data>
+  <data name="AuditItemLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="AuditItemLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="AuditItemLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="AuditItemLevel_ContractContract" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="AuditKind_Planned" xml:space="preserve">
+    <value>Планиран</value>
+  </data>
+  <data name="AuditKind_NotPlanned" xml:space="preserve">
+    <value>Извънреден</value>
+  </data>
+  <data name="AuditLevel_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="AuditLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="AuditLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="AuditLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="AuditLevel_ContractContract" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="AuditSubjectType_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="AuditSubjectType_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="AuditSubjectType_Executor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="AuditSubjectType_FinancialIntermediary" xml:space="preserve">
+    <value>Финансов посредник</value>
+  </data>
+  <data name="AuditSubjectType_EndUser" xml:space="preserve">
+    <value>Краен получател</value>
+  </data>
+  <data name="AuditSubjectType_ManagingAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="AuditSubjectType_SO" xml:space="preserve">
+    <value>СО</value>
+  </data>
+  <data name="AuditSubjectType_MZ" xml:space="preserve">
+    <value>МЗ</value>
+  </data>
+  <data name="AuditSubjectType_Other" xml:space="preserve">
+    <value>Друг</value>
+  </data>
+  <data name="AuditType_CourtOfAuditorsAudit" xml:space="preserve">
+    <value>Одит от Сметна палата</value>
+  </data>
+  <data name="AuditType_InternalAudit" xml:space="preserve">
+    <value>Одит от Звеното за вътрешен одит</value>
+  </data>
+  <data name="AuditType_AdfiCheck" xml:space="preserve">
+    <value>Проверка от АДФИ</value>
+  </data>
+  <data name="AuditType_SystemAudit" xml:space="preserve">
+    <value>Системен одит</value>
+  </data>
+  <data name="AuditType_OperationsAudit" xml:space="preserve">
+    <value>Одит на операциите</value>
+  </data>
+  <data name="AuditType_ThematicAudit" xml:space="preserve">
+    <value>Тематичен одит</value>
+  </data>
+  <data name="AuditType_Other" xml:space="preserve">
+    <value>Друг</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentExecutionStatus_Executed" xml:space="preserve">
+    <value>Изпълнена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentExecutionStatus_InProcess" xml:space="preserve">
+    <value>В процес на изпълнение</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentExecutionStatus_Unexecuted" xml:space="preserve">
+    <value>Неизпълнена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentExecutionStatus_Removed" xml:space="preserve">
+    <value>Оттеглена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentStatus_Open" xml:space="preserve">
+    <value>Отворена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentStatus_Closed" xml:space="preserve">
+    <value>Затворена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentStatus_Informative" xml:space="preserve">
+    <value>За информация</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentType_Primary" xml:space="preserve">
+    <value>Съществена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentType_Secondary" xml:space="preserve">
+    <value>Второстепенна</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentType_Minor" xml:space="preserve">
+    <value>Несъществена</value>
+  </data>
+  <data name="CertAuthorityCheckAscertainmentType_Informative" xml:space="preserve">
+    <value>Информативна</value>
+  </data>
+  <data name="CertAuthorityCheckKind_BeneficiaryOrFinancialIntermediaryOrEndUser" xml:space="preserve">
+    <value>При бенефициент / финансов посредник / краен получател</value>
+  </data>
+  <data name="CertAuthorityCheckKind_ProceduresAndControlActivitiesVerificationOfManagingAuthority" xml:space="preserve">
+    <value>Проверка за спазването на процедурите и контролните дейности на ОО за верификация на разходите</value>
+  </data>
+  <data name="CertAuthorityCheckKind_ContractDebt" xml:space="preserve">
+    <value>Проверка на Книга на длъжниците</value>
+  </data>
+  <data name="CertAuthorityCheckLevel_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="CertAuthorityCheckLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="CertAuthorityCheckLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="CertAuthorityCheckLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="CertAuthorityCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="CertAuthorityCheckStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="CertAuthorityCheckStatus_Removed" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_ManagingAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_MZ" xml:space="preserve">
+    <value>МЗ</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_EndUser" xml:space="preserve">
+    <value>Краен получател</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_FinancialIntermediary" xml:space="preserve">
+    <value>Финансов посредник</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_Executants" xml:space="preserve">
+    <value>Изпълнители</value>
+  </data>
+  <data name="CertAuthorityCheckSubjectType_Partners" xml:space="preserve">
+    <value>Партньори</value>
+  </data>
+  <data name="CertAuthorityCheckType_Planned" xml:space="preserve">
+    <value>Планирана</value>
+  </data>
+  <data name="CertAuthorityCheckType_NotPlanned" xml:space="preserve">
+    <value>Извънредна</value>
+  </data>
+  <data name="CertReportStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="CertReportStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="CertReportStatus_Unchecked" xml:space="preserve">
+    <value>Unchecked</value>
+  </data>
+  <data name="CertReportStatus_Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="CertReportStatus_PartialyApproved" xml:space="preserve">
+    <value>Partialy Approved</value>
+  </data>
+  <data name="CertReportStatus_Unapproved" xml:space="preserve">
+    <value>Unapproved</value>
+  </data>
+  <data name="CertReportStatus_Returned" xml:space="preserve">
+    <value>Returned</value>
+  </data>
+  <data name="CertReportType_Intermediate" xml:space="preserve">
+    <value>Intermediate</value>
+  </data>
+  <data name="CertReportType_Final" xml:space="preserve">
+    <value>Final</value>
+  </data>
+  <data name="CertReportType_Yearly" xml:space="preserve">
+    <value>Yearly</value>
+  </data>
+  <data name="IntermediateFinalCertReportSummaryTables_EligibleProgrammePriorityExpenses" xml:space="preserve">
+    <value>Допустими разходи по приоритетни оси</value>
+  </data>
+  <data name="IntermediateFinalCertReportSummaryTables_ApprovedAmountsCorrection" xml:space="preserve">
+    <value>Корекция на верифицирани разходи</value>
+  </data>
+  <data name="IntermediateFinalCertReportSummaryTables_ReaffirmedCostsByAdministrativeAuthority" xml:space="preserve">
+    <value>Препотвърдени от ОО разходи</value>
+  </data>
+  <data name="IntermediateFinalCertReportSummaryTables_ProgrammePaidContributionInfoForFinancialInstruments" xml:space="preserve">
+    <value>Информация на приноса от програмата платен за финансови инструменти</value>
+  </data>
+  <data name="IntermediateFinalCertReportSummaryTables_StateAidPaidAdvancePayments" xml:space="preserve">
+    <value>Платени аванси в контекста на държавни помощи</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_EligibleProgrammePriorityExpenses" xml:space="preserve">
+    <value>Допустими разходи по приоритетни оси</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_OffAndRecoveredAmounts" xml:space="preserve">
+    <value>Отписани и възстановени суми</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_RecoverableAmounts" xml:space="preserve">
+    <value>Суми подлежащи на възстановяване</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_RecoveredAmounts" xml:space="preserve">
+    <value>Възстановени суми</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_UnrecoveredAmounts" xml:space="preserve">
+    <value>Невъзстановени суми</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_ProgrammePaidContributionAmountForFinancialInstruments" xml:space="preserve">
+    <value>Сума на приноса от програмата платен за финансови инструменти</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_StateAidPaidAdvancePayments" xml:space="preserve">
+    <value>Платени аванси в контекста на държавни помощи</value>
+  </data>
+  <data name="YearlyCertReportSummaryTables_Reconciliation" xml:space="preserve">
+    <value>Равнение</value>
+  </data>
+  <data name="CompanyLegalStatus_Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="CompanyLegalStatus_Private" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="ContractAmountType_Big" xml:space="preserve">
+    <value>Проектът е голям проект съгласно чл. 100 от Регламент (ЕС) № 1303/ 2013 г.</value>
+  </data>
+  <data name="ContractAmountType_Infrastructure" xml:space="preserve">
+    <value>Инфраструктурен проект на стойност над 5 000 000 лв.</value>
+  </data>
+  <data name="ContractAmountType_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="ContractAmountType_FinancialInstruments" xml:space="preserve">
+    <value>Финансови инструменти</value>
+  </data>
+  <data name="ContractCommunicationSource_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="ContractCommunicationSource_AdministrativeAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="ContractCommunicationSource_AuditAuthority" xml:space="preserve">
+    <value>Одитен орган</value>
+  </data>
+  <data name="ContractCommunicationSource_CertAuthority" xml:space="preserve">
+    <value>Серт. орган</value>
+  </data>
+  <data name="ContractCommunicationStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractCommunicationStatus_Sent" xml:space="preserve">
+    <value>Изпратено съобщение</value>
+  </data>
+  <data name="ContractExecutionStatus_Active" xml:space="preserve">
+    <value>В изпълнение (от дата на стартиране)</value>
+  </data>
+  <data name="ContractExecutionStatus_Paused" xml:space="preserve">
+    <value>В изпълнение (временно спрян)</value>
+  </data>
+  <data name="ContractExecutionStatus_Monitored" xml:space="preserve">
+    <value>В изпълнение (под наблюдение)</value>
+  </data>
+  <data name="ContractExecutionStatus_Canceled" xml:space="preserve">
+    <value>Прекратен (към дата на прекратяване)</value>
+  </data>
+  <data name="ContractExecutionStatus_Ended" xml:space="preserve">
+    <value>Приключен (към датата на приключване)</value>
+  </data>
+  <data name="ContractExecutionStatus_Concluded" xml:space="preserve">
+    <value>Сключен</value>
+  </data>
+  <data name="ContractExecutionStatus_Suspended" xml:space="preserve">
+    <value>Развален</value>
+  </data>
+  <data name="ContractProcurementStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractProcurementStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractProcurementStatus_Active" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractProcurementStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="ContractReportAdvanceNVPaymentAmountApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportAdvanceNVPaymentAmountApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportAdvanceNVPaymentAmountStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportAdvanceNVPaymentAmountStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportAdvancePaymentAmountStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportCertCorrectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportCertCorrectionStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportCertCorrectionStatus_Deleted" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="ContractReportCertCorrectionType_PaymentCertified" xml:space="preserve">
+    <value>Сертифицирани на ниво искане за плащане</value>
+  </data>
+  <data name="ContractReportCertCorrectionType_ContractCertified" xml:space="preserve">
+    <value>Сертифицирани на ниво договор</value>
+  </data>
+  <data name="ContractReportCertCorrectionType_ProgrameCertified" xml:space="preserve">
+    <value>Сертифицирани на ниво програма</value>
+  </data>
+  <data name="ContractReportCertCorrectionType_ProgramePriorityCertified" xml:space="preserve">
+    <value>Сертифицирани на ниво приоритетна ос</value>
+  </data>
+  <data name="ContractReportCertCorrectionType_ProcedureCertified" xml:space="preserve">
+    <value>Сертифицирани на ниво процедура</value>
+  </data>
+  <data name="ContractReportCorrectionCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportCorrectionCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportCorrectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportCorrectionStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportCorrectionStatus_Deleted" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="ContractReportCorrectionType_PaymentVerified" xml:space="preserve">
+    <value>Верифицирани на ниво искане за плащане</value>
+  </data>
+  <data name="ContractReportCorrectionType_ContractVerified" xml:space="preserve">
+    <value>Верифицирани на ниво договор</value>
+  </data>
+  <data name="ContractReportCorrectionType_ProgrameVerified" xml:space="preserve">
+    <value>Верифицирани на ниво програма</value>
+  </data>
+  <data name="ContractReportCorrectionType_ProgramePriorityVerified" xml:space="preserve">
+    <value>Верифицирани на ниво приоритетна ос</value>
+  </data>
+  <data name="ContractReportCorrectionType_ProcedureVerified" xml:space="preserve">
+    <value>Верифицирани на ниво процедура</value>
+  </data>
+  <data name="ContractReportCorrectionType_AdvanceCovered" xml:space="preserve">
+    <value>Покриване на аванс по чл. 131</value>
+  </data>
+  <data name="ContractReportFinancialCertCorrectionCSDStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCertCorrectionCSDStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCertCorrectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCertCorrectionStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCheckApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportFinancialCheckApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportFinancialCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCheckStatus_Active" xml:space="preserve">
+    <value>Актуална</value>
+  </data>
+  <data name="ContractReportFinancialCheckStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionCSDCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionCSDCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionCSDStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionCSDStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCorrectionStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCSDBudgetItemCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCSDBudgetItemCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialCSDBudgetItemStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialCSDBudgetItemStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationCSDCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationCSDCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationCSDStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationCSDStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialRevalidationStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportFinancialStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportFinancialStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportFinancialStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractReportFinancialStatus_Returned" xml:space="preserve">
+    <value>Върнат</value>
+  </data>
+  <data name="ContractReportIndicatorApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportIndicatorApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportIndicatorStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportIndicatorStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportPaymentCheckApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportPaymentCheckApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportPaymentCheckCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportPaymentCheckCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportPaymentCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportPaymentCheckStatus_Active" xml:space="preserve">
+    <value>Актуално</value>
+  </data>
+  <data name="ContractReportPaymentCheckStatus_Archived" xml:space="preserve">
+    <value>Архивирано</value>
+  </data>
+  <data name="ContractReportPaymentStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportPaymentStatus_Entered" xml:space="preserve">
+    <value>Въведено</value>
+  </data>
+  <data name="ContractReportPaymentStatus_Actual" xml:space="preserve">
+    <value>Актуално</value>
+  </data>
+  <data name="ContractReportPaymentStatus_Returned" xml:space="preserve">
+    <value>Върнато</value>
+  </data>
+  <data name="ContractReportPaymentType_Advance" xml:space="preserve">
+    <value>Авансово</value>
+  </data>
+  <data name="ContractReportPaymentType_AdvanceVerification" xml:space="preserve">
+    <value>Авансово, подлежащо на верификация съгласно чл. 131 от Регламент ЕС 1303/2013</value>
+  </data>
+  <data name="ContractReportPaymentType_Intermediate" xml:space="preserve">
+    <value>Междинно</value>
+  </data>
+  <data name="ContractReportPaymentType_Final" xml:space="preserve">
+    <value>Окончателно</value>
+  </data>
+  <data name="ContractReportRevalidationCertStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportRevalidationCertStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="ContractReportRevalidationStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportRevalidationStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportRevalidationStatus_Deleted" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="ContractReportRevalidationType_PaymentRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво искане за плащане</value>
+  </data>
+  <data name="ContractReportRevalidationType_ContractRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво договор</value>
+  </data>
+  <data name="ContractReportRevalidationType_ProgrameRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво програма</value>
+  </data>
+  <data name="ContractReportRevalidationType_ProgramePriorityRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво приоритетна ос</value>
+  </data>
+  <data name="ContractReportRevalidationType_ProcedureRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво процедура</value>
+  </data>
+  <data name="ContractReportStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportStatus_SentChecked" xml:space="preserve">
+    <value>Изпратен</value>
+  </data>
+  <data name="ContractReportStatus_Unchecked" xml:space="preserve">
+    <value>В проверка</value>
+  </data>
+  <data name="ContractReportStatus_Accepted" xml:space="preserve">
+    <value>Приет</value>
+  </data>
+  <data name="ContractReportStatus_Refused" xml:space="preserve">
+    <value>Отхвърлен</value>
+  </data>
+  <data name="ContractReportTechnicalCheckApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportTechnicalCheckApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportTechnicalCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportTechnicalCheckStatus_Active" xml:space="preserve">
+    <value>Актуална</value>
+  </data>
+  <data name="ContractReportTechnicalCheckStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="ContractReportTechnicalStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportTechnicalStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportTechnicalStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractReportTechnicalStatus_Returned" xml:space="preserve">
+    <value>Върнат</value>
+  </data>
+  <data name="ContractReportTechnicalType_Intermediate" xml:space="preserve">
+    <value>Междинен</value>
+  </data>
+  <data name="ContractReportTechnicalType_Final" xml:space="preserve">
+    <value>Окончателен</value>
+  </data>
+  <data name="ContractReportType_AdvancePayment" xml:space="preserve">
+    <value>Авансово искане за плащане</value>
+  </data>
+  <data name="ContractReportType_Technical" xml:space="preserve">
+    <value>Технически отчет</value>
+  </data>
+  <data name="ContractReportType_PaymentTechnicalFinancial" xml:space="preserve">
+    <value>Искане за плащане, технически отчет, финансов отчет</value>
+  </data>
+  <data name="ContractReportType_PaymentFinancial" xml:space="preserve">
+    <value>Искане за плащане и финансов отчет</value>
+  </data>
+  <data name="ContractSpendingPlanStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractSpendingPlanStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractSpendingPlanStatus_Active" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractSpendingPlanStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="ContractStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractSubcontractType_Subcontractor" xml:space="preserve">
+    <value>Подизпълнител</value>
+  </data>
+  <data name="ContractSubcontractType_Member" xml:space="preserve">
+    <value>Член на обединението</value>
+  </data>
+  <data name="ContractType_Decision" xml:space="preserve">
+    <value>Решение</value>
+  </data>
+  <data name="ContractType_Order" xml:space="preserve">
+    <value>Заповед</value>
+  </data>
+  <data name="ContractType_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="ContractType_FOFAgreement" xml:space="preserve">
+    <value>Споразумение с ФФ и ЕИМ</value>
+  </data>
+  <data name="ContractType_AgentAgreement" xml:space="preserve">
+    <value>Споразумение с ФП</value>
+  </data>
+  <data name="ContractType_EndUserAgreement" xml:space="preserve">
+    <value>Споразумение с КП</value>
+  </data>
+  <data name="ContractType_Voucher" xml:space="preserve">
+    <value>Ваучер</value>
+  </data>
+  <data name="ContractVersionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractVersionStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractVersionStatus_Active" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractVersionStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="ContractVersionType_NewContract" xml:space="preserve">
+    <value>Нов договор</value>
+  </data>
+  <data name="ContractVersionType_Annex" xml:space="preserve">
+    <value>Изменение</value>
+  </data>
+  <data name="ContractVersionType_Change" xml:space="preserve">
+    <value>Промяна</value>
+  </data>
+  <data name="CorrectionType_FinancialCorrection" xml:space="preserve">
+    <value>Финансова корекция</value>
+  </data>
+  <data name="CorrectionType_Irregularity" xml:space="preserve">
+    <value>Нередност</value>
+  </data>
+  <data name="CorrectionType_FinancialCorrectionIrregularity" xml:space="preserve">
+    <value>Финансова корекция и нередност</value>
+  </data>
+  <data name="CorrectionTypeExtended_FinancialCorrection" xml:space="preserve">
+    <value>Финансова корекция</value>
+  </data>
+  <data name="CorrectionTypeExtended_Irregularity" xml:space="preserve">
+    <value>Нередност</value>
+  </data>
+  <data name="CorrectionTypeExtended_FinancialCorrectionIrregularity" xml:space="preserve">
+    <value>Финансова корекция и нередност</value>
+  </data>
+  <data name="CorrectionTypeExtended_FlatFinancialCorrection" xml:space="preserve">
+    <value>Финансова корекция за системни пропуски</value>
+  </data>
+  <data name="CostSupportingDocumentCompanyType_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="CostSupportingDocumentCompanyType_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="CostSupportingDocumentCompanyType_Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="CostSupportingDocumentType_AdvanceReport" xml:space="preserve">
+    <value>Авансов отчет</value>
+  </data>
+  <data name="CostSupportingDocumentType_CashReceipt" xml:space="preserve">
+    <value>Касова бележка (фискален бон)</value>
+  </data>
+  <data name="CostSupportingDocumentType_CostCashReceipts" xml:space="preserve">
+    <value>Разходен касов ордер</value>
+  </data>
+  <data name="CostSupportingDocumentType_CountryTravelOrder" xml:space="preserve">
+    <value>Заповед за командировка в страната</value>
+  </data>
+  <data name="CostSupportingDocumentType_CreditNotification" xml:space="preserve">
+    <value>Кредитно известие</value>
+  </data>
+  <data name="CostSupportingDocumentType_DebitNotification" xml:space="preserve">
+    <value>Дебитно известие</value>
+  </data>
+  <data name="CostSupportingDocumentType_Invoice" xml:space="preserve">
+    <value>Фактура</value>
+  </data>
+  <data name="CostSupportingDocumentType_Other" xml:space="preserve">
+    <value>Друг</value>
+  </data>
+  <data name="CostSupportingDocumentType_PaidAmountsAccount" xml:space="preserve">
+    <value>Сметка за изплатени суми</value>
+  </data>
+  <data name="CostSupportingDocumentType_Payroll" xml:space="preserve">
+    <value>Ведомост</value>
+  </data>
+  <data name="CostSupportingDocumentType_VATProtocol" xml:space="preserve">
+    <value>Протокол по ЗДДС</value>
+  </data>
+  <data name="Source_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="Source_AdministrativeAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="ContractReportMicroCheckApproval_Approved" xml:space="preserve">
+    <value>Одобрен</value>
+  </data>
+  <data name="ContractReportMicroCheckApproval_Unapproved" xml:space="preserve">
+    <value>Неодобрен</value>
+  </data>
+  <data name="ContractReportMicroCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportMicroCheckStatus_Active" xml:space="preserve">
+    <value>Актуална</value>
+  </data>
+  <data name="ContractReportMicroCheckStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="ContractReportMicroStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportMicroStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ContractReportMicroStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractReportMicroStatus_Returned" xml:space="preserve">
+    <value>Върнат</value>
+  </data>
+  <data name="ContractReportMicroType_Type1" xml:space="preserve">
+    <value>Микроданни участници (ФЕПНЛ)</value>
+  </data>
+  <data name="ContractReportMicroType_Type2" xml:space="preserve">
+    <value>Микроданни участници (ЕСФ)</value>
+  </data>
+  <data name="ContractReportMicroType_Type3" xml:space="preserve">
+    <value>Микроданни хранителни продукти</value>
+  </data>
+  <data name="ContractReportMicroType_Type4" xml:space="preserve">
+    <value>Микроданни на АСП</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_JobOffer" xml:space="preserve">
+    <value>Получих предложение за друга работа</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_Personal" xml:space="preserve">
+    <value>Нямах възможност да продължа участие поради лични причини</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_Education" xml:space="preserve">
+    <value>Получих предложение за продължаване на образование/обучение</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_AddressChange" xml:space="preserve">
+    <value>Промених своето местоживеене</value>
+  </data>
+  <data name="ContractReportMicroType2ItemCancelationReason_EducationInstitutionChange" xml:space="preserve">
+    <value>Преместих се в друга образователна институция</value>
+  </data>
+  <data name="ContractReportMicroType2ItemEducation_NoEducation" xml:space="preserve">
+    <value>Без образование</value>
+  </data>
+  <data name="ContractReportMicroType2ItemEducation_ElementaryEducation" xml:space="preserve">
+    <value>Основно образование (начално  или прогимназиално)</value>
+  </data>
+  <data name="ContractReportMicroType2ItemEducation_SecondaryEducation" xml:space="preserve">
+    <value>Средно образование (гимназия, техникум и т.н.)</value>
+  </data>
+  <data name="ContractReportMicroType2ItemEducation_PostSecondaryEducation" xml:space="preserve">
+    <value>Следгимназиално (професионално обучение след средно образование – ІV степен)</value>
+  </data>
+  <data name="ContractReportMicroType2ItemEducation_HigherEducation" xml:space="preserve">
+    <value>Висше образование</value>
+  </data>
+  <data name="ContractReportMicroType2ItemGender_Male" xml:space="preserve">
+    <value>мъж</value>
+  </data>
+  <data name="ContractReportMicroType2ItemGender_Female" xml:space="preserve">
+    <value>жена</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_NoJobOfferOrEducation" xml:space="preserve">
+    <value>което не е получило предложение за работа, обучение или образование</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_Student" xml:space="preserve">
+    <value>ангажирано с образование/обучение</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_JobOfferOrEducation" xml:space="preserve">
+    <value>получило предложение за работа, обучение или образование</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_EmployedFromTheSameEmployer" xml:space="preserve">
+    <value>което е заето при същия работодател</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_EmployedFromDifferentEmployer" xml:space="preserve">
+    <value>което е заето при друг работодател</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_SelfEmployed" xml:space="preserve">
+    <value>което е самонаето</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_LeftOutOfEducation" xml:space="preserve">
+    <value>което е отпаднало от образователната система</value>
+  </data>
+  <data name="ContractReportMicroType2ItemLeavingState_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_Employed" xml:space="preserve">
+    <value>заето лице</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_SelfEmployed" xml:space="preserve">
+    <value>самонаето лице</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_UnemployedLessThanSixMonths" xml:space="preserve">
+    <value>безработно лице до 6 месеца</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_UnemployedMoreThanSixMonths" xml:space="preserve">
+    <value>безработно лице над 6 месеца</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_UnemployedMoreThanYear" xml:space="preserve">
+    <value>безработно лице над 12 месеца</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_Unemployed" xml:space="preserve">
+    <value>неактивно лице</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_UnemployedWithoutEducation" xml:space="preserve">
+    <value>неактивно лице извън образование или обучение</value>
+  </data>
+  <data name="ContractReportMicroType2ItemOccupation_Student" xml:space="preserve">
+    <value>Неактивно лице, ангажирано с образование и обучение (учащ)</value>
+  </data>
+  <data name="ContractReportMicroType2ItemParticipationState_LeftBeforeTheEnd" xml:space="preserve">
+    <value>лицето е напуснало операцията преди планирания край на дейностите</value>
+  </data>
+  <data name="ContractReportMicroType2ItemParticipationState_StayedUntilTheEnd" xml:space="preserve">
+    <value>лицето е участвало до планирания край на дейностите</value>
+  </data>
+  <data name="ContractReportMicroType2ItemParticipationState_HasCertificate" xml:space="preserve">
+    <value>лицето е участвало до планирания край на дейностите (обучение по ОПДУ) с получаване на сертификат</value>
+  </data>
+  <data name="ContractReportMicroType2ItemParticipationState_NoCertificate" xml:space="preserve">
+    <value>лицето е участвало до планирания край на дейностите (обучение по ОПДУ) без получаване на сертификат</value>
+  </data>
+  <data name="ContractReportMicroType2ItemParticipationState_NoCertificateAtAll" xml:space="preserve">
+    <value>лицето е участвало до планирания край на дейностите (обучение по ОПДУ), за които не е предвидено издаването на сертификат</value>
+  </data>
+  <data name="Currency_Lev" xml:space="preserve">
+    <value>Лева(BGN)</value>
+  </data>
+  <data name="Currency_Euro" xml:space="preserve">
+    <value>Евро(EUR)</value>
+  </data>
+  <data name="Sign_Negative" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Sign_Positive" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="YesNoNonApplicable_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YesNoNonApplicable_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="YesNoNonApplicable_NotApplicable" xml:space="preserve">
+    <value>Not Applicable</value>
+  </data>
+  <data name="ContractDebtCertStatus_Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="ContractDebtCertStatus_No" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="ContractDebtCertStatus_Partial" xml:space="preserve">
+    <value>Частично</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_VoluntaryRepaymentPeriod" xml:space="preserve">
+    <value>За дълга тече 14 дневен срок за доброволно възстановяване</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_InvoluntaryRepaymentProcess" xml:space="preserve">
+    <value>Дългът е в процес на принудително възстановяване</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_InvoluntaryRepaymentProcessByNAP" xml:space="preserve">
+    <value>Дългът е в процес на принудително възстановяване от НАП</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_FullyRepayed" xml:space="preserve">
+    <value>Дългът е напълно възстановен</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_Closed" xml:space="preserve">
+    <value>Дългът е закрит, поради наличие на други основания</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_Irrecoverable" xml:space="preserve">
+    <value>Дългът е невъзстановим</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_Rescheduled" xml:space="preserve">
+    <value>Дългът е разсрочен</value>
+  </data>
+  <data name="ContractDebtExecutionStatus_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="ContractDebtVersionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractDebtVersionStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ContractDebtVersionStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="CorrectionDebtVersionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="CorrectionDebtVersionStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="CorrectionDebtVersionStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="DeclarationStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="DeclarationStatus_Published" xml:space="preserve">
+    <value>Публикувана</value>
+  </data>
+  <data name="DeclarationStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="EuReimbursedAmountPaymentType_Advance" xml:space="preserve">
+    <value>Авансово финансиране</value>
+  </data>
+  <data name="EuReimbursedAmountPaymentType_Intermediate" xml:space="preserve">
+    <value>Междинно плащане</value>
+  </data>
+  <data name="EuReimbursedAmountPaymentType_Final" xml:space="preserve">
+    <value>Плащане на окончателно салдо</value>
+  </data>
+  <data name="EuReimbursedAmountStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="EuReimbursedAmountStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="EuReimbursedAmountStatus_Removed" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="EvalSessionDistributionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionDistributionStatus_Applied" xml:space="preserve">
+    <value>Applied</value>
+  </data>
+  <data name="EvalSessionDistributionStatus_Refused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="EvalSessionDistributionType_Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="EvalSessionDistributionType_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="EvalSessionDistributionType_Continued" xml:space="preserve">
+    <value>Continued evaluation</value>
+  </data>
+  <data name="EvalSessionEvaluationCalculationType_Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="EvalSessionEvaluationCalculationType_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_RejectedAtASD" xml:space="preserve">
+    <value>Rejected at ASD</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_RejectedAtTFO" xml:space="preserve">
+    <value>Rejected at TFO</value>
+  </data>
+  <data name="EvalSessionProjectStandingStatus_RejectedAtPreliminary" xml:space="preserve">
+    <value>Rejected at PA</value>
+  </data>
+  <data name="EvalSessionProjectStandingType_Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="EvalSessionProjectStandingType_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="EvalSessionProjectWorkStatus_ComunicationInProgress" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="EvalSessionProjectWorkStatus_DraftVersion" xml:space="preserve">
+    <value>Project editing</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_RejectedAtASD" xml:space="preserve">
+    <value>Rejected at ASD</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_RejectedAtTFO" xml:space="preserve">
+    <value>Rejected at TFO</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_Withdrawed" xml:space="preserve">
+    <value>Withdrawed</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EvalSessionReportProjectStandingStatus_WithoutStanding" xml:space="preserve">
+    <value>Without Standing</value>
+  </data>
+  <data name="EvalSessionReportType_Protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="EvalSessionReportType_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="EvalSessionReportType_Decision" xml:space="preserve">
+    <value>Decision</value>
+  </data>
+  <data name="EvalSessionSheetStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionSheetStatus_Paused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="EvalSessionSheetStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="EvalSessionSheetStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EvalSessionStandingStatus_Applied" xml:space="preserve">
+    <value>Applied</value>
+  </data>
+  <data name="EvalSessionStandingStatus_Refused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="EvalSessionStandpointStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionStandpointStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="EvalSessionStandpointStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EvalSessionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionStatus_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="EvalSessionStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="EvalSessionStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EvalSessionStatus_EndedByLAG" xml:space="preserve">
+    <value>Ended by LAG</value>
+  </data>
+  <data name="EvalSessionType_Preselection" xml:space="preserve">
+    <value>For preselection</value>
+  </data>
+  <data name="EvalSessionType_ProjectEvaluation" xml:space="preserve">
+    <value>For evaluation of project proposals</value>
+  </data>
+  <data name="EvalSessionType_ProjectFicheEvaluation" xml:space="preserve">
+    <value>For evaluation of project fiches</value>
+  </data>
+  <data name="EvalSessionUserStatus_NotActivated" xml:space="preserve">
+    <value>Not Active</value>
+  </data>
+  <data name="EvalSessionUserStatus_Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="EvalSessionUserStatus_Deactivated" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="EvalSessionUserType_Administrator" xml:space="preserve">
+    <value>Session Administrator</value>
+  </data>
+  <data name="EvalSessionUserType_Assessor" xml:space="preserve">
+    <value>Assessor</value>
+  </data>
+  <data name="EvalSessionUserType_AssistantAssessor" xml:space="preserve">
+    <value>Assistant Assessor</value>
+  </data>
+  <data name="EvalSessionUserType_Observer" xml:space="preserve">
+    <value>Observer</value>
+  </data>
+  <data name="FinancialExecutionTables_Table1" xml:space="preserve">
+    <value>Таблица 1</value>
+  </data>
+  <data name="FinancialExecutionTables_Table2" xml:space="preserve">
+    <value>Таблица 2</value>
+  </data>
+  <data name="FinancialExecutionTables_Table3" xml:space="preserve">
+    <value>Таблица 3</value>
+  </data>
+  <data name="FinancialExecutionTables_Table8" xml:space="preserve">
+    <value>Таблица 8</value>
+  </data>
+  <data name="FinancialExecutionTables_Table9" xml:space="preserve">
+    <value>Таблица 9</value>
+  </data>
+  <data name="FinancialExecutionTables_Table10" xml:space="preserve">
+    <value>Таблица 10</value>
+  </data>
+  <data name="FinancialExecutionTables_TableIMZ" xml:space="preserve">
+    <value>Таблица ИМЗ</value>
+  </data>
+  <data name="FIReimbursedAmountStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="FIReimbursedAmountStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="FIReimbursedAmountStatus_Deleted" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="FIReimbursementType_ExGratia" xml:space="preserve">
+    <value>Главница</value>
+  </data>
+  <data name="FIReimbursementType_NAP" xml:space="preserve">
+    <value>Печалби</value>
+  </data>
+  <data name="FIReimbursementType_Collateral" xml:space="preserve">
+    <value>Други приходи и доходи</value>
+  </data>
+  <data name="GuidanceModule_InternalSystem" xml:space="preserve">
+    <value>Вътрешна система</value>
+  </data>
+  <data name="GuidanceModule_ApplicationsPortal" xml:space="preserve">
+    <value>Портал за електронно кандидатстване</value>
+  </data>
+  <data name="GuidanceModule_ReportsPortal" xml:space="preserve">
+    <value>Портал за електронно отчитане</value>
+  </data>
+  <data name="GuidanceModule_PublicPortal" xml:space="preserve">
+    <value>Публичен портал</value>
+  </data>
+  <data name="IndicatorAggregatedReport_NotAggregated" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="IndicatorAggregatedReport_Aggregated" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="IndicatorAggregatedReport_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="IndicatorAggregatedTarget_NotAggregated" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="IndicatorAggregatedTarget_Aggregated" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="IndicatorAggregatedTarget_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="IndicatorKind_Financial" xml:space="preserve">
+    <value>Financial</value>
+  </data>
+  <data name="IndicatorKind_Performance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="IndicatorKind_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="IndicatorKind_PerformanceStage" xml:space="preserve">
+    <value>Performance Stage</value>
+  </data>
+  <data name="IndicatorReportingType_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="IndicatorReportingType_Automatic" xml:space="preserve">
+    <value>Automatic (summation)</value>
+  </data>
+  <data name="IndicatorReportingType_NSIData" xml:space="preserve">
+    <value>Data from NSI</value>
+  </data>
+  <data name="IndicatorTrend_Reduction" xml:space="preserve">
+    <value>Reduction</value>
+  </data>
+  <data name="IndicatorTrend_Increase" xml:space="preserve">
+    <value>Increase</value>
+  </data>
+  <data name="IndicatorTrend_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="IndicatorType_Specific" xml:space="preserve">
+    <value>Specific indicator for the programme</value>
+  </data>
+  <data name="IndicatorType_Common" xml:space="preserve">
+    <value>Common indicator</value>
+  </data>
+  <data name="IndicatorType_IndividualForProcedure" xml:space="preserve">
+    <value>Individual for procedure</value>
+  </data>
+  <data name="InvolvedPersonLegalType_Person" xml:space="preserve">
+    <value>Физическо лице</value>
+  </data>
+  <data name="InvolvedPersonLegalType_LegalPerson" xml:space="preserve">
+    <value>Юридическо лице</value>
+  </data>
+  <data name="IrregularityCaseState_Active" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="IrregularityCaseState_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="IrregularityCaseState_Terminated" xml:space="preserve">
+    <value>Прекратен</value>
+  </data>
+  <data name="IrregularityCaseState_Canceled" xml:space="preserve">
+    <value>Отпаднал</value>
+  </data>
+  <data name="IrregularityCheckTime_BeforePayment" xml:space="preserve">
+    <value>Преди плащане</value>
+  </data>
+  <data name="IrregularityCheckTime_AfterPayment" xml:space="preserve">
+    <value>След плащане</value>
+  </data>
+  <data name="IrregularityCheckTime_BeforeAndAfterPayment" xml:space="preserve">
+    <value> Преди, както и след плащане</value>
+  </data>
+  <data name="IrregularityClassification_NoIrregularity" xml:space="preserve">
+    <value>Установена липса на нередност</value>
+  </data>
+  <data name="IrregularityClassification_Irregularity" xml:space="preserve">
+    <value>Нередност</value>
+  </data>
+  <data name="IrregularityClassification_FraudSuspicion" xml:space="preserve">
+    <value>Подозрение за измама</value>
+  </data>
+  <data name="IrregularityClassification_Fraud" xml:space="preserve">
+    <value>Установена измама</value>
+  </data>
+  <data name="IrregularityImpairedRegulationAct_Dec" xml:space="preserve">
+    <value>Решение</value>
+  </data>
+  <data name="IrregularityImpairedRegulationAct_Dir" xml:space="preserve">
+    <value>Директива</value>
+  </data>
+  <data name="IrregularityImpairedRegulationAct_Reg" xml:space="preserve">
+    <value>Регламент</value>
+  </data>
+  <data name="IrregularityImpairedRegulationAct_Agr" xml:space="preserve">
+    <value>Споразумение</value>
+  </data>
+  <data name="IrregularityProcedureStatus_AP" xml:space="preserve">
+    <value>Административни действия</value>
+  </data>
+  <data name="IrregularityProcedureStatus_JP" xml:space="preserve">
+    <value>Съдебно производство</value>
+  </data>
+  <data name="IrregularityProcedureStatus_PP" xml:space="preserve">
+    <value>Наказателно производство</value>
+  </data>
+  <data name="IrregularityProcedureStatus_PX" xml:space="preserve">
+    <value>Приключило производство</value>
+  </data>
+  <data name="IrregularityRapporteur_MTITC" xml:space="preserve">
+    <value>MTITC</value>
+  </data>
+  <data name="IrregularityRapporteur_MRDPW" xml:space="preserve">
+    <value>MRDPW</value>
+  </data>
+  <data name="IrregularityRapporteur_ME" xml:space="preserve">
+    <value>ME</value>
+  </data>
+  <data name="IrregularityRapporteur_MEW" xml:space="preserve">
+    <value>MEW</value>
+  </data>
+  <data name="IrregularityRapporteur_MLSP" xml:space="preserve">
+    <value>MLSP</value>
+  </data>
+  <data name="IrregularityRapporteur_MES" xml:space="preserve">
+    <value>MES</value>
+  </data>
+  <data name="IrregularityRapporteur_CM" xml:space="preserve">
+    <value>CM</value>
+  </data>
+  <data name="IrregularityReasonNotReportingToOlaf_NotNecessary" xml:space="preserve">
+    <value>Под прага за докладване до ОЛАФ</value>
+  </data>
+  <data name="IrregularityReasonNotReportingToOlaf_Exception" xml:space="preserve">
+    <value>Попада в изключенията за докладване до ОЛАФ</value>
+  </data>
+  <data name="IrregularitySanctionProcedureKind_Adm" xml:space="preserve">
+    <value>Административни</value>
+  </data>
+  <data name="IrregularitySanctionProcedureKind_Pen" xml:space="preserve">
+    <value>Наказателни</value>
+  </data>
+  <data name="IrregularitySanctionProcedureKind_Pxx" xml:space="preserve">
+    <value>Административни и наказателни</value>
+  </data>
+  <data name="IrregularitySanctionProcedureStatus_Initiated" xml:space="preserve">
+    <value>Initiated</value>
+  </data>
+  <data name="IrregularitySanctionProcedureStatus_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="IrregularitySanctionProcedureStatus_Abandoned" xml:space="preserve">
+    <value>Abandoned</value>
+  </data>
+  <data name="IrregularitySanctionProcedureType_SP1" xml:space="preserve">
+    <value>Не е взето решение</value>
+  </data>
+  <data name="IrregularitySanctionProcedureType_SP2" xml:space="preserve">
+    <value>Няма да се налага санкция</value>
+  </data>
+  <data name="IrregularitySanctionProcedureType_SP3" xml:space="preserve">
+    <value>Предстои определянето на санкция</value>
+  </data>
+  <data name="IrregularitySanctionProcedureType_SP4" xml:space="preserve">
+    <value>Наложена санкция</value>
+  </data>
+  <data name="IrregularitySignalStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="IrregularitySignalStatus_Active" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="IrregularitySignalStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="IrregularitySignalStatus_Removed" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="IrregularityVersionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="IrregularityVersionStatus_Active" xml:space="preserve">
+    <value>Актуална</value>
+  </data>
+  <data name="IrregularityVersionStatus_Archived" xml:space="preserve">
+    <value>Архивирана</value>
+  </data>
+  <data name="MessageStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="MessageStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ActuallyPaidAmountStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ActuallyPaidAmountStatus_Entered" xml:space="preserve">
+    <value>Entered</value>
+  </data>
+  <data name="ActuallyPaidAmountStatus_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="AmendmentReason_CourtOrder" xml:space="preserve">
+    <value>Court order</value>
+  </data>
+  <data name="AmendmentReason_CertifyingAuthority" xml:space="preserve">
+    <value>Certifying Authority proposal</value>
+  </data>
+  <data name="AmendmentReason_AuditAuthority" xml:space="preserve">
+    <value>Audit Authority proposal</value>
+  </data>
+  <data name="AmendmentReason_EuropeanCommission" xml:space="preserve">
+    <value>European Commission proposal</value>
+  </data>
+  <data name="AmendmentReason_EuropeanCourtAuditor" xml:space="preserve">
+    <value>European Court Auditor proposal</value>
+  </data>
+  <data name="AmendmentReason_ManagingAuthority" xml:space="preserve">
+    <value>Managing Authority decision</value>
+  </data>
+  <data name="AmendmentReason_TechnicalError" xml:space="preserve">
+    <value>Technical Error</value>
+  </data>
+  <data name="CorrectionBearer_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="CorrectionBearer_AdministrativeAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="CorrectionBearer_BeneficiaryAdminAuthority" xml:space="preserve">
+    <value>ОО и Бенефициент</value>
+  </data>
+  <data name="CorrectionBearer_NationalBudget" xml:space="preserve">
+    <value>Национален бюджет</value>
+  </data>
+  <data name="PaymentReason_AdvancePayment" xml:space="preserve">
+    <value>Авансово плащане</value>
+  </data>
+  <data name="PaymentReason_ApprovedExpenses" xml:space="preserve">
+    <value>Верифицирани разходи по ново искане за плащане</value>
+  </data>
+  <data name="PaymentReason_ReimbursedExpenses" xml:space="preserve">
+    <value>Възстановени суми</value>
+  </data>
+  <data name="PaymentReason_AdditionalPayment" xml:space="preserve">
+    <value>Доплащане</value>
+  </data>
+  <data name="PrognosisLevel_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="PrognosisLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="PrognosisLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="PrognosisStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="PrognosisStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="PrognosisStatus_Deleted" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="CompensationDocumentStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="CompensationDocumentStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="CompensationDocumentStatus_Deleted" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="CompensationDocumentType_Contracted" xml:space="preserve">
+    <value>Договорени</value>
+  </data>
+  <data name="CompensationDocumentType_Requested" xml:space="preserve">
+    <value>Поискани</value>
+  </data>
+  <data name="CompensationDocumentType_ActuallyPaidAmount" xml:space="preserve">
+    <value>Реално изплатени суми</value>
+  </data>
+  <data name="CompensationSign_Plus" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="CompensationSign_Minus" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="FinancialCorrectionVersionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="FinancialCorrectionVersionStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="FinancialCorrectionVersionStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="FinancialCorrectionVersionViolationFoundBy_AdministrativeAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="FinancialCorrectionVersionViolationFoundBy_CertifyingAuthority" xml:space="preserve">
+    <value>СО</value>
+  </data>
+  <data name="FinancialCorrectionVersionViolationFoundBy_AuditAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="FinancialCorrectionVersionViolationFoundBy_EuropeanComission" xml:space="preserve">
+    <value>ЕК</value>
+  </data>
+  <data name="FinancialCorrectionVersionViolationFoundBy_EuropeanCourtOfAuditors" xml:space="preserve">
+    <value>ЕСП</value>
+  </data>
+  <data name="FlatFinancialCorrectionLevel_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="FlatFinancialCorrectionLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="FlatFinancialCorrectionLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="FlatFinancialCorrectionLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="FlatFinancialCorrectionLevel_ContractContract" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="FlatFinancialCorrectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="FlatFinancialCorrectionStatus_Actual" xml:space="preserve">
+    <value>Актуална</value>
+  </data>
+  <data name="FlatFinancialCorrectionType_AdministrativeAuthority" xml:space="preserve">
+    <value>ФКСП, наложена от ОО</value>
+  </data>
+  <data name="FlatFinancialCorrectionType_CertifyingAuthority" xml:space="preserve">
+    <value>ФКСП, наложена във връзка с препоръка на СО</value>
+  </data>
+  <data name="FlatFinancialCorrectionType_AuditAuthority" xml:space="preserve">
+    <value>ФКСП, наложена във връзка с препоръка на ОО</value>
+  </data>
+  <data name="FlatFinancialCorrectionType_EuropeanCommission" xml:space="preserve">
+    <value>ФКСП, наложена във връзка с препоръка на ЕК</value>
+  </data>
+  <data name="ReimbursedAmountStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ReimbursedAmountStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="ReimbursedAmountStatus_Deleted" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="Reimbursement_Bank" xml:space="preserve">
+    <value>По банков път</value>
+  </data>
+  <data name="Reimbursement_Deduction" xml:space="preserve">
+    <value>Чрез прихващане</value>
+  </data>
+  <data name="Reimbursement_WrittenOff" xml:space="preserve">
+    <value>Отписани</value>
+  </data>
+  <data name="Reimbursement_DistributedLimitDeduction" xml:space="preserve">
+    <value>Отнемане на разпределен лимит</value>
+  </data>
+  <data name="ReimbursementType_ExGratia" xml:space="preserve">
+    <value>Доброволно възстановяване</value>
+  </data>
+  <data name="ReimbursementType_NAP" xml:space="preserve">
+    <value>Събиране чрез НАП</value>
+  </data>
+  <data name="ReimbursementType_Collateral" xml:space="preserve">
+    <value>Събиране чрез активиране на обезпечения (банкова гаранция)</value>
+  </data>
+  <data name="ReimbursementType_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="DebtReimbursedAmountCreationType_Manual" xml:space="preserve">
+    <value>Ръчно</value>
+  </data>
+  <data name="DebtReimbursedAmountCreationType_SAPImport" xml:space="preserve">
+    <value>Интерфейс</value>
+  </data>
+  <data name="NewsStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="NewsStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="NewsStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="BudgetLevel_First" xml:space="preserve">
+    <value>Първо(I)</value>
+  </data>
+  <data name="BudgetLevel_Second" xml:space="preserve">
+    <value>Второ(1)</value>
+  </data>
+  <data name="CommitmentType_CivilContract" xml:space="preserve">
+    <value>Граждански договор</value>
+  </data>
+  <data name="CommitmentType_EmploymentContract" xml:space="preserve">
+    <value>Трудов договор</value>
+  </data>
+  <data name="CommitmentType_Order" xml:space="preserve">
+    <value>Заповед</value>
+  </data>
+  <data name="CommitmentType_Other" xml:space="preserve">
+    <value>Друго</value>
+  </data>
+  <data name="Dimension_InterventionField" xml:space="preserve">
+    <value>Област на интервенция</value>
+  </data>
+  <data name="Dimension_FormOfFinance" xml:space="preserve">
+    <value>Форма на финансиране</value>
+  </data>
+  <data name="Dimension_TerritorialDimension" xml:space="preserve">
+    <value>Вид на територията</value>
+  </data>
+  <data name="Dimension_TerritorialDeliveryMechanism" xml:space="preserve">
+    <value>Механизми за териториално изпълнение</value>
+  </data>
+  <data name="Dimension_ThematicObjective" xml:space="preserve">
+    <value>Тематична цел</value>
+  </data>
+  <data name="Dimension_ESFSecondaryTheme" xml:space="preserve">
+    <value>Вторична тема на ЕСФ</value>
+  </data>
+  <data name="Dimension_EconomicDimension" xml:space="preserve">
+    <value>Икономическа дейност</value>
+  </data>
+  <data name="EmailStatus_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="EmailStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="EmailStatus_UknownError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FinaceSourcesSAP_Bfp" xml:space="preserve">
+    <value>БФП</value>
+  </data>
+  <data name="FinaceSourcesSAP_SelfFinancing" xml:space="preserve">
+    <value>СФ</value>
+  </data>
+  <data name="FinaceSourcesSAP_AdvanceVerification" xml:space="preserve">
+    <value>Аванс</value>
+  </data>
+  <data name="FinanceSource_EuropeanSocialFund" xml:space="preserve">
+    <value>ESF</value>
+  </data>
+  <data name="FinanceSource_EuropeanRegionalDevelopmentFund" xml:space="preserve">
+    <value>ERDF</value>
+  </data>
+  <data name="FinanceSource_CohesionFund" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="FinanceSource_YouthEmploymentInitiative" xml:space="preserve">
+    <value>YEI</value>
+  </data>
+  <data name="FinanceSource_FundForEuropeanAidToTheMostDeprived" xml:space="preserve">
+    <value>FEAD</value>
+  </data>
+  <data name="FinanceSource_EFMDR" xml:space="preserve">
+    <value>EFMDR</value>
+  </data>
+  <data name="FinanceSource_EZFRSR" xml:space="preserve">
+    <value>EZFRSR</value>
+  </data>
+  <data name="FinanceSource_FVS" xml:space="preserve">
+    <value>FVS</value>
+  </data>
+  <data name="FinanceSource_FUMI" xml:space="preserve">
+    <value>FUMI</value>
+  </data>
+  <data name="FinanceSource_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="GroupingLevel_Programme" xml:space="preserve">
+    <value>Основна организация</value>
+  </data>
+  <data name="GroupingLevel_ProgrammePriority" xml:space="preserve">
+    <value>Разпоредител с бюджетни средства</value>
+  </data>
+  <data name="GroupingLevel_Procedure" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="GroupingLevel_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="InformationSystem_Isak" xml:space="preserve">
+    <value>Интегрирана система за администриране и контрол (ИСАК)</value>
+  </data>
+  <data name="InformationSystem_Efz" xml:space="preserve">
+    <value>Информационна система към ЕЗФ за развитие на селските райони</value>
+  </data>
+  <data name="InformationSystem_Popai" xml:space="preserve">
+    <value>Информационна система към ЕФ за морско дело и рибарство</value>
+  </data>
+  <data name="InformationSystem_Cbc" xml:space="preserve">
+    <value>Информационна система на програмите за трансгранично сътрудничество</value>
+  </data>
+  <data name="InformationSystem_Olaf" xml:space="preserve">
+    <value>Система на ОЛАФ за докладване на нередности (IMS)</value>
+  </data>
+  <data name="InformationSystem_Rdp" xml:space="preserve">
+    <value>Регистърът за държавни помощи</value>
+  </data>
+  <data name="InformationSystem_Control" xml:space="preserve">
+    <value>Информационна система 'Контрол'</value>
+  </data>
+  <data name="InformationSystem_Aop" xml:space="preserve">
+    <value>Регистър на обществените поръчки</value>
+  </data>
+  <data name="InformationSystem_Litigation" xml:space="preserve">
+    <value>Деловодните системи на звената участващи в процеса по управление на оперативните програми</value>
+  </data>
+  <data name="InformationSystem_Gis" xml:space="preserve">
+    <value>Географската информационна система за управление на средствата от ЕС</value>
+  </data>
+  <data name="InformationSystem_InfraProjects" xml:space="preserve">
+    <value>Информационна система 'Инфраструктурни проекти'</value>
+  </data>
+  <data name="InformationSystem_Other" xml:space="preserve">
+    <value>Други информационни системи</value>
+  </data>
+  <data name="InformationSystem_Document" xml:space="preserve">
+    <value>Информационна система на Документалния фонд на оперативните програми</value>
+  </data>
+  <data name="Month_January" xml:space="preserve">
+    <value>Януари</value>
+  </data>
+  <data name="Month_February" xml:space="preserve">
+    <value>Февруари</value>
+  </data>
+  <data name="Month_March" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="Month_April" xml:space="preserve">
+    <value>Април</value>
+  </data>
+  <data name="Month_May" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="Month_June" xml:space="preserve">
+    <value>Юни</value>
+  </data>
+  <data name="Month_July" xml:space="preserve">
+    <value>Юли</value>
+  </data>
+  <data name="Month_August" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="Month_September" xml:space="preserve">
+    <value>Септември</value>
+  </data>
+  <data name="Month_October" xml:space="preserve">
+    <value>Октомври</value>
+  </data>
+  <data name="Month_November" xml:space="preserve">
+    <value>Ноември</value>
+  </data>
+  <data name="Month_December" xml:space="preserve">
+    <value>Декември</value>
+  </data>
+  <data name="NutsLevel_Country" xml:space="preserve">
+    <value>Държава</value>
+  </data>
+  <data name="NutsLevel_RegionNUTS1" xml:space="preserve">
+    <value>NUTS ниво 1</value>
+  </data>
+  <data name="NutsLevel_RegionNUTS2" xml:space="preserve">
+    <value>NUTS ниво 2</value>
+  </data>
+  <data name="NutsLevel_District" xml:space="preserve">
+    <value>Област</value>
+  </data>
+  <data name="NutsLevel_Municipality" xml:space="preserve">
+    <value>Община</value>
+  </data>
+  <data name="NutsLevel_Settlement" xml:space="preserve">
+    <value>Населено място</value>
+  </data>
+  <data name="NutsLevel_ProtectedZone" xml:space="preserve">
+    <value>Защитена зона</value>
+  </data>
+  <data name="PersonalUinType_PersonalBulstat" xml:space="preserve">
+    <value>ЕГН</value>
+  </data>
+  <data name="PersonalUinType_ForeignNumber" xml:space="preserve">
+    <value>ЛНЧ</value>
+  </data>
+  <data name="Quarter_Q1" xml:space="preserve">
+    <value>Първо</value>
+  </data>
+  <data name="Quarter_Q2" xml:space="preserve">
+    <value>Второ</value>
+  </data>
+  <data name="Quarter_Q3" xml:space="preserve">
+    <value>Трето</value>
+  </data>
+  <data name="Quarter_Q4" xml:space="preserve">
+    <value>Четвърто</value>
+  </data>
+  <data name="RegionCategory_LessDevelopedRegions" xml:space="preserve">
+    <value>По-слабо развити региони</value>
+  </data>
+  <data name="UinType_Eik" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="UinType_Bulstat" xml:space="preserve">
+    <value>Bulstat</value>
+  </data>
+  <data name="UinType_PersonalBulstat" xml:space="preserve">
+    <value>Freelancer bulstat (EGN)</value>
+  </data>
+  <data name="UinType_Foreign" xml:space="preserve">
+    <value>Foreign company</value>
+  </data>
+  <data name="Year_Y2015" xml:space="preserve">
+    <value>2015</value>
+  </data>
+  <data name="Year_Y2016" xml:space="preserve">
+    <value>2016</value>
+  </data>
+  <data name="Year_Y2017" xml:space="preserve">
+    <value>2017</value>
+  </data>
+  <data name="Year_Y2018" xml:space="preserve">
+    <value>2018</value>
+  </data>
+  <data name="Year_Y2019" xml:space="preserve">
+    <value>2019</value>
+  </data>
+  <data name="Year_Y2020" xml:space="preserve">
+    <value>2020</value>
+  </data>
+  <data name="Year_Y2021" xml:space="preserve">
+    <value>2021</value>
+  </data>
+  <data name="Year_Y2022" xml:space="preserve">
+    <value>2022</value>
+  </data>
+  <data name="Year_Y2023" xml:space="preserve">
+    <value>2023</value>
+  </data>
+  <data name="YesNoOther_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YesNoOther_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="YesNoOther_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="MapNodeStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="MapNodeStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="MapNodeStatus_Canceled" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="MapNodeType_Programme" xml:space="preserve">
+    <value>Програма</value>
+  </data>
+  <data name="MapNodeType_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="MapNodeType_InvestmentPriority" xml:space="preserve">
+    <value>Инвестиционен приоритет</value>
+  </data>
+  <data name="MapNodeType_SpecificTarget" xml:space="preserve">
+    <value>Специфична цел</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table3" xml:space="preserve">
+    <value>Table3</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table4" xml:space="preserve">
+    <value>Table4</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table4a" xml:space="preserve">
+    <value>Table4a</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table5" xml:space="preserve">
+    <value>Table5</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table6" xml:space="preserve">
+    <value>Table6</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table12" xml:space="preserve">
+    <value>Table12</value>
+  </data>
+  <data name="MapNodeIndicatorType_Table13" xml:space="preserve">
+    <value>Table13</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table1" xml:space="preserve">
+    <value>Таблица 1</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table2A" xml:space="preserve">
+    <value>Таблица 2А</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table2B" xml:space="preserve">
+    <value>Таблица 2Б</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table2C" xml:space="preserve">
+    <value>Таблица 2В</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table3A" xml:space="preserve">
+    <value>Таблица 3А</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table3B" xml:space="preserve">
+    <value>Таблица 3Б</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table4A" xml:space="preserve">
+    <value>Таблица 4А</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table4B" xml:space="preserve">
+    <value>Таблица 4Б</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table5" xml:space="preserve">
+    <value>Таблица 5</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table12" xml:space="preserve">
+    <value>Таблица 12</value>
+  </data>
+  <data name="PhysicalExecutionTables_Table13" xml:space="preserve">
+    <value>Таблица 13</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2014" xml:space="preserve">
+    <value>2014</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2015" xml:space="preserve">
+    <value>2015</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2016" xml:space="preserve">
+    <value>2016</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2017" xml:space="preserve">
+    <value>2017</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2018" xml:space="preserve">
+    <value>2018</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2019" xml:space="preserve">
+    <value>2019</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2020" xml:space="preserve">
+    <value>2020</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2021" xml:space="preserve">
+    <value>2021</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2022" xml:space="preserve">
+    <value>2022</value>
+  </data>
+  <data name="PhysicalExecutionYear_Y2023" xml:space="preserve">
+    <value>2023</value>
+  </data>
+  <data name="ActiveStatus_NotActivated" xml:space="preserve">
+    <value>Not activated</value>
+  </data>
+  <data name="ActiveStatus_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ActiveStatus_Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="AllowedRegistrationType_Digital" xml:space="preserve">
+    <value>Digital</value>
+  </data>
+  <data name="AllowedRegistrationType_Paper" xml:space="preserve">
+    <value>Paper</value>
+  </data>
+  <data name="AllowedRegistrationType_DigitalOrPaper" xml:space="preserve">
+    <value>Digital or paper</value>
+  </data>
+  <data name="ApplicationFormType_Standard" xml:space="preserve">
+    <value>Стандартен</value>
+  </data>
+  <data name="ApplicationFormType_PreliminarySelection" xml:space="preserve">
+    <value>За предварителен подбор</value>
+  </data>
+  <data name="ApplicationFormType_StandardWithPreliminarySelection" xml:space="preserve">
+    <value>Стандартен (разширен по концепция)</value>
+  </data>
+  <data name="ApplicationFormType_StandardForBudgetLine" xml:space="preserve">
+    <value>Стандартен (бюджетна линия)</value>
+  </data>
+  <data name="ApplicationFormType_FOFFinancialAgentsInfo" xml:space="preserve">
+    <value>Информация за фонд на фондовете и ЕИФ/за финансови посредници</value>
+  </data>
+  <data name="ApplicationFormType_EndUsersInfo" xml:space="preserve">
+    <value>Информация за крайни получатели</value>
+  </data>
+  <data name="ApplicationFormType_StandardSimplified" xml:space="preserve">
+    <value>Стандартен (опростен)</value>
+  </data>
+  <data name="ProcedureBudgetLevel2AidMode_Deminimis" xml:space="preserve">
+    <value>de minimis</value>
+  </data>
+  <data name="ProcedureBudgetLevel2AidMode_StateAid" xml:space="preserve">
+    <value>State aid</value>
+  </data>
+  <data name="ProcedureBudgetLevel2AidMode_NotApplicable" xml:space="preserve">
+    <value>Inaplicable</value>
+  </data>
+  <data name="ProcedureEvalTableStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureEvalTableStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="ProcedureEvalTableType_AdminAdmiss" xml:space="preserve">
+    <value>Evaluation of administrative compliance and eligibility</value>
+  </data>
+  <data name="ProcedureEvalTableType_TechFinance" xml:space="preserve">
+    <value>Technical and financial evaluation</value>
+  </data>
+  <data name="ProcedureEvalTableType_Complex" xml:space="preserve">
+    <value>Complex evaluation</value>
+  </data>
+  <data name="ProcedureEvalTableType_Preliminary" xml:space="preserve">
+    <value>Preliminary evaluation</value>
+  </data>
+  <data name="ProcedureEvalTableTypeShort_AdminAdmiss" xml:space="preserve">
+    <value>EACE</value>
+  </data>
+  <data name="ProcedureEvalTableTypeShort_TechFinance" xml:space="preserve">
+    <value>TFO</value>
+  </data>
+  <data name="ProcedureEvalTableTypeShort_Complex" xml:space="preserve">
+    <value>CE</value>
+  </data>
+  <data name="ProcedureEvalTableTypeShort_Preliminary" xml:space="preserve">
+    <value>PE</value>
+  </data>
+  <data name="ProcedureEvalType_Rejection" xml:space="preserve">
+    <value>Yes/No</value>
+  </data>
+  <data name="ProcedureEvalType_Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="ProcedureSpecFieldMaxLength_Small" xml:space="preserve">
+    <value>Малка (1000 символа)</value>
+  </data>
+  <data name="ProcedureSpecFieldMaxLength_Middle" xml:space="preserve">
+    <value>Средна (3000 символа)</value>
+  </data>
+  <data name="ProcedureSpecFieldMaxLength_Large" xml:space="preserve">
+    <value>Голяма (5000 символа)</value>
+  </data>
+  <data name="ProcedureSpecFieldMaxLength_VeryLarge" xml:space="preserve">
+    <value>Много голяма (10000 символа)</value>
+  </data>
+  <data name="ProcedureStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureStatus_Entered" xml:space="preserve">
+    <value>Entered</value>
+  </data>
+  <data name="ProcedureStatus_Checked" xml:space="preserve">
+    <value>Checked</value>
+  </data>
+  <data name="ProcedureStatus_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ProcedureStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="ProcedureStatus_Terminated" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+  <data name="ProcedureStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ProcedureContractReportDocumentsSectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ProcedureContractReportDocumentsSectionStatus_Active" xml:space="preserve">
+    <value>Активна</value>
+  </data>
+  <data name="ProjectCommunicationMessageType_Question" xml:space="preserve">
+    <value>Въпрос</value>
+  </data>
+  <data name="ProjectCommunicationMessageType_Answer" xml:space="preserve">
+    <value>Отговор</value>
+  </data>
+  <data name="ProjectCommunicationStatus_DraftQuestion" xml:space="preserve">
+    <value>Draft question</value>
+  </data>
+  <data name="ProjectCommunicationStatus_Question" xml:space="preserve">
+    <value>Sent question</value>
+  </data>
+  <data name="ProjectCommunicationStatus_DraftAnswer" xml:space="preserve">
+    <value>Draft answer</value>
+  </data>
+  <data name="ProjectCommunicationStatus_AnswerFinalized" xml:space="preserve">
+    <value>Finished answer</value>
+  </data>
+  <data name="ProjectCommunicationStatus_Answer" xml:space="preserve">
+    <value>Sent answer</value>
+  </data>
+  <data name="ProjectCommunicationStatus_PaperAnswer" xml:space="preserve">
+    <value>Sent answer on paper</value>
+  </data>
+  <data name="ProjectCommunicationStatus_Applied" xml:space="preserve">
+    <value>Accepted answer</value>
+  </data>
+  <data name="ProjectCommunicationStatus_Rejected" xml:space="preserve">
+    <value>Rejected answer</value>
+  </data>
+  <data name="ProjectCommunicationStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ProjectVersion" xml:space="preserve">
+    <value>Версия на ПП</value>
+  </data>
+  <data name="ProjectDossierDocumentType_EvalSessionSheet" xml:space="preserve">
+    <value>Оценителен лист</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ProjectCommunication" xml:space="preserve">
+    <value>Комуникация към ПП</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractVersion" xml:space="preserve">
+    <value>Версия на договор</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractsContractRegistration" xml:space="preserve">
+    <value>Декларация за присъединяване на профил за достъп</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractProcurement" xml:space="preserve">
+    <value>Процедура за избор на изпълнител и сключени договори</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportPayment" xml:space="preserve">
+    <value>Искане за плащане</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportFinancial" xml:space="preserve">
+    <value>Финансов отчет</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportTechnical" xml:space="preserve">
+    <value>Технически отчет</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportMicroType1" xml:space="preserve">
+    <value>Микроданни участници (ФЕПНЛ)</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportMicroType2" xml:space="preserve">
+    <value>Микроданни участници (ЕСФ)</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportMicroType3" xml:space="preserve">
+    <value>Микроданни хранителни продукти</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractReportMicroType4" xml:space="preserve">
+    <value>Микроданни на АСП</value>
+  </data>
+  <data name="ProjectDossierDocumentType_ContractAdminAuthorityCommunication" xml:space="preserve">
+    <value>Кореспонденция към Договор</value>
+  </data>
+  <data name="ProjectEvalStatus_Evaluation" xml:space="preserve">
+    <value>In evaluation</value>
+  </data>
+  <data name="ProjectEvalStatus_Evaluated" xml:space="preserve">
+    <value>Evaluated</value>
+  </data>
+  <data name="ProjectEvalStatus_Contracted" xml:space="preserve">
+    <value>Contracted</value>
+  </data>
+  <data name="ProjectEvalStatus_PendingApproval" xml:space="preserve">
+    <value>Pending approval by MA/SFA</value>
+  </data>
+  <data name="ProjectRecieveType_InPerson" xml:space="preserve">
+    <value>In person</value>
+  </data>
+  <data name="ProjectRecieveType_Mail" xml:space="preserve">
+    <value>By mail</value>
+  </data>
+  <data name="ProjectRecieveType_Courier" xml:space="preserve">
+    <value>Courier</value>
+  </data>
+  <data name="ProjectRecieveType_Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="ProjectRecieveType_Electronic" xml:space="preserve">
+    <value>Electronically</value>
+  </data>
+  <data name="ProjectRegistrationStatus_Registered" xml:space="preserve">
+    <value>Registered</value>
+  </data>
+  <data name="ProjectRegistrationStatus_RegisteredLate" xml:space="preserve">
+    <value>Registered Late</value>
+  </data>
+  <data name="ProjectRegistrationStatus_Withdrawn" xml:space="preserve">
+    <value>Withdrawn</value>
+  </data>
+  <data name="ProjectVersionXmlStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProjectVersionXmlStatus_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="ProjectVersionXmlStatus_Archive" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="RegProjectXmlRegType_Digital" xml:space="preserve">
+    <value>Electronically</value>
+  </data>
+  <data name="RegProjectXmlRegType_Paper" xml:space="preserve">
+    <value>On paper</value>
+  </data>
+  <data name="RequestPackageStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="RequestPackageStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="RequestPackageStatus_Checked" xml:space="preserve">
+    <value>Проверен</value>
+  </data>
+  <data name="RequestPackageStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="RequestPackageStatus_Canceled" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="RequestPackageType_Request" xml:space="preserve">
+    <value>Заявка</value>
+  </data>
+  <data name="RequestPackageType_DirectChange" xml:space="preserve">
+    <value>Директна промяна</value>
+  </data>
+  <data name="RequestStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="RequestStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="RequestStatus_Checked" xml:space="preserve">
+    <value>Проверена</value>
+  </data>
+  <data name="RequestStatus_Active" xml:space="preserve">
+    <value>Активна</value>
+  </data>
+  <data name="RequestStatus_Rejected" xml:space="preserve">
+    <value>Отхвърлена</value>
+  </data>
+  <data name="RequestStatus_Canceled" xml:space="preserve">
+    <value>Анулирана</value>
+  </data>
+  <data name="SapFileStatus_New" xml:space="preserve">
+    <value>Новосъздаден</value>
+  </data>
+  <data name="SapFileStatus_Imported" xml:space="preserve">
+    <value>Импортиран</value>
+  </data>
+  <data name="SapPaidAmountCurrency_BGN" xml:space="preserve">
+    <value>лева</value>
+  </data>
+  <data name="SapPaidAmountFund_ESF" xml:space="preserve">
+    <value>ESF</value>
+  </data>
+  <data name="SapPaidAmountFund_ERDF" xml:space="preserve">
+    <value>ERDF</value>
+  </data>
+  <data name="SapPaidAmountFund_CF" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="SapPaidAmountFund_FEAD" xml:space="preserve">
+    <value>FEAD</value>
+  </data>
+  <data name="SapPaymentType_Advance" xml:space="preserve">
+    <value>Авансово</value>
+  </data>
+  <data name="SapPaymentType_Intermediate" xml:space="preserve">
+    <value>Междинно</value>
+  </data>
+  <data name="SapPaymentType_Final" xml:space="preserve">
+    <value>Окончателно</value>
+  </data>
+  <data name="SapPaymentType_Fine" xml:space="preserve">
+    <value>Глоба</value>
+  </data>
+  <data name="SapPaymentType_Interest" xml:space="preserve">
+    <value>Лихва</value>
+  </data>
+  <data name="SapPaymentType_VoluntaryReimbursement" xml:space="preserve">
+    <value>Възстановяване при доброволно прекратяване</value>
+  </data>
+  <data name="SapPaymentType_MistakeReimbursement" xml:space="preserve">
+    <value>Възстановяване при грешка</value>
+  </data>
+  <data name="SapPaymentType_IrregularityReimbursement" xml:space="preserve">
+    <value>Възстановяване при нередност</value>
+  </data>
+  <data name="SapPaymentType_Bank" xml:space="preserve">
+    <value>Банкова гаранция</value>
+  </data>
+  <data name="SapPaymentType_Transfer" xml:space="preserve">
+    <value>Касов трансфер</value>
+  </data>
+  <data name="SpotCheckAscertainmentStatus_Open" xml:space="preserve">
+    <value>Отворена</value>
+  </data>
+  <data name="SpotCheckAscertainmentStatus_Closed" xml:space="preserve">
+    <value>Затворена</value>
+  </data>
+  <data name="SpotCheckAscertainmentStatus_Info" xml:space="preserve">
+    <value>За информация</value>
+  </data>
+  <data name="SpotCheckAscertainmentType_Primary" xml:space="preserve">
+    <value>Съществена</value>
+  </data>
+  <data name="SpotCheckAscertainmentType_Secondary" xml:space="preserve">
+    <value>Второстепенна</value>
+  </data>
+  <data name="SpotCheckAscertainmentType_Minor" xml:space="preserve">
+    <value>Несъществена</value>
+  </data>
+  <data name="SpotCheckAscertainmentType_Info" xml:space="preserve">
+    <value>Информативна</value>
+  </data>
+  <data name="SpotCheckItemLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="SpotCheckItemLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="SpotCheckItemLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="SpotCheckItemLevel_ContractContract" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="SpotCheckLevel_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="SpotCheckLevel_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="SpotCheckLevel_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="SpotCheckLevel_Contract" xml:space="preserve">
+    <value>Договор за БФП</value>
+  </data>
+  <data name="SpotCheckLevel_ContractContract" xml:space="preserve">
+    <value>Договор с изпълнител</value>
+  </data>
+  <data name="SpotCheckRecommendationStatus_Executed" xml:space="preserve">
+    <value>Изпълнена</value>
+  </data>
+  <data name="SpotCheckRecommendationStatus_InProcess" xml:space="preserve">
+    <value>В процес на изпълнение</value>
+  </data>
+  <data name="SpotCheckRecommendationStatus_Unexecuted" xml:space="preserve">
+    <value>Неизпълнена</value>
+  </data>
+  <data name="SpotCheckRecommendationStatus_Removed" xml:space="preserve">
+    <value>Отпаднала</value>
+  </data>
+  <data name="SpotCheckStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="SpotCheckStatus_Entered" xml:space="preserve">
+    <value>Въведена</value>
+  </data>
+  <data name="SpotCheckTargetType_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="SpotCheckTargetType_Executor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="SpotCheckTargetType_EndUser" xml:space="preserve">
+    <value>Краен получател</value>
+  </data>
+  <data name="SpotCheckTargetType_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="SpotCheckType_Planned" xml:space="preserve">
+    <value>Планирана</value>
+  </data>
+  <data name="SpotCheckType_NotPlanned" xml:space="preserve">
+    <value>Непланирана</value>
+  </data>
+  <data name="ActionLogPermissions" xml:space="preserve">
+    <value>Log permissions</value>
+  </data>
+  <data name="ActionLogPermissions_CanRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="CertAuthorityCheckPermissions" xml:space="preserve">
+    <value>Проверки на СО</value>
+  </data>
+  <data name="CertAuthorityCheckPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="CertAuthorityCheckPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="CompanyPermissions" xml:space="preserve">
+    <value>Candidates</value>
+  </data>
+  <data name="CompanyPermissions_CanRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="CompanyPermissions_CanWrite" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="ContractRegistrationPermissions" xml:space="preserve">
+    <value>Профили за достъп към договор</value>
+  </data>
+  <data name="ContractRegistrationPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="GuidancePermissions" xml:space="preserve">
+    <value>Ръководства</value>
+  </data>
+  <data name="GuidancePermissions_CanCreate" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="InterfacesPermissions" xml:space="preserve">
+    <value>Интерфейси към други информационни системи</value>
+  </data>
+  <data name="InterfacesPermissions_CanExport" xml:space="preserve">
+    <value>Експортиране</value>
+  </data>
+  <data name="MonitoringPermissions" xml:space="preserve">
+    <value>Наблюдение</value>
+  </data>
+  <data name="MonitoringPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="NewsPermissions" xml:space="preserve">
+    <value>Новини</value>
+  </data>
+  <data name="NewsPermissions_CanPublish" xml:space="preserve">
+    <value>Публикуване</value>
+  </data>
+  <data name="OperationalMapAdminPermissions" xml:space="preserve">
+    <value>Основна структура</value>
+  </data>
+  <data name="OperationalMapAdminPermissions_CanAdministrate" xml:space="preserve">
+    <value>Администриране</value>
+  </data>
+  <data name="RegistrationPermissions" xml:space="preserve">
+    <value>Профили</value>
+  </data>
+  <data name="RegistrationPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="SapInterfacePermissions" xml:space="preserve">
+    <value>Връзки с външни информационни системи</value>
+  </data>
+  <data name="SapInterfacePermissions_CanImport" xml:space="preserve">
+    <value>Импортиране</value>
+  </data>
+  <data name="UserAdminPermissions" xml:space="preserve">
+    <value>Потребители</value>
+  </data>
+  <data name="UserAdminPermissions_CanAdministrate" xml:space="preserve">
+    <value>Администриране</value>
+  </data>
+  <data name="UserAdminPermissions_CanControl" xml:space="preserve">
+    <value>Контролиране</value>
+  </data>
+  <data name="AuditAuthorityCommunicationPermissions" xml:space="preserve">
+    <value>Комуникация одитен орган</value>
+  </data>
+  <data name="AuditAuthorityCommunicationPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="AuditAuthorityCommunicationPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="AuditPermissions" xml:space="preserve">
+    <value>Одити</value>
+  </data>
+  <data name="AuditPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="AuditPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="CertAuthorityCommunicationPermissions" xml:space="preserve">
+    <value>Комуникация сертифициращ орган</value>
+  </data>
+  <data name="CertAuthorityCommunicationPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="CertAuthorityCommunicationPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="CertificationPermissions" xml:space="preserve">
+    <value>Certification</value>
+  </data>
+  <data name="CertificationPermissions_CanRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="CertificationPermissions_CanWrite" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="CertificationPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Check sheet</value>
+  </data>
+  <data name="ContractCommunicationPermissions" xml:space="preserve">
+    <value>Кореспонденция към Договори</value>
+  </data>
+  <data name="ContractCommunicationPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ContractCommunicationPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="ContractPermissions" xml:space="preserve">
+    <value>Договори</value>
+  </data>
+  <data name="ContractPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ContractPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="ContractPermissions_CanCheck" xml:space="preserve">
+    <value>Проверяване</value>
+  </data>
+  <data name="ContractPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="ContractReportPermissions" xml:space="preserve">
+    <value>Пакет отчетни документи към Договори</value>
+  </data>
+  <data name="ContractReportPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ContractReportPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="ContractReportPermissions_CanCheck" xml:space="preserve">
+    <value>Проверяване</value>
+  </data>
+  <data name="EuReimbursedAmountPermissions" xml:space="preserve">
+    <value>Възстановени от ЕК суми</value>
+  </data>
+  <data name="EuReimbursedAmountPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="EuReimbursedAmountPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="EvalSessionPermissions" xml:space="preserve">
+    <value>Evaluation session for budeget</value>
+  </data>
+  <data name="EvalSessionPermissions_CanAdministrate" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="EvalSessionPermissions_CanEvaluate" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="EvalSessionPermissions_CanRead" xml:space="preserve">
+    <value>Reading</value>
+  </data>
+  <data name="IrregularityPermissions" xml:space="preserve">
+    <value>Нередности</value>
+  </data>
+  <data name="IrregularityPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="IrregularityPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="IrregularitySignalPermissions" xml:space="preserve">
+    <value>Сигнали за нередности</value>
+  </data>
+  <data name="IrregularitySignalPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="IrregularitySignalPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="IrregularitySignalPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="MonitoringFinancialControlPermissions" xml:space="preserve">
+    <value>Мониторинг и финансов контрол</value>
+  </data>
+  <data name="MonitoringFinancialControlPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="MonitoringFinancialControlPermissions_CanWriteFinancial" xml:space="preserve">
+    <value>Писане по финансова част</value>
+  </data>
+  <data name="MonitoringFinancialControlPermissions_CanWriteTechnical" xml:space="preserve">
+    <value>Писане по техническа част</value>
+  </data>
+  <data name="MonitoringFinancialControlPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="OperationalMapPermissions" xml:space="preserve">
+    <value>Основна структура</value>
+  </data>
+  <data name="OperationalMapPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="OperationalMapPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="OperationalMapPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="ProcedurePermissions" xml:space="preserve">
+    <value>Бюджети</value>
+  </data>
+  <data name="ProcedurePermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ProcedurePermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="ProcedurePermissions_CanCheck" xml:space="preserve">
+    <value>Проверяване</value>
+  </data>
+  <data name="ProcedurePermissions_CanDelete" xml:space="preserve">
+    <value>Изтриване</value>
+  </data>
+  <data name="ProcedurePermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="ProjectDossierPermissions" xml:space="preserve">
+    <value>Проектно досие</value>
+  </data>
+  <data name="ProjectDossierPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ProjectPermissions" xml:space="preserve">
+    <value>Проектни предложения</value>
+  </data>
+  <data name="ProjectPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="ProjectPermissions_CanRegister" xml:space="preserve">
+    <value>Регистриране</value>
+  </data>
+  <data name="ProjectPermissions_CanWithdraw" xml:space="preserve">
+    <value>Оттегляне</value>
+  </data>
+  <data name="SpotCheckPermissions" xml:space="preserve">
+    <value>Проверки на място</value>
+  </data>
+  <data name="SpotCheckPermissions_CanRead" xml:space="preserve">
+    <value>Четене</value>
+  </data>
+  <data name="SpotCheckPermissions_CanWrite" xml:space="preserve">
+    <value>Писане</value>
+  </data>
+  <data name="SpotCheckPermissions_CanMonitorCheckSheet" xml:space="preserve">
+    <value>Контролен лист</value>
+  </data>
+  <data name="Projects_Validate_BudgetException" xml:space="preserve">
+    <value>The budget of project proposal cannot be validated, please contact support team!</value>
+  </data>
+  <data name="Projects_Validate_CantCreate" xml:space="preserve">
+    <value>At this point you can not complete/submit project proposals to this procedures.</value>
+  </data>
+  <data name="Projects_Validate_ProjectDuration" xml:space="preserve">
+    <value>The term of execution must not exceed maximum defined value in the procedure</value>
+  </data>
+  <data name="Projects_Validate_ProjectMaxAmount" xml:space="preserve">
+    <value>The budget amount for grant must not exceed the maximum defined value of {0} BGN.</value>
+  </data>
+  <data name="Projects_Validate_ProjectMinAmount" xml:space="preserve">
+    <value>The budget amount for grant must exceed the minimum defined value of {0} BGN.</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Active" xml:space="preserve">
+    <value>В изпълнение (от дата на стартиране)</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Canceled" xml:space="preserve">
+    <value>Прекратен (към дата на прекратяване)</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Concluded" xml:space="preserve">
+    <value>Сключен</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Ended" xml:space="preserve">
+    <value>Приключен (към датата на приключване)</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Monitored" xml:space="preserve">
+    <value>В изпълнение (под наблюдение)</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Paused" xml:space="preserve">
+    <value>В изпълнение (временно спрян)</value>
+  </data>
+  <data name="HistoricContractExecutionStatus_Suspended" xml:space="preserve">
+    <value>Развален</value>
+  </data>
+  <data name="HistoricContractPartnerType_Contractor" xml:space="preserve">
+    <value>Изпълнител</value>
+  </data>
+  <data name="HistoricContractPartnerType_MembersOfUnification" xml:space="preserve">
+    <value>Членове на обединение</value>
+  </data>
+  <data name="HistoricContractPartnerType_Partner" xml:space="preserve">
+    <value>Партньор</value>
+  </data>
+  <data name="HistoricContractPartnerType_Subcontractor" xml:space="preserve">
+    <value>Подизпълнител</value>
+  </data>
+  <data name="FinanceSource_EEAFM" xml:space="preserve">
+    <value>EEA FM</value>
+  </data>
+  <data name="FinanceSource_NFM" xml:space="preserve">
+    <value>NFM</value>
+  </data>
+  <data name="IrregularityRapporteur_FEADOP" xml:space="preserve">
+    <value>FEADOP</value>
+  </data>
+  <data name="IrregularityRapporteur_MAFF" xml:space="preserve">
+    <value>MAFF</value>
+  </data>
+  <data name="ContractVersionType_PartialAnnex" xml:space="preserve">
+    <value>Partial Annex</value>
+  </data>
+  <data name="ContractVersionType_PartialChange" xml:space="preserve">
+    <value>Partial Change</value>
+  </data>
+  <data name="ContractReportCertAuthorityFinancialCorrectionCSDStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportCertAuthorityFinancialCorrectionCSDStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="ContractReportCertAuthorityFinancialCorrectionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportCertAuthorityFinancialCorrectionStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionStatus_Deleted" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionStatus_Entered" xml:space="preserve">
+    <value>Entered</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionType_ContractCertified" xml:space="preserve">
+    <value>Certified at contract level</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionType_PaymentCertified" xml:space="preserve">
+    <value>Certified at the payment request level</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionType_ProcedureCertified" xml:space="preserve">
+    <value>Certified at procedure level</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionType_ProgrameCertified" xml:space="preserve">
+    <value>Certified at program level</value>
+  </data>
+  <data name="ContractReportCertAuthorityCorrectionType_ProgramePriorityCertified" xml:space="preserve">
+    <value>Certified at priority axis level</value>
+  </data>
+  <data name="AnnualAccountReportAppendixType_Appendix5" xml:space="preserve">
+    <value>Приложение 5</value>
+  </data>
+  <data name="AnnualAccountReportAppendixType_Appendix8" xml:space="preserve">
+    <value>Приложение 8</value>
+  </data>
+  <data name="SapFileType_DistributedLimits" xml:space="preserve">
+    <value>Distributed limits</value>
+  </data>
+  <data name="SapFileType_PaidAmounts" xml:space="preserve">
+    <value>Bank transfers</value>
+  </data>
+  <data name="IndicatorPermissions" xml:space="preserve">
+    <value>Indicators</value>
+  </data>
+  <data name="IndicatorPermissions_CanRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="IndicatorPermissions_CanWrite" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="NewsType_Internal" xml:space="preserve">
+    <value>For the internal system</value>
+  </data>
+  <data name="NewsType_Portal" xml:space="preserve">
+    <value>For the portal</value>
+  </data>
+  <data name="NotificationScope_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="NotificationScope_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="NotificationScope_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="NotificationScope_ProgrammePriority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="NotificationSettingStatus_Actual" xml:space="preserve">
+    <value>Активна</value>
+  </data>
+  <data name="NotificationSettingStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeAssistance_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeAssistance_ToBeSpecified" xml:space="preserve">
+    <value>To be specified</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeAssistance_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeTypeConducting_ProcedureForDirectGrant" xml:space="preserve">
+    <value>Procedure for direct grant</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeTypeConducting_SelectionProcedure" xml:space="preserve">
+    <value>Selection procedure</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeType_IawpTable" xml:space="preserve">
+    <value>IAWP</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeType_IawpTableForIntegratedProcedures" xml:space="preserve">
+    <value>IAWP for integrated procedures</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2014" xml:space="preserve">
+    <value>2014</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2015" xml:space="preserve">
+    <value>2015</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2016" xml:space="preserve">
+    <value>2016</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2017" xml:space="preserve">
+    <value>2017</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2018" xml:space="preserve">
+    <value>2018</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2019" xml:space="preserve">
+    <value>2019</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2020" xml:space="preserve">
+    <value>2020</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2021" xml:space="preserve">
+    <value>2021</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2022" xml:space="preserve">
+    <value>2022</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammeYear_Year2023" xml:space="preserve">
+    <value>2023</value>
+  </data>
+  <data name="PublicDiscussionCommentStatus_Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="PublicDiscussionCommentStatus_Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="PublicDiscussionCommentStatus_Unactivated" xml:space="preserve">
+    <value>Unactivated</value>
+  </data>
+  <data name="PublicDiscussionCommentType_AdministrativeAuthority" xml:space="preserve">
+    <value>МА/LAG</value>
+  </data>
+  <data name="PublicDiscussionCommentType_Candidate" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="PublicDiscussionGuidelineStatus_Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="PublicDiscussionGuidelineStatus_Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="PublicDiscussionGuidelineStatus_Unactivated" xml:space="preserve">
+    <value>Unactivated</value>
+  </data>
+  <data name="PublicDiscussionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="PublicDiscussionStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="PublicDiscussionCommentsSectionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="PublicDiscussionCommentsSectionStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="ContractReportDocumentType_Financial" xml:space="preserve">
+    <value>Финансов отчет</value>
+  </data>
+  <data name="ContractReportDocumentType_MicrodataType1" xml:space="preserve">
+    <value>Микроданни участници (ФЕПНЛ)</value>
+  </data>
+  <data name="ContractReportDocumentType_MicrodataType2" xml:space="preserve">
+    <value>Микроданни участници (ЕСФ)</value>
+  </data>
+  <data name="ContractReportDocumentType_MicrodataType3" xml:space="preserve">
+    <value>Микроданни хранителни продукти</value>
+  </data>
+  <data name="ContractReportDocumentType_MicrodataType4" xml:space="preserve">
+    <value>Микроданни на АСП</value>
+  </data>
+  <data name="ContractReportDocumentType_Payment" xml:space="preserve">
+    <value>Искане за плащане</value>
+  </data>
+  <data name="ContractReportDocumentType_Technical" xml:space="preserve">
+    <value>Технически отчет</value>
+  </data>
+  <data name="EvalSessionResultStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="EvalSessionResultStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EvalSessionAdminAdmissResultStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionAdminAdmissResultStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="EvalSessionEvaluation_NotPassed" xml:space="preserve">
+    <value>Not passed</value>
+  </data>
+  <data name="EvalSessionEvaluation_Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="ProgrammeProcedureManualStatus_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="ProgrammeProcedureManualStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="ProgrammeProcedureManualStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProgrammeCheckListType_CertReport" xml:space="preserve">
+    <value>Доклад по сертификация</value>
+  </data>
+  <data name="ProgrammeCheckListType_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="ProgrammeCheckListType_ContractReport" xml:space="preserve">
+    <value>Пакет отчетни документи</value>
+  </data>
+  <data name="ProgrammeCheckListType_IrregularitySignal" xml:space="preserve">
+    <value>Сигнал за нередност</value>
+  </data>
+  <data name="ProgrammeCheckListType_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="ProgrammeCheckListType_Procurements" xml:space="preserve">
+    <value>Процедура за избор на изпълнител</value>
+  </data>
+  <data name="ProgrammeCheckListType_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="ProgrammeCheckListType_SpotCheck" xml:space="preserve">
+    <value>Проверки на място</value>
+  </data>
+  <data name="ProgrammeCheckListType_ContractReportFinancialCorrection" xml:space="preserve">
+    <value>Корекция на верифицирани суми на ниво РОД</value>
+  </data>
+  <data name="ProgrammeCheckListType_ContractReportCorrection" xml:space="preserve">
+    <value>Корекция на верифицирани суми на други нива</value>
+  </data>
+  <data name="ProgrammeCheckListType_ContractReportFinancialRevalidation" xml:space="preserve">
+    <value>Препотвърждаване на верифицирани суми на ниво РОД</value>
+  </data>
+  <data name="ProgrammeCheckListType_ContractReportRevalidation" xml:space="preserve">
+    <value>Препотвърждаване на верифицирани суми на други нива</value>
+  </data>
+  <data name="ProgrammeCheckListVersionXmlStatus_Actual" xml:space="preserve">
+    <value>Актуален</value>
+  </data>
+  <data name="ProgrammeCheckListVersionXmlStatus_Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="ProgrammeCheckListVersionXmlStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ProgrammeCheckListVersionXmlStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ProgrammeCheckListStatus_NotActivated" xml:space="preserve">
+    <value>Неактивиран</value>
+  </data>
+  <data name="ProgrammeCheckListStatus_Active" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="ProgrammeCheckListStatus_Inactive" xml:space="preserve">
+    <value>Неактивен</value>
+  </data>
+  <data name="CheckSheetType_CertReport" xml:space="preserve">
+    <value>Доклад по сертификация</value>
+  </data>
+  <data name="CheckSheetType_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="CheckSheetType_ContractReport" xml:space="preserve">
+    <value>Пакет отчетни документи</value>
+  </data>
+  <data name="CheckSheetType_IrregularitySignal" xml:space="preserve">
+    <value>Сигнал за нередност</value>
+  </data>
+  <data name="CheckSheetType_Procedure" xml:space="preserve">
+    <value>Процедура</value>
+  </data>
+  <data name="CheckSheetType_Procurement" xml:space="preserve">
+    <value>Процедура за избор на изпълнител</value>
+  </data>
+  <data name="CheckSheetType_Programme" xml:space="preserve">
+    <value>Оперативна програма</value>
+  </data>
+  <data name="CheckSheetType_SpotCheck" xml:space="preserve">
+    <value>Проверки на място</value>
+  </data>
+  <data name="CheckSheetType_ContractReportFinancialCorrection" xml:space="preserve">
+    <value>Корекция на верифицирани суми на ниво РОД</value>
+  </data>
+  <data name="CheckSheetType_ContractReportFinancialRevalidation" xml:space="preserve">
+    <value>Препотвърждаване на верифицирани суми на ниво РОД</value>
+  </data>
+  <data name="CheckSheetType_ContractReportCorrection" xml:space="preserve">
+    <value>Корекция на верифицирани суми на други нива</value>
+  </data>
+  <data name="CheckSheetType_ContractReportRevalidation" xml:space="preserve">
+    <value>Препотвърждаване на верифицирани суми на други нива</value>
+  </data>
+  <data name="CheckSheetStatus_Active" xml:space="preserve">
+    <value>В изпълнение</value>
+  </data>
+  <data name="CheckSheetStatus_Canceled" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="CheckSheetStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="CheckSheetStatus_Ended" xml:space="preserve">
+    <value>Приключен</value>
+  </data>
+  <data name="CheckSheetStatus_Paused" xml:space="preserve">
+    <value>Прекъснат</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Create" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Complete" xml:space="preserve">
+    <value>Приключване</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Return" xml:space="preserve">
+    <value>Връщане</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Cancel" xml:space="preserve">
+    <value>Анулиране</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Pause" xml:space="preserve">
+    <value>Прекъсване</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Activate" xml:space="preserve">
+    <value>В изпълнение</value>
+  </data>
+  <data name="EvalSessionResultType_AdminAdmiss" xml:space="preserve">
+    <value>Result from admin admiss evaluation</value>
+  </data>
+  <data name="EvalSessionResultType_Preliminary" xml:space="preserve">
+    <value>Result from preliminary evaluation</value>
+  </data>
+  <data name="EvalSessionResultType_Standing" xml:space="preserve">
+    <value>Result from standing</value>
+  </data>
+  <data name="EvalSessionResultStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="EvalSessionResultStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="EvalSessionEvaluationResult_Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="EvalSessionEvaluationResult_NotPassed" xml:space="preserve">
+    <value>Not passed</value>
+  </data>
+  <data name="MonitorstatYear_2017" xml:space="preserve">
+    <value>2017</value>
+  </data>
+  <data name="MonitorstatYear_2018" xml:space="preserve">
+    <value>2018</value>
+  </data>
+  <data name="MonitorstatYear_2019" xml:space="preserve">
+    <value>2019</value>
+  </data>
+  <data name="MonitorstatYear_2020" xml:space="preserve">
+    <value>2020</value>
+  </data>
+  <data name="MonitorstatYear_2021" xml:space="preserve">
+    <value>2021</value>
+  </data>
+  <data name="MonitorstatYear_2022" xml:space="preserve">
+    <value>2022</value>
+  </data>
+  <data name="MonitorstatYear_2023" xml:space="preserve">
+    <value>2023</value>
+  </data>
+  <data name="ProcedureMonitorstatDocumentStatus_Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="ProcedureMonitorstatDocumentStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureMonitorstatRequestStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureMonitorstatRequestStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ProjectMonitorstatRequestStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ProjectMonitorstatRequestStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProjectMonitorstatRequestStatus_Finished" xml:space="preserve">
+    <value>Prepared</value>
+  </data>
+  <data name="ProjectMonitorstatRequestStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ProcedureMassCommunicationStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureMassCommunicationStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="EvalSessionStandingStatus_AppliedWithChanges" xml:space="preserve">
+    <value>Applied with changes</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionType_ContractRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво договор</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionType_PaymentRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво искане за плащане</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionType_ProcedureRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво процедура</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionType_ProgrammePriorityRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво приоритетна ос</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionType_ProgrammeRevalidated" xml:space="preserve">
+    <value>Препотвърдени на ниво програма</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionStatus_Deleted" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityCorrectionStatus_Entered" xml:space="preserve">
+    <value>Entered</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityFinancialCorrectionCSDStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityFinancialCorrectionCSDStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityFinancialCorrectionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ContractReportRevalidationCertAuthorityFinancialCorrectionStatus_Ended" xml:space="preserve">
+    <value>Ended</value>
+  </data>
+  <data name="CheckSheetVersionXmlAction_Notify" xml:space="preserve">
+    <value>Насочване</value>
+  </data>
+  <data name="ProcedureDiscussionType_AdministrativeAuthority" xml:space="preserve">
+    <value>МА/LAG</value>
+  </data>
+  <data name="ProcedureDiscussionType_Candidate" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="ProcedureDiscussionStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureDiscussionStatus_Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="ProcedureDiscussionStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="ProcedureDiscussionStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_ContractConclusionDocuments" xml:space="preserve">
+    <value>Документи за сключване на Договор за безвъзмездна финансова помощ</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_Complaint" xml:space="preserve">
+    <value>Жалба</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_ProjectProposalWithdrawal" xml:space="preserve">
+    <value>Оттегляне на проектно предложение</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSource_Beneficiary" xml:space="preserve">
+    <value>Бенефициент</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSource_ManagingAuthority" xml:space="preserve">
+    <value>ОО</value>
+  </data>
+  <data name="ProjectCommunicationAnswerStatus_Answer" xml:space="preserve">
+    <value>Отговор</value>
+  </data>
+  <data name="ProjectCommunicationAnswerStatus_Canceled" xml:space="preserve">
+    <value>Оттеглен</value>
+  </data>
+  <data name="ProjectCommunicationAnswerStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ProjectCommunicationAnswerStatus_AnswerFinalized" xml:space="preserve">
+    <value>Finished answer</value>
+  </data>
+  <data name="ProjectCommunicationAnswerStatus_PaperAnswer" xml:space="preserve">
+    <value>Sent answer on paper</value>
+  </data>
+  <data name="ProjectCommunicationAnswerSource_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="ProjectCommunicationAnswerSource_ManagingAuthority" xml:space="preserve">
+    <value>Managing authority</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationStatus_DraftQuestion" xml:space="preserve">
+    <value>Въпрос в чернова</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationStatus_Question" xml:space="preserve">
+    <value>Изпратен въпрос</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationStatus_Canceled" xml:space="preserve">
+    <value>Анулиран</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationStatus_Expired" xml:space="preserve">
+    <value>Изтекъл срок за отговор</value>
+  </data>
+  <data name="ContractType_ServiceAgreement" xml:space="preserve">
+    <value>Служебен договор</value>
+  </data>
+  <data name="ProjectRegistrationStatus_RegisteredService" xml:space="preserve">
+    <value>Service registration</value>
+  </data>
+  <data name="ProgrammePriorityType_FirstClass" xml:space="preserve">
+    <value>Първостепенен</value>
+  </data>
+  <data name="ProgrammePriorityType_SecondClass" xml:space="preserve">
+    <value>Второстепенен</value>
+  </data>
+  <data name="ProgrammePriorityType_ThirdClass" xml:space="preserve">
+    <value>Третостепенен</value>
+  </data>
+  <data name="DirectionStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="DirectionStatus_Entered" xml:space="preserve">
+    <value>Въведен</value>
+  </data>
+  <data name="ProcedureKind_Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="ProcedureKind_Schema" xml:space="preserve">
+    <value>Schema for apply</value>
+  </data>
+  <data name="ApplicableSection_Activities" xml:space="preserve">
+    <value>Дейности</value>
+  </data>
+  <data name="ApplicableSection_AdditionalInformation" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="ApplicableSection_AttachedDocuments" xml:space="preserve">
+    <value>Прикачени документи</value>
+  </data>
+  <data name="ApplicableSection_BasicData" xml:space="preserve">
+    <value>Основни данни</value>
+  </data>
+  <data name="ApplicableSection_Beneficary" xml:space="preserve">
+    <value>Данни за кандидата</value>
+  </data>
+  <data name="ApplicableSection_Budget" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="ApplicableSection_Directions" xml:space="preserve">
+    <value>Финансова информация – направления</value>
+  </data>
+  <data name="ApplicableSection_Indicators" xml:space="preserve">
+    <value>Индикатори</value>
+  </data>
+  <data name="ApplicableSection_Partners" xml:space="preserve">
+    <value>Данни за партньори</value>
+  </data>
+  <data name="ApplicableSection_ProcurementPlan" xml:space="preserve">
+    <value>План за външно възлагане</value>
+  </data>
+  <data name="ApplicableSection_Programme" xml:space="preserve">
+    <value>Основна организация</value>
+  </data>
+  <data name="ApplicableSection_ProgrammePriority" xml:space="preserve">
+    <value>Разпоредител на бюджетни средства</value>
+  </data>
+  <data name="ApplicableSection_SummaryData" xml:space="preserve">
+    <value>Финансова информация – обобщени данни</value>
+  </data>
+  <data name="ApplicableSection_Team" xml:space="preserve">
+    <value>Екип</value>
+  </data>
+  <data name="ApplicableSection_ElectronicDeclarations" xml:space="preserve">
+    <value>Е-Декларации</value>
+  </data>
+  <data name="ProcurementStatus_Active" xml:space="preserve">
+    <value>Активна</value>
+  </data>
+  <data name="ProcurementStatus_Canceled" xml:space="preserve">
+    <value>Отменена</value>
+  </data>
+  <data name="ProcurementStatus_Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="ContractReportType_Financial" xml:space="preserve">
+    <value>Финансов отчет</value>
+  </data>
+  <data name="ProcedureMonitorstatEconomicActivityStatus_Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="ProcedureMonitorstatEconomicActivityStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="ProcedureMonitorstatEconomicActivityType_Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="ProcedureMonitorstatEconomicActivityType_MainAndAdditional" xml:space="preserve">
+    <value>Main and additional</value>
+  </data>
+  <data name="ProcedureSpecFieldMaxLength_IBAN" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="MonitorstatYear_2014" xml:space="preserve">
+    <value>2014</value>
+  </data>
+  <data name="MonitorstatYear_2015" xml:space="preserve">
+    <value>2015</value>
+  </data>
+  <data name="MonitorstatYear_2016" xml:space="preserve">
+    <value>2016</value>
+  </data>
+  <data name="ProjectMonitorstatRequestStatus_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_ChangesAndCircumstances" xml:space="preserve">
+    <value>Changes and circumstances</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="FieldType_CheckBox" xml:space="preserve">
+    <value>CheckBox</value>
+  </data>
+  <data name="FieldType_Numeric" xml:space="preserve">
+    <value>Numeric value</value>
+  </data>
+  <data name="FieldType_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="FieldType_Currency" xml:space="preserve">
+    <value>Monetary value (BGN)</value>
+  </data>
+  <data name="FieldType_Nomenclature" xml:space="preserve">
+    <value>Drop down menu</value>
+  </data>
+  <data name="FieldType_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldType_Period" xml:space="preserve">
+    <value>Time period</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_TourismMinistryReport" xml:space="preserve">
+    <value>Отчитане пред Министерството на туризма</value>
+  </data>
+  <data name="SebraPaymentType_CurrentSubsidiesForEnterprises" xml:space="preserve">
+    <value>30 - Текущи субсидии за предприятия</value>
+  </data>
+  <data name="SebraPaymentType_PaymentsForFixedAssetsMajorRepairsAndCapitalTransfers" xml:space="preserve">
+    <value>50 - Плащания за дълготрайни активи, основен ремонт и капиталови трансфери</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_ServiceOfAct" xml:space="preserve">
+    <value>Service of acts</value>
+  </data>
+  <data name="ProjectManagingAuthorityCommunicationSubject_ManagingAuthorityReport" xml:space="preserve">
+    <value>Reporting</value>
+  </data>
+</root>

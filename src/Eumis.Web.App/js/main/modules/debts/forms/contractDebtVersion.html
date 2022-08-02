@@ -1,0 +1,41 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="contractDebts_contractDebtVersionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'contractDebtVersionStatuses'" ng-model="model.status" ng-disabled="true" l10n-text="contractDebts_contractDebtVersionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'contractDebtExecutionStatuses'" ng-model="model.executionStatus" ng-readonly="form.$readonly || (!form.$readonly && model.status !== 'draft')" l10n-text="contractDebts_contractDebtVersionForm_executionStatus" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.euAmount" l10n-text="contractDebts_contractDebtVersionForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.bgAmount" l10n-text="contractDebts_contractDebtVersionForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="contractDebts_contractDebtVersionForm_totalAmount" field-name="totalAmount">
+      <sc-money ng-model="model.totalAmount" name="totalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('approved')" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" mode="id" alias="'contractDebtCertStatuses'" ng-model="model.certStatus" ng-required="!model.contractDebtVersionId" l10n-text="contractDebts_contractDebtVersionForm_certStatus" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="text" ng-model="model.createdByUser" ng-readonly="true" l10n-text="contractDebts_contractDebtVersionForm_createdByUser" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.certStatus == 'partial'">
+    <sc-field type="money" ng-model="model.certEuAmount" l10n-text="contractDebts_contractDebtVersionForm_certEuAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.certBgAmount" l10n-text="contractDebts_contractDebtVersionForm_certBgAmount" class="col-sm-4 col-md-3"></sc-field>
+
+    <sc-field-group class="col-sm-4 col-md-3" text="contractDebts_contractDebtVersionForm_certTotalAmount" field-name="certTotalAmount">
+      <sc-money ng-model="model.certTotalAmount" name="certTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate('cert')" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.createNotes" ng-show="model.contractDebtVersionId" l10n-text="contractDebts_contractDebtVersionForm_createNotes" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="contractDebts_contractDebtVersionForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" ng-readonly="form.$readonly || model.status === 'draft'" l10n-text="contractDebts_contractDebtVersionForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

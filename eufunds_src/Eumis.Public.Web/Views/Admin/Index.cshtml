@@ -1,0 +1,33 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Global_AdministrativeEnquiries)
+
+<div class="container">
+    <div class="col-xs-12 home-stat-boxes" id="@Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID">
+        <div class="link-box">
+            <div class="head green">
+                <img src="/Content/img/icons/stats.png" alt="" />
+            </div>
+            <div class="title">
+                <strong>@Texts.Global_AdministrativeEnquiries</strong>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.Admin.ActionNames.UsersCount, MVC.Admin.Name)" class="stat wait">
+                        @Texts.Admin_UsersCount
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="@Url.Action(MVC.Admin.ActionNames.OPStatistics, MVC.Admin.Name)" class="stat wait">
+                        @Texts.Admin_OPStatistics
+                    </a>
+                </div>
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+</div>

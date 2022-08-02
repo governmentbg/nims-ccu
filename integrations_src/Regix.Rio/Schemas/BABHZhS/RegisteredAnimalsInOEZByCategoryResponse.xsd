@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/BABH/BABHZhS/RegisteredAnimalsInOEZByCategoryResponse" targetNamespace="http://egov.bg/RegiX/BABH/BABHZhS/RegisteredAnimalsInOEZByCategoryResponse" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Address">
+		<xs:annotation>
+			<xs:documentation>Адрес</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DistrictName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Област</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MunicipalityName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Община</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SettlementName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Населено място</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+      <xs:element name="AddressDescription" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание на адрес</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FarmerData">
+		<xs:annotation>
+			<xs:documentation>Данни за земеделския стопанин</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FarmerName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Име, презиме, фамилия за физическо лице/Наименование на юридическо лице или едноличен търговец</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarmerIdentifier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ЕГН/ЕИК на земеделски стопанин</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Address" type="Address" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес на регистрация на земеделския стопанин</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FarmIdentifiers">
+		<xs:annotation>
+			<xs:documentation>Идентификационни номера на ОЕЗ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FarmNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер на животновъден обект</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OldFarmNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стар номер на животновъден обект</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RelatedPersonDataType">
+		<xs:annotation>
+			<xs:documentation>Лице, свързано с обекта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Име, презиме, фамилия за физическо лице/Наименование на юридическо лице или едноличен търговец</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identifier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ЕГН/ЕИК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип на връзка на лицето с животновъдния обект (собственик, наемател или др.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnimalCategory">
+		<xs:annotation>
+			<xs:documentation>Животни в категотия</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CategoryCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код на категория животни</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CategoryName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Име на категория животни</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnimalsCount" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Брой животни за категорията</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnimalUnitFactor" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Коефициент за приравняване към животински единици</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnimalUnits" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Брой животновъдни единици</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RelatedPersonData">
+		<xs:annotation>
+			<xs:documentation>Данни за лица, свързани с обекта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Person" type="RelatedPersonDataType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Лице, свързано с обекта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FarmInformation">
+		<xs:annotation>
+			<xs:documentation>Данни за животновъден обект</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FarmerRole" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип на връзката на лицето с животновъдния обект (собственик, наемател или др.) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarmIdentifiers" type="FarmIdentifiers" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер на животновъден обект (стар номер)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarmAddress" type="Address" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес на регистрация на животновъдния обект</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RelatedPersonData" type="RelatedPersonData" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данни за лица, свързани с обекта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnimalsByCategories" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данни за животни по категории</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AnimalCategory" type="AnimalCategory" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Данни за животни в кагегория</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      <xs:element name="FarmType" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вид на обекта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FarmsData">
+		<xs:annotation>
+			<xs:documentation>Данни за животновъдни обекти(ОЕЗ)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="FarmInformation" type="FarmInformation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данни за животновъден обект</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegisteredAnimalsInOEZByCategoryResponseType">
+		<xs:annotation>
+			<xs:documentation>Справка за животни в ОЕЗ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ValidDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата, към която се отнасят данните от справката</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExecutionDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата, към която е изготвена справката</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarmerData" type="FarmerData" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данни за земеделския стопанин</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FarmsData" type="FarmsData" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данни за животновъдни обекти(ОЕЗ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RegisteredAnimalsInOEZByCategoryResponse" type="RegisteredAnimalsInOEZByCategoryResponseType">
+		<xs:annotation>
+			<xs:documentation>Справка за животни в ОЕЗ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

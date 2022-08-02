@@ -1,0 +1,114 @@
+﻿@model R_10041.Contractors
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.ContractorCollection != null && Model.ContractorCollection.Count > 0)
+        {
+            string bulgaria = Eumis.Documents.Constants.BulgariaId;
+            for (int i = 0; i < Model.ContractorCollection.Count; i++)
+            {
+                <table class="contractors">
+                    <tbody>
+                        <tr>
+                            <td colspan="2"><strong>@Contractor.ContractorEntity</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 35%;">@Contractor.Uin</td>
+                            <td style="width: 65%;">
+                                @if (Model.ContractorCollection[i].UinType != null && !string.IsNullOrWhiteSpace(Model.ContractorCollection[i].UinType.Name))
+                                {
+                                    <text>@Model.ContractorCollection[i].UinType.Name: </text>
+                                }
+
+                                @Model.ContractorCollection[i].Uin
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Contractor.Name</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractorCollection[i].Name ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@Contractor.NameEN</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractorCollection[i].NameEN ?? string.Empty)</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"><strong>@Company.Seat</strong></td>
+                        </tr>
+
+                        @{
+                bool hasSeatCountry = Model.ContractorCollection[i].Seat != null && Model.ContractorCollection[i].Seat.Country != null && !String.IsNullOrWhiteSpace(Model.ContractorCollection[i].Seat.Country.Code)
+                && !String.IsNullOrWhiteSpace(Model.ContractorCollection[i].Seat.Country.Name);
+                        }
+
+                        <tr>
+                            <td>@Address.Country</td>
+                            <td>
+                                @if (hasSeatCountry)
+                                {
+                                    @Model.ContractorCollection[i].Seat.Country.Name
+                                }
+                            </td>
+                        </tr>
+
+                        @if (hasSeatCountry)
+                        {
+                            if (bulgaria.Equals(Model.ContractorCollection[i].Seat.Country.Code))
+                            {
+                                <tr>
+                                    <td>@Address.Settlement</td>
+                                    <td>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ContractorCollection[i].Seat.Settlement ?? new R_10001.PublicNomenclature())</td>
+                                </tr>
+
+                                <tr>
+                                    <td>@Address.PostCode</td>
+                                    <td>@Model.ContractorCollection[i].Seat.PostCode</td>
+                                </tr>
+
+                                <tr>
+                                    <td>@Address.Street</td>
+                                    <td>@Model.ContractorCollection[i].Seat.Street</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@Address.FullAddress</td>
+                                    <td>@Model.ContractorCollection[i].Seat.FullAddress</td>
+                                </tr>
+                            }
+                        }
+                        <tr>
+                            <td colspan="2"><strong>@Contractor.Representative</strong></td>
+                        </tr>
+                        <tr>
+                            <td>@Contractor.RepresentativeNames</td>
+                            <td>@Model.ContractorCollection[i].RepresentativeNames</td>
+                        </tr>
+                        <tr>
+                            <td>@Contractor.RepresentativeIDNumber</td>
+                            <td>@Model.ContractorCollection[i].RepresentativeIDNumber</td>
+                        </tr>
+                        <tr>
+                            <td>@Contractor.VATRegistration</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.ContractorCollection[i].VATRegistration ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                @if (Model.ContractorCollection[i].IsPrivateLegal)
+                                {
+                                    @Contractor.IsPrivateLegal
+                                }
+                                else
+                                {
+                                    @Contractor.IsCountryLegal
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

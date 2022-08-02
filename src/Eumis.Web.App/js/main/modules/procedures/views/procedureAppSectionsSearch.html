@@ -1,0 +1,45 @@
+﻿<ng-form name="procedureAppSectionSearchForm" sc-validate="{}">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_appSectionsSearch_title"></h5>
+        </div>
+        <div class="table-buttons pull-right">
+          <sc-button name="editBtn" ng-if="canEditApplicationSection" btn-click="edit()" text="procedures_appSectionsSearch_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && !isProcedureReadonly"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+          <sc-button name="saveBtn" btn-click="save()" text="procedures_appSectionsSearch_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_appSectionsSearch_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+          </sc-button>
+        </div>
+        <div class="applicationSection">
+          <sc-datatable items="applicationSections.sections" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+            <sc-column title="procedures_appSectionsSearch_isSelected" has-content="true" width=50>
+              <sc-field type="nomenclature" alias="'boolean'" mode="id" name="applicationSections[{{item.orderNum-1}}].isSelected" ng-model="item.isSelected" ng-required="true" ng-readonly="!editMode"></sc-field>
+            </sc-column>
+            <sc-column data="applicationSectionDesc" title="procedures_appSectionsSearch_section">
+            </sc-column>
+            <sc-column title="procedures_appSectionsSearch_additionalSettings" sortable="false" has-content="true" style="float: right; margin-left: 14px; z-index: 200; position: relative;">
+              <table>
+                <tr></tr>
+                <tr ng-repeat-start="additionalSetting in item.additionalSettings">
+                  <td ng-if="!editMode || !item.isSelected"><input type="checkbox" ng-model="additionalSetting.isSelected" ng-disabled="true"></td>
+                  <td ng-if="editMode && item.isSelected"><input type="checkbox" ng-model="additionalSetting.isSelected"></td>
+                  <td> {{ additionalSetting.description }}</td>
+                </tr>
+                  <tr>
+                    <td><img style="height: 13px; position: relative; top: -8px; cursor: pointer;" src="img/info.png"></td>
+                    <td colspan="2">({{ additionalSetting.info }})</td>
+                  </tr>
+                <tr ng-repeat-end style="display:none"></tr>
+              </table>
+            </sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-form>

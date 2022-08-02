@@ -1,0 +1,22 @@
+<ng-form name="editProcedureDirectionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="procedures_editProcedureDirection_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="procedures_editProcedureDirection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode && !isProcedureReadonly"
+          ng-if="programmePriorityStatus !== 'canceled'" ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="delete()" text="procedures_editProcedureDirection_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode && !isProcedureReadonly"
+          ng-if="programmePriorityStatus !== 'canceled'" ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="procedures_editProcedureDirection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode && !isProcedureReadonly">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="procedures_editProcedureDirection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+    <div class="well-sm panel-body">
+      <eumis-procedure-direction name="procedureDirectionForm" ng-model="procedureDirection"></eumis-procedure-direction>
+    </div>
+  </div>
+</ng-form>

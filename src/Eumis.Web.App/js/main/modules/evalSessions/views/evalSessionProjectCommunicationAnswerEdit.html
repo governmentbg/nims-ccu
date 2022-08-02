@@ -1,0 +1,48 @@
+﻿<ng-form name="editProjectRegistrationCommunicationForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionProjectCommunicationAnswer_title"></strong>
+      <div class="pull-right">
+        <sc-link-button name="printBtn" ng-href="api/projects/{{projectId}}/communications/{{communicationId}}/answers/{{answerId}}/print" ng-show="canPrintRegistration" target="_blank" sc-access-token text="evalSessions_editEvalSessionProjectCommunicationAnswer_print" class="btn btn-primary btn-xs" icon="glyphicon-print"
+          ng-disabled="!$canDo('ProjectCommunicationActions.PrintRegistration', communicationId)">
+        </sc-link-button>
+        <sc-button name="registerBtn" btn-click="register()" ng-show="canRegisterAnswer" text="evalSessions_editEvalSessionProjectCommunicationAnswer_register" class="btn btn-primary btn-xs"
+          ng-disabled="!$canDo('ProjectCommunicationActions.Register', communicationId) || !isSessionActive">
+        </sc-button>
+        <sc-button name="backBtn" btn-click="back()" text="evalSessions_editEvalSessionProjectCommunicationAnswer_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left"></sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body" ng-class="{'deactivated-panel-body' : answer.status === 'canceled' }">
+      <eumis-project-communication-answer-data name="projectRegistrationCommunicationAnswerForm" ng-model="answer"></eumis-project-communication-answer-data>
+
+      <div class="row">
+        <eumis-structured-parent-child-document text="evalSessions_editEvalSessionProjectCommunicationAnswer_answerTemplate"
+          view-mode document="projectCommunicationAnswer" parent-gid="answer.communicationGid" child-gid="answer.answerGid" class="col-sm-4 col-md-3">
+        </eumis-structured-parent-child-document>
+      </div>
+
+      <div ng-show="answer.projectCommunicationFile">
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectCommunicationAnswer_file" ></label>
+        <div class="row">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{answer.projectCommunicationFile.url}}" sc-access-token title="{{answer.projectCommunicationFile.name}}">
+              <span class="glyphicon glyphicon-file">{{answer.projectCommunicationFile.name}}</span>
+            </a>
+          </div>
+        </div>
+
+        <label class="control-label" style="width: 100%;" l10n-text="evalSessions_editEvalSessionProjectCommunicationAnswer_signatures" ></label>
+        <div class="row" ng-repeat="signature in answer.projectCommunicationFileSignatures">
+          <div class="form-group col-sm-5 col-md-5">
+            <a target="_blank" ng-href="{{signature.url}}" sc-access-token title="{{signature.name}}">
+              <span class="glyphicon glyphicon-file">{{signature.name}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ng-form>

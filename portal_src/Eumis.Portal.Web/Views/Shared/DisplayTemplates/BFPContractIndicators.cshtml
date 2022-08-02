@@ -1,0 +1,151 @@
+﻿@model R_10040.BFPContractIndicators
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BFPContractIndicators.Name</th>
+                <th>@BFPContractIndicators.Type</th>
+                <th>@BFPContractIndicators.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.BFPContractIndicatorCollection != null && Model.BFPContractIndicatorCollection.Count > 0)
+            {
+                for (int i = 0; i < Model.BFPContractIndicatorCollection.Count; i++)
+                {
+                    if (Model.BFPContractIndicatorCollection[i].SelectedIndicator != null)
+                    {
+                        <tr class="@(Model.BFPContractIndicatorCollection[i].IsDeactivated || !Model.BFPContractIndicatorCollection[i].isActive ? "deactivated-gray" : "")">
+                            <td style="word-break: break-all">
+                                <span class="filled-value">
+                                    @Model.BFPContractIndicatorCollection[i].SelectedIndicator.Name
+                                    @if (Model.BFPContractIndicatorCollection[i].IsDeactivated)
+                                    {
+                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                                    }
+                                    
+                                    @if (!Model.BFPContractIndicatorCollection[i].isActive)
+                                    {
+                                        <img class="info-icon" src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.ElementCanceled" data-trigger="hover" alt="" data-original-title="" title="">
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.TypeName)
+                            </td>
+                            <td style="width: 130px;">
+                                <a title="" class="history-btn">
+                                    <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr class="history-table @(Model.BFPContractIndicatorCollection[i].IsDeactivated || !Model.BFPContractIndicatorCollection[i].isActive ? "deactivated-gray" : "")">
+                            <td colspan="3">
+                                <div class="history-table-wrapper clearfix">
+                                    <div class="clearfix">
+                                        <div class="form-group col-lg-12 col-md-12">
+                                            @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.Name, ProgrammeIndicators.Name)
+                                            @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.Name)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.TypeName, ProgrammeIndicators.Type)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.TypeName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.TrendName, ProgrammeIndicators.Trend)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.TrendName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.KindName, ProgrammeIndicators.Kind)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.KindName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.MeasureName, ProgrammeIndicators.Measure)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.MeasureName)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedReport, ProgrammeIndicators.AggregatedReport)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedReport)
+                                    </div>
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedTarget, ProgrammeIndicators.AggregatedTarget)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SelectedIndicator.AggregatedTarget)
+                                    </div>
+
+                                    @if (Model.BFPContractIndicatorCollection[i].SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].BaseMen, ProgrammeIndicators.BaseMen)
+                                            @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].BaseMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].BaseWomen, ProgrammeIndicators.BaseWomen)
+                                            @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].BaseWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].BaseTotal, ProgrammeIndicators.BaseTotal)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].BaseTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    @if (Model.BFPContractIndicatorCollection[i].SelectedIndicator.HasGenderDivision)
+                                    {
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].TargetMen, ProgrammeIndicators.TargetMen)
+                                            @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].TargetMen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
+                                            @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].TargetWomen, ProgrammeIndicators.TargetWomen)
+                                            @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].TargetWomen, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                        </div>
+                                    }
+
+                                    <div class="form-group col-lg-4 col-md-6">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].TargetTotal, ProgrammeIndicators.TargetTotal)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].TargetTotal, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].Description, ProgrammeIndicators.Description)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                    </div>
+
+                                    <div class="form-group col-md-10">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].ProgrammePriority, BFPContractIndicators.ProgrammePriority)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].ProgrammePriority)
+                                    </div>
+                                    
+                                    <div class="form-group col-md-2">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].FinanceSource, BFPContractIndicators.FinanceSource)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].FinanceSource)
+                                    </div>
+                                    
+                                    <div class="form-group col-md-12">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].InvestmentPriority, BFPContractIndicators.InvestmentPriority)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].InvestmentPriority)
+                                    </div>
+                                    
+                                    <div class="form-group col-md-12">
+                                        @Html.LabelFor(m => m.BFPContractIndicatorCollection[i].SpecificTarget, BFPContractIndicators.SpecificTarget)
+                                        @Html.DisplayFor(m => m.BFPContractIndicatorCollection[i].SpecificTarget)
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

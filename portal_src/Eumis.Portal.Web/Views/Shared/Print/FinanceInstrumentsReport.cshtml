@@ -1,0 +1,95 @@
+﻿@model R_10082.FinanceInstrumentsReport
+
+@if (Model != null)
+{
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>@FinanceInstrumentsReport.Name</th>
+                    <th style="min-width: 150px;">@FinanceInstrumentsReport.Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.ExpectedLeverageLoanAmount</strong></p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ExpectedLeverageLoanAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.ProgressLeverageYearProductAmount</strong></p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ProgressLeverageYearProductAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.InvestmentParticipationPreviousYearsAmount</strong></p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.InvestmentParticipationPreviousYearsAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.ContributionProgramActuallyPaidTotalAmount</strong></p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.PaymentsFinalRecipientsAmount</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.CommitmentsGuaranteeAmount</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.ExpenseManagementAmount</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.ManagementFeesAmount</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.CorrespondingPublicSpendingAmount</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.PaymentsFinalRecipientsAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CommitmentsGuaranteeAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ExpenseManagementAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ManagementFeesAmount)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CorrespondingPublicSpendingAmount)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.OtherContributionsOutsideESI</strong></p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Public</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Private</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Total</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIPublic)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIPrivate)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESITotal)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.OtherContributionsOutsideESIMobilizedFinalRecipients</strong></p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Public</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Private</p>
+                        <p class="high-lines">- @FinanceInstrumentsReport.Total</p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"></p><br />
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIMobilizedFinalRecipientsPublic)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIMobilizedFinalRecipientsPrivate)</span></p>
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.OtherContributionsOutsideESIMobilizedFinalRecipientsTotal)</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="high-lines"><strong>@FinanceInstrumentsReport.ReusableResourcesSizeAmount</strong></p>
+                    </td>
+                    <td style="text-align: right;">
+                        <p class="high-lines"><span class="filled-value">@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ReusableResourcesSizeAmount)</span></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

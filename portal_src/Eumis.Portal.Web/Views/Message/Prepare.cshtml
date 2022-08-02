@@ -1,0 +1,140 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.Message.EditVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Message.ActionNames.Index, MVC.Message.Name), Message.MessagesTab)
+}
+, Message.AnswerQuestionHeader)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Message.AnswerQuestionHeader</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Message.ActionNames.Prepare,
+        MVC.Message.Name,
+        new { currentStep = Model.CurrentStep },
+        FormMethod.Post,
+        new { id = Constants.PARTIAL_SAVE_PROJECT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                 MVC.Message.ActionNames.Prepare,
+                 MVC.Message.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_PROJECT,
+                formMethod: FormMethod.Post)
+            @MessagePrepare.Answer
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, Model.RemoteValidationErrors, MessagePrepare.HasErrors, MessagePrepare.NoErrors, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(Model.RemoteValidationWarnings, MessagePrepare.Warning, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            <h2>@MessagePrepare.QuestionAsked</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = "3", @style = "height:85px;", @readonly = "readonly" })
+                    </div>
+                </div>
+            </section>
+
+            @if (Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+            {
+                <div class="section-separator"> </div>
+                <h2>@Message.ContentAttachedDocumentCollection</h2>
+                <section class="clearfix" style="display:block;">
+                    @Html.DisplayFor(m => m.ContentAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+                </section>
+            }
+
+            <h2>@Message.Reply @SymbolsCount.Symbols35000</h2>
+            <section class="clearfix" style="display: block;">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.EditorFor(m => m.Reply, MVC.Shared.Views.EditorTemplates.SymbolsCountTextArea3)
+                    </div>
+                </div>
+            </section>
+
+            <h2>@Message.ReplyAttachedDocumentCollection</h2>
+            <section class="clearfix" style="display:block;">
+                @Html.EditorFor(m => m.ReplyAttachedDocumentCollection, MVC.Shared.Views.EditorTemplates.UndefinedAttachedDocumentCollection)
+            </section>
+            
+            <h2>@MessagePrepare.EditProjectProposal</h2>
+            <div class="section-separator"> </div>
+
+            @Html.EditorFor(m => m.Project, MVC.Shared.Views.EditorTemplates.ProjectEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                            new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                            {
+                                LinkName = MessagePrepare.SaveInSystem,
+                                SuccessMessage = MessagePrepare.SaveAnswer,
+                                ControllerName = MVC.Message.Name,
+                                SecondActionName = Constants.SaveDraftActionName,
+                                PostActionName = MVC.Message.ActionNames.Save,
+                                HasXmlUpdate = true,
+                                FORM_ID = Constants.PARTIAL_SAVE_PROJECT
+                            })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Message.ActionNames.Prepare,
+                        MVC.Message.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                 htmlAttributes: new { @class = "validate wait" }, formId: Constants.PARTIAL_SAVE_PROJECT, formMethod: FormMethod.Post) @MessagePrepare.ErrorCheck
+                @Html.EndActionLinkPrePostButton()
+
+                @if (Model.EndingDate.HasValue)
+                {
+                    <span class="deadline">@MessagePrepare.Deadline <span class="required-span">@(string.Format("{0:dd.MM.yyyy г. HH:mm ч.}", Model.EndingDate))</span></span>
+                }
+            </div>
+
+            <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+        </div>
+    </div>
+        <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_PROJECT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Message.ActionNames.Prepare, MVC.Message.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_PROJECT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+        </script>
+    }
+</div>
+

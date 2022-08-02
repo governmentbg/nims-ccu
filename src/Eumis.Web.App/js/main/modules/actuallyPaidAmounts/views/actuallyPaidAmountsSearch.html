@@ -1,0 +1,43 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'actuallyPaidAmountContracts'" mode="id" ng-model="filters.contractId" l10n-text="actuallyPaidAmounts_paidAmountsSearch_contract" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'actuallyPaidAmountPaymentReasons'" mode="id" ng-model="filters.paymentReason" l10n-text="actuallyPaidAmounts_paidAmountsSearch_paymentReason" class="col-sm-5"></sc-field>
+        <div class="labeless col-sm-3">
+          <sc-button name="seachBtn" btn-click="search()" text="actuallyPaidAmounts_paidAmountsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="actuallyPaidAmounts_paidAmountsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.actuallyPaidAmounts.newStep1' }"
+      ng-disabled="!$canDo('ActuallyPaidAmountListActions.Create')" style="margin-right: 5px;"></sc-button>
+    <sc-link-button ng-href="{{actuallyPaidAmountsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+      icon="fa-file-excel-o fa-lg fa-fw" text="actuallyPaidAmounts_paidAmountsSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="actuallyPaidAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.actuallyPaidAmounts.view.basicData', params: { id: item.amountId }}"
+          ng-disabled="!$canDo('ActuallyPaidAmountActions.View', item.amountId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="actuallyPaidAmounts_paidAmountsSearch_programme">
+      </sc-column>
+      <sc-column data="contractRegNumber" title="actuallyPaidAmounts_paidAmountsSearch_contractRegNumber">
+      </sc-column>
+      <sc-column data="contractReportPaymentNum" title="actuallyPaidAmounts_paidAmountsSearch_contractReportPaymentNum" type="number">
+      </sc-column>
+      <sc-column data="contractReportPaymentType" title="actuallyPaidAmounts_paidAmountsSearch_paymentType">
+      </sc-column>
+      <sc-column data="statusDescr" title="actuallyPaidAmounts_paidAmountsSearch_status">
+      </sc-column>
+      <sc-column data="regNumber" title="actuallyPaidAmounts_paidAmountsSearch_regNumber">
+      </sc-column>
+      <sc-column data="paymentReason" title="actuallyPaidAmounts_paidAmountsSearch_paymentReason">
+      </sc-column>
+      <sc-column data="paymentDate" title="actuallyPaidAmounts_paidAmountsSearch_paymentDate" type="date">
+      </sc-column>
+      <sc-column data="paidBfpTotalAmount" title="actuallyPaidAmounts_paidAmountsSearch_paidBfpTotalAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

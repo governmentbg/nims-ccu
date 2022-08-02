@@ -1,0 +1,29 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="vertical-text-td"><div class="vertical-text"><div class="vertical-text__inner" l10n-text="programmePriorities_programmePriorityBudgetForm_amount"></div></div></td>
+        <td>
+          <eumis-operational-map-budget-mini name="budgetAmount" ng-model="model.budgets.budgetAmount" sc-form-readonly="form.$readonly"></eumis-operational-map-budget-mini>
+        </td>
+      </tr>
+      <tr>
+        <td class="vertical-text-td"><div class="vertical-text"><div class="vertical-text__inner" l10n-text="programmePriorities_programmePriorityBudgetForm_reservedAmount"></div></div></td>
+        <td>
+          <eumis-operational-map-budget-mini name="reservedBudgetAmountForm" ng-model="model.budgets.reservedBudgetAmount" sc-form-readonly="form.$readonly"></eumis-operational-map-budget-mini>
+        </td>
+      </tr>
+      <tr>
+        <td class="vertical-text-td"><div class="vertical-text"><div class="vertical-text__inner" l10n-text="programmePriorities_programmePriorityBudgetForm_nextThreeAmount"></div></div></td>
+        <td>
+          <eumis-operational-map-budget-next-three name="nextThreeAmountForm" ng-model="model.budgets.nextThreeAmount" sc-form-readonly="form.$readonly"></eumis-operational-map-budget-next-three>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-form>

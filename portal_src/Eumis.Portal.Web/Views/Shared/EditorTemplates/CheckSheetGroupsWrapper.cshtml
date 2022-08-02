@@ -1,0 +1,369 @@
+﻿@model Eumis.Portal.Web.Models.CheckSheet.CheckSheetGroupsWrapper
+@using Eumis.Portal.Web.Helpers
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.AcceptanceTypeNomenclature()).GetItems());
+
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        model: @(Html.Raw(jsonModel)),
+
+        acceptances: @(Html.Raw(jsonAcceptances))
+        };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerCheckSheetGroups@(guid)'), ['moduleCheckSheetGroups']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerCheckSheetGroups@(guid)" ng-controller="controllerCheckSheetGroups" ng-init="init('_eumis_options', 'i@(guid)')">
+    <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%" id="check-sheet-table">
+        <thead>
+            <tr>
+                <th style="width:40px;"></th>
+                <th style="width:40px; border-left: 1px solid transparent;"></th>
+                <th style="width:240px; border-left: 1px solid transparent;"></th>
+                <th ng-repeat-start="user in users" ng-style="user.ShowData && {'width':'500px'} || {'width': '20px'}">
+                    <div ng-if="!user.ShowData">
+                        <a ng-click="showData(user)" class="show-col">+</a>
+                    </div>
+                    <div ng-if="user.ShowData">
+                        <a ng-click="hideData(user)" class="show-col">-</a>
+                    </div>
+                </th>
+                <th ng-repeat-end class="col-not-visible"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3"></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'">
+                    <div ng-if="user.ShowData">
+                        <pre>{{user.Role}}</pre>
+                        <pre>{{user.Respondent.Name}}</pre>
+                    </div>
+
+                    <input type="hidden" value="{{user.Role}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].Role" />
+                    <input type="hidden" value="{{user.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].OrderNum" />
+                    <input type="hidden" value="{{user.IsCurrentRespondent}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].IsCurrentRespondent" />
+                    <input type="hidden" value="{{user.HasResponded}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].HasResponded" />
+                    <input type="hidden" value="{{user.Respondent.id}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].Respondent.Id" />
+                    <input type="hidden" value="{{user.Respondent.Name}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].Respondent.Name" />
+                </td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+            <tr ng-repeat-start="group in groups">
+                <td class="text-center">{{romanize($index + 1)}}.</td>
+                <td><strong>@CheckSheet.Group</strong></td>
+                <td class="left-border-transparent"></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'"></td>
+                <td ng-repeat-end class="col-not-visible"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <pre>{{group.Name}}</pre>
+                    <input type="hidden" value="{{group.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetGroupCollection))[{{ $index }}].OrderNum">
+                </td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'"></td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><strong>@CheckSheet.Question</strong></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'"></td>
+                <td ng-repeat-end class="col-not-visible"></td>
+            </tr>
+
+            <tr class="auto-calc-percent" ng-repeat-start="question in group.CheckSheetQuestionCollection">
+                <td></td>
+                <td class="text-right">{{$index + 1}}.</td>
+                <td>
+                    <pre>{{question.Content}}</pre>
+                    <input type="hidden" value="{{question.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetGroupCollection))[{{ $parent.$index }}].CheckSheetQuestionCollection[{{ $index }}].OrderNum">
+                </td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'">
+                    <div ng-init="userQuestion = getUserQuestion(user.OrderNum, group.OrderNum, question.OrderNum)">
+                        <div>
+                            <div ng-if="user.ShowData">
+                                <div ng-if="userQuestion.IsApplicable" ng-class="{'input-validation-error': !userQuestion.Accept.IsValid}">
+                                    <span ng-repeat="acceptance in acceptances">
+                                        <input ng-disabled="!user.IsCurrentRespondent" type="radio" id="radio{{user.OrderNum}}_{{group.OrderNum}}_{{question.OrderNum}}_{{acceptance.Id}}"
+                                               name="radio{{user.OrderNum}}_{{group.OrderNum}}_{{question.OrderNum}}"
+                                               ng-model="userQuestion.Accept.id" ng-value="{{acceptance.Id}}" ng-click="assignAcceptance(userQuestion, acceptance)" />
+                                        <label for="radio{{user.OrderNum}}_{{group.OrderNum}}_{{question.OrderNum}}_{{acceptance.Id}}">{{acceptance.Name}}</label>
+                                    </span>
+                                </div>
+                                <div ng-if="userQuestion.IsApplicable" class="mg-top-20">
+                                    <div ng-if="user.IsCurrentRespondent">
+                                        <a ng-if="!userQuestion.Note" class="add-new-btn" ng-click="addNote(userQuestion)">@CheckSheet.AddComment</a>
+                                        <textarea ng-if="userQuestion.Note" rows="2" ng-disabled="!user.IsCurrentRespondent" auto-grow ng-model="userQuestion.Note" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].Note" class="form-control"></textarea>
+                                    </div>
+                                    <div ng-if="!user.IsCurrentRespondent && userQuestion.Note">
+                                        <a data-target="#Modal" data-toggle="modal" ng-click="setNotesModalData(user, userQuestion)">
+                                            <pre>{{userQuestion.Note.slice(0, 300)}}</pre>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="{{userQuestion.IsApplicable}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].IsApplicable" />
+                            <input type="hidden" value="{{user.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].UserOrderNum" />
+                            <input type="hidden" value="{{group.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].GroupOrderNum" />
+                            <input type="hidden" value="{{question.OrderNum}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].QuestionOrderNum" />
+                            <input type="hidden" value="{{userQuestion.Accept.id}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].Accept.id" />
+                            <input type="hidden" value="{{userQuestion.Accept.Name}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].Accept.Name" />
+                            <input type="hidden" value="{{userQuestion.Note}}" name="@(Html.GetNameFor(m => m.CheckSheetUserQuestionCollection))[{{ userQuestion.mapIndex }}].Note" />
+                        </div>
+                    </div>
+                </td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+            <tr ng-repeat-end></tr>
+
+            <tr ng-repeat-end></tr>
+
+            <tr ng-if="showVerificationRow">
+                <td colspan="2" class="left-border-transparent">
+                    <strong>@CheckSheet.Verification</strong>
+                </td>
+                <td class="left-border-transparent"></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'">
+                    <input type="hidden" value="{{user.HideVerificationData}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].HideVerificationData" />
+
+                    <div ng-if="user.ShowData && !user.HideVerificationData">
+                        <div ng-if="!user.VerificationData && user.IsCurrentRespondent">
+                            @Html.BeginActionLinkButton(
+                                null,
+                                null,
+                                MVC.Private.CheckSheet.ActionNames.GenerateUserVerificationData,
+                                MVC.Private.CheckSheet.Name,
+                                routeValues:
+                                    new
+                                    {
+                                        area = MVC.Private.Name,
+                                        step = AppStep.Prepare,
+                                        currentStep = AppStep.Prepare,
+                                    },
+                                htmlAttributes: new { @class = "blue-button small wait" },
+                                formId: "main_form",
+                                formMethod: FormMethod.Post)
+                            @CheckSheet.GenerateVerificationData
+                            @Html.EndActionLinkButton()
+                        </div>
+                        <a ng-if="user.VerificationData && user.IsCurrentRespondent" data-target="#verificationModal_resp" data-toggle="modal">
+                            <p>@CheckSheet.Verification</p>
+                        </a>
+                        <a ng-if="user.VerificationData && !user.IsCurrentRespondent" data-target="#verificationModal_{{$index}}" data-toggle="modal">
+                            <p>@CheckSheet.Verification</p>
+                        </a>
+                    </div>
+                    <div ng-if="user.VerificationData">
+                        <input type="hidden" value="{{user.VerificationData.PaymentRequestAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.PaymentRequestAmount" />
+                        <input type="hidden" value="{{user.VerificationData.ReportedEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ReportedEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.ReportedBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ReportedBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.TotalUnapprovedEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.TotalUnapprovedEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.TotalUnapprovedBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.TotalUnapprovedBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.TotalUnapprovedSelfAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.TotalUnapprovedSelfAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedSelfAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedSelfAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedByCorrectionEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedByCorrectionEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedByCorrectionBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedByCorrectionBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.UnapprovedByCorrectionSelfAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.UnapprovedByCorrectionSelfAmount" />
+                        <input type="hidden" value="{{user.VerificationData.ApprovedEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.ApprovedBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.ApprovedSelfAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedSelfAmount" />
+                        <input type="hidden" value="{{user.VerificationData.CorrectedApprovedEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.CorrectedApprovedEuAmount" />
+                        <input type="hidden" value="{{user.VerificationData.CorrectedApprovedBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.CorrectedApprovedBgAmount" />
+                        <input type="hidden" value="{{user.VerificationData.CorrectedApprovedSelfAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.CorrectedApprovedSelfAmount" />
+                        <div ng-if="!user.IsCurrentRespondent">
+                            <input type="hidden" value="{{user.VerificationData.ApprovedPaymentEuAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedPaymentEuAmount" />
+                            <input type="hidden" value="{{user.VerificationData.ApprovedPaymentBgAmount}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedPaymentBgAmount" />
+                        </div>
+                    </div>
+
+                    <div class="modal" id="{{getVerificationModalId(user, $index)}}" role="dialog">
+                        <div class="notes-modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>@CheckSheet.Verification</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>@CheckSheet.TotalAmount</th>
+                                                <th>@CheckSheet.EuAmount</th>
+                                                <th>@CheckSheet.BgAmount</th>
+                                                <th>@CheckSheet.SelfAmount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>@CheckSheet.PaymentRequestAmount</td>
+                                                <td>
+                                                    <p class="text-right">{{user.VerificationData.PaymentRequestAmount.toFixed(2)}}</p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.ReportedAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.ReportedTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.ReportedEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.ReportedBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.ReportedSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.TotalUnapprovedAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.TotalUnapprovedTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.TotalUnapprovedEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.TotalUnapprovedBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.TotalUnapprovedSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.UnapprovedAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.UnapprovedSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.UnapprovedByCorrectionAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedByCorrectionTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedByCorrectionEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.UnapprovedByCorrectionBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.UnapprovedByCorrectionSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.ApprovedAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.ApprovedTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.ApprovedEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.ApprovedBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.ApprovedSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.CorrectedApprovedAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.CorrectedApprovedTotalAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.CorrectedApprovedEuAmount.toFixed(2)}}</p></td>
+                                                <td><p class="text-right">{{user.VerificationData.CorrectedApprovedBgAmount.toFixed(2)}}</p></td>
+                                                <td style="border-left: 1px solid #8f8f8f;"><p class="text-right">{{user.VerificationData.CorrectedApprovedSelfAmount.toFixed(2)}}</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td>@CheckSheet.ApprovedPaymentAmount</td>
+                                                <td><p class="text-right">{{user.VerificationData.ApprovedPaymentTotalAmount.toFixed(2)}}</p></td>
+                                                <td>
+                                                    <input ng-if="user.IsCurrentRespondent && user.VerificationData" type="text" money class="form-control sum-field bold" ng-model="user.VerificationData.ApprovedPaymentEuAmount" value="{{user.VerificationData.ApprovedPaymentEuAmount}}"
+                                                           ng-change="setApprovedPaymentTotal(user)" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedPaymentEuAmount" />
+                                                    <p ng-if="!user.IsCurrentRespondent" class="text-right">{{user.VerificationData.ApprovedPaymentEuAmount.toFixed(2)}}</p>
+                                                </td>
+                                                <td>
+                                                    <input ng-if="user.IsCurrentRespondent && user.VerificationData" type="text" money class="form-control sum-field bold" ng-model="user.VerificationData.ApprovedPaymentBgAmount" value="{{user.VerificationData.ApprovedPaymentBgAmount}}"
+                                                           ng-change="setApprovedPaymentTotal(user)" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].VerificationData.ApprovedPaymentBgAmount" />
+                                                    <p ng-if="!user.IsCurrentRespondent" class="text-right">{{user.VerificationData.ApprovedPaymentBgAmount.toFixed(2)}}</p>
+                                                </td>
+                                                <td style="border-left: 1px solid #8f8f8f;"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <div class="pull-left" ng-if="user.IsCurrentRespondent">
+                                        @Html.BeginActionLinkButton(
+                                            null,
+                                            null,
+                                            MVC.Private.CheckSheet.ActionNames.GenerateUserVerificationData,
+                                            MVC.Private.CheckSheet.Name,
+                                            routeValues:
+                                                new
+                                                {
+                                                    area = MVC.Private.Name,
+                                                    step = AppStep.Prepare,
+                                                    currentStep = AppStep.Prepare,
+                                                },
+                                            htmlAttributes: new { @class = "blue-button small wait" },
+                                            formId: "main_form",
+                                            formMethod: FormMethod.Post)
+                                        @CheckSheet.Refresh
+                                        @Html.EndActionLinkButton()
+                                    </div>
+
+                                    <button type="button" class="close" data-dismiss="modal">@CheckSheet.ModalClose</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="left-border-transparent">
+                    <strong>@CheckSheet.Comments</strong>
+                </td>
+                <td class="left-border-transparent"></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'">
+                    <div ng-repeat-start="userQuestion in getNotesByUser(user.OrderNum)" ng-if="user.ShowData">
+                        <a data-target="#Modal" data-toggle="modal" ng-click="setNotesModalData(user, userQuestion)">
+                            <pre>{{userQuestion.GroupOrderNum}}.{{userQuestion.QuestionOrderNum}} {{userQuestion.Note.slice(0,30)}}</pre>
+                        </a>
+                    </div>
+                    <div ng-repeat-end></div>
+                </td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="left-border-transparent">
+                    <strong>@CheckSheet.AdditionalComments</strong>
+                </td>
+                <td class="left-border-transparent"></td>
+                <td ng-repeat-start="user in users" ng-class="user.IsCurrentRespondent && 'background-color-active' || 'background-color-inactive'">
+                    <div ng-if="user.IsCurrentRespondent && user.ShowData">
+                        <textarea rows="2" auto-grow ng-model="user.Summary" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].Summary" class="form-control"></textarea>
+                    </div>
+                    <div ng-if="!user.IsCurrentRespondent && user.ShowData">
+                        <a data-target="#Modal" data-toggle="modal" ng-click="setSummaryModalData(user)">
+                            <pre>{{user.Summary.slice(0, 300)}}</pre>
+                        </a>
+                    </div>
+
+                    <input type="hidden" value="{{user.Summary}}" name="@(Html.GetNameFor(m => m.CheckSheetUserCollection))[{{ $index }}].Summary" />
+                </td>
+                <td ng-repeat-end class="left-border-transparent"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal" id="Modal" role="dialog">
+        <div class="notes-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div style="text-align: center">
+                        <h3 ng-if="modalData.IsNoteModal">@CheckSheet.CommentByUser_A {{modalData.Role}} @CheckSheet.CommentByUser_B {{modalData.GroupOrderNum}}.{{modalData.QuestionOrderNum}}</h3>
+                        <h3 ng-if="!modalData.IsNoteModal">@CheckSheet.SummaryByUser {{modalData.Role}}</h3>
+                    </div>
+                </div>
+                <pre class="modal-body">
+                    {{modalData.Text}}
+                </pre>
+                <div class="modal-footer">
+                    <button type="button" class="close" data-dismiss="modal">@CheckSheet.ModalClose</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

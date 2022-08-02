@@ -1,0 +1,24 @@
+﻿<ng-form name="editProgrammeDocumentForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmes_editProgrammeDocument_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="programmes_editProgrammeDocument_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.mapNodeId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteDocument()" text="programmes_editProgrammeDocument_deleteDocument" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode"
+          ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', document.mapNodeId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmes_editProgrammeDocument_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmes_editProgrammeDocument_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-document name="documentForm" ng-model="document" sc-form-params="{ urlTemplate: 'ProgrammeFile', urlParamsId: document.mapNodeId}"></eumis-document>
+    </div>
+  </div>
+</ng-form>

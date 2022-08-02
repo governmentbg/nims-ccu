@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newBtn" btn-sref="{ state: 'root.guidances.new' }" text="guidances_searchForm_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('GuidanceListActions.Create')"></sc-button>
+
+    <sc-datatable items="guidances" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.guidances.edit', params: {id: item.guidanceId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('GuidanceActions.View', item.guidanceId)"></sc-button>
+      </sc-column>
+      <sc-column data="createDate" title="guidances_searchForm_createDate" type="date">
+      </sc-column>
+      <sc-column data="module" title="guidances_searchForm_module">
+      </sc-column>
+      <sc-column data="description" title="guidances_searchForm_description">
+      </sc-column>
+      <sc-column data="creator" title="guidances_searchForm_creator">
+      </sc-column>
+      <sc-column sortable="false" title="guidances_searchForm_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://egov.bg/RegiX/BABH/BABHZhS/RegisteredAnimalsInOEZByCategoryRequest" targetNamespace="http://egov.bg/RegiX/BABH/BABHZhS/RegisteredAnimalsInOEZByCategoryRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="RegisteredAnimalsInOEZCategoryRequestType">
+		<xs:annotation>
+			<xs:documentation>Справка за животни в ОЕЗ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ЕГН/ЕИК на земеделски стопанин</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValidDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата на актуалност на данните</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RegisteredAnimalsInOEZByCategoryRequest" type="RegisteredAnimalsInOEZCategoryRequestType">
+		<xs:annotation>
+			<xs:documentation>Справка за животни в ОЕЗ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,322 @@
+﻿@model R_10041.ContractContractorCollection
+@using Eumis.Common.Helpers
+@using Newtonsoft.Json.Converters
+
+<div ng-controller="controllerContractContractorCollection">
+    <div class="table-wrapper">
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr>
+                    <th>@ContractContractor.SignDate</th>
+                    <th>@ContractContractor.TotalFundedValue</th>
+                    <th>@ContractContractor.Contractor</th>
+                    <th colspan="2">@Global.Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="(index1, item) in items">
+                <tr ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td style="width:250px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.SignDate}}
+                        </div>
+                    </td>
+                    <td style="width:200px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.TotalFundedValue}}
+                        </div>
+                    </td>
+                    <td style="width:400px; word-break: break-all">
+                        <div style="display: block; width: 100%;">
+                            {{item.Contractor.Name}}
+                        </div>
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        @* Not activated *@
+                        <a class="delete-btn" confirm-click="delItem(item)" ng-if="!item.isActivated">@Global.DeleteButton</a>
+                        <input type="hidden" ng-if="!item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{index1}}].isActive" />
+
+                        @* Activated *@
+                        <input id="contract_chbx{{index1}}" type="checkbox" ng-model="item.isActive" ng-if="item.isActivated" />
+                        <label for="contract_chbx{{index1}}"><img class="info-icon" ng-if="item.isActivated" info-icon src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Global.ActivatedDisabledDelete" data-trigger="hover"></label>
+                        <input type="hidden" ng-if="item.isActivated" value="True" name="@(Html.GetNameFor(m => m))[{{index1}}].isActivated" />
+                        <input type="hidden" ng-if="item.isActivated" name="@(Html.GetNameFor(m => m))[{{index1}}].isActive" ng-value="item.isActive" />
+                    </td>
+                </tr>
+                <tr class="history-table" ng-class="{'deactivated-gray' : !item.isActive}">
+                    <td colspan="5">
+                        <div class="history-table-wrapper clearfix">
+
+                            <h3 class="margin-bottom-h3">@ContractContractor.Contract</h3>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.SignDate</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsSignDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.SignDate" name="@(Html.GetNameFor(m => m))[{{ index1 }}].SignDate" class="form-control" onpaste="return false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.Number</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsNumberValid}" ng-model="item.Number" name="@(Html.GetNameFor(m=>m))[{{index1}}].Number" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <h3>@ContractContractor.AmountData</h3>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label class="double-line-label">@ContractContractor.TotalAmountExcludingVAT</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsTotalAmountExcludingVATValid}" ng-model="item.TotalAmountExcludingVAT" money name="@(Html.GetNameFor(m=>m))[{{index1}}].TotalAmountExcludingVAT" type="text" class="form-control sum-field">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="double-line-label">@ContractContractor.VATAmountIfEligible</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsVATAmountIfEligibleValid}" ng-model="item.VATAmountIfEligible" money name="@(Html.GetNameFor(m=>m))[{{index1}}].VATAmountIfEligible" type="text" class="form-control sum-field">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.TotalFundedValue</label>
+                                    <input readonly ng-class="{'input-validation-error': !item.IsTotalFundedValueValid}" ng-model="item.TotalFundedValue" money name="@(Html.GetNameFor(m=>m))[{{index1}}].TotalFundedValue" type="text" class="form-control sum-field" value="{{item.TotalFundedValue = (((1 * item.TotalAmountExcludingVAT) || 0) + ((1 * item.VATAmountIfEligible) || 0)).toFixed(2)}}">
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.NumberAnnexes</label>
+                                    <input ng-readonly="!item.isActive" valid-number min-value="0" ng-class="{'input-validation-error': !item.IsNumberAnnexesValid}" ng-model="item.NumberAnnexes" name="@(Html.GetNameFor(m=>m))[{{index1}}].NumberAnnexes" type="text" class="form-control sum-field">
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.CurrentAnnexTotalAmount</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsCurrentAnnexTotalAmountValid}" ng-model="item.CurrentAnnexTotalAmount" money name="@(Html.GetNameFor(m=>m))[{{index1}}].CurrentAnnexTotalAmount" type="text" class="form-control sum-field">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>@ContractContractor.Comment</label>
+                                    <textarea ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsCommentValid}" symbols-count count-text="{{ resources.SymbolsCount }}" auto-grow rows="2" style="height: 60px;" ng-model="item.Comment" name="@(Html.GetNameFor(m=>m))[{{index1}}].Comment" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.StartDate</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsStartDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.StartDate" name="@(Html.GetNameFor(m => m))[{{ index1 }}].StartDate" class="form-control" onpaste="return false" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>@ContractContractor.EndDate</label>
+                                    <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !item.IsEndDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="item.EndDate" name="@(Html.GetNameFor(m => m))[{{ index1 }}].EndDate" class="form-control" onpaste="return false" />
+                                </div>
+                            </div>
+
+                            <h3 class="margin-bottom-h3">@ContractContractor.Contractor</h3>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-6">
+                                    <input ng-readonly="!item.isActive" type="hidden" ng-class="{'input-validation-error': !item.IsContractorValid}" ng-model="item.Contractor" ui-select2="{ allowClear: true, placeholder: ' ', query: loadContractorsNomenclature }" />
+
+                                    <input type="hidden" ng-class="{'input-validation-error': !item.IsContractorValid}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Contractor.Id"
+                                           value="{{ item.Contractor.id }}" class="validation-error-key" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].Contractor.Name"
+                                           value="{{ item.Contractor.Name }}" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input id="chbWithoutProcurementPlan{{index1}}" type="checkbox" ng-model="item.WithoutProcurementPlan" />
+                                    <label for="chbWithoutProcurementPlan{{index1}}">@ContractContractor.WithoutProcurementPlan</label>
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].WithoutProcurementPlan" value="{{item.WithoutProcurementPlan ? 'True' : 'False'}}" />
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-6">
+                                    <label>@ContractContractor.HasSubcontractorMember</label>
+                                    <boolean-radio ng-model="item.HasSubcontractorMember" resources="resourcesObjectBoolean" path="@(Html.GetNameFor(m => m))[{{ index1 }}].HasSubcontractorMember"></boolean-radio>
+                                </div>
+                            </div>
+
+                            <div class="clearfix" ng-show="item.HasSubcontractorMember">
+
+                                <h3 class="margin-bottom-h3">@ContractContractor.SubcontractorMembersHeader</h3>
+
+                                <div class="form-group col-md-12">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:40%;">@ContractContractor.SubcontractorMemberType</th>
+                                                <th style="width:60%;">@ContractContractor.SubcontractorMemberName</th>
+                                                <th colspan="2">@Global.Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="(index3, member) in item.SubcontractorMemberCollection">
+                                            <tr>
+                                                <td>
+                                                    {{member.Type.Description}}
+                                                </td>
+                                                <td>
+                                                    {{member.Contractor.Name}}
+                                                </td>
+                                                <td style="width: 130px;">
+                                                    <a title="" id="{{member.editTriggerId}}" class="history-btn" history-btn>
+                                                        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                                                    </a>
+                                                </td>
+                                                <td style="width: 130px;">
+                                                    <a class="delete-btn" confirm-click="delMember(item, member)">@Global.DeleteButton</a>
+                                                </td>
+                                            </tr>
+                                            <tr class="history-table">
+                                                <td colspan="4">
+                                                    <div class="clearfix">
+                                                        <div class="form-group col-md-6">
+                                                            <label>@ContractContractor.SubcontractorMemberType</label>
+                                                            <div ng-show="item.isActive">
+                                                                <nom-radio ng-model="member.Type"
+                                                                           path="@(Html.GetNameFor(m => m))[{{ index1 }}].SubcontractorMemberCollection[{{ index3 }}].Type"
+                                                                           model-name="Description"
+                                                                           model-id="Value"
+                                                                           nom-items="subcontractorMemberTypes">
+                                                                </nom-radio>
+                                                            </div>
+                                                            <div ng-show="!item.isActive">
+                                                                {{member.Type.Description}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>@ContractContractor.SubcontractorMemberName</label>
+                                                            <input ng-readonly="!item.isActive" type="hidden" ng-class="{'input-validation-error': !member.IsContractorValid}" ng-model="member.Contractor" ui-select2="{ allowClear: true, placeholder: ' ', query: loadContractorsNomenclature }" />
+
+                                                            <input type="hidden" ng-class="{'input-validation-error': !member.IsContractorValid}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].SubcontractorMemberCollection[{{ index3 }}].Contractor.Id"
+                                                                   value="{{ member.Contractor.id }}" class="validation-error-key" />
+                                                            <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].SubcontractorMemberCollection[{{ index3 }}].Contractor.Name"
+                                                                   value="{{ member.Contractor.Name }}" />
+                                                        </div>
+                                                    </div>
+                                                    <h3>@ContractContractor.SubcontractorMemberContract</h3>
+                                                    <div class="clearfix">
+                                                        <div class="form-group col-md-4">
+                                                            <label>@ContractContractor.SubcontractorMemberContractDate</label>
+                                                            <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !member.IsContractDateValid}" sc-datepicker lang="@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="member.ContractDate" name="@(Html.GetNameFor(m => m))[{{ index1 }}].SubcontractorMemberCollection[{{ index3 }}].ContractDate" class="form-control" onpaste="return false" />
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>@ContractContractor.SubcontractorMemberContractNumber</label>
+                                                            <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !member.IsContractNumberValid}" ng-model="member.ContractNumber" name="@(Html.GetNameFor(m=>m))[{{index1}}].SubcontractorMemberCollection[{{ index3 }}].ContractNumber" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>@ContractContractor.SubcontractorMemberContractAmount</label>
+                                                            <input ng-readonly="!item.isActive" ng-class="{'input-validation-error': !member.IsContractAmountValid}" ng-model="member.ContractAmount" money name="@(Html.GetNameFor(m=>m))[{{index1}}].SubcontractorMemberCollection[{{ index3 }}].ContractAmount" type="text" class="form-control sum-field">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tr>
+                                            <td colspan="4">
+                                                <a class="add-new-btn" ng-click="addMember(item)" ng-show="item.isActive">@Global.AddButton</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <h3 class="margin-bottom-h3">@ContractContractor.ActivitiesBudgetDetailsRefData</h3>
+
+                            <div class="clearfix">
+                                <div class="form-group col-md-12">
+                                    <table width="100%">
+                                        <thead ng-class="{'input-validation-error': !item.IsUniquePairValid}" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ActivitiesBudgetDetailsRefCollection">
+                                            <tr>
+                                                <th style="width:50%">@ContractContractor.ContractActivity</th>
+                                                <th style="width:50%">@ContractContractor.BudgetDetail</th>
+                                                <th style="width:40px;">@Global.Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tr ng-repeat="(index2, ref) in item.ActivitiesBudgetDetailsRefCollection">
+                                            <td>
+                                                <input ng-readonly="!item.isActive" type="hidden" ng-class="{'input-validation-error': !ref.IsContractActivityValid}" ng-model="ref.ContractActivity" ui-select2="{ allowClear: true, placeholder: ' ', query: loadContractActivitiesNomenclature }" />
+
+                                                <input ng-class="{'input-validation-error': !ref.IsContractActivityValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ActivitiesBudgetDetailsRefCollection[{{index2}}].ContractActivity.Id" class="validation-error-key"
+                                                       value="{{ ref.ContractActivity.id }}" />
+                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ActivitiesBudgetDetailsRefCollection[{{index2}}].ContractActivity.Name"
+                                                       value="{{ ref.ContractActivity.Name }}" />
+                                            </td>
+                                            <td>
+                                                <input ng-readonly="!item.isActive" type="hidden" ng-class="{'input-validation-error': !ref.IsBudgetDetailValid}" ng-model="ref.BudgetDetail" ui-select2="{ allowClear: true, placeholder: ' ', query: loadBudgetLevel3Nomenclature }" />
+
+                                                <input ng-class="{'input-validation-error': !ref.IsBudgetDetailValid}" type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ActivitiesBudgetDetailsRefCollection[{{index2}}].BudgetDetail.Id" class="validation-error-key"
+                                                       value="{{ ref.BudgetDetail.id }}" />
+                                                <input type="hidden" name="@(Html.GetNameFor(m => m))[{{ index1 }}].ActivitiesBudgetDetailsRefCollection[{{index2}}].BudgetDetail.Name"
+                                                       value="{{ ref.BudgetDetail.Name }}" />
+                                            </td>
+                                            <td>
+                                                <a class="delete-btn" confirm-click="delRef(item, ref)" ng-show="item.isActive" style="margin-top:0;">@Global.DeleteButton</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><a name="@(Html.GetNameFor(m => m))[{{index1}}].ActivitiesBudgetDetailsRefCollection" class="add-new-btn" ng-click="addRef(item)" ng-show="item.isActive">@Global.AddButton</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <h3 class="margin-bottom-h3">@ContractContractor.AttachedDocuments</h3>
+
+                            <div class="table-wrapper form-group col-md-12">
+                                <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+                                <table class="chart-info dynamic-rows file-upload" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@AttachedDocument.VersionNumber</th>
+                                            <th>@AttachedDocument.ActivationDate</th>
+                                            <th>@AttachedDocument.Description</th>
+                                            <th colspan="2">@AttachedDocument.FileName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat-start="(index2, attachedDocumentItem) in item.AttachedDocumentCollection" style="display:none;"></tr>
+                                        <tr>
+                                            <td style="min-width: 100px;">
+                                                {{attachedDocumentItem.RegNumber}}
+                                            </td>
+                                            <td style="min-width: 150px;">
+                                                {{attachedDocumentItem.ActivationDate}}
+                                            </td>
+                                            <td style="width:60%;">
+                                                <textarea ng-if="isCurrentVersion(attachedDocumentItem)" rows="1" style="height:29px; margin-top:5px;" auto-grow ng-class="{'input-validation-error': !attachedDocumentItem.IsDescriptionValid}" ng-model="attachedDocumentItem.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentCollection[{{ index2 }}].Description" class="form-control"></textarea>
+                                                <span ng-if="!isCurrentVersion(attachedDocumentItem)">{{attachedDocumentItem.Description}}</span>
+                                            </td>
+                                            <td style="min-width:190px;">
+                                                <sc-file ng-if="isCurrentVersion(attachedDocumentItem)"
+                                                         path="@(Html.GetNameFor(m => m))[{{ index1 }}].AttachedDocumentCollection[{{ index2 }}].AttachedDocumentContent"
+                                                         resources="resourcesObject"
+                                                         url="{{ url }}"
+                                                         ng-model="attachedDocumentItem.AttachedDocumentContent">
+                                                </sc-file>
+                                                <div ng-if="!isCurrentVersion(attachedDocumentItem)
+                                                    && attachedDocumentItem.AttachedDocumentContent
+                                                    && attachedDocumentItem.AttachedDocumentContent.FileName
+                                                    && attachedDocumentItem.AttachedDocumentContent.BlobContentId"
+                                                     class="files">
+                                                    <p>{{attachedDocumentItem.AttachedDocumentContent.FileName}}</p>
+                                                    <a target="_blank" href="/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/file/download/{{attachedDocumentItem.AttachedDocumentContent.BlobContentId}}" class="download-file file-btn">@Global.ButtonDownloadText</a>
+                                                </div>
+                                            </td>
+                                            <td style="min-width:102px;">
+                                                <a ng-if="isCurrentVersion(attachedDocumentItem) || !attachedDocumentItem.AttachedDocumentContent.BlobContentId" class="delete-btn" confirm-click="delAttachedDocumentItem(item, attachedDocumentItem)">@Global.DeleteButton</a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat-end style="display:none;"></tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <a name="@(Html.GetNameFor(m => m))[{{ index1 }}].AttachedDocumentCollection" class="add-new-btn" ng-click="addAttachedDocumentItem(item)">@Global.AddButton</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !isValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+</div>

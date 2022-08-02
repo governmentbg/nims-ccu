@@ -1,0 +1,35 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" mode="id" alias="'correctionDebtVersionStatuses'" ng-model="model.status" ng-disabled="true" l10n-text="correctionDebts_correctionDebtVersionForm_status" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="correctionDebts_correctionDebtVersionForm_debt"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.debtEuAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.debtBgAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.debtBfpAmount" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_bfpAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="correctionDebts_correctionDebtVersionForm_cert"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certEuAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.certBgAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.certBfpAmount" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_bfpAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="correctionDebts_correctionDebtVersionForm_reimbursed"></h5>
+  <div class="row">
+    <sc-field type="money" ng-model="model.reimbursedEuAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_euAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.reimbursedBgAmount" ng-required="!model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_bgAmount" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="money" ng-model="model.reimbursedBfpAmount" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_bfpAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.createNotes" ng-show="model.correctionDebtVersionId" l10n-text="correctionDebts_correctionDebtVersionForm_createNotes" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.createdByUser" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_createdByUser" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.modifyDate" ng-readonly="true" l10n-text="correctionDebts_correctionDebtVersionForm_modifyDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

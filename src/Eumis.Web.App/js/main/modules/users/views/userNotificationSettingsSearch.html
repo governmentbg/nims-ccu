@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <sc-datatable items="userNotificationSettings" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewButton" btn-click="viewRegDataRequest(item)" class="btn-primary btn btn-xs " icon="glyphicon-eye-open"></sc-button>
+      </sc-column>
+      <sc-column data="eventName" title="notificationSetting_notificationSettingsSearch_event">
+      </sc-column>
+      <sc-column data="status" title="notificationSetting_notificationSettingsSearch_status">
+      </sc-column>
+      <sc-column data="scope" title="notificationSetting_notificationSettingsSearch_scope">
+      </sc-column>
+      <sc-column data="createDate" title="notificationSetting_notificationSettingsSearch_createDate">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+﻿@model R_10044.TechnicalReportActivityCollection
+
+<div class="table-wrapper" ng-controller="controllerActivities">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th>@BFPContractContractActivity.Code</th>
+                <th>@TechnicalReportActivity.Status</th>
+                <th>@Global.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var bfpContractActivity = Model[i].BFPContractActivity;
+
+                    <tr>
+                        <td style="word-break: break-all">
+                            @Html.DisplayFor(m => bfpContractActivity.Code)
+                        </td>
+                        <td>
+                            <span class="filled-value">{{items[@(i)].Status.Description}}</span>
+                        </td>
+                        <td style="width: 130px;">
+                            <a title="" class="history-btn">
+                                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr class="history-table">
+                        <td colspan="3">
+                            <div class="history-table-wrapper clearfix">
+                                @* ================= START BFP CONTRACT ACTIVITY ================= *@
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => bfpContractActivity.Code, BFPContractContractActivity.Code)
+                                    @Html.DisplayFor(m => bfpContractActivity.Code, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.Duration, BFPContractContractActivity.Duration)
+                                        @Html.DisplayFor(m => bfpContractActivity.Duration)
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.StartDate, TechnicalReportActivity.StartDate)
+                                        @Html.DisplayFor(m => bfpContractActivity.StartDate)
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        @Html.LabelFor(m => bfpContractActivity.EndDate, TechnicalReportActivity.EndDate)
+                                        @Html.DisplayFor(m => bfpContractActivity.EndDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => bfpContractActivity.Result, BFPContractContractActivity.Result)
+                                    @Html.DisplayFor(m => bfpContractActivity.Result, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                                </div>
+
+                                @* ================= END OF BFP CONTRACT ACTIVITY ================= *@
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m[i].ExecutionDescription, TechnicalReportActivity.ExecutionDescription)
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].IsExecutionDescriptionValid}" auto-grow ng-model="items[@(i)].ExecutionDescription" name="@(Html.GetNameFor(m => m[i].ExecutionDescription))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                </div>
+
+                                <div class="clearfix">
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m[i].Status, TechnicalReportActivity.Status)
+                                        <sc-nomenclature ng-class="{'input-validation-error': !items[@(i)].IsStatusValid}" sc-alias="GetActivityStatuses" ng-model="items[@(i)].Status">
+                                        </sc-nomenclature>
+                                        <input ng-class="{'input-validation-error': !items[@(i)].IsStatusValid}" type="hidden" value="{{ items[@(i)].Status.Value }}" name="@(Html.GetNameFor(m => m[i].Status.Value))" class="validation-error-key" />
+                                        <input type="hidden" value="{{ items[@(i)].Status.Description }}" name="@(Html.GetNameFor(m => m[i].Status.Description))" />
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m[i].ActualStartDate, TechnicalReportActivity.ActualStartDate)
+                                        <input ng-change="updateMonths(items[@(i)])" ng-class="{'input-validation-error': !items[@(i)].IsActualStartDateValid}" sc-datepicker lang="@Eumis.Common.Helpers.Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="items[@(i)].ActualStartDate" name="@(Html.GetNameFor(m => m[i].ActualStartDate))" class="form-control" onpaste="return false" />
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m[i].ActualEndDate, TechnicalReportActivity.ActualEndDate)
+                                        <input ng-change="updateMonths(items[@(i)])" ng-class="{'input-validation-error': !items[@(i)].IsActualEndDateValid}" sc-datepicker lang="@Eumis.Common.Helpers.Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])" type="text" ng-model="items[@(i)].ActualEndDate" name="@(Html.GetNameFor(m => m[i].ActualEndDate))" class="form-control" onpaste="return false" />
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        @Html.LabelFor(m => m[i].MonthsDuration, TechnicalReportActivity.MonthsDuration)
+                                        <input readonly ng-class="{'input-validation-error': !items[@(i)].IsMonthsDurationValid}" ng-model="items[@(i)].MonthsDuration" name="@(Html.GetNameFor(m => m[i].MonthsDuration))" class="form-control sum-field" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m[i].DelayReason, TechnicalReportActivity.DelayReason)
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].IsDelayReasonValid}" auto-grow ng-model="items[@(i)].DelayReason" name="@(Html.GetNameFor(m => m[i].DelayReason))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m[i].PeriodResult, TechnicalReportActivity.PeriodResult)
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].IsPeriodResultValid}" auto-grow ng-model="items[@(i)].PeriodResult" name="@(Html.GetNameFor(m => m[i].PeriodResult))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m[i].CumulativeResult, TechnicalReportActivity.CumulativeResult)
+                                    <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !items[@(i)].IsCumulativeResultValid}" auto-grow ng-model="items[@(i)].CumulativeResult" name="@(Html.GetNameFor(m => m[i].CumulativeResult))" class="form-control" rows="2" style="height:60px;"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(m => m[i].ContractContractorCollection, TechnicalReportActivity.ContractContractors)
+                                    @if (Model[i].ContractContractorCollection != null)
+                                    {
+                                        <ul>
+                                            @foreach (var contractor in Model[i].ContractContractorCollection)
+                                            {
+                                                <li>@Html.DisplayFor(m => contractor)</li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

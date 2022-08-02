@@ -1,0 +1,166 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+<!-- WARNING PAGE -->
+<div class="container warnings">
+    <img class="icon" src="@Url.Content(Links.Content.img.icons.error_gif)" alt="" />
+
+    @if (Model.GetType() == typeof(Eumis.Portal.Web.Controllers.CustomHandleErrorInfo))
+    {
+        Eumis.Portal.Web.Controllers.CustomHandleErrorInfo errorInfo = (Eumis.Portal.Web.Controllers.CustomHandleErrorInfo)Model;
+        <p>
+            <strong>
+                @switch (errorInfo.ErrorCode)
+                {
+                    case "101":
+                        <text>@Error.ErrorDigitalSignatureIdentification</text>; break;
+                    case "102":
+                    <text>@Error.DigitalSignatureInvalid</text>; break;
+                    case "103":
+                    <text>@Error.DigitalSignatureBlocked</text>; break;
+                    case "104":
+                    <text>@Error.DigitalSignatureExpired</text>; break;
+                    case "110":
+                    <text>@Error.DigitalSignatureNotRecognized</text>; break;
+                    case "201":
+                    <text>@Error.DigitalSignatureIssuerNotRecognized</text>; break;
+                    case "202":
+                    <text>@Error.DigitalSignatureInvalid</text>; break;
+                    case "203":
+                    <text>@Error.DigitalSignatureMissingData</text>; break;
+                    case "204":
+                    <text>@Error.ApplicantMissingData</text>; break;
+                    case "205":
+                    <text>@Error.ApplicantMissingData</text>; break;
+                    case "301":
+                    <text>@Error.Denial</text>; break;
+                    case "404":
+                    <text>@Error.NavigationError</text>; break;
+                    default:
+                    <text>@Error.CommunicationError</text>; break;
+                }
+            </strong>
+        </p>
+        switch (errorInfo.ErrorCode)
+        {
+            case "101":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureNotLoaded</p>
+                    <p>@Error.DigitalSignatureQualifiedLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error101" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "102":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureNotLoaded</p>
+                    <p>@Error.DigitalSignatureQualifiedLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error102" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "103":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureBlockedByIssuer</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error103" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "104":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureExpiredLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error104" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "110":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureNotRecognizedLong</p>
+                    <p>@Error.DigitalSignatureQualifiedLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error110" }, null)” (@Error.ErrorCodeLower 110)</p>*@
+                }
+                break;
+            case "201":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureIssuerNotRecognizedLong</p>
+                    <p>@Error.DigitalSignatureQualifiedLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error201" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "202":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureTypeNotSupported</p>
+                    <p>@Error.DigitalSignatureQualifiedLongPhysicalPerson</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error202" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "203":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DigitalSignatureMissingEGN</p>
+                    <p>@Error.DigitalSignatureQualifiedLong</p>
+                    <p>@Error.BrowserRestartPrompt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error203" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "204":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DatabaseMissingPersonData</p>
+                    <p>@Error.IssueUnable1</p>
+                    <p>@Error.IssueUnable2</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error204" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "205":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.DatabaseMissingPersonPlaceOfBirth</p>
+                    <p>@Error.IssueUnable1</p>
+                    <p>@Error.IssueUnable2</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error205" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "301":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.IssuerUnableWithEGN</p>
+                    <p>@Error.OrganizationFunctionsOrdinance</p>
+                    <p>@Error.RegionalCourt</p>
+                    @*<p>@Error.MoreInfo „@Html.ActionLink(Error.HelpQA, MVC.Home.ActionNames.Help, MVC.Home.Name, new { @focus = "error301" }, null)” (@Error.ErrorCodeLower @errorInfo.ErrorCode)</p>*@
+                }
+                break;
+            case "404":
+                {
+                    <p>@Error.ErrorCode @errorInfo.ErrorCode</p>
+                    <p>@Error.AddressNotFound </p>
+                }
+                break;
+            default:
+                {
+                    <p>@Error.ErrorCode 310</p>
+                    <p>@Error.ServerRequestError</p>
+                    <p>@Error.BrowserRestart</p>
+                }
+                break;
+        }
+    }
+    else
+    {
+        <p>
+            <strong>
+                @Error.MainError
+            </strong>
+        </p>
+    }
+</div>
+

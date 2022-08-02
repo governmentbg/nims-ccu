@@ -1,0 +1,59 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Eumis.Web.Host.Nancy.Models.LayoutModel>
+@using Eumis.Web.Host.Nancy
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@RazorViewTexts.BrowserNotSupported_UmisTitle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="version" content="@Model.ProductVersion">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="bg_header header-with-shadow warnings">
+        <div class="container">
+            <strong class="logo">@RazorViewTexts.BrowserNotSupported_Umis2020</strong>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-wrapper warnings">
+            <img class="icon" src="img/icons/warning.gif" alt="" />
+            <p class="error-text">@RazorViewTexts.BrowserNotSupported_WarningIfThisBrowserIsNotSupport</p>
+            <p class="browsers-not-supported">
+                <a target="_blank" title="Google Chrome" href="https://www.google.com/intl/bg/chrome/browser/"><img alt="" src="img/browser_chrome.png"></a>
+                <a target="_blank" title="Mozilla Firefox" href="http://www.mozilla.org/bg/firefox/new/"><img alt="" src="img/browser_firefox.png"></a>
+                <a target="_blank" title="Opera" href="http://www.opera.com/bg/computer/windows"><img alt="" src="img/browser_opera.png"></a>
+                <a target="_blank" title="Internet Explorer" href="http://windows.microsoft.com/bg-bg/internet-explorer/ie-9-worldwide-languages"><img alt="" src="img/browser_ie.png"></a>
+                <a target="_blank" title="Safari" href="https://www.apple.com/safari/"><img alt="" src="img/browser_safari.png"></a>
+            </p>
+        </div>
+    </div>
+
+    <div class="eu-funds">
+        @if (Model.ShowLanguageSwitcher)
+        {
+            <form method="post" action='@(Model.IsBgVersion ? "/en-GB/" : "/bg-BG/")'>
+                <button type="submit" style="background: none; border: 0px; padding: 0px;">
+                    <span class="fa fa-globe"></span>
+                    @(Model.IsBgVersion ? "english version" : "българскa версия")
+                </button>
+            </form>
+        }
+        
+        @if (Model.IsBgVersion)
+        {
+            <img src="img/logo_good_governance_bg.png" alt="" />
+        }
+        else
+        {
+            <img src="img/logo_good_governance_en.png" alt="" />
+        }
+        <span>@RazorViewTexts.Layout_EuFundsFooter</span>
+        <a href="http://www.eufunds.bg">www.eufunds.bg</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<footer>
+    <div class="container">
+        <span class="go-to-top">
+            <img class="fliud" src="@Url.Content(Links.Content.img.icons.gototop_png)" alt="" />
+        </span>
+        <div class="footer-top">
+            <a><img src="@Url.Content(Links.Content.img.gerb_footer_png)" alt="" /></a><br />
+            <div>
+                <p style="margin: 0 auto;">@Global.HeaderText2 @Global.HeaderText3</p>
+            </div>
+            <div class="hidden-md hidden-lg">
+                <strong>@Global.Eumis</strong><br /><br />
+            </div>
+        </div>
+        @{
+            var url = Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name });
+            var linkText = Global.FooterReportLink;
+
+            var publicUrl = "http://2020.eufunds.bg/";
+            var publicLinkText = Global.FooterPublicLink;
+        }
+        <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 0 0;">
+            <a href="@url" target="_blank" style="color: red; font-weight: bold">@linkText</a>
+        </div>
+        <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+            <a href="@url" target="_blank" style="color: red; font-weight: bold">@linkText</a>
+        </div>
+
+        <div class="col-md-12 txt-align-center links hidden-xs hidden-sm" style="margin: 15px 0 35px 0;">
+            <a href="@publicUrl" target="_blank" style="color: red; font-weight: bold">@publicLinkText</a>
+        </div>
+        <div class="col-md-12 txt-align-center links hidden-md hidden-lg">
+            <a href="@publicUrl" target="_blank" style="color: red; font-weight: bold">@publicLinkText</a>
+        </div>
+        <img class="eu_flag" src="@Url.Content(Links.Content.img.eu_flag_gif)" alt="" />
+    </div>
+</footer>
+
+<div class="subfooter">
+  <div class="container">
+    <span>@Global.SubfooterMessage <br /> @Global.SubfooterMessage2</span>
+    @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+    {
+      <img class="fliud hidden-xs hidden-sm" src="@Url.Content(Links.Content.img.eea_norway_grants_png)" width="30%"/>
+    }
+    else
+    {
+      <img class="fliud hidden-xs hidden-sm" src="@Url.Content(Links.Content.img.logo_good_governance_bg_png)" alt="" />
+    }
+  </div>
+</div>

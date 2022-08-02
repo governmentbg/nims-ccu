@@ -1,0 +1,53 @@
+﻿@model Eumis.Portal.Web.Models.ProjectCommunication.EditVM
+@{
+    string area = ViewContext.RouteData.DataTokens["area"] as string;
+    bool isBeneficiaryInitiated = string.IsNullOrEmpty(area);
+}
+@if (Model != null)
+{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+
+    <script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = { model: @(Html.Raw(jsonModel)) };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerProjectCommunications@(guid)'), ['moduleProjectCommunications']);
+    });
+
+    </script>
+
+    <div id="containerProjectCommunications@(guid)" ng-controller="controllerProjectCommunications" ng-init="init('_eumis_options', 'i@(guid)')">
+        <h2>@ProjectCommunication.Subject</h2>
+        <section class="clearfix" style="display: block;">
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @if (isBeneficiaryInitiated)
+                    {
+                        <sc-nomenclature ng-class="{'input-validation-error': !model.IsSubjectValid}" sc-alias="GetProjectCommunicationBeneficiarySubjects" ng-model="model.Subject">
+                        </sc-nomenclature>
+                    }
+                    else
+                    {
+                        <sc-nomenclature ng-class="{'input-validation-error': !model.IsSubjectValid}" sc-alias="GetProjectCommunicationManagingAuthoritySubjects" ng-model="model.Subject">
+                        </sc-nomenclature>
+                    }
+                    <input ng-class="{'input-validation-error': !model.IsSubjectValid}" type="hidden" value="{{ model.Subject.Value }}" name="@(Html.GetNameFor(m => m.Subject.Value))" class="validation-error-key" />
+                    <input type="hidden" value="{{ model.Subject.Description }}" name="@(Html.GetNameFor(m => m.Subject.Description))" />
+                </div>
+            </div>
+        </section>
+
+        <h2>@ProjectCommunication.Question</h2>
+        <section class="clearfix" style="display: block;">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.EditorFor(m => m.Content, MVC.Shared.Views.EditorTemplates.SymbolsCountTextArea3)
+                </div>
+            </div>
+        </section>
+    </div>
+
+}

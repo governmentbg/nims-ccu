@@ -1,0 +1,210 @@
+﻿@model R_10040.BFPContract
+@using Eumis.Documents.Enums
+
+@if (Model != null)
+{
+    R_10040.BFPContract.SetInterventionFlags(Model);
+    Model.PassIsInitial();
+
+    int sectionNumber = 0;
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.BasicData))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.BFPContractBasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+
+            @*if procedure kind is budget line, program priority section should be selected*@
+            @if (Model.IsApplicationSectionSelected(ApplicationSectionType.ProgrammePriority))
+            {
+                @Html.DisplayFor(m => m.BFPContractBasicData, MVC.Shared.Views.DisplayTemplates.BFPContractBasicDataBudgetLine)
+            }
+            else
+            {
+                @Html.DisplayFor(m => m.BFPContractBasicData)
+            }
+
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Beneficary))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Beneficiary
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.Beneficiary)
+
+            @if (Model.BFPContractBasicData != null)
+            {
+                <div class="form-group col-md-4">
+                    <label>@BFPContractBasicData.BankAccount</label>
+                    @Html.DisplayFor(m => m.BFPContractBasicData.BankAccount)
+                </div>
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.ProgrammePriority))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ProgrammePriority
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @if (Model.Beneficiary != null)
+            {
+                @Html.DisplayFor(m => m.Beneficiary, MVC.Shared.Views.DisplayTemplates.Beneficiary)
+            }
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Partners))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Partners
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.Partners)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.BFPContractDirectionsBudgetContract != null && Model.IsApplicationSectionSelected(ApplicationSectionType.Budget))
+    {
+        if (Model.IsApplicationSectionSelected(ApplicationSectionType.Directions))
+        {
+            sectionNumber++;
+            <h2 data-section="@sectionNumber" class="section-heading">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+                @sectionNumber. @BFPContractBudget.DirectionsSection
+            </h2>
+            <section data-section="@sectionNumber" class="clearfix">
+                @Html.DisplayFor(m => m.BFPContractDirectionsBudgetContract.Directions)
+            </section>
+            <div class="section-separator"> </div>
+            Model.BFPContractDirectionsBudgetContract.BFPContractBudget.HasDirections = true;
+        }
+
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Budget
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractDirectionsBudgetContract.BFPContractBudget)
+        </section>
+        <div class="section-separator"> </div>
+
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Contract
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractDirectionsBudgetContract.Contract, "BFPContractContract")
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Activities))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractActivity
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractContractActivities)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Indicators))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.Indicators
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractIndicators)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.Team))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractTeams
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractContractTeams)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.ProcurementPlan))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ContractPlans
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.BFPContractPlans)
+        </section>
+        <div class="section-separator"> </div>
+    }
+    if (Model.HasProjectSpecFields && Model.IsApplicationSectionSelected(ApplicationSectionType.AdditionalInformation))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ProjectSpecFieldCollection
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ProjectSpecFields)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.ElectronicDeclarations))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.ElectronicDeclarations
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.ElectronicDeclarations, MVC.Shared.Views.DisplayTemplates.BFPContractElectronicDeclarations)
+        </section>
+        <div class="section-separator"> </div>
+    }
+
+    if (Model.IsApplicationSectionSelected(ApplicationSectionType.AttachedDocuments))
+    {
+        sectionNumber++;
+        <h2 data-section="@sectionNumber" class="section-heading">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @BFPContract.AttachedDocuments
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix">
+            @Html.DisplayFor(m => m.AttachedDocuments)
+        </section>
+        <div class="section-separator"> </div>
+    }
+}

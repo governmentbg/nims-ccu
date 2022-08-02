@@ -1,0 +1,46 @@
+﻿@using Eumis.Portal.Web.Helpers
+
+@model Eumis.Portal.Web.Areas.Report.Models.Package.PackageEditVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }), "Пакет отчетни документи")
+}, "Преглед на пакет")
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader, пакет № @Model.OrderNum</h1>
+</div>
+
+<div class="container">
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="clearfix">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(m => m.ContractReportType)
+                        @Html.DisplayFor(m => m.ContractReportType)
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(m => m.SubmitDate)
+                        @Html.DisplayFor(m => m.SubmitDate)
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(m => m.SubmitDeadline)
+                        @Html.DisplayFor(m => m.SubmitDeadline)
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Report.Package.ActionNames.Index, MVC.Report.Package.Name, new { area = MVC.Report.Name }, new { @class = "blue-button small back left" })
+            </div>
+        </form>
+    </div>
+</div>

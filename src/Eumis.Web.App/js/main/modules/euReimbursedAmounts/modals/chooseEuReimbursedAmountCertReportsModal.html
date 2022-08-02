@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="heading" l10n-text="euReimbursedAmounts_chooseCertRrportsModal_title"></strong>
+    <div class="pull-right">
+      <sc-button name="okBtn" btn-click="ok()" text="euReimbursedAmounts_chooseCertRrportsModal_choose"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+      </sc-button>
+      <sc-button name="cancelBtn" btn-click="cancel()" text="euReimbursedAmounts_chooseCertRrportsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+      </sc-button>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <sc-datatable items="items" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="chooseButton" btn-click="choose(item)" ng-show="!item.isChosen" class="btn btn-primary btn-xs" icon="fa-square-o fa-lg fa-fw"></sc-button>
+        <sc-button name="removeButton" btn-click="remove(item)" ng-show="item.isChosen" class="btn btn-primary btn-xs" icon="fa-check-square-o fa-lg fa-fw"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="euReimbursedAmounts_chooseCertRrportsModal_orderNum" type="number">
+      </sc-column>
+      <sc-column data="regDate" title="euReimbursedAmounts_chooseCertRrportsModal_regDate" type="date">
+      </sc-column>
+      <sc-column data="dateFrom" title="euReimbursedAmounts_chooseCertRrportsModal_dateFrom" type="date">
+      </sc-column>
+      <sc-column data="dateTo" title="euReimbursedAmounts_chooseCertRrportsModal_dateTo" type="date">
+      </sc-column>
+      <sc-column data="type" title="euReimbursedAmounts_chooseCertRrportsModal_type">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

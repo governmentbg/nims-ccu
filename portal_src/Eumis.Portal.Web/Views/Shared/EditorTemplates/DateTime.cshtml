@@ -1,0 +1,15 @@
+﻿@model System.Nullable<System.DateTime>
+
+@{
+    string editorId = Html.GetUniqueEditorId();
+}
+
+@Html.TextBoxFor(m => m, new { @class = "form-control datepicker", id = "date" + editorId, @onpaste = "return false", @Value = Model.HasValue ? Model.Value.ToString("dd.MM.yyyy") : "" })
+@*<script type="text/javascript">
+    $(function () {
+        $("#date@(editorId)").datepicker($.datepicker.regional['@Mix.GetRouteLang(ViewContext.RouteData.Values["lang"])']);
+    });
+</script>*@
+
+
+

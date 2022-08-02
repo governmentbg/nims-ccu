@@ -1,0 +1,44 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div ng-if="model.type === 'paymentCertified'">
+    <h5 class="form-header form-header-first" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_reportPayment"></h5>
+    <eumis-contract-report-payment name="contractReportPaymentForm" ng-model="model.contractReportPaymentCheck.contractReportPayment"></eumis-contract-report-payment>
+    <div class="row">
+      <eumis-structured-document document="contractReportPayment" gid="model.contractReportPaymentCheck.contractReportPayment.xmlGid"
+        text="contractReportCertCorrections_contractReportCertCorrectionForm_document" view-mode class="col-sm-4 col-md-3">
+      </eumis-structured-document>
+    </div>
+
+    <h5 class="form-header" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_reportPaymentCheck"></h5>
+    <eumis-contract-report-payment-check name="contractReportPaymentCheckForm" ng-model="model.contractReportPaymentCheck" sc-form-readonly="true"></eumis-contract-report-payment-check>
+  </div>
+  
+  <h5 class="form-header" ng-if="model.type === 'paymentCertified'" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_correction"></h5>
+  <div class="row">
+    <sc-field type="date" ng-model="model.date" ng-required="true" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_date" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'signs'" ng-model="model.sign" mode="id" ng-required="true" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_sign" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.description" rows="2" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.reason" rows="2" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_reason" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedEuAmount" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_euAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedBgAmount" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_bgAmount" class="col-sm-3 col-md-2"></sc-field>
+
+    <sc-field-group class="col-sm-3 col-md-2" text="contractReportCertCorrections_contractReportCertCorrectionForm_bfpTotalAmount" field-name="certifiedBfpTotalAmount">
+      <sc-money ng-model="model.certifiedBfpTotalAmount" name="certifiedBfpTotalAmount" ng-readonly="true"></sc-money>
+      <sc-button name="calcBtn" btn-click="calculate()" ng-disabled="form.$readonly" class="btn btn-default btn-sm" icon="fa-calculator"></sc-button>
+    </sc-field-group>
+
+    <sc-field type="money" ng-model="model.certifiedSelfAmount" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_selfAmount" class="col-sm-3 col-md-2"></sc-field>
+    <sc-field type="money" ng-model="model.certifiedTotalAmount" ng-readonly="true" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_totalAmount" class="col-sm-3 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="money" ng-model="model.certifiedCrossAmount" l10n-text="contractReportCertCorrections_contractReportCertCorrectionForm_crossAmount" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+</ng-form>

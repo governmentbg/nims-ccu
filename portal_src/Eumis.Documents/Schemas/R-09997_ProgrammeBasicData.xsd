@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-09997" 
+	xmlns="http://ereg.egov.bg/segment/R-09997" 
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="ProgrammeBasicData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Основни данни за програма</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Programme" type="pun:PublicNomenclature" minOccurs="0" />
+      <xsd:element name="ProgrammePriority" type="pun:PublicNomenclature" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

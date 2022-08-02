@@ -1,0 +1,23 @@
+<ng-form name="editEvalSessionStandpointForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionStandpoint_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="canceledBtn" btn-click="cancelStandpoint()" text="evalSessions_editEvalSessionStandpoint_canceled" class="btn btn-danger btn-xs"
+          ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || !isSessionActive" ng-if="evalSessionStandpoint.status !== 'canceled'">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-standpoint name="evalSessionStandpointForm" ng-model="evalSessionStandpoint" sc-form-readonly="true"></eumis-eval-session-standpoint>
+
+      <div class="row">
+        <eumis-structured-document text="evalSessions_editEvalSessionStandpoint_template" document="evalSessionStandpoint" gid="evalSessionStandpoint.xmlGid"
+          view-mode class="col-sm-4 col-md-3">
+        </eumis-structured-document>
+      </div>
+    </div>
+  </div>
+</ng-form>

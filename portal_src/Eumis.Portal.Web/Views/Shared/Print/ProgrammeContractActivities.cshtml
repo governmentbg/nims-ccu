@@ -1,0 +1,64 @@
+﻿@model R_09995.ProgrammeContractActivities
+
+<div>
+    @if (Model != null && Model.ContractActivityCollection != null && Model.ContractActivityCollection.Count > 0)
+    {
+        for (int i = 0; i < Model.ContractActivityCollection.Count; i++)
+        {
+            <table class="contract-activity">
+                <tbody>
+                    <tr>
+                        <td style="width: 35%;"><strong>@ContractActivity.Company</strong></td>
+                        <td style="width: 65%;">
+                            @if (Model.ContractActivityCollection[i].CompanyCollection != null)
+                            {
+                                for (int j = 0; j < Model.ContractActivityCollection[i].CompanyCollection.Count; j++)
+                                {
+                                    <p>@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.ContractActivityCollection[i].CompanyCollection[j] ?? new R_10000.PrivateNomenclature())</p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="word-break: break-all">
+                            <strong>@ContractActivity.Code</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractActivityCollection[i].Code ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@ContractActivity.Name</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractActivityCollection[i].Name ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@ContractActivity.ExecutionMethod</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractActivityCollection[i].ExecutionMethod ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@ContractActivity.Result</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.ContractActivityCollection[i].Result ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ContractActivity.StartMonth</strong></td>
+                        <td>@Model.ContractActivityCollection[i].StartMonth</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ContractActivity.Duration</strong></td>
+                        <td>@Model.ContractActivityCollection[i].Duration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ContractActivity.Amount</strong></td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.ContractActivityCollection[i].Amount)</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    }
+
+    @Html.Partial(MVC.Shared.Views.Print.ProgrammeContractActivitiesDiagram, Model.ContractActivityCollection ?? new R_09995.ContractActivityCollection())
+</div>

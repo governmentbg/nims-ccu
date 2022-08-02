@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10057" 
+	xmlns="http://ereg.egov.bg/segment/R-10057"
+            
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+            
+	xmlns:pbd="http://ereg.egov.bg/segment/R-09997"
+	
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	xmlns:pun="http://ereg.egov.bg/segment/R-10001"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+  
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09997" />
+  
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+	<xsd:import namespace="http://ereg.egov.bg/segment/R-10001" />
+	
+	<xsd:complexType name="TechnicalReportTeamMember">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Член на екип на технически отчет</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Position" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Uin" type="xsd:string" minOccurs="0" />
+      <xsd:element name="UinType" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="CommitmentType" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="Date" type="xsd:date" minOccurs="0" />
+      <xsd:element name="Hours" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="Activity" type="xsd:string" minOccurs="0" />
+      <xsd:element name="Result" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

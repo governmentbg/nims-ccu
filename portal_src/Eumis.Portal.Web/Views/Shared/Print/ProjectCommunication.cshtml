@@ -1,0 +1,31 @@
+﻿@model R_10020.Message
+
+@if (Model != null)
+{
+    <h3>
+        @ProjectCommunication.Subject
+    </h3>
+    <section>
+        <div class="paragraph-margin0">
+            <p>@Html.DisplayFor(m => m.Subject)</p>
+        </div>
+    </section>
+    <h3>
+        @ProjectCommunication.Question
+    </h3>
+    <section>
+        <div class="paragraph-margin0">
+            <p>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Content ?? string.Empty)</p>
+        </div>
+    </section>
+
+    if (Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+    {
+        <h3>
+            @ProjectCommunication.ContentAttachedDocumentCollection
+        </h3>
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.ContentAttachedDocumentCollection)
+        </section>
+    }
+}

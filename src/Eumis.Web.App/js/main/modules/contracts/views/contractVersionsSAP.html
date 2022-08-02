@@ -1,0 +1,130 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="mutiple-tables-spacing"></div>
+    <div class="col-sm-12">
+      <h5 class="table-header" style="float: left;" l10n-text="contracts_versionsEdit_sapData_header"></h5>
+      <sc-link-button name="printBtn" ng-href="api/contracts/{{sapData.contractId}}/versions/{{sapData.contractVersionId}}/sapData/print"
+                      target="_blank" sc-access-token text="contracts_versionsEdit_sapData_print" class="btn btn-primary btn-xs" icon="glyphicon-print"
+                      style="position:relative; right: -5px; top: 14px; float: none;">
+      </sc-link-button>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_programmeCode"></td>
+            <td colspan="2">{{sapData.programmeCode}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_programmePriorityCodes"></td>
+            <td colspan="2">{{programmePriorities}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_procedureCode"></td>
+            <td colspan="2">{{sapData.procedureCode}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_projectRegNumber"></td>
+            <td colspan="2">{{sapData.projectRegNumber}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_contractRegNumber"></td>
+            <td colspan="2">{{sapData.contractRegNumber}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_companyUin"></td>
+            <td colspan="2">{{sapData.companyUinType + ': ' + sapData.companyUin}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_companyName"></td>
+            <td colspan="2">{{sapData.companyName}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_startDate"></td>
+            <td colspan="2">{{sapData.startDate | date: 'dd.MM.yyyy'}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_completionDate"></td>
+            <td colspan="2">{{sapData.completionDate | date: 'dd.MM.yyyy'}}</td>
+          </tr>
+          <tr class="sap-tr-essential">
+            <td colspan="3" l10n-text="contracts_versionsEdit_sapData_budgetValue"></td>
+          </tr>
+          <tr class="sap-tr-essential">
+            <td l10n-text="contracts_versionsEdit_sapData_currency"></td>
+            <td l10n-text="contracts_versionsEdit_sapData_currencyBGN"></td>
+            <td l10n-text="contracts_versionsEdit_sapData_currencyEUR"></td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_totalAmount"></td>
+            <td>{{sapData.totalAmountBGN | money}}</td>
+            <td>{{sapData.totalAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td colspan="3" l10n-text="contracts_versionsEdit_sapData_euAmounts"></td>
+          </tr>
+          <tr ng-repeat="budgetEU in sapData.euAmounts">
+            <td style="padding-left: 20px;">-</td>
+            <td>{{budgetEU.amountBGN | money}}</td>
+            <td>{{budgetEU.amountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_bgAmount"></td>
+            <td>{{sapData.bgAmountBGN | money}}</td>
+            <td>{{sapData.bgAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_bfpTotalAmount"></td>
+            <td>{{sapData.bfpTotalAmountBGN | money}}</td>
+            <td>{{sapData.bfpTotalAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_totalSelfAmount"></td>
+            <td>{{sapData.totalSelfAmountBGN | money}}</td>
+            <td>{{sapData.totalSelfAmountEUR | money}}</td>
+          </tr>
+          <tr class="sap-tr-essential">
+            <td colspan="3" l10n-text="contracts_versionsEdit_sapData_programmePriorityBudget"></td>
+          </tr>
+          <tr class="sap-tr-essential">
+            <td l10n-text="contracts_versionsEdit_sapData_currency"></td>
+            <td l10n-text="contracts_versionsEdit_sapData_currencyBGN"></td>
+            <td l10n-text="contracts_versionsEdit_sapData_currencyEUR"></td>
+          </tr>
+        </tbody>
+        <tbody ng-repeat="budget in sapData.programmePriorityBudgets">
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_programmePriorityCode"></td>
+            <td colspan="2">{{budget.programmePriorityCode}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_totalAmount"></td>
+            <td>{{budget.totalAmountBGN | money}}</td>
+            <td>{{budget.totalAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td colspan="3" l10n-text="contracts_versionsEdit_sapData_euAmounts"></td>
+          </tr>
+          <tr ng-repeat="programmeBudgetEU in budget.euAmounts">
+            <td style="padding-left: 20px;">-</td>
+            <td>{{programmeBudgetEU.amountBGN | money}}</td>
+            <td>{{programmeBudgetEU.amountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_bgAmount"></td>
+            <td>{{budget.bgAmountBGN | money}}</td>
+            <td>{{budget.bgAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_bfpTotalAmount"></td>
+            <td>{{budget.bfpTotalAmountBGN | money}}</td>
+            <td>{{budget.bfpTotalAmountEUR | money}}</td>
+          </tr>
+          <tr>
+            <td l10n-text="contracts_versionsEdit_sapData_totalSelfAmount"></td>
+            <td>{{budget.totalSelfAmountBGN | money}}</td>
+            <td>{{budget.totalSelfAmountEUR | money}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

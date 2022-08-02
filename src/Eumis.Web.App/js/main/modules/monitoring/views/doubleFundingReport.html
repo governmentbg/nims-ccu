@@ -1,0 +1,53 @@
+﻿<ng-form name="doubleFundingSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="text" ng-model="filters.uin" ng-required="true" l10n-text="monitoring_doubleFundingReport_uin" class="col-sm-6"></sc-field>
+          <div class="labeless col-sm-4 col-md-6">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_doubleFundingReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+          icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_doubleFundingReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center" l10n-text="monitoring_doubleFundingReport_beneficiary"></th>
+                <th colspan="2" class="text-center" l10n-text="monitoring_doubleFundingReport_partner"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_doubleFundingReport_contractNum"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_doubleFundingReport_contractTotalAmount"></th>
+                <th rowspan="2" class="text-center" l10n-text="monitoring_doubleFundingReport_contractBfp"></th>
+              </tr>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_doubleFundingReport_name"></th>
+                <th class="text-center" l10n-text="monitoring_doubleFundingReport_uin"></th>
+                <th class="text-center" l10n-text="monitoring_doubleFundingReport_name"></th>
+                <th class="text-center" l10n-text="monitoring_doubleFundingReport_uin"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="contract in contracts">
+                <td>{{contract.beneficiaryName}}</td>
+                <td>{{contract.beneficiaryUin}}</td>
+                <td>{{contract.contractPartnerName}}</td>
+                <td>{{contract.contractPartnerUin}}</td>
+                <td>{{contract.contractRegNum}}</td>
+                <td>{{contract.contractTotalAmount | money}}</td>
+                <td>{{contract.contractBfpAmount | money}}</td>
+              </tr>
+              <tr ng-if="contracts.length === 0">
+                <td colspan="7" l10n-text="monitoring_doubleFundingReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

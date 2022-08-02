@@ -1,0 +1,2232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Beneficiary_Index_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyLegalType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyType" xml:space="preserve">
+    <value>Subtype</value>
+  </data>
+  <data name="Beneficiary_Index_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="Beneficiary_Index_ProjectsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="Company_Index_BeneficiaryProjectsList" xml:space="preserve">
+    <value>List of projects in which the organization is involved as a beneficiary</value>
+  </data>
+  <data name="Company_Index_BFP" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="Company_Index_BFPContractStatus" xml:space="preserve">
+    <value>Status of Implementation of the Contract/Order of the Grant</value>
+  </data>
+  <data name="Company_Index_CompanyInformation" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Company_Index_ContractorProjectsList" xml:space="preserve">
+    <value>List of projects in which the organization is involved as a contractor</value>
+  </data>
+  <data name="Company_Index_Duration" xml:space="preserve">
+    <value>Duration (months)</value>
+  </data>
+  <data name="Company_Index_EumisNumber" xml:space="preserve">
+    <value>UMIS Number</value>
+  </data>
+  <data name="Company_Index_Identification" xml:space="preserve">
+    <value>Identification</value>
+  </data>
+  <data name="Company_Index_MemberProjectsList" xml:space="preserve">
+    <value>List of projects in which the organization is involved as a member of the Consortium</value>
+  </data>
+  <data name="Company_Index_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Company_Index_NoBeneficiaryParticipation" xml:space="preserve">
+    <value>The organization does not participate in projects as a Beneficiary</value>
+  </data>
+  <data name="Company_Index_NoContractorParticipation" xml:space="preserve">
+    <value>The organization does not participate in projects as a Contractor</value>
+  </data>
+  <data name="Company_Index_NoMemberParticipation" xml:space="preserve">
+    <value>The organization does not participate in projects as a member of the Consortium</value>
+  </data>
+  <data name="Company_Index_NoPartnerParticipation" xml:space="preserve">
+    <value>The organization does not participate in projects as a Partner</value>
+  </data>
+  <data name="Company_Index_NoSubcontractorParticipation" xml:space="preserve">
+    <value>The organization does not participate in projects as a Subcontractor</value>
+  </data>
+  <data name="Company_Index_PartnerProjectsList" xml:space="preserve">
+    <value>List of projects in which the organization is involved as a Partner</value>
+  </data>
+  <data name="Company_Index_ProjectName" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="Company_Index_Seat" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Company_Index_Start" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Company_Index_SubcontractorProjectsList" xml:space="preserve">
+    <value>List of projects in which the organization is involved as a Subcontractor</value>
+  </data>
+  <data name="Company_Index_TotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Contractor_Index_Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="Contractor_Index_ContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="Contractor_Index_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Active" xml:space="preserve">
+    <value>In execution (starting date)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Canceled" xml:space="preserve">
+    <value>Terminated (termination date)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Concluded" xml:space="preserve">
+    <value>Contracted</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Ended" xml:space="preserve">
+    <value>Closed (completion date)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Monitored" xml:space="preserve">
+    <value>In execution (under supervision)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Paused" xml:space="preserve">
+    <value>In execution (temporary suspended)</value>
+  </data>
+  <data name="Enum_ContractExecutionStatus_Suspended" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+  <data name="Enum_FinanceSource_CohesionFund" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="Enum_FinanceSource_EuropeanRegionalDevelopmentFund" xml:space="preserve">
+    <value>ERDF</value>
+  </data>
+  <data name="Enum_FinanceSource_EuropeanSocialFund" xml:space="preserve">
+    <value>ESF</value>
+  </data>
+  <data name="Enum_FinanceSource_FundForEuropeanAidToTheMostDeprived" xml:space="preserve">
+    <value>FEAD</value>
+  </data>
+  <data name="Enum_FinanceSource_YouthEmploymentInitiative" xml:space="preserve">
+    <value>YEI</value>
+  </data>
+  <data name="Enum_FinanceSource_EMFF" xml:space="preserve">
+    <value>EMFF</value>
+  </data>
+  <data name="Enum_FinanceSource_EAFRD" xml:space="preserve">
+    <value>EAFRD</value>
+  </data>
+  <data name="Enum_FinanceSource_ISF" xml:space="preserve">
+    <value>ISF</value>
+  </data>
+  <data name="Enum_FinanceSource_AMIF" xml:space="preserve">
+    <value>AMIF</value>
+  </data>
+  <data name="Enum_FinanceSource_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Enum_FinanceSource_EFMDR" xml:space="preserve">
+    <value>EFMDR</value>
+  </data>
+  <data name="Enum_FinanceSource_EZFRSR" xml:space="preserve">
+    <value>EZFRSR</value>
+  </data>
+  <data name="Enum_FinanceSource_FUMI" xml:space="preserve">
+    <value>FUMI</value>
+  </data>
+  <data name="Enum_FinanceSource_FVS" xml:space="preserve">
+    <value>FVS</value>
+  </data>
+  <data name="Enum_GroupingLevel_Programme" xml:space="preserve">
+    <value>Operational Programme</value>
+  </data>
+  <data name="Enum_GroupingLevel_ProgrammePriority" xml:space="preserve">
+    <value>Priority Axis</value>
+  </data>
+  <data name="Enum_GroupingLevel_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="Enum_GroupingLevel_Contract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="Global_AboutSystem" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Global_AccessibilityPolicy" xml:space="preserve">
+    <value>Accessibility Policy</value>
+  </data>
+  <data name="Global_AllOperationalPrograms" xml:space="preserve">
+    <value>All operational programmes</value>
+  </data>
+  <data name="Global_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Global_Beneficiaries" xml:space="preserve">
+    <value>Beneficiaries</value>
+  </data>
+  <data name="Global_Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="Global_BudgetProgram" xml:space="preserve">
+    <value>Programme Budget</value>
+  </data>
+  <data name="Global_Bulgaria" xml:space="preserve">
+    <value>Bulgaria</value>
+  </data>
+  <data name="Global_Contracted" xml:space="preserve">
+    <value>Contracted Amounts</value>
+  </data>
+  <data name="Global_ContractedFinancingfEU" xml:space="preserve">
+    <value>Contracted - EU funding</value>
+  </data>
+  <data name="Global_ContractedFinancingfNF" xml:space="preserve">
+    <value>Contracted - NF funding</value>
+  </data>
+  <data name="Global_Contractors" xml:space="preserve">
+    <value>Contractors</value>
+  </data>
+  <data name="Global_Enquiries" xml:space="preserve">
+    <value>Summary of the Operational Programmes</value>
+  </data>
+  <data name="Global_EnvInnerDev" xml:space="preserve">
+    <value>UMIS 2020 in Development Environment</value>
+  </data>
+  <data name="Global_EnvInnerTest" xml:space="preserve">
+    <value>UMIS 2020 in an Internal Test Environment</value>
+  </data>
+  <data name="Global_EnvProduction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global_EnvProductionLearn" xml:space="preserve">
+    <value>UMIS in 2020 Learning Environment</value>
+  </data>
+  <data name="Global_EnvProductionTest" xml:space="preserve">
+    <value>UMIS 2020 in Test Environment</value>
+  </data>
+  <data name="Global_EumisShort" xml:space="preserve">
+    <value>UMIS 2020</value>
+  </data>
+  <data name="Global_FinancialExecution" xml:space="preserve">
+    <value>Financial Performance</value>
+  </data>
+  <data name="Global_FinancingEU" xml:space="preserve">
+    <value>EU Funding</value>
+  </data>
+  <data name="Global_FinancingNF" xml:space="preserve">
+    <value>NF Funding</value>
+  </data>
+  <data name="Global_FinancingSelf" xml:space="preserve">
+    <value>Self-financing by the Beneficiary</value>
+  </data>
+  <data name="Global_Glossary" xml:space="preserve">
+    <value>Glossary</value>
+  </data>
+  <data name="Global_GlossaryTitle" xml:space="preserve">
+    <value>GLOSSARY OF TERMS AND ABBREVIATIONS</value>
+  </data>
+  <data name="Global_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Global_International" xml:space="preserve">
+    <value>International</value>
+  </data>
+  <data name="Global_MaxResultsCount" xml:space="preserve">
+    <value>The number of search results exceed {0}. Please enter additional criteria.</value>
+  </data>
+  <data name="Global_Members" xml:space="preserve">
+    <value>Members of the Consortium</value>
+  </data>
+  <data name="Global_More" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="Global_NoFilter" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Global_NoResults" xml:space="preserve">
+    <value>Your search criteria did not match any data</value>
+  </data>
+  <data name="Global_Note" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Global_NoteBGN" xml:space="preserve">
+    <value>All amounts are in Bulgarian lev (BGN) / 1 EUR = 1,95583 BGN</value>
+  </data>
+  <data name="Global_NoteUnderlined" xml:space="preserve">
+    <value>Elements in light blue allow detailed view when selected</value>
+  </data>
+  <data name="Global_NotePercent" xml:space="preserve">
+    <value>A percentage of the total to the total program budget</value>
+  </data>
+  <data name="Global_NoteBudget" xml:space="preserve">
+    <value>The budget includes the performance reserve in the amount of 6%</value>
+  </data>
+  <data name="Global_OperationalProgram" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="Global_OperationalPrograms" xml:space="preserve">
+    <value>Programmes</value>
+  </data>
+  <data name="Global_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Global_Partners" xml:space="preserve">
+    <value>Partners</value>
+  </data>
+  <data name="Global_Payed" xml:space="preserve">
+    <value>Actual amounts paid</value>
+  </data>
+  <data name="Global_PayedFinancingfEU" xml:space="preserve">
+    <value>Actual amounts paid - EU funding</value>
+  </data>
+  <data name="Global_PayedFinancingfNF" xml:space="preserve">
+    <value>Actual amounts paid - NF funding</value>
+  </data>
+  <data name="Global_PayedNote" xml:space="preserve">
+    <value>AAP - Real paid</value>
+  </data>
+  <data name="Global_PercentExecution" xml:space="preserve">
+    <value>% of Implementation</value>
+  </data>
+  <data name="Global_PlanningRegion" xml:space="preserve">
+    <value>Planning region</value>
+  </data>
+  <data name="Global_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Global_SearchButtonValue" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Global_Subcontractors" xml:space="preserve">
+    <value>Subcontractors</value>
+  </data>
+  <data name="Global_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Home_Index_AdvancedSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Home_Index_AllOperationalPrograms" xml:space="preserve">
+    <value>All operational programmes</value>
+  </data>
+  <data name="Home_Index_Companies" xml:space="preserve">
+    <value>Organizations</value>
+  </data>
+  <data name="Home_Index_PlaningRegions" xml:space="preserve">
+    <value>Planning regions</value>
+  </data>
+  <data name="Implementation_Index_AFFonds" xml:space="preserve">
+    <value>Agricultural and Fishery Funds</value>
+  </data>
+  <data name="Implementation_Index_CF" xml:space="preserve">
+    <value>SCF</value>
+  </data>
+  <data name="Implementation_Index_DateFrom" xml:space="preserve">
+    <value>Period of performance (from)</value>
+  </data>
+  <data name="Implementation_Index_DateTo" xml:space="preserve">
+    <value>Period of performance (to)</value>
+  </data>
+  <data name="Implementation_Index_OpExecution" xml:space="preserve">
+    <value>Implementation of the Operational Programmes</value>
+  </data>
+  <data name="Implementation_Index_ReceivedTranches" xml:space="preserve">
+    <value>Received tranches of EC</value>
+  </data>
+  <data name="Implementation_Index_TotalTo" xml:space="preserve">
+    <value>Total (to date)</value>
+  </data>
+  <data name="Implementation_Index_ValidationDates" xml:space="preserve">
+    <value>The value of the field "{0}" should be less than or equal of that in the field "{1}".</value>
+  </data>
+  <data name="Implementation_Index_ContractedNote" xml:space="preserve">
+    <value>The amount is only grants</value>
+  </data>
+  <data name="Indicators_Index_AchievedValue" xml:space="preserve">
+    <value>Achieved Value</value>
+  </data>
+  <data name="Indicators_Index_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Indicators_Index_CumulativeAchievedValue" xml:space="preserve">
+    <value>Cumulative Achieved Value</value>
+  </data>
+  <data name="Indicators_Index_CumulativeTargetValue" xml:space="preserve">
+    <value>Cumulative Target Value</value>
+  </data>
+  <data name="Indicators_Index_Indicator" xml:space="preserve">
+    <value>Indicator</value>
+  </data>
+  <data name="Indicators_Index_IndicatorsInfo" xml:space="preserve">
+    <value>Indicators Reference</value>
+  </data>
+  <data name="Indicators_Index_MeasureUnit" xml:space="preserve">
+    <value>Measure Unit</value>
+  </data>
+  <data name="Indicators_Index_TargetValue" xml:space="preserve">
+    <value>Target Value</value>
+  </data>
+  <data name="Indicators_Index_Trend" xml:space="preserve">
+    <value>Trend</value>
+  </data>
+  <data name="Indicators_Index_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Js_BackTo" xml:space="preserve">
+    <value>Back to</value>
+  </data>
+  <data name="Js_Choose" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Js_Collapse" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
+  <data name="Js_Expand" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="Js_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Js_Lang" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="Member_Index_ContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="Member_Index_Member" xml:space="preserve">
+    <value>Member of the Consortium</value>
+  </data>
+  <data name="Member_Index_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="OpeationalPrograms_Index_BFP" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Contracted" xml:space="preserve">
+    <value>Contracted amounts from the EU budget by OP</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Execution" xml:space="preserve">
+    <value>Performance of the Programmes</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Payed" xml:space="preserve">
+    <value>Amounts paid from the EU budget by OP</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProgramBudget" xml:space="preserve">
+    <value>Budget of the operational programmes</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProgramBudgetPercent" xml:space="preserve">
+    <value>% of the total programme budget</value>
+  </data>
+  <data name="OpeationalPrograms_Index_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="OpeationalPrograms_Index_ProjectsCount" xml:space="preserve">
+    <value>Number of Submitted Projects</value>
+  </data>
+  <data name="OperationalPrograms_Index_ChartContractedPayed" xml:space="preserve">
+    <value>Contracted and payed amounts by operational programmes</value>
+  </data>
+  <data name="OperationalPrograms_Index_NoteContracted" xml:space="preserve">
+    <value>Total includes grants and co-financing by the beneficiary</value>
+  </data>
+  <data name="Operations_Index_BeneficiaryName" xml:space="preserve">
+    <value>Beneficiary Name</value>
+  </data>
+  <data name="Operations_Index_DateFrom" xml:space="preserve">
+    <value>Period of performance (from)</value>
+  </data>
+  <data name="Operations_Index_DateTo" xml:space="preserve">
+    <value>Period of performance (to)</value>
+  </data>
+  <data name="Operations_Index_InterventionCategoriesName" xml:space="preserve">
+    <value>Name of Categories of Interventions for the Operation</value>
+  </data>
+  <data name="Operations_Index_LastUpdate" xml:space="preserve">
+    <value>Date of Last Update of the List of Operations</value>
+  </data>
+  <data name="Operations_Index_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Operations_Index_OperationEndDate" xml:space="preserve">
+    <value>Date of Completion of the Operation</value>
+  </data>
+  <data name="Operations_Index_OperationName" xml:space="preserve">
+    <value>Operation Name</value>
+  </data>
+  <data name="Operations_Index_OperationsList" xml:space="preserve">
+    <value>List of Operations in accordance with Regulation (EU) No 1303/2013</value>
+  </data>
+  <data name="Operations_Index_OperationStartDate" xml:space="preserve">
+    <value>Operation Start Date</value>
+  </data>
+  <data name="Operations_Index_OperationSummary" xml:space="preserve">
+    <value>Summary of the Operation</value>
+  </data>
+  <data name="Operations_Index_PercentFinancingEU" xml:space="preserve">
+    <value>% of EC co-financing</value>
+  </data>
+  <data name="Operations_Index_ProgramName" xml:space="preserve">
+    <value>Operational programme</value>
+  </data>
+  <data name="Operations_Index_TotalEligibleExpenditure" xml:space="preserve">
+    <value>Total Eligible Costs Granted for the Operation</value>
+  </data>
+  <data name="Operations_Index_TInterventionField" xml:space="preserve">
+    <value>Intervention field</value>
+  </data>
+  <data name="Operations_Index_TFormOfFinance" xml:space="preserve">
+    <value>Form of funding</value>
+  </data>
+  <data name="Operations_Index_TTerritorialDimension" xml:space="preserve">
+    <value>Тype of territory</value>
+  </data>
+  <data name="Operations_Index_TTerritorialDeliveryMechanism" xml:space="preserve">
+    <value>Territorial enforcement mechanisms</value>
+  </data>
+  <data name="Operations_Index_TThematicObjective" xml:space="preserve">
+    <value>Thematic objective (ERDF and Cohesion fund)</value>
+  </data>
+  <data name="Operations_Index_TESFSecondaryTheme" xml:space="preserve">
+    <value>ESF secondary theme</value>
+  </data>
+  <data name="Operations_Index_TEconomicDimension" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="OPProfile_Index_BudgetFonds" xml:space="preserve">
+    <value>Budget allocation by fund</value>
+  </data>
+  <data name="OPProfile_Index_BudgetOperationalProgram" xml:space="preserve">
+    <value>Budget of the Operational Programme </value>
+  </data>
+  <data name="OPProfile_Index_ByYears" xml:space="preserve">
+    <value>by year</value>
+  </data>
+  <data name="OPProfile_Index_ChartYTitle" xml:space="preserve">
+    <value>Means (BGN)</value>
+  </data>
+  <data name="OPProfile_Index_ContractedPayedOperationalProgram" xml:space="preserve">
+    <value>Contracted and actual paid amounts by operational programme</value>
+  </data>
+  <data name="OPProfile_Index_Execution" xml:space="preserve">
+    <value>Implementation of the Operational Programme</value>
+  </data>
+  <data name="OPProfile_Index_NF" xml:space="preserve">
+    <value>NF</value>
+  </data>
+  <data name="OPProfile_Index_NoteBudget" xml:space="preserve">
+    <value>Operational Programme cumulative budget by year</value>
+  </data>
+  <data name="OPProfile_Index_NoteContracted" xml:space="preserve">
+    <value>Cumulative amount of the contracted funds</value>
+  </data>
+  <data name="OPProfile_Index_NotePayed" xml:space="preserve">
+    <value>The amount of the actual amounts paid cumulative</value>
+  </data>
+  <data name="OPProfile_Index_Period" xml:space="preserve">
+    <value>Programming Period</value>
+  </data>
+  <data name="OPProfile_Index_Sum_FinancialExecution" xml:space="preserve">
+    <value>Financial implementation of the Operational Programme</value>
+  </data>
+  <data name="OPProfile_Index_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="OPProfile_Index_TotalGrants" xml:space="preserve">
+    <value>Total-Grants</value>
+  </data>
+  <data name="Partner_Index_CompanyLegalType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Partner_Index_CompanyType" xml:space="preserve">
+    <value>Subtype</value>
+  </data>
+  <data name="Partner_Index_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="Partner_Index_Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="Partner_Index_ProjectsCount" xml:space="preserve">
+    <value>Number of Projects</value>
+  </data>
+  <data name="PlaningRegions_Index_NotePreview" xml:space="preserve">
+    <value>To view the data of the region, select a name from the tree list</value>
+  </data>
+  <data name="PriorityLines_Index_Budget" xml:space="preserve">
+    <value>Budget by Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_Contracted" xml:space="preserve">
+    <value>Contracted amounts by Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_ContractedPayed" xml:space="preserve">
+    <value>Contracted and actual payed amounts by Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_FinancingPriorityAxes" xml:space="preserve">
+    <value>Financial Implementation by the Priority Axes</value>
+  </data>
+  <data name="PriorityLines_Index_NoProcedures" xml:space="preserve">
+    <value>There are no procedures by this Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_NoteArrow" xml:space="preserve">
+    <value>An element from the table with an arrow on the left side allows detailed view when selected</value>
+  </data>
+  <data name="PriorityLines_Index_Payed" xml:space="preserve">
+    <value>Actual amounts paid by Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_PriorityAxis" xml:space="preserve">
+    <value>Priority Axis</value>
+  </data>
+  <data name="PriorityLines_Index_ProcedureName" xml:space="preserve">
+    <value>Procedure Name</value>
+  </data>
+  <data name="PriorityLines_Index_ProcedureCode" xml:space="preserve">
+    <value>Procedure Code</value>
+  </data>
+  <data name="PriorityLines_Index_TotalContractsCount" xml:space="preserve">
+    <value>Total count of contracts</value>
+  </data>
+  <data name="PriorityLines_Index_TotalBFPAmount" xml:space="preserve">
+    <value>Total amount of grant</value>
+  </data>
+  <data name="PriorityLines_Index_TotalAmount" xml:space="preserve">
+    <value>Total amount</value>
+  </data>
+  <data name="PriorityLines_Index_TotalCompaniesCount" xml:space="preserve">
+    <value>Total count of beneficiaries</value>
+  </data>
+  <data name="ProjectProposals_Index_ApprovedCount" xml:space="preserve">
+    <value>Number of approved project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_BFPAmount" xml:space="preserve">
+    <value>Amount of the submitted project proposals - Grant</value>
+  </data>
+  <data name="ProjectProposals_Index_ProcedureNamе" xml:space="preserve">
+    <value>Procedure Name</value>
+  </data>
+  <data name="ProjectProposals_Index_ProcedureNumber" xml:space="preserve">
+    <value>Procedure Number</value>
+  </data>
+  <data name="ProjectProposals_Index_ProjectProposals" xml:space="preserve">
+    <value>Project Proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_RejectedCount" xml:space="preserve">
+    <value>Number of rejected project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_ReservedCount" xml:space="preserve">
+    <value>Number of project proposals on a reserve list</value>
+  </data>
+  <data name="ProjectProposals_Index_SubmittedCount" xml:space="preserve">
+    <value>Number of submitted project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalAmount" xml:space="preserve">
+    <value>Total amount of the submitted project proposals</value>
+  </data>
+  <data name="Project_Details_Activities" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="Project_Details_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Project_Details_BFP" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="Project_Details_BFPContractStatus" xml:space="preserve">
+    <value>Status of Implementation of the Contract/Order of the Grant</value>
+  </data>
+  <data name="Project_Details_ContractDate" xml:space="preserve">
+    <value>Date of the Contract/Order</value>
+  </data>
+  <data name="Project_Details_Contractors" xml:space="preserve">
+    <value>Contractors</value>
+  </data>
+  <data name="Project_Details_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Project_Details_EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Project_Details_EUMISNumber" xml:space="preserve">
+    <value>UMIS Number</value>
+  </data>
+  <data name="Project_Details_EuPercent" xml:space="preserve">
+    <value>Percentage of EU co-financing</value>
+  </data>
+  <data name="Project_Details_ExecutionPlace" xml:space="preserve">
+    <value>Location of Performance</value>
+  </data>
+  <data name="Project_Details_FinancialInformation" xml:space="preserve">
+    <value>Financial Information</value>
+  </data>
+  <data name="Project_Details_FinancingSource" xml:space="preserve">
+    <value>Funding</value>
+  </data>
+  <data name="Project_Details_Identification" xml:space="preserve">
+    <value>Identification</value>
+  </data>
+  <data name="Project_Details_Indicator" xml:space="preserve">
+    <value>Indicator</value>
+  </data>
+  <data name="Project_Details_Indicators" xml:space="preserve">
+    <value>Indicators</value>
+  </data>
+  <data name="Project_Details_Indicator_CumulativeAmount" xml:space="preserve">
+    <value>Reached amount</value>
+  </data>
+  <data name="Project_Details_Indicator_TargetAmount" xml:space="preserve">
+    <value>Target amount</value>
+  </data>
+  <data name="Project_Details_Members" xml:space="preserve">
+    <value>Members of the Consortium</value>
+  </data>
+  <data name="Project_Details_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Project_Details_NoProcurements" xml:space="preserve">
+    <value>There are no tender procedures</value>
+  </data>
+  <data name="Project_Details_Offer" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="Project_Details_Offer_Amount" xml:space="preserve">
+    <value>Estimated Amount</value>
+  </data>
+  <data name="Project_Details_Offer_PositionName" xml:space="preserve">
+    <value>Differentiated position</value>
+  </data>
+  <data name="Project_Details_Offer_ProcurementPlanName" xml:space="preserve">
+    <value>Subject to due process</value>
+  </data>
+  <data name="Project_Details_Partners" xml:space="preserve">
+    <value>Partners</value>
+  </data>
+  <data name="Project_Details_Procurements" xml:space="preserve">
+    <value>Procurements</value>
+  </data>
+  <data name="Project_Details_ProjectName" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="Project_Details_ProjectTotalAmount" xml:space="preserve">
+    <value>Total Project cost</value>
+  </data>
+  <data name="Project_Details_SF" xml:space="preserve">
+    <value>SF</value>
+  </data>
+  <data name="Project_Details_ShortProjectDescription" xml:space="preserve">
+    <value>Brief description</value>
+  </data>
+  <data name="Project_Details_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Project_Details_Subcontractors" xml:space="preserve">
+    <value>Subcontractors</value>
+  </data>
+  <data name="Project_Details_TotalPayed" xml:space="preserve">
+    <value>Total actual amounts paid</value>
+  </data>
+  <data name="Project_Details_UMISNumber" xml:space="preserve">
+    <value>UMIS Number</value>
+  </data>
+  <data name="Project_Search_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Project_Search_Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="Project_Search_EndDateFrom" xml:space="preserve">
+    <value>End Year (from)</value>
+  </data>
+  <data name="Project_Search_EndDateTo" xml:space="preserve">
+    <value>End Year (to)</value>
+  </data>
+  <data name="Project_Search_FinancinBeneficiary" xml:space="preserve">
+    <value>Self-financing by the Beneficiary</value>
+  </data>
+  <data name="Project_Search_Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="Project_Search_PriorityAxis" xml:space="preserve">
+    <value>Priority Axis</value>
+  </data>
+  <data name="Project_Search_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="Project_Search_Program" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="Project_Search_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Project_Search_StartDateFrom" xml:space="preserve">
+    <value>Starting Year (from)</value>
+  </data>
+  <data name="Project_Search_StartDateTo" xml:space="preserve">
+    <value>Starting Year (to)</value>
+  </data>
+  <data name="Project_Search_To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Project_Search_TotalContractsCount" xml:space="preserve">
+    <value>Total count of contracts</value>
+  </data>
+  <data name="Project_Search_TotalBFPAmount" xml:space="preserve">
+    <value>Total amount of grant</value>
+  </data>
+  <data name="Project_Search_TotalAmount" xml:space="preserve">
+    <value>Total amount</value>
+  </data>
+  <data name="Project_Search_TotalCompaniesCount" xml:space="preserve">
+    <value>Total count of beneficiaries</value>
+  </data>
+  <data name="Project_Search_Uin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Project_Search_ProjectName" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="Project_Search_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Project_Search_ProjectCostNote" xml:space="preserve">
+    <value>Project cost information in the regions based on the latest update of the Grant contract</value>
+  </data>
+  <data name="Project_Search_ActuallyPaidAmountsNote" xml:space="preserve">
+    <value>The information fot actually paid project amounts is not related to the specific region, but for the whole project</value>
+  </data>
+  <data name="Shared_Error_Message" xml:space="preserve">
+    <value>An error occurred, please try again later</value>
+  </data>
+  <data name="Shared_ExportIcons_Excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="Shared_ExportIcons_Export" xml:space="preserve">
+    <value>Data Export</value>
+  </data>
+  <data name="Shared_ExportIcons_HTML" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="Shared_ExportIcons_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Shared_ExportIcons_XML" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="Shared_Footer_Eumis" xml:space="preserve">
+    <value>INFORMATION SYSTEM FOR MANAGEMENT AND MONITORING 2020</value>
+  </data>
+  <data name="Shared_Footer_Financing" xml:space="preserve">
+    <value>The project is financed by the Operational Programme "Technical Assistance" and co-financed by the European Union through the European Regional Development Fund.</value>
+  </data>
+  <data name="Shared_Footer_Project" xml:space="preserve">
+    <value>In implementing the project № 0115-CCU-2.1 "Information system for management and monitoring of EU funds in 2014-2020 - UMIS 2020" (BG161PO002-2.1.01-0007-C0001).</value>
+  </data>
+  <data name="Shared_Header_Funds" xml:space="preserve">
+    <value>OF EU FUNDS IN BULGARIA 2020</value>
+  </data>
+  <data name="Shared_Header_Monitoring" xml:space="preserve">
+    <value>FOR MANAGEMENT AND MONITORING</value>
+  </data>
+  <data name="Shared_Header_Motto" xml:space="preserve">
+    <value>One direction - Many opportunities</value>
+  </data>
+  <data name="Shared_Header_MottoDirection" xml:space="preserve">
+    <value>ONE DIRECTION</value>
+  </data>
+  <data name="Shared_Header_MottoPossibilities" xml:space="preserve">
+    <value>MANY OPPORTUNITIES 2014 - 2020</value>
+  </data>
+  <data name="Shared_Header_System" xml:space="preserve">
+    <value>INFORMATION SYSTEM</value>
+  </data>
+  <data name="Shared_Tabs_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Shared_Tabs_PriorityAxes" xml:space="preserve">
+    <value>Priority Axes</value>
+  </data>
+  <data name="Shared_Tabs_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Shared__LoaderPartial_Wait" xml:space="preserve">
+    <value>Please wait…</value>
+  </data>
+  <data name="Shared__SubHeader_Eumis" xml:space="preserve">
+    <value>Information System for Management and Monitoring of EU Funds in Bulgaria 2020</value>
+  </data>
+  <data name="Shared__SubHeader_Period" xml:space="preserve">
+    <value>2014 - 2020</value>
+  </data>
+  <data name="Subcontractor_Index_ContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="Subcontractor_Index_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="Subcontractor_Index_Subcontractor" xml:space="preserve">
+    <value>Subcontractor</value>
+  </data>
+  <data name="Enum_IndicatorType_Specific" xml:space="preserve">
+    <value>Programme Specific indicator</value>
+  </data>
+  <data name="Enum_IndicatorType_Common" xml:space="preserve">
+    <value>Common indicator</value>
+  </data>
+  <data name="Enum_IndicatorType_IndividualForProcedure" xml:space="preserve">
+    <value>Individual for the Procedure</value>
+  </data>
+  <data name="Enum_IndicatorKind_Financial" xml:space="preserve">
+    <value>Financial</value>
+  </data>
+  <data name="Enum_IndicatorKind_Performance" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="Enum_IndicatorKind_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Enum_IndicatorKind_PerformanceStage" xml:space="preserve">
+    <value>Implementation Step</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Reduction" xml:space="preserve">
+    <value>Reduction</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Increase" xml:space="preserve">
+    <value>Increase</value>
+  </data>
+  <data name="Enum_IndicatorTrend_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_NotAggregated" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_Aggregated" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedReport_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_NotAggregated" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_Aggregated" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Enum_IndicatorAggregatedTarget_Inapplicable" xml:space="preserve">
+    <value>Inapplicable</value>
+  </data>
+  <data name="Global_AdministrativeEnquiries" xml:space="preserve">
+    <value>Administrative enquiries</value>
+  </data>
+  <data name="Admin_OPStatistics" xml:space="preserve">
+    <value>Statistics for operational program</value>
+  </data>
+  <data name="Admin_UsersCount" xml:space="preserve">
+    <value>Users count</value>
+  </data>
+  <data name="Admin_UsersCount_PortalUsersCount" xml:space="preserve">
+    <value>Number of users PORTAL</value>
+  </data>
+  <data name="Admin_UsersCount_PrivateUsersCount" xml:space="preserve">
+    <value>Number of users INTERNAL</value>
+  </data>
+  <data name="Admin_UsersCount_ReportUsersCount" xml:space="preserve">
+    <value>Number of users REPORT</value>
+  </data>
+  <data name="Admin_OPStatistics_ApprovedProposalsCount" xml:space="preserve">
+    <value>Number of approved proposals</value>
+  </data>
+  <data name="Admin_OPStatistics_EvalSessionsCount" xml:space="preserve">
+    <value>Number of evaluation sessions</value>
+  </data>
+  <data name="Admin_OPStatistics_ProceduresCount" xml:space="preserve">
+    <value>Number of procedures to date</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsBFPAmount" xml:space="preserve">
+    <value>Value of the submitted proposals CCD (lev)</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsSelfAmount" xml:space="preserve">
+    <value>Value of the project proposals submitted Own financing (lev)</value>
+  </data>
+  <data name="Admin_OPStatistics_ProposalsTotalAmount" xml:space="preserve">
+    <value>Total value of the project proposals submitted</value>
+  </data>
+  <data name="Admin_OPStatistics_RejectedProposalsCount" xml:space="preserve">
+    <value>Number rejected proposals</value>
+  </data>
+  <data name="Admin_OPStatistics_ReserveProposalsCount" xml:space="preserve">
+    <value>Number proposals on a reserve list</value>
+  </data>
+  <data name="Admin_OPStatistics_SubmittedProposalsCount" xml:space="preserve">
+    <value>Number of project proposals submitted</value>
+  </data>
+  <data name="Global_Placeholder" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalApprovedCount" xml:space="preserve">
+    <value>Total number of approved project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalBFPAmount" xml:space="preserve">
+    <value>Total amount of the submitted project proposals - Grant</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalProjectProposals" xml:space="preserve">
+    <value>Total project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalRejectedCount" xml:space="preserve">
+    <value>Total number of rejected project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalReservedCount" xml:space="preserve">
+    <value>Total number of project proposals on a reserve list</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalSubmittedCount" xml:space="preserve">
+    <value>Total number of submitted project proposals</value>
+  </data>
+  <data name="ProjectProposals_Index_TotalTotalAmount" xml:space="preserve">
+    <value>Total amount of all the submitted project proposals</value>
+  </data>
+  <data name="Admin_UsersStatistics" xml:space="preserve">
+    <value>Users statistics</value>
+  </data>
+  <data name="Admin_UsersStatistics_DraftOperationalProgrammes" xml:space="preserve">
+    <value>Draft OPs</value>
+  </data>
+  <data name="Admin_UsersStatistics_DraftProjectsCount" xml:space="preserve">
+    <value>Drafts count</value>
+  </data>
+  <data name="Admin_UsersStatistics_Fullname" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Admin_UsersStatistics_Number" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Admin_UsersStatistics_RegisteredOperationalProgrammes" xml:space="preserve">
+    <value>Registered OPs</value>
+  </data>
+  <data name="Admin_UsersStatistics_RegisteredProjectsCount" xml:space="preserve">
+    <value>Registered count</value>
+  </data>
+  <data name="Admin_UsersStatistics_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Admin_ProceduresStatisticsProgramme" xml:space="preserve">
+    <value>Statistics for procedures for operational programme</value>
+  </data>
+  <data name="Admin_ProceduresStatistics" xml:space="preserve">
+    <value>Statistics for procedures</value>
+  </data>
+  <data name="Admin_ProcedureProjects" xml:space="preserve">
+    <value>Project Proposals for procedure</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Number" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Admin_ProcedureProjects_Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Admin_OPStatistics_ActiveContractsCount" xml:space="preserve">
+    <value>Number of contracts in performance (from date of launch)</value>
+  </data>
+  <data name="Admin_OPStatistics_CanceledContractsCount" xml:space="preserve">
+    <value>Number of terminated contracts (to the date of termination)</value>
+  </data>
+  <data name="Admin_OPStatistics_ConcludedContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="Admin_OPStatistics_EndedContractsCount" xml:space="preserve">
+    <value>Number of completed contracts (the completion date)</value>
+  </data>
+  <data name="Admin_OPStatistics_MonitoredContractsCount" xml:space="preserve">
+    <value>Number of contracts in execution (under observation)</value>
+  </data>
+  <data name="Admin_OPStatistics_PausedContractsCount" xml:space="preserve">
+    <value>Number of contracts in execution (suspended)</value>
+  </data>
+  <data name="Admin_OPStatistics_SuspendedContractsCount" xml:space="preserve">
+    <value>Number of terminated contracts</value>
+  </data>
+  <data name="Admin_OPStatistics_TotalContractsCount" xml:space="preserve">
+    <value>Total contracts count</value>
+  </data>
+  <data name="Global_CF_ERDF_ESF" xml:space="preserve">
+    <value>CF, ERDF and ESF</value>
+  </data>
+  <data name="Global_ESIF" xml:space="preserve">
+    <value>ESIF</value>
+  </data>
+  <data name="Global_MoI_Funds" xml:space="preserve">
+    <value>MoI funds</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_Title" xml:space="preserve">
+    <value>Evaluatuion results</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredProcedure" xml:space="preserve">
+    <value>Procedure is not specified</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_NotPassedASD" xml:space="preserve">
+    <value>Not passed ASD</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_PassedASD" xml:space="preserve">
+    <value>Passed ASD</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_AdminAdmissResult" xml:space="preserve">
+    <value>Evaluation ASD result</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_CompanyName" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_NonAdmissionReason" xml:space="preserve">
+    <value>Non admission reason</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectCode" xml:space="preserve">
+    <value>Reg. number</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectEvaluation" xml:space="preserve">
+    <value>Evaluation Results</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectNamе" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_Projects" xml:space="preserve">
+    <value>Project Proposals</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Programme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_ProgrammePriority" xml:space="preserve">
+    <value>Programme priority</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_Type" xml:space="preserve">
+    <value>Result type</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredResultType" xml:space="preserve">
+    <value>Resul type is not specified</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_AdminAdmiss" xml:space="preserve">
+    <value>Result of ASD evaluation</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_Preliminary" xml:space="preserve">
+    <value>Result of preliminary evaluation</value>
+  </data>
+  <data name="Enum_EvalSessionResultType_Standing" xml:space="preserve">
+    <value>Standing result</value>
+  </data>
+  <data name="Enum_FinanceSource_EEAFM" xml:space="preserve">
+    <value>EEA FM</value>
+  </data>
+  <data name="Enum_FinanceSource_NFM" xml:space="preserve">
+    <value>NFM</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_RequiredResultId" xml:space="preserve">
+    <value>Version is not specified</value>
+  </data>
+  <data name="ProjectsEvaluation_Search_ResultId" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ProjectsResults_Index_Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ProjectsResults_Index_EvalSessionCode" xml:space="preserve">
+    <value>Evaluation session</value>
+  </data>
+  <data name="ProjectsResults_Index_Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="ProjectsResults_Index_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ProjectsResults_Index_PublicationDate" xml:space="preserve">
+    <value>Publication date</value>
+  </data>
+  <data name="ProjectsResults_Index_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="EvalSessionResult_Index_Title" xml:space="preserve">
+    <value>Evaluation Results</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_CompanyUin" xml:space="preserve">
+    <value>Candidate id</value>
+  </data>
+  <data name="EvalSessionResult_AdminAdmiss_ProjectRegDate" xml:space="preserve">
+    <value>Registration date</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Enum_EvalSessionResultStatus_Publish" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="Enum_UinType_Bulstat" xml:space="preserve">
+    <value>Bulstat</value>
+  </data>
+  <data name="Enum_UinType_Eik" xml:space="preserve">
+    <value>Eik</value>
+  </data>
+  <data name="Enum_UinType_Foreign" xml:space="preserve">
+    <value>Foreign company</value>
+  </data>
+  <data name="Enum_UinType_Personal" xml:space="preserve">
+    <value>Personal Id</value>
+  </data>
+  <data name="Enum_EvalSessionEvaluationResult_NotPassed" xml:space="preserve">
+    <value>Not passed</value>
+  </data>
+  <data name="Enum_EvalSessionEvaluationResult_Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtASD" xml:space="preserve">
+    <value>Rejected at ASD</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtTFO" xml:space="preserve">
+    <value>Rejected at TFE</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Assessment" xml:space="preserve">
+    <value>Preliminary assessment</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_CompanyName" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_CompanyUin" xml:space="preserve">
+    <value>Candidate identifier</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_GrantAmount" xml:space="preserve">
+    <value>Grant amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectCode" xml:space="preserve">
+    <value>Registration number</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectNamе" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_ProjectRegDate" xml:space="preserve">
+    <value>Registration date</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Projects" xml:space="preserve">
+    <value>Project Proposals</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_SelfAmount" xml:space="preserve">
+    <value>Self amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_StandingOrder" xml:space="preserve">
+    <value>Standing order</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_StandingStatus" xml:space="preserve">
+    <value>Standing status</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASD" xml:space="preserve">
+    <value>EACE</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Assessment" xml:space="preserve">
+    <value>Common evaluation</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CompanyName" xml:space="preserve">
+    <value>Candidate</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CompanyUin" xml:space="preserve">
+    <value>Candidate identifier</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Complex" xml:space="preserve">
+    <value>CA</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CorrectedGrantAmount" xml:space="preserve">
+    <value>Corrected grant amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_CorrectedSelfAmount" xml:space="preserve">
+    <value>Corrected self amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_EvalType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="EvalSessionResult_Standing_GrantAmount" xml:space="preserve">
+    <value>Grant amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="EvalSessionResult_Standing_NoText" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Pass" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Points" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Preliminary" xml:space="preserve">
+    <value>PA</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectCode" xml:space="preserve">
+    <value>Registration number</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectNamе" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ProjectRegDate" xml:space="preserve">
+    <value>Registration date</value>
+  </data>
+  <data name="EvalSessionResult_Standing_Projects" xml:space="preserve">
+    <value>Project Proposals</value>
+  </data>
+  <data name="EvalSessionResult_Standing_SelfAmount" xml:space="preserve">
+    <value>Self amount (BGN)</value>
+  </data>
+  <data name="EvalSessionResult_Standing_StandingOrder" xml:space="preserve">
+    <value>Standing order</value>
+  </data>
+  <data name="EvalSessionResult_Standing_StandingStatus" xml:space="preserve">
+    <value>Standing status</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFO" xml:space="preserve">
+    <value>TFE</value>
+  </data>
+  <data name="EvalSessionResult_Standing_YesText" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASDPoints" xml:space="preserve">
+    <value>EACE points</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ASDResult" xml:space="preserve">
+    <value>EACE result</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ComplexPoints" xml:space="preserve">
+    <value>CA points</value>
+  </data>
+  <data name="EvalSessionResult_Standing_ComplexResult" xml:space="preserve">
+    <value>CA result</value>
+  </data>
+  <data name="EvalSessionResult_Standing_PreliminaryPoints" xml:space="preserve">
+    <value>PA points</value>
+  </data>
+  <data name="EvalSessionResult_Standing_PreliminaryResult" xml:space="preserve">
+    <value>PA result</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFOPoints" xml:space="preserve">
+    <value>TFE points</value>
+  </data>
+  <data name="EvalSessionResult_Standing_TFOResult" xml:space="preserve">
+    <value>TFE result</value>
+  </data>
+  <data name="EvalSessionResult_Index_Template" xml:space="preserve">
+    <value>Procedure "{0}". {1} in evaluation session {2}</value>
+  </data>
+  <data name="EvalSessionResult_Index_EvalSession" xml:space="preserve">
+    <value>Evaluation session</value>
+  </data>
+  <data name="EvalSessionResult_Index_EvalType" xml:space="preserve">
+    <value>Result type</value>
+  </data>
+  <data name="EvalSessionResult_Index_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="Beneficiary_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Partner_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Contractor_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Member_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Subcontractor_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="ProgrammeGroups_All" xml:space="preserve">
+    <value>All programmes</value>
+  </data>
+  <data name="ProgrammeGroups_Other" xml:space="preserve">
+    <value>Other programmes</value>
+  </data>
+  <data name="ProgrammeGroups_Index_BFP" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ContractsCount" xml:space="preserve">
+    <value>Number of Contracts</value>
+  </data>
+  <data name="ProgrammeGroups_Index_Execution" xml:space="preserve">
+    <value>Performance of the Programmes</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProgramBudgetPercent" xml:space="preserve">
+    <value>% of the total programme budget</value>
+  </data>
+  <data name="ProgrammeGroups_Index_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProjectsCount" xml:space="preserve">
+    <value>Number of Submitted Projects</value>
+  </data>
+  <data name="ProgrammeGroups_Index_NoteContracted" xml:space="preserve">
+    <value>Total includes grants and co-financing by the beneficiary</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ProgramBudget" xml:space="preserve">
+    <value>Total budget of the programmes</value>
+  </data>
+  <data name="ProgrammeGroups_Index_FiananceSourcesDistribution" xml:space="preserve">
+    <value>Budget distribution by finance sources</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartContractedPayed" xml:space="preserve">
+    <value>Contracted and payed amounts</value>
+  </data>
+  <data name="Global_ContractedFinancingTotal" xml:space="preserve">
+    <value>Total contracted</value>
+  </data>
+  <data name="Global_PayedFinancingTotal" xml:space="preserve">
+    <value>Total actual amounts paid</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartProgrammesExecution" xml:space="preserve">
+    <value>Programmes execution in %</value>
+  </data>
+  <data name="ProgrammeGroups_Index_ChartProgrammeFinanceSourceBudget" xml:space="preserve">
+    <value>Programme budget (by funds)</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Friday" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Monday" xml:space="preserve">
+    <value>Mon</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Saturday" xml:space="preserve">
+    <value>Sat</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Sunday" xml:space="preserve">
+    <value>Sun</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Thursday" xml:space="preserve">
+    <value>Thu</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Tuesday" xml:space="preserve">
+    <value>Tue</value>
+  </data>
+  <data name="Calendar_DayOfWeek_Wednesday" xml:space="preserve">
+    <value>Wed</value>
+  </data>
+  <data name="Calendar_Month_April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="Calendar_Month_August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="Calendar_Month_December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="Calendar_Month_February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="Calendar_Month_January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="Calendar_Month_July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="Calendar_Month_June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="Calendar_Month_March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="Calendar_Month_May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Calendar_Month_November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="Calendar_Month_October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="Calendar_Month_September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="Events_Index_Caption" xml:space="preserve">
+    <value>Events list for {0}</value>
+  </data>
+  <data name="Events_Index_DeadLine" xml:space="preserve">
+    <value>Deadline</value>
+  </data>
+  <data name="Events_Index_Procedure" xml:space="preserve">
+    <value>Open calls deadline</value>
+  </data>
+  <data name="Events_Index_Title" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="Events_Index_EventType" xml:space="preserve">
+    <value>Event type</value>
+  </data>
+  <data name="Events_Index_Name" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Events_Index_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="OpenData_Index_Title" xml:space="preserve">
+    <value>Open Data</value>
+  </data>
+  <data name="OpenData_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Events_Index_Procurement" xml:space="preserve">
+    <value>Tender procedure deadline</value>
+  </data>
+  <data name="Events_Index_PublicDiscussion" xml:space="preserve">
+    <value>Public discussion deadline</value>
+  </data>
+  <data name="Enum_EvalSessionProjectStandingStatus_RejectedAtPO" xml:space="preserve">
+    <value>Rejected at PO</value>
+  </data>
+  <data name="Company_Index_ContractAmount" xml:space="preserve">
+    <value>Contracts amount</value>
+  </data>
+  <data name="Company_Index_ContractCount" xml:space="preserve">
+    <value>Contracts count</value>
+  </data>
+  <data name="Procedures_Index_Title" xml:space="preserve">
+    <value>Eligible applicants for announced and forthcoming procedures</value>
+  </data>
+  <data name="Procedures_Index_CompanyLegalType" xml:space="preserve">
+    <value>Company legal type</value>
+  </data>
+  <data name="Procedures_Index_CompanyType" xml:space="preserve">
+    <value>Company type</value>
+  </data>
+  <data name="Procedures_Index_NoResults" xml:space="preserve">
+    <value>No procedures were found for the specified criteria</value>
+  </data>
+  <data name="Procedures_Index_Settlement" xml:space="preserve">
+    <value>Settlement</value>
+  </data>
+  <data name="Procedures_Index_EligibleActivities" xml:space="preserve">
+    <value>Eligible activities</value>
+  </data>
+  <data name="Procedures_Index_EligibleCandidates" xml:space="preserve">
+    <value>Eligible candidates</value>
+  </data>
+  <data name="Procedures_Index_EligibleCosts" xml:space="preserve">
+    <value>Eligible costs</value>
+  </data>
+  <data name="Procedures_Index_MaxPercentCoFinancing" xml:space="preserve">
+    <value>Maximum percent of cofinancing</value>
+  </data>
+  <data name="Procedures_Index_ProcedureBudgetTotal" xml:space="preserve">
+    <value>Procedure budget</value>
+  </data>
+  <data name="Procedures_Index_ProcedureEndDate" xml:space="preserve">
+    <value>Application deadline</value>
+  </data>
+  <data name="Procedures_Index_ProcedureName" xml:space="preserve">
+    <value>Procedure name</value>
+  </data>
+  <data name="Procedures_Index_ProgrammeName" xml:space="preserve">
+    <value>Programme name</value>
+  </data>
+  <data name="Procedures_Index_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Procedures_Index_Procedures" xml:space="preserve">
+    <value>Procedures</value>
+  </data>
+  <data name="Procedures_Index_Status_NotAnnounced" xml:space="preserve">
+    <value>Upcoming announcement</value>
+  </data>
+  <data name="Procedures_Index_Status_Opened" xml:space="preserve">
+    <value>Open for application</value>
+  </data>
+  <data name="Procedures_Index_HeaderTitle" xml:space="preserve">
+    <value>Can I apply?</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidBgAmount" xml:space="preserve">
+    <value>Actually paid - NF funding</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidEuAmount" xml:space="preserve">
+    <value>Actually paid - EU funding</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ActuallyPaidTotalAmount" xml:space="preserve">
+    <value>Actually paid - total</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedBgAmount" xml:space="preserve">
+    <value>Contracted - NF funding</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedEuAmount" xml:space="preserve">
+    <value>Contracted - EU funding</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedTotalAmount" xml:space="preserve">
+    <value>Total contracted</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_DateTo" xml:space="preserve">
+    <value>Date to</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_GroupingLevel" xml:space="preserve">
+    <value>Grouping level</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Programme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Title" xml:space="preserve">
+    <value>Actually Paid Amounts</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ProcedureNumber" xml:space="preserve">
+    <value>Procedure number</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_PriorityAxis" xml:space="preserve">
+    <value>Priority axis</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_Priority" xml:space="preserve">
+    <value>Приоритетна ос</value>
+  </data>
+  <data name="Project_Details_Indicator_BaseTotalValue" xml:space="preserve">
+    <value>Base Value</value>
+  </data>
+  <data name="Project_Details_Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="Project_Details_Partner_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount</value>
+  </data>
+  <data name="Project_Details_Partner_ReportedAmount" xml:space="preserve">
+    <value>Reported Amount</value>
+  </data>
+  <data name="Project_Details_Contractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="Project_Details_Contractor_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount</value>
+  </data>
+  <data name="Project_Details_Contractor_ReportedAmount" xml:space="preserve">
+    <value>Reported Amount</value>
+  </data>
+  <data name="Project_Details_Subcontractor" xml:space="preserve">
+    <value>Subcontractor</value>
+  </data>
+  <data name="Project_Details_Subcontractor_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount</value>
+  </data>
+  <data name="Project_Details_Member" xml:space="preserve">
+    <value>Member of the Consortium</value>
+  </data>
+  <data name="Project_Details_Member_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount</value>
+  </data>
+  <data name="Project_Details_Activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="Project_Details_Activity_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount</value>
+  </data>
+  <data name="Project_Details_Activity_ReportedAmount" xml:space="preserve">
+    <value>Reported Amount</value>
+  </data>
+  <data name="Project_Details_PieChartYTitle" xml:space="preserve">
+    <value>Part %</value>
+  </data>
+  <data name="Project_Details_Pie_Deminimis" xml:space="preserve">
+    <value>de minimis</value>
+  </data>
+  <data name="Project_Details_Pie_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Project_Details_Pie_Self" xml:space="preserve">
+    <value>Self</value>
+  </data>
+  <data name="Project_Details_Pie_StateAid" xml:space="preserve">
+    <value>State Aid</value>
+  </data>
+  <data name="Project_Details_Chart_PaidBgAmount" xml:space="preserve">
+    <value>Actual amounts paid - NF funding</value>
+  </data>
+  <data name="Project_Details_Chart_PaidEuAmount" xml:space="preserve">
+    <value>Actual amounts paid - EU funding</value>
+  </data>
+  <data name="ExecutedContracts_Index_Title" xml:space="preserve">
+    <value>Projects without Financial Corrections</value>
+  </data>
+  <data name="ExecutedContracts_Index_Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="ExecutedContracts_Index_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="ExecutedContracts_Index_Programme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ExecutedContracts_Index_Contract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanyLegalType" xml:space="preserve">
+    <value>Kind</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanySizeType" xml:space="preserve">
+    <value>Company size type</value>
+  </data>
+  <data name="ExecutedContracts_Index_CompanyType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractDuration" xml:space="preserve">
+    <value>Contract duration</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractExecutionStatus" xml:space="preserve">
+    <value>Contract execution status</value>
+  </data>
+  <data name="ExecutedContracts_Index_ContractRegNumber" xml:space="preserve">
+    <value>Reg. number</value>
+  </data>
+  <data name="ExecutedContracts_Index_InitialCompletionDate" xml:space="preserve">
+    <value>Initial completion date</value>
+  </data>
+  <data name="ExecutedContracts_Index_InitialContractDate" xml:space="preserve">
+    <value>Initial contract date</value>
+  </data>
+  <data name="ExecutedContracts_Index_ActualCompletionDate" xml:space="preserve">
+    <value>Termination date</value>
+  </data>
+  <data name="ExecutedContracts_Index_Uin" xml:space="preserve">
+    <value>UIN</value>
+  </data>
+  <data name="Project_Details_Offer_ContractorName" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="Project_Details_Offer_ContractTotalFundedValue" xml:space="preserve">
+    <value>Contract total funded value</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections" xml:space="preserve">
+    <value>Financial Corrections</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_BfpAmount" xml:space="preserve">
+    <value>Grant</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_ContractorName" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_SelfAmount" xml:space="preserve">
+    <value>Self-financing</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_TotalAmount" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Global_ContractContracts" xml:space="preserve">
+    <value>Agreements with contractors</value>
+  </data>
+  <data name="ContractContracts_Search_Contract" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ContractContracts_Search_Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContracts" xml:space="preserve">
+    <value>Agreements with contractors</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandLegalAct" xml:space="preserve">
+    <value>Errand legal act</value>
+  </data>
+  <data name="ContractContracts_Search_Programme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ContractContracts_Search_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="ContractContracts_Search_CompanyType" xml:space="preserve">
+    <value>Company type</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractEndDate" xml:space="preserve">
+    <value>Contract end date</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractNumber" xml:space="preserve">
+    <value>Contract number</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractor" xml:space="preserve">
+    <value>Contractor</value>
+  </data>
+  <data name="ContractContracts_Search_ContractContractorUin" xml:space="preserve">
+    <value>Contractor Uin</value>
+  </data>
+  <data name="ContractContracts_Search_ContractProcurementPlanName" xml:space="preserve">
+    <value>Procedure subject for contractor selection</value>
+  </data>
+  <data name="ContractContracts_Search_ContractDifferentiatedPositionName" xml:space="preserve">
+    <value>Differentiated position</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandAreaName" xml:space="preserve">
+    <value>Procedure object for contractor selection</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandLegalActName" xml:space="preserve">
+    <value>Errand legal act</value>
+  </data>
+  <data name="ContractContracts_Search_ErrandTypeName" xml:space="preserve">
+    <value>Procedure type</value>
+  </data>
+  <data name="ContractContracts_Search_TotalFundedValue" xml:space="preserve">
+    <value>Value of the contract financed by the project</value>
+  </data>
+  <data name="ContractContracts_Search_Uin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="Shared_GreenCorner_TitlePrefix" xml:space="preserve">
+    <value>UMIS AND ITS USERS CONTRIBUTED TO SAVING</value>
+  </data>
+  <data name="Shared_GreenCorner_SavedTrees" xml:space="preserve">
+    <value>Saved trees</value>
+  </data>
+  <data name="Shared_GreenCorner_TitleSufix" xml:space="preserve">
+    <value>TREES</value>
+  </data>
+  <data name="Global_Currency_BGN" xml:space="preserve">
+    <value>BGN</value>
+  </data>
+  <data name="OPProfile_Index_BudgetByFunds" xml:space="preserve">
+    <value>Budget of the Operational Programme {0} by funds</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_ContractedSelfAmount" xml:space="preserve">
+    <value>Contracted - own financing</value>
+  </data>
+  <data name="ActuallyPaidAmounts_Index_RegNumber" xml:space="preserve">
+    <value>Contract reg number</value>
+  </data>
+  <data name="Project_Details_ProjectSelfAmount" xml:space="preserve">
+    <value>Self amount</value>
+  </data>
+  <data name="Project_Details_ParticipatingOrganizations" xml:space="preserve">
+    <value>Participating Organizations</value>
+  </data>
+  <data name="Project_Details_Indicator_Unit" xml:space="preserve">
+    <value>Measure Unit</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts" xml:space="preserve">
+    <value>Financial corrections amounts</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_ImposingReason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Percent_A" xml:space="preserve">
+    <value>% of financial</value>
+  </data>
+  <data name="Project_Details_Chart_ContractedAmount" xml:space="preserve">
+    <value>Contracted Amount (Grant)</value>
+  </data>
+  <data name="Project_Details_Chart_PaidAmountsNote" xml:space="preserve">
+    <value>The amount of the actual amounts paid cumulative</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Percent_B" xml:space="preserve">
+    <value>correction</value>
+  </data>
+  <data name="EvalSessionResult_Preliminary_Points" xml:space="preserve">
+    <value>Preliminary points</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Seat" xml:space="preserve">
+    <value>Seat</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Name" xml:space="preserve">
+    <value>Beneficiaries without financial corrections</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_Beneficiary" xml:space="preserve">
+    <value>Beneficiary</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyLegalType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyType" xml:space="preserve">
+    <value>Subtype</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_CompanyUin" xml:space="preserve">
+    <value>Uin</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_ProjectsCount" xml:space="preserve">
+    <value>Number of successfully ended contracts</value>
+  </data>
+  <data name="BeneficiaryWithoutFC_Index_ShortName" xml:space="preserve">
+    <value>Beneficiaries without FC</value>
+  </data>
+  <data name="Project_Details_BasicData" xml:space="preserve">
+    <value>Basic Data</value>
+  </data>
+  <data name="Project_Details_ProjectActivities" xml:space="preserve">
+    <value>Project Activities</value>
+  </data>
+  <data name="Project_Details_Procedure" xml:space="preserve">
+    <value>Procedure</value>
+  </data>
+  <data name="Project_Details_ProjectAmount" xml:space="preserve">
+    <value>Project cost</value>
+  </data>
+  <data name="Shared_Footer_EumisGovernment" xml:space="preserve">
+    <value>Operational Programmes, Grant Procedures and E-Submission</value>
+  </data>
+  <data name="Shared_Footer_EumisGovernment_Report" xml:space="preserve">
+    <value>Electronic Reporting for Beneficiaries via UMIS 2020</value>
+  </data>
+  <data name="Shared_Footer_IAWP_Download" xml:space="preserve">
+    <value>Indicative Annual Working Program</value>
+  </data>
+  <data name="Shared_Footer_Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Project_Details_NonPersonal" xml:space="preserve">
+    <value>legal entity</value>
+  </data>
+  <data name="Project_Details_Personal" xml:space="preserve">
+    <value>physical person</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_NoContractor" xml:space="preserve">
+    <value>Project-level financial correction</value>
+  </data>
+  <data name="Project_Details_Contractor_ReportedAmount_Note" xml:space="preserve">
+    <value>This column represents the amount of costs claimed by the beneficiary</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_OrderVersionNum" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Programme" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_PublicationDate" xml:space="preserve">
+    <value>Publication date</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Title" xml:space="preserve">
+    <value>Indicative annual working programmes</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Assistance" xml:space="preserve">
+    <value>Assistance</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Candidates" xml:space="preserve">
+    <value>Candidates</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_EligibleActivities" xml:space="preserve">
+    <value>Eligible activities</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_EligibleCosts" xml:space="preserve">
+    <value>Eligible costs</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_IsMinimalAssistance" xml:space="preserve">
+    <value>Is minimal assistance</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_IsStateAssistance" xml:space="preserve">
+    <value>Is state assistance</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_LeadingProgram" xml:space="preserve">
+    <value>Leading program</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ListingDate" xml:space="preserve">
+    <value>Listing date</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_MaxPercentCoFinancing" xml:space="preserve">
+    <value>Max percent co financing</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_OrderNum" xml:space="preserve">
+    <value>Order num</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureCode" xml:space="preserve">
+    <value>Procedure code</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureDescription" xml:space="preserve">
+    <value>Procedure description</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureName" xml:space="preserve">
+    <value>Procedure name</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProcedureTotalAmount" xml:space="preserve">
+    <value>Procedure total amount /BGN/</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProgrammePriorityName" xml:space="preserve">
+    <value>Programme priority name</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_Programmes" xml:space="preserve">
+    <value>Programmes</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectAmount" xml:space="preserve">
+    <value>Project amount /BGN/</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectMaxAmount" xml:space="preserve">
+    <value>Project maximal amount</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_ProjectMinAmount" xml:space="preserve">
+    <value>Project minimal amount</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_TimeLimits" xml:space="preserve">
+    <value>Time limits</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_TypeConducting" xml:space="preserve">
+    <value>Type conducting</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_WithPreSelection" xml:space="preserve">
+    <value>With pre selection</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_NoText" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Table_YesText" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="IndicativeAnnualWorkingProgrammes_Index_Template" xml:space="preserve">
+    <value>IAWP - programme: {0}, type: {1}</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_ToBeSpecified" xml:space="preserve">
+    <value>To be specified</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeAssistance_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeTypeConducting_ProcedureForDirectGrant" xml:space="preserve">
+    <value>Procedure for direct grant</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeTypeConducting_SelectionProcedure" xml:space="preserve">
+    <value>Selection procedure</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeType_IawpTable" xml:space="preserve">
+    <value>Iawp table</value>
+  </data>
+  <data name="Enum_IndicativeAnnualWorkingProgrammeType_IawpTableForIntegratedProcedures" xml:space="preserve">
+    <value>Iawp table for integrated procedures</value>
+  </data>
+  <data name="Procedures_Index_FooterNote" xml:space="preserve">
+    <value>Please, note that the presented data does not take into account all the tolerance conditions for the announced and forthcoming grant procedures, available in the application conditions. Therefore, the presented results may not cover all eligible candidates or show more eligible candidates. Detailed information is available in the published documents to each announced procedure.</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_Note" xml:space="preserve">
+    <value>The projected contract value may be lower than the reported one because of any of the following reasons</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote1" xml:space="preserve">
+    <value>For physical person, the contracted value does not include the employer expenses, which are admissible expenses and are accounted under the project</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote2" xml:space="preserve">
+    <value>The Beneficiary has reported expense only with an invoice without a contract with the selected contractor</value>
+  </data>
+  <data name="Project_Details_ContractedAmount_SubNote3" xml:space="preserve">
+    <value>The beneficiary has reported over again expenses to the MA</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts_Note1" xml:space="preserve">
+    <value>The quoted value represents the maximum amount of the imposed financial correction. Depending on the performance of the contract, the actual amount of the deducted financial correction may be lower.</value>
+  </data>
+  <data name="Project_Details_FinancialCorrections_Amounts_Note2" xml:space="preserve">
+    <value>A financial correction with a zero total value means that it has been canceled as a result of a court judgment.</value>
+  </data>
+  <data name="Operations508_Index_OperationsList" xml:space="preserve">
+    <value>List of Operations in accordance with Regulation (EU) No 508/2014</value>
+  </data>
+  <data name="Operations508_Index_DateFrom" xml:space="preserve">
+    <value>Period of performance (from)</value>
+  </data>
+  <data name="Operations508_Index_DateTo" xml:space="preserve">
+    <value>Period of performance (to)</value>
+  </data>
+  <data name="Operations508_Index_ProgramName" xml:space="preserve">
+    <value>Operational programme</value>
+  </data>
+  <data name="Operations508_Index_BeneficiaryName" xml:space="preserve">
+    <value>Beneficiary Name</value>
+  </data>
+  <data name="Operations508_Index_OperationName" xml:space="preserve">
+    <value>Operation Name</value>
+  </data>
+  <data name="Operations508_Index_OperationSummary" xml:space="preserve">
+    <value>Summary of the Operation</value>
+  </data>
+  <data name="Operations508_Index_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Operations508_Index_FinancingEU" xml:space="preserve">
+    <value>EU co-financing</value>
+  </data>
+  <data name="Operations508_Index_OperationEndDate" xml:space="preserve">
+    <value>Date of Completion of the Operation</value>
+  </data>
+  <data name="Operations508_Index_OperationStartDate" xml:space="preserve">
+    <value>Operation Start Date</value>
+  </data>
+  <data name="Operations508_Index_PostCode" xml:space="preserve">
+    <value>Operation Post Code</value>
+  </data>
+  <data name="Operations508_Index_ProgrammePriority" xml:space="preserve">
+    <value>Programme priority</value>
+  </data>
+  <data name="Operations508_Index_TotalEligibleExpenditure" xml:space="preserve">
+    <value>Total Eligible Costs Granted for the Operation</value>
+  </data>
+  <data name="Operations508_Index_LastUpdate" xml:space="preserve">
+    <value>Date of Last Update of the List of Operations</value>
+  </data>
+  <data name="Operations508_Index_VesselIdentifiers" xml:space="preserve">
+    <value>Fishing boat ID number</value>
+  </data>
+</root>

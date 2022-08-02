@@ -1,0 +1,33 @@
+<ng-form name="editContractReportFinancialCertCorrectionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_title"></strong>
+
+      <div class="pull-right">
+        
+        <sc-button name="endedBtn" btn-click="changeStatus('ended')" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_ended" class="btn btn-default btn-xs"
+          ng-show="contractReportFinancialCertCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialCertCorrectionActions.Edit', contractReportFinancialCertCorrectionId)"></sc-button>
+
+        <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_draft" class="btn btn-success btn-xs"
+          ng-show="contractReportFinancialCertCorrection.status === 'ended' && !editMode" ng-disabled="!$canDo('ContractReportFinancialCertCorrectionActions.Edit', contractReportFinancialCertCorrectionId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractReportFinancialCertCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialCertCorrectionActions.Edit', contractReportFinancialCertCorrectionId)"></sc-button>
+        
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-show="contractReportFinancialCertCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportFinancialCertCorrectionActions.Delete', contractReportFinancialCertCorrectionId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" 
+          ng-show="editMode"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportFinancialCertCorrections_editContractReportFinancialCertCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"
+          ng-show="editMode"></sc-button>
+
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-financial-cert-correction name="contractReportFinancialCertCorrectionForm" ng-model="contractReportFinancialCertCorrection"></eumis-contract-report-financial-cert-correction>
+    </div>
+  </div>
+</ng-form>

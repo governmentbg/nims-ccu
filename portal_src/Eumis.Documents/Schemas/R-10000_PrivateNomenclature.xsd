@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10000" 
+	xmlns="http://ereg.egov.bg/segment/R-10000" 
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:complexType name="PrivateNomenclature">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Вътрешна номенклатура</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Id" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Name" type="xsd:string" minOccurs="0" />
+      <xsd:element name="NameEN" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+
+		<xsd:attribute name="orderNum" type="xsd:integer"/>
+	</xsd:complexType>
+</xsd:schema>

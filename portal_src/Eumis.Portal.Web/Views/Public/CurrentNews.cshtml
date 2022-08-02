@@ -1,0 +1,116 @@
+﻿@using System.Configuration;
+@using Eumis.Common.Config;
+@using PagedList.Mvc;
+
+@{
+  Layout = "~/Views/Shared/_PublicLayout.cshtml";
+  string publicUrl = ConfigurationManager.AppSettings.GetWithEnv("Eumis.Portal.Web:PublicAppLocation");
+  if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+  {
+    publicUrl = publicUrl + "en";
+  }
+}
+
+
+
+@model PagedList.IPagedList<Eumis.Documents.Contracts.News>
+
+<div class="container">
+  <div class="home-link-boxes">
+    <div class="col-lg-1 col-md-12">
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <a href="@Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name)" class="nounderline">
+        <div class="link-box auto-height">
+          <div class="head green">
+            <img src="~/Content/img/icons/white_isun.png" alt="" />
+          </div>
+          <div class="public-title">
+            <strong>@Global.EumisEApplication</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <a href="@Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Home.Area })" class="nounderline">
+        <div class="link-box auto-height">
+          <div class="head blue">
+            <img src="~/Content/img/icons/black_isun.png" alt="" />
+          </div>
+          <div class="public-title">
+            <strong>@Global.EumisReports</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-xs-12 home-stat-boxes">
+    <div class="link-box">
+      <div class="head yellow">
+        <img src="~/Content/img/icons/news.png" alt="" />
+      </div>
+      <div class="title">
+        <div class="col-md-9 col-xs-8">
+          <strong class="pull-left">@Global.CurrentNews</strong>
+        </div>
+        <div class="col-md-3 col-xs-4">
+          <a href="@Url.Action(MVC.Public.ActionNames.AllNews, MVC.Public.Name)" title="" class="pull-right search-news-btn">@Public.ButtonShowAll</a>
+        </div>
+      </div>
+      <div class="col-md-12">
+        @if (Model != null && Model.Count > 0)
+        {
+          foreach (var news in Model.Select((x, i) => new { Value = x, Index = i }))
+          {
+            if (news.Index > 0)
+            {
+              <hr>
+            }
+
+            <div class="news-item">
+              <a href="@(Url.Action(MVC.Public.ActionNames.Preview, MVC.Public.Name, new { id = news.Value.newsId }))" title="@news.Value.displayTitle" class="nounderline">
+                <div>
+                  @if (news.Value.isExpired)
+                  {
+                    <small class="news-label-expired">@news.Value.displayStatusText.ToUpper()</small>
+                  }
+                  else
+                  {
+                    if (news.Value.isPublished)
+                    {
+                      <small class="news-label-actual">@news.Value.displayStatusText.ToUpper()</small>
+                    }
+                    else
+                    {
+                      <small class="news-label-archived">@news.Value.displayStatusText.ToUpper()</small>
+                    }
+                  }
+                  <small class="pull-right">@Eumis.Common.Helpers.Helper.DateTimeFormatOnlyDate(news.Value.dateFrom) | @news.Value.displayAuthor</small>
+                  <h3>@news.Value.displayTitle</h3>
+                  <p>@news.Value.displayContent</p>
+                </div>
+              </a>
+            </div>
+          }
+        }
+        else
+        {
+          <div class="info-block">
+            <p>@Public.NotFound</p>
+          </div>
+        }
+      </div>
+
+      @Html.PagedListPager(Model,
+          page => Url.Action((String)ViewContext.RouteData.Values["action"],
+          (String)ViewContext.RouteData.Values["controller"],
+          new
+          {
+              page = page
+          }),
+          Constants.PagedListRenderOptions)
+      <div class="clear"> </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<ng-form name="evalSessionProjectStandingNewForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_evalSessionProjectStandingNew_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_evalSessionProjectStandingNew_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_evalSessionProjectStandingNew_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-project-standing name="evalSessionProjectStandingForm" ng-model="evalSessionProjectStanding" sc-form-params="{ isNew: true }"></eumis-eval-session-project-standing>
+    </div>
+  </div>
+</ng-form>

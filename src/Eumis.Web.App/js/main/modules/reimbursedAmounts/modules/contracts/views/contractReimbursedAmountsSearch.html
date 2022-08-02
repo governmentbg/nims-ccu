@@ -1,0 +1,51 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'reimbursedAmountContracts'" mode="id" ng-model="filters.contractId" l10n-text="contractReimbursedAmounts_amountsSearch_contract" class="col-sm-4"></sc-field>
+        <sc-field type="nomenclature" alias="'reimbursementTypes'" mode="id" ng-model="filters.type" l10n-text="contractReimbursedAmounts_amountsSearch_type" class="col-sm-5"></sc-field>
+        <div class="labeless col-sm-3">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReimbursedAmounts_amountsSearch_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-button name="newBtn" text="contractReimbursedAmounts_amountsSearch_new" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk" btn-sref="{ state: 'root.contractReimbursedAmounts.newStep1' }"
+      ng-disabled="!$canDo('ContractReimbursedAmountListActions.Create')" style="margin-right: 5px;"></sc-button>
+    <sc-link-button ng-href="{{contractsReimbursedAmountsExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                    icon="fa-file-excel-o fa-lg fa-fw" text="contractReimbursedAmounts_amountsSearch_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="reimbursedAmounts" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'deleted'}">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="viewBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil" btn-sref="{state: 'root.contractReimbursedAmounts.view.basicData', params: { id: item.amountId }}"
+          ng-disabled="!$canDo('ContractReimbursedAmountActions.View', item.amountId)"></sc-button>
+      </sc-column>
+      <sc-column data="programmeName" title="contractReimbursedAmounts_amountsSearch_programme">
+      </sc-column>
+      <sc-column data="contractRegNumber" title="contractReimbursedAmounts_amountsSearch_contractRegNumber">
+      </sc-column>
+      <sc-column data="statusDescr" title="contractReimbursedAmounts_amountsSearch_status">
+      </sc-column>
+      <sc-column data="regNumber" title="contractReimbursedAmounts_amountsSearch_regNumber">
+      </sc-column>
+      <sc-column data="type" title="contractReimbursedAmounts_amountsSearch_type">
+      </sc-column>
+      <sc-column data="reimbursement" title="contractReimbursedAmounts_amountsSearch_reimbursement">
+      </sc-column>
+      <sc-column data="reimbursementDate" title="contractReimbursedAmounts_amountsSearch_reimbursementDate" type="date">
+      </sc-column>
+      <sc-column data="principalEuAmount" title="contractReimbursedAmounts_amountsSearch_principalEuAmount" type="money">
+      </sc-column>
+      <sc-column data="principalBgAmount" title="contractReimbursedAmounts_amountsSearch_principalBgAmount" type="money">
+      </sc-column>
+      <sc-column data="principalTotalAmount" title="contractReimbursedAmounts_amountsSearch_principalTotalAmount" type="money">
+      </sc-column>
+      <sc-column data="interestEuAmount" title="contractReimbursedAmounts_amountsSearch_interestEuAmount" type="money">
+      </sc-column>
+      <sc-column data="interestBgAmount" title="contractReimbursedAmounts_amountsSearch_interestBgAmount" type="money">
+      </sc-column>
+      <sc-column data="interestTotalAmount" title="contractReimbursedAmounts_amountsSearch_interestTotalAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

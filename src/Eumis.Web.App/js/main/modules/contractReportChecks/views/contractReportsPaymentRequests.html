@@ -1,0 +1,45 @@
+﻿<div class="well-sm panel-body">
+  <div>
+    <div>
+      <h5 class="table-header table-header-first pull-left">{{title}}</h5>
+    </div>
+    <table class="table table-bordered " style="clear: both; margin-bottom: 0px; margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th l10n-text="contractReportChecks_contractReportChecks_paymentRequests_expense"></th>
+          <th l10n-text="contractReportChecks_contractReportChecks_paymentRequests_bgAmount"></th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr ng-repeat-start="lev1 in contractBudgetTree.programme.level1Items">
+          <td style="padding-left: 20px; font-weight: bold;">
+            <span>{{romanize($index + 1)}}. {{lev1.displayName}}</span>
+          </td>
+          <td style="white-space: nowrap; text-align: right; font-weight: bold;">{{lev1.bgAmount}}</td>
+        </tr>
+          <tr ng-repeat-start="lev2 in lev1.level2Items">
+            <td style="padding-left: 40px; font-weight: normal;">
+              {{lev2.code}}. {{lev2.displayName}}
+            </td>
+            <td style="white-space: nowrap; text-align: right; font-weight: normal;">{{lev2.bgAmount}}</td>
+          </tr>
+          <tr ng-repeat-start="lev3 in lev2.level3Items">
+              <td style="padding-left: 60px; font-weight: lighter;">
+                {{$parent.lev2.code}}.{{$index + 1}}. {{lev3.displayName}}
+              </td>
+              <td style="white-space: nowrap; text-align: right; font-weight: lighter;">{{lev3.bgAmount}}</td>
+          </tr>
+          <tr ng-repeat-end style="display:none"></tr>
+          <tr ng-repeat-end style="display:none"></tr>
+        <tr ng-repeat-end style="display:none"></tr>
+        <tr>
+          <td style="text-transform: uppercase; font-weight: bold;" l10n-text="contractReportChecks_contractReportChecks_paymentRequests_total"></td>
+          <td style="white-space: nowrap; text-align: right; font-weight: bold;">{{contractBudgetTree.programme.bgAmount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

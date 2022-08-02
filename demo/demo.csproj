@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{327C40E0-A9B2-498D-9857-D8100ABA4F79}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>demo</RootNamespace>
+    <AssemblyName>demo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
+    <Content Include="css\dataTables.bootstrap.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\uxp.css" />
+    <Content Include="forms\programmes\programmeBudget.html" />
+    <Content Include="forms\programmes\programmePriority.html" />
+    <Content Include="forms\programmes\programme.html" />
+    <Content Include="forms\programmes\programmeInstitution.html" />
+    <Content Include="forms\Party\party.html" />
+    <Content Include="forms\sampleForm.html" />
+    <Content Include="forms\sampleSearch.html" />
+    <Content Include="img\loading-icon-white.gif" />
+    <Content Include="img\loading-icon.gif" />
+    <Content Include="index.html" />
+    <Content Include="js\app.js" />
+    <Content Include="js\mockHttp\delay.js" />
+    <Content Include="js\mockHttp\e2eMocksSetup.js" />
+    <Content Include="js\mockHttp\httpBackendConfiguratorProvider.js" />
+    <Content Include="js\mockHttp\nomenclaturesHttp.js" />
+    <Content Include="js\mockHttp\sampleDataFilter.js" />
+    <Content Include="js\scaffolding\decorators\formDecorator.js" />
+    <Content Include="js\scaffolding\decorators\ngModelDecorator.js" />
+    <Content Include="js\scaffolding\directives\breadcrumb\breadcrumbDirective.html" />
+    <Content Include="js\scaffolding\directives\breadcrumb\breadcrumbDirective.js" />
+    <Content Include="js\scaffolding\directives\button\buttonDirective.html" />
+    <Content Include="js\scaffolding\directives\button\buttonDirective.js" />
+    <Content Include="js\scaffolding\directives\click\clickDirective.js" />
+    <Content Include="js\scaffolding\directives\datatable\columnDirective.js" />
+    <Content Include="js\scaffolding\directives\datatable\datatableCtrl.js" />
+    <Content Include="js\scaffolding\directives\datatable\datatableDirective.html" />
+    <Content Include="js\scaffolding\directives\datatable\datatableDirective.js" />
+    <Content Include="js\scaffolding\directives\date\dateDirective.html" />
+    <Content Include="js\scaffolding\directives\date\dateDirective.js" />
+    <Content Include="js\scaffolding\directives\dropdownButton\dropdownButtonDirective.html" />
+    <Content Include="js\scaffolding\directives\dropdownButton\dropdownButtonDirective.js" />
+    <Content Include="js\scaffolding\directives\fieldGroup\fieldGroupDirective.html" />
+    <Content Include="js\scaffolding\directives\fieldGroup\fieldGroupDirective.js" />
+    <Content Include="js\scaffolding\directives\field\fieldDirective.js" />
+    <Content Include="js\scaffolding\directives\files\filesCtrl.js" />
+    <Content Include="js\scaffolding\directives\files\filesDirective.html" />
+    <Content Include="js\scaffolding\directives\files\filesDirective.js" />
+    <Content Include="js\scaffolding\directives\files\filesModal.html" />
+    <Content Include="js\scaffolding\directives\files\filesModalCtrl.js" />
+    <Content Include="js\scaffolding\directives\files\filesModalTree.html" />
+    <Content Include="js\scaffolding\directives\files\singleFileModal.html" />
+    <Content Include="js\scaffolding\directives\files\singleFileModalCtrl.js" />
+    <Content Include="js\scaffolding\directives\formName\formNameDirective.js" />
+    <Content Include="js\scaffolding\directives\formReadonly\formReadonlyDirective.js" />
+    <Content Include="js\scaffolding\directives\hasError\hasErrorDirective.js" />
+    <Content Include="js\scaffolding\directives\info\infoDirective.html" />
+    <Content Include="js\scaffolding\directives\info\infoDirective.js" />
+    <Content Include="js\scaffolding\directives\linkButton\linkButtonDirective.html" />
+    <Content Include="js\scaffolding\directives\linkButton\linkButtonDirective.js" />
+    <Content Include="js\scaffolding\directives\navigation\navigationDirective.html" />
+    <Content Include="js\scaffolding\directives\navigation\navigationDirective.js" />
+    <Content Include="js\scaffolding\directives\navigation\navigationItemDirective.html" />
+    <Content Include="js\scaffolding\directives\navigation\navigationItemDirective.js" />
+    <Content Include="js\scaffolding\directives\nomenclature\nomenclatureDirective.html" />
+    <Content Include="js\scaffolding\directives\nomenclature\nomenclatureDirective.js" />
+    <Content Include="js\scaffolding\directives\number\numberDirectives.html" />
+    <Content Include="js\scaffolding\directives\number\numberDirectives.js" />
+    <Content Include="js\scaffolding\directives\password\passwordDirective.html" />
+    <Content Include="js\scaffolding\directives\password\passwordDirective.js" />
+    <Content Include="js\scaffolding\directives\promiseState\promiseStateDirective.html" />
+    <Content Include="js\scaffolding\directives\promiseState\promiseStateDirective.js" />
+    <Content Include="js\scaffolding\directives\search\filterDirective.html" />
+    <Content Include="js\scaffolding\directives\search\filterDirective.js" />
+    <Content Include="js\scaffolding\directives\search\searchButtonDirective.html" />
+    <Content Include="js\scaffolding\directives\search\searchButtonDirective.js" />
+    <Content Include="js\scaffolding\directives\search\searchDirective.html" />
+    <Content Include="js\scaffolding\directives\search\searchDirective.js" />
+    <Content Include="js\scaffolding\directives\select\selectDirective.html" />
+    <Content Include="js\scaffolding\directives\select\selectDirective.js" />
+    <Content Include="js\scaffolding\directives\sref\srefDirective.js" />
+    <Content Include="js\scaffolding\directives\suggestion\suggestionDirectives.js" />
+    <Content Include="js\scaffolding\directives\suggestion\textareaSuggestionDirective.html" />
+    <Content Include="js\scaffolding\directives\suggestion\textSuggestionDirective.html" />
+    <Content Include="js\scaffolding\directives\tabs\tabsDirective.html" />
+    <Content Include="js\scaffolding\directives\tabs\tabsDirective.js" />
+    <Content Include="js\scaffolding\directives\textarea\textareaDirective.js" />
+    <Content Include="js\scaffolding\directives\text\textDirective.html" />
+    <Content Include="js\scaffolding\directives\text\textDirective.js" />
+    <Content Include="js\scaffolding\directives\time\timeDirective.html" />
+    <Content Include="js\scaffolding\directives\time\timeDirective.js" />
+    <Content Include="js\scaffolding\directives\treetable\treeColumnDirective.js" />
+    <Content Include="js\scaffolding\directives\treetable\treetableCtrl.js" />
+    <Content Include="js\scaffolding\directives\treetable\treetableDirective.html" />
+    <Content Include="js\scaffolding\directives\treetable\treetableDirective.js" />
+    <Content Include="js\scaffolding\directives\validate\validateDirective.js" />
+    <Content Include="js\scaffolding\directives\validationError\validationErrorDirective.html" />
+    <Content Include="js\scaffolding\directives\validationError\validationErrorDirective.js" />
+    <Content Include="js\scaffolding\providers\scaffoldingProvider.js" />
+    <Content Include="js\scaffolding\providers\scModalProvider.js" />
+    <Content Include="js\scaffolding\resources\nomenclatures.js" />
+    <Content Include="js\scaffolding\scaffolding.js" />
+    <Content Include="js\scaffolding\scaffolding_bg-bg.js" />
+    <Content Include="js\scaffolding\services\message\messageModal.html" />
+    <Content Include="js\scaffolding\services\message\messageModalCtrl.js" />
+    <Content Include="js\scaffolding\services\message\messageService.js" />
+    <Content Include="nomenclatures\boolean.js" />
+    <Content Include="nomenclatures\budgetPeriod.js" />
+    <Content Include="nomenclatures\institution.js" />
+    <Content Include="nomenclatures\institutionType.js" />
+    <Content Include="nomenclatures\financeSource.js" />
+    <Content Include="nomenclatures\test.js" />
+    <Content Include="sampleData\programmeBudgets.js" />
+    <Content Include="sampleData\institutions.js" />
+    <Content Include="sampleData\persons.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bower.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

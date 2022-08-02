@@ -1,0 +1,18 @@
+<ng-form name="evalSessionEvaluationNewForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_evalSessionEvaluationNew_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="evalSessions_evalSessionEvaluationNew_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="evalSessions_evalSessionEvaluationNew_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-eval-session-evaluation name="evalSessionEvaluationForm" ng-model="evalSessionEvaluation"></eumis-eval-session-evaluation>
+    </div>
+  </div>
+</ng-form>

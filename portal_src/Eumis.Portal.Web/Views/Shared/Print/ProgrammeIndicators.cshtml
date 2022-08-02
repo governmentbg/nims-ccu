@@ -1,0 +1,82 @@
+﻿@model R_10014.ProgrammeIndicators
+
+<div>
+    @if (Model != null && Model.IndicatorCollection != null && Model.IndicatorCollection.Count > 0)
+    {
+        for (int i = 0; i < Model.IndicatorCollection.Count; i++)
+        {
+            <table class="indicators">
+                <tbody>
+
+                    <tr>
+                        <td style="width: 35%;"><strong>@ProgrammeIndicators.Name</strong></td>
+                        <td style="width: 65%;">@Model.IndicatorCollection[i].displayName</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.Type</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayTypeName</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.Trend</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayTrendName</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.Kind</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayKindName</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.Measure</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayMeasureName</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.AggregatedReport</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayAggregatedReport</td>
+                    </tr>
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.AggregatedTarget</strong></td>
+                        <td>@Model.IndicatorCollection[i].displayAggregatedTarget</td>
+                    </tr>
+
+                    @if (Model.IndicatorCollection[i].HasGenderDivision)
+                    {
+                        <tr>
+                            <td><strong>@ProgrammeIndicators.BaseMen</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].BaseMen)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProgrammeIndicators.BaseWomen</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].BaseWomen)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.BaseTotal</strong></td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].BaseTotal)</td>
+                    </tr>
+
+                    @if (Model.IndicatorCollection[i].HasGenderDivision)
+                    {
+                        <tr>
+                            <td><strong>@ProgrammeIndicators.TargetMen</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].TargetMen)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>@ProgrammeIndicators.TargetWomen</strong></td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].TargetWomen)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><strong>@ProgrammeIndicators.TargetTotal</strong></td>
+                        <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IndicatorCollection[i].TargetTotal)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@ProgrammeIndicators.Description</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.IndicatorCollection[i].Description ?? string.Empty)
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+    }
+</div>

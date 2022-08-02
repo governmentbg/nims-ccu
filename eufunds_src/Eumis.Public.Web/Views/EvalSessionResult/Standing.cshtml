@@ -1,0 +1,161 @@
+﻿@using Eumis.Public.Web.InfrastructureClasses
+@using Eumis.Public.Web.Models.EvalSessionResult
+@using Eumis.Public.Domain.Entities.Umis.EvalSessions
+@using Eumis.Public.Common.Json;
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model StandingSearchVM
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home),
+    new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_ENQUERIES_ID, Texts.Global_Enquiries),
+}, Texts.EvalSessionResult_Index_Title)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.EvalSessionResult_Index_Title</h1>
+    </div>
+
+    <div class="page-content">
+
+        @if (Model.ShowRes)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('html, body').animate({ scrollTop: (500) }, 1400, 'easeOutQuint');
+                });
+            </script>
+
+            if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <div class="heading-with-export clearfix">
+                    @Html.Partial(MVC.Shared.Views._ExportIcons)
+                </div>
+
+                <p><strong>@Texts.EvalSessionResult_Index_Procedure</strong>: @Model.EvalSessionResult.TransProcedureName</p>
+                <p><strong>@Texts.EvalSessionResult_Index_EvalType</strong>:  @Model.EvalSessionResult.Type.GetEnumDescription()</p>
+                <p><strong>@Texts.EvalSessionResult_Index_EvalSession</strong>: @Model.EvalSessionResult.EvalSessionNum</p>
+                <h2>@Texts.EvalSessionResult_Standing_Projects</h2>
+
+                <div class="table-wrapper">
+                    <table class="chart-info">
+                        <thead>
+                            <tr>
+                                <th>@Texts.EvalSessionResult_Standing_ProjectCode</th>
+                                <th>@Texts.EvalSessionResult_Standing_ProjectNamе</th>
+                                <th>@Texts.EvalSessionResult_Standing_ProjectRegDate</th>
+                                <th>@Texts.EvalSessionResult_Standing_CompanyName</th>
+                                <th>@Texts.EvalSessionResult_Standing_CompanyUin</th>
+                                <th>@Texts.EvalSessionResult_Standing_GrantAmount</th>
+                                <th>@Texts.EvalSessionResult_Standing_SelfAmount</th>
+                                <th>@Texts.EvalSessionResult_Standing_Assessment</th>
+                                <th>@Texts.EvalSessionResult_Standing_StandingOrder</th>
+                                <th>@Texts.EvalSessionResult_Standing_StandingStatus</th>
+                                <th>@Texts.EvalSessionResult_Standing_CorrectedGrantAmount</th>
+                                <th>@Texts.EvalSessionResult_Standing_CorrectedSelfAmount</th>
+                                <th>@Texts.EvalSessionResult_Standing_Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var project in Model.SearchResults)
+                            {
+                                <tr>
+                                    <td>@project.RegNumber</td>
+                                    <td>@project.TransName</td>
+                                    <td>@project.RegDate.ToShortDateString()</td>
+                                    <td>@Html.DisplayFor(e => project.TransCompanyName)</td>
+                                    <td>
+                                        @if (project.CompanyUinType != Eumis.Public.Domain.Entities.Umis.NonAggregates.UinType.PersonalBulstat)
+                                        {
+                                            @(project.CompanyUinType.GetEnumDescription() + ": " + project.CompanyUin)
+                                        }
+                                    </td>
+                                    <td class="sum-field">@Html.DisplayFor(p => project.GrantAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(p => project.SelfAmount)</td>
+                                    <td>
+                                        <table class="table-inner table-bordered" style="margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+                                            <thead>
+                                            <th style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_EvalType</th>
+                                            <th style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_Pass</th>
+                                            <th style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_Points</th>
+                                            </thead>
+                                            <tbody>
+                                                @if (project.IsPassedPreliminary.HasValue)
+                                                {
+                                                    <tr>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_Preliminary</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.IsPassedPreliminaryText</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.PointsPreliminary</td>
+                                                    </tr>
+                                                }
+                                                @if (project.IsPassedASD.HasValue)
+                                                {
+                                                    <tr>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_ASD</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.IsPassedASDText</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.PointsASD</td>
+                                                    </tr>
+                                                }
+                                                @if (project.IsPassedTFO.HasValue)
+                                                {
+                                                    <tr>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_TFO</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.IsPassedTFOText</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.PointsTFO</td>
+                                                    </tr>
+                                                }
+                                                @if (project.IsPassedComplex.HasValue)
+                                                {
+                                                    <tr>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@Texts.EvalSessionResult_Standing_Complex</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.IsPassedComplexText</td>
+                                                        <td style="padding: 2px 4px 2px 4px; text-align: right;">@project.PointsComplex</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td>@project.OrderNum</td>
+                                    <td>@project.Status.GetEnumDescription()</td>
+                                    <td class="sum-field">@Html.DisplayFor(p => project.CorrectedGrantAmount)</td>
+                                    <td class="sum-field">@Html.DisplayFor(p => project.CorrectedSelfAmount)</td>
+                                    <td>@project.Note</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                    {
+                        <div class="paging clearfix">
+                            <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                            @Html.PagedListPager(Model.SearchResults,
+                        page => Url.Action(MVC.EvalSessionResult.ActionNames.Show, MVC.EvalSessionResult.Name
+                            , new
+                            {
+                                resultId = Request.QueryString["resultId"],
+                                resultType = Request.QueryString["resultType"],
+                                page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                            })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+            }
+        }
+    </div>
+</div>

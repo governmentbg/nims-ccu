@@ -1,0 +1,117 @@
+﻿@using Eumis.Portal.Web.Controllers
+@using Eumis.Portal.Web.Helpers
+
+@if (Request.IsAuthenticated && CurrentUser.HasNewMessages)
+{
+    <div class="modal fade" id="messageNotificationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+          {
+              <div class="modal-content">
+                <h2 style="color:red; font-weight: 600; font-size:30px;">@Splashes.Warning</h2>
+                <div class="isun-line"> </div>
+                <p>&nbsp;</p>
+                <p>Здравейте, </p>
+                <p>В момента подадено от Вас проектно предложение e на етап „Оценка“.</p>
+                <p>В тази връзка, към Вас има изпратен въпрос от оценителната комисия.</p>
+                <p>За да го разгледате и изпратите отговор, отворете меню „Проектни предложения”.</p>
+                <p style="color:red;">Обърнете внимание, че въпросите от оценителната комисия са с краен срок за отговор. След този срок те ще бъдат затворени и системата няма да Ви позволи да извършвате каквито и да било действия освен преглед.</p>
+
+                <p><b>@Splashes.Team</b></p>
+
+                <div class="modal-buttons">
+                    <a data-redirect="@Url.Action(MVC.Message.ActionNames.Index, MVC.Message.Name)" class="blue-button message-notification-button wait">Приемам</a>
+                </div>
+              </div>
+          }
+          else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+          {
+              <div class="modal-content">
+                <h2 style="color:red; font-weight: 600; font-size:30px;">@Splashes.Warning</h2>
+                <div class="isun-line"> </div>
+                <p>&nbsp;</p>
+                <p>Hello, </p>
+                <p>At this point your submitted proposal is at stage „Evaluation“.</p>
+                <p>In this relation, you have sent question from evaluation committee.</p>
+                <p>To review and reply, open menu „Project proposals”.</p>
+                <p style="color:red;">Please note that the questions of the evaluation committee have an answer deadline. After the deadline the system will no longer allow you to perform any actions except "Review".</p>
+
+                <p><b>@Splashes.Team</b></p>
+
+                <div class="modal-buttons">
+                    <a data-redirect="@Url.Action(MVC.Message.ActionNames.Index, MVC.Message.Name)" class="blue-button message-notification-button wait">@Splashes.Accept</a>
+                </div>
+            </div>
+          }
+        </div>
+    </div>
+    <script>
+        $(window).load(function () {
+            hideShowSplashModal('@(SplashType.MessageNotification)', 'messageNotificationModal', 'message-notification-button');
+        });
+    </script>
+}
+else
+{
+    if (EumisEnvironmentManager.Current != EumisEnvironment.Production)
+    {
+        <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h2 style="color:red; font-weight: 600; font-size:30px;">@Splashes.Warning</h2>
+                    <div class="isun-line"> </div>
+                    <p>&nbsp;</p>
+                    <p>@Splashes.DearUsers</p>
+                    <p>
+                        @Splashes.Location
+                        @if (EumisEnvironmentManager.Current == EumisEnvironment.InnerDev)
+                        {
+                        <span>@Splashes.In</span>
+                        <b style="color: red; text-transform: uppercase;">
+                            <span>@Splashes.DevelopmentEnvironment</span>
+                        </b>
+                        }
+                        else if (EumisEnvironmentManager.Current == EumisEnvironment.InnerTest)
+                        {
+                        <span>@Splashes.InLong</span>
+                        <b style="color: red; text-transform: uppercase;">
+                            <span>@Splashes.InnerTestEnvironment</span>
+                        </b>
+                        }
+                        else if (EumisEnvironmentManager.Current == EumisEnvironment.ProductionLearn)
+                        {
+                        <span>@Splashes.In</span>
+                        <b style="color: red; text-transform: uppercase;">
+                            <span>@Splashes.LearnEnvironment</span>
+                        </b>
+                        }
+                        else if (EumisEnvironmentManager.Current == EumisEnvironment.ProductionTest)
+                        {
+                        <span>@Splashes.In</span>
+                        <b style="color: red; text-transform: uppercase;">
+                            <span>@Splashes.TestEnvironment</span>
+                        </b>
+                        }
+                        else
+                        {
+                        <span>@Splashes.In</span>
+                        @EumisEnvironmentManager.CurrentText
+                        }
+                        @Splashes.NoGuarantee
+                    </p>
+                    <p>@Splashes.SubmitProjectProposal</p>
+                    @Html.Raw(Splashes.ApplyProposal)
+
+                    <div class="modal-buttons">
+                        <a data-dismiss="modal" href="" class="blue-button welcome-button">@Splashes.Accept</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+        $(window).load(function () {
+            hideShowSplashModal('@(SplashType.Welcome)', 'welcomeModal', 'welcome-button');
+        });
+</script>
+}

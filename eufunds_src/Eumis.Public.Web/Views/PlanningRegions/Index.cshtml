@@ -1,0 +1,35 @@
+﻿@model BgMapRendererModel
+@using Eumis.Public.Web.InfrastructureClasses
+
+@section scripts{
+    @Scripts.Render(BundleConfig.Highmaps)
+}
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+
+    if (HasTabs)
+    {
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name) + "#" + Eumis.Public.Common.Configuration.HTML_OPERATIONAL_PROGRAMS_ID, Texts.Global_OperationalPrograms));
+        breadcrumbLinks.Add(new BreadcrumbItem(Url.Action(MVC.OPProfile.ActionNames.Index, MVC.OPProfile.Name, new RouteValueDictionary() { { RouteConfig.OPABB, OpId }, { RouteConfig.PRABB, PrId } }), GetOP.TransName));
+    }
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Shared_Tabs_Location)
+
+<div class="container">
+    
+    @Html.Partial(MVC.Shared.Views._Title)
+    @Html.Partial(MVC.Shared.Views._Tabs, TabType.PlanningRegions)
+
+    <div class="@(HasTabs ? "tab-content" : "page-content")">
+
+        @Html.BgMap(Url, Model, new { @class = "mapWidth" })
+
+        <div style="clear: both"></div>
+        <h2>@Texts.Global_Note:</h2>
+        <div class="note">
+            @Texts.PlaningRegions_Index_NotePreview
+        </div>
+    </div>
+</div>

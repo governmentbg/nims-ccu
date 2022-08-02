@@ -1,0 +1,72 @@
+﻿@model R_10020.Message
+
+@if (Model != null)
+{
+    <h2>@MessagePrepare.QuestionAsked</h2>
+    <section class="clearfix" style="display: block;">
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.DisplayFor(m => m.Content, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+            </div>
+        </div>
+    </section>
+
+    if (Model.ContentAttachedDocumentCollection != null && Model.ContentAttachedDocumentCollection.Count > 0)
+    {
+        <div class="section-separator"> </div>
+        <h2>@Message.ContentAttachedDocumentCollection</h2>
+
+        if (Model.Project.IsSubmitted)
+        {
+            <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                <a href="@(Url.Action(MVC.Private.MessageSend.ActionNames.DownloadCommunicationFiles, MVC.Private.MessageSend.Name, new { messageGid = Model.ProjectCommunicationGid, hash = @Model.GetHashCode().ToString(), isQuestion = true }))" title="">
+                    <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                    <span>@Project.DownloadFiles</span>
+                </a>
+            </div>
+        }
+
+        <section class="clearfix" style="display:block;">
+            @Html.DisplayFor(m => m.ContentAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+        </section>
+    }
+
+    if (Model.type == R_09990.MessageTypeNomenclature.Answer)
+    {
+        <h2>@Message.Reply</h2>
+        <section class="clearfix" style="display: block;">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.DisplayFor(m => m.Reply, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </div>
+            </div>
+        </section>
+
+        if (Model.ReplyAttachedDocumentCollection != null && Model.ReplyAttachedDocumentCollection.Count > 0)
+        {
+            <div class="section-separator"> </div>
+            <h2>@Message.ReplyAttachedDocumentCollection</h2>
+
+            if (Model.Project.IsSubmitted)
+            {
+                <div style="margin-right: 20px; display: flex; justify-content: flex-end">
+                    <a href="@(Url.Action(MVC.Private.MessageSend.ActionNames.DownloadCommunicationFiles, MVC.Private.MessageSend.Name, new { messageGid = Model.ProjectCommunicationGid, hash = @Model.GetHashCode().ToString(), isQuestion = false }))" title="">
+                        <img class="act hidden-xs" src="@(Url.Content(Links.Content.img.icons.download_as_file_gif))" width="30">
+                        <span>@Project.DownloadFiles</span>
+                    </a>
+                </div>
+            }
+
+            <section class="clearfix" style="display:block;">
+                @Html.DisplayFor(m => m.ReplyAttachedDocumentCollection, MVC.Shared.Views.DisplayTemplates.UndefinedAttachedDocumentCollection)
+            </section>
+        }
+    }
+
+    <h2>@MessagePrepare.EditProjectProposal</h2>
+    <div class="section-separator"> </div>
+
+    @Html.DisplayFor(m => m.Project, new { MessageGid = Model.ProjectCommunicationGid })
+
+    @Html.DisplayFor(m => m.Signature)
+}

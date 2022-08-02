@@ -1,0 +1,92 @@
+﻿@model Eumis.Portal.Web.Models.FinanceReport.EditVM
+
+@using Eumis.Common.Config;
+@using Newtonsoft.Json.Converters
+
+@if (Model != null)
+{
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new IsoDateTimeConverter() { DateTimeFormat = "dd.MM.yyyy" }, new StringEnumConverter());
+
+    var resourcesObjectAttachedDocuments = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObjectAttachedDocuments = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectAttachedDocuments);
+
+    var jsonAcceptances = Newtonsoft.Json.JsonConvert.SerializeObject((new Eumis.Documents.Enums.YesNoNotApplicableNomenclature()).GetItems());
+
+    var resourcesObjectBoolean = new { Yes = Global.Yes, No = Global.No };
+    var jsonResourcesObjectBoolean = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObjectBoolean);
+
+    <script type="text/javascript">
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.FinanceReport = @(Html.Raw(jsonModel));
+
+        // Attached documents
+        window._eumis_options.resourcesAttachedDocuments = @(Html.Raw(jsonResourcesObjectAttachedDocuments));
+        window._eumis_options.blobUrl = '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))';
+
+        window._eumis_options.acceptances = @(Html.Raw(jsonAcceptances));
+        window._eumis_options.noId = "@Eumis.Documents.Enums.YesNoNotApplicableNomenclature.No.Id";
+        window._eumis_options.noName = "@Eumis.Documents.Enums.YesNoNotApplicableNomenclature.No.Name";
+
+        window._eumis_options.resourcesObjectBoolean = @(Html.Raw(jsonResourcesObjectBoolean));
+
+        window._eumis_options.docsImportUrl = "/api/@(this.ViewContext.RouteData.Values[Constants.SessionKey].ToString())/Excel/ReadCostSupportingDocuments";
+
+        $(document).ready(function () {
+            setTimeout(function() {
+                angular.bootstrap($('#containerFinanceReport'), ['moduleFinanceReport']);
+            }, 100);
+        });
+    </script>
+
+    <div class="financeReport" id="containerFinanceReport" ng-controller="controllerMainFinanceReport">
+
+        @{ int sectionNumber = 1; }
+        <h2 data-section="@sectionNumber" class="section-heading opened">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @FinanceReport.BasicData
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix" style="display:block;">
+            <div class="table-wrapper">
+                <div class="history-table">
+                    @if (Model.BasicData != null && Model.BasicData.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.BasicData)
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.BasicData)
+                    }
+                </div>
+            </div>
+        </section>
+        <div class="section-separator"> </div>
+
+        @{ sectionNumber++; }
+        <h2 data-section="@sectionNumber" class="section-heading opened" activation-name="financeReport" broadcast-name="financeReportActivation">
+            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+            @sectionNumber. @FinanceReport.CostSupportingDocuments
+        </h2>
+        <section data-section="@sectionNumber" class="clearfix" style="display:block;">
+            <div class="table-wrapper">
+                <div class="history-table">
+                    @if (Model.CostSupportingDocuments != null && Model.CostSupportingDocuments.isLocked)
+                    {
+                        @Html.DisplayFor(m => m.CostSupportingDocuments)
+                    }
+                    else
+                    {
+                        @Html.EditorFor(m => m.CostSupportingDocuments.CostSupportingDocumentCollection)
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+}

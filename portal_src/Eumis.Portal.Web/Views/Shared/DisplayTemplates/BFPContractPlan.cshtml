@@ -1,0 +1,34 @@
+﻿@model R_10070.BFPContractPlan
+
+@if (Model != null)
+{
+    <div class="form-group col-lg-12 col-md-12">
+        @Html.LabelFor(m => m.Name, BFPContractPlan.Name)
+        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.ErrandArea, BFPContractPlan.ErrandArea)
+        @Html.DisplayFor(m => m.ErrandArea)
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.ErrandLegalAct, BFPContractPlan.ErrandLegalAct)
+        @Html.DisplayFor(m => m.ErrandLegalAct)
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.ErrandType, BFPContractPlan.ErrandType)
+        @Html.DisplayFor(m => m.ErrandType)
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6">
+        @Html.LabelFor(m => m.IsCentralProcurement, BFPContractPlan.CentralProcurement)
+        @Html.DisplayFor(m => m.IsCentralProcurement)
+    </div>
+
+    <div class="form-group col-lg-12 col-md-12">
+        @Html.LabelFor(m => m.Description, BFPContractPlan.Description)
+        @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+    </div>
+}

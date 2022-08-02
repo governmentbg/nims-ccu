@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newProjectMassMACommunicationsBtn" btn-sref="{ state: 'root.projectMassManagingAuthorityCommunications.new' }" text="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractListActions.Search')"></sc-button>
+
+    <sc-datatable items="communications" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.projectMassManagingAuthorityCommunications.view.edit', params: {id: item.projectMassManagingAuthorityCommunicationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="orderNum" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_orderNum" type="number">
+      </sc-column>
+      <sc-column data="subjectDesc" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_subject">
+      </sc-column>
+      <sc-column data="programmeName" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_programmeName">
+      </sc-column>
+      <sc-column data="procedureCode" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_procedureCode">
+      </sc-column>
+      <sc-column data="status" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_status">
+      </sc-column>
+      <sc-column data="endingDate" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_endingDate" type="date">
+      </sc-column>
+      <sc-column data="modifyDate" title="projectMassManagingAuthorityCommunications_projectMassManagingAuthorityCommunicationsSearch_modifyDate" type="date">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

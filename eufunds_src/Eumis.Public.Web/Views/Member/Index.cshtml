@@ -1,0 +1,99 @@
+﻿@using Eumis.Public.Web.Models.Member
+@using Eumis.Public.Web.InfrastructureClasses
+
+@using PagedList
+@using PagedList.Mvc;
+
+@model MemberSearchVM
+
+@{
+    var breadcrumbLinks = new List<BreadcrumbItem>() { new BreadcrumbItem(Url.Action(MVC.Home.ActionNames.Index, MVC.Home.Name), Texts.Global_Home) };
+}
+
+@Html.Breadcrumb(breadcrumbLinks, Texts.Global_Members)
+
+<div class="container">
+
+    <div class="page-title">
+        <h1>@Texts.Global_Members</h1>
+    </div>
+
+    <div class="page-content">
+        <form class="form-with-sections" method="post">
+            <section data-section="2" class="clearfix" style="display: block;">
+                <div class="form-group col-lg-4 col-sm-9">
+                    <label>@Texts.Member_Index_Member</label>
+                    @Html.TextBoxFor(m => m.Member, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group col-lg-4 col-sm-9">
+                    <label>@Texts.Member_Index_CompanyUin</label>
+                    @Html.TextBoxFor(m => m.CompanyUin, new { @class = "form-control" })
+                </div>
+                @Html.Hidden("ShowRes", true)
+                <div class="form-submit col-lg-3 col-sm-3">
+                    <input type="submit" class="submit m-right-0 wait" name="submit" value="@Texts.Global_SearchButtonValue">
+                </div>
+            </section>
+        </form>
+
+        @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+        {
+            <div class="heading-with-export clearfix">
+                @Html.Partial(MVC.Shared.Views._ExportIcons)
+            </div>
+
+            <div class="table-wrapper">
+                <table class="chart-info">
+                    <thead>
+                        <tr>
+                            <th>@Texts.Member_Index_Name</th>
+                            <th>@Texts.Member_Index_ContractsCount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var member in Model.SearchResults)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(member.TransFullName, MVC.Company.ActionNames.Index, MVC.Company.Name, new { uin = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(member.Uin), uinType = member.UinType, isHistoric = member.IsHistoric, type = Eumis.Public.Web.Models.Company.CompanyEnumType.Member }, new { @class = "wait" })</td>
+                                <td class="sum-field">@Html.DisplayFor(e => member.ContractsCount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @if (Model.SearchResults != null && Model.SearchResults.PageCount > 1)
+                {
+                    <div class="paging clearfix">
+                        <span>@Texts.Global_Page (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                        @Html.PagedListPager(Model.SearchResults,
+                            page => Url.Action(MVC.Member.ActionNames.Index,
+                                MVC.Member.Name
+                                , new
+                                {
+                                    member = Request.QueryString["member"],
+                                    showRes = true,
+                                    page = Eumis.Public.Common.Crypto.ConfigurationBasedStringEncrypter.Encrypt(page.ToString())
+                                })
+                            , new PagedListRenderOptions
+                            {
+                                Display = PagedListDisplayMode.IfNeeded,
+                                DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                                LinkToNextPageFormat = ">",
+                                LinkToPreviousPageFormat = "<"
+                            })
+                    </div>
+                }
+            </div>
+
+            <h2>@Texts.Global_Note:</h2>
+            <div class="note">
+                @Texts.Global_NoteUnderlined
+            </div>
+        }
+         else if (Model.ShowRes)
+        {
+            <div class="no-results"><span>@Texts.Global_NoResults</span></div>
+        }
+    </div>
+</div>

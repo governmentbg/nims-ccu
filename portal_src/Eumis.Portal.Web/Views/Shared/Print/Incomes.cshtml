@@ -1,0 +1,25 @@
+﻿@model R_10043.Incomes
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.IncomeCollection != null && Model.IncomeCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.IncomeCollection.Count; i++)
+            {
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width: 35%;">@Income.IncomeType</td>
+                            <td style="width: 65%;">@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.IncomeCollection[i].IncomeType ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@Income.Amount</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.Decimal, Model.IncomeCollection[i].Amount)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

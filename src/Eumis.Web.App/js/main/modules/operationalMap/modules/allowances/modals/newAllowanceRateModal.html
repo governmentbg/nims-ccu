@@ -1,0 +1,19 @@
+<ng-form name="newAllowanceRateForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="allowances_newRateModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="saveBtn" btn-click="save()" text="allowances_newRateModal_save"
+          class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="allowances_newRateModal_cancel"
+          class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-allowance-rate name="allowanceRateForm" ng-model="newAllowanceRate"></eumis-allowance-rate>
+    </div>
+  </div>
+</ng-form>

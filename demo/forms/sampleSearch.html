@@ -1,0 +1,30 @@
+<div>
+  <sc-search selected-filters="{ lin: '', uin: '', caseType: '', names: '' }" btn-classes="col-sm-5">
+    <sc-filter class="col-sm-3" label="ЛИН"      name="lin"       type="int"></sc-filter>
+    <sc-filter class="col-sm-3" label="ЕГН"      name="uin"       type="text"></sc-filter>
+    <sc-filter class="col-sm-3" label="Тип дело" name="caseType"  type="nomenclature" alias="test" mode="id"></sc-filter>
+    <sc-filter class="col-sm-3" label="Имена"    name="names"     type="date"></sc-filter>
+    <sc-search-button action="search()" text="Търси" icon="glyphicon-search"></sc-search-button>
+    <sc-search-button action="newPerson()" text="Ново лице" icon="glyphicon-plus"></sc-search-button>
+  </sc-search>
+
+  <sc-datatable items="'persons' | sampleData" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+    <sc-column sortable="false" class="buttons-cell" has-content="true">
+      <sc-button btn-sref="{ state: 'sampleForm' }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+    </sc-column>
+    <sc-column data="lin" title="ЛИН">
+    </sc-column>
+    <sc-column data="names" title="Имена">
+    </sc-column>
+    <sc-column data="uin" title="ЕГН">
+    </sc-column>
+    <sc-column data="age" title="Възраст">
+    </sc-column>
+    <sc-column data="licences" title="Лицензи" class="wrap">
+    </sc-column>
+    <sc-column data="ratings" title="Квалификации" class="wrap">
+    </sc-column>
+    <sc-column data="organization" title="Организация">
+    </sc-column>
+  </sc-datatable>
+</div>

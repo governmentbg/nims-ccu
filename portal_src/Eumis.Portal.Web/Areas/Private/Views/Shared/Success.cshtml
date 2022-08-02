@@ -1,0 +1,16 @@
+﻿@model string
+
+<div class="container warnings">
+    <img class="icon" src="@Url.Content(Links.Content.img.icons.success_gif)" alt="" />
+    <p>@Html.Raw(Model)</p>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    if (self !== top) {
+      setTimeout(function () {
+        parent.postMessage('eumis.close', '*');
+      }, 1000); // 1 seconds
+    }
+  });
+</script>

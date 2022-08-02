@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="evalSessions_evalSessionAllDocsSearch_reports"></h5>
+          <sc-button name="newBtn" btn-click="canCreateReport()" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || (!isSessionActive && !isSessionEndedByLAG)"></sc-button>
+        </div>
+        <sc-datatable items="evalSessionReports" filterable="false" pageable="false" sortable="false" dynamic-columns="false" row-class="{'deactivated-table-row' : item.isDeleted}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.allDocs.reports.edit', params: { ind: item.evalSessionReportId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+          </sc-column>
+          <sc-column data="createDate" title="evalSessions_evalSessionAllDocsSearch_reportCreateDate" type="date"></sc-column>
+          <sc-column data="type" title="evalSessions_evalSessionAllDocsSearch_reportType"></sc-column>
+          <sc-column data="regNumber" title="evalSessions_evalSessionAllDocsSearch_regNumber"></sc-column>
+          <sc-column data="description" title="evalSessions_evalSessionAllDocsSearch_reportDescription"></sc-column>
+          <sc-column data="isDeleted" title="evalSessions_evalSessionAllDocsSearch_reportIsDeleted" type="boolean"></sc-column>
+          <sc-column data="isDeletedNote" title="evalSessions_evalSessionAllDocsSearch_reportIsDeletedNote"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="evalSessions_evalSessionAllDocsSearch_docs"></h5>
+          <sc-button name="newBtn" btn-sref="{ state: 'root.evalSessions.view.allDocs.docs.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionId) || (!isSessionActive && !isSessionEndedByLAG)"></sc-button>
+        </div>
+        <sc-datatable items="evalSessionDocuments" filterable="false" pageable="false" sortable="false" dynamic-columns="false" row-class="{'deactivated-table-row' : item.isDeleted}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.evalSessions.view.allDocs.docs.edit', params: { ind: item.evalSessionDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-disabled="!$canDo('EvalSessionActions.ViewSessionData', evalSessionId)"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="evalSessions_evalSessionAllDocsSearch_docName"></sc-column>
+          <sc-column data="description" title="evalSessions_evalSessionAllDocsSearch_docDescription"></sc-column>
+          <sc-column sortable="false" title="evalSessions_evalSessionAllDocsSearch_docFile" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+          <sc-column data="isDeleted" title="evalSessions_evalSessionAllDocsSearch_docIsDeleted" type="boolean"></sc-column>
+          <sc-column data="isDeletedNote" title="evalSessions_evalSessionAllDocsSearch_docIsDeletedNote"></sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

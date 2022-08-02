@@ -1,0 +1,41 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10019.Project
+
+@if(Request.IsAuthenticated)
+{
+   @Html.Breadcrumb(new List<BreadcrumbItem>()
+    {
+        new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+        new BreadcrumbItem(Url.Action(MVC.Draft.ActionNames.Index, MVC.Draft.Name), Global.BreadcrumbsDrafts)
+    }
+    , Global.BreadcrumbsElectronicForm)
+}
+else
+{
+    @Html.Breadcrumb(new List<BreadcrumbItem>()
+    {
+        new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+        new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.PublicPreview, MVC.Procedure.Name), Global.BreadcrumbsDocumentPreview)
+    }
+    , Global.BreadcrumbsElectronicForm)
+}
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.BreadcrumbsElectronicForm</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Project.ActionNames.Print, MVC.Project.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+        <form class="form-with-sections">
+            @Html.DisplayFor(m => m)
+        </form>
+    </div>
+</div>

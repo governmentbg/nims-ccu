@@ -1,0 +1,147 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Documents.Contracts.ContractProcedureInfo
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Procedure.ActionNames.PublicDiscussion, MVC.Procedure.Name), Global.BreadcrumbsPublicDiscussionProcedures)
+}
+, Model.displayName)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.PublicDiscussionProcedure</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <div class="page-content clearfix text-justify">
+        <div class="col-xs-12">
+            @if (!Request.IsAuthenticated)
+            {
+                <div class="info-block">
+                    @if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.Bulgarian)
+                    {
+                        <p>
+                            В тази страница имате възможност да разгледате процедурата, срока и всички други проектни документи.
+                            Ако сте външен за системата потребител, функционалността за коментиране/предложение към проекта не е достъпна.
+                            В системата може да влезете или да си създадете потребителски профил от менюто "@Html.ActionLink("Вход", MVC.Account.ActionNames.Login, MVC.Account.Name)".
+                        </p>
+                    }
+                    else if (SystemLocalization.GetCurrentLanguage() == LocalizationLanguage.English)
+                    {
+                        <p>
+                            In this page you can see the procedure, deadline and all other project documents.
+                            If you are outside the system user functionality to comment project proposal is not available.
+                            In the system can login or create a new profile from the menu "@Html.ActionLink("Login", MVC.Account.ActionNames.Login, MVC.Account.Name)".
+                        </p>
+                    }
+                </div>
+            }
+            <div class="clearfix"></div>
+            <div class="procedure-info">
+                @{ var procedureName = Model.code + " - " + Model.displayName;}
+
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink(procedureName, MVC.Project.ActionNames.New, MVC.Project.Name, new { id = Model.gid }, new { style = "color:black;font-weight:bold" })
+                }
+                else
+                {
+                    <strong>@procedureName</strong>
+                }
+
+                @Html.Raw(Model.displayDescription)
+
+                @if (!string.IsNullOrEmpty(Model.endingDateNotes))
+                {
+                    <strong>@ProcedureInfo.EndingDateNoteTitle</strong>
+                    @Html.Raw(Model.endingDateNotes)
+                }
+            </div>
+
+            @if (Model.listingDate.HasValue)
+            {
+                <p><b>@ProcedureInfo.ListingDate</b> <span class="required-span">@Eumis.Common.Helpers.Helper.DateFormat(Model.listingDate)</span></p>
+            }
+            
+            <p><b>@ProcedureInfo.FirstPublicationDate</b> <span class="required-span">@Eumis.Common.Helpers.Helper.DateFormat(Model.publicDiscussionFirstPublicationDate)</span></p>
+
+            @if (!String.IsNullOrWhiteSpace(Model.internetAddress))
+            {
+                <p><b>@ProcedureInfo.InternetAddress:</b> <a href="@Model.internetAddress" target="_blank">@Model.internetAddress</a></p>
+            }
+
+            @if (Model.publicDiscussionGuidelines != null && Model.publicDiscussionGuidelines.Count != 0)
+            {
+                <h2>@Global.DraftDocuments</h2>
+                <ul class="file-list">
+                    @foreach (var guideline in Model.publicDiscussionGuidelines)
+                    {
+                        var extenstion = guideline.filename.Split('.').Last();
+                        if (extenstion == "docx") { extenstion = "doc"; }
+                        if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                        {
+                            extenstion = string.Empty;
+                        }
+                        else
+                        {
+                            extenstion = "file-" + extenstion;
+                        }
+
+                        <li class="@(extenstion)">
+
+                            <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoPublicDiscussionDownload(Model.gid, guideline.blobKey)))">@guideline.name</a> @ProcedureInfo.PublishDate @Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(guideline.statusDate)
+
+                            @if (!string.IsNullOrEmpty(guideline.description))
+                            {
+                                <img class="info-icon" src="@(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@(guideline.description)" data-trigger="hover">
+                            }
+
+                        </li>
+                    }
+
+                    @if (Model.qaBlobKey.HasValue)
+                    {
+                        var extenstion = Model.qaFileName.Split('.').Last();
+                        if (extenstion == "docx") { extenstion = "doc"; }
+                        if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                        {
+                            extenstion = string.Empty;
+                        }
+                        else
+                        {
+                            extenstion = "file-" + extenstion;
+                        }
+
+                        <li class="@(extenstion)">
+
+                            <a target="_blank" href="@(Url.Action(MVC.Procedure.InfoPublicDiscussionDownload(Model.gid, Model.qaBlobKey.Value)))">
+                                @ProcedureInfo.QA
+                            </a>
+
+                            @if (Model.qaModifyDate.HasValue)
+                            {
+                                <span>(@ProcedureInfo.ModifyDate: @Eumis.Common.Helpers.Helper.DateTimeFormat(Model.qaModifyDate.Value))</span>
+                            }
+
+                        </li>
+                    }
+                </ul>
+            }
+
+            <p>&nbsp;</p>
+
+            @if (Model.publicDiscussionEndDate.HasValue)
+            {
+                <p><b>@ProcedureInfo.PublicDiscussionEndDate</b> <span class="required-span">@Eumis.Common.Helpers.Helper.DateTimeFormatWithoutSeconds(Model.publicDiscussionEndDate)</span></p>
+            }
+
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink(Default.NewComment, MVC.Procedure.ActionNames.Comment, MVC.Procedure.Name, new { id = Model.gid }, new { @class = "blue-button" })
+                @*@Html.ActionLink(Global.MyProposals, MVC.Draft.ActionNames.Index, MVC.Draft.Name, null, new { @class = "blue-button", style = "margin-left: 10px;" })*@
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<ng-form name="editContractReportTechnicalCorrectionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_title"></strong>
+
+      <div class="pull-right">
+        
+        <sc-button name="endedBtn" btn-click="changeStatus('ended')" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_ended" class="btn btn-default btn-xs"
+          ng-show="contractReportTechnicalCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.Edit', contractReportTechnicalCorrectionId)"></sc-button>
+
+        <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_draft" class="btn btn-success btn-xs"
+          ng-show="contractReportTechnicalCorrection.status === 'ended' && !editMode" ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.ChangeStatusToDraft', contractReportTechnicalCorrectionId)"></sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="contractReportTechnicalCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.Edit', contractReportTechnicalCorrectionId)"></sc-button>
+        
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_delete" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-show="contractReportTechnicalCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('ContractReportTechnicalCorrectionActions.Delete', contractReportTechnicalCorrectionId)"></sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" 
+          ng-show="editMode"></sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportTechnicalCorrections_editContractReportTechnicalCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle"
+          ng-show="editMode"></sc-button>
+
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-technical-correction name="contractReportTechnicalCorrectionForm" ng-model="contractReportTechnicalCorrection"></eumis-contract-report-technical-correction>
+    </div>
+  </div>
+</ng-form>

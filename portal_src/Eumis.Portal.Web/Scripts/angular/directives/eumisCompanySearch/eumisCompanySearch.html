@@ -1,0 +1,36 @@
+﻿<div class="clearfix">
+    <div class="form-group col-md-3">
+        <label>{{resources.UinType}}</label>
+        <sc-nomenclature ng-class="{'input-validation-error': !company.IsUinTypeValid}" sc-alias="GetUinTypes" ng-model="company.UinType">
+        </sc-nomenclature>
+        <input ng-class="{'input-validation-error': !company.IsUinTypeValid}" value="{{ company.UinType.id }}" name="{{path}}.UinType.id" type="hidden" class="validation-error-key" />
+        <input value="{{ company.UinType.Name }}" name="{{path}}.UinType.Name" type="hidden" />
+    </div>
+    <div class="form-group col-md-2">
+        <label>{{resources.Uin}}</label>
+        <input ng-if="!isPartialReadOnly" ng-class="{'input-validation-error': !company.IsUinValid}" ng-enter="searchCompany()" ng-model="company.Uin" name="{{path}}.Uin" type="text" class="form-control">
+        <pre ng-if="isPartialReadOnly"><span class="filled-value">{{company.Uin}}</span></pre>
+    </div>
+    <div ng-if="!isPartialReadOnly" class="form-group col-md-4">
+        <div style="height:30px; width:100%"></div>
+
+        <a href="" class="search-bulstat-btn" ng-click='searchCompany()' ng-show="company.isSearch">{{resources.Search}}</a>
+
+        <div ng-show="company.isPleaseWait">
+            <img src="/Content/img/loader_h26.gif" alt="" />
+            {{resources.PleaseWait}}
+        </div>
+        <div ng-show="company.isOK">
+            <img src="/Content/img/icons/success.png" class="success" alt="" style="display:inline-block;" />
+            <span>{{resources.DataFilled}}</span>
+        </div>
+        <div ng-show="company.isNoResult">
+            <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+            <span>{{resources.NoResult}}</span>
+        </div>
+        <div ng-show="company.isValidationError">
+            <img src="/Content/img/icons/warning.png" class="error" alt="" style="display:inline-block;" />
+            <span>{{resources.ValidationError}}</span>
+        </div>
+    </div>
+</div>

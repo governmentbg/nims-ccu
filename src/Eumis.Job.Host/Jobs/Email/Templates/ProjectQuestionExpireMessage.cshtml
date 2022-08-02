@@ -1,0 +1,24 @@
+@model Newtonsoft.Json.Linq.JObject
+@using System.Configuration
+@using Eumis.Common.Config
+@{
+    string projectRegNumber = (string)Model["ProjectRegNumber"];
+    string projectName = (string)Model["ProjectName"];
+    string questionNumber = (string)Model["QuestionRegNumber"];
+}
+
+<p style="margin-bottom: 15px;"><strong style="color: #444444;">Система за управление на националните инвестиции</strong></p>
+
+<p>Уважаеми г-жо/г-не,</p>
+<p>По проектно предложение с регистрационен номер <strong>@projectRegNumber</strong> и наименование <strong>@projectName</strong> е изпратен въпрос от оценителна комисия с номер <strong>@questionNumber</strong>, на който не е отговорено. <br />
+    <br />
+    Крайният срок за отговор на изпратения въпрос <strong>изтича днес в 23:59:59 ч.</strong> <br />
+    <br />
+    За да изпратите отговор е необходимо да достъпите средата за електронно кандидатстване на СУНИ с Вашето потребителско име и парола, на адрес <a href="https://enims.egov.bg/">https://enims.egov.bg/</a>. <br/>
+    <br />
+    Изпратеният въпрос може да откриете в меню „Подадени проектни предложения“, секция „Въпроси от комисията“.</p>
+<hr />
+
+<p style="font-size: 13px; margin-top: 0px;">
+    Моля, не отговаряйте на този имейл, той е изпратен автоматично от служебната поща на системата. <br />
+    При необходимост от техническо съдействие за изпращане на отговор през системата, може да се свържете с нас на e-mail: suni@government.bg.

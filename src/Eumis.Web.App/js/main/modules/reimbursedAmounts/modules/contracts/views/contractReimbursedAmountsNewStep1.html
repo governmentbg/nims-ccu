@@ -1,0 +1,30 @@
+<div class="tab-content">
+  <ng-form name="reimbursedAmountsNewStep1Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contractReimbursedAmounts_newStep1_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="nextBtn" btn-click="next()" text="contractReimbursedAmounts_newStep1_next" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contractReimbursedAmounts_newStep1_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'reimbursedAmountProgrammes'" mode="id" ng-model="model.programmeId" l10n-text="contractReimbursedAmounts_newStep1_programme" class="col-sm-5 col-md-5"></sc-field>
+          <sc-field type="text" ng-model="model.contractNumber" ng-required="true" l10n-text="contractReimbursedAmounts_newStep1_contractRegNumber" class="col-sm-4"
+            sc-validate-async="{ numValid: isValidContractNum }"
+            sc-revalidate-on="['model.programmeId']"
+            validations="{ numValid: 'contractReimbursedAmounts_newStep1_contractNumberInvaid' }"
+          >
+          </sc-field>
+          <sc-button name="chooseContractBtn" btn-click="chooseContract()" text="contractReimbursedAmounts_newStep1_chooseContract" class="btn btn-primary btn-sm" icon="glyphicon-search" style="margin-top: 19px;">
+          </sc-button>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

@@ -1,0 +1,40 @@
+﻿@model R_10043.FinanceReport
+
+@if (Model != null)
+{
+    int sectionNumber = 1;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @FinanceReport.BasicData
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        <div class="table-wrapper">
+            <div class="history-table">
+                @Html.DisplayFor(m => m.BasicData)
+            </div>
+        </div>
+    </section>
+    <div class="section-separator"> </div>
+
+    @*sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @FinanceReport.FinanceBudget
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.FinanceBudget)
+    </section>
+    <div class="section-separator"> </div>*@
+
+    sectionNumber++;
+    <h2 data-section="@sectionNumber" class="section-heading">
+        <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="">
+        @sectionNumber. @FinanceReport.CostSupportingDocuments
+    </h2>
+    <section data-section="@sectionNumber" class="clearfix">
+        @Html.DisplayFor(m => m.CostSupportingDocuments)
+    </section>
+    <div class="section-separator"> </div>
+
+    @Html.DisplayFor(m => m.Signature)
+}

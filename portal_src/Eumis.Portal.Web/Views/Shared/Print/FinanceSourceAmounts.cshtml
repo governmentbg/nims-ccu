@@ -1,0 +1,36 @@
+﻿@using Eumis.Common.Helpers;
+
+@model R_10063.FinanceSourceAmounts
+
+@if (Model == null)
+{
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+}
+else
+{
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.BFPContractAmount)
+    </td>
+    <td>
+        <span class="filled-value">@(DataUtils.DecimalToStringDecimalPointSpace(Model.BFPContractAmountPercentage) + "%")</span>
+    </td>
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CurrentReportAmount)
+    </td>
+    <td>
+        <span class="filled-value">@(DataUtils.DecimalToStringDecimalPointSpace(Model.CurrentReportAmountPercentage) + "%")</span>
+    </td>
+    <td>
+        @Html.Partial(MVC.Shared.Views.Print.Decimal, Model.CumulativeAmount)
+    </td>
+    <td>
+        <span class="filled-value">@(DataUtils.DecimalToStringDecimalPointSpace(Model.CumulativeAmountPercentage) + "%")</span>
+    </td>
+}
+
+

@@ -1,0 +1,19 @@
+<div class="tab-content">
+  <ng-form name="serviceContractsNewStep3Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="contracts_serviceContractsNewStep3_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="contracts_serviceContractsNewStep3_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contracts_serviceContractsNewStep3_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+      <div class="well-sm panel-body">
+        <eumis-service-contract-data name="serviceContractRegistrationDataForm" ng-model="contractRegistration"></eumis-service-contract-data>
+      </div>
+    </div>
+  </ng-form>
+</div>

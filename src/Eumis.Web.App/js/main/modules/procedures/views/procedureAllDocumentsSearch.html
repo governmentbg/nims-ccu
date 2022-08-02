@@ -1,0 +1,178 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_documents"></h5>
+          <sc-button name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.docs.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+        <sc-datatable items="documents" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.allDocs.docs.edit', params: {ind: item.procedureDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="procedures_documentsSearch_name">
+          </sc-column>
+          <sc-column data="description" title="procedures_documentsSearch_description">
+          </sc-column>
+          <sc-column sortable="false" title="procedures_documentsSearch_file" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_appGuidelines"></h5>
+          <sc-button ng-show="!isProcedureReadonly" name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.appGuidelines.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+
+        <sc-datatable items="appGuidelines" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.allDocs.appGuidelines.edit', params: {ind: item.procedureApplicationGuidelineId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="procedures_appGuidelinesSearch_name">
+          </sc-column>
+          <sc-column data="description" title="procedures_appGuidelinesSearch_description">
+          </sc-column>
+          <sc-column sortable="false" title="procedures_appGuidelinesSearch_file" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_questions"></h5>
+          <sc-button ng-show="isProcedureAnnounced" name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.questions.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+
+        <sc-datatable items="questions" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="viewBtn" ng-if="!item.isLast || item.isActivated" btn-sref="{ state: 'root.procedures.view.allDocs.questions.edit', params: { ind: item.procedureQuestionId} }" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+            <sc-button name="editBtn" ng-if="item.isLast && !item.isActivated" btn-sref="{ state: 'root.procedures.view.allDocs.questions.edit', params: { ind: item.procedureQuestionId, del: true} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="createDate" title="procedures_questionsSearch_createDate" type="datetime">
+          </sc-column>
+          <sc-column data="createdByUser" title="procedures_questionsSearch_createdByUser">
+          </sc-column>
+          <sc-column data="activeStatus" title="procedures_questionsSearch_status">
+          </sc-column>
+          <sc-column sortable="false" title="procedures_questionsSearch_file" has-content="true">
+            <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_appDocs"></h5>
+          <sc-button ng-show="!isProcedureReadonly" name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.appDocs.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+
+        <sc-datatable items="appDocs" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : !item.isActive}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.allDocs.appDocs.edit', params: {ind: item.procedureApplicationDocId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="procedures_appDocsSearch_name">
+          </sc-column>
+          <sc-column data="extension" title="procedures_appDocsSearch_extension">
+          </sc-column>
+          <sc-column data="isRequired" title="procedures_appDocsSearch_isRequired" type="boolean">
+          </sc-column>
+          <sc-column data="isSignatureRequired" title="procedures_appDocsSearch_isSignatureRequired" type="boolean">
+          </sc-column>
+          <sc-column data="activeStatus" title="procedures_appDocsSearch_status">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row" ng-show="procedureInfo.procedureKind === 'schema'">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_applicaiton"></h5>
+          <sc-button btn-click="showApplicationForm()" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="procedureInfo.procedureKind === 'schema'">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_evalTables"></h5>
+          <sc-button ng-show="!isProcedureReadonly" name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.evalTables.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+
+        <sc-datatable items="evalTables" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : !item.isActive}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.allDocs.evalTables.edit', params: {ind: item.procedureEvalTableId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="name" title="procedures_evalTablesSearch_name">
+          </sc-column>
+          <sc-column data="type" title="procedures_evalTablesSearch_type">
+          </sc-column>
+          <sc-column data="activeStatus" title="procedures_evalTablesSearch_status">
+          </sc-column>
+          <sc-column sortable="false" title="procedures_evalTablesSearch_preview" has-content="true">
+            <a target="_blank" ng-href="{{item.viewXmlUrl}}" sc-access-token>
+              <span class="glyphicon glyphicon-file"></span>
+            </a>
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-12">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="procedures_allDocumentsSearch_declarations"></h5>
+          <sc-button ng-show="!isProcedureReadonly" name="newBtn" btn-sref="{ state: 'root.procedures.view.allDocs.declarations.new' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-disabled="!$canDo('ProcedureActions.Edit', procedureId)"></sc-button>
+        </div>
+
+        <sc-datatable items="procedureDeclarations" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'inactive'}">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-sref="{ state: 'root.procedures.view.allDocs.declarations.edit', params: {ind: item.procedureDeclarationId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+          </sc-column>
+          <sc-column data="orderNum" title="procedures_declarationsSearch_orderNum" width="20%">
+          </sc-column>
+          <sc-column data="name" title="procedures_declarationsSearch_name" width="30%">
+          </sc-column>
+          <sc-column data="nameAlt" title="procedures_declarationsSearch_nameAlt" width="30%">
+          </sc-column>
+          <sc-column data="statusDescr" title="procedures_declarationsSearch_status">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

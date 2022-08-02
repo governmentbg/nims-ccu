@@ -1,0 +1,76 @@
+﻿@using Eumis.Portal.Web.Helpers;
+
+@model Eumis.Documents.Contracts.ContractRegOfferXmlPVO
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), "Подадени оферти")
+}, "Преглед")
+
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+@if (Model != null)
+{
+    <div class="container">
+        <div class="page-content">
+            <section class="clearfix" style="display:block;">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Наименование (Наименование на бенефициент от договор)</label>
+                        @Html.DisplayFor(m => m.CompanyName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>ЕИК (ЕИК на бенефициент от договор)</label>
+                        @Html.DisplayFor(m => m.CompanyUinType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Номер</label>
+                        @Html.DisplayFor(m => m.CompanyUin)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Предмет на предвидената процедура</label>
+                        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <label>Обект на процедурата</label>
+                        @Html.DisplayFor(m => m.ErrandArea)
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Приложим нормативен акт</label>
+                        @Html.DisplayFor(m => m.ErrandLegalAct)
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Тип на процедурата</label>
+                        @Html.DisplayFor(m => m.ErrandType)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <label>Прогнозна стойност съгласно обявление</label>
+                        @Html.DisplayFor(m => m.ExpectedAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-8">
+                        <label>Описание</label>
+                        @Html.DisplayFor(m => m.Description, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="form-submit">
+            <a class="blue-button" href="@(Url.Action(MVC.Report.Offer.ActionNames.Preview, MVC.Report.Offer.Name, new { id = Model.OfferGid, area = MVC.Report.Name }))">Преглед на подадената оферта</a>
+        </div>
+    </div>
+}

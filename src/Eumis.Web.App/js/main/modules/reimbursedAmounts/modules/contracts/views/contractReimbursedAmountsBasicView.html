@@ -1,0 +1,29 @@
+<ng-form name="editReimbursedAmountForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReimbursedAmounts_basicData_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="draftBtn" btn-click="setToDraft()" text="contractReimbursedAmounts_basicData_draft" class="btn btn-success btn-xs"
+          ng-if="reimbursedAmountData.status === 'entered'" ng-disabled="!$canDo('ContractReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="enterBtn" btn-click="enter()" text="contractReimbursedAmounts_basicData_enter" class="btn btn-primary btn-xs"
+          ng-if="reimbursedAmountData.status === 'draft'" ng-disabled="!$canDo('ContractReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="del()" text="contractReimbursedAmounts_basicData_del" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="reimbursedAmountData.status === 'draft' && !reimbursedAmountData.isActivated" ng-disabled="!$canDo('ContractReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="removeBtn" btn-click="remove()" text="contractReimbursedAmounts_basicData_remove" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+          ng-if="reimbursedAmountData.status === 'draft' && reimbursedAmountData.isActivated" ng-disabled="!$canDo('ContractReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+        <sc-button name="editBtn" btn-click="attachToDebt()" text="contractReimbursedAmounts_basicData_attachToDebt" class="btn btn-default btn-xs" icon="glyphicon-share-alt"
+          ng-if="reimbursedAmountData.status === 'draft'" ng-disabled="!$canDo('ContractReimbursedAmountActions.Edit', reimbursedAmountData.reimbursedAmountId)">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-reimbursed-amount-basic-data name="reimbursedAmountDataForm" ng-model="reimbursedAmountData" sc-form-readonly="true"></eumis-contract-reimbursed-amount-basic-data>
+    </div>
+  </div>
+</ng-form>

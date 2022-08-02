@@ -1,0 +1,171 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6 ">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_interventionField"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('interventionField')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.interventionFieldCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_formOfFinance"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('formOfFinance')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.formOfFinanceCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_territorialDimension"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('territorialDimension')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.territorialDimensionCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_territorialDeliveryMechanism"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('territorialDeliveryMechanism')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.territorialDeliveryMechanismCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_thematicObjective"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('thematicObjective')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.thematicObjectiveCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_eSFSecondaryTheme"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('eSFSecondaryTheme')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.esfSecondaryThemeCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mutiple-tables-spacing"></div>
+
+      <div class="col-sm-6">
+        <div>
+          <h5 class="table-header table-header-first pull-left" l10n-text="programmes_interventionCategoriesSearch_economicDimension"></h5>
+          <sc-button name="newBtn" btn-click="newCategory('economicDimension')" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+            ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+        </div>
+        <sc-datatable items="categoriesByDimension.economicDimensionCategories" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+          <sc-column sortable="false" class="buttons-cell" has-content="true">
+            <sc-button name="editBtn" btn-click="editCategory(item.interventionCategoryId, item.dimension)" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+            <sc-button name="deleteBtn" btn-click="deleteCategory(item.interventionCategoryId, item.dimension, item.version)" class="btn btn-danger btn-xs" icon="glyphicon-remove"
+              ng-if="programmeStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', programmeId)"></sc-button>
+          </sc-column>
+          <sc-column data="code" title="programmes_interventionCategoriesSearch_code">
+          </sc-column>
+          <sc-column data="name" title="programmes_interventionCategoriesSearch_name">
+          </sc-column>
+          <sc-column data="amount" title="programmes_interventionCategoriesSearch_amount" type="money">
+          </sc-column>
+        </sc-datatable>
+      </div>
+    </div>
+  </div>
+</div>

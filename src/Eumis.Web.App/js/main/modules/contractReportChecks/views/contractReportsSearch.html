@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="well well-sm">
+      <div class="row">
+        <sc-field type="text" ng-model="filters.contractRegNum" l10n-text="contractReportChecks_search_contractRegNum" class="col-sm-4"></sc-field>
+        <div class="labeless col-sm-8">
+          <sc-button name="seachBtn" btn-click="search()" text="contractReportChecks_search_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+        </div>
+      </div>
+    </div>
+
+    <sc-link-button ng-href="{{contractReportChecksExportUrl}}" target="_blank" sc-access-token style="margin-left: 3px;"
+                    icon="fa-file-excel-o fa-lg fa-fw" text="contractReportChecks_search_excelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+    <sc-datatable items="contractReports" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contractReportChecks.view.contract', params: { id: item.contractReportId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                   ng-disabled="!$canDo('ContractReportCheckActions.View', item.contractReportId)"></sc-button>
+      </sc-column>
+      <sc-column data="procedureName" title="contractReportChecks_search_procedureName" has-content="true">
+        <span title="{{item.procedureName}}">{{item.procedureName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="contractRegNum" title="contractReportChecks_search_contractRegNum"></sc-column>
+      <sc-column data="contractName" title="contractReportChecks_search_contractName" has-content="true">
+        <span title="{{item.contractName}}">{{item.contractName | trim : 50}}</span>
+      </sc-column>
+      <sc-column data="orderNum" title="contractReportChecks_search_orderNum" type="number"></sc-column>
+      <sc-column data="reportType" title="contractReportChecks_search_reportType"></sc-column>
+      <sc-column data="submitDate" title="contractReportChecks_search_submitDate" type="date"></sc-column>
+      <sc-column data="status" title="contractReportChecks_search_status"></sc-column>
+      <sc-column data="checkedDate" title="contractReportChecks_search_checkedDate" type="date"></sc-column>
+    </sc-datatable>
+  </div>
+</div>

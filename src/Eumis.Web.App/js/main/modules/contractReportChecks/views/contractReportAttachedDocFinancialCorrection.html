@@ -1,0 +1,49 @@
+<ng-form name="editContractReportFinancialCheckForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" class="heading" class="heading" l10n-text="contractReportChecks_attachedFinancialCorrections_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="backBtn" btn-click="back()" text="contractReportChecks_editContractReportChecksFinancial_back" class="btn btn-primary btn-xs" icon="glyphicon-arrow-left">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-contract-report-financial-correction name="contractReportFinancialCorrectionForm" ng-model="contractReportAttachedFinancialCorrection.contractReportFinancialCorrection" sc-form-readonly="true"></eumis-contract-report-financial-correction>
+      
+      <h5 class="table-header" l10n-text="contractReportChecks_attachedFinancialCorrections_correctedCsds"></h5>
+      <sc-datatable items="contractReportAttachedFinancialCorrection.contractReportFinancialCorrectionCSDs" filterable="false" pageable="false" sortable="true" dynamic-columns="false" scrollable="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="viewBtn" btn-click="viewCorrectedBudgetItem(item.contractReportFinancialCorrectionCSDId)" class="btn btn-xs btn-primary" icon="glyphicon-eye-open"
+            ng-disabled="!$canDo('ContractReportCheckActions.View', contractReportId)"></sc-button>
+        </sc-column>
+        <sc-column data="csd" title="contractReportChecks_attachedFinancialCorrections_csd"></sc-column>
+        <sc-column data="budgetDetailName" title="contractReportChecks_attachedFinancialCorrections_budgetDetail"></sc-column>
+        <sc-column data="contractActivityName" title="contractReportChecks_attachedFinancialCorrections_contractActivity"></sc-column>
+
+        <sc-column data="status" title="contractReportChecks_attachedFinancialCorrections_status"></sc-column>
+        <sc-column data="costSupportingDocumentApproved" title="contractReportChecks_attachedFinancialCorrections_approval" type="boolean"></sc-column>
+        <sc-column data="sign" title="contractReportChecks_attachedFinancialCorrections_sign"></sc-column>
+
+        <sc-column data="approvedEuAmount" title="contractReportChecks_attachedFinancialCorrections_euAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_approvedAmount" type="money"></sc-column>
+        <sc-column data="approvedBgAmount" title="contractReportChecks_attachedFinancialCorrections_bgAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_approvedAmount" type="money"></sc-column>
+        <sc-column data="approvedSelfAmount" title="contractReportChecks_attachedFinancialCorrections_selfAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_approvedAmount" type="money"></sc-column>
+        <sc-column data="approvedTotalAmount" title="contractReportChecks_attachedFinancialCorrections_totalAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_approvedAmount" type="money"></sc-column>
+
+        <sc-column data="correctedApprovedEuAmount" title="contractReportChecks_attachedFinancialCorrections_euAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_correctedApprovedAmount" type="money"></sc-column>
+        <sc-column data="correctedApprovedBgAmount" title="contractReportChecks_attachedFinancialCorrections_bgAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_correctedApprovedAmount" type="money"></sc-column>
+        <sc-column data="correctedApprovedSelfAmount" title="contractReportChecks_attachedFinancialCorrections_selfAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_correctedApprovedAmount" type="money"></sc-column>
+        <sc-column data="correctedApprovedTotalAmount" title="contractReportChecks_attachedFinancialCorrections_totalAmount"
+          col-group="contractReportChecks_attachedFinancialCorrections_correctedApprovedAmount" type="money"></sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+</ng-form>

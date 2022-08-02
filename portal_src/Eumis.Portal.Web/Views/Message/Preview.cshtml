@@ -1,0 +1,42 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model R_10020.Message
+
+@{var currentBreadcrumb = Model.type == R_09990.MessageTypeNomenclature.Question ? Message.Preview : Message.AnswerQuestionHeader; }
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Default.ActionNames.Index, MVC.Default.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Registered.ActionNames.Index, MVC.Registered.Name), Global.BreadcrumbsRegistered),
+    new BreadcrumbItem(Url.Action(MVC.Message.ActionNames.Index, MVC.Message.Name), Message.MessagesTab)
+}
+, currentBreadcrumb)
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    @if (Model.type == R_09990.MessageTypeNomenclature.Question)
+    {
+        <h1>@Message.Preview</h1>
+    }
+    else
+    {
+        <h1>@Message.AnswerQuestionHeader</h1>
+    }
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.Print, MVC.Message.ActionNames.Print, MVC.Message.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+
+    <div class="tab-content">
+        <div class="form-with-sections">
+
+            @Html.DisplayFor(m => m)
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<ng-form name="editContractReportCertCorrectionData" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="contractReportCertCorrections_editContractReportCertCorrection_title"></strong>
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="contractReportCertCorrections_editContractReportCertCorrection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="status === 'draft'" ng-disabled="!$canDo('ContractReportCertCorrectionActions.Edit', contractReportCertCorrection.contractReportCertCorrectionId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="contractReportCertCorrections_editContractReportCertCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="contractReportCertCorrections_editContractReportCertCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <eumis-contract-report-cert-correction-data name="contractReportCertCorrectionForm" ng-model="contractReportCertCorrection"></eumis-contract-report-cert-correction-data>
+    </div>
+  </div>
+</ng-form>

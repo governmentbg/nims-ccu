@@ -1,0 +1,318 @@
+﻿@model R_10014.ProgrammeIndicators
+
+@Html.HiddenFor(m => m.programmeName)
+
+@if (Model != null && Model.IndicatorCollection != null)
+{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model.IndicatorCollection);
+    var indicatorNomenclature = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Items);
+
+    <script type="text/javascript">
+
+        window._eumis_options = window._eumis_options || {};
+        window._eumis_options.i@(guid) = {
+            items: @(Html.Raw(jsonModel)),
+            indicatorNomenclature: @(Html.Raw(indicatorNomenclature)),
+            areItemsValid: @(Model.IsValid.ToString().ToLower()),
+            hasUniqueIds: @(Model.HasUniqueIds.ToString().ToLower()),
+        };
+
+        $(document).ready(function () {
+            angular.bootstrap($('#containerIndicators@(guid)'), ['moduleIndicators']);
+        });
+
+    </script>
+
+    <div class="table-wrapper" id="containerIndicators@(guid)" ng-controller="controllerIndicators" ng-init="init('_eumis_options', 'i@(guid)')">
+        <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+        <table class="chart-info" width="100%">
+            <thead>
+                <tr ng-class="{'input-validation-error': !hasUniqueIds}" name="@(Html.GetNameFor(m => m))">
+                    <th>@ProgrammeIndicators.Name</th>
+                    <th>@ProgrammeIndicators.Type</th>
+                    <th colspan="2">@ProgrammeIndicators.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat-start="item in items" style="display:none;"></tr>
+                <tr ng-class="{'deactivated' : item.IsDeactivated}">
+                    <td style="word-break: break-all">
+                        <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].HasGenderDivision"
+                               value="{{ item.SelectedIndicator.hasGenderDivision }}" />
+
+                        <div ng-if="!item.IsDeactivated" style="display: block; width: 100%;">
+                          {{ item.SelectedIndicator.text }}
+                        </div>
+                        <div ng-if="item.IsDeactivated" style="display: block; width: 100%;">
+                            {{item.Name}}
+                            <img class="info-icon" info-icon src="@Url.Content(Links.Content.img.icons.info_white_png)" data-placement="right" data-toggle="popover" data-content="@Global.Deactivated" data-trigger="hover" alt="" data-original-title="" title="">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.IsDeactivated" style="display: block; width: 100%;">
+                            {{ item.SelectedIndicator.displayTypeName }}
+                        </div>
+                        <div ng-if="item.IsDeactivated" style="display: block; width: 100%;">
+                            {{item.TypeName}}
+                        </div>
+                    </td>
+                    <td style="width: 130px;">
+                        <a title="" id="{{item.editTriggerId}}" class="history-btn" history-btn>
+                            <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.Edit
+                        </a>
+                    </td>
+                    <td style="width: 130px;">
+                        <a class="delete-btn" confirm-click="delItem(item)">@Global.DeleteButton</a>
+                    </td>
+                </tr>
+
+                <tr class="history-table" ng-if="!item.IsDeactivated">
+                    <td colspan="4">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="clearfix">
+                                <div class="form-group col-lg-6 col-md-12">
+                                    <label>@ProgrammeIndicators.Name</label>
+                                    <input ng-class="{'input-validation-error': !item.IsNameValid}" type="hidden" ng-model="item.SelectedIndicator"
+                                           ui-select2="{ allowClear: true, placeholder: ' ', query: loadIndicatorNomenclature }" ng-change="clearBaseTarget(item)" />
+
+                                    <input ng-class="{'input-validation-error': !item.IsNameValid}" type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Id"
+                                           value="{{ item.SelectedIndicator.id }}" class="validation-error-key" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Name"
+                                           value="{{ item.SelectedIndicator.name }}" />
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].NameEN"
+                                           value="{{ item.SelectedIndicator.nameEN }}" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Type</label>
+                                <input type="text" value="{{ item.SelectedIndicator.displayTypeName }}" class="form-control" readonly />
+                                <input type="hidden" value="{{ item.SelectedIndicator.typeNameEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].typeNameEN" />
+                                <input type="hidden" value="{{ item.SelectedIndicator.typeName }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TypeName"  />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Trend</label>
+                                <input type="text" value="{{ item.SelectedIndicator.displayTrendName }}" class="form-control" readonly />
+                                <input type="hidden" value="{{ item.SelectedIndicator.trendNameEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TrendNameEN" />
+                                <input type="hidden" value="{{ item.SelectedIndicator.trendName }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TrendName"  />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                              <label>@ProgrammeIndicators.Kind</label>
+                              <input type="text" value="{{ item.SelectedIndicator.displayKindName }}" class="form-control" readonly />
+                              <input type="hidden" value="{{ item.SelectedIndicator.kindNameEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].KindNameEN" />
+                              <input type="hidden" value="{{ item.SelectedIndicator.kindName }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].KindName" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Measure</label>
+                                <input type="text" value="{{ item.SelectedIndicator.displayMeasureName }}" class="form-control" readonly />
+                                <input type="hidden" value="{{ item.SelectedIndicator.measureNameEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].MeasureNameEN" />
+                                <input type="hidden" value="{{ item.SelectedIndicator.measureName }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].MeasureName" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.AggregatedReport</label>
+                                <input type="text" value="{{ item.SelectedIndicator.displayAggregatedReport }}" class="form-control" readonly />
+                                <input type="hidden" value="{{ item.SelectedIndicator.aggregatedReportEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedReportEN" />
+                                <input type="hidden" value="{{ item.SelectedIndicator.aggregatedReport }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedReport" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.AggregatedTarget</label>
+                                <input type="text" value="{{ item.SelectedIndicator.displayAggregatedTarget }}" class="form-control" readonly />
+                                <input type="hidden" value="{{ item.SelectedIndicator.aggregatedTargetEN }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedTargetEN" />
+                                <input type="hidden" value="{{ item.SelectedIndicator.aggregatedTarget }}" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedTarget" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-show="item.SelectedIndicator.hasGenderDivision">
+                                <label>@ProgrammeIndicators.BaseMen</label>
+                                <input money ng-class="{'input-validation-error': !item.IsBaseMenValid}" type="text" ng-model="item.BaseMen" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseMen" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-show="item.SelectedIndicator.hasGenderDivision">
+                                <label>@ProgrammeIndicators.BaseWomen</label>
+                                <input money ng-class="{'input-validation-error': !item.IsBaseWomenValid}" type="text" ng-model="item.BaseWomen" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseWomen" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.BaseTotal</label>
+                                <input money ng-class="{'input-validation-error': !item.IsBaseValid}" type="text" ng-model="item.BaseTotal" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseTotal" class="form-control sum-field" ng-readonly="item.SelectedIndicator.hasGenderDivision" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-show="item.SelectedIndicator.hasGenderDivision">
+                                <label>@ProgrammeIndicators.TargetMen</label>
+                                <input money ng-class="{'input-validation-error': !item.IsTargetMenValid}" type="text" ng-model="item.TargetMen" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetMen" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-show="item.SelectedIndicator.hasGenderDivision">
+                                <label>@ProgrammeIndicators.TargetWomen</label>
+                                <input money ng-class="{'input-validation-error': !item.IsTargetWomenValid}" type="text" ng-model="item.TargetWomen" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetWomen" class="form-control sum-field" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.TargetTotal</label>
+                                <input money ng-class="{'input-validation-error': !item.IsTargetValid}" type="text" ng-model="item.TargetTotal" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetTotal" class="form-control sum-field" ng-readonly="item.SelectedIndicator.hasGenderDivision" />
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@ProgrammeIndicators.Description @SymbolsCount.Symbols1000</label>
+                                <textarea symbols-count count-text="@Global.SymbolsCount" ng-class="{'input-validation-error': !item.IsDescriptionValid}" auto-grow ng-model="item.Description" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Description" class="form-control" rows="2" style="height: 60px;"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="history-table deactivated" ng-if="item.IsDeactivated">
+                    <td colspan="4">
+                        <div class="history-table-wrapper clearfix">
+                            <div class="clearfix">
+                                <div class="form-group col-lg-6 col-md-12">
+                                    <label>@ProgrammeIndicators.Name</label>
+                                    <span class="filled-value">{{ item.Name }}</span>
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Id"
+                                           value="{{ item.Id }}" />
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Name"
+                                           value="{{ item.Name }}" />
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].NameEN"
+                                           value="{{ item.NameEN }}" />
+
+                                    <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].IsDeactivated"
+                                           value="True" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Type</label>
+                                <span class="filled-value">{{ item.TypeName }}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TypeName"
+                                       value="{{ item.TypeName }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TypeNameEN"
+                                       value="{{ item.TypeNameEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Trend</label>
+                                <span class="filled-value">{{ item.TrendName }}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TrendName"
+                                       value="{{ item.TrendName }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TrendNameEN"
+                                       value="{{ item.TrendNameEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Kind</label>
+                                <span class="filled-value">{{item.KindName}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].KindName"
+                                       value="{{ item.KindName }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].KindNameEN"
+                                       value="{{ item.KindNameEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Measure</label>
+                                <span class="filled-value">{{item.MeasureName}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].MeasureName"
+                                       value="{{ item.MeasureName }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].MeasureNameEN"
+                                       value="{{ item.MeasureNameEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Measure</label>
+                                <span class="filled-value">{{item.AggregatedReport}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedReport"
+                                       value="{{ item.AggregatedReport }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedReportEN"
+                                       value="{{ item.AggregatedReportEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.Measure</label>
+                                <span class="filled-value">{{item.AggregatedTarget}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedTarget"
+                                       value="{{ item.AggregatedTarget }}" />
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].AggregatedTargetEN"
+                                       value="{{ item.AggregatedTargetEN }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-if="item.HasGenderDivision">
+                                <label>@ProgrammeIndicators.BaseMen</label>
+                                <span class="filled-value">{{item.BaseMen}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseMen"
+                                       value="{{ item.BaseMen }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-if="item.HasGenderDivision">
+                                <label>@ProgrammeIndicators.BaseWomen</label>
+                                <span class="filled-value">{{item.BaseWomen}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseWomen"
+                                       value="{{ item.BaseWomen }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.BaseTotal</label>
+                                <span class="filled-value">{{item.BaseTotal}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].BaseTotal"
+                                       value="{{ item.BaseTotal }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-if="item.HasGenderDivision">
+                                <label>@ProgrammeIndicators.TargetMen</label>
+                                <span class="filled-value">{{item.TargetMen}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetMen"
+                                       value="{{ item.TargetMen }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6" ng-if="item.HasGenderDivision">
+                                <label>@ProgrammeIndicators.TargetWomen</label>
+                                <span class="filled-value">{{item.TargetWomen}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetWomen"
+                                       value="{{ item.TargetWomen }}" />
+                            </div>
+
+                            <div class="form-group col-lg-4 col-md-6">
+                                <label>@ProgrammeIndicators.TargetTotal</label>
+                                <span class="filled-value">{{item.TargetTotal}}</span>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].TargetTotal"
+                                       value="{{ item.TargetTotal }}" />
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>@ProgrammeIndicators.Description</label>
+                                <pre><span class="filled-value">{{item.Description}}</span></pre>
+
+                                <input type="hidden" name="@(Html.GetNameFor(m => m.IndicatorCollection))[{{ $index }}].Description"
+                                       value="{{ item.Description }}" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end style="display:none;"></tr>
+            </tbody>
+        </table>
+        <a ng-class="{'input-validation-error': !areItemsValid}" name="@(Html.GetNameFor(m => m))" class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+    </div>
+}

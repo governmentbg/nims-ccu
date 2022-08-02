@@ -1,0 +1,199 @@
+﻿@model R_10002.ProjectBasicData
+
+@if (Model != null)
+{
+    var areFinLabels = Model.IsFinalRecipients || Model.IsFinancialIntermediaries;
+    <table>
+        <tbody>
+            @if (Model.ProgrammeBasicDataCollection != null)
+            {
+                bool isCountOne = Model.ProgrammeBasicDataCollection.Count == 1;
+                for (int i = 0; i < Model.ProgrammeBasicDataCollection.Count; i++)
+                {
+                    <tr>
+                        <td style="width: 35%;" colspan="2">
+                            @if (isCountOne)
+                            {
+                                @ProjectBasicData.Programme
+                            }
+                            else
+                            {
+                                @(ProjectBasicData.Programme + " " + (i + 1))
+                            }
+                        </td>
+                        <td style="width: 65%;" colspan="2">@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ProgrammeBasicDataCollection[i].Programme ?? new R_10001.PublicNomenclature())</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">@ProjectBasicData.ProgrammePriority</td>
+                        <td colspan="2" class="programme-priority">
+                            @if (Model.ProgrammeBasicDataCollection[i].ProgrammePriorityCollection != null && Model.ProgrammeBasicDataCollection[i].ProgrammePriorityCollection.Count > 0)
+                            {
+                                for (int j = 0; j < Model.ProgrammeBasicDataCollection[i].ProgrammePriorityCollection.Count; j++)
+                                {
+                                    <p>@Html.Partial(MVC.Shared.Views.Print.PublicNomenclature, Model.ProgrammeBasicDataCollection[i].ProgrammePriorityCollection[j] ?? new R_10001.PublicNomenclature())</p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td style="width: 35%;" colspan="2">@ProjectBasicData.ProcedureName</td>
+                <td style="width: 65%;" colspan="2">
+                    @if (Model.Procedure != null)
+                    {
+                        @Model.Procedure.Name
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@ProjectBasicData.ProcedureCode</td>
+                <td colspan="2">
+                    @if (Model.Procedure != null)
+                    {
+                        @Model.Procedure.Code
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (areFinLabels)
+                    {
+                        <text>@ProjectBasicData.FinancialIntermediariesName</text>
+                    }
+                    else
+                    {
+                        <text>@ProjectBasicData.Name</text>
+                    }
+                </td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Name ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">@ProjectBasicData.Duration</td>
+                <td colspan="2">@Model.Duration</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (areFinLabels)
+                    {
+                        <text>@ProjectBasicData.FinancialIntermediariesNameEN</text>
+                    }
+                    else
+                    {
+                        <text>@ProjectBasicData.NameEN</text>
+                    }
+                </td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.NameEN ?? string.Empty)</td>
+            </tr>
+
+            @if (Model.NutsAddress != null)
+            {
+                if (Model.NutsAddress.NutsLevel != null)
+                {
+                    <tr>
+                        <td colspan="2">@NutsAddress.NutsLevel</td>
+                        <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.PrivateNomenclature, Model.NutsAddress.NutsLevel ?? new R_10000.PrivateNomenclature())</td>
+                    </tr>
+                }
+
+                if (Model.NutsAddress.NutsLevel != null && !String.IsNullOrWhiteSpace(Model.NutsAddress.NutsLevel.Id)
+                    && Model.NutsAddress.NutsAddressContentCollection != null && Model.NutsAddress.NutsAddressContentCollection.Count > 0)
+                {
+                    for (int i = 0; i < Model.NutsAddress.NutsAddressContentCollection.Count; i++)
+                    {
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.CountryEU.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Country @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Country ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.ProtectedZone.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.ProtectedZone @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].ProtectedZone ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts1.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Nuts1 @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Nuts1 ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Nuts2.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Nuts2 @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Nuts2 ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.District.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.District @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].District ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Municipality.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Municipality @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Municipality ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                        if (Model.NutsAddress.NutsLevel.Id.Equals(Eumis.Documents.Enums.NutsLevelNomenclature.Settlement.Id))
+                        {
+                            <tr>
+                                <td colspan="2">@NutsAddress.Settlement @(i + 1)</td>
+                                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.Location, Model.NutsAddress.NutsAddressContentCollection[i].Settlement ?? new R_09989.Location())</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+
+            <tr>
+                <td colspan="2">
+                    @if (areFinLabels)
+                    {
+                        <text>@ProjectBasicData.FinancialIntermediariesDescription</text>
+                    }
+                    else
+                    {
+                        <text>@ProjectBasicData.Description</text>
+                    }
+                </td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Description ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (areFinLabels)
+                    {
+                        <text>@ProjectBasicData.FinancialIntermediariesDescriptionEN</text>
+                    }
+                    else
+                    {
+                        <text>@ProjectBasicData.DescriptionEN</text>
+                    }
+                </td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.DescriptionEN ?? string.Empty)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (areFinLabels)
+                    {
+                        <text>@ProjectBasicData.FinancialIntermediariesPurpose</text>
+                    }
+                    else
+                    {
+                        <text>@ProjectBasicData.Purpose</text>
+                    }
+                </td>
+                <td colspan="2">@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.Purpose ?? string.Empty)</td>
+            </tr>
+        </tbody>
+    </table>
+}

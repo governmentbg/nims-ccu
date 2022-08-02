@@ -1,0 +1,40 @@
+﻿@using Eumis.Portal.Web.Helpers
+@{
+    string actionName = ViewContext.RouteData.Values["action"] as string;
+    string controllerName = ViewContext.RouteData.Values["controller"] as string;
+    var menuItem = Utils.GetCurrentMenuItem(actionName, controllerName, Request.IsAuthenticated);
+}
+
+<div class="container main-menu">
+    <nav>
+        @Html.ActionLink(Global.HomeButton, MVC.Default.ActionNames.Index, MVC.Default.Name, null
+                , new { @class = menuItem.Equals(MenuItems.Home) ? "active" : "" })
+
+        @Html.ActionLink(Global.BreadcrumbsProcedureGrants, MVC.Procedure.ActionNames.Active, MVC.Procedure.Name, null
+                , new { @class = "wait" + (menuItem.Equals(MenuItems.Procedure) ? " active" : "") })
+
+        @if (Request.IsAuthenticated)
+        {
+            @Html.ActionLink(Global.BreadcrumbsDrafts, MVC.Draft.ActionNames.Index, MVC.Draft.Name, null
+                                     , new { @class = "wait" + (menuItem.Equals(MenuItems.Project) ? " active" : "") })
+
+            @Html.ActionLink(Global.BreadcrumbsRegistered, MVC.Registered.ActionNames.Switch, MVC.Registered.Name, null
+                                     , new { @class = "wait" + (menuItem.Equals(MenuItems.Registered) ? " active" : "") })
+
+            @Html.ActionLink(Global.BreadcrumbsSubmit, MVC.Submit.ActionNames.Disclaimer, MVC.Submit.Name, null
+                                     , new { @class = "wait" + (menuItem.Equals(MenuItems.Submit) ? " active" : "") })
+        }
+
+        @if (!Request.IsAuthenticated)
+        {
+            @Html.ActionLink(Global.BreadcrumbsDocumentPreviewShort, MVC.Procedure.ActionNames.PublicPreview, MVC.Procedure.Name, null
+                , new { @class = menuItem.Equals(MenuItems.Document) ? " active" : "" })
+        }
+
+        @Html.ActionLink(Feedback.FeedbackPageTitle, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name, null
+                , new { @class = menuItem.Equals(MenuItems.Feedback) ? " active" : "" })
+
+        @Html.ActionLink(Global.BreadcrumbsHelp, MVC.Help.ActionNames.Index, MVC.Help.Name, null
+                , new { @class = menuItem.Equals(MenuItems.Help) ? " active" : "" })
+    </nav>
+</div>

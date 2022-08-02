@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB96DC11-94F4-4F39-93E4-7D4D7F4B47DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.ApplicationServices</RootNamespace>
+    <AssemblyName>Eumis.ApplicationServices</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.76.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.76.0\lib\net40-client\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.13.3.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.13.3\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationServicesTexts.en.Designer.cs">
+      <DependentUpon>ApplicationServicesTexts.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ApplicationServicesTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationServicesTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Communicators\BlobServerCommunicator\BlobInfo.cs" />
+    <Compile Include="Communicators\BlobServerCommunicator\BlobServerCommunicator.cs" />
+    <Compile Include="Communicators\BlobServerCommunicator\IBlobServerCommunicator.cs" />
+    <Compile Include="Communicators\Core\ApiRequest.cs" />
+    <Compile Include="Communicators\MonitorstatCommunicator\IMonitorstatRestApiCommunicator.cs" />
+    <Compile Include="Communicators\MonitorstatCommunicator\MonitorstatAPI.cs" />
+    <Compile Include="Communicators\MonitorstatCommunicator\MonitorstatConfig.cs" />
+    <Compile Include="Communicators\MonitorstatCommunicator\MonitorstatRestApiCommunicator.cs" />
+    <Compile Include="Communicators\RegiXCommunicator\IRegixRestApiCommunicator.cs" />
+    <Compile Include="Communicators\RegiXCommunicator\RegixAPI.cs" />
+    <Compile Include="Communicators\RegiXCommunicator\RegixConfig.cs" />
+    <Compile Include="Communicators\RegiXCommunicator\RegixRestApiCommunicator.cs" />
+    <Compile Include="EventHandlers\ContractReportReturnedDocumentHandler.cs" />
+    <Compile Include="EventHandlers\ContractVersionActivatedHandler.cs" />
+    <Compile Include="EventHandlers\ContractRegistrationPasswordRecoveredEventHandler.cs" />
+    <Compile Include="EventHandlers\ContractRegistrationCreatedEventHandler.cs" />
+    <Compile Include="Communicators\Core\RestApiCommunicator.cs" />
+    <Compile Include="Communicators\DocumentRestApiCommunicator\RioDocument.cs" />
+    <Compile Include="EventHandlers\ContractAuthorityCommunicationSentEventHandler.cs" />
+    <Compile Include="EventHandlers\ContractVersionContractDateChangedHandler.cs" />
+    <Compile Include="EventHandlers\EvalSessionStatusChangedHandler.cs" />
+    <Compile Include="EventHandlers\MessageSentHandler.cs" />
+    <Compile Include="Communicators\DocumentRestApiCommunicator\DocumentRestApiCommunicator.cs" />
+    <Compile Include="Communicators\DocumentRestApiCommunicator\IDocumentRestApiCommunicator.cs" />
+    <Compile Include="EventHandlers\ContractContractRegistrationActivatedHandler.cs" />
+    <Compile Include="EventHandlers\ContractContractRegistrationDeactivatedHandler.cs" />
+    <Compile Include="EventHandlers\ContractProcurementXmlActivatedHandler.cs" />
+    <Compile Include="EventHandlers\EvalSessionStandpointCanceledHandler.cs" />
+    <Compile Include="EventHandlers\EvalSessionSheetCanceledHandler.cs" />
+    <Compile Include="EventHandlers\AnswerReceivedHandler.cs" />
+    <Compile Include="EventHandlers\EvalSessionPublishedHandler.cs" />
+    <Compile Include="EventHandlers\ProjectEvalStatusChangedHandler.cs" />
+    <Compile Include="EventHandlers\ProjectMACommunicationQuestionSentHandler.cs" />
+    <Compile Include="EventHandlers\QuestionSentHandler.cs" />
+    <Compile Include="EventHandlers\ProcedureVersionChangedHandler.cs" />
+    <Compile Include="EventHandlers\ProcedureCanceledHandler.cs" />
+    <Compile Include="EventHandlers\ProcedureEndedHandler.cs" />
+    <Compile Include="EventHandlers\ProcedureSetToDraftHandler.cs" />
+    <Compile Include="EventHandlers\ProcedureTerminatedHandler.cs" />
+    <Compile Include="EventHandlers\ProjectRegisteredHandler.cs" />
+    <Compile Include="EventHandlers\ProjectVersionActivatedHandler.cs" />
+    <Compile Include="EventHandlers\RegistrationCreatedEventHandler.cs" />
+    <Compile Include="EventHandlers\RegistrationPasswordRecoveredEventHandler.cs" />
+    <Compile Include="EventHandlers\UserActivatedHandler.cs" />
+    <Compile Include="EventHandlers\UserPasswordRecoveredEventHandler.cs" />
+    <Compile Include="EventHandlers\UserUpdatedHandler.cs" />
+    <Compile Include="ApplicationServicesModule.cs" />
+    <Compile Include="NotificationEventHandlers\NotificationEvalSessionEventHandler.cs" />
+    <Compile Include="NotificationEventHandlers\NotificationContractEventHandler.cs" />
+    <Compile Include="NotificationEventHandlers\NotificationProgrammeEventHandler.cs" />
+    <Compile Include="NotificationEventHandlers\NotificationProcedureEventHandler.cs" />
+    <Compile Include="NotificationEventHandlers\NotificationIndependentEventHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ActuallyPaidAmount\ActuallyPaidAmountService.cs" />
+    <Compile Include="Services\ActuallyPaidAmount\IActuallyPaidAmountService.cs" />
+    <Compile Include="Services\AnnualAccountReport\AnnualAccountReportService.cs" />
+    <Compile Include="Services\AnnualAccountReport\IAnnualAccountReportService.cs" />
+    <Compile Include="Services\Audit\IAuditService.cs" />
+    <Compile Include="Services\Audit\AuditService.cs" />
+    <Compile Include="Services\Company\CompanyCreationService.cs" />
+    <Compile Include="Services\CompensationDocument\CompensationDocumentService.cs" />
+    <Compile Include="Services\CompensationDocument\ICompensationDocumentService.cs" />
+    <Compile Include="Services\ContractReportCertAuthorityCorrection\ContractReportCertAuthorityCorrectionService.cs" />
+    <Compile Include="Services\ContractReportCertAuthorityCorrection\IContractReportCertAuthorityCorrectionService.cs" />
+    <Compile Include="Services\ContractReportCertAuthorityFinanciealCorrection\ContractReportCertAuthorityFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractReportCertAuthorityFinanciealCorrection\IContractReportCertAuthorityFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractReportRevalidationCertAuthorityCorrection\ContractReportRevalidationCertAuthorityCorrectionService.cs" />
+    <Compile Include="Services\ContractReportRevalidationCertAuthorityCorrection\IContractReportRevalidationCertAuthorityCorrectionService.cs" />
+    <Compile Include="Services\ContractReportRevalidationCertAuthorityFinancialCorrection\ContractReportRevalidationCertAuthorityFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractReportRevalidationCertAuthorityFinancialCorrection\IContractReportRevalidationCertAuthorityFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractReportTechnicalCorrection\ContractReportTechnicalCorrectionService.cs" />
+    <Compile Include="Services\ContractReportTechnicalCorrection\IContractReportTechnicalCorrectionService.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\ContractReportMicroParserBase.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\ContractReportMicroType4Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\ContractReportMicroType3Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\ContractReportMicroType1Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\ContractReportMicroType2Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\IContractReportMicroType4Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\IContractReportMicroType3Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\IContractReportMicroType1Parser.cs" />
+    <Compile Include="Services\ContractReportMicro\Parsers\IContractReportMicroType2Parser.cs" />
+    <Compile Include="Services\ContractReportTechnicalMember\ContractReportTechnicalMemberService.cs" />
+    <Compile Include="Services\ContractReportTechnicalMember\IContractReportTechnicalMemberService.cs" />
+    <Compile Include="Services\ContractReportMicro\ContractReportMicroService.cs" />
+    <Compile Include="Services\ContractReportMicro\IContractReportMicroService.cs" />
+    <Compile Include="Services\ContractSpendingPlan\ContractSpendingPlanService.cs" />
+    <Compile Include="Services\ContractSpendingPlan\IContractSpendingPlanService.cs" />
+    <Compile Include="Services\ContractReportFinancialCSD\ContractReportFinancialCSDService.cs" />
+    <Compile Include="Services\ContractReportFinancialCSD\IContractReportFinancialCSDService.cs" />
+    <Compile Include="Services\ContractReportFinancialCorrection\ContractReportFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractReportFinancialCorrection\IContractReportFinancialCorrectionService.cs" />
+    <Compile Include="Services\ContractDebt\ContractDebtService.cs" />
+    <Compile Include="Services\ContractDebt\IContractDebtService.cs" />
+    <Compile Include="Services\CertReport\CertReportService.cs" />
+    <Compile Include="Services\CertReport\ICertReportService.cs" />
+    <Compile Include="Services\CertReportCheck\CertReportCheckService.cs" />
+    <Compile Include="Services\CertReportCheck\ICertReportCheckService.cs" />
+    <Compile Include="Services\ContractReportIndicator\ContractReportIndicatorService.cs" />
+    <Compile Include="Services\ContractReportIndicator\IContractReportIndicatorService.cs" />
+    <Compile Include="Services\ContractReportAdvancePaymentAmount\ContractReportAdvancePaymentAmountService.cs" />
+    <Compile Include="Services\ContractReportAdvancePaymentAmount\IContractReportAdvancePaymentAmountService.cs" />
+    <Compile Include="Services\ContractReportCorrection\ContractReportCorrectionService.cs" />
+    <Compile Include="Services\ContractReportCorrection\IContractReportCorrectionService.cs" />
+    <Compile Include="Services\ContractReportRevalidation\ContractReportRevalidationService.cs" />
+    <Compile Include="Services\ContractReportRevalidation\IContractReportRevalidationService.cs" />
+    <Compile Include="Services\ContractReportCertCorrection\ContractReportCertCorrectionService.cs" />
+    <Compile Include="Services\ContractReportCertCorrection\IContractReportCertCorrectionService.cs" />
+    <Compile Include="Services\ContractReportFinancialRevalidation\ContractReportFinancialRevalidationService.cs" />
+    <Compile Include="Services\ContractReportFinancialRevalidation\IContractReportFinancialRevalidationService.cs" />
+    <Compile Include="Services\ContractReportFinancialCertCorrection\ContractReportFinancialCertCorrectionService.cs" />
+    <Compile Include="Services\ContractReportFinancialCertCorrection\IContractReportFinancialCertCorrectionService.cs" />
+    <Compile Include="Services\ContractReportAdvanceNVPaymentAmount\ContractReportAdvanceNVPaymentAmountService.cs" />
+    <Compile Include="Services\ContractReportAdvanceNVPaymentAmount\IContractReportAdvanceNVPaymentAmountService.cs" />
+    <Compile Include="Services\Core\Parsers\BaseExcelParser.cs" />
+    <Compile Include="Services\EvalSessionAutomaticProjectEvaluation\EvalSessionAutomaticProjectEvaluationService.cs" />
+    <Compile Include="Services\EvalSessionAutomaticProjectEvaluation\IEvalSessionAutomaticProjectEvaluationService.cs" />
+    <Compile Include="Services\EvalSessionAutomaticProjectEvaluation\Parsers\EvalSessionsAutomaticProjectEvaluationParser.cs" />
+    <Compile Include="Services\EvalSessionAutomaticProjectEvaluation\Parsers\IEvalSessionsAutomaticProjectEvaluationParser.cs" />
+    <Compile Include="Services\EvalSession\IEvalSessionService.cs" />
+    <Compile Include="Services\EvalSession\EvalSessionService.cs" />
+    <Compile Include="Services\EvalSession\Parsers\EvalSessionProjectParser.cs" />
+    <Compile Include="Services\EvalSession\Parsers\IEvalSessionProjectParser.cs" />
+    <Compile Include="Services\FIReimbursedAmount\IFIReimbursedAmountService.cs" />
+    <Compile Include="Services\FIReimbursedAmount\FIReimbursedAmountService.cs" />
+    <Compile Include="Services\EuReimbursedAmount\EuReimbursedAmountService.cs" />
+    <Compile Include="Services\EuReimbursedAmount\IEuReimbursedAmountService.cs" />
+    <Compile Include="Services\CorrectionDebt\CorrectionDebtService.cs" />
+    <Compile Include="Services\CorrectionDebt\ICorrectionDebtService.cs" />
+    <Compile Include="Services\FinancialCorrection\FinancialCorrectionService.cs" />
+    <Compile Include="Services\FinancialCorrection\IFinancialCorrectionService.cs" />
+    <Compile Include="Services\FlatFinancialCorrection\FlatFinancialCorrectionService.cs" />
+    <Compile Include="Services\FlatFinancialCorrection\IFlatFinancialCorrectionService.cs" />
+    <Compile Include="Services\EvalSessionStandpointXml\EvalSessionStandpointXmlService.cs" />
+    <Compile Include="Services\EvalSessionStandpointXml\IEvalSessionStandpointXmlService.cs" />
+    <Compile Include="Services\ContractReport\ContractReportService.cs" />
+    <Compile Include="Services\ContractReport\IContractReportService.cs" />
+    <Compile Include="Services\HistoricContract\HistoricContractService.cs" />
+    <Compile Include="Services\HistoricContract\IHistoricContractService.cs" />
+    <Compile Include="Services\Irregularity\IrregularityVersionService.cs" />
+    <Compile Include="Services\Irregularity\IIrregularityVersionService.cs" />
+    <Compile Include="Services\Irregularity\IIrregularitySignalService.cs" />
+    <Compile Include="Services\Irregularity\IrregularitySignalService.cs" />
+    <Compile Include="Services\Irregularity\IIrregularityService.cs" />
+    <Compile Include="Services\Irregularity\IrregularityService.cs" />
+    <Compile Include="Services\Monitorstat\IMonitorstatService.cs" />
+    <Compile Include="Services\Monitorstat\MonitorstatService.cs" />
+    <Compile Include="Services\Notification\INotificationSettingService.cs" />
+    <Compile Include="Services\Notification\NotificationSettingService.cs" />
+    <Compile Include="Services\ProcedureEvalTableXml\ProcedureEvalTableXmlService.cs" />
+    <Compile Include="Services\ProcedureEvalTableXml\IProcedureEvalTableXmlService.cs" />
+    <Compile Include="Services\ContractProcurement\ContractProcurementService.cs" />
+    <Compile Include="Services\ContractProcurement\IContractProcurementService.cs" />
+    <Compile Include="Services\ContractVersionXml\IContractVersionXmlService.cs" />
+    <Compile Include="Services\ContractVersionXml\ContractVersionXmlService.cs" />
+    <Compile Include="Services\Contract\IContractService.cs" />
+    <Compile Include="Services\Contract\ContractService.cs" />
+    <Compile Include="Services\ContractCommunication\IContractCommunicationService.cs" />
+    <Compile Include="Services\ContractCommunication\ContractCommunicationService.cs" />
+    <Compile Include="Services\EvalSessionReport\EvalSessionReportService.cs" />
+    <Compile Include="Services\EvalSessionReport\IEvalSessionReportService.cs" />
+    <Compile Include="Services\EvalSessionSheetXml\IEvalSessionSheetXmlService.cs" />
+    <Compile Include="Services\EvalSessionSheetXml\EvalSessionSheetXmlService.cs" />
+    <Compile Include="Services\ProcedureVersion\ProcedureVersionService.cs" />
+    <Compile Include="Services\ProcedureVersion\IProcedureVersionService.cs" />
+    <Compile Include="Services\ProgrammeApplicationDocuments\IProgrammeApplicationDocumentService.cs" />
+    <Compile Include="Services\ProgrammeApplicationDocuments\Parsers\IProgrammeApplicationDocumentParser.cs" />
+    <Compile Include="Services\ProgrammeApplicationDocuments\Parsers\ProgrammeApplicationDocumentParser.cs" />
+    <Compile Include="Services\ProgrammeApplicationDocuments\ProgrammeApplicationDocumentService.cs" />
+    <Compile Include="Services\ProgrammeDeclaration\IProgrammeDeclarationService.cs" />
+    <Compile Include="Services\ProgrammeDeclaration\Parsers\IProgrammeDeclarationItemParser.cs" />
+    <Compile Include="Services\ProgrammeDeclaration\Parsers\ProgrammeDeclarationItemParser.cs" />
+    <Compile Include="Services\ProgrammeDeclaration\ProgrammeDeclarationService.cs" />
+    <Compile Include="Services\ProjectCommunication\IProjectCommunicationService.cs" />
+    <Compile Include="Services\Company\ICompanyCreationService.cs" />
+    <Compile Include="Services\ProjectCommunication\ProjectCommunicationService.cs" />
+    <Compile Include="Services\Sebra\ISebraService.cs" />
+    <Compile Include="Services\Sebra\Parsers\ISebraProjectParser.cs" />
+    <Compile Include="Services\Sebra\Parsers\SebraProjectParser.cs" />
+    <Compile Include="Services\Sebra\SebraService.cs" />
+    <Compile Include="Services\ProjectManagingAuthorityCommunication\IProjectManagingAuthorityCommunicationService.cs" />
+    <Compile Include="Services\ProjectManagingAuthorityCommunication\Parsers\IProjectMassManagingAuthorityCommunicationRecipientParser.cs" />
+    <Compile Include="Services\ProjectManagingAuthorityCommunication\Parsers\ProjectMassManagingAuthorityCommunicationRecipientParser.cs" />
+    <Compile Include="Services\ProjectManagingAuthorityCommunication\ProjectManagingAuthorityCommunicationService.cs" />
+    <Compile Include="Services\ProjectRegistration\ProjectRegistrationService.cs" />
+    <Compile Include="Services\ProjectRegistration\IProjectRegistrationService.cs" />
+    <Compile Include="Services\ProjectVersionXml\IProjectVersionXmlService.cs" />
+    <Compile Include="Services\ProjectVersionXml\ProjectVersionXmlService.cs" />
+    <Compile Include="Services\Registrations\IRegOfferService.cs" />
+    <Compile Include="Services\Registrations\RegOfferService.cs" />
+    <Compile Include="Services\Regix\IRegixService.cs" />
+    <Compile Include="Services\Regix\RegixService.cs" />
+    <Compile Include="Services\ReimbursedAmount\IReimbursedAmountService.cs" />
+    <Compile Include="Services\ReimbursedAmount\ReimbursedAmountService.cs" />
+    <Compile Include="Services\RequestPackage\IRequestPackageService.cs" />
+    <Compile Include="Services\RequestPackage\RequestPackageService.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\Contract.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\ContractPayment.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\Currency.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\PaymentType.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\ReqPayment.cs" />
+    <Compile Include="Services\SapInterfaces\SapDocuments\SapDocument.cs" />
+    <Compile Include="Services\SapInterfaces\SapFileService.cs" />
+    <Compile Include="Services\SapInterfaces\ISapFileService.cs" />
+    <Compile Include="Services\SpotCheck\SpotCheckService.cs" />
+    <Compile Include="Services\SpotCheck\ISpotCheckService.cs" />
+    <Compile Include="Services\SpotCheck\SpotCheckPlanService.cs" />
+    <Compile Include="Services\SpotCheck\ISpotCheckPlanService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Authentication\Eumis.Authentication.csproj">
+      <Project>{8d22f04a-de55-4078-a3ec-8bc86bcb861f}</Project>
+      <Name>Eumis.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj">
+      <Project>{dfc4f396-946c-440c-9d39-4d541dfce6f0}</Project>
+      <Name>Eumis.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Data\Eumis.Data.csproj">
+      <Project>{31e2413e-7640-490c-9120-c91c7e6b0040}</Project>
+      <Name>Eumis.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Domain\Eumis.Domain.csproj">
+      <Project>{2a54b65e-7cac-4397-8266-60b9f10d7463}</Project>
+      <Name>Eumis.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Log\Eumis.Log.csproj">
+      <Project>{716B39B1-8609-4834-829C-B4C8A71202C8}</Project>
+      <Name>Eumis.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Print\Eumis.Print.csproj">
+      <Project>{df475d02-092c-429f-9646-ebb075af2e9f}</Project>
+      <Name>Eumis.Print</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Rio\Eumis.Rio.csproj">
+      <Project>{ae6e8f22-5574-40e6-9c19-212794757c57}</Project>
+      <Name>Eumis.Rio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationServicesTexts.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationServicesTexts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationServicesTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationServicesTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

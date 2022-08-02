@@ -1,0 +1,37 @@
+<div class="tab-content">
+  <ng-form name="contractDebtsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <strong class="heading" l10n-text="contractDebts_newContractDebtStep2_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="contractDebts_newContractDebtStep2_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="contractDebts_newContractDebtStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="date" ng-model="newContractDebt.regDate" ng-required="true" l10n-text="contractDebts_newContractDebtStep2_regDate" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="date" ng-model="newContractDebt.debtStartDate" ng-required="true" l10n-text="contractDebts_newContractDebtStep2_debtStartDate" class="col-sm-4 col-md-3"></sc-field>
+          <sc-field type="date" ng-model="newContractDebt.interestStartDate" ng-required="true" l10n-text="contractDebts_newContractDebtStep2_interestStartDate" class="col-sm-4 col-md-3"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="newContractDebt.programmePriorityId" mode="id" ng-required="true" params="{contractId: newContractDebt.contract.contractId}" l10n-text="contractDebts_newContractDebtStep2_programmePriority" class="col-sm-6"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" mode="id" alias="'contractReportPayments'" multiple="multiple" ng-model="newContractDebt.paymentIds" params="{ contractId: newContractDebt.contract.contractId }" l10n-text="contractDebts_newContractDebtStep2_paymentIds" class="col-sm-8 col-md-6"></sc-field>
+        </div>
+
+        <h5 class="table-header" l10n-text="contractDebts_newContractDebtStep2_contractData"></h5>
+        <eumis-contract-data name="contractDataForm" ng-model="newContractDebt.contract" sc-form-readonly="true"></eumis-contract-data>
+
+        <h5 class="table-header" l10n-text="contractDebts_newContractDebtStep2_beneficiary"></h5>
+        <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="newContractDebt.contract" sc-form-readonly="true"></eumis-contract-beneficiary>
+      </div>
+    </div>
+  </ng-form>
+</div>

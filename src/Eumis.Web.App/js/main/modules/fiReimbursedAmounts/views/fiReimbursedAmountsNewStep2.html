@@ -1,0 +1,33 @@
+<div class="tab-content">
+  <ng-form name="reimbursedAmountsNewStep2Form" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="fiReimbursedAmounts_newStep2_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="fiReimbursedAmounts_newStep2_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="fiReimbursedAmounts_newStep2_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" alias="'fiReimbursementTypes'" mode="id" ng-required="true" ng-model="newReimbursedAmount.type" l10n-text="fiReimbursedAmounts_newStep2_type" class="col-sm-6"></sc-field>
+          <sc-field type="date" ng-model="newReimbursedAmount.reimbursementDate" ng-required="true" l10n-text="fiReimbursedAmounts_newStep2_reimbursementDate" class="col-sm-3"></sc-field>
+          <sc-field type="nomenclature" alias="'reimbursements'" mode="id" ng-required="true" ng-model="newReimbursedAmount.reimbursement" ng-required="true" l10n-text="fiReimbursedAmounts_newStep2_reimbursement" class="col-sm-3"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="newReimbursedAmount.programmePriorityId" mode="id" ng-required="true" params="{contractId: newReimbursedAmount.contract.contractId}" l10n-text="fiReimbursedAmounts_newStep2_programmePriority" class="col-sm-6"></sc-field>
+        </div>
+
+        <h5 class="table-header table-header-first" l10n-text="fiReimbursedAmounts_newStep2_contractData"></h5>
+        <eumis-contract-data name="contractDataForm" ng-model="newReimbursedAmount.contract" sc-form-readonly="true"></eumis-contract-data>
+
+        <h5 class="table-header" l10n-text="fiReimbursedAmounts_newStep2_beneficiary"></h5>
+        <eumis-contract-beneficiary name="contractBeneficiaryForm" ng-model="newReimbursedAmount.contract" sc-form-readonly="true"></eumis-contract-beneficiary>
+      </div>
+    </div>
+  </ng-form>
+</div>

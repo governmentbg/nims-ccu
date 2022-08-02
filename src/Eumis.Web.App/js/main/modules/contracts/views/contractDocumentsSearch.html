@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contracts_searchContractGrantDocuments_header"></h5>
+      <sc-button name="newContractGrantDocumentBtn" btn-sref="{ state: 'root.contracts.view.documents.newGrant' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+        ng-disabled="!$canDo('ContractActions.Edit', contractId)">
+    </div>
+    <sc-datatable items="contractGrantDocuments" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.documents.grantEdit', params: {ind: item.contractGrantDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="contracts_searchContractGrantDocuments_name">
+      </sc-column>
+      <sc-column data="description" title="contracts_searchContractGrantDocuments_description">
+      </sc-column>
+      <sc-column sortable="false" title="contracts_searchContractGrantDocuments_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+
+    <div class="mutiple-tables-spacing"></div>
+
+    <div>
+      <h5 class="table-header table-header-first pull-left" l10n-text="contracts_searchContractProcurementDocuments_header"></h5>
+      <sc-button name="newContractProcurementDocumentBtn" btn-sref="{ state: 'root.contracts.view.documents.newProcurement' }" style="position:relative; right: -5px; top: -3px;" class="btn btn-xs btn-primary" icon="glyphicon-plus"
+                 ng-disabled="!$canDo('ContractActions.Edit', contractId)">
+    </div>
+    <sc-datatable items="contractProcurementDocuments" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.contracts.view.documents.procurementEdit', params: {ind: item.contractProcurementDocumentId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="contracts_searchContractProcurementDocuments_name">
+      </sc-column>
+      <sc-column data="description" title="contracts_searchContractProcurementDocuments_description">
+      </sc-column>
+      <sc-column sortable="false" title="contracts_searchContractProcurementDocuments_file" has-content="true">
+        <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" title="{{item.file.name}}">
+          <span class="glyphicon glyphicon-file"></span>
+        </a>
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

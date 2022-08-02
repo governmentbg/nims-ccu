@@ -1,0 +1,48 @@
+﻿@model R_10077.SpendingPlan
+@using Eumis.Portal.Web.Helpers
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Report.Home.ActionNames.Index, MVC.Report.Home.Name, new { area = MVC.Report.Name }), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Report.List.ActionNames.Index, MVC.Report.List.Name, new { area = MVC.Report.Name }), "Договори"),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), ContractMetadata.GetContractNumberHeader),
+    new BreadcrumbItem(Url.Action(MVC.Report.BFPContract.ActionNames.Index, MVC.Report.BFPContract.Name, new { area = MVC.Report.Name }), "Версии на договора"),
+}, "Преглед")
+
+<div class="container page-title">
+    <h1>@ContractMetadata.GetContractNumberHeader</h1>
+</div>
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>@Global.SpendingPlan</h1>
+</div>
+
+<div class="container">
+    <form>
+        @Html.Partial(MVC.Shared.Views._ExpandCollapseWithEcoPartial)
+        <ul class="nav nav-tabs">
+            @Html.ActionLink(Global.SpendingPlan, MVC.Report.SpendingPlan.ActionNames.Prepare, MVC.Report.SpendingPlan.Name, new { area = MVC.Report.Name }, new { @class = "tab wait" })
+            @Html.ActionLink(Global.ButtonPreviewText, MVC.Report.SpendingPlan.ActionNames.Display, MVC.Report.SpendingPlan.Name, new { area = MVC.Report.Name }, new { @class = "tab active wait" })
+
+            @Html.ActionLink(Global.Print, MVC.Report.SpendingPlan.ActionNames.Print, MVC.Report.SpendingPlan.Name, null, new { @class = "top-print-btn", target = "_blank" })
+        </ul>
+    </form>
+    <div class="tab-content">
+
+        <div class="form-with-sections">
+
+            @Html.ValidationSummaryForErrorsWithBackButton(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle,
+                Url.Action(MVC.Report.SpendingPlan.ActionNames.Prepare, MVC.Report.SpendingPlan.Name), Global.ValidationSummaryLinkTitle)
+            @Html.ValidationSummaryForWarningsWithBackButton(null, Global.ValidationSummaryWarningsTitle,
+                Url.Action(MVC.Report.SpendingPlan.ActionNames.Prepare, MVC.Report.SpendingPlan.Name), Global.ValidationSummaryWarningLinkTitle)
+
+            @Html.DisplayFor(m => m)
+
+            <div class="form-submit">
+                @Html.ActionLink(Global.BackButton, MVC.Report.SpendingPlan.ActionNames.Prepare, MVC.Report.SpendingPlan.Name, null, new { @class = "blue-button small back left" })
+                @Html.ActionLink(Global.ButtonCompleteTextUpper, MVC.Report.SpendingPlan.ActionNames.Submit, MVC.Report.SpendingPlan.Name, null, new { @class = "blue-button wait" })
+            </div>
+        </div>
+    </div>
+</div>

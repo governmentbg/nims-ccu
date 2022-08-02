@@ -1,0 +1,109 @@
+﻿@model R_10044.Audits
+
+@if (Model != null)
+{
+    <div>
+        @if (Model.AuditCollection != null && Model.AuditCollection.Count > 0)
+        {
+            for (int i = 0; i < Model.AuditCollection.Count; i++)
+            {
+                <table class="audits">
+                    <tbody>
+                        <tr>
+                            <td style="width:35%">@TechnicalReportAudit.Institution</td>
+                            <td style="width:65%">@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AuditCollection[i].Institution ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.Type</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AuditCollection[i].Type ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.Kind</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AuditCollection[i].Kind ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.PreviousReportDate</td>
+                            <td>
+                                @if (Model.AuditCollection[i].PreviousReportDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.AuditCollection[i].PreviousReportDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.PreviousReportNumber</td>
+                            <td>@Model.AuditCollection[i].PreviousReportNumber</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.FinalReportDate</td>
+                            <td>
+                                @if (Model.AuditCollection[i].FinalReportDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.AuditCollection[i].FinalReportDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.FinalReportNumber</td>
+                            <td>@Model.AuditCollection[i].FinalReportNumber</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.InspectionStartDate</td>
+                            <td>
+                                @if (Model.AuditCollection[i].InspectionStartDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.AuditCollection[i].InspectionStartDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.InspectionEndDate</td>
+                            <td>
+                                @if (Model.AuditCollection[i].InspectionEndDate.HasValue)
+                                {
+                                    @Html.Partial(MVC.Shared.Views.Print.DateTime, Model.AuditCollection[i].InspectionEndDate.Value)
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.Range</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.AuditCollection[i].Range ?? string.Empty)</td>
+                        </tr>
+                        <tr>
+                            <td>@TechnicalReportAudit.AuditeeType</td>
+                            <td>@Html.Partial(MVC.Shared.Views.Print.EnumNomenclature, Model.AuditCollection[i].AuditeeType ?? new R_09991.EnumNomenclature())</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="findings">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>@TechnicalReportAudit.KeyFindings</strong></th>
+                                            <th><strong>@TechnicalReportAudit.Recommendations</strong></th>
+                                            <th><strong>@TechnicalReportAudit.RecommendationsFulfilled</strong></th>
+                                            <th><strong>@TechnicalReportAudit.Comment</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.AuditCollection[i].FindingCollection != null && Model.AuditCollection[i].FindingCollection.Count > 0)
+                                        {
+                                            foreach (var findingItem in Model.AuditCollection[i].FindingCollection)
+                                            {
+                                                <tr>
+                                                    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, findingItem.KeyFindings ?? string.Empty)</td>
+                                                    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, findingItem.Recommendations ?? string.Empty)</td>
+                                                    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, findingItem.RecommendationsFulfilled ?? string.Empty)</td>
+                                                    <td>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, findingItem.Comment ?? string.Empty)</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>                        
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+}

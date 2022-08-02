@@ -1,0 +1,23 @@
+﻿@using Eumis.Public.Common.Localization
+<div class="responsive-calendar px-1 py-2" data-url=@($"{SystemLocalization.GetCurrentCulture()}/0/0/{MVC.Calendar.Name}/{MVC.Calendar.ActionNames.GetEvents}")>
+    <div class="controls">
+        <a class="btn btn-link pull-left" data-go="prev"><i class="glyphicon glyphicon-chevron-left" style="color: #009933; font-size:30px;"></i></a>
+        <h4>
+            <span data-head-year></span>
+            <span data-head-month></span>
+        </h4>
+        <a class="btn btn-link pull-right" data-go="next"><i class="glyphicon glyphicon-chevron-right" style="color: #009933; font-size:30px;"></i></a>
+    </div><hr class="m-1">
+    <div class="day-headers">
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Monday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Tuesday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Wednesday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Thursday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Friday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Saturday</strong></div>
+        <div class="day header"><strong>@Texts.Calendar_DayOfWeek_Sunday</strong></div>
+    </div>
+    <div class="days" data-group="days">
+
+    </div>
+</div>

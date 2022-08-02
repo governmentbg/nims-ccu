@@ -1,0 +1,29 @@
+<ng-form name="editPPriorityBudgetForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="programmePriorities_editPPriorityBudget_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="editBtn" btn-click="edit()" text="programmePriorities_editPPriorityBudget_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit" ng-show="!editMode"
+          ng-if="programmePriorityStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', budget.programmePriorityId)">
+        </sc-button>
+        <sc-button name="deleteBtn" btn-click="deleteBudget()" text="programmePriorities_editPPriorityBudget_deleteBudget" class="btn btn-danger btn-xs" icon="glyphicon-remove" ng-show="!editMode"
+          ng-if="programmePriorityStatus !== 'canceled'" ng-disabled="!$canDo('ProgrammeActions.Edit', budget.programmePriorityId)">
+        </sc-button>
+        <sc-button name="saveBtn" btn-click="save()" text="programmePriorities_editPPriorityBudget_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="programmePriorities_editPPriorityBudget_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="nomenclature" alias="'budgetPeriods'" mode="id" ng-model="budget.budgetPeriodId" ng-readonly="true" l10n-text="programmePriorities_editPPriorityBudget_budgetPeriod" class="col-sm-2"></sc-field>
+      </div>
+
+      <eumis-programme-priority-budget name="budgetForm" ng-model="budget"></eumis-programme-priority-budget>
+
+    </div>
+  </div>
+</ng-form>

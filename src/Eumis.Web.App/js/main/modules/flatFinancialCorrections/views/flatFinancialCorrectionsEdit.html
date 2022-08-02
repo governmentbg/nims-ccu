@@ -1,0 +1,38 @@
+<ng-form name="editFlatFinancialCorrectionForm" sc-validate="{}" sc-form-readonly="!editMode">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+
+      <strong class="heading" l10n-text="flatFinancialCorrections_editFlatFinancialCorrection_title"></strong>
+
+      <div class="pull-right">
+
+        <sc-button name="draftBtn" btn-click="changeStatus('draft')" text="flatFinancialCorrections_editFlatFinancialCorrection_draft" class="btn btn-default btn-xs"
+          ng-show="flatFinancialCorrection.status !== 'draft' && !editMode" ng-disabled="!$canDo('FlatFinancialCorrectionActions.Edit', flatFinancialCorrection.flatFinancialCorrectionId)">
+        </sc-button>
+
+        <sc-button name="actualBtn" btn-click="changeStatus('actual')" text="flatFinancialCorrections_editFlatFinancialCorrection_actual" class="btn btn-default btn-xs"
+          ng-show="flatFinancialCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('FlatFinancialCorrectionActions.Edit', flatFinancialCorrection.flatFinancialCorrectionId)">
+        </sc-button>
+
+        <sc-button name="editBtn" btn-click="edit()" text="flatFinancialCorrections_editFlatFinancialCorrection_edit" class="btn btn-primary btn-xs" icon="glyphicon-edit"
+          ng-show="flatFinancialCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('FlatFinancialCorrectionActions.Edit', flatFinancialCorrection.flatFinancialCorrectionId)">
+        </sc-button>
+
+        <sc-button name="deleteBtn" btn-click="del()" text="flatFinancialCorrections_editFlatFinancialCorrection_del" class="btn btn-danger btn-xs" icon="glyphicon-remove" 
+          ng-show="flatFinancialCorrection.status === 'draft' && !editMode" ng-disabled="!$canDo('FlatFinancialCorrectionActions.Edit', flatFinancialCorrection.flatFinancialCorrectionId)">
+        </sc-button>
+
+        <sc-button name="saveBtn" btn-click="save()" text="flatFinancialCorrections_editFlatFinancialCorrection_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk" ng-show="editMode">
+        </sc-button>
+
+        <sc-button name="cancelBtn" btn-click="cancel()" text="flatFinancialCorrections_editFlatFinancialCorrection_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle" ng-show="editMode">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <eumis-flat-financial-correction name="flatFinancialCorrectionForm" ng-model="flatFinancialCorrection"></eumis-flat-financial-correction>
+    </div>
+
+  </div>
+</ng-form>

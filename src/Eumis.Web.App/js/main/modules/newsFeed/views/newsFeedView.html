@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <strong class="news-title">{{news.title}}</strong>
+    <div ng-bind-html="content"></div>
+    <div ng-repeat="item in news.files">
+      <a target="_blank" ng-href="{{item.file.url}}" sc-access-token ng-show="item.file" style="cursor:pointer;" title="{{item.file.name}}">
+        <span class="glyphicon glyphicon-file"></span>
+      </a>
+      <strong>{{item.description}}</strong>
+    </div>
+    <div class="pull-right" style="color:grey;display:block;">
+      <span title="{{news.dateFrom | date:'dd.MM.yyyy'}}">{{news.dateFrom | amCalendar}}</span>
+      <span l10n-text="news_newsFeed_by"></span>
+      <span>{{news.createdByUser}}</span>
+    </div>
+  </div>
+</div>

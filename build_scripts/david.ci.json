@@ -1,0 +1,70 @@
+{
+  "defaultConfiguration": "David.CI",
+  "machines": {
+    "CIELA-ISUNWEB1": [
+      {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Blob.Host/Eumis.Blob.Host.csproj",
+          "packageName": "eumis_blob",
+          "takeOffline": true,
+          "confIisAppName": {
+            "David.CI": "dev-SuniBlob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "build",
+          "projFile": "../src/Eumis.Database.Updater/Eumis.Database.Updater.csproj"
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Job.Host/Eumis.Job.Host.csproj",
+          "packageName": "eumis_job",
+          "recycle": true,
+          "takeOffline": true,
+          "confIisAppName": {
+            "David.CI": "dev-SuniJob"
+          }
+        }
+      }, {
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.PortalIntegration.Host/Eumis.PortalIntegration.Host.csproj",
+          "packageName": "eumis_portal_integration",
+          "takeOffline": true,
+          "confIisAppName": {
+            "David.CI": "dev-SuniPortalIntegration"
+          }
+        }
+      }, {
+        "npm": {
+          "location": "../src/Eumis.Web.App",
+          "confTask": {
+            "David.CI": "build-prod"
+          }
+        },
+        "msbuild": {
+          "task": "package",
+          "projFile": "../src/Eumis.Web.Host/Eumis.Web.Host.csproj",
+          "packageName": "eumis",
+          "takeOffline": true,
+          "confIisAppName": {
+            "David.CI": "dev-Suni"
+          }
+        }
+      },{
+        "msbuild": {
+          "task": "package",
+          "projFile": "../portal_src/Eumis.Portal.Web/Eumis.Portal.Web.csproj",
+          "packageName": "eumis_portal",
+          "takeOffline": true,
+          "confIisAppName": {
+            "David.CI": "portal_src"
+          }
+        }
+      }
+    ]
+  }
+}

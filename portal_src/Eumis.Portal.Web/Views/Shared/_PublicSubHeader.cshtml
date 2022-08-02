@@ -1,0 +1,19 @@
+﻿@{
+    string currentAction = ViewContext.RouteData.Values["action"].ToString();
+    string currentController = ViewContext.RouteData.Values["controller"].ToString();
+    Func<string, string, bool> isCurrent = (act, contr) => currentAction.ToLower() == act.ToLower() && currentController.ToLower() == contr.ToLower();
+}
+
+@if (isCurrent(MVC.Public.ActionNames.CurrentNews, MVC.Public.Name) || isCurrent(MVC.Public.ActionNames.AllNews, MVC.Public.Name))
+{
+    <div class="public-subheader">
+        <div class="desc">
+            <strong class="title hidden-lg">@Global.PublicEumis</strong>
+            <strong class="period">@Global.HeaderText4</strong>
+        </div>
+    </div>
+}
+else
+{
+    <div class="narrow-subheader"> </div>
+}

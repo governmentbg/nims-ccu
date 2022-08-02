@@ -1,0 +1,29 @@
+﻿@model R_10043.Incomes
+
+<div class="table-wrapper">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info" width="100%">
+        <thead>
+            <tr>
+                <th style="width:70%;">@Income.IncomeType</th>
+                <th style="width:30%;">@Income.Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.IncomeCollection != null)
+            {
+                foreach (var item in Model.IncomeCollection)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.IncomeType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Amount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

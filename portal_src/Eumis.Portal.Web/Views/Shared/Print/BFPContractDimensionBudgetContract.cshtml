@@ -1,0 +1,41 @@
+﻿@model R_10040.BFPContractDimensionBudgetContract
+
+@{
+    int sectionNumber = Model.SectionNumber;
+    sectionNumber++;
+
+    <h3>
+        @sectionNumber. @BFPContract.InterventionCategoryDimensions
+    </h3>
+
+    if (Model.InterventionCategoryDimensions != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.InterventionCategoryDimensions, Model.InterventionCategoryDimensions ?? new R_10005.InterventionCategoryDimensions())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.Budget
+    </h3>
+
+    if (Model.BFPContractBudget != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractBudget, Model.BFPContractBudget ?? new R_10036.BFPContractBudget())
+        </section>
+    }
+
+    sectionNumber++;
+    <h3>
+        @sectionNumber. @BFPContract.Contract
+    </h3>
+
+    if (Model.Contract != null)
+    {
+        <section>
+            @Html.Partial(MVC.Shared.Views.Print.BFPContractContract, Model.Contract ?? new R_10006.Contract())
+        </section>
+    }
+}

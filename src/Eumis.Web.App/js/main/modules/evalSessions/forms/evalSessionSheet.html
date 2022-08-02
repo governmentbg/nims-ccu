@@ -1,0 +1,49 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionAssessors'" mode="id" ng-model="model.evalSessionUserId" params="{evalSessionId: model.evalSessionId}" ng-required="true" l10n-text="evalSessions_evalSessionSheetForm_userId" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-if="!viewProjectState" alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{evalSessionId: model.evalSessionId}" ng-required="true" l10n-text="evalSessions_evalSessionSheetForm_projectId" class="col-sm-7 col-md-6"></sc-field>
+    <sc-field-group ng-if="viewProjectState" class="col-sm-7 col-md-6" text="evalSessions_evalSessionSheetForm_projectId" field-name="projectId">
+      <sc-nomenclature alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{ evalSessionId: model.evalSessionId }" ng-disabled="true" name="projectId"></sc-nomenclature>
+      <sc-button name="viewProjectBtn" btn-sref="viewProjectState" class="btn btn-default btn-sm" icon="glyphicon-eye-open"></sc-button>
+    </sc-field-group>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedureEvalTableTypes'" mode="id" ng-model="model.evalTableType" params="{ evalSessionId: model.evalSessionId }" ng-required="true" l10n-text="evalSessions_evalSessionSheetForm_type" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionSheetStatuses'" mode="id" ng-model="model.status" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_status" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.statusDate" ng-readonly="true" l10n-text="evalSessions_evalSessionSheetForm_statusDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionDistributionTypes'" mode="id" ng-model="model.distributionType" ng-required="true" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_distributionType" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionSheetForm_createDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.evalSessionDistributionId">
+    <sc-field ng-if="!canViewDistribution" type="nomenclature" alias="'evalSessionDistributions'" mode="id" ng-model="model.evalSessionDistributionId" params="{ evalSessionId: model.evalSessionId }" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_distribution" name="evalSessionDistributionId" class="col-sm-5 col-md-4"></sc-field>
+
+    <sc-field-group ng-if="canViewDistribution" class="col-sm-7 col-md-6" text="evalSessions_evalSessionSheetForm_distribution" field-name="evalSessionDistributionId">
+      <sc-nomenclature alias="'evalSessionDistributions'" mode="id" ng-model="model.evalSessionDistributionId" params="{ evalSessionId: model.evalSessionId }" ng-disabled="true" name="evalSessionDistributionId"></sc-nomenclature>
+      <sc-button name="viewDistributionBtn" btn-sref="{ state: 'root.evalSessions.view.distributions.edit', params: { ind: model.evalSessionDistributionId} }" class="btn btn-primary btn-sm" text="evalSessions_evalSessionSheetForm_viewDistribution"></sc-button>
+    </sc-field-group>
+  </div>
+
+  <div class="row" ng-if="model.distributionType === 'manual'">
+    <sc-field type="textarea" rows="3" ng-model="model.notes" l10n-text="evalSessions_evalSessionSheetForm_notes" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.statusNote">
+    <sc-field type="textarea" rows="3" ng-model="model.statusNote" ng-readonly="true" l10n-text="evalSessions_evalSessionSheetForm_statusNote" class="col-sm-7 col-md-6"></sc-field>
+  </div>
+  <div ng-if="model.xmlGid">
+    <div class="row">
+      <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.evalIsPassed" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_pass" class="col-sm-3 col-md-2"></sc-field>
+      <sc-field type="float" ng-if="model.evalType === 'weight'" mode="id" ng-model="model.evalPoints" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_result" class="col-sm-3 col-md-2"></sc-field>
+    </div>
+    <div class="row">
+      <sc-field type="textarea" rows="3" ng-model="model.evalNote" ng-disabled="true" l10n-text="evalSessions_evalSessionSheetForm_evalNote" class="col-sm-7 col-md-6"></sc-field>
+    </div>
+  </div>
+</ng-form>

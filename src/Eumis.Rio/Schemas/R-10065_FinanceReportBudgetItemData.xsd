@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10065" 
+	xmlns="http://ereg.egov.bg/segment/R-10065" 
+	
+	xmlns:en="http://ereg.egov.bg/segment/R-09991"
+	xmlns:prn="http://ereg.egov.bg/segment/R-10000"
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-09991" />
+  <xsd:import namespace="http://ereg.egov.bg/segment/R-10000" />
+
+  <xsd:complexType name="FinanceReportBudgetItemData">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Разходи за отчетния период</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+      <xsd:element name="ContractActivity" type="prn:PrivateNomenclature" minOccurs="0" />
+      <xsd:element name="BudgetDetail" type="prn:PrivateNomenclature" minOccurs="0" />
+      
+      <xsd:element name="GrandAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="SelfAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="TotalAmount" type="xsd:decimal" minOccurs="0" />
+
+      <xsd:element name="CrossFinancing" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="IsVatAmount" type="xsd:boolean" minOccurs="0" />
+
+      <xsd:element name="UnitDefinition" type="xsd:string" minOccurs="0" />
+      <xsd:element name="ProducedUnitsCount" type="xsd:integer" minOccurs="0" />
+      <xsd:element name="UnitCost" type="xsd:decimal" minOccurs="0" />
+      
+      <xsd:element name="InsideEU" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="OutsideEU" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="OutsideEUInProgrammingAreaEFRR" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="ThirdCountriesEFRR" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="AdvancePayment" type="en:EnumNomenclature" minOccurs="0" />
+      <xsd:element name="ContributionNature" type="en:EnumNomenclature" minOccurs="0" />
+    </xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

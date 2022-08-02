@@ -1,0 +1,55 @@
+﻿@model R_10015.ContractTeam
+
+@if (Model != null)
+{
+    <tr>
+        <td style="word-break: break-all">
+            @Html.DisplayFor(m => m.Name)
+        </td>
+        <td style="word-break: break-all">
+            @Html.DisplayFor(m => m.Position)
+        </td>
+        <td style="width: 130px;">
+            <a title="" class="history-btn">
+                <img class="arrow" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_small_gif)" alt="">@Global.ButtonPreviewText
+            </a>
+        </td>
+    </tr>
+    <tr class="history-table">
+        <td colspan="3">
+            <div class="history-table-wrapper clearfix">
+                <div class="clearfix">
+                    <div class="form-group col-lg-6 col-md-6">
+                        @Html.LabelFor(m => m.Name, ContractTeam.Name)
+                        @Html.DisplayFor(m => m.Name, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6">
+                        @Html.LabelFor(m => m.Position, ContractTeam.Position)
+                        @Html.DisplayFor(m => m.Position, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                    @Html.LabelFor(m => m.Responsibilities, ContractTeam.Responsibilities)
+                    @Html.DisplayFor(m => m.Responsibilities, MVC.Shared.Views.DisplayTemplates.TextAreaPre)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.Phone, ContractTeam.Phone)
+                    @Html.DisplayFor(m => m.Phone)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.Email, ContractTeam.Email)
+                    @Html.DisplayFor(m => m.Email)
+                </div>
+
+                <div class="form-group col-lg-4 col-md-6">
+                    @Html.LabelFor(m => m.Fax, ContractTeam.Fax)
+                    @Html.DisplayFor(m => m.Fax)
+                </div>
+            </div>
+        </td>
+    </tr>
+}

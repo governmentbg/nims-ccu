@@ -1,0 +1,58 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionProjects'" mode="id" ng-model="model.projectId" params="{evalSessionId: model.evalSessionId}" ng-disabled="true" l10n-text="evalSessions_evalSessionEvaluationForm_projectId" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'procedureEvalTableTypes'" mode="id" ng-model="model.evalTableType" params="{evalSessionId: model.evalSessionId}" ng-disabled="true" l10n-text="evalSessions_evalSessionEvaluationForm_type" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="date" ng-model="model.createDate" ng-readonly="true" l10n-text="evalSessions_evalSessionEvaluationForm_createDate" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.isDeleted" ng-readonly="true" l10n-text="evalSessions_evalSessionEvaluationForm_isDeleted" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <div class="row" ng-if="model.isDeletedNote">
+    <sc-field type="textarea" rows="3" ng-model="model.isDeletedNote" l10n-text="evalSessions_evalSessionEvaluationForm_isDeletedNote" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h5 class="table-header" l10n-text="evalSessions_evalSessionEvaluationForm_sheets"></h5>
+
+      <sc-datatable items="model.sheets" filterable="false" pageable="false" sortable="false" dynamic-columns="false" has-info-text="false" scrollable="false" row-class="{'deactivated-table-row' : item.status === 'canceled'}">
+        <sc-column data="assessor" title="evalSessions_evalSessionEvaluationForm_assessor"></sc-column>
+        <sc-column data="evalTableTypeName" title="evalSessions_evalSessionEvaluationForm_sheetType"></sc-column>
+        <sc-column data="distributionType" title="evalSessions_evalSessionEvaluationForm_distributionType"></sc-column>
+        <sc-column data="statusName" title="evalSessions_evalSessionEvaluationForm_status"></sc-column>
+        <sc-column data="evalIsPassed" title="evalSessions_evalSessionEvaluationForm_pass" type="boolean"></sc-column>
+        <sc-column data="evalPoints" title="evalSessions_evalSessionEvaluationForm_result" type="number"></sc-column>
+        <sc-column data="evalNote" title="evalSessions_evalSessionEvaluationForm_note"></sc-column>
+        <sc-column sortable="false" title="evalSessions_evalSessionEvaluationForm_sheet" has-content="true">
+          <a target="_blank" ng-href="{{item.url}}" title="{{documentName}}">
+            <span class="glyphicon glyphicon-file"></span>
+          </a>
+        </sc-column>
+      </sc-datatable>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px;">
+    <sc-field type="int" ng-model="endedSheetsCount" ng-disabled="true" l10n-text="evalSessions_evalSessionEvaluationForm_endedSheetsCount" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="int" ng-model="canceledSheetsCount" ng-disabled="true" l10n-text="evalSessions_evalSessionEvaluationForm_canceledSheetsCount" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="int" ng-model="pausedSheetsCount" ng-disabled="true" l10n-text="evalSessions_evalSessionEvaluationForm_pausedSheetsCount" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <h5 class="table-header" l10n-text="evalSessions_evalSessionEvaluationForm_total"></h5>
+  <div class="row" ng-if="model.cannotEvaluate">
+    <div class="col-sm-12">
+      <span style="font-size: 14px; color: red;">{{model.cannotEvaluateReason}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'evalSessionEvaluationCalculationTypes'" mode="id" ng-model="model.calculationType" ng-change="calculationTypeChanged()" ng-required="true" l10n-text="evalSessions_evalSessionEvaluationForm_calculationType" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" mode="id" ng-model="model.evalIsPassed" ng-required="true" ng-disabled="form.$readonly || model.calculationType === 'automatic'" l10n-text="evalSessions_evalSessionEvaluationForm_isPassed" class="col-sm-2 col-md-2"></sc-field>
+    <sc-field type="float" ng-if="model.evalType === 'weight'" ng-model="model.evalPoints" ng-required="true" ng-disabled="form.$readonly || model.calculationType === 'automatic'" l10n-text="evalSessions_evalSessionEvaluationForm_points" class="col-sm-2 col-md-2"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field ng-required="!model.evalIsPassed" type="textarea" rows="3" ng-model="model.evalNote" l10n-text="evalSessions_evalSessionEvaluationForm_note" class="col-sm-6 col-md-6"></sc-field>
+  </div>
+</ng-form>
+

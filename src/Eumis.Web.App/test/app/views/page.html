@@ -1,0 +1,17 @@
+<sc-breadcrumb home-state="testpage"></sc-breadcrumb>
+
+<div>
+  <div class="container">
+    <sc-tabs tab-list="{
+            'Regular': 'testpage.regular',
+            'Filled': 'testpage.filled',
+            'Read-only': 'testpage.readonly',
+            'Users Datatable': 'testpage.usersDatatable'
+            }"></sc-tabs>
+
+    <div class="tab-content">
+      <div ui-view></div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>

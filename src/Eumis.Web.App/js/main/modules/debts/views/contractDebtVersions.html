@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newAmendmentBtn" btn-click="newAmendment()" text="contractDebts_searchContractDebtVersions_newAmendment" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('ContractDebtActions.Edit', contractDebtId) || contractDebtIsDeleted"></sc-button>
+
+      <sc-datatable items="contractDebtVersions" filterable="false" pageable="false" sortable="false" dynamic-columns="false">
+        <sc-column sortable="false" class="buttons-cell" has-content="true">
+          <sc-button name="editBtn" btn-sref="{ state: 'root.contractDebts.view.versions.edit', params: {ind: item.contractDebtVersionId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+            ng-disabled="!$canDo('ContractDebtActions.View', item.contractDebtId)"></sc-button>
+        </sc-column>
+        <sc-column data="orderNum" title="contractDebts_searchContractDebtVersions_orderNum" type="number">
+        </sc-column>
+        <sc-column data="status" title="contractDebts_searchContractDebtVersions_status">
+        </sc-column>
+        <sc-column data="executionStatus" title="contractDebts_searchContractDebtVersions_executionStatus">
+        </sc-column>
+        <sc-column data="euAmount" title="contractDebts_searchContractDebtVersions_euAmount" type="money">
+        </sc-column>
+        <sc-column data="bgAmount" title="contractDebts_searchContractDebtVersions_bgAmount" type="money">
+        </sc-column>
+        <sc-column data="totalAmount" title="contractDebts_searchContractDebtVersions_totalAmount" type="money">
+        </sc-column>
+        <sc-column data="modifyDate" title="contractDebts_searchContractDebtVersions_modifyDate" type="date">
+        </sc-column>
+        <sc-column data="createdByUser" title="contractDebts_searchContractDebtVersions_createdByUser">
+        </sc-column>
+      </sc-datatable>
+  </div>
+</div>

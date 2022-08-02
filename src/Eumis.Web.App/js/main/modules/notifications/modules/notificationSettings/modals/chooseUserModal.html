@@ -1,0 +1,16 @@
+<ng-form name="chooseUserForm" sc-validate="{}" sc-form-readonly="">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="notificationSetting_chooseUserModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="okBtn" btn-click="ok()" text="notificationSetting_chooseUserModal_continue"class="btn btn-primary btn-xs" icon="glyphicon-ok">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="notificationSetting_chooseUserModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <sc-field type="nomenclature" alias="'notificationSettingUsers'" mode="id" ng-model="model.user" l10n-text="notificationSetting_chooseUserModal_users" class="col-sm-5"></sc-field>
+    </div>
+  </div>
+</ng-form>

@@ -1,0 +1,42 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.username" ng-required="true" ng-pattern="/^[а-яА-Яa-zA-Z0-9_\.]{5,}$/" ng-readonly="!isNew" ng-maxlength="200" l10n-text="users_userForm_username" class="col-sm-3"
+      sc-validate-async="{ unique: isUniqueUsername }"
+      validations="{ unique: 'users_userForm_usernameExists', pattern: 'users_userForm_usernameInvalid', maxlength: 'default' }"
+    >
+    </sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'userOrganizations'" mode="id" ng-model="model.userOrganizationId" ng-required="true" ng-readonly="!isNew || hasPredefinedOrganization" l10n-text="users_userForm_organization" class="col-sm-3"></sc-field>
+    <sc-field type="nomenclature" alias="'userTypes'" mode="id" ng-model="model.userTypeId" ng-disabled="!model.userOrganizationId" ng-required="true" ng-readonly="!isNew" params="{userOrganizationId: model.userOrganizationId}" l10n-text="users_userForm_userTypeId" class="col-sm-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.fullname" ng-required="true" ng-maxlength="200" validations="{maxlength: 'default'}" l10n-text="users_userForm_fullname" class="col-sm-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.uin" ng-required="true" l10n-text="users_userForm_uin" class="col-sm-3"
+      sc-validate="{ validValue: uinValid }" sc-validate-async="{ unique: isUniqueUin }"
+      validations="{ validValue: 'errorTexts_notValidPersonalUin', unique: 'errorTexts_notUniquePersonalUin' }"
+    >
+    </sc-field>
+    <sc-field type="text" ng-model="model.position" l10n-text="users_userForm_position" ng-maxlength="300" validations="{maxlength: 'default'}" class="col-sm-3"></sc-field>
+  </div>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.email" ng-required="true" ng-pattern="emailRegex" ng-maxlength="100" validations="{maxlength: 'default'}" l10n-text="users_userForm_email" class="col-sm-3"></sc-field>
+    <sc-field type="text" ng-model="model.phone" ng-maxlength="100" validations="{maxlength: 'default'}" l10n-text="users_userForm_phone" class="col-sm-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.address" l10n-text="users_userForm_address" ng-maxlength="300" validations="{maxlength: 'default'}" class="col-sm-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isActive" mode="id" ng-required="true" ng-disabled="true" l10n-text="users_userForm_active" class="col-sm-2"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isDeleted" mode="id" ng-required="true" ng-disabled="true" l10n-text="users_userForm_deleted" class="col-sm-2"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isLocked" mode="id" ng-required="true" ng-disabled="true" l10n-text="users_userForm_locked" class="col-sm-2"></sc-field>
+  </div>
+  <h5 class="form-header" l10n-text="users_userForm_gdpr_declaration"></h5>  
+  <div class="row">
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.hasAcceptedGDPRDeclaration" mode="id" ng-disabled="true" l10n-text="users_userForm_gdpr_declaration_accepted" class="col-sm-2"></sc-field>
+    <sc-field type="date" ng-model="model.gdprDeclarationAcceptDate" ng-disabled="true" l10n-text="users_userForm_gdpr_declaration_acceptDate" class="col-sm-2"></sc-field>
+  </div>
+</ng-form>

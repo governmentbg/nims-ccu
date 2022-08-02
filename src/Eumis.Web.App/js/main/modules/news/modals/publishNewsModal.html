@@ -1,0 +1,25 @@
+﻿<ng-form name="publishNewsForm" sc-validate="{}">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="news_publishNewsModal_title"></strong>
+      <div class="pull-right">
+        <sc-button name="publishBtn" btn-click="publish()" text="news_publishNewsModal_publish"class="btn btn-primary btn-xs" icon="glyphicon-upload">
+        </sc-button>
+        <sc-button name="cancelBtn" btn-click="cancel()" text="news_publishNewsModal_cancel"class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <sc-field type="date" ng-model="model.dateFrom" ng-required="true" l10n-text="news_publishNewsModal_dateFrom" class="col-sm-6"></sc-field>
+        <sc-field type="date" ng-model="model.dateTo" ng-required="true" l10n-text="news_publishNewsModal_dateTo" class="col-sm-6"
+          sc-validate="{ dateToValid: dateToValid }"
+          sc-revalidate-on="['model.dateFrom']"
+          validations="{ dateToValid: 'news_publishNewsModal_dateToValid' }"
+        >
+        </sc-field>
+      </div>
+    </div>
+  </div>
+</ng-form>

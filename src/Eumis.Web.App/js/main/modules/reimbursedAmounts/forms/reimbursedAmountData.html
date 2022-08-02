@@ -1,0 +1,32 @@
+﻿<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'reimbursementTypes'" ng-model="model.type" mode="id" ng-required="true" l10n-text="reimbursedAmounts_reimbursedAmountForm_type" class="col-sm-8 col-md-6"></sc-field>
+    <sc-field type="date" ng-model="model.reimbursementDate" ng-required="true" l10n-text="reimbursedAmounts_reimbursedAmountForm_reimbursementDate" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="nomenclature" alias="'reimbursements'" ng-model="model.reimbursement" mode="id" ng-required="true" l10n-text="reimbursedAmounts_reimbursedAmountForm_reimbursements" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+
+  <div class="row" ng-if="model.discriminator === 'contract'">
+    <sc-field type="nomenclature" alias="'programmePriorities'" ng-model="model.programmePriorityId" mode="id" ng-required="true" params="{contractId: model.contractId}" l10n-text="reimbursedAmounts_reimbursedAmountForm_programmePriority" class="col-sm-6"></sc-field>
+  </div>
+
+  <div class="row" ng-if="hasPayments">
+    <sc-field type="nomenclature" mode="id" alias="'contractReportPayments'" multiple="multiple" ng-model="model.paymentIds" params="{ contractId: model.contractId }" l10n-text="reimbursedAmounts_reimbursedAmountForm_paymentIds" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="reimbursedAmounts_reimbursedAmountForm_principalBfp"></h5>
+  <div class="row">
+    <sc-field type="money" min="-999999999999999" ng-model="model.principalBfpTotalAmount" l10n-text="reimbursedAmounts_reimbursedAmountForm_bfpTotalAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <h5 class="table-header" l10n-text="reimbursedAmounts_reimbursedAmountForm_interesBfp"></h5>
+  <div class="row">
+    <sc-field type="money" min="-999999999999999" ng-model="model.interestBfpTotalAmount" l10n-text="reimbursedAmounts_reimbursedAmountForm_bfpTotalAmount" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+
+  <div class="row">
+    <sc-field type="textarea" ng-model="model.comment" rows="2" l10n-text="reimbursedAmounts_reimbursedAmountForm_comment" class="col-sm-12 col-md-9"></sc-field>
+  </div>
+</ng-form>

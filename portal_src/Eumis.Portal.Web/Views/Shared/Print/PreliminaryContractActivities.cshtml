@@ -1,0 +1,32 @@
+﻿@model R_10019.PreliminaryContractActivities
+
+<div>
+    @if (Model != null && Model.PreliminaryContractActivityCollection != null && Model.PreliminaryContractActivityCollection.Count > 0)
+    {
+        for (int i = 0; i < Model.PreliminaryContractActivityCollection.Count; i++)
+        {
+            <table class="contract-activity">
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="word-break: break-all">
+                            <strong>@PreliminaryContractActivity.Code</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.PreliminaryContractActivityCollection[i].Code ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@PreliminaryContractActivity.Name</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.PreliminaryContractActivityCollection[i].Name ?? string.Empty)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <strong>@PreliminaryContractActivity.Result</strong>
+                            @Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.PreliminaryContractActivityCollection[i].Result ?? string.Empty)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    }
+</div>

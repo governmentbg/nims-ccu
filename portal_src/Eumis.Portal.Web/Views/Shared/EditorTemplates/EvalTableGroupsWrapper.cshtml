@@ -1,0 +1,118 @@
+﻿@model Eumis.Portal.Web.Models.EvalTable.EvalTableGroupsWrapper
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+    var rejectionType = Newtonsoft.Json.JsonConvert.SerializeObject(R_09993.EvalTypeNomenclature.Rejection);
+    var weightType = Newtonsoft.Json.JsonConvert.SerializeObject(R_09993.EvalTypeNomenclature.Weight);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        model: @(Html.Raw(jsonModel)),
+        rejectionType: @(Html.Raw(rejectionType)),
+        weightType: @(Html.Raw(weightType))
+        };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerEvalTableGroups@(guid)'), ['moduleEvalTableGroups']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerEvalTableGroups@(guid)" ng-controller="controllerEvalTableGroups" ng-init="init('_eumis_options', 'i@(guid)')">
+    <table class="chart-info dynamic-rows fixed-table" width="100%" id="eval-table">
+        <thead ng-repeat-start="group in groups">
+            <tr>
+                <th style="width:40px; text-align: center;">{{romanize($index + 1)}}.</th>
+                <th class="group-header">@EvalTable.Group</th>
+
+                <th ng-if="type == rejectionType" style="width:200px; border-left: 1px solid transparent;"></th>
+                <th ng-if="type == weightType" style="width:200px;">@EvalTable.Limit</th>
+                <th style="width:95px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="font-size: 15px;"></td>
+                <td colspan="{{type == weightType ? 1 : 2}}">
+                    <textarea ng-class="{'input-validation-error': !group.IsNameValid}" style="font-size: 15px;" rows="1" auto-grow ng-model="group.Name" name="@(Html.GetNameFor(m => m.EvalTableGroupCollection))[{{ $index }}].Name" class="form-control"></textarea>
+                </td>
+                <td ng-if="type == weightType">
+                    <input ng-class="{'input-validation-error': !group.IsLimitValid}" type="text" money ng-model="group.Limit" name="@(Html.GetNameFor(m => m.EvalTableGroupCollection))[{{ $index }}].Limit" class="sum-field form-control" />
+                </td>
+                <td>
+                    <a class="delete-btn" confirm-click="delGroup($index)">@Global.DeleteButton</a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3" style="border-left: 1px solid #8f8f8f; padding: 0px;">
+                    <div class="history-table-wrapper clearfix">
+                        <table class="chart-info dynamic-rows criteria-table fixed-table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px;"></th>
+                                    <th class="criteria-header">@EvalTable.Criteria</th>
+                                    <th ng-if="type == rejectionType" style="width:200px;">@EvalTable.Rejection</th>
+                                    <th ng-if="type == weightType" style="width:200px;padding: 2px;">
+                                        @EvalTable.Weight
+                                        <br />
+                                        <input type="text" money ng-model="group.WeightTotal" class="sum-field form-control" readonly />
+                                    </th>
+                                    <th style="width:95px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="auto-calc-percent" ng-repeat-start="criteria in group.EvalTableCriteriaCollection">
+                                    <td class="text-right">{{$index + 1}}.</td>
+                                    <td>
+                                        <textarea ng-class="{'input-validation-error': !criteria.IsNameValid}" rows="1" auto-grow ng-model="criteria.Name" name="@(Html.GetNameFor(m => m.EvalTableGroupCollection))[{{ $parent.$index }}].EvalTableCriteriaCollection[{{ $index }}].Name" class="form-control"></textarea>
+                                    </td>
+                                    <td ng-if="type == rejectionType">
+                                        <input sc-disabled="type != rejectionType" id="chb{{$parent.$parent.$index}},{{$index}}" type="checkbox" ng-model="criteria.IsRejection" />
+                                        <label for="chb{{$parent.$parent.$index}},{{$index}}" style="margin:0px;">@EvalTable.Rejection</label>
+                                        <input type="hidden" name="@(Html.GetNameFor(m => m.EvalTableGroupCollection))[{{ $parent.$parent.$index }}].EvalTableCriteriaCollection[{{ $index }}].IsRejection" value="{{criteria.IsRejection}}" />
+                                    </td>
+                                    <td ng-if="type == weightType">
+                                        <input ng-class="{'input-validation-error': !criteria.IsWeightValid}" sc-disabled="type != weightType" type="text" money ng-model="criteria.Weight" name="@(Html.GetNameFor(m => m.EvalTableGroupCollection))[{{ $parent.$parent.$index }}].EvalTableCriteriaCollection[{{ $index }}].Weight" class="form-control sum-field" />
+                                    </td>
+                                    <td>
+                                        <a class="delete-btn" confirm-click="delCriteria($parent.$index, $index)">@Global.DeleteButton</a>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat-end style="display:none"></tr>
+                                <tr class="no-bottom-border">
+                                    <td></td>
+                                    <td colspan="2">
+                                        <a ng-class="{'input-validation-error': !group.HasCriterias}" class="add-new-btn" ng-click="addCriteria($index)" name="EvalTableGroupsWrapper.EvalTableGroupCollection[{{ $index }}]">@EvalTable.AddCriteria</a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <thead ng-repeat-end style="display:none"></thead>
+    </table>
+    <a ng-class="{'input-validation-error': !hasGroups}" name="EvalTableGroupsWrapper.EvalTableGroupCollection" class="add-new-btn" ng-click="addGroup()">@EvalTable.AddGroup</a>
+    <div ng-if="type == weightType" class="clearfix">
+        <div class="form-group col-md-1 pull-right" style="margin-right: 100px;">
+            <input ng-class="{'input-validation-error': !isLimitValid}" type="text" money ng-model="limit" name="@(Html.GetNameFor(m => m)).Limit" class="sum-field form-control" />
+        </div>
+        <div class="form-group col-md-2 pull-right text-right" style="padding-top:6px;">
+            <span class="filled-value">@EvalTable.Limit</span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-md-1 pull-right" style="margin-right: 100px;">
+            <input type="text" money ng-model="WeightTotal" class="sum-field form-control" readonly />
+        </div>
+        <div class="form-group col-md-2 pull-right text-right" style="padding-top:6px;">
+            <span class="filled-value">@EvalTable.WeightTotal</span>
+        </div>
+    </div>
+</div>

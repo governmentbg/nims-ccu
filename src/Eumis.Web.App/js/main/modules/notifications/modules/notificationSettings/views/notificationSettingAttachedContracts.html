@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="chooseItemsBtn" btn-click="chooseItems()" text="notificationSetting_notificationSettingAttachedContracts_choose" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+
+    <sc-datatable items="attachedContracts" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="delBtn" btn-click="delItem(item.contractId)" class="btn btn-xs btn-danger" icon="glyphicon-remove"
+          ng-disabled="notificationSettingStatus !== 'draft'"></sc-button>
+      </sc-column>
+      <sc-column data="procedureName" title="notificationSetting_notificationSettingAttachedContracts_procedure">
+      </sc-column>
+      <sc-column data="regNumber" title="notificationSetting_notificationSettingAttachedContracts_regNumber">
+      </sc-column>
+      <sc-column data="contractDate" title="notificationSetting_notificationSettingAttachedContracts_contractDate" type="date">
+      </sc-column>
+      <sc-column data="name" title="notificationSetting_notificationSettingAttachedContracts_name">
+      </sc-column>
+      <sc-column data="executionStatus" title="notificationSetting_notificationSettingAttachedContracts_executionStatus">
+      </sc-column>
+      <sc-column data="company" title="notificationSetting_notificationSettingAttachedContracts_company">
+      </sc-column>
+      <sc-column data="totalBfpAmount" title="notificationSetting_notificationSettingAttachedContracts_totalBfpAmount" type="money">
+      </sc-column>
+      <sc-column data="totalSelfAmount" title="notificationSetting_notificationSettingAttachedContracts_totalSelfAmount" type="money">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

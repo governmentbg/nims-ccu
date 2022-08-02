@@ -1,0 +1,92 @@
+﻿
+<div class="container page-title">
+    <h1><strong>@Global.ProgrammePeriod – @Default.TitleH1</strong></h1>
+</div>
+
+<div class="container">
+    <div class="page-content clearfix text-justify">
+        @if (Request.IsAuthenticated)
+        {
+        <div class="col-md-12">
+            </div>
+            <div class="clear"></div>
+
+            <div class="home-login">
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    <img src="@Url.Content(Links.Content.img.isun_gif)" alt="" />
+                    <strong>@Global.ProgrammePeriod</strong>
+                </div>
+                <div class="col-md-6 txt-align-center-sm">
+                    @Html.ActionLink(Default.NewProposal, MVC.Procedure.ActionNames.Active, MVC.Procedure.Name, null, new { @class = "login-btn" })
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <p>
+                    @Default.InfoP4AuthenticatedFirst
+                    „@Html.ActionLink(Global.Help, MVC.Help.ActionNames.Index, MVC.Help.Name)”
+                    @Default.InfoP4AuthenticatedSecond
+                    „<a href="@Url.Action(MVC.Help.ActionNames.Index, MVC.Help.Name)/#q-a">@Default.InfoP4AuthenticatedThird</a>”
+                    @Default.InfoP4AuthenticatedFourth
+                </p>
+
+                <p>
+                    @Default.MainP1AuthenticatedFirst
+                    <img src="@(Url.Content(Links.Content.img.support_mail_PNG))" title="mail" />
+                    @Default.MainP1AuthenticatedSecond
+                    @Html.ActionLink(Global.Feedback, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name).
+                </p>
+                @*<p>
+                    @Home.MainP2Authenticated
+                    @Html.ActionLink(Global.Feedback, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name).
+                </p>*@
+            </div>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2 class="home" style="font-weight:700;">@Default.InfoP3</h2>
+                <p>
+                    1. @Default.Step1First @Html.ActionLink(Default.Step1Second, MVC.Account.ActionNames.Register, MVC.Account.Name), @Default.Step1Third
+                    <img style="cursor: pointer; width: 15px; height: 15px;" class="info-icon" src="@Url.Content(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@Default.Step1Fourth" data-trigger="hover" alt="" data-original-title="" title="">
+                </p>
+                <p>
+                    2. @Default.Step2First @Default.Step2Second @Default.Step2Third @Default.Step2Fourth
+                </p>
+                <p>3. @Default.Step3</p>
+            </div>
+            <div class="clear"></div>
+
+            <div class="home-login">
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    <img src="@Url.Content(Links.Content.img.isun_gif)" alt="" />
+                    <strong>@Global.ProgrammePeriod</strong>
+                </div>
+                <div class="col-md-6 txt-align-center-sm">
+                    @Html.ActionLink(Default.Login, MVC.Account.ActionNames.Login, MVC.Account.Name, null, new { @class = "login-btn" })
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <p>
+                    @Default.InfoP4First
+                    „@Html.ActionLink(Global.Help, MVC.Help.ActionNames.Index, MVC.Help.Name)”
+                    @Default.InfoP4Second
+                    „<a href="@Url.Action(MVC.Help.ActionNames.Index, MVC.Help.Name)/#q-a">@Default.InfoP4Third</a>”
+                    @Default.InfoP4Fourth
+                </p>
+
+                <p>
+                    @Default.MainP1First
+                    <img src="@(Url.Content(Links.Content.img.support_mail_PNG))" title="mail"/>
+                    @Default.MainP1Second
+                    @Html.ActionLink(Global.Feedback, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name).
+                </p>
+                @*<p>
+                    @Home.MainP2
+                    @Html.ActionLink(Global.Feedback, MVC.Feedback.ActionNames.Index, MVC.Feedback.Name).
+                </p>*@
+            </div>
+        }
+    </div>
+</div>

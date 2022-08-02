@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+@using Eumis.Portal.Web.Helpers
+@model Eumis.Documents.Contracts.News
+
+@Html.Breadcrumb(new List<BreadcrumbItem>()
+{
+    new BreadcrumbItem(Url.Action(MVC.Public.ActionNames.CurrentNews, MVC.Public.Name), Global.HomeButton),
+    new BreadcrumbItem(Url.Action(MVC.Public.ActionNames.Preview, MVC.Public.Name), Global.NewsPreview)
+}
+, Model.displayTitle)
+
+<!-- PAGE TITLE -->
+<div class="container page-title">
+    <h1>@Global.NewsPreview</h1>
+</div>
+
+<!-- PAGE -->
+<div class="container">
+    <div class="page-content clearfix text-justify">
+        <div class="col-xs-12">
+            <p><b>@Public.PreviewTitle</b></p>
+            <p>@Model.displayTitle</p>
+            <p><b>@Public.PreviewContent</b></p>
+            <p>@Html.Raw(Model.displayContent)</p>
+            <p><b>@Public.PreviewStatus</b> @Model.displayStatusText
+            <p><b>@Public.PreviewPublicationDate</b> @Eumis.Common.Helpers.Helper.DateTimeFormatOnlyDate(Model.dateFrom)</p>
+
+            @if (Model.dateTo.HasValue == true && Model.dateTo.Value < DateTime.Today)
+            {
+                <p><b>@Public.PreviewValidDate</b> @Eumis.Common.Helpers.Helper.DateTimeFormatOnlyDate(Model.dateTo)</p>
+            }
+
+            <p><b>@Public.Author</b> @Model.displayAuthor
+
+            @if (Model.Files != null && Model.Files.Count != 0)
+            {
+                <h2>@Public.PreviewAttachments</h2>
+                <ul class="file-list">
+                    @foreach (var file in Model.Files)
+                    {
+                        var extenstion = file.File.Name.Split('.').Last();
+                        if (extenstion == "docx") { extenstion = "doc"; }
+                        if (string.IsNullOrEmpty(MimeTypeFileExtension.GetFileMimeTypeByExtenstion("." + extenstion)))
+                        {
+                            extenstion = string.Empty;
+                        }
+                        else
+                        {
+                            extenstion = "file-" + extenstion;
+                        }
+
+                        <li class="@(extenstion)">
+
+                            <a target="_blank" href="@(Url.Action(MVC.Public.PreviewDownload(Model.newsId, file.File.Key)))">@file.File.Name</a>
+
+                            @if (!string.IsNullOrEmpty(file.Description))
+                            {
+                                <img class="info-icon" src="@(Links.Content.img.icons.info_png)" data-placement="right" data-toggle="popover" data-content="@(file.Description)" data-trigger="hover">
+                            }
+
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

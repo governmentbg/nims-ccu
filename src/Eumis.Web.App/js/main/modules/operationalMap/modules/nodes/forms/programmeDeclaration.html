@@ -1,0 +1,22 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="textarea" rows="1" ng-model="model.name" ng-required="true" ng-readonly="!isNew" ng-maxlength="500" l10n-text="programmes_programmeDeclarationForm_name" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="1" ng-model="model.nameAlt" ng-readonly="!isNew" ng-maxlength="500" l10n-text="programmes_programmeDeclarationForm_nameAlt" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.content" ng-required="true" l10n-text="programmes_programmeDeclarationForm_content" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.contentAlt" l10n-text="programmes_programmeDeclarationForm_contentAlt" class="col-sm-8 col-md-6"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'fieldTypes'" ng-model="model.fieldType" ng-required="true" mode="id" l10n-text="programmes_programmeDeclarationForm_fieldType" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isConsentForNSIDataProviding" ng-required="true" mode="id" l10n-text="programmes_programmeDeclarationForm_isConsentForNSIDataProviding" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="int" ng-model="model.orderNum" ng-required="true" ng-readonly="true" l10n-text="programmes_programmeDeclarationForm_orderNum" class="col-sm-4 col-md-3"></sc-field>
+    <sc-field type="nomenclature" alias="'boolean'" ng-model="model.isActive" ng-readonly="true" ng-required="true" mode="id" l10n-text="programmes_programmeDeclarationForm_isActive" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+</ng-form>

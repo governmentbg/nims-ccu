@@ -1,0 +1,21 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'mapNodeStatuses'" ng-model="model.status" mode="id" ng-readonly="true" l10n-text="programmes_programmeDataForm_status" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="text" ng-model="model.code" ng-required="true" ng-readonly="!isNew" ng-maxlength="200" validations="{maxlength: 'programmes_programmeDataForm_codeMaxLength'}" l10n-text="programmes_programmeDataForm_code" class="col-sm-4 col-md-3"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-required="true" l10n-text="programmes_programmeDataForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="text" ng-model="model.nameAlt" l10n-text="programmes_programmeDataForm_nameAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.description" l10n-text="programmes_programmeDataForm_description" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="textarea" rows="3" ng-model="model.descriptionAlt" l10n-text="programmes_programmeDataForm_descriptionAlt" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" alias="'programmeCompanies'" mode="id" ng-model="model.companyId" l10n-text="programmes_programmeDataForm_companyId" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+</ng-form>

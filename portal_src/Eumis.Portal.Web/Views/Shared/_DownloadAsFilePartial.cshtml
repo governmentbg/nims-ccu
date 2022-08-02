@@ -1,0 +1,25 @@
+﻿@model Eumis.Portal.Web.Models.DownloadDraftXmlVM
+
+<a class="download-as-file" style="cursor: pointer">@Global.SaveAsFile</a>
+@Html.ActionLink(Global.SaveAsFile, Model.SecondActionName, Model.ControllerName, new { style = "display:none", id = "_hiddenClick" })
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".download-as-file").click(function () {
+            var downloadFile = function () {
+                $.post('@Url.Action(Model.PostActionName, Model.ControllerName)', $('#@(string.IsNullOrEmpty(Model.FORM_ID) ? Constants.MAIN_FORM : Model.FORM_ID)').serializeArray())
+                                .done(function () {
+                                    document.getElementById('_hiddenClick').click();
+                                });
+            };
+
+            @if(string.IsNullOrEmpty(Model.FORM_ID))
+            {
+                <text>downloadFile();</text>
+            }
+            else
+            {
+                <text>PARTIAL_SAVE_SECTIONS(downloadFile);</text>
+            }
+        });
+    });
+</script>

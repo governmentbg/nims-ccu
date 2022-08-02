@@ -1,0 +1,90 @@
+﻿@{ Layout = "layout.cshtml"; }
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Eumis.Web.Host.Nancy.Models.DeclarationModel>
+@using Eumis.Web.Host.Nancy
+
+@section Styles
+{
+    <style type="text/css">
+        div.content-wrapper.document-wrapper {
+            padding: 0px 40px 40px 40px;
+        }
+
+            div.content-wrapper.document-wrapper h2 {
+                font-size: 25px;
+                font-weight: 700;
+                margin: 40px 0px 20px 0px;
+                line-height: 1em;
+                text-align: center;
+            }
+
+            div.content-wrapper.document-wrapper form {
+                margin-top: 50px;
+            }
+
+        .file-block {
+            margin-top: 35px;
+        }
+
+        .content-block {
+            margin-top: 45px;
+        }
+    </style>
+}
+
+@section Header
+{
+    <div class="bg_header header-with-shadow">
+        <div class="container">
+            <header>
+                <a class="logo">СУНИ</a>
+            </header>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="content-wrapper document-wrapper">
+        <h2>@Model.Name</h2>
+
+        <p class="content-block">@Model.Content</p>
+
+        <div class="file-block">
+            @foreach (var file in Model.Files)
+            {
+                <div>
+                    <a href="api/declarationsFeed/@Model.DeclarationId/files/@file.BlobKey?access_token=@Model.AccessToken"
+                       onclick="window.open(this.href); return false;"
+                       style="cursor:pointer;" download="@file.Name">
+                        <span class="glyphicon glyphicon-file"></span>
+                    </a>
+                    <strong class="ng-binding">@file.Description</strong>
+                </div>
+            }
+        </div>
+
+        <form name="gdprForm" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <div class="checkbox">
+                    <input type="hidden" name="DeclarationId" value="@Model.DeclarationId" />
+                    <label>
+                        <input type="checkbox" id="acceptCheckbox" name="accepted" value="true">
+                        <span>@RazorViewTexts.Declaration_Accept</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="continueBtn" disabled="disabled">
+                <span class="glyphicon glyphicon-log-in"></span>
+                <span>@RazorViewTexts.Declaration_Continue</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var acceptCheckbox = document.getElementById('acceptCheckbox');
+    var continueBtn = document.getElementById('continueBtn');
+    acceptCheckbox.onchange = function () {
+        continueBtn.disabled = !this.checked;
+    };
+</script>

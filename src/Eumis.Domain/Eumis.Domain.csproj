@@ -1,0 +1,1389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props" Condition="Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A54B65E-7CAC-4397-8266-60B9F10D7463}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eumis.Domain</RootNamespace>
+    <AssemblyName>Eumis.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Features>IOperation</Features>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;INTERNAL_DEPLOYMENT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ciela.CI|AnyCPU'">
+    <OutputPath>bin\Ciela.CI\</OutputPath>
+    <DefineConstants>TRACE;INTERNAL_DEPLOYMENT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Test|AnyCPU'">
+    <OutputPath>bin\EGP06.Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Prod|AnyCPU'">
+    <OutputPath>bin\EGP06.Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.Learn|AnyCPU'">
+    <OutputPath>bin\EGP06.Learn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EGP06.DRC|AnyCPU'">
+    <OutputPath>bin\EGP06.DRC\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'David.CI|AnyCPU'">
+    <OutputPath>bin\David.CI\</OutputPath>
+    <DefineConstants>TRACE;INTERNAL_DEPLOYMENT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\Eumis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=4.62.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
+      <HintPath>..\packages\CompareNETObjects.4.62.0\lib\net46\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\ReferencedAssemblies\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionLogs\ActionLog.cs" />
+    <Compile Include="ActionLogs\ActionLogsModelDbConfiguration.cs" />
+    <Compile Include="ActionLogs\IActionLogsAddRepository.cs" />
+    <Compile Include="Allowances\Allowance.cs" />
+    <Compile Include="Allowances\AllowanceRate.cs" />
+    <Compile Include="Allowances\Allowance.Logic.cs" />
+    <Compile Include="Allowances\AllowancesModelDbConfiguration.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReport.Logic.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReport.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportAppendix.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportAuditDocument.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertReport.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertCorrection.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertFinancialCorrectionCSD.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertRevalidationCorrection.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertRevalidationFinancialCorrectionCSD.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportFinancialCorrectionCSD.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportContractReportCorrection.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportModelDBConfiguration.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportPeriod.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportAppendixType.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportStatus.cs" />
+    <Compile Include="AnnualAccountReports\AnnualAccountReportCertificationDocument.cs" />
+    <Compile Include="AnnualAccountReports\DataObjects\AnnualAccountReportAppendixCreateDO.cs" />
+    <Compile Include="AnnualAccountReports\DataObjects\AnnualAccountReportAppendixDO.cs" />
+    <Compile Include="AnnualAccountReports\DataObjects\AnnualAccountReportAuditDocumentDO.cs" />
+    <Compile Include="AnnualAccountReports\DataObjects\AnnualAccountReportCertificationDocumentDO.cs" />
+    <Compile Include="AnnualAccountReports\DataObjects\AnnualAccountReportDO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportAppendixVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportAuditDocumentVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportCertRevalidationFinancialCorrectionVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportCertificationDocumentVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportCorrectionVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportFinancialCorrectionVO.cs" />
+    <Compile Include="AnnualAccountReports\ViewObjects\AnnualAccountReportCertFinancialCorrectionVO.cs" />
+    <Compile Include="Arachne\ArachneEntityType.cs" />
+    <Compile Include="Arachne\ArachneExpenseTypes.cs" />
+    <Compile Include="Arachne\ArachneProcurementType.cs" />
+    <Compile Include="Arachne\EC-DataExchange-v2_0.cs" />
+    <Compile Include="Arachne\ProjectStatus.cs" />
+    <Compile Include="Arachne\ArachneProjectType.cs" />
+    <Compile Include="Arachne\ArachneContractType.cs" />
+    <Compile Include="Audits\Audit.cs" />
+    <Compile Include="Audits\AuditAscertainment.cs" />
+    <Compile Include="Audits\AuditInstitution.cs" />
+    <Compile Include="Audits\AuditKind.cs" />
+    <Compile Include="Audits\AuditLevel.cs" />
+    <Compile Include="Audits\AuditSubjectType.cs" />
+    <Compile Include="Audits\AuditType.cs" />
+    <Compile Include="Audits\AuditsModelDbConfiguration.cs" />
+    <Compile Include="Audits\AuditDoc.cs" />
+    <Compile Include="Audits\Audit.Logic.cs" />
+    <Compile Include="Audits\AuditLevelItem.cs" />
+    <Compile Include="Audits\AuditItemLevel.cs" />
+    <Compile Include="Audits\AuditAscertainmentItem.cs" />
+    <Compile Include="Audits\AuditProject.cs" />
+    <Compile Include="BasicInterestRates\BasicInterestRate.Logic.cs" />
+    <Compile Include="BasicInterestRates\BasicInterestRateModelDbConfiguration.cs" />
+    <Compile Include="BasicInterestRates\BasicInterestRate.cs" />
+    <Compile Include="BasicInterestRates\InterestRate.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheck.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheck.Logic.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckAscertainment.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckAscertainmentExecutionStatus.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckAscertainmentStatus.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckAscertainmentType.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckKind.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckLevel.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckProject.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityChecksModelDbConfiguration.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckStatus.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckSubjectType.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckType.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckLevelItem.cs" />
+    <Compile Include="CertAuthorityChecks\CertAuthorityCheckDocument.cs" />
+    <Compile Include="CertReports\CertReport.cs" />
+    <Compile Include="CertReports\CertReportCertificationDocument.cs" />
+    <Compile Include="CertReports\CertReportSnapshotFile.cs" />
+    <Compile Include="CertReports\CertReportSnapshot.cs" />
+    <Compile Include="CertReports\CertReportSnapshotJson.cs" />
+    <Compile Include="CertReports\CertReportStatus.cs" />
+    <Compile Include="CertReports\CertReportType.cs" />
+    <Compile Include="CertReports\CertReportModelDbConfiguration.cs" />
+    <Compile Include="CertReports\CertReport.Logic.cs" />
+    <Compile Include="CertReports\CertReportDocument.cs" />
+    <Compile Include="CertReports\CertReportAttachedCertReport.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportContractDebtDO.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportDebtReimbursedAmountDO.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportCertificationDocumentDO.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportSnapshotDO.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportDO.cs" />
+    <Compile Include="CertReports\DataObjects\CertReportDocumentDO.cs" />
+    <Compile Include="CertReports\IntermediateFinalCertReportSummaryTables.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportAdvancePaymentVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportCertCorrectionVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportCorrectionVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportCertificationDocumentsVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportDocumentsVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportFinancialCertCorrectionVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportFinancialCorrectionVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportFinancialRevalidationVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportPaymentVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportRevalidationVO.cs" />
+    <Compile Include="CertReports\ViewObjects\CertReportVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SapCertReportVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\ApprovedAmountsCorrectionsVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportAnnex4aResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportAnnex4aVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportApprovedAmountsCorrectionsResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportEligibleProgrammePriorityExpensesResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportProgrammePaidContributionInfoForFinancialInstrumentsResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportReaffirmedCostsByAdministrativeAuthorityResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\CertReportStateAidPaidAdvancePaymentsResultVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\EligibleProgrammePriorityExpensesVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\ProgrammePaidContributionInfoForFinancialInstrumentsVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\ReaffirmedCostsByAdministrativeAuthorityVO.cs" />
+    <Compile Include="CertReports\ViewObjects\SummaryVOs\StateAidPaidAdvancePaymentsVO.cs" />
+    <Compile Include="CertReports\YearlyCertReportSummaryTables.cs" />
+    <Compile Include="CheckBlankTopics\CheckBlankTopic.cs" />
+    <Compile Include="CheckBlankTopics\CheckBlankTopic.Logic.cs" />
+    <Compile Include="Companies\Company.cs" />
+    <Compile Include="Companies\Company.Logic.cs" />
+    <Compile Include="Companies\CompanyPerson.cs" />
+    <Compile Include="Companies\CompaniesModelDbConfiguration.cs" />
+    <Compile Include="Companies\LocalActionGroupMunicipality.cs" />
+    <Compile Include="Contracts\ContractRegistrationType.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrectionCSD.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrectionCSD.Logic.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrectionCSDStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrection.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityFinancialCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityCorrectionDocument.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityCorrection.cs" />
+    <Compile Include="Contracts\ContractAmountType.cs" />
+    <Compile Include="Contracts\ContractGrantDocument.cs" />
+    <Compile Include="Contracts\ContractProcurementDocument.cs" />
+    <Compile Include="Contracts\ContractProcurementPlan.Logic.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrection.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrectionCSD.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrectionCSDStatus.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityFinancialCorrectionCSD.Logic.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityCorrection.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityCorrectionDocument.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportCertAuthorityCorrectionType.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertAuthorityCorrectionType.cs" />
+    <Compile Include="Contracts\ContractReportDocumentType.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrection.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrectionIndicator.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrectionIndicator.Logic.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrectionIndicatorStatus.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractUser.cs" />
+    <Compile Include="Contracts\DataObjects\ContractProcurementDocumentDO.cs" />
+    <Compile Include="Contracts\ContractVersionXmlAmount.cs" />
+    <Compile Include="Contracts\ContractReportCorrection.cs" />
+    <Compile Include="Contracts\ContractReportCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportCorrectionDocument.cs" />
+    <Compile Include="Contracts\ContractReportCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportCorrectionType.cs" />
+    <Compile Include="Contracts\ContractBudgetLevel3Amount.cs" />
+    <Compile Include="Contracts\ContractCommunicationType.cs" />
+    <Compile Include="Contracts\ContractPartner.cs" />
+    <Compile Include="Contracts\Contract.cs" />
+    <Compile Include="Contracts\Contract.Logic.cs" />
+    <Compile Include="Contracts\ContractCommunicationXml.cs" />
+    <Compile Include="Contracts\ContractProcurementXml.cs" />
+    <Compile Include="Contracts\ContractProcurementXml.Logic.cs" />
+    <Compile Include="Contracts\ContractRegistration.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicro.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicro.Logic.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroCheck.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroCheck.Logic.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroCheckApproval.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroCheckStatus.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosDistrict.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosMunicipality.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosSettlement.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroStatus.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosType1Item.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosType2Item.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemEducation.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemGender.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemOccupation.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemParticipationState.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosType3Item.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosType3ItemFoodData.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemCancelationReason.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicroType2ItemLeavingState.cs" />
+    <Compile Include="Contracts\ContractReportMicros\ContractReportMicrosType4Item.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalMember.cs" />
+    <Compile Include="Contracts\ContractsContractRegistration.cs" />
+    <Compile Include="Contracts\ContractStatus.cs" />
+    <Compile Include="Contracts\ContractType.cs" />
+    <Compile Include="Contracts\ContractExecutionStatus.cs" />
+    <Compile Include="Contracts\ContractModelDbConfiguration.cs" />
+    <Compile Include="Contracts\ContractVersionType.cs" />
+    <Compile Include="Contracts\ContractVersionXml.cs" />
+    <Compile Include="Contracts\ContractVersionStatus.cs" />
+    <Compile Include="Contracts\ContractProcurementStatus.cs" />
+    <Compile Include="Contracts\ContractCommunicationStatus.cs" />
+    <Compile Include="Contracts\ContractVersionXml.Logic.cs" />
+    <Compile Include="Contracts\ContractCommunicationXml.Logic.cs" />
+    <Compile Include="Contracts\ContractRegistration.Logic.cs" />
+    <Compile Include="Contracts\ContractAccessCode.cs" />
+    <Compile Include="Contracts\ContractAccessCode.Logic.cs" />
+    <Compile Include="Contracts\ContractVersionXmlFile.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalFileType.cs" />
+    <Compile Include="Contracts\ContractVersionXmlFileType.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalFile.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCheck.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCheckStatus.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheck.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheckStatus.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCheck.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCheckStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrection.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialFile.cs" />
+    <Compile Include="Contracts\ContractSpendingPlanStatus.cs" />
+    <Compile Include="Contracts\ContractSpendingPlanXml.cs" />
+    <Compile Include="Contracts\ContractSpendingPlanXml.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCheckApproval.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCheck.Logic.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCheck.Logic.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalCheckApproval.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSD.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSDBudgetItem.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSDFile.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSDBudgetItem.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSDBudgetItemStatus.cs" />
+    <Compile Include="Contracts\ContractReportPaymentXmlFile.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrectionCSD.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrectionCSDStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrectionCSD.Logic.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheckApproval.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheck.Logic.cs" />
+    <Compile Include="Contracts\ContractReportAttachedFinancialCorrection.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheckCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCSDBudgetItemCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCorrectionCSDCertStatus.cs" />
+    <Compile Include="Contracts\ContractIndicator.cs" />
+    <Compile Include="Contracts\ContractReportIndicator.cs" />
+    <Compile Include="Contracts\ContractReportIndicatorApproval.cs" />
+    <Compile Include="Contracts\ContractReportIndicatorStatus.cs" />
+    <Compile Include="Contracts\ContractReportIndicator.Logic.cs" />
+    <Compile Include="Contracts\ContractReportAdvancePaymentAmount.cs" />
+    <Compile Include="Contracts\ContractReportAdvancePaymentAmountStatus.cs" />
+    <Compile Include="Contracts\ContractReportAdvancePaymentAmount.Logic.cs" />
+    <Compile Include="Contracts\ContractReportAdvancePaymentAmountApproval.cs" />
+    <Compile Include="Contracts\ContractReportAdvancePaymentAmountCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportCorrectionCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidation.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationDocument.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationStatus.cs" />
+    <Compile Include="Contracts\ContractReportRevalidationType.cs" />
+    <Compile Include="Contracts\ContractReportCertCorrection.cs" />
+    <Compile Include="Contracts\ContractReportCertCorrectionDocument.cs" />
+    <Compile Include="Contracts\ContractReportCertCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportCertCorrectionType.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidation.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidation.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidationCSD.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidationCSD.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidationCSDCertStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidationCSDStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialRevalidationStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrection.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrectionCSD.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrectionCSD.Logic.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrectionCSDStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancialCertCorrectionStatus.cs" />
+    <Compile Include="Contracts\ContractReportCertCorrection.Logic.cs" />
+    <Compile Include="Contracts\ContractReportRevalidation.Logic.cs" />
+    <Compile Include="Contracts\ContractReportAdvanceNVPaymentAmount.cs" />
+    <Compile Include="Contracts\ContractReportAdvanceNVPaymentAmount.Logic.cs" />
+    <Compile Include="Contracts\ContractReportAdvanceNVPaymentAmountApproval.cs" />
+    <Compile Include="Contracts\ContractReportAdvanceNVPaymentAmountStatus.cs" />
+    <Compile Include="Contracts\ContractReportPaymentCheckAmount.cs" />
+    <Compile Include="Contracts\CorrectionTypeExtended.cs" />
+    <Compile Include="Contracts\CostSupportingDocumentCompanyType.cs" />
+    <Compile Include="Contracts\CorrectionType.cs" />
+    <Compile Include="Contracts\CostSupportingDocumentType.cs" />
+    <Compile Include="Contracts\ContractCommunicationSource.cs" />
+    <Compile Include="Contracts\ContractProcurementXmlFile.cs" />
+    <Compile Include="Contracts\ContractProcurementXmlFileType.cs" />
+    <Compile Include="Contracts\ContractSubcontractType.cs" />
+    <Compile Include="Contracts\ContractActivity.cs" />
+    <Compile Include="Contracts\ContractActivityCompany.cs" />
+    <Compile Include="Contracts\ContractContractor.cs" />
+    <Compile Include="Contracts\ContractContract.cs" />
+    <Compile Include="Contracts\ContractSubcontract.cs" />
+    <Compile Include="Contracts\ContractContractActivity.cs" />
+    <Compile Include="Contracts\ContractProcurementPlan.cs" />
+    <Compile Include="Contracts\ContractDifferentiatedPosition.cs" />
+    <Compile Include="Contracts\ContractLocation.cs" />
+    <Compile Include="Contracts\DataObjects\ContractCommunicationDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractDataDO.cs" />
+    <Compile Include="Contracts\ContractCommunicationXmlFile.cs" />
+    <Compile Include="Contracts\ContractReport.cs" />
+    <Compile Include="Contracts\ContractReportType.cs" />
+    <Compile Include="Contracts\ContractReportStatus.cs" />
+    <Compile Include="Contracts\ContractReportPayment.cs" />
+    <Compile Include="Contracts\ContractReportPaymentType.cs" />
+    <Compile Include="Contracts\ContractReportPaymentStatus.cs" />
+    <Compile Include="Contracts\ContractReportFinancial.cs" />
+    <Compile Include="Contracts\ContractReportFinancialStatus.cs" />
+    <Compile Include="Contracts\ContractReportTechnical.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalStatus.cs" />
+    <Compile Include="Contracts\ContractReportTechnicalType.cs" />
+    <Compile Include="Contracts\ContractReportFinancial.Logic.cs" />
+    <Compile Include="Contracts\ContractReportPayment.Logic.cs" />
+    <Compile Include="Contracts\ContractReportTechnical.Logic.cs" />
+    <Compile Include="Contracts\ContractReport.Logic.cs" />
+    <Compile Include="Contracts\DataObjects\ContractGrantDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractRegistrationDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportAdvanceNVPaymentAmountDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportAdvancePaymentAmountDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportAttachedFinancialCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertAuthorityCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertAuthorityCorrectionDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertCorrectionDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCorrectionDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertAuthorityFinancialCorrectionCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCertCorrectionCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertAuthorityFinancialCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCertCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportCertAuthorityFinancialCorrectionInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCertCorrectionInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCheckDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationCertAuthorityCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationCertAuthorityCorrectionDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationCertAuthorityFinancialCorrectionCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationCertAuthorityFinancialCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationCertAuthorityFinancialCorrectionInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportTechnicalCorrectionIndicatorDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCorrectionCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportTechnicalCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportTechnicalCorrectionInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCorrectionInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCSDBudgetItemDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportMicroCheckDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportMicroDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportPaymentCheckAmountDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportPaymentCheckDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportPaymentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportTechnicalCheckDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportTechnicalDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportRevalidationDocumentDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractIndicatorDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportIndicatorDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialRevalidationCSDDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialRevalidationDO.cs" />
+    <Compile Include="Contracts\DataObjects\ContractReportFinancialRevalidationInfoDO.cs" />
+    <Compile Include="Contracts\DataObjects\NewContractReportCertAuthorityCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\NewContractReportCertCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\NewContractReportCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\NewContractReportRevalidationCertAuthorityCorrectionDO.cs" />
+    <Compile Include="Contracts\DataObjects\NewContractReportRevalidationDO.cs" />
+    <Compile Include="Contracts\Source.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBudgetTreeVO\ContractBudgetLevel0TreeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBudgetTreeVO\ContractBudgetLevel1TreeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBudgetTreeVO\ContractBudgetLevel2TreeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBudgetTreeVO\ContractBudgetLevel3TreeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractBudgetTreeVO\ContractBudgetTreeVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractGrantDocumentsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractProcurementDocumentsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportAdvanceNVPaymentAmountsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportAdvancePaymentAmountsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertifiedAmountCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertifiedAmountVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityCorrectionBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertCorrectionBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityCorrectionDocumentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertCorrectionDocumentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityCorrectionInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertCorrectionInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCorrectionBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCorrectionDocumentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCorrectionInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportExcelVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityFinancialCorrectionCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCertCorrectionCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertAuthorityFinancialCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCertCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCheckVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportCertifiedAmountFinancialCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportApprovedAmountVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityCorrectionBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityCorrectionDocumentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityCorrectionInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityFinancialCorrectionCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationCertAuthorityFinancialCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportTechnicalCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportTechnicalCorrectionIndicatorVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCorrectionCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCorrectionVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialCSDBudgetItemsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialRevalidationCSDsVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialRevalidationVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportFinancialVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportMicroCheckVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportMicroVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportPaymentCheckVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportPaymentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationBasicDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationDocumentVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationInfoVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRevalidationVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportSAPDataVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportTechnicalCheckVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportTechnicalVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportRequestedAmountVO.cs" />
+    <Compile Include="Contracts\ViewObjects\ContractReportVO.cs" />
+    <Compile Include="Contracts\Views\VwAccessCode.cs" />
+    <Compile Include="Core\BfpCalculator.cs" />
+    <Compile Include="Core\Currency.cs" />
+    <Compile Include="Core\Calculator.cs" />
+    <Compile Include="Core\DispatchParameterIdentifier.cs" />
+    <Compile Include="Core\DispatchResolver.cs" />
+    <Compile Include="Core\INotificationEvent.cs" />
+    <Compile Include="Core\HistoricContractImportException.cs" />
+    <Compile Include="Core\FileDO.cs" />
+    <Compile Include="Core\FileVO.cs" />
+    <Compile Include="Core\FileWithDescriptionDO.cs" />
+    <Compile Include="Core\INotificationEventEmitter.cs" />
+    <Compile Include="Core\INotificationEventHandler.cs" />
+    <Compile Include="Core\NotificationEventHandler.cs" />
+    <Compile Include="Core\Sign.cs" />
+    <Compile Include="Core\RioXmlFile.cs" />
+    <Compile Include="Core\RioXmlDocumentWithFiles.cs" />
+    <Compile Include="Core\EventHandler.cs" />
+    <Compile Include="Core\IDomainEvent.cs" />
+    <Compile Include="Core\IEventEmitter.cs" />
+    <Compile Include="Core\IEventHandler.cs" />
+    <Compile Include="Core\YesNoNonApplicable.cs" />
+    <Compile Include="Debts\ContractDebtCertStatus.cs" />
+    <Compile Include="Debts\ContractDebt.cs" />
+    <Compile Include="Debts\ContractDebt.Logic.cs" />
+    <Compile Include="Debts\CorrectionDebtStatus.cs" />
+    <Compile Include="Debts\DataObjects\ContractDebtDO.cs" />
+    <Compile Include="Debts\DataObjects\ContractDebtInterestDO.cs" />
+    <Compile Include="Debts\DataObjects\ContractDebtVersionDO.cs" />
+    <Compile Include="Debts\DataObjects\CorrectionDebtDO.cs" />
+    <Compile Include="Debts\DataObjects\CorrectionDebtInfoDO.cs" />
+    <Compile Include="Debts\DataObjects\CorrectionDebtVersionDO.cs" />
+    <Compile Include="Debts\DataObjects\NewContractDebtDO.cs" />
+    <Compile Include="Debts\DataObjects\NewCorrectionDebtDO.cs" />
+    <Compile Include="Debts\DebtsModelDbConfiguration.cs" />
+    <Compile Include="Debts\ContractDebtExecutionStatus.cs" />
+    <Compile Include="Debts\ContractDebtVersion.cs" />
+    <Compile Include="Debts\ContractDebtPayment.cs" />
+    <Compile Include="Debts\ContractDebtVersionStatus.cs" />
+    <Compile Include="Debts\ContractDebtVersion.Logic.cs" />
+    <Compile Include="Debts\ContractDebtInterest.cs" />
+    <Compile Include="Debts\ContractDebtStatus.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtInfoVO.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtInterestVO.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtPaymentCertReportVO.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtReportVO.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtVersionVO.cs" />
+    <Compile Include="Debts\ViewObjects\ContractDebtVO.cs" />
+    <Compile Include="Debts\ViewObjects\CorrectionDebtReportVO.cs" />
+    <Compile Include="Debts\ViewObjects\CorrectionDebtVersionVO.cs" />
+    <Compile Include="Debts\ViewObjects\CorrectionDebtVO.cs" />
+    <Compile Include="Declarations\Declaration.cs" />
+    <Compile Include="Declarations\Declaration.Logic.cs" />
+    <Compile Include="Declarations\DeclarationFile.cs" />
+    <Compile Include="Declarations\DeclarationModelDbConfiguration.cs" />
+    <Compile Include="Declarations\DeclarationStatus.cs" />
+    <Compile Include="DomainEnumTexts.en.Designer.cs">
+      <DependentUpon>DomainEnumTexts.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DomainEnumTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainEnumTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainTexts.en.Designer.cs">
+      <DependentUpon>DomainTexts.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DomainTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DomainTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmount.cs" />
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmount.Logic.cs" />
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmountCertReport.cs" />
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmountsModelDbConfiguration.cs" />
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmountStatus.cs" />
+    <Compile Include="EuReimbursedAmounts\EuReimbursedAmountPaymentType.cs" />
+    <Compile Include="EuReimbursedAmounts\IrregularityExpenses.cs" />
+    <Compile Include="Debts\CorrectionDebt.cs" />
+    <Compile Include="Debts\CorrectionDebt.Logic.cs" />
+    <Compile Include="Debts\CorrectionDebtVersion.cs" />
+    <Compile Include="Debts\CorrectionDebtVersionStatus.cs" />
+    <Compile Include="Debts\CorrectionDebtVersion.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionResultProject.cs" />
+    <Compile Include="EvalSessions\EvalSessionResult.cs" />
+    <Compile Include="EvalSessions\EvalSessionResultStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionResultType.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheet.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheetXmlFileType.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistributionUserDO.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectStandingRejectionReason.cs" />
+    <Compile Include="EvalSessions\EvalSessionReportProjectPartner.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandingProjectDO.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandingProjectHelper.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandpointXmlFile.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectStandingType.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandpointXml.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandpointXml.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandpointStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectWorkStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionEvaluationResult.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectStandingEvaluation.cs" />
+    <Compile Include="EvalSessions\EvalSessionReport.cs" />
+    <Compile Include="EvalSessions\EvalSessionReport.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionReportProject.cs" />
+    <Compile Include="EvalSessions\EvalSessionReportProjectStandingStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionReportType.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandingProject.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandingStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionStanding.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectStanding.cs" />
+    <Compile Include="EvalSessions\EvalSessionProjectStandingStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionDocument.cs" />
+    <Compile Include="EvalSessions\EvalSessionEvaluationCalculationType.cs" />
+    <Compile Include="EvalSessions\EvalSessionEvaluation.cs" />
+    <Compile Include="EvalSessions\EvalSessionEvaluationSheet.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistributionProject.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistributionUser.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheetXml.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheetXml.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionUserStatus.cs" />
+    <Compile Include="EvalSessions\NewEvalSessionStandingType.cs" />
+    <Compile Include="Events\ContractReportReturnedDocumentEvent.cs" />
+    <Compile Include="Events\ContractVersionActivatedEvent.cs" />
+    <Compile Include="Events\ContractRegistrationPasswordRecoveredEvent.cs" />
+    <Compile Include="Events\ContractRegistrationCreatedEvent.cs" />
+    <Compile Include="EvalSessions\EvalSessionStandpoint.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheetXmlFile.cs" />
+    <Compile Include="Events\ContractAuthorityCommunicationSentEvent.cs" />
+    <Compile Include="Events\ContractVersionContractDateChangedEvent.cs" />
+    <Compile Include="Events\EvalSessionStatusChangedEvent.cs" />
+    <Compile Include="Events\MessageSentEvent.cs" />
+    <Compile Include="Events\ContractContractRegistrationActivatedEvent.cs" />
+    <Compile Include="Events\ContractContractRegistrationDeactivatedEvent.cs" />
+    <Compile Include="Events\ContractProcurementXmlActivatedEvent.cs" />
+    <Compile Include="Events\EvalSessionStandpointCanceledEvent.cs" />
+    <Compile Include="Events\EvalSessionSheetCanceledEvent.cs" />
+    <Compile Include="Events\AnswerReceivedEvent.cs" />
+    <Compile Include="Events\EvalSessionPublishedEvent.cs" />
+    <Compile Include="Events\ProjectMACommunicationQuestionSentEvent.cs" />
+    <Compile Include="Events\ProjectEvalStatusChangedEvent.cs" />
+    <Compile Include="Events\QuestionSentEvent.cs" />
+    <Compile Include="Events\ProcedureQaActivatedEvent.cs" />
+    <Compile Include="Events\ProjectRegisteredEvent.cs" />
+    <Compile Include="Events\ProjectVersionActivatedEvent.cs" />
+    <Compile Include="Events\UserUpdatedEvent.cs" />
+    <Compile Include="Events\ProcedureSetToDraftEvent.cs" />
+    <Compile Include="Events\ProcedureCanceledEvent.cs" />
+    <Compile Include="Events\ProcedureTerminatedEvent.cs" />
+    <Compile Include="Events\ProcedureActivatedEvent.cs" />
+    <Compile Include="Events\ProcedureEndedEvent.cs" />
+    <Compile Include="Events\RegistrationCreatedEvent.cs" />
+    <Compile Include="Events\RegistrationPasswordRecoveredEvent.cs" />
+    <Compile Include="Events\UserPasswordRecoveredEvent.cs" />
+    <Compile Include="Events\UserActivatedEvent.cs" />
+    <Compile Include="ExpenseTypes\ExpenseType.Logic.cs" />
+    <Compile Include="ExpenseTypes\ExpenseTypesModelDbConfiguration.cs" />
+    <Compile Include="FinancialExecution\FinancialExecutionTables.cs" />
+    <Compile Include="FIReimbursedAmounts\FIReimbursedAmount.cs" />
+    <Compile Include="FIReimbursedAmounts\FIReimbursementType.cs" />
+    <Compile Include="FIReimbursedAmounts\FIReimbursedAmountStatus.cs" />
+    <Compile Include="FIReimbursedAmounts\FIReimbursedAmount.Logic.cs" />
+    <Compile Include="FIReimbursedAmounts\FIReimbursedAmountModelDbConfiguration.cs" />
+    <Compile Include="Guidances\Guidance.cs" />
+    <Compile Include="Guidances\Guidance.Logic.cs" />
+    <Compile Include="Guidances\GuidanceModelDbConfiguration.cs" />
+    <Compile Include="Guidances\GuidanceModule.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractErrorDO.cs" />
+    <Compile Include="HistoricContracts\HistoricContractRequest.cs" />
+    <Compile Include="HistoricContracts\HistoricContractReimbursedAmount.cs" />
+    <Compile Include="HistoricContracts\HistoricContractActuallyPaidAmount.cs" />
+    <Compile Include="HistoricContracts\HistoricContractContractedAmount.cs" />
+    <Compile Include="HistoricContracts\HistoricContractProcurementPlanPosition.cs" />
+    <Compile Include="HistoricContracts\HistoricContractProcurementPlan.cs" />
+    <Compile Include="HistoricContracts\HistoricContractPartnerType.cs" />
+    <Compile Include="HistoricContracts\HistoricContractPartner.cs" />
+    <Compile Include="HistoricContracts\HistoricContractExecutionStatus.cs" />
+    <Compile Include="HistoricContracts\HistoricContractActivity.cs" />
+    <Compile Include="HistoricContracts\HistoricContractLocation.cs" />
+    <Compile Include="HistoricContracts\HistoricContract.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractActivityDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractActuallyPaidAmountDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractContractedAmountDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractLocationDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractPartnerDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractProcurementPlanDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractProcurementPlanPositionDO.cs" />
+    <Compile Include="HistoricContracts\DataObjects\HistoricContractReimbursedAmountDO.cs" />
+    <Compile Include="HistoricContracts\HistoricContractsModelDbConfiguration.cs" />
+    <Compile Include="Indicators\DataObjects\IndicatorDO.cs" />
+    <Compile Include="Indicators\DataObjects\IndicatorItemTypeDO.cs" />
+    <Compile Include="Indicators\IndicatorItemType.cs" />
+    <Compile Include="Indicators\IndicatorItemType.Logic.cs" />
+    <Compile Include="InterestSchemes\InterestScheme.Logic.cs" />
+    <Compile Include="InterestSchemes\InterestSchemesModelDbConfiguration.cs" />
+    <Compile Include="InterestSchemes\InterestScheme.cs" />
+    <Compile Include="Irregularities\IrregularityFinancialCorrection.cs" />
+    <Compile Include="Irregularities\IrregularityDoc.cs" />
+    <Compile Include="Irregularities\IrregularityCheckTime.cs" />
+    <Compile Include="MonitoringFinancialControl\ActuallyPaidAmount.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\ActuallyPaidAmountDocument.cs" />
+    <Compile Include="MonitoringFinancialControl\ActuallyPaidAmountStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\AmendmentReason.cs" />
+    <Compile Include="MonitoringFinancialControl\ActuallyPaidAmount.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationDocument.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationDocument.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationDocumentStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationDocumentType.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationSign.cs" />
+    <Compile Include="MonitoringFinancialControl\CompensationDocuments\CompensationDocumentDoc.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\DataObjects\FlatFinancialCorrectionDO.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\DataObjects\FlatFinancialCorrectionInfoDO.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\DataObjects\FlatFinancialCorrectionItemDO.cs" />
+    <Compile Include="MonitoringFinancialControl\Prognosis.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\PrognosisStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\PrognosisLevel.cs" />
+    <Compile Include="MonitoringFinancialControl\Prognosis.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionViolationFoundBy.cs" />
+    <Compile Include="MonitoringFinancialControl\PaymentReason.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersion.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrection.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrectionImposingReason.cs" />
+    <Compile Include="MonitoringFinancialControl\OtherViolation.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionViolation.cs" />
+    <Compile Include="MonitoringFinancialControl\CorrectionBearer.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersionStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrectionVersion.cs" />
+    <Compile Include="MonitoringFinancialControl\FinancialCorrections\FinancialCorrection.cs" />
+    <Compile Include="Irregularities\Irregularity.Logic.cs" />
+    <Compile Include="Irregularities\IrregularityVersion.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrection.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\IFlatFinancialCorrectionItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionContractContractItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionContractItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionProcedureItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionProgrammePriorityItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionLevelItem.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevelItems\FlatFinancialCorrectionProgrammeItem.cs" />
+    <Compile Include="Irregularities\IrregularitySanctionType.cs" />
+    <Compile Include="Irregularities\IrregularitySanctionCategory.cs" />
+    <Compile Include="Irregularities\IrregularityFinancialStatus.cs" />
+    <Compile Include="Irregularities\IrregularityType.cs" />
+    <Compile Include="Irregularities\IrregularityCategory.cs" />
+    <Compile Include="Irregularities\IrregularityVersionInvolvedPerson.cs" />
+    <Compile Include="Irregularities\IrregularityVersionDoc.cs" />
+    <Compile Include="Irregularities\IrregularityReasonNotReportingToOlaf.cs" />
+    <Compile Include="Irregularities\IrregularitySanctionProcedureStatus.cs" />
+    <Compile Include="Irregularities\IrregularitySanctionProcedureKind.cs" />
+    <Compile Include="Irregularities\IrregularitySanctionProcedureType.cs" />
+    <Compile Include="Irregularities\IrregularitySanction.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\DebtReimbursedAmountCreationType.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ContractReimbursedAmountPayment.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ContractReimbursedAmount.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\DataObjects\NewContractReimbursedAmountDO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\DataObjects\NewDebtReimbursedAmountDO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\DataObjects\ReimbursedAmountDO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\DebtReimbursedAmount.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmountDiscriminator.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmount.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmount.Logic.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ReimbursedAmountStatus.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\Reimbursement.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ReimbursementType.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\ContractReimbursedAmountBasicDataVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\ContractReimbursedAmountInfoVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\ContractReimbursedAmountVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\DebtReimbursedAmountBasicDataPaymentVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\DebtReimbursedAmountBasicDataVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\DebtReimbursedAmountInfoVO.cs" />
+    <Compile Include="MonitoringFinancialControl\ReimbursedAmounts\ViewObjects\DebtReimbursedAmountVO.cs" />
+    <Compile Include="Monitorstat\MonitorstatMapNode.cs" />
+    <Compile Include="Monitorstat\MonitorstatMapNodeType.cs" />
+    <Compile Include="Monitorstat\MonitorstatModelDbConfiguration.cs" />
+    <Compile Include="Monitorstat\MonitorstatReport.cs" />
+    <Compile Include="Monitorstat\MonitorstatYear.cs" />
+    <Compile Include="News\NewsType.cs" />
+    <Compile Include="NonAggregates\BfpAmount.cs" />
+    <Compile Include="NonAggregates\FinaceSourcesSAP.cs" />
+    <Compile Include="NonAggregates\InformationSystem.cs" />
+    <Compile Include="NonAggregates\GroupingLevel.cs" />
+    <Compile Include="NonAggregates\BudgetLevel.cs" />
+    <Compile Include="NonAggregates\CommitmentType.cs" />
+    <Compile Include="NonAggregates\SebraPaymentType.cs" />
+    <Compile Include="NotificationEvents\ContractNotificationEvent.cs" />
+    <Compile Include="NotificationEvents\EvalSessionNotificationEvent.cs" />
+    <Compile Include="NotificationEvents\ProcedureNotificationEvent.cs" />
+    <Compile Include="NotificationEvents\ProgrammeIndependentEvent.cs" />
+    <Compile Include="NotificationEvents\ProjectNotificationEvent.cs" />
+    <Compile Include="NotificationEvents\ProgrammeNotificationEvent.cs" />
+    <Compile Include="Notifications\DataObjects\NotificationSettingDO.cs" />
+    <Compile Include="Notifications\NotificationEventPermission.cs" />
+    <Compile Include="Notifications\NotificationEventType.cs" />
+    <Compile Include="NonAggregates\PortalPersonalUinType.cs" />
+    <Compile Include="NonAggregates\PersonalUinType.cs" />
+    <Compile Include="NonAggregates\ExpensesAmount.cs" />
+    <Compile Include="Irregularities\IrregularityImpairedRegulation.cs" />
+    <Compile Include="Irregularities\IrregularityImpairedRegulationAct.cs" />
+    <Compile Include="Irregularities\IrregularityProcedureStatus.cs" />
+    <Compile Include="Irregularities\IrregularityRapporteur.cs" />
+    <Compile Include="Irregularities\IrregularityCaseState.cs" />
+    <Compile Include="Irregularities\IrregularityClassification.cs" />
+    <Compile Include="Irregularities\IrregularityVersionStatus.cs" />
+    <Compile Include="Irregularities\IrregularityVersion.cs" />
+    <Compile Include="Irregularities\InvolvedPersonLegalType.cs" />
+    <Compile Include="Irregularities\Irregularity.cs" />
+    <Compile Include="Irregularities\IrregularitySignal.Logic.cs" />
+    <Compile Include="Irregularities\IrregularitySignalInvolvedPerson.cs" />
+    <Compile Include="Irregularities\IrregularityModelDbConfiguration.cs" />
+    <Compile Include="Irregularities\IrregularityStatus.cs" />
+    <Compile Include="Irregularities\IrregularitySignal.cs" />
+    <Compile Include="Irregularities\IrregularitySignalDoc.cs" />
+    <Compile Include="Irregularities\IrregularitySignalStatus.cs" />
+    <Compile Include="NonAggregates\Quarter.cs" />
+    <Compile Include="NonAggregates\Month.cs" />
+    <Compile Include="NonAggregates\Year.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionType.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrection.cs" />
+    <Compile Include="MonitoringFinancialControl\MonitoringFinancialControlModelDbConfiguration.cs" />
+    <Compile Include="MonitoringFinancialControl\FlatFinancialCorrections\FlatFinancialCorrectionLevel.cs" />
+    <Compile Include="Messages\Message.Logic.cs" />
+    <Compile Include="Messages\MessageType.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\MessageFile.cs" />
+    <Compile Include="Messages\MessageModelDbConfiguration.cs" />
+    <Compile Include="Messages\MessageRecipient.cs" />
+    <Compile Include="Messages\MessageStatus.cs" />
+    <Compile Include="News\News.Logic.cs" />
+    <Compile Include="News\NewsModelDbConfiguration.cs" />
+    <Compile Include="News\News.cs" />
+    <Compile Include="News\NewsFile.cs" />
+    <Compile Include="News\NewsStatus.cs" />
+    <Compile Include="NonAggregates\ErrandArea.cs" />
+    <Compile Include="NonAggregates\ErrandType.cs" />
+    <Compile Include="NonAggregates\ProtectedZone.cs" />
+    <Compile Include="ActionLogs\ActionLogType.cs" />
+    <Compile Include="NonAggregates\YesNoOther.cs" />
+    <Compile Include="NonAggregates\RegulationInvestmentPriority.cs" />
+    <Compile Include="NonAggregates\NotificationEvent.cs" />
+    <Compile Include="Notifications\NotificationEntry.cs" />
+    <Compile Include="Notifications\NotificationEntry.Logic.cs" />
+    <Compile Include="Notifications\NotificationEntryStatus.cs" />
+    <Compile Include="Notifications\NotificationSets\NotificationContractSet.cs" />
+    <Compile Include="Notifications\NotificationSets\NotificationProcedureSet.cs" />
+    <Compile Include="Notifications\NotificationSets\NotificationProgrammePrioritySet.cs" />
+    <Compile Include="Notifications\NotificationSets\NotificationProgrammeSet.cs" />
+    <Compile Include="Notifications\NotificationsModelDbConfiguration.cs" />
+    <Compile Include="Notifications\NotificationScope.cs" />
+    <Compile Include="Notifications\NotificationSets\NotificationSet.cs" />
+    <Compile Include="Notifications\NotificationSettingStatus.cs" />
+    <Compile Include="Notifications\UserNotification.cs" />
+    <Compile Include="Notifications\UserNotification.Logic.cs" />
+    <Compile Include="Notifications\NotificationSetting.cs" />
+    <Compile Include="Notifications\NotificationSetting.Logic.cs" />
+    <Compile Include="Monitorstat\MonitorstatSurvey.cs" />
+    <Compile Include="OperationalMap\Directions\Json\DirectionJson.cs" />
+    <Compile Include="OperationalMap\Directions\Json\DirectionPairJson.cs" />
+    <Compile Include="OperationalMap\Directions\SubDirection.cs" />
+    <Compile Include="OperationalMap\Directions\DirectionsModelDbConfiguration.cs" />
+    <Compile Include="OperationalMap\Directions\DirectionStatus.cs" />
+    <Compile Include="OperationalMap\Directions\Direction.cs" />
+    <Compile Include="OperationalMap\Directions\Direction.Logic.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeDirection.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeWithDirections.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeWithDirections.Logic.cs" />
+    <Compile Include="OperationalMap\MapNodes\DataObjects\ProgrammePriorityBudgetDO.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeStatus.cs" />
+    <Compile Include="OperationalMap\ProcedureManuals\ProgrammeProcedureManual.Logic.cs" />
+    <Compile Include="OperationalMap\ProcedureManuals\ProgrammeProcedureManual.cs" />
+    <Compile Include="OperationalMap\ProcedureManuals\ProcedureManualModelDbConfiguration.cs" />
+    <Compile Include="OperationalMap\ProcedureManuals\ProcedureManualStatus.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\FieldType.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeAppFormDeclaration.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeDeclaration.Logic.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeDeclaration.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeDeclarationItem.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeDeclarationsModelDbConfiguration.cs" />
+    <Compile Include="OperationalMap\ProgrammeDeclarations\ProgrammeDeclarationType.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ProgrammePriorityCompany.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ProgrammePriorityType.cs" />
+    <Compile Include="Procedures\ApplicationSectionType.cs" />
+    <Compile Include="Procedures\DataObjects\ProcedureDeclarationDO.cs" />
+    <Compile Include="Procedures\Json\ProcedureAppGuidlineJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureApplicationSectionAdditionalSettingJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureApplicationSectionJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureDeclarationItemJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureDeclarationJson.cs" />
+    <Compile Include="Procedures\ProcedureAppFormDeclaration.cs" />
+    <Compile Include="Procedures\ProcedureApplicationGuideline.cs" />
+    <Compile Include="Procedures\ProcedureApplicationSectionAdditionalSettingType.cs" />
+    <Compile Include="Procedures\ProcedureApplicationSectionAdditionalSetting.cs" />
+    <Compile Include="Procedures\ProcedureApplicationSection.cs" />
+    <Compile Include="Procedures\ProcedureDeclaration.cs" />
+    <Compile Include="Procedures\ProcedureDeclaration.Logic.cs" />
+    <Compile Include="Procedures\ProcedureDeclarationType.cs" />
+    <Compile Include="Procedures\ProcedureDirection.cs" />
+    <Compile Include="Procedures\ProcedureKind.cs" />
+    <Compile Include="Procedures\ProcedureMassCommunication.cs" />
+    <Compile Include="Procedures\ProcedureMassCommunication.Logic.cs" />
+    <Compile Include="Procedures\ProcedureMassCommunicationRecipient.cs" />
+    <Compile Include="Procedures\ProcedureMassCommunicationStatus.cs" />
+    <Compile Include="OperationalMap\Programmes\ProgrammeApplicationDocument.cs" />
+    <Compile Include="Procedures\ProcedureMassCommunicationDocument.cs" />
+    <Compile Include="PhysicalExecution\PhysicalExecutionTables.cs" />
+    <Compile Include="PhysicalExecution\PhysicalExecutionYear.cs" />
+    <Compile Include="Procedures\ActiveStatus.cs" />
+    <Compile Include="Procedures\AllowedRegistrationType.cs" />
+    <Compile Include="Procedures\Json\ProcedureLocationJson.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocumentsSectionStatus.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureAdvancePaymentDocument.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureContractReportDocumentType.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableXml.Logic.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableStatus.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableTypeShort.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableXmlFile.cs" />
+    <Compile Include="Procedures\ProcedureEvalType.cs" />
+    <Compile Include="Procedures\Json\BudgetExpenseDetailJson.cs" />
+    <Compile Include="Procedures\Json\BudgetExpenseJson.cs" />
+    <Compile Include="Procedures\Json\BudgetExpenseTypeJson.cs" />
+    <Compile Include="Procedures\Json\IndicatorJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureAppDocJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureProgrammeJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureSpecFieldJson.cs" />
+    <Compile Include="Procedures\Json\ProcedureVersionJson.cs" />
+    <Compile Include="Procedures\Json\ProgrammePriorityJson.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureFinalPaymentDocument.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureIntermediatePaymentDocument.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureProcurementDocument.cs" />
+    <Compile Include="Procedures\ProcedureLocation.cs" />
+    <Compile Include="NonAggregates\RegionCategory.cs" />
+    <Compile Include="Indicators\Indicator.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeType.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureContractReportDocument.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureTechnicalReportDocument.cs" />
+    <Compile Include="Procedures\ProcedureContractReportDocuments\ProcedureFinancialReportDocument.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatDocument.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatDocumentStatus.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatEconomicActivity.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatEconomicActivity.Logic.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatEconomicActivityStatus.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatEconomicActivityType.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatRequest.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatRequest.Logic.cs" />
+    <Compile Include="Procedures\ProcedureMonitorstatRequestStatus.cs" />
+    <Compile Include="Procedures\ProcedureQuestion.cs" />
+    <Compile Include="Procedures\ProcedureVersion.cs" />
+    <Compile Include="Procedures\ProcedureVersion.Logic.cs" />
+    <Compile Include="Procedures\Validation\Functions\Abstract\BooleanConditionalFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\Abstract\AliasSumFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\SumSelfFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\SumGrandFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\SumTotalFunction.cs" />
+    <Compile Include="Procedures\Validation\NCalcParameterTypeExtensions.cs" />
+    <Compile Include="Procedures\Validation\Parameters\CompanySizeTypeParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\CandidateUinParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\CompanyLegalTypeParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\CompanyTypeParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\KidCodeProjectParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\KidCodeOrganizationParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\Level3BoolAttrubuteParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\Level3StringAttrubuteParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\IsPrivateLegalParameter.cs" />
+    <Compile Include="Procedures\Validation\ProcedureValidationEngine.cs" />
+    <Compile Include="Procedures\Validation\DatabaseSerializationVisitor.cs" />
+    <Compile Include="Procedures\Validation\Functions\INCalcExpressionFunction.cs" />
+    <Compile Include="Procedures\Validation\Parameters\INCalcExpressionParameter.cs" />
+    <Compile Include="Procedures\Validation\NCalcEvaluationContext.cs" />
+    <Compile Include="Procedures\Validation\Parameters\NCalcFunctionParameter.cs" />
+    <Compile Include="Procedures\Validation\NCalcType.cs" />
+    <Compile Include="Procedures\Validation\RomanNumeralsConverter.cs" />
+    <Compile Include="Core\RioXmlDocument.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistributionStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistribution.cs" />
+    <Compile Include="EvalSessions\EvalSessionDistributionType.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheetStatus.cs" />
+    <Compile Include="EvalSessions\EvalSessionSheet.cs" />
+    <Compile Include="Procedures\ApplicationFormType.cs" />
+    <Compile Include="Procedures\Validation\Parameters\BooleanValueParameter.cs" />
+    <Compile Include="EvalSessions\EvalSessionProject.cs" />
+    <Compile Include="EvalSessions\EvalSessionUser.cs" />
+    <Compile Include="EvalSessions\EvalSessionStatus.cs" />
+    <Compile Include="EvalSessions\EvalSession.cs" />
+    <Compile Include="EvalSessions\EvalSessionsModelDbConfiguration.cs" />
+    <Compile Include="EvalSessions\EvalSessionType.cs" />
+    <Compile Include="EvalSessions\EvalSession.Logic.cs" />
+    <Compile Include="EvalSessions\EvalSessionUserType.cs" />
+    <Compile Include="Procedures\ProcedureBudgetLevel2AidMode.cs" />
+    <Compile Include="Procedures\ProcedureEvalTable.cs" />
+    <Compile Include="Emails\EmailsModelDbConfiguration.cs" />
+    <Compile Include="NonAggregates\EmailStatus.cs" />
+    <Compile Include="Emails\Email.cs" />
+    <Compile Include="Emails\Email.Logic.cs" />
+    <Compile Include="Procedures\Validation\Functions\Abstract\NumeralConditionalFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\AvgFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\AnyFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\AllFunction.cs" />
+    <Compile Include="Procedures\Validation\Functions\SumFunction.cs" />
+    <Compile Include="Procedures\Validation\Parameters\Abstract\CustomNCalcExpressionParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\CurrentGroupParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\GroupNameParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\GroupLevelParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\Level3DecimalAttrubuteParameter.cs" />
+    <Compile Include="Procedures\Validation\Parameters\SubTreeParameter.cs" />
+    <Compile Include="Procedures\ProcedureBudgetValidationRule.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableType.cs" />
+    <Compile Include="Procedures\ProcedureSpecFieldMaxLength.cs" />
+    <Compile Include="Procedures\ProcedureEvalTableXml.cs" />
+    <Compile Include="Procedures\Views\VwBudgetComponent.cs" />
+    <Compile Include="Procurements\Procurement.Logic.cs" />
+    <Compile Include="Procurements\ProcurementsModelDbConfiguration.cs" />
+    <Compile Include="Procurements\Procurement.cs" />
+    <Compile Include="Procurements\ProcurementDifferentiatedPosition.cs" />
+    <Compile Include="Procurements\ProcurementDocument.cs" />
+    <Compile Include="Procurements\ProcurementStatus.cs" />
+    <Compile Include="Projects\DataObjects\AutomaticProjectVersionXmlDO.cs" />
+    <Compile Include="Projects\ProjectCommonCommunication.cs" />
+    <Compile Include="Projects\ProjectCommonCommunication.Logic.cs" />
+    <Compile Include="Projects\ProjectCommonCommunicationDiscriminator.cs" />
+    <Compile Include="Projects\ProjectCommunicationAnswer.cs" />
+    <Compile Include="Projects\ProjectCommunicationAnswer.Logic.cs" />
+    <Compile Include="Projects\ProjectCommunicationAnswerSource.cs" />
+    <Compile Include="Projects\ProjectCommunicationAnswerStatus.cs" />
+    <Compile Include="Projects\ProjectManagingAuthorityCommunication.cs" />
+    <Compile Include="Projects\ProjectCommunicationMessageFileType.cs" />
+    <Compile Include="Projects\ProjectDossierDocumentType.cs" />
+    <Compile Include="Projects\ProjectCommunicationMessage.cs" />
+    <Compile Include="Projects\ProjectCommunicationMessageFile.cs" />
+    <Compile Include="Projects\ProjectCommunicationFileSignature.cs" />
+    <Compile Include="Projects\ProjectCommunicationFile.cs" />
+    <Compile Include="Projects\ProjectCommunicationMessageType.cs" />
+    <Compile Include="Projects\ProjectFile.cs" />
+    <Compile Include="Projects\ProjectCommunication.Logic.cs" />
+    <Compile Include="Projects\ProjectCommunicationStatus.cs" />
+    <Compile Include="Projects\ProjectCommunication.cs" />
+    <Compile Include="Projects\ProjectFileSignature.cs" />
+    <Compile Include="Projects\ProjectManagingAuthorityCommunicationStatus.cs" />
+    <Compile Include="Projects\ProjectManagingAuthorityCommunicationSubject.cs" />
+    <Compile Include="Projects\ProjectManagingAuthorityCommunicationSource.cs" />
+    <Compile Include="Projects\ProjectMassManagingAuthorityCommunication.cs" />
+    <Compile Include="Projects\ProjectMassManagingAuthorityCommunication.Logic.cs" />
+    <Compile Include="Projects\ProjectMassManagingAuthorityCommunicationDocument.cs" />
+    <Compile Include="Projects\ProjectMassManagingAuthorityCommunicationRecipient.cs" />
+    <Compile Include="Projects\ProjectMassManagingAuthorityCommunicationStatus.cs" />
+    <Compile Include="Projects\ProjectMonitorstatRequest.cs" />
+    <Compile Include="Projects\ProjectMonitorstatRequest.Logic.cs" />
+    <Compile Include="Projects\ProjectMonitorstatRequestStatus.cs" />
+    <Compile Include="Projects\ProjectMonitorstatResponse.cs" />
+    <Compile Include="Projects\ProjectVersionXmlFileType.cs" />
+    <Compile Include="Projects\ProjectVersionXmlFile.cs" />
+    <Compile Include="Projects\ViewObjects\ProcedureGrandAmountsVO.cs" />
+    <Compile Include="Projects\ViewObjects\ProjectGrandAmountsVO.cs" />
+    <Compile Include="Registrations\RegOfferStatus.cs" />
+    <Compile Include="Registrations\RegOfferXml.Logic.cs" />
+    <Compile Include="Registrations\RegOfferXmlFileType.cs" />
+    <Compile Include="Registrations\RegOfferXmlFile.cs" />
+    <Compile Include="Registrations\RegOfferXml.cs" />
+    <Compile Include="Registrations\RegProjectXmlFileType.cs" />
+    <Compile Include="Registrations\RegProjectXmlFile.cs" />
+    <Compile Include="Registrations\RegProjectXml.cs" />
+    <Compile Include="Registrations\RegProjectXml.Logic.cs" />
+    <Compile Include="Registrations\RegistrationsModelDbConfiguration.cs" />
+    <Compile Include="Registrations\Registration.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNode.Logic.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodesModelDbConfiguration.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeRelation.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeDocument.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNodeBudget.cs" />
+    <Compile Include="OperationalMap\MapNodes\MapNode.cs" />
+    <Compile Include="NonAggregates\Blob.cs" />
+    <Compile Include="Core\DomainObjectNotFoundException.cs" />
+    <Compile Include="Core\IAggregateRoot.cs" />
+    <Compile Include="Core\DomainException.cs" />
+    <Compile Include="Core\DomainValidationException.cs" />
+    <Compile Include="Indicators\Indicator.Logic.cs" />
+    <Compile Include="Indicators\IndicatorsModelDbConfiguration.cs" />
+    <Compile Include="Measures\Measure.Logic.cs" />
+    <Compile Include="NonAggregates\CompanyLegalType.cs" />
+    <Compile Include="NonAggregates\CompanySizeType.cs" />
+    <Compile Include="NonAggregates\CompanyType.cs" />
+    <Compile Include="NonAggregates\KidCode.cs" />
+    <Compile Include="NonAggregates\ErrandLegalAct.cs" />
+    <Compile Include="NonAggregates\NutsLevel.cs" />
+    <Compile Include="NonAggregates\Settlement.cs" />
+    <Compile Include="NonAggregates\Municipality.cs" />
+    <Compile Include="NonAggregates\District.cs" />
+    <Compile Include="NonAggregates\Nuts2.cs" />
+    <Compile Include="NonAggregates\Nuts1.cs" />
+    <Compile Include="NonAggregates\Country.cs" />
+    <Compile Include="ExpenseTypes\ExpenseSubType.cs" />
+    <Compile Include="ExpenseTypes\ExpenseType.cs" />
+    <Compile Include="NonAggregates\Institution.cs" />
+    <Compile Include="NonAggregates\InstitutionPerson.cs" />
+    <Compile Include="NonAggregates\InstitutionType.cs" />
+    <Compile Include="NonAggregates\NonAggregatesModelDbConfiguration.cs" />
+    <Compile Include="NonAggregates\UinType.cs" />
+    <Compile Include="Procedures\ProcedureBudgetLevel3.cs" />
+    <Compile Include="Procedures\ProcedureBudgetLevel2.cs" />
+    <Compile Include="Procedures\ProcedureBudgetLevel1.cs" />
+    <Compile Include="Procedures\ProcedureProgramme.cs" />
+    <Compile Include="Procedures\ProcedureApplicationDoc.cs" />
+    <Compile Include="PermissionTemplates\PermissionTemplate.cs" />
+    <Compile Include="PermissionTemplates\PermissionTemplate.Logic.cs" />
+    <Compile Include="Procedures\ProcedureDocument.cs" />
+    <Compile Include="Procedures\ProcedureNumber.cs" />
+    <Compile Include="Procedures\ProcedureStatus.cs" />
+    <Compile Include="Procedures\ProcedureTimeLimit.cs" />
+    <Compile Include="Procedures\ProcedureIndicator.cs" />
+    <Compile Include="Procedures\ProceduresModelDbConfiguration.cs" />
+    <Compile Include="Procedures\ProcedureSpecField.cs" />
+    <Compile Include="Procedures\Procedure.cs" />
+    <Compile Include="Procedures\ProcedureShare.cs" />
+    <Compile Include="Procedures\Procedure.Logic.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ProgrammePriority.Logic.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ProgrammePriority.cs" />
+    <Compile Include="OperationalMap\ProgrammePriorities\ProgrammePrioritiesModelDbConfiguration.cs" />
+    <Compile Include="NonAggregates\BudgetPeriod.cs" />
+    <Compile Include="NonAggregates\Dimension.cs" />
+    <Compile Include="NonAggregates\InterventionCategory.cs" />
+    <Compile Include="Measures\Measure.cs" />
+    <Compile Include="OperationalMap\Programmes\Programme.cs" />
+    <Compile Include="OperationalMap\Programmes\Programme.Logic.cs" />
+    <Compile Include="OperationalMap\Programmes\ProgrammesModelDbConfiguration.cs" />
+    <Compile Include="Projects\Project.Logic.cs" />
+    <Compile Include="Projects\ProjectType.cs" />
+    <Compile Include="Projects\ProjectEvalStatus.cs" />
+    <Compile Include="Projects\ProjectRecieveType.cs" />
+    <Compile Include="Projects\ProjectRegistrationStatus.cs" />
+    <Compile Include="Projects\Project.cs" />
+    <Compile Include="Projects\ProjectVersionXml.Logic.cs" />
+    <Compile Include="Projects\ProjectVersionXmlStatus.cs" />
+    <Compile Include="Projects\ProjectVersionXml.cs" />
+    <Compile Include="Projects\ProjectsModelDbConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DomainModule.cs" />
+    <Compile Include="Registrations\Registration.Logic.cs" />
+    <Compile Include="Registrations\RegProjectXmlRegType.cs" />
+    <Compile Include="Registrations\RegProjectXmlStatus.cs" />
+    <Compile Include="RequestPackages\PermissionRequest.cs" />
+    <Compile Include="RequestPackages\RegDataRequest.cs" />
+    <Compile Include="RequestPackages\RequestPackage.cs" />
+    <Compile Include="RequestPackages\RequestPackage.Logic.cs" />
+    <Compile Include="RequestPackages\RequestPackagesModelDbConfiguration.cs" />
+    <Compile Include="RequestPackages\RequestPackageStatus.cs" />
+    <Compile Include="RequestPackages\RequestPackageType.cs" />
+    <Compile Include="RequestPackages\RequestPackageUser.cs" />
+    <Compile Include="RequestPackages\RequestStatus.cs" />
+    <Compile Include="RioExtensions\RioProjectExtensions.cs" />
+    <Compile Include="SapInterfaces\SapFile.Logic.cs" />
+    <Compile Include="SapInterfaces\SapFileType.cs" />
+    <Compile Include="SapInterfaces\SapDistributedLimit.cs" />
+    <Compile Include="SapInterfaces\SapPaidAmountCurrency.cs" />
+    <Compile Include="SapInterfaces\SapPaidAmount.cs" />
+    <Compile Include="SapInterfaces\SapDistributedLimitEuFund.cs" />
+    <Compile Include="SapInterfaces\SapPaidAmountFund.cs" />
+    <Compile Include="SapInterfaces\SapPaymentType.cs" />
+    <Compile Include="SapInterfaces\SapSchema.cs" />
+    <Compile Include="SapInterfaces\SapImportModelDbConfiguration.cs" />
+    <Compile Include="SapInterfaces\SapFile.cs" />
+    <Compile Include="SapInterfaces\SapFileStatus.cs" />
+    <Compile Include="Sebra\SebraReportXml.cs">
+      <DependentUpon>SebraReportXml.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Services\INomenclatureDomainService.cs" />
+    <Compile Include="Services\IProcedureDomainService.cs" />
+    <Compile Include="SpotChecks\SpotCheckAscertainmentItem.cs" />
+    <Compile Include="SpotChecks\SpotCheckItem.cs" />
+    <Compile Include="SpotChecks\SpotCheckLevel.cs" />
+    <Compile Include="SpotChecks\SpotCheckItemLevel.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlanItem.cs" />
+    <Compile Include="SpotChecks\SpotCheckRecommendationAscertainment.cs" />
+    <Compile Include="SpotChecks\SpotCheckRecommendation.cs" />
+    <Compile Include="SpotChecks\SpotCheckTarget.cs" />
+    <Compile Include="SpotChecks\SpotCheck.Logic.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlace.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlan.Logic.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlanTarget.cs" />
+    <Compile Include="SpotChecks\SpotCheckTargetType.cs" />
+    <Compile Include="SpotChecks\SpotCheckAscertainment.cs" />
+    <Compile Include="SpotChecks\SpotCheckRecommendationStatus.cs" />
+    <Compile Include="SpotChecks\SpotCheckAscertainmentStatus.cs" />
+    <Compile Include="SpotChecks\SpotCheckAscertainmentType.cs" />
+    <Compile Include="SpotChecks\SpotCheckDoc.cs" />
+    <Compile Include="SpotChecks\SpotCheck.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlanDoc.cs" />
+    <Compile Include="SpotChecks\SpotChecksModelDbConfiguration.cs" />
+    <Compile Include="SpotChecks\SpotCheckPlan.cs" />
+    <Compile Include="SpotChecks\SpotCheckStatus.cs" />
+    <Compile Include="SpotChecks\SpotCheckType.cs" />
+    <Compile Include="UserOrganizations\UserOrganization.Logic.cs" />
+    <Compile Include="UserOrganizations\UserOrganization.cs" />
+    <Compile Include="Users\CommonPermission.cs" />
+    <Compile Include="Users\CommonPermissions\CompanyPermission.cs" />
+    <Compile Include="Users\CommonPermissions\ActionLogPermission.cs" />
+    <Compile Include="Users\CommonPermissions\InterfacesPermission.cs" />
+    <Compile Include="Users\CommonPermissions\SapInterfacePermission.cs" />
+    <Compile Include="Users\CommonPermissions\MonitoringPermission.cs" />
+    <Compile Include="Users\CommonPermissions\GuidancePermission.cs" />
+    <Compile Include="Users\CommonPermissions\NewsPermission.cs" />
+    <Compile Include="Users\CommonPermissions\ContractRegistrationPermission.cs" />
+    <Compile Include="Users\PermissionAggregations\CommonPermissionAggregationItemComparer.cs" />
+    <Compile Include="Users\PermissionAggregations\ProgrammePermissionAggregationItemComparer.cs" />
+    <Compile Include="Users\ProgrammePermissions\ProjectDossierPermission.cs" />
+    <Compile Include="Users\CommonPermissions\OperationalMapAdminPermission.cs" />
+    <Compile Include="Users\CommonPermissions\RegistrationPermission.cs" />
+    <Compile Include="Users\PermissionAggregations\CommonPermissionAggregationItem.cs" />
+    <Compile Include="Users\PermissionTables\CommonPermissionTable.cs" />
+    <Compile Include="Users\PermissionAggregations\PermissionAggregation.cs" />
+    <Compile Include="Users\PermissionTables\Permission.cs" />
+    <Compile Include="Users\PermissionTables\PermissionTable.cs" />
+    <Compile Include="Users\PermissionAggregations\ProgrammePermissionAggregationItem.cs" />
+    <Compile Include="Users\CommonPermissions\UserAdminPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\ContractPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\ContractCommunicationPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\ContractReportPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\MonitoringFInancialControlPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\IndicatorPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\EvalSessionPermission.cs" />
+    <Compile Include="Users\PermissionTables\PermissionType.cs" />
+    <Compile Include="Users\PermissionTables\ProgrammePermissionTable.cs" />
+    <Compile Include="Users\ProgrammePermissions\ProjectPermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\ProcedurePermission.cs" />
+    <Compile Include="Users\ProgrammePermissions\OperationalMapPermission.cs" />
+    <Compile Include="Users\ProgrammePermission.cs" />
+    <Compile Include="Users\User.Logic.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Users\UserDeclaration.cs" />
+    <Compile Include="Users\UserPermission.cs" />
+    <Compile Include="Users\UsersModelDbConfiguration.cs" />
+    <Compile Include="UserTypes\UserType.Logic.cs" />
+    <Compile Include="UserTypes\UserType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Arachne\EC-DataExchange-v2.0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <Compile Include="Projects\ProjectManagingAuthorityCommunication.Logic.cs" />
+    <None Include="Sebra\SebraReportXml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Eumis.Common\Eumis.Common.csproj">
+      <Project>{dfc4f396-946c-440c-9d39-4d541dfce6f0}</Project>
+      <Name>Eumis.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Eumis.Rio\Eumis.Rio.csproj">
+      <Project>{ae6e8f22-5574-40e6-9c19-212794757c57}</Project>
+      <Name>Eumis.Rio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCalc\Evaluant.Calculator\NCalc.csproj">
+      <Project>{5f014003-50d8-49e0-8afe-91d38dccc97c}</Project>
+      <Name>NCalc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DomainEnumTexts.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainEnumTexts.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainEnumTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainEnumTexts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainTexts.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainTexts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.6.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.Analyzers.dll" />
+    <Analyzer Include="..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProjectDir)\..\..\msbuild_targets\BuildCommon.targets" Condition=" '$(Configuration)' != 'Debug' " />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.6.0\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.6.0\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.6.0\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Text.Analyzers.2.6.4\build\Text.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

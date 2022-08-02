@@ -1,0 +1,14 @@
+﻿<div>
+
+  <label class="title">{{info.type}} {{info.code}}, {{info.status.toUpperCase()}}</label>
+
+  <sc-tabs tab-list="{
+    'requestPackages_tabs_edit': 'root.requestPackages.view.edit',
+    'requestPackages_tabs_users': 'root.requestPackages.view.users'
+    }"></sc-tabs>
+
+  <div class="tab-content">
+    <div ui-view></div>
+    <div class="clear"></div>
+  </div>
+</div>

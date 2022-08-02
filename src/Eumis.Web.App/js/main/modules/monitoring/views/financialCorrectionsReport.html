@@ -1,0 +1,100 @@
+﻿<ng-form name="reportsSearchForm" sc-validate="{}" sc-form-readonly="false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="well well-sm">
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.programmeId" alias="'programmes'" mode="id" l10n-text="monitoring_financialCorrectionsReport_programme" class="col-sm-5"></sc-field>
+          <sc-field type="nomenclature" ng-model="filters.programmePriorityId" alias="'programmePriorities'" mode="id" params="{ programmeId: filters.programmeId }" l10n-text="monitoring_financialCorrectionsReport_programmePriority" class="col-sm-5"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="nomenclature" ng-model="filters.procedureId" alias="'procedures'" mode="id" params="{ programmePriorityId: filters.programmePriorityId }" l10n-text="monitoring_financialCorrectionsReport_procedure" class="col-sm-5"></sc-field>
+          <sc-field type="date" ng-model="filters.fromDate" l10n-text="monitoring_financialCorrectionsReport_fromDate" class="col-sm-2"></sc-field>
+          <sc-field type="date" ng-model="filters.toDate" l10n-text="monitoring_financialCorrectionsReport_toDate" class="col-sm-2"></sc-field>
+          <sc-field type="nomenclature" alias="'currencies'" mode="id" ng-model="filters.currency" l10n-text="monitoring_financialCorrectionsReport_currency" class="col-sm-3 col-md-2"></sc-field>
+        </div>
+        <div class="row">
+          <div class="labeless col-sm-12">
+            <sc-button name="seachBtn" btn-click="search()" text="monitoring_financialCorrectionsReport_search" class="btn btn-default btn-sm pull-right" icon="glyphicon-search"></sc-button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="displayResult">
+        <sc-link-button ng-href="{{exportUrl}}" target="_blank" sc-access-token style="position:relative;bottom:2px;"
+                        icon="fa-file-excel-o fa-lg fa-fw" text="monitoring_beneficiaryProjectsContractsReport_excelExport" class="btn btn-default btn-xs pull-right">
+        </sc-link-button>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_programme"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_procedure"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_contractRegNum"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_companyUin"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_companyName"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_companyType"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_companyLegalType"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_correctionDate"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_correctionNum"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_contractContractName"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_contractContractCompanyName"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_contractContractUin"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialContractContractPercent"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialAmountTotal"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialReason"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialViolations"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialViolationFoundBy"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_initialBearer"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentContractContractPercent"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentAmountTotal"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_amendmentReason"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentReason"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentViolations"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentViolationFoundBy"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_currentBearer"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_irregularity"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_corretionAmountTotal"></th>
+                <th class="text-center" l10n-text="monitoring_financialCorrectionsReport_contractReportPayments"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="financialCorrection in financialCorrections">
+                <td>{{financialCorrection.programme}}</td>
+                <td>{{financialCorrection.procedure}}</td>
+                <td>{{financialCorrection.contractRegNum}}</td>
+                <td>{{financialCorrection.companyUin}}</td>
+                <td>{{financialCorrection.companyName}}</td>
+                <td>{{financialCorrection.companyType}}</td>
+                <td>{{financialCorrection.companyLegalType}}</td>
+                <td>{{financialCorrection.correctionDate | date:'dd.MM.yyyy'}}</td>
+                <td>{{financialCorrection.correctionNum}}</td>
+                <td>{{financialCorrection.contractContractName}}</td>
+                <td>{{financialCorrection.contractContractCompanyName}}</td>
+                <td>{{financialCorrection.contractContractUin}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{financialCorrection.initialContractContractPercent | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{financialCorrection.initialAmountTotal | money}}</td>
+                <td>{{financialCorrection.initialReason}}</td>
+                <td>{{financialCorrection.initialViolations}}</td>
+                <td>{{financialCorrection.initialViolationFoundBy}}</td>
+                <td>{{financialCorrection.initialBearer}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{financialCorrection.currentContractContractPercent | money}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{financialCorrection.currentAmountTotal | money}}</td>
+                <td>{{financialCorrection.amendmentReason}}</td>
+                <td>{{financialCorrection.currentReason}}</td>
+                <td>{{financialCorrection.currentViolations}}</td>
+                <td>{{financialCorrection.currentViolationFoundBy}}</td>
+                <td>{{financialCorrection.currentBearer}}</td>
+                <td>{{financialCorrection.irregularity}}</td>
+                <td style="text-align: right; padding: 8px 2px; white-space: nowrap;">{{financialCorrection.corretionAmountTotal | money}}</td>
+                <td>{{financialCorrection.contractReportPayments}}</td>
+              </tr>
+              <tr ng-if="financialCorrections.length === 0">
+                <td colspan="28" class="text-center" l10n-text="monitoring_financialCorrectionsReport_noResults"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

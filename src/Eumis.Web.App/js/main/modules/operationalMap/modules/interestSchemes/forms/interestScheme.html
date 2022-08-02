@@ -1,0 +1,13 @@
+<ng-form sc-validate="{}" sc-form-readonly>
+  <div class="row">
+    <sc-field type="text" ng-model="model.name" ng-required="true" l10n-text="interestSchemes_interestSchemeForm_name" class="col-sm-12 col-md-8"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="nomenclature" ng-model="model.basicInterestRateId" alias="'basicInterestRates'" mode="id" ng-required="true" l10n-text="interestSchemes_interestSchemeForm_basicInterestRate" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.allowanceId" alias="'allowances'" mode="id" ng-required="true" l10n-text="interestSchemes_interestSchemeForm_allowance" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+  <div class="row">
+    <sc-field type="int" ng-model="model.annualBasis" ng-required="true" l10n-text="interestSchemes_interestSchemeForm_annualBasis" class="col-sm-6 col-md-4"></sc-field>
+    <sc-field type="nomenclature" ng-model="model.isActive" alias="'boolean'" mode="id" ng-required="true" l10n-text="interestSchemes_interestSchemeForm_isActive" class="col-sm-6 col-md-4"></sc-field>
+  </div>
+</ng-form>

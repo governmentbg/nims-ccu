@@ -1,0 +1,20 @@
+﻿@model R_10067.FinanceSourceReportAmounts
+
+@if (Model == null)
+{
+    <td></td>
+    <td></td>
+    <td></td>
+}
+else
+{
+    <td>
+        @Html.DisplayFor(m => m.GrandAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.SelfAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.TotalAmount, MVC.Shared.Views.DisplayTemplates.DecimalWithSpan)
+    </td>
+}

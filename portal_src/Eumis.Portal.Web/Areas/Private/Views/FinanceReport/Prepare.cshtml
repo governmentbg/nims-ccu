@@ -1,0 +1,90 @@
+﻿@using Eumis.Portal.Web.Helpers
+@model Eumis.Portal.Web.Models.FinanceReport.EditVM
+
+<!-- PAGE TITLE ELEMENT -->
+<div class="container page-title">
+    <h1>Договор № @Model.contractNumber, @Global.FinanceReport № @Model.docNumber</h1>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm(MVC.Private.FinanceReport.ActionNames.Prepare,
+    MVC.Private.FinanceReport.Name,
+    new { currentStep = Model.CurrentStep },
+    FormMethod.Post,
+    new { id = Constants.PARTIAL_SAVE_FINANCE_REPORT, role = "form", @class = "form-with-sections" }))
+    {
+        <div class="form-toggle">
+            <button type="button" class="form-collapse" style="display: none;">
+                <span class="glyphicon glyphicon-minus"></span>
+                @Global.ButtonCollapseAll
+            </button>
+            <button type="button" class="form-expand">
+                <span class="glyphicon glyphicon-plus"></span>
+                @Global.ButtonExpandAll
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs">
+            @Html.BeginActionLinkPrePostButton(
+                null,
+                null,
+                MVC.Private.FinanceReport.ActionNames.Prepare,
+                MVC.Private.FinanceReport.Name,
+                routeValues:
+                    new
+                    {
+                        step = AppStep.Prepare,
+                        currentStep = AppStep.Prepare,
+                    },
+                htmlAttributes: new { @class = "tab active wait" },
+                formId: Constants.PARTIAL_SAVE_FINANCE_REPORT,
+                formMethod: FormMethod.Post)
+            @Global.FinanceReport
+            @Html.EndActionLinkPrePostButton()
+        </ul>
+        <div class="tab-content">
+
+            @Html.ValidationSummaryForPopover(Model.LocalValidationErrors)
+            @Html.ValidationSummaryForErrors(Model.LocalValidationErrors, null, Global.ValidationSummaryTitle, Global.ValidationSummarySuccessTitle, Global.ShowErrorTitle, Global.HideErrorTitle)
+            @Html.ValidationSummaryForWarnings(null, Global.ValidationSummaryWarningsTitle, Global.ShowWarningTitle, Global.HideWarningTitle)
+
+            @Html.EditorFor(m => m, MVC.Shared.Views.EditorTemplates.FinanceReportEdit)
+
+            <div class="form-submit">
+                <div class="save-as-draft-wrapper fixed">
+                    
+                    @Html.Partial(MVC.Shared.Views._SaveAsDraftPartial,
+                        new Eumis.Portal.Web.Models.DownloadDraftXmlVM
+                        {
+                            ControllerName = MVC.Private.FinanceReport.Name,
+                            SecondActionName = Constants.SaveDraftActionName,
+                            PostActionName = MVC.Private.FinanceReport.ActionNames.Save,
+                            HasXmlUpdate = true,
+                            FORM_ID = Constants.PARTIAL_SAVE_FINANCE_REPORT
+                        })
+
+                    @Html.BeginActionLinkPrePostButton(null, null,
+                        MVC.Private.FinanceReport.ActionNames.Prepare,
+                        MVC.Private.FinanceReport.Name,
+                        routeValues: new { step = AppStep.Prepare, currentStep = AppStep.Prepare },
+                        htmlAttributes: new { @class = "validate wait" },
+                        formId: Constants.PARTIAL_SAVE_FINANCE_REPORT,
+                        formMethod: FormMethod.Post) @Global.ValidateButton
+                        @Html.EndActionLinkPrePostButton()
+                    </div>
+
+                    <input type="submit" class="submit wait" name="submit" value="@Global.ButtonContinueTextUpper">
+                </div>
+            </div>
+            <script type="text/javascript">
+            $('#@(Constants.PARTIAL_SAVE_FINANCE_REPORT)').submit(function (event) {
+                PARTIAL_SAVE_SECTIONS(function () {
+                    $.submitPage('@(Url.Action(MVC.Private.FinanceReport.ActionNames.Prepare, MVC.Private.FinanceReport.Name, new { currentStep = Model.CurrentStep }))',
+                        'post', '@(Constants.PARTIAL_SAVE_FINANCE_REPORT)', undefined, undefined, undefined, true);
+                }, this);
+                return false;
+            });
+            </script>
+    }
+</div>

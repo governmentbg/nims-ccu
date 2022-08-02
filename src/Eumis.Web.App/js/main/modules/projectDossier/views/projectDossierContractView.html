@@ -1,0 +1,147 @@
+<ng-form name="editEvalSessionForm" sc-validate="{}" sc-form-readonly="true">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <strong class="heading" class="heading" l10n-text="projectDossier_viewContract_title"></strong>
+    </div>
+
+    <div class="panel-body">
+      <div class="panel panel-default project-dossier first-section">
+        <div class="panel-heading" ng-click="showContractData=!showContractData">
+          <span l10n-text="projectDossier_viewContract_contractData"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractData, 'glyphicon-chevron-right': !showContractData}"></i>
+        </div>
+        <div class="panel-body">
+          <eumis-contract-data ng-show="showContractData" name="contractDataForm" ng-model="contract"></eumis-contract-data>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showContractBeneficiary=!showContractBeneficiary">
+          <span l10n-text="projectDossier_viewContract_beneficiary"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractBeneficiary, 'glyphicon-chevron-right': !showContractBeneficiary}"></i>
+        </div>
+        <div class="panel-body">
+          <eumis-contract-beneficiary ng-show="showContractBeneficiary" name="contractBeneficiaryForm" ng-model="contract"></eumis-contract-beneficiary>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showContractVersions=!showContractVersions">
+          <span l10n-text="projectDossier_viewContract_versions"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractVersions, 'glyphicon-chevron-right': !showContractVersions}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showContractVersions" ng-href="{{contractVersionsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewContract_versionExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showContractVersions" items="contractVersions" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editVersionBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                btn-sref="{ state: 'root.projectDossier.view.contract.versions.edit', params: { vid: item.contractVersionId } }"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="versionNumber" title="projectDossier_viewContract_versionNum">
+            </sc-column>
+            <sc-column data="versionType" title="projectDossier_viewContract_versionType"></sc-column>
+            <sc-column data="regNumber" title="projectDossier_viewContract_versionRegNumber"></sc-column>
+            <sc-column data="createNote" title="projectDossier_viewContract_versionCreateNote"></sc-column>
+            <sc-column data="totalBfpAmount" title="projectDossier_viewContract_versionTotalBfpAmount"></sc-column>
+            <sc-column data="contractDate" title="projectDossier_viewContract_versionContractDate" type="date"></sc-column>
+            <sc-column data="status" title="projectDossier_viewContract_versionStatus"></sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showContractProcurements=!showContractProcurements">
+          <span l10n-text="projectDossier_viewContract_procurements"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractProcurements, 'glyphicon-chevron-right': !showContractProcurements}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showContractProcurements" ng-href="{{contractProcurementsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewContract_procurementExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showContractProcurements" items="contractProcurements" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                btn-sref="{ state: 'root.projectDossier.view.contract.procurements.edit', params: { pid: item.contractProcurementId } }"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="source" title="projectDossier_viewContract_procurementSource"></sc-column>
+            <sc-column data="status" title="projectDossier_viewContract_procurementStatus"></sc-column>
+            <sc-column data="createDate" title="projectDossier_viewContract_procurementCreateDate" type="date"></sc-column>
+            <sc-column data="modifyDate" title="projectDossier_viewContract_procurementModifyDate" type="date"></sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showContractSpendingPlans=!showContractSpendingPlans">
+          <span l10n-text="projectDossier_viewContract_spendingPlans"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractSpendingPlans, 'glyphicon-chevron-right': !showContractSpendingPlans}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showContractSpendingPlans" ng-href="{{contractSpendingPlansExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewContract_spendingPlanExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showContractSpendingPlans" items="contractSpendingPlans" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                btn-sref="{ state: 'root.projectDossier.view.contract.spendingPlans.edit', params: { spid: item.contractSpendingPlanId } }"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="source" title="projectDossier_viewContract_spendingPlanSource"></sc-column>
+            <sc-column data="status" title="projectDossier_viewContract_spendingPlanStatus"></sc-column>
+            <sc-column data="createDate" title="projectDossier_viewContract_spendingPlanCreateDate" type="date"></sc-column>
+            <sc-column data="modifyDate" title="projectDossier_viewContract_spendingPlanModifyDate" type="date"></sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier">
+        <div class="panel-heading" ng-click="showContractOffers=!showContractOffers">
+          <span l10n-text="projectDossier_viewContract_offers"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractOffers, 'glyphicon-chevron-right': !showContractOffers}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showContractOffers" ng-href="{{contractOffersExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewContract_offerExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showContractOffers" items="contractOffers" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                btn-sref="{ state: 'root.projectDossier.view.contract.offers.edit', params: { oid: item.id } }" ng-disabled="!item.canBeDisplayed"></sc-button>
+            </sc-column>
+            <sc-column data="submitDate" title="projectDossier_viewContract_offersSubmitDate" type="date"></sc-column>
+            <sc-column data="procurementPlanExpectedAmount" title="projectDossier_viewContract_offersExpectedAmount" type="money"></sc-column>
+            <sc-column data="procurementPlanSubject" title="projectDossier_viewContract_offersName" ></sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+
+      <div class="panel panel-default project-dossier last-section">
+        <div class="panel-heading" ng-click="showContractCommunications=!showContractCommunications">
+          <span l10n-text="projectDossier_viewContract_communications"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showContractCommunications, 'glyphicon-chevron-right': !showContractCommunications}"></i>
+        </div>
+        <div class="panel-body">
+          <sc-link-button ng-show="showContractCommunications" ng-href="{{contractCommunicationsExportUrl}}" target="_blank" sc-access-token
+            icon="fa-file-excel-o fa-lg fa-fw" text="projectDossier_viewContract_communicationExcelExport" class="btn btn-default btn-sm pull-left"></sc-link-button>
+
+          <sc-datatable ng-show="showContractCommunications" items="contractCommunications" filterable="true" pageable="true" sortable="true" dynamic-columns="true" scrollable="false">
+            <sc-column sortable="false" class="buttons-cell" has-content="true">
+              <sc-button name="editBtn" btn-sref="{ state: 'root.projectDossier.view.contract.communications.edit', params: { cid: item.contractCommunicationXmlId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+                ng-disabled="!$canDo('ProjectDossierActions.View', projectId)"></sc-button>
+            </sc-column>
+            <sc-column data="status" title="projectDossier_viewContract_status"></sc-column>
+            <sc-column data="source" title="projectDossier_viewContract_source"></sc-column>
+            <sc-column data="regNumber" title="projectDossier_viewContract_regNumber"></sc-column>
+            <sc-column data="subject" title="projectDossier_viewContract_subject"></sc-column>
+            <sc-column data="sendDate" title="projectDossier_viewContract_sendDate" type="datetime"></sc-column>
+            <sc-column data="readDate" title="projectDossier_viewContract_readDate" type="datetime"></sc-column>
+          </sc-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

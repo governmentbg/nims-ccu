@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <sc-button name="newInterestSchemeBtn" btn-sref="{ state: 'root.map.interestSchemes.new' }" text="interestSchemes_searchForm_newBtn" class="btn btn-sm btn-primary pull-left" icon="glyphicon-floppy-disk"
+      ng-disabled="!$canDo('InterestSchemeListActions.Create')"></sc-button>
+
+    <sc-datatable items="interestSchemes" filterable="true" pageable="true" sortable="true" dynamic-columns="true">
+      <sc-column sortable="false" class="buttons-cell" has-content="true">
+        <sc-button name="editBtn" btn-sref="{ state: 'root.map.interestSchemes.edit', params: {id: item.interestSchemeId} }" class="btn btn-xs btn-primary" icon="glyphicon-pencil"
+          ng-disabled="!$canDo('InterestSchemeActions.View', item.interestSchemeId)"></sc-button>
+      </sc-column>
+      <sc-column data="name" title="interestSchemes_searchForm_name">
+      </sc-column>
+      <sc-column data="basicInterestRateName" title="interestSchemes_searchForm_basicInterestRate">
+      </sc-column>
+      <sc-column data="allowanceName" title="interestSchemes_searchForm_allowance">
+      </sc-column>
+      <sc-column data="annualBasis" title="interestSchemes_searchForm_annualBasis">
+      </sc-column>
+      <sc-column data="isActive" title="interestSchemes_searchForm_isActive" type="boolean">
+      </sc-column>
+    </sc-datatable>
+  </div>
+</div>

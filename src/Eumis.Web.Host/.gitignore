@@ -1,0 +1,11 @@
+bin/*
+bin/**/*
+
+obj/*
+obj/**/*
+
+errors/*
+errors/**/*
+
+App/*
+App/**/*

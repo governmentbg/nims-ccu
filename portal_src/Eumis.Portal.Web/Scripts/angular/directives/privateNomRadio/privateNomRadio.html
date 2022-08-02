@@ -1,0 +1,7 @@
+﻿<input ng-model="model.Name" type="hidden" name="{{path}}.Name" value="{{model.Name}}">
+<input ng-model="model.NameEN" type="hidden" name="{{path}}.NameEN" value="{{model.NameEN}}">
+
+<div>
+    <input ng-repeat-start="item in model.Items" ng-model="model.id" type="radio" name="{{path}}.Id" id="{{item.Value}}{{editorId}}" value="{{item.Value}}" />
+    <label ng-repeat-end for="{{item.Value}}{{editorId}}">{{item.Text}}</label>
+</div>

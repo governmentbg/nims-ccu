@@ -1,0 +1,139 @@
+﻿@model R_10087.CheckList
+
+@if (Model != null)
+{
+    if (!String.IsNullOrWhiteSpace(Model.ProgrammeName)
+        || !String.IsNullOrWhiteSpace(Model.CheckListName)
+        || !String.IsNullOrWhiteSpace(Model.Description)
+        || !String.IsNullOrWhiteSpace(Model.VersionNum)
+        || !String.IsNullOrWhiteSpace(Model.CheckListTypeText))
+    {
+        <table>
+            <tbody>
+
+                @if (!String.IsNullOrWhiteSpace(Model.ProgrammeName))
+                {
+                    <tr>
+                        <td width="35%">@CheckList.ProgrammeName</td>
+                        <td>@Model.ProgrammeName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.CheckListName))
+                {
+                    <tr>
+                        <td width="35%">@CheckList.CheckListName</td>
+                        <td>@Model.CheckListName</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <tr>
+                        <td width="35%">@CheckList.Description</td>
+                        <td>@Model.Description</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.VersionNum))
+                {
+                    <tr>
+                        <td width="35%">@CheckList.VersionNum</td>
+                        <td>@Model.VersionNum</td>
+                    </tr>
+                }
+
+                @if (!String.IsNullOrWhiteSpace(Model.CheckListTypeText))
+                {
+                    <tr>
+                        <td width="35%">@CheckList.Type</td>
+                        <td>@Model.CheckListTypeText</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    if (Model.CheckListGroupCollection != null && Model.CheckListUserCollection != null && Model.CheckListUserCollection.Count > 0)
+    {
+        <h3>@CheckList.Questions</h3>
+        <section style="display:block;">
+            <div>
+                <table class="evaluation">
+                    <thead>
+                        <tr>
+                            <th colspan="4">@CheckList.Group</th>
+                            <th colspan="@Model.CheckListUserCollection.Count">@CheckList.Role</th>
+                        </tr>
+                    </thead>
+                    @for (int i = 0; i < Model.CheckListGroupCollection.Count; i++)
+                    {
+                        <tbody>
+                            <tr>
+                                <td colspan="@(Model.CheckListUserCollection.Count + 4)"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><strong>@(Eumis.Common.Helpers.DataUtils.Romanize(i + 1)).</strong></td>
+                                <td colspan="@(Model.CheckListUserCollection.Count + 3)">
+                                    <strong>@Html.Partial(MVC.Shared.Views.Print.TextAreaPre, Model.CheckListGroupCollection[i].Name)</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="3"><strong>@CheckList.Question</strong></td>
+                                @for (int j = 0; j < Model.CheckListUserCollection.Count; j++)
+                                {
+                                    <td>@Model.CheckListUserCollection[j].Role</td>
+                                }
+                            </tr>
+                            @if (Model.CheckListGroupCollection[i].CheckListQuestionCollection != null && Model.CheckListGroupCollection[i].CheckListQuestionCollection.Count > 0)
+                            {
+                                for (int j = 0; j < Model.CheckListGroupCollection[i].CheckListQuestionCollection.Count; j++)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td><strong>@(j + 1).</strong></td>
+                                        <td colspan="2">
+                                            @Model.CheckListGroupCollection[i].CheckListQuestionCollection[j].Content
+                                        </td>
+                                        @for (int k = 0; k < Model.CheckListUserCollection.Count; k++)
+                                        {
+                                            var isApplicable = Model.CheckListUserQuestionCollection.Single(uq =>
+                                            uq.GroupOrderNum == Model.CheckListGroupCollection[i].OrderNum &&
+                                            uq.QuestionOrderNum == Model.CheckListGroupCollection[i].CheckListQuestionCollection[j].OrderNum &&
+                                            uq.UserOrderNum == Model.CheckListUserCollection[k].OrderNum).IsApplicable;
+
+                                            if (isApplicable)
+                                            {
+                                                <td style="border-left: 1px solid #8f8f8f;">@CheckList.ApplicableShort</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="border-left: 1px solid #8f8f8f;">@CheckList.NotApplicableShort</td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            }
+
+
+                        </tbody>
+
+                    }
+                </table>
+            </div>
+        </section>
+    }
+    else
+    {
+        <p>@CheckList.MissingDataPrint</p>
+    }
+
+    if (Model.AttachedDocumentCollection != null && Model.AttachedDocumentCollection.Count > 0)
+    {
+        <h3>@CheckList.AttachedDocumentCollection</h3>
+        <section style="display:block;">
+            @Html.Partial(MVC.Private.Shared.Views.Print.UndefinedAttachedDocumentCollection, Model.AttachedDocumentCollection ?? new R_10087.AttachedDocumentCollection())
+        </section>
+    }
+}

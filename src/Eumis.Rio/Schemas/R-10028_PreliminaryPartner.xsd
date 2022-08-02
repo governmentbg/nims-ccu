@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://ereg.egov.bg/segment/R-10028" 
+	xmlns="http://ereg.egov.bg/segment/R-10028" 
+	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified">
+
+	<xsd:complexType name="PreliminaryPartner">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="bg">Партньор (за предварителен подбор)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ArePartnersIncluded" type="xsd:boolean" minOccurs="0" />
+		</xsd:sequence>
+
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="isLocked" type="xsd:boolean"/>
+	</xsd:complexType>
+</xsd:schema>

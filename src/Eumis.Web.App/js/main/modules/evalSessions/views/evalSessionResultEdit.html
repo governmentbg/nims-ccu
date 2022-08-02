@@ -1,0 +1,161 @@
+<ng-form name="editEvalSessionStandingForm" sc-validate="{}" sc-form-readonly>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong class="heading" l10n-text="evalSessions_editEvalSessionResult_title"></strong>
+
+      <div class="pull-right">
+        <sc-button name="refusedBtn" btn-click="doAction('cancel')" text="evalSessions_editEvalSessionResult_cancel" class="btn btn-danger btn-xs"
+          ng-show="evalSessionResult.status === 'published'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionResult.evalSessionId) || isSessionEndedByLAG">
+        </sc-button>
+        <sc-button name="publishedBtn" btn-click="doAction('publish')" text="evalSessions_editEvalSessionResult_publish" class="btn btn-success btn-xs"
+          ng-show="evalSessionResult.status === 'draft'" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionResult.evalSessionId) || isSessionEndedByLAG">
+        </sc-button>
+      </div>
+    </div>
+
+    <div class="well-sm panel-body">
+      <div class="row">
+        <sc-field type="text" ng-model="evalSessionResult.orderNum" ng-readonly="true" l10n-text="evalSessions_editEvalSessionResult_orderNum" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="date" ng-model="evalSessionResult.createDate" ng-readonly="true" l10n-text="evalSessions_editEvalSessionResult_createDate" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row">
+        <sc-field type="nomenclature" alias="'evalSessionResultStatuses'" mode="id" ng-model="evalSessionResult.status" ng-readonly="true" l10n-text="evalSessions_editEvalSessionResult_status" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="nomenclature" alias="'evalSessionResultTypes'" mode="id" ng-model="evalSessionResult.type" ng-readonly="true" ng-required="true" l10n-text="evalSessions_editEvalSessionResult_type" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div class="row" ng-if="evalSessionResult.status != 'draft'">
+        <sc-field type="nomenclature" alias="'evalSessionResultUser'" mode="id" ng-model="evalSessionResult.userId" ng-disabled="true" l10n-text="evalSessions_editEvalSessionResult_publishedUser" class="col-sm-4 col-md-3"></sc-field>
+        <sc-field type="date" ng-model="evalSessionResult.publicationDate" ng-readonly="true" l10n-text="evalSessions_editEvalSessionResult_publishedDate" class="col-sm-4 col-md-3"></sc-field>
+      </div>
+      <div>
+        <h5 class="form-header" l10n-text="evalSessions_editEvalSessionResult_projects"></h5>
+        <div ng-if="evalSessionResult.status === 'draft'">
+          <sc-button name="loadBtn" btn-click="doAction('loadProjects')" text="evalSessions_editEvalSessionResult_loadProjects" class="btn btn-default btn-xs"
+            ng-show="showLoadbtn" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionResult.evalSessionId) || isSessionEndedByLAG">
+          </sc-button>
+          <sc-button name="clearBtn" btn-click="doAction('clearProjects')" text="evalSessions_editEvalSessionResult_clearProjects" class="btn btn-default btn-xs"
+            ng-show="!showLoadbtn" ng-disabled="!$canDo('EvalSessionActions.EditSessionData', evalSessionResult.evalSessionId) || isSessionEndedByLAG">
+          </sc-button>
+        </div>
+        <div class="row">
+          <div class="col-sm-12" ng-if="evalSessionResult.type === 'adminAdmiss'">
+            <sc-datatable items="adminAdmissProjects" filterable="true" pageable="true" sortable="false" dynamic-columns="true" scrollable="true" >
+              <sc-column data="projectRegNumber" title="evalSessions_editEvalSessionResult_projectNumber">
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectName" has-content="true" data="projectName">
+                <span title="{{item.projectName}}">{{item.projectName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectRegDate"  data="projectRegDate" type="datetime">
+                <span title="{{item.projectRegDate}}"></span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyName" has-content="true" data="companyName">
+                <span title="{{item.companyName}}">{{item.companyName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyUin"  data="companyUin" has-content="true">
+                <span title="{{item.companyUin}}">{{item.companyUinType}}: {{item.companyUin}}</span>
+              </sc-column>
+              <sc-column data="adminAdmissResult" title="evalSessions_editEvalSessionResult_adminAdmissResult">
+              </sc-column>
+              <sc-column data="nonAdmissionReason" title="evalSessions_editEvalSessionResult_nonAdmissionReason">
+              </sc-column>
+            </sc-datatable>
+          </div>
+          <div class="col-sm-12" ng-if="evalSessionResult.type === 'preliminary'">
+            <sc-datatable items="preliminaryProjects" filterable="true" pageable="true" sortable="false" dynamic-columns="true" scrollable="true" >
+              <sc-column data="projectRegNumber" title="evalSessions_editEvalSessionResult_projectNumber">
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectName" has-content="true" data="projectName">
+                <span title="{{item.projectName}}">{{item.projectName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectRegDate"  data="projectRegDate" type="datetime">
+                <span title="{{item.projectRegDate}}"></span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyName" has-content="true" data="companyName">
+                <span title="{{item.companyName}}">{{item.companyName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyUin"  data="companyUin" has-content="true">
+                <span title="{{item.companyUin}}">{{item.companyUinType}}: {{item.companyUin}}</span>
+              </sc-column>
+              <sc-column data="grantAmount" title="evalSessions_editEvalSessionResult_grantAmountPreliminary" type="money">
+              </sc-column>
+              <sc-column data="selfAmount" title="evalSessions_editEvalSessionResult_selfAmountPreliminary" type="money">
+              </sc-column>
+              <sc-column data="preliminaryResult" title="evalSessions_editEvalSessionResult_preliminaryResult">
+              </sc-column>
+              <sc-column data="points" title="evalSessions_editEvalSessionResult_preliminaryPoints" ng-show = "evalSessionResult.preliminaryEvalType === 'weight'" type="money">
+              </sc-column>
+              <sc-column data="orderNum" title="evalSessions_editEvalSessionResult_preliminaryStandingNumber">
+              </sc-column>
+              <sc-column data="status" title="evalSessions_editEvalSessionResult_preliminaryStandingStatus">
+              </sc-column>
+              <sc-column data="note" title="evalSessions_editEvalSessionResult_preliminaryStandingNote">
+              </sc-column>
+            </sc-datatable>
+          </div>
+          <div class="col-sm-12" ng-if="evalSessionResult.type === 'standing'">
+            <sc-datatable items="standingProjects" filterable="true" pageable="true" sortable="false" dynamic-columns="true" scrollable="true" >
+              <sc-column data="projectRegNumber" title="evalSessions_editEvalSessionResult_projectNumber">
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectName" has-content="true" data="projectName">
+                <span title="{{item.projectName}}">{{item.projectName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_projectRegDate"  data="projectRegDate" type="datetime">
+                <span title="{{item.projectRegDate}}"></span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyName" has-content="true" data="companyName">
+                <span title="{{item.companyName}}">{{item.companyName | trim : 100}}</span>
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_companyUin"  data="companyUin" has-content="true">
+                <span title="{{item.companyUin}}">{{item.companyUinType}}: {{item.companyUin}}</span>
+              </sc-column>
+              <sc-column data="grantAmount" title="evalSessions_editEvalSessionResult_grantAmount" type="money">
+              </sc-column>
+              <sc-column data="selfAmount" title="evalSessions_editEvalSessionResult_selfAmount" type="money">
+              </sc-column>
+              <sc-column title="evalSessions_editEvalSessionResult_eval" sortable="false" has-content="true">
+                <table class="table table-bordered" style="margin-bottom: 0px;" border="0" cellspacing="0" cellpadding="0">
+                  <thead>
+                    <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_evalType"></th>
+                    <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_pass"></th>
+                    <th style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_points"></th>
+                  </thead>
+                  <tbody>
+                    <tr ng-show="item.isPassedPreliminary != null && item.isPassedPreliminary != undefined">
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_Preliminary"></td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedPreliminary ? yesText : noText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsPreliminary}}</td>
+                    </tr>
+                    <tr ng-show="item.isPassedASD != null && item.isPassedASD != undefined">
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_ASD"></td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedASD ? yesText : noText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsASD}}</td>
+                    </tr>
+                    <tr ng-show="item.isPassedTFO != null && item.isPassedTFO != undefined">
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_TFO">{{tfoText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedTFO ? yesText : noText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsTFO}}</td>
+                    </tr>
+                    <tr ng-show="item.isPassedComplex != null && item.isPassedComplex != undefined">
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;" l10n-text="evalSessions_editEvalSessionResult_Complex">{{tfoText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.isPassedComplex ? yesText : noText}}</td>
+                      <td style="padding: 2px 4px 2px 4px; text-align: right;">{{item.pointsComplex}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </sc-column>
+              <sc-column data="orderNum" title="evalSessions_editEvalSessionResult_standingNumber">
+              </sc-column>
+              <sc-column data="status" title="evalSessions_editEvalSessionResult_standingStatus">
+              </sc-column>
+              <sc-column data="correctedGrantAmount" title="evalSessions_editEvalSessionResult_correctedGrantAmount" type="money">
+              </sc-column>
+              <sc-column data="correctedSelfAmount" title="evalSessions_editEvalSessionResult_correctedSelfAmount" type="money">
+              </sc-column>
+              <sc-column data="note" title="evalSessions_editEvalSessionResult_preliminaryStandingNote">
+              </sc-column>
+            </sc-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-form>

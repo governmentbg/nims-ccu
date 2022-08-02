@@ -1,0 +1,25 @@
+<div class="tab-content">
+  <ng-form name="newSapFileForm" sc-validate="{}" sc-form-readonly>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong class="heading" l10n-text="sapFiles_newFile_title"></strong>
+
+        <div class="pull-right">
+          <sc-button name="saveBtn" btn-click="save()" text="sapFiles_newFile_save" class="btn btn-primary btn-xs" icon="glyphicon-floppy-disk">
+          </sc-button>
+          <sc-button name="cancelBtn" btn-click="cancel()" text="sapFiles_newFile_cancel" class="btn btn-default btn-xs" icon="glyphicon-ban-circle">
+          </sc-button>
+        </div>
+      </div>
+
+      <div class="well-sm panel-body">
+        <div class="row">
+          <sc-field type="nomenclature" mode="id" alias="'sapFileTypes'" ng-required="true" ng-model="model.type" l10n-text="sapFiles_newFile_type" class="col-sm-8 col-md-6"></sc-field>
+        </div>
+        <div class="row">
+          <sc-field type="file" name="file" ng-model="model.file" ng-required="true" url-template="SapFileBlobFile" l10n-text="sapFiles_newFile_file" class="col-sm-8 col-md-6"></sc-field>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

@@ -1,0 +1,64 @@
+﻿@model List<R_10018.AttachedDocument>
+
+@using Eumis.Common.Config;
+
+@{
+    var guid = Guid.NewGuid().ToString().Replace('-', '_');
+    var jsonModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model);
+
+    var resourcesObject = new
+    {
+        ErrorTryAgain = Global.ErrorTryAgain,
+        ErrorFileIsTooLarge = String.Format(Global.ErrorFileIsTooLarge, (Eumis.Documents.Constants.AttachedDocumentMaxSize / 1024f) / 1024f),
+        ButtonChooseFile = Global.ButtonChooseFile,
+        ButtonDownloadText = Global.ButtonDownloadText,
+        DeleteButton = Global.DeleteButton
+    };
+
+    var jsonResourcesObject = Newtonsoft.Json.JsonConvert.SerializeObject(resourcesObject);
+}
+
+<script type="text/javascript">
+
+    window._eumis_options = window._eumis_options || {};
+    window._eumis_options.i@(guid) = {
+        items: @(Html.Raw(jsonModel)),
+        url: '@(Html.Raw(System.Configuration.ConfigurationManager.AppSettings.GetWithEnv("Eumis.Components:BlobServerLocation")))',
+        resourcesObject: @(Html.Raw(jsonResourcesObject)),
+    };
+
+    $(document).ready(function () {
+        angular.bootstrap($('#containerAttachedDocuments@(guid)'), ['moduleAttachedDocuments']);
+    });
+
+</script>
+
+<div class="table-wrapper" id="containerAttachedDocuments@(guid)" ng-controller="controllerAttachedDocuments" ng-init="init('_eumis_options', 'i@(guid)')">
+    <img class="horizontal-scroll" src="@Url.Content(Links.Content.img.icons.blue_arrow_right_gif)" alt="" />
+    <table class="chart-info dynamic-rows file-upload" width="100%">
+        <thead>
+            <tr>
+                <th>@AttachedDocument.Description</th>
+                <th colspan="2">@AttachedDocument.FileName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items">
+                <td style="width:60%;">
+                    <textarea rows="1" style="height:29px;" auto-grow ng-class="{'input-validation-error': !item.IsDescriptionValid}" ng-model="item.Description" name="@(Html.GetNameFor(m => m))[{{ $index }}].Description" class="form-control"></textarea>
+                </td>
+                <td>
+                    <sc-file path="@(Html.GetNameFor(m => m))[{{ $index }}].AttachedDocumentContent"
+                             resources="resourcesObject"
+                             url="{{ url }}"
+                             ng-model="item.AttachedDocumentContent">
+                    </sc-file>
+                </td>
+                <td style="width:102px;">
+                    <a class="delete-btn" confirm-click="delItem(item)" ng-if="!item.IsRequired">@Global.DeleteButton</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="add-new-btn" ng-click="addItem()">@Global.AddButton</a>
+</div>
